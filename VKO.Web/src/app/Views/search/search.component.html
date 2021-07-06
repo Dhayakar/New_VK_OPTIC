@@ -1,0 +1,1856 @@
+<div class="modal-body">
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="col-sm-3">
+        <mat-form-field appearance="outline">
+          <mat-label>Search</mat-label>
+          <input [(ngModel)]="M_search" name="search" (keyup)="applyFilter($event.target.value)" matInput placeholder="Search" (input)="SearchInput()">
+        </mat-form-field>
+      </div>
+      <div class="col-sm-2">
+        <button *ngIf="hiddenSearchBT1" type="button" class="btn btn-primary" (click)="ViewSearch()">search</button>
+        <button *ngIf="hiddenSearchBT" type="button" class="btn btn-primary" (click)="ViewSearch1()">search</button>
+      </div>
+      <div class="col-sm-6">
+        <button (click)="ConvertPDF()" class="btn btn-primary-default btn-Pdf mlr10 mr-2p"><i class="far fa-file-pdf"></i> Export to PDF</button>
+        <button (click)="ConvertEXCEL()" class="btn btn-primary-default btn-Excel"><i class="far fa-file-excel"></i> Export to Excel</button>
+      </div>
+      <div class="col-sm-1">
+        <mat-icon class="close" matTooltip="Close" (click)="Dialogclose()">clear</mat-icon>
+      </div>
+    </div>
+
+
+    <div>
+      <h4 #TitleHeader id="myHeader"></h4>
+    </div>
+
+    <div class="row Management_dashboard_Tableheightsinsidepopup" #table>
+      <div id="section">
+
+        <div class="col-sm-12" *ngIf="hiddenReview">
+          <div class="row">
+            <div class="col-sm-3">
+              <mat-form-field>
+                <mat-label><strong>UIN No</strong></mat-label>
+                <input [(ngModel)]="M_UIN" name="UIN" matInput placeholder="">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+              <mat-form-field>
+                <mat-label><strong>Patient Name</strong></mat-label>
+                <input [(ngModel)]="M_Name" name="Name" matInput placeholder="">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+              <mat-form-field>
+                <mat-label><strong>phone</strong></mat-label>
+                <input [(ngModel)]="M_phone" name="phone" matInput placeholder="">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="row">
+            <h1 class="col-sm-5" align="center" *ngIf="LensHead"><b>Lens-Model</b></h1>
+            <h1 class="col-sm-5" align="center" *ngIf="FrameHead"><b>Frame-Model</b></h1>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <table mat-table matSort [dataSource]="dataSource" class="custom-table withoutbackgroung search-table table-bordered" id="excel-table">
+
+            <ng-container matColumnDef="checked">
+              <th mat-header-cell *matHeaderCellDef class="remove-this">Action</th>
+              <td mat-cell *matCellDef="let element" class="remove-this">
+                <mat-checkbox [(ngModel)]="element.checked" (click)="selecttype(element)"></mat-checkbox>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="checkedN">
+              <th mat-header-cell *matHeaderCellDef class="remove-this">Action</th>
+              <td mat-cell *matCellDef="let element" class="remove-this">
+                <button mat-icon-button [disabled]="element.IsActive === 'No'" (click)="selecttype(element)">
+                  <mat-icon class="grab" data-toggle="Edit">edit</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Drop">
+              <th mat-header-cell *matHeaderCellDef>Drop</th>
+              <td mat-cell *matCellDef="let element">
+                <mat-icon data-toggle="tooltip" title="Drop" [(ngModel)]="element.drop" (click)="selectDoctorDrop(element)">delete</mat-icon>
+              </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="DoctorID">
+              <th mat-header-cell *matHeaderCellDef>DoctorID</th>
+              <td mat-cell *matCellDef="let element"> {{element.DoctorID}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="DoctorName">
+              <th mat-header-cell *matHeaderCellDef>DoctorName</th>
+              <td mat-cell *matCellDef="let element"> {{element.DoctorName}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Address1">
+              <th mat-header-cell *matHeaderCellDef> Address1 </th>
+              <td mat-cell *matCellDef="let element"> {{element.Address1}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Address2">
+              <th mat-header-cell *matHeaderCellDef> Address2 </th>
+              <td mat-cell *matCellDef="let element"> {{element.Address2}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Address3">
+              <th mat-header-cell *matHeaderCellDef> Address3 </th>
+              <td mat-cell *matCellDef="let element"> {{element.Address3}} </td>
+            </ng-container>
+
+
+            <!--<ng-container matColumnDef="LocationID">
+            <th mat-header-cell *matHeaderCellDef  > Location </th>
+            <td mat-cell  *matCellDef="let element"> {{element.LocationID}} </td>
+          </ng-container>-->
+
+            <ng-container matColumnDef="RegistrationNumber">
+              <th mat-header-cell *matHeaderCellDef> RegistrationNumber </th>
+              <td mat-cell *matCellDef="let element"> {{element.RegistrationNumber}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="EngagementType">
+              ga
+              <th mat-header-cell *matHeaderCellDef> EngagementType </th>
+              <td mat-cell *matCellDef="let element"> {{element.EngagementType}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Phone1">
+              <th mat-header-cell *matHeaderCellDef> Phone1 </th>
+              <td mat-cell *matCellDef="let element"> {{element.Phone1}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Phone2">
+              <th mat-header-cell *matHeaderCellDef> Phone2 </th>
+              <td mat-cell *matCellDef="let element"> {{element.Phone2}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="EmailID">
+              <th mat-header-cell *matHeaderCellDef> EmailID </th>
+              <td mat-cell *matCellDef="let element"> {{element.EmailID}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Speciality">
+              <th mat-header-cell *matHeaderCellDef> Speciality </th>
+              <td mat-cell *matCellDef="let element"> {{element.Speciality}} </td>
+            </ng-container>
+
+            <!--<ng-container matColumnDef="BRTEffectiveDate">
+              <th mat-header-cell *matHeaderCellDef> Date</th>
+              <td mat-cell *matCellDef="let element"> {{element.EffectiveDate| date:'dd-MMM-y'}} </td>
+            </ng-container>
+
+
+
+            <ng-container matColumnDef="BRTIsActive">
+              <th mat-header-cell *matHeaderCellDef>Module Description</th>
+              <td mat-cell *matCellDef="let element"> {{element.ModuleDescription}} </td>
+            </ng-container>-->
+
+            <!--Employee-->
+
+            <ng-container matColumnDef="EmployeeID">
+              <th mat-header-cell *matHeaderCellDef>EmployeeID</th>
+              <td mat-cell *matCellDef="let element"> {{element.EmployeeID}} </td>
+            </ng-container>
+
+
+
+            <ng-container matColumnDef="EmployeeName">
+              <th mat-header-cell *matHeaderCellDef>Employee Name</th>
+              <td mat-cell *matCellDef="let element"> {{element.FirstName}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="PresentAddress1">
+              <th mat-header-cell *matHeaderCellDef>Present Address 1</th>
+              <td mat-cell *matCellDef="let element"> {{element.PresentAddress1}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="PresentLocationID">
+              <th mat-header-cell *matHeaderCellDef> Present Location </th>
+              <td mat-cell *matCellDef="let element"> {{element.PresentLocationID}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="PresentLandmark">
+              <th mat-header-cell *matHeaderCellDef> PresentLandmark </th>
+              <td mat-cell *matCellDef="let element"> {{element.PresentLandmark}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="PermanentAddress1">
+              <th mat-header-cell *matHeaderCellDef> Permanent Address 1 </th>
+              <td mat-cell *matCellDef="let element"> {{element.PermanentAddress1}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="PermanentLocationID">
+              <th mat-header-cell *matHeaderCellDef> Permanent Location </th>
+              <td mat-cell *matCellDef="let element"> {{element.PermanentLocationID}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="PermanentLandmark">
+              <th mat-header-cell *matHeaderCellDef> Permanent Landmark </th>
+              <td mat-cell *matCellDef="let element"> {{element.PermanentLandmark}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="DOJ">
+              <th mat-header-cell *matHeaderCellDef> DOJ </th>
+              <td mat-cell *matCellDef="let element"> {{element.DOJ| date:'dd-MMM-y'}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="DOR">
+              <th mat-header-cell *matHeaderCellDef> DOR </th>
+              <td mat-cell *matCellDef="let element"> {{element.DOR| date:'dd-MMM-y'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="EmergencyContactName">
+              <th mat-header-cell *matHeaderCellDef> Emergency Contact Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.EmergencyContactName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="EmergencyContactNo">
+              <th mat-header-cell *matHeaderCellDef> Emergency Contact No </th>
+              <td mat-cell *matCellDef="let element"> {{element.EmergencyContactNo}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="BloodGroup">
+              <th mat-header-cell *matHeaderCellDef> Blood Group </th>
+              <td mat-cell *matCellDef="let element"> {{element.BloodGroup}} </td>
+            </ng-container>
+            <!--icd Master-->
+
+            <ng-container matColumnDef="Code">
+              <th mat-header-cell *matHeaderCellDef>Icd Code</th>
+              <td mat-cell *matCellDef="let element"> {{element.Code}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="description">
+              <th mat-header-cell *matHeaderCellDef>ICD DESCRIPTION</th>
+              <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="speciality">
+              <th mat-header-cell *matHeaderCellDef>Speciality</th>
+              <td mat-cell *matCellDef="let element"> {{element.speciality}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="icdgroup">
+              <th mat-header-cell *matHeaderCellDef>Icd Group</th>
+              <td mat-cell *matCellDef="let element"> {{element.icdgroup}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="roomtype">
+              <th mat-header-cell *matHeaderCellDef>Room type</th>
+              <td mat-cell *matCellDef="let element"> {{element.roomtype}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="surgerycost">
+              <th mat-header-cell *matHeaderCellDef>Surgery Cost</th>
+              <td mat-cell *matCellDef="let element" style="text-align: right"> {{element.surgerycost}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="packagerate">
+              <th mat-header-cell *matHeaderCellDef>Package Rate</th>
+              <td mat-cell *matCellDef="let element" style="text-align: right"> {{element.packagerate}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="dressingcharge">
+              <th mat-header-cell *matHeaderCellDef>Dressing Charge</th>
+              <td mat-cell *matCellDef="let element" style="text-align: right"> {{element.dressingcharge}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="medicinecharge">
+              <th mat-header-cell *matHeaderCellDef>Medicine Charge</th>
+              <td mat-cell *matCellDef="let element" style="text-align: right"> {{element.medicinecharge}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="surgeoncharge">
+              <th mat-header-cell *matHeaderCellDef>Surgeon Charge</th>
+              <td mat-cell *matCellDef="let element" style="text-align: right"> {{element.surgeoncharge}} </td>
+            </ng-container>
+            <!--Drug Master-->
+
+            <ng-container matColumnDef="Brand">
+              <th mat-header-cell *matHeaderCellDef>Brand</th>
+              <td mat-cell *matCellDef="let element"> {{element.Brand}} </td>
+            </ng-container>
+            <ng-container matColumnDef="MedicineName">
+              <th mat-header-cell *matHeaderCellDef>Generic Name</th>
+              <td mat-cell *matCellDef="let element"> {{element.MedicineName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Manufacturer">
+              <th mat-header-cell *matHeaderCellDef>Manufacturer</th>
+              <td mat-cell *matCellDef="let element"> {{element.Manufacturer}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="UOM">
+              <th mat-header-cell *matHeaderCellDef>U.O.M</th>
+              <td mat-cell *matCellDef="let element"> {{element.UOM}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Rate">
+              <th mat-header-cell *matHeaderCellDef>Rate</th>
+              <td mat-cell *matCellDef="let element"> {{element.Rate}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="GST">
+              <th mat-header-cell *matHeaderCellDef>Tax %</th>
+              <td mat-cell *matCellDef="let element"> {{element.GST}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="CESS">
+              <th mat-header-cell *matHeaderCellDef>Tax 1 %</th>
+              <td mat-cell *matCellDef="let element"> {{element.CESSPercentage}} </td>
+            </ng-container>
+            <ng-container matColumnDef="ADDCESS">
+              <th mat-header-cell *matHeaderCellDef>Tax 2 %</th>
+              <td mat-cell *matCellDef="let element"> {{element.AdditionalCESSPercentage}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="DrugGroup">
+              <th mat-header-cell *matHeaderCellDef>Drug Group</th>
+              <td mat-cell *matCellDef="let element"> {{element.DrugGroup}} </td>
+            </ng-container>
+
+
+
+
+            <!---------------------------------------------------------------------Material return---------------------------------------------------------------------------->
+
+            <ng-container matColumnDef="ReciptNo">
+              <th mat-header-cell *matHeaderCellDef>Receipt No</th>
+              <td mat-cell *matCellDef="let element"  data-toggle="tooltip" title="Select">{{element.ReciptNumber}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="StoreName">
+              <th mat-header-cell *matHeaderCellDef>Store Name</th>
+              <td mat-cell *matCellDef="let element"  data-toggle="tooltip" title="Select">{{element.StoreName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="VendorName">
+              <th mat-header-cell *matHeaderCellDef>Vendor Name</th>
+              <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.VendorName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Brands">
+              <th mat-header-cell *matHeaderCellDef>Brand Name</th>
+              <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Brand}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="StoreID">
+              <th mat-header-cell *matHeaderCellDef>StoreID</th>
+              <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.StoreID}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="POID">
+              <th mat-header-cell *matHeaderCellDef>POID</th>
+              <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.PoID}} </td>
+            </ng-container>
+
+
+            <---------------------------------------------------Module_Master---------------------------------------------------->
+
+
+              <!--<ng-container matColumnDef="MMChecke">
+    <th mat-header-cell *matHeaderCellDef   >Select</th>
+    <td mat-cell  *matCellDef="let element"> <mat-icon data-toggle="tooltip" (click)="BindSearchDet(element)" class="grab">touch_app</mat-icon>  </td>
+  </ng-container>-->
+
+
+              <ng-container matColumnDef="MMModuleDescription">
+                <th mat-header-cell *matHeaderCellDef>Module Description </th>
+                <td mat-cell *matCellDef="let element "> {{element.ModuleDescription}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="MMModuleType">
+                <th mat-header-cell *matHeaderCellDef>Module Type </th>
+                <td mat-cell *matCellDef="let element "> {{element.ModuleType}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="MMParentModule">
+                <th mat-header-cell *matHeaderCellDef>Parent Module </th>
+                <td mat-cell *matCellDef="let element "> {{element.ParentModule}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="MMIsActiv">
+                <th mat-header-cell *matHeaderCellDef>Is Active </th>
+                <td mat-cell *matCellDef="let element "> {{element.IsActive}} </td>
+              </ng-container>
+
+              <!------------------------------------------- TaXMaster --------------------------------------------->
+              <!-----------------------------------------------------------------------------------------------Store Deatisl-->
+              <ng-container matColumnDef="SINName">
+                <th mat-header-cell *matHeaderCellDef>  Indent raised From </th>
+                <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="SINAddress1">
+                <th mat-header-cell *matHeaderCellDef> Address1 </th>
+                <td mat-cell *matCellDef="let element"> {{element.GSTPercentage}} </td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="SINAddress2">
+                <th mat-header-cell *matHeaderCellDef> Address2 </th>
+                <td mat-cell *matCellDef="let element"> {{element.Address2}} </td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="SINAddress3">
+                <th mat-header-cell *matHeaderCellDef> Store Keeper </th>
+                <td mat-cell *matCellDef="let element"> {{element.Address3}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="SINLocationId">
+                <th mat-header-cell *matHeaderCellDef> Location </th>
+                <td mat-cell *matCellDef="let element"> {{element.LocationName}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Phonestore">
+                <th mat-header-cell *matHeaderCellDef> Phone </th>
+                <td mat-cell *matCellDef="let element"> {{element.PhoneNo}} </td>
+              </ng-container>
+
+              <!--Counsellkingmaster-->
+
+
+
+              <ng-container matColumnDef="COUUINs">
+                <th mat-header-cell *matHeaderCellDef>UIN</th>
+                <td mat-cell *matCellDef="let element"> {{element.UIN}} </td>
+              </ng-container>
+              <ng-container matColumnDef="COUname">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+              </ng-container>
+              <ng-container matColumnDef="COUAgesa">
+                <th mat-header-cell *matHeaderCellDef> Age </th>
+                <td mat-cell *matCellDef="let element"> {{element.Age}} </td>
+              </ng-container>
+              <ng-container matColumnDef="COUGenders">
+                <th mat-header-cell *matHeaderCellDef> Gender </th>
+                <td mat-cell *matCellDef="let element"> {{element.Gender}} </td>
+              </ng-container>
+              <ng-container matColumnDef="COUSurgeryb">
+                <th mat-header-cell *matHeaderCellDef> Surgery Adviced By </th>
+                <td mat-cell *matCellDef="let element"> {{element.SurgeryAdvicedby}} </td>
+              </ng-container>
+              <ng-container matColumnDef="COUSurgeryd">
+                <th mat-header-cell *matHeaderCellDef>  Surgery Adviced Date </th>
+                <td mat-cell *matCellDef="let element"> {{element.SurgeryAdviceddate|date:'dd-MMM-y'}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="COUSpecialityDecsription">
+                <th mat-header-cell *matHeaderCellDef> Speciality </th>
+                <td mat-cell *matCellDef="let element"> {{element.SpecialityDescriptiobn}} </td>
+              </ng-container>
+
+              ////////////////////////Vendor Master//////////////////////////////////////////////////////
+
+              <ng-container matColumnDef="VendorID">
+                <th mat-header-cell *matHeaderCellDef> Vendor ID </th>
+                <td mat-cell *matCellDef="let element "> {{element.VendorID}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="vVendorCodes">
+                <th mat-header-cell *matHeaderCellDef> Vendor Code </th>
+                <td mat-cell *matCellDef="let element "> {{element.VendorCode}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="VVendorCategory">
+                <th mat-header-cell *matHeaderCellDef> Vendor Category </th>
+                <td mat-cell *matCellDef="let element "> {{element.VendorCategory}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="vName">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let element "> {{element.Name}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="vAddress1">
+                <th mat-header-cell *matHeaderCellDef> Address1 </th>
+                <td mat-cell *matCellDef="let element "> {{element.Address1}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="vAddress2">
+                <th mat-header-cell *matHeaderCellDef> Address2 </th>
+                <td mat-cell *matCellDef="let element "> {{element.Address2}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="vAddress3">
+                <th mat-header-cell *matHeaderCellDef> Address3 </th>
+                <td mat-cell *matCellDef="let element "> {{element.Address3}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="vLocation">
+                <th mat-header-cell *matHeaderCellDef> Location </th>
+                <td mat-cell *matCellDef="let element "> {{element.LocationID}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="DLNo">
+                <th mat-header-cell *matHeaderCellDef> DLNo </th>
+                <td mat-cell *matCellDef="let element "> {{element.DLNo}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="DLNo1">
+                <th mat-header-cell *matHeaderCellDef> DLNo1 </th>
+                <td mat-cell *matCellDef="let element "> {{element.DLNo1}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="DLNoDate">
+                <th mat-header-cell *matHeaderCellDef> DLNoDate </th>
+                <td mat-cell *matCellDef="let element "> {{element.DLNoDate|date:'dd-MMM-y'}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="DLNoDate1">
+                <th mat-header-cell *matHeaderCellDef> DLNoDate1 </th>
+                <td mat-cell *matCellDef="let element "> {{element.DLNoDate1|date:'dd-MMM-y'}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Landmark">
+                <th mat-header-cell *matHeaderCellDef> Landmark </th>
+                <td mat-cell *matCellDef="let element "> {{element.Landmark}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="FSSAINo">
+                <th mat-header-cell *matHeaderCellDef> FSSAI No </th>
+                <td mat-cell *matCellDef="let element "> {{element.FSSAINo}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="GSTNo">
+                <th mat-header-cell *matHeaderCellDef> Tax No </th>
+                <td mat-cell *matCellDef="let element "> {{element.GSTNo}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="vMobileNo">
+                <th mat-header-cell *matHeaderCellDef> Mobile No </th>
+                <td mat-cell *matCellDef="let element "> {{element.MobileNo}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="vPhoneNo">
+                <th mat-header-cell *matHeaderCellDef> Phone No </th>
+                <td mat-cell *matCellDef="let element "> {{element.PhoneNo}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="ContactPerson">
+                <th mat-header-cell *matHeaderCellDef> Contact Person </th>
+                <td mat-cell *matCellDef="let element "> {{element.ContactPerson}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="CreditDays">
+                <th mat-header-cell *matHeaderCellDef> Credit Days </th>
+                <td mat-cell *matCellDef="let element "> {{element.CreditDays}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Creditlimit">
+                <th mat-header-cell *matHeaderCellDef> Credit limit </th>
+                <td mat-cell *matCellDef="let element "> {{element.Creditlimit}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Leadtime">
+                <th mat-header-cell *matHeaderCellDef> Lead Time </th>
+                <td mat-cell *matCellDef="let element "> {{element.Leadtime}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="vIsActive">
+                <th mat-header-cell *matHeaderCellDef> IsActive </th>
+                <td mat-cell *matCellDef="let element "> {{element.IsActive}} </td>
+              </ng-container>
+              <!--///////////////////////////////////////////////////////////////// Appointment Registration/////////////////////////////////////-->
+
+              <ng-container matColumnDef="APPUIN">
+                <th mat-header-cell *matHeaderCellDef>UIN</th>
+                <td mat-cell *matCellDef="let element"> {{element.UIN}}</td>
+              </ng-container>
+              <ng-container matColumnDef="APPPatientName">
+                <th mat-header-cell *matHeaderCellDef>Name</th>
+                <td mat-cell *matCellDef="let element"> {{element.PatientName}} {{element.MiddleName}} {{element.LastName}}</td>
+              </ng-container>
+              <ng-container matColumnDef="APPDateofbirth">
+                <th mat-header-cell *matHeaderCellDef>DOB</th>
+                <td mat-cell *matCellDef="let element"> {{element.Dateofbirth| date:"dd-MMM-y"}}</td>
+              </ng-container>
+              <ng-container matColumnDef="APPGender">
+                <th mat-header-cell *matHeaderCellDef>Gender</th>
+                <td mat-cell *matCellDef="let element"> {{element.Gender}}</td>
+              </ng-container>
+              <ng-container matColumnDef="APPPhone">
+                <th mat-header-cell *matHeaderCellDef>Phone</th>
+                <td mat-cell *matCellDef="let element"> {{element.Phone}}</td>
+              </ng-container>
+              <ng-container matColumnDef="APPAddress1">
+                <th mat-header-cell *matHeaderCellDef>Address</th>
+                <td mat-cell *matCellDef="let element"> {{element.Address1}}</td>
+              </ng-container>
+
+
+
+              <!--/////////////////////////////////////////////////////////////////Registration/////////////////////////////////////-->
+
+              <ng-container matColumnDef="UIN">
+                <th mat-header-cell *matHeaderCellDef>UIN</th>
+                <td mat-cell *matCellDef="let element"> {{(element.UIN)}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="oldUIN">
+                <th mat-header-cell *matHeaderCellDef>UIN</th>
+                <td mat-cell *matCellDef="let element"> {{(element.OLDUIN)}}</td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="DateofRegistration">
+                <th mat-header-cell *matHeaderCellDef>Registration Date</th>
+                <td mat-cell *matCellDef="let element"> {{(element.DateofRegistration|date:'dd-MMM-y HH:mm')}} </td>
+              </ng-container>
+
+
+
+              <ng-container matColumnDef="RName">
+                <th mat-header-cell *matHeaderCellDef>Name</th>
+                <td mat-cell *matCellDef="let element">{{element.Name}} {{element.MiddleName}} {{element.LastName}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="RBaselocation">
+                <th mat-header-cell *matHeaderCellDef>Base location</th>
+                <td mat-cell *matCellDef="let element">{{element.CmpAddress}}</td>
+              </ng-container>
+              <ng-container matColumnDef="RCampName">
+                <th mat-header-cell *matHeaderCellDef>Camp Name</th>
+                <td mat-cell *matCellDef="let element">{{element.CampName}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="DateofBirth">
+                <th mat-header-cell *matHeaderCellDef>DOB</th>
+                <td mat-cell *matCellDef="let element">{{element.DateofBirth| date:"dd-MMM-y"}}</td>
+              </ng-container>
+
+
+              <!--<ng-container matColumnDef="Age">
+    <th mat-header-cell *matHeaderCellDef   > Age </th>
+    <td mat-cell  *matCellDef="let element"> {{element.Age}}</td>
+  </ng-container>-->
+
+
+              <ng-container matColumnDef="Gender">
+                en
+                <th mat-header-cell *matHeaderCellDef> Gender </th>
+                <td mat-cell *matCellDef="let element"> {{element.Gender}} </td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="RAddress1">
+                <th mat-header-cell *matHeaderCellDef> Address1 </th>
+                <td mat-cell *matCellDef="let element"> {{element.Address1}} </td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="RAddress2">
+                <th mat-header-cell *matHeaderCellDef> Address2 </th>
+                <td mat-cell *matCellDef="let element"> {{element.Address2}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="RAddress3">
+                <th mat-header-cell *matHeaderCellDef> Address3 </th>
+                <td mat-cell *matCellDef="let element"> {{element.Address3}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="FatherHusbandName">
+                <th mat-header-cell *matHeaderCellDef> Father/HusbandName </th>
+                <td mat-cell *matCellDef="let element"> {{element.FatherHusbandName}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="REmailID">
+                <th mat-header-cell *matHeaderCellDef> Email 1 </th>
+                <td mat-cell *matCellDef="let element"> {{element.EmailID}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Phone">
+                <th mat-header-cell *matHeaderCellDef> Phone1 </th>
+                <td mat-cell *matCellDef="let element"> {{element.Phone}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="AadharNumber">
+                <th mat-header-cell *matHeaderCellDef> Aadhar Number </th>
+                <td mat-cell *matCellDef="let element"> {{element.AadharNumber}} </td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="Occupation">
+                <th mat-header-cell *matHeaderCellDef> Occupation </th>
+                <td mat-cell *matCellDef="let element"> {{element.Occupation}} </td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="SourceofReferralID">
+                <th mat-header-cell *matHeaderCellDef> Source of Referral  </th>
+                <td mat-cell *matCellDef="let element"> {{element.SourceofReferralID}} </td>
+              </ng-container>
+
+              <!--<ng-container matColumnDef="MiddleNameReg">
+    <th mat-header-cell *matHeaderCellDef  > Middle Name </th>
+    <td mat-cell  *matCellDef="let element "> {{element.MiddleName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="LastNameReg">
+    <th mat-header-cell *matHeaderCellDef  > Last Name </th>
+    <td mat-cell  *matCellDef="let element "> {{element.LastName}} </td>
+  </ng-container>-->
+
+              <ng-container matColumnDef="AlternateMailIDReg">
+
+
+                -h
+                <th mat-header-cell *matHeaderCellDef> Email2 </th>
+                <td mat-cell *matCellDef="let element"> {{element.AlternateMailID}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="AlternatePhoneNumberReg">
+                <th mat-header-cell *matHeaderCellDef>  Phone2 </th>
+                <td mat-cell *matCellDef="let element"> {{element.AlternatePhoneNumber}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="MaritalStatusReg">
+                <th mat-header-cell *matHeaderCellDef> Marital Status </th>
+                <td mat-cell *matCellDef="let element"> {{element.MaritalStatus}} </td>
+              </ng-container>
+
+
+
+
+
+
+              ///////////////////////////////////////////////////////Dashboard search/////////////////////////////////////////////
+
+
+              <ng-container matColumnDef="UINs">
+                <th mat-header-cell *matHeaderCellDef>UIN</th>
+                <td mat-cell *matCellDef="let element "> {{(element.UIN)}}</td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="DateofRegistrations">
+                <th mat-header-cell *matHeaderCellDef>Registration Date</th>
+                <td mat-cell *matCellDef="let element "> {{(element.DateofRegistration|date:'dd-MMM-yyyy')}} </td>
+              </ng-container>
+
+
+
+              <ng-container matColumnDef="RNames">
+                <th mat-header-cell *matHeaderCellDef>Name</th>
+                <td mat-cell *matCellDef="let element "> {{element.Name}} </td>
+              </ng-container>
+
+
+
+              <ng-container matColumnDef="DateofBirths">
+                <th mat-header-cell *matHeaderCellDef>Date of Birth</th>
+                <td mat-cell *matCellDef="let element "> {{element.DateofBirth| date:"dd-MMM-y"}} </td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="Genders">
+                <th mat-header-cell *matHeaderCellDef> Gender </th>
+                <td mat-cell *matCellDef="let element "> {{element.Gender}} </td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="RAddress1s">
+                <th mat-header-cell *matHeaderCellDef> Address1 </th>
+                <td mat-cell *matCellDef="let element "> {{element.Address1}} </td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="RAddress2s">
+                <th mat-header-cell *matHeaderCellDef> Address2 </th>
+                <td mat-cell *matCellDef="let element "> {{element.Address2}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="RAddress3s">
+                <th mat-header-cell *matHeaderCellDef> Address3 </th>
+                <td mat-cell *matCellDef="let element "> {{element.Address3}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="FatherHusbandNames">
+                <th mat-header-cell *matHeaderCellDef> Father/HusbandName </th>
+                <td mat-cell *matCellDef="let element "> {{element.FatherHusbandName}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="REmailIDs">
+                <th mat-header-cell *matHeaderCellDef> EmailID </th>
+                <td mat-cell *matCellDef="let element "> {{element.EmailID}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Phones">
+                <th mat-header-cell *matHeaderCellDef> Phone </th>
+                <td mat-cell *matCellDef="let element "> {{element.Phone}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="AadharNumbers">
+                <th mat-header-cell *matHeaderCellDef> Aadhar Number </th>
+                <td mat-cell *matCellDef="let element "> {{element.AadharNumber}} </td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="Occupations">
+                <th mat-header-cell *matHeaderCellDef> Occupation </th>
+                <td mat-cell *matCellDef="let element "> {{element.Occupation}} </td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="SourceofReferralIDs">
+                <th mat-header-cell *matHeaderCellDef> Source of ReferralID </th>
+                <td mat-cell *matCellDef="let element "> {{element.SourceofReferralID}} </td>
+              </ng-container>
+
+
+              <!--/////////////////////////////////////////////////////////////////RegistrationTran/////////////////////////////////////-->
+
+              <ng-container matColumnDef="DateofVisit">
+                <th mat-header-cell *matHeaderCellDef> Date of Visit </th>
+                <td mat-cell *matCellDef="let element "> {{element.DateofVisit|date:'dd-MMM-y HH:mm'}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="ReUIN">
+                <th mat-header-cell *matHeaderCellDef>UIN</th>
+                <td mat-cell *matCellDef="let element "> {{(element.UIN)}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="ReDateofBirth">
+                <th mat-header-cell *matHeaderCellDef>Date of Birth</th>
+                <td mat-cell *matCellDef="let element "> {{element.DateofBirth| date:"dd-MMM-y"}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="ReGender">
+                <th mat-header-cell *matHeaderCellDef> Gender </th>
+                <td mat-cell *matCellDef="let element "> {{element.Gender}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="RePhone">
+                <th mat-header-cell *matHeaderCellDef> Phone </th>
+                <td mat-cell *matCellDef="let element "> {{element.Phone}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="TypeofVisit">
+                <th mat-header-cell *matHeaderCellDef> Type of Visit </th>
+                <td mat-cell *matCellDef="let element "> {{element.TypeofVisit}} </td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="Status">
+                <th mat-header-cell *matHeaderCellDef> Status </th>
+                <td mat-cell *matCellDef="let element "> {{element.Status}} </td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="Remarks">
+                <th mat-header-cell *matHeaderCellDef> Remarks </th>
+                <td mat-cell *matCellDef="let element "> {{element.Remarks}} </td>
+              </ng-container>
+
+              <!------------------------------------------ Configuration --------------------------------------- -->
+
+
+              <ng-container matColumnDef="RRDescription">
+                <th mat-header-cell *matHeaderCellDef>Description</th>
+                <td mat-cell *matCellDef="let element"> {{element.RRDescription}} </td>
+              </ng-container>
+              <ng-container matColumnDef="RRAdvDays">
+                <th mat-header-cell *matHeaderCellDef>Advance Days</th>
+                <td mat-cell *matCellDef="let element"> {{element.RRAdvdays}} </td>
+              </ng-container>
+              <ng-container matColumnDef="RRTimesDay">
+                <th mat-header-cell *matHeaderCellDef>Times Day</th>
+                <td mat-cell *matCellDef="let element"> {{element.FrequencyperDay}} </td>
+              </ng-container>
+              <ng-container matColumnDef="RREmail">
+                <th mat-header-cell *matHeaderCellDef>Email</th>
+                <td mat-cell *matCellDef="let element"> {{element.HostEmailID}} </td>
+              </ng-container>
+              <ng-container matColumnDef="RRPhone">
+                <th mat-header-cell *matHeaderCellDef>Phone</th>
+                <td mat-cell *matCellDef="let element"> {{element.Phonenumber}} </td>
+              </ng-container>
+
+              <!------------------------------------------ User Active --------------------------------------- -->
+
+              <ng-container matColumnDef="UA_UserName">
+                <th mat-header-cell *matHeaderCellDef> User Name</th>
+                <td mat-cell *matCellDef="let element"> {{element.UserName}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="UA_CompanyName">
+                <th mat-header-cell *matHeaderCellDef> Company Name</th>
+                <td mat-cell *matCellDef="let element"> {{element.CompanyName}} </td>
+              </ng-container>
+              <ng-container matColumnDef="UA_Role">
+                <th mat-header-cell *matHeaderCellDef>Role</th>
+                <td mat-cell *matCellDef="let element"> {{element.Role}} </td>
+              </ng-container>
+              <ng-container matColumnDef="UA_Status">
+                <th mat-header-cell *matHeaderCellDef>Status</th>
+                <td mat-cell *matCellDef="let element"> {{element.Status}} </td>
+              </ng-container>
+
+
+
+
+
+              ////////////////////////Store Master//////////////////////////////////////////////////////
+
+
+              <ng-container matColumnDef="Storename">
+                <th mat-header-cell *matHeaderCellDef> Storename </th>
+                <td mat-cell *matCellDef="let element "> {{element.Storename}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="StoreLocation">
+                <th mat-header-cell *matHeaderCellDef> StoreLocation </th>
+                <td mat-cell *matCellDef="let element "> {{element.StoreLocation}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="sAddress1">
+                <th mat-header-cell *matHeaderCellDef> Address1 </th>
+                <td mat-cell *matCellDef="let element "> {{element.Address1}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="sAddress2">
+                <th mat-header-cell *matHeaderCellDef> Address2 </th>
+                <td mat-cell *matCellDef="let element "> {{element.Address2}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="StoreKeeper">
+                <th mat-header-cell *matHeaderCellDef> StoreKeeper </th>
+                <td mat-cell *matCellDef="let element "> {{element.StoreKeeper}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="IsActive">
+                <th mat-header-cell *matHeaderCellDef> IsActive </th>
+                <td mat-cell *matCellDef="let element "> {{element.IsActive}} </td>
+              </ng-container>
+
+
+
+              ////////////////////////Operation Theatre//////////////////////////////////////////////////////
+              <ng-container matColumnDef="OTDescription">
+                <th mat-header-cell *matHeaderCellDef> OTDescription </th>
+                <td mat-cell *matCellDef="let element "> {{element.OTDescription}} </td>
+              </ng-container>
+
+
+
+              <ng-container matColumnDef="OAddress1">
+                <th mat-header-cell *matHeaderCellDef> Address1 </th>
+                <td mat-cell *matCellDef="let element "> {{element.OTAddress1}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="OAddress2">
+                <th mat-header-cell *matHeaderCellDef> Address2 </th>
+                <td mat-cell *matCellDef="let element "> {{element.OTAddress2}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="OAddress3">
+                <th mat-header-cell *matHeaderCellDef> Address3 </th>
+                <td mat-cell *matCellDef="let element "> {{element.OTAddress3}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="OLocation">
+                <th mat-header-cell *matHeaderCellDef> Location </th>
+                <td mat-cell *matCellDef="let element "> {{element.OTLocation}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="OTCharge">
+                <th mat-header-cell *matHeaderCellDef> OTCharge </th>
+                <td mat-cell *matCellDef="let element " style="text-align: right"> {{element.OTCharge}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="OGST">
+                <th mat-header-cell *matHeaderCellDef> GST% </th>
+                <td mat-cell *matCellDef="let element " style="text-align: right"> {{element.GST}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="OSGST">
+                <th mat-header-cell *matHeaderCellDef> SGST% </th>
+                <td mat-cell *matCellDef="let element " style="text-align: right"> {{element.SGST}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="OCGST">
+                <th mat-header-cell *matHeaderCellDef> CGST% </th>
+                <td mat-cell *matCellDef="let element " style="text-align: right"> {{element.CGST}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="OIsActive">
+                <th mat-header-cell *matHeaderCellDef> IsActive </th>
+                <td mat-cell *matCellDef="let element "> {{element.IsActiveName}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="SUUIN">
+                <th mat-header-cell *matHeaderCellDef> UIN </th>
+                <td mat-cell *matCellDef="let element "> {{element.UIN}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="SUName">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let element "> {{element.Name}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="SUDatePicker1">
+                <th mat-header-cell *matHeaderCellDef> DOB </th>
+                <td mat-cell *matCellDef="let element "> {{element.DateofBirth| date:'dd-MMM-y'}} </td>
+              </ng-container>
+
+
+
+              <ng-container matColumnDef="SUGender">
+                <th mat-header-cell *matHeaderCellDef> Gender </th>
+                <td mat-cell *matCellDef="let element "> {{element.Gender}} </td>
+              </ng-container>
+
+              <!--<ng-container matColumnDef="SUAllergy">
+    <th mat-header-cell *matHeaderCellDef  > Allergy </th>
+    <td mat-cell  *matCellDef="let element "> {{element.Allergy}} </td>
+  </ng-container>-->
+
+              <ng-container matColumnDef="Name">
+                ="
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let element "> {{element.Name}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="ocular">
+                <th mat-header-cell *matHeaderCellDef> Ocular </th>
+                <td mat-cell *matCellDef="let element "> {{element.ocular}} </td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="Age">
+                <th mat-header-cell *matHeaderCellDef> Age </th>
+                <td mat-cell *matCellDef="let element "> {{element.Age}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="SurgeryDate">
+                <th mat-header-cell *matHeaderCellDef>SurgeryDate</th>
+                <td mat-cell *matCellDef="let element "> {{element.SurgeryDate|date:'dd-MMM-y'}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="DischargeDate">
+                <th mat-header-cell *matHeaderCellDef>DischargeDate</th>
+                <td mat-cell *matCellDef="let element "> {{element.DischargeDate|date:'dd-MMM-y'}} </td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="Surgeon">
+                <th mat-header-cell *matHeaderCellDef> Surgeon </th>
+                <td mat-cell *matCellDef="let element "> {{element.Surgeon}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="SurgeryDescription">
+                <th mat-header-cell *matHeaderCellDef> Surgery Description </th>
+                <td mat-cell *matCellDef="let element "> {{element.SurgeryDescription}} </td>
+              </ng-container>
+
+
+
+              ////////////////////////Post Operative//////////////////////////////////////////////////////
+
+
+
+              <ng-container matColumnDef="PUIN">
+                <th mat-header-cell *matHeaderCellDef> UIN </th>
+                <td mat-cell *matCellDef="let element "> {{element.Uin}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="PName">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let element "> {{element.Namepat}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="PDatePicker1">
+                <th mat-header-cell *matHeaderCellDef> DOB </th>
+                <td mat-cell *matCellDef="let element "> {{element.Date| date:'dd-MMM-y'}} </td>
+              </ng-container>
+
+
+
+              <ng-container matColumnDef="PGender">
+                <th mat-header-cell *matHeaderCellDef> Gender </th>
+                <td mat-cell *matCellDef="let element "> {{element.Gender}} </td>
+              </ng-container>
+
+
+              <!--//////////////////////////////////////////////// NumberControl////////////////////////////////////////////////////////////-->
+
+              <ng-container matColumnDef="VCID">
+                <th mat-header-cell *matHeaderCellDef> VCID </th>
+                <td mat-cell *matCellDef="let element"> {{element.VCID}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Description">
+                <th mat-header-cell *matHeaderCellDef>Description</th>
+                <td mat-cell *matCellDef="let element "> {{element.Description}} </td>
+              </ng-container>
+
+              <!--<ng-container matColumnDef="TransactionID">
+    <th mat-header-cell *matHeaderCellDef  > TransactionID </th>
+    <td mat-cell  *matCellDef="let element"> {{element.TransactionID}} </td>
+  </ng-container>-->
+              <!--<ng-container matColumnDef="CmpID1">
+    <th mat-header-cell *matHeaderCellDef  > CmpID </th>
+    <td mat-cell  *matCellDef="let element "> {{element.CmpID}} </td>
+  </ng-container>-->
+              <!--<ng-container matColumnDef="NLocationID">
+    <th mat-header-cell *matHeaderCellDef  > LocationID </th>
+    <td mat-cell  *matCellDef="let element "> {{element.LocationID}} </td>
+  </ng-container>-->
+
+              <ng-container matColumnDef="Prefix">
+                De
+                <th mat-header-cell *matHeaderCellDef> Prefix </th>
+                <td mat-cell *matCellDef="let element "> {{element.Prefix}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Suffix">
+                >
+
+                at
+                <th mat-header-cell *matHeaderCellDef> Suffix </th>
+                <td mat-cell *matCellDef="let element "> {{element.Suffix}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Autonumber">
+                <th mat-header-cell *matHeaderCellDef> Autonumber </th>
+                <td mat-cell *matCellDef="let element "> {{element.Autonumber}} </td>
+              </ng-container>
+
+
+
+              <ng-container matColumnDef="RunningNumber">
+                <th mat-header-cell *matHeaderCellDef>RunningNumber</th>
+                <td mat-cell *matCellDef="let element "> {{element.RunningNumber}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="EffectiveFrom">
+                <th mat-header-cell *matHeaderCellDef>EffectiveFrom </th>
+                <td mat-cell *matCellDef="let element "> {{element.EffectiveFrom| date:"dd/MMM/y"}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="EffectiveTo">
+                <th mat-header-cell *matHeaderCellDef>EffectiveTo </th>
+                <td mat-cell *matCellDef="let element "> {{element.EffectiveTo| date:"dd/MMM/y"}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="NIsActive">
+                <th mat-header-cell *matHeaderCellDef>IsActive </th>
+                <td mat-cell *matCellDef="let element "> {{element.IsActive}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="NIsDeleted">
+                <th mat-header-cell *matHeaderCellDef>IsDeleted </th>
+                <td mat-cell *matCellDef="let element "> {{element.IsDeleted}} </td>
+              </ng-container>
+
+              <---------------------------------------------------TransactionType---------------------------------------------------->
+
+                <ng-container matColumnDef="TT_Description">
+                  <th mat-header-cell *matHeaderCellDef> Description </th>
+                  <td mat-cell *matCellDef="let element"> {{element.Description}} </td>
+                </ng-container>
+                <ng-container matColumnDef="TT_ContraTransaction">
+                  <th mat-header-cell *matHeaderCellDef> Contra Transaction </th>
+                  <td mat-cell *matCellDef="let element"> {{element.ContraTransaction}} </td>
+                </ng-container>
+                <ng-container matColumnDef="TT_RecPayTransaction">
+                  <th mat-header-cell *matHeaderCellDef> Rec / Pay Contra </th>
+                  <td mat-cell *matCellDef="let element"> {{element.RecPayTransaction}} </td>
+                </ng-container>
+                <ng-container matColumnDef="TT_Rec_Issue_type">
+                  <th mat-header-cell *matHeaderCellDef> Issue Type</th>
+                  <td mat-cell *matCellDef="let element"> {{element.Rec_Issue_type}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="C_CompanyName">
+                  <th mat-header-cell *matHeaderCellDef> Company Name </th>
+                  <td mat-cell *matCellDef="let element"> {{element.CompanyName}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="C_Address1">
+                  <th mat-header-cell *matHeaderCellDef> Address1 </th>
+                  <td mat-cell *matCellDef="let element"> {{element.Address1 }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="C_Address2">
+                  <th mat-header-cell *matHeaderCellDef> Address2 </th>
+                  <td mat-cell *matCellDef="let element"> {{element.Address2 }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="C_Address3">
+                  <th mat-header-cell *matHeaderCellDef> Address3 </th>
+                  <td mat-cell *matCellDef="let element"> {{element.Address3 }} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="C_LocationName">
+                  <th mat-header-cell *matHeaderCellDef> Location </th>
+                  <td mat-cell *matCellDef="let element"> {{element.LocationName}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="C_ContactPerson">
+                  <th mat-header-cell *matHeaderCellDef> Contact Person </th>
+                  <td mat-cell *matCellDef="let element"> {{element.ContactPerson}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="C_GSTNo">
+                  <th mat-header-cell *matHeaderCellDef> Tax No </th>
+                  <td mat-cell *matCellDef="let element"> {{element.GSTNo}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="C_CompanyGroup">
+                  <th mat-header-cell *matHeaderCellDef> CompanyGroup </th>
+                  <td mat-cell *matCellDef="let element"> {{element.CompanyGroup}} </td>
+                </ng-container>
+                <ng-container matColumnDef="C_Phone1">
+                  <th mat-header-cell *matHeaderCellDef> Phone </th>
+                  <td mat-cell *matCellDef="let element"> {{element.Phone1}} </td>
+                </ng-container>
+                <ng-container matColumnDef="C_EmailID">
+                  <th mat-header-cell *matHeaderCellDef> Email </th>
+                  <td mat-cell *matCellDef="let element"> {{element.EmailID}} </td>
+                </ng-container>
+                <ng-container matColumnDef="C_Website">
+                  <th mat-header-cell *matHeaderCellDef> Website </th>
+                  <td mat-cell *matCellDef="let element"> {{element.Website}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="DG_Description">
+                  <th mat-header-cell *matHeaderCellDef> Description </th>
+                  <td mat-cell *matCellDef="let element"> {{element.Description}} </td>
+                </ng-container>
+                <ng-container matColumnDef="DG_DrugFormName">
+                  <th mat-header-cell *matHeaderCellDef> Drug Form </th>
+                  <td mat-cell *matCellDef="let element"> {{element.DrugFormName}} </td>
+                </ng-container>
+                <ng-container matColumnDef="DG_RetestInterval">
+                  <th mat-header-cell *matHeaderCellDef> Retest Interval </th>
+                  <td mat-cell *matCellDef="let element"> {{element.RetestInterval}} </td>
+                </ng-container>
+                <ng-container matColumnDef="DG_RetestCriticalInterval">
+                  <th mat-header-cell *matHeaderCellDef> Retest Critical Interval</th>
+                  <td mat-cell *matCellDef="let element"> {{element.RetestCriticalInterval}} </td>
+                </ng-container>
+                <ng-container matColumnDef="DG_SideEffects">
+                  <th mat-header-cell *matHeaderCellDef> Side Effects</th>
+                  <td mat-cell *matCellDef="let element"> {{element.SideEffects}} </td>
+                </ng-container>
+                <ng-container matColumnDef="DG_Precautions">
+                  <th mat-header-cell *matHeaderCellDef> Precautions</th>
+                  <td mat-cell *matCellDef="let element"> {{element.Precautions}} </td>
+                </ng-container>
+                <ng-container matColumnDef="DG_Overdose">
+                  <th mat-header-cell *matHeaderCellDef> OverDose</th>
+                  <td mat-cell *matCellDef="let element"> {{element.Overdose}} </td>
+                </ng-container>
+
+                <!--------------------------------------LENS MASTER------------------------------------------------------->
+                <ng-container matColumnDef="sno2">
+                  <th mat-header-cell *matHeaderCellDef>S.No</th>
+                  <td mat-cell *matCellDef="let element;let i = index;" style="width:1px;"> {{i+1}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="TID2">
+                  <th mat-header-cell *matHeaderCellDef>TID</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.TID}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="UOM2">
+                  <th mat-header-cell *matHeaderCellDef>UOM</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.UOM}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="HSNNo2">
+                  <th mat-header-cell *matHeaderCellDef>HSNNo</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.HSNNo}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Brand2">
+                  <th mat-header-cell *matHeaderCellDef>Brand</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Brand}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="LensType2">
+                  <th mat-header-cell *matHeaderCellDef>Lens Type</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.LensType}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Description2">
+                  <th mat-header-cell *matHeaderCellDef>Description</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Description}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Index2">
+                  <th mat-header-cell *matHeaderCellDef>Index</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Index}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Color2">
+                  <th mat-header-cell *matHeaderCellDef>Color</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Color}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Size2">
+                  <th mat-header-cell *matHeaderCellDef>Size</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Size}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Price2">
+                  <th mat-header-cell *matHeaderCellDef>Price</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Price| number : '1.2-2'}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Model2">
+                  <th mat-header-cell *matHeaderCellDef>Model</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Model}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="GST2">
+                  <th mat-header-cell *matHeaderCellDef>GST</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.GST| number : '1.2-2'}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="CESS2">
+                  <th mat-header-cell *matHeaderCellDef>CESS</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.CESS| number : '1.2-2'}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="AddCESS2">
+                  <th mat-header-cell *matHeaderCellDef>AddCESS</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.AddCess| number : '1.2-2'}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="TaxxxID">
+                  <th mat-header-cell *matHeaderCellDef>TaxxxID</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.TaxIDD}} </td>
+                </ng-container>
+
+
+
+
+                <!--Yours Treatmentmatser-->
+
+                <ng-container matColumnDef="sno1">
+                  <th mat-header-cell *matHeaderCellDef>S.No</th>
+                  <td mat-cell *matCellDef="let element;let i = index;"> {{i+1}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="SID1">
+                  <th mat-header-cell *matHeaderCellDef>Specialty Name</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.SpecialityID1}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="ID1">
+                  <th mat-header-cell *matHeaderCellDef>ID</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.ID}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Description1">
+                  <th mat-header-cell *matHeaderCellDef>Description</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Description1}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="IsActive1">
+                  <th mat-header-cell *matHeaderCellDef>IsActive</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.IsActive1}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="R_RoomType">
+                  <th mat-header-cell *matHeaderCellDef>Room Type </th>
+                  <td mat-cell *matCellDef="let element"> {{element.RoomType}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="R_RoomDescription">
+                  <th mat-header-cell *matHeaderCellDef> Room Description </th>
+                  <td mat-cell *matCellDef="let element"> {{element.RoomDescription }} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="R_RoomCost">
+                  <th mat-header-cell *matHeaderCellDef> Room Cost </th>
+                  <td mat-cell *matCellDef="let element" style="text-align:right"> {{element.RoomCost}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="R_NoofRooms">
+                  <th mat-header-cell *matHeaderCellDef> No of Rooms </th>
+                  <td mat-cell *matCellDef="let element" style="text-align:right"> {{element.NoofRooms }} </td>
+                </ng-container>
+                <ng-container matColumnDef="R_NoofBeds">
+                  <th mat-header-cell *matHeaderCellDef> No of Beds  </th>
+                  <td mat-cell *matCellDef="let element" style="text-align:right"> {{element.NoofBed }} </td>
+                </ng-container>
+
+
+
+                <!--Yours OpticalGRN-->
+
+                <ng-container matColumnDef="GRN_Sno">
+                  <th mat-header-cell *matHeaderCellDef>S.No</th>
+                  <td mat-cell *matCellDef="let element;let i = index;"> {{i+1}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="GRN_OrderNumber">
+                  <th mat-header-cell *matHeaderCellDef>Order Number</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.OrderNumber}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="GRN_OrderDate">
+                  <th mat-header-cell *matHeaderCellDef>Order Date</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.OrderDate| date:"dd-MMM-y"}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="GRN_REFNO">
+                  <th mat-header-cell *matHeaderCellDef>Ref No</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.ReferenceNumber}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="GRN_REFDATE">
+                  <th mat-header-cell *matHeaderCellDef>Ref Date</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.ReferenceDate| date:"dd-MMM-y"}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="GRN_VENDOR">
+                  <th mat-header-cell *matHeaderCellDef>Vendor Name</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.VendorName}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="GRN_ADDRESS">
+                  <th mat-header-cell *matHeaderCellDef>Address</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Address1}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="GRN_Validity">
+                  <th mat-header-cell *matHeaderCellDef>Validity</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Validity}} </td>
+                </ng-container>
+                <!--Insurance-->
+                <ng-container matColumnDef="INName">
+                  <th mat-header-cell *matHeaderCellDef>Name</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Name}} </td>
+                </ng-container>
+                <ng-container matColumnDef="INAddress1">
+                  <th mat-header-cell *matHeaderCellDef>Address1</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Address1}} </td>
+                </ng-container>
+                <ng-container matColumnDef="INAddress2">
+                  <th mat-header-cell *matHeaderCellDef>Address2</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Address2}} </td>
+                </ng-container>
+                <ng-container matColumnDef="INAddress3">
+                  <th mat-header-cell *matHeaderCellDef>Address3</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Address3}} </td>
+                </ng-container>
+                <ng-container matColumnDef="INLocationId">
+                  <th mat-header-cell *matHeaderCellDef>Location</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.LocationName}} </td>
+                </ng-container>
+                <ng-container matColumnDef="INPincode">
+                  <th mat-header-cell *matHeaderCellDef>Pincode</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Pincode}} </td>
+                </ng-container>
+                <ng-container matColumnDef="INInsuranceCategory">
+                  <th mat-header-cell *matHeaderCellDef>Insurance Category</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.InsuranceCategory}} </td>
+                </ng-container>
+
+
+
+
+
+                <ng-container matColumnDef="TaxDescription">
+                  <th mat-header-cell *matHeaderCellDef> Tax Description </th>
+                  <td mat-cell *matCellDef="let element"> {{element.TaxDescription}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="GSTPercentage">
+                  <th mat-header-cell *matHeaderCellDef> Tax% </th>
+                  <td mat-cell *matCellDef="let element"> {{element.GSTPercentage}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="SGSTPercentage">
+                  <th mat-header-cell *matHeaderCellDef> Addl Tax Description 1 </th>
+                  <td mat-cell *matCellDef="let element"> {{element.CESSDescription }} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="CGSTPercentage">
+                  <th mat-header-cell *matHeaderCellDef>Addl Tax % 1 </th>
+                  <td mat-cell *matCellDef="let element"> {{element.CESSPercentage | number : '1.2-2'}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="IGSTPercentage">
+                  <th mat-header-cell *matHeaderCellDef> Addl Tax Description 2 </th>
+                  <td mat-cell *matCellDef="let element"> {{element.AdditionalCESSDescription}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="IGSTPercentage1">
+                  <th mat-header-cell *matHeaderCellDef> Addl Tax % 2 </th>
+                  <td mat-cell *matCellDef="let element"> {{element.AdditionalCESSPercentage}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="TaxGroupId">
+                  <th mat-header-cell *matHeaderCellDef> Tax Group </th>
+                  <td mat-cell *matCellDef="let element"> {{element.TaxGroupId}} </td>
+                </ng-container>
+
+                <!------------------------------------------ SlitLamp --------------------------------------- -->
+                <ng-container matColumnDef="SlitDescription">
+                  <th mat-header-cell *matHeaderCellDef>Description</th>
+                  <td mat-cell *matCellDef="let element"> {{element.SlitDescription}} </td>
+                </ng-container>
+
+                <!------------------------------------------ Fundus --------------------------------------- -->
+                <ng-container matColumnDef="FundusDescription">
+                  <th mat-header-cell *matHeaderCellDef>Description</th>
+                  <td mat-cell *matCellDef="let element"> {{element.FundusDescription}} </td>
+                </ng-container>
+
+                <!------------------------------------------ AdvancePayment --------------------------------------- -->
+                <ng-container matColumnDef="ADVUIN">
+                  <th mat-header-cell *matHeaderCellDef>UIN</th>
+                  <td mat-cell *matCellDef="let element"> {{element.UIN}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="ADVName">
+                  <th mat-header-cell *matHeaderCellDef>First Name</th>
+                  <td mat-cell *matCellDef="let element"> {{element.Name}}</td>
+                </ng-container>
+                <ng-container matColumnDef="MIDNAME">
+                  <th mat-header-cell *matHeaderCellDef>Middle Name</th>
+                  <td mat-cell *matCellDef="let element">{{element.MidleName}}</td>
+                </ng-container>
+                <ng-container matColumnDef="DonorType">
+                  <th mat-header-cell *matHeaderCellDef>Donor Type</th>
+                  <td mat-cell *matCellDef="let element">{{element.DonorType}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="ADVAge">
+                  <th mat-header-cell *matHeaderCellDef>Age</th>
+                  <td mat-cell *matCellDef="let element"> {{element.Age}} </td>
+                </ng-container>
+                <ng-container matColumnDef="LNAME">
+                  <th mat-header-cell *matHeaderCellDef>Last Name</th>
+                  <td mat-cell *matCellDef="let element">{{element.LastName}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="ADVGender">
+                  <th mat-header-cell *matHeaderCellDef>Gender</th>
+                  <td mat-cell *matCellDef="let element"> {{element.Gender}} </td>
+                </ng-container>
+
+                <!--iNDENTMASTER SEARCH-->
+                <!--<ng-container matColumnDef="Soperation">
+      <th mat-header-cell *matHeaderCellDef >Operation Theatre</th>
+      <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Operationtheatre}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Sindentraisedby">
+      <th mat-header-cell *matHeaderCellDef >Indent Raised by</th>
+      <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Indentraisedby}} </td>
+    </ng-container>
+    <ng-container matColumnDef="SIndentdate">
+      <th mat-header-cell *matHeaderCellDef >Indent Raised Date</th>
+      <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Indentdate| date : "dd-MMM-y"}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Storename">
+      <th mat-header-cell *matHeaderCellDef >Indent Raised To</th>
+      <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.storename}} </td>
+    </ng-container>
+    <ng-container matColumnDef="storeaddress1">
+      <th mat-header-cell *matHeaderCellDef >Address1</th>
+      <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Address1}} </td>
+    </ng-container>
+    <ng-container matColumnDef="saddress2">
+      <th mat-header-cell *matHeaderCellDef >Address1</th>
+      <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Address2}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Phonenumberrstore">
+      <th mat-header-cell *matHeaderCellDef >Phone</th>
+      <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Phonenumber}} </td>
+    </ng-container>
+    <ng-container matColumnDef="sBarnd">
+      <th mat-header-cell *matHeaderCellDef >Brand</th>
+      <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Brand}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="sindentqty">
+      <th mat-header-cell *matHeaderCellDef >Indent QTY</th>
+      <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Iqty}} </td>
+    </ng-container>-->
+                <!------------------------------------------ PAC --------------------------------------- -->
+
+                <ng-container matColumnDef="PAC_PatientName">
+                  <th mat-header-cell *matHeaderCellDef> Patient Name</th>
+                  <td mat-cell *matCellDef="let element"> {{element.PatientName}} </td>
+                </ng-container>
+                <ng-container matColumnDef="PAC_UIN">
+                  <th mat-header-cell *matHeaderCellDef>UIN</th>
+                  <td mat-cell *matCellDef="let element"> {{element.UIN}} </td>
+                </ng-container>
+                <ng-container matColumnDef="PAC_Age">
+                  <th mat-header-cell *matHeaderCellDef> Age</th>
+                  <td mat-cell *matCellDef="let element"> {{element.Age}} </td>
+                </ng-container>
+                <ng-container matColumnDef="PAC_Gender">
+                  <th mat-header-cell *matHeaderCellDef>Gender</th>
+                  <td mat-cell *matCellDef="let element"> {{element.Gender}} </td>
+                </ng-container>
+
+                <!------------------------------------------ BMI --------------------------------------- -->
+
+                <ng-container matColumnDef="BMI_Category">
+                  <th mat-header-cell *matHeaderCellDef> Category</th>
+                  <td mat-cell *matCellDef="let element"> {{element.Category}} </td>
+                </ng-container>
+                <ng-container matColumnDef="BMI_FromRange">
+                  <th mat-header-cell *matHeaderCellDef>From range</th>
+                  <td mat-cell *matCellDef="let element"> {{element.FromRange}} </td>
+                </ng-container>
+                <ng-container matColumnDef="BMI_ToRange">
+                  <th mat-header-cell *matHeaderCellDef> To range</th>
+                  <td mat-cell *matCellDef="let element"> {{element.ToRange}} </td>
+                </ng-container>
+
+                <!------------------------------------------ IO procedure Template --------------------------------------- -->
+
+
+                <ng-container matColumnDef="icdspeciality">
+                  <th mat-header-cell *matHeaderCellDef> Icd Speciality</th>
+                  <td mat-cell *matCellDef="let element"> {{element.icdspeciality}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="SurgeryDes">
+                  <th mat-header-cell *matHeaderCellDef> Surgery Description </th>
+                  <td mat-cell *matCellDef="let element "> {{element.SurgeryDescription}} </td>
+                </ng-container>
+
+
+
+
+                <!-----------------------------------------YOURS Room detais---------------------------->
+
+
+                <ng-container matColumnDef="RT_UIN">
+                  <th mat-header-cell *matHeaderCellDef>UIN</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.UIN}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="RT_PatientName">
+                  <th mat-header-cell *matHeaderCellDef>Patient Name</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.PatientName}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="RT_Gender">
+                  <th mat-header-cell *matHeaderCellDef>Gender</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Gender}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="RT_Age">
+                  <th mat-header-cell *matHeaderCellDef>Age</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Age}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="RT_FromRoomDate">
+                  <th mat-header-cell *matHeaderCellDef>Room Occupied Date</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.FromRoomDate| date:"dd-MMM-y"}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="RT_FromRoomTime">
+                  <th mat-header-cell *matHeaderCellDef>Room Occupied Time</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.FromRoomTime}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="RT_Phone">
+                  <th mat-header-cell *matHeaderCellDef>Phone</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Phone}} </td>
+                </ng-container>
+
+
+                <!-------------Appointment details-->
+
+
+
+
+                <ng-container matColumnDef="AppointmentUIN">
+                  <th mat-header-cell *matHeaderCellDef>UIN</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.UIN}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="APpointmentPatientName">
+                  <th mat-header-cell *matHeaderCellDef>Patient Name</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Name}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="APpointmentDateofbirth">
+                  <th mat-header-cell *matHeaderCellDef>DateofBirth</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.DateofBirth| date:"dd-MMM-y"}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="APpointmentGender">
+                  <th mat-header-cell *matHeaderCellDef>Gender</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Gender}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="APpointmentAddress1">
+                  <th mat-header-cell *matHeaderCellDef>Address1</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Address1}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="APpointmentAddress2">
+                  <th mat-header-cell *matHeaderCellDef>Address2</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Address2}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="APpointmentPhone">
+                  <th mat-header-cell *matHeaderCellDef>Phone</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Phone}} </td>
+                </ng-container>
+
+
+
+                <ng-container matColumnDef="APpointmentDoctor">
+                  <th mat-header-cell *matHeaderCellDef>Doctor</th>
+                  <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Doctor}} </td>
+                </ng-container>
+
+
+
+
+                <ng-container matColumnDef="opUIN">
+                  <th mat-header-cell *matHeaderCellDef>UIN</th>
+                  <td mat-cell *matCellDef="let element">{{element.UIN}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="opName">
+                  <th mat-header-cell *matHeaderCellDef>Name</th>
+                  <td mat-cell *matCellDef="let element">{{element.Name}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="opAge">
+                  <th mat-header-cell *matHeaderCellDef>Age</th>
+                  <td mat-cell *matCellDef="let element">{{element.DateofBirth}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="opGender">
+                  <th mat-header-cell *matHeaderCellDef>Gender</th>
+                  <td mat-cell *matCellDef="let element">{{element.Gender}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="opPrescribedName">
+                  <th mat-header-cell *matHeaderCellDef>Prescribed Name</th>
+                  <td mat-cell *matCellDef="let element">{{element.Doctorname}} </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="opRole">
+                  <th mat-header-cell *matHeaderCellDef>Role</th>
+                  <td mat-cell *matCellDef="let element">{{element.Role}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="opPrescribedDate">
+                  <th mat-header-cell *matHeaderCellDef>Prescribed Date</th>
+                  <td mat-cell *matCellDef="let element">{{element.PrescriptionDate | date:"dd-MMM-y"}} </td>
+                </ng-container>
+
+
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
+                <tr mat-row *matRowDef="let row;  let even = even;  columns: displayedColumns;" [ngClass]="{gray: even}"></tr>
+
+</table>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="modal" role="dialog" [ngStyle]="{'display':Excelformatprint}">
+  <div class="example-box" cdkDrag>
+    <div class="modal-dialog modal-lg" style="width:20%">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Information</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row form-horizontal">
+            <div class="form-group">
+              <h1 style="text-align:center;font-size:16px;background-color:white;color:black">
+                <strong>Do You Want Export to ExcelSheet</strong>
+              </h1>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button style="font-size:15px" (click)="fireEvent()" class="btn btn-primary">Yes</button>
+          <button type="button" id="theButton" class="btn btn-success" data-dismiss="modal" style="font-size:15px" (click)="printclose()" cdkFocusInitial>No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+

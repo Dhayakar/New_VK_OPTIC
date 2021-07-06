@@ -1,0 +1,470 @@
+
+<div class="wynk-wrap">
+  <div class="col-sm-12" [hidden]="!loggIn">
+    <header class="header">
+      <div class="container-fluid hos-head">
+        <div class="row">
+          <div class="col-xs-12 col-sm-4 logo hos-logo">
+            <a>
+              <img class="brand" style="height: 57px;width: 200px;cursor: pointer;margin-top: -25px; margin-bottom: -3px;" src="../assets/VK.png" />
+
+            </a>
+          </div>
+          <div class="col-xs-12 col-sm-4 logo hos-bran">
+            <a>
+              <span> Organization : {{Companyname}}</span>
+              <br />
+              <span>Branch : {{menubranch}} &nbsp;</span>
+              <span class="{{Indiaflag}}"></span>
+            </a>
+          </div>
+          <div class="col-xs-12 col-sm-4 logo hos-lgin">
+            <div class="row">
+              <div class="col-xs-6 col-sm-10 hos-lg-name" style="padding:0px;margin:0px;width:120%">
+                <a>
+                  Welcome : {{Menudoctor}}<br />
+                  Logged-in Date&Time : {{Menulogindateandtime}} Hrs
+                </a>
+              </div>
+              <div class="col-xs-4 col-sm-1 hos-lg-prof">
+                <!-- user block starts -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="profile-avather" style="height:25px;width:25px;cursor:pointer" src="assets/logoutbutton.png" disabled />
+                      </a>
+                      <ul class="dropdown-menu dropdown-menu1">
+                        <li><a class="grab" (click)="Checkprofile()">Profile</a></li>
+                        <li><a class="grab" (click)="mangepasswordbtn()">Manage Password</a></li>
+                        <!-- <li role="separator" class="divider"></li> -->
+                        <li><button type="button" class="btn btn-primary" (click)="Logout()">Sign Out</button></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+                <!-- user block end -->
+              </div>
+              <!--<div class="col-xs-2 col-sm-1 hos-lg-name" style="margin:0px;padding:0px;">
+                <i routerLink="/whatsnew" style="font-size:24px;cursor:pointer;color:whitesmoke" data-toggle="tooltip" title="What`s New" class="fa shakeimage">&#xf0f3;</i>
+              </div>-->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid hd-btm-nav">
+        <nav class="navbar navbar-custom">
+          <mat-tab-group [selectedIndex]="selectedIndex" (selectedTabChange)="tabsChanged($event)">
+
+            <mat-tab label="Dashboard"></mat-tab>
+            <!--<mat-tab *ngFor="let menuss of WorkflowMaster; let index = index" [label]="menuss.formDescription">
+            </mat-tab>-->
+          </mat-tab-group>
+
+        </nav>
+      </div>
+    </header>
+    <div class="sidebar">
+      <div id='cssmenu'>
+        <ul class="mainmenu">
+          <mat-accordion>
+
+            <mat-expansion-panel *ngFor="let data of outpatientssmenusmenu">
+              <mat-expansion-panel-header class="v1">
+                <mat-panel-title class="v2">
+                  <span class="menu-icon"><i class="fas" [ngClass]="data.icon"></i></span>{{data.MainDescription}}
+                </mat-panel-title>
+
+              </mat-expansion-panel-header>
+
+              <mat-list role="list" class="v3">
+                <ng-container *ngFor="let s of data.DataOriginalsubModule">
+                  <mat-expansion-panel class="v4 menu-pannel">
+                    <mat-expansion-panel-header class="v5">
+                      <mat-panel-title class="v6">
+                        {{s.subDescription}}
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <mat-list class="v7">
+                      <div *ngFor="let subItem of s.DataOriginalformsModule">
+                        <mat-list-item class="v8" role="listitem" routerLink={{subItem.Parentmoduledescription}} [routerLinkActive]="['is-active']">
+                          <mat-icon class="menulabel">label</mat-icon>
+                          {{ subItem.formDescription }}
+                        </mat-list-item>
+                      </div>
+                    </mat-list>
+                  </mat-expansion-panel>
+
+                </ng-container>
+              </mat-list>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header class="v1">
+                <mat-panel-title class="v2" style="margin-left:10%">
+                  <i class="fa fa-key" style="margin-right:7%;color:white"></i> Access Privileges
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <mat-list-item role="listitem" routerLink="/useraccess" class="v8" [routerLinkActive]="['is-active']">
+                <mat-icon class="menulabel">label</mat-icon>
+                Access Master
+              </mat-list-item>
+            </mat-expansion-panel>
+            <mat-list-item role="listitem" routerLink="Opticalslazy/OpticalMaterialReturn" class="v8" [routerLinkActive]="['is-active']">
+              <mat-icon class="menulabel">label</mat-icon>
+              Optical Material Return
+            </mat-list-item>
+          </mat-accordion>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="content-container">
+      <div class="container-fluid">
+
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+
+    <div class="modal" role="dialog" [ngStyle]="{'display':profileblock}">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="col-sm-12">
+              <div class="row">
+                <div class="col-sm-10">
+                  <h4 class="modal-title">Profile</h4>
+                </div>
+                <div class="col-sm-2">
+                  <button type="button" class="close" data-dismiss="modal" (click)="profileblockClose()">&times;</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-sm-6">
+                <!--<img src="assets/USerimage.jpg" style="width:60%;height:60%;border-radius:15px" />-->
+                <img class="Profileimagestyle" src="{{imagedata}}">
+              </div>
+              <div class="col-sm-6">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <label>User : </label>
+                  </div>
+                  <div class="col-sm-3">
+                    {{doctorname}}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <label>UserID : </label>
+                  </div>
+                  <div class="col-sm-3">
+                    {{docotorid}}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <label>Role : </label>
+                  </div>
+                  <div class="col-sm-3">
+                    {{docrole}}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-7">
+
+                    <div *ngFor="let progressInfo of progressInfos; let i = index" class="mb-2">
+                      <span>{{ progressInfo.fileName }}</span>
+
+                      <div class="row">
+                        <div class="col-sm-8">
+                          <div class="progress">
+                            <div class="progress-bar progress-bar-info progress-bar-striped"
+                                 role="progressbar"
+                                 attr.aria-valuenow="{{ progressInfo.value }}"
+                                 aria-valuemin="0"
+                                 aria-valuemax="100"
+                                 [ngStyle]="{ width: progressInfo.value + '%' }">
+                              {{ progressInfo.value }}%
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                    <label class="btn btn-default">
+                      <input type="file" (change)="selectFiles($event)" id="Prfofileid" accept="image/gif, image/jpeg, image/png, image/jpg" />
+                    </label>
+                    <label class="btn btn-default">Accepts only *PNG, *JPG, *JPEG Images </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="col-sm-12 pb25">
+              <div class="content-right sub-section btn-wrap">
+                <button type="button" class="btn btn-warning-default" (click)="profileblockClose()">Close</button>
+                <button class="success btn btn-primary" (click)="uploadFiles()">Upload</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <div class="modal" role="dialog" [ngStyle]="{'display':passwordblock}">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" style="color:red" data-dismiss="modal" (click)="passwordblockClose()">&times;</button>
+            <h6>Change Password</h6>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="myForm">
+              <div class="col-sm-12">
+                <div class="row">
+                  <div class="col-sm-2"></div>
+                  <div class="col-sm-4">
+                    <div>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Old Password</mat-label>
+                        <input formControlName="passwordOLD" [(ngModel)]="pwdss" name="pwdsss" [type]="hide ? 'password' : 'text'" matInput placeholder="Old Password">
+
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                      </mat-form-field>
+                    </div>
+                    <div>
+                      <mat-form-field appearance="outline">
+                        <mat-label>New Password</mat-label>
+                        <input formControlName="password" [(ngModel)]="newpwdss" name="pwdssss" [type]="hide1 ? 'password' : 'text'" matInput placeholder="New Password">
+                        <mat-error *ngIf="myForm.hasError('required', 'password')">
+                          Please enter your newpassword
+                        </mat-error>
+                        <button mat-icon-button matSuffix (click)="hide1 = !hide1" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide1">
+                          <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                      </mat-form-field>
+                    </div>
+                    <div>
+                      <mat-form-field appearance="outline">
+                        <mat-label>Confirm Password</mat-label>
+                        <input formControlName="confirmPassword" [errorStateMatcher]="matcher" [(ngModel)]="confirmpwdss" name="pwdsssss" matInput placeholder="Confirm Password" [type]="hide2 ? 'password' : 'text'">
+                        <mat-error *ngIf="myForm.hasError('notSame')">
+                          Passwords do not match
+                        </mat-error>
+                        <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide2">
+                          <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <img src="assets/password-keychain.jpg" style="width: 84%;margin-left: 8%" />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer" style="margin:0%;padding:0%;border:none;margin-bottom: 1%;">
+            <!--<div class="col-sm-12">
+              <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-4">
+                  <button class="btn btn-success" data-dismiss="modal" style="margin-right:1%" (click)="passwordblockOk()">Submit</button>
+                  <button type="button" class="btn btn-warning" style="font-size:15px;color:orange;background-color:white;margin-right:1%" (click)="passwordblockcancel()"><strong>Cancel</strong></button>
+                  <button type="button" class="btn btn-danger" (click)="passwordblockClose()"><strong>Close</strong></button>
+
+                </div>
+                <div class="col-sm-4"></div>
+              </div>
+            </div>-->
+
+            <div class="col-sm-12 pb25">
+              <div class="content-right sub-section btn-wrap">
+                <button type="button" class="btn btn-danger" (click)="passwordblockClose()"><strong>Close</strong></button>
+                <button type="button" class="btn btn-warning-default" (click)="passwordblockcancel()"> Cancel </button>
+                <button (click)="passwordblockOk()" class="success btn btn-primary">
+                  Submit
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="modal" role="dialog" [ngStyle]="{'display':passwordasblock}">
+            <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <div class="col-sm-12">
+                    <div class="row">
+                      <div class="col-sm-11">
+                        <h4 class="modal-title">Do You Want to cancel ?</h4>
+                      </div>
+                      <div class="col-sm-1">
+                        <button type="button" class="close" data-dismiss="modal" (click)="passwordblocskClose()">&times;</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-body">
+                  <form [formGroup]="myForm">
+                    <div class="col-sm-12">
+                      <div class="row">
+                        <div class="col-sm-2"></div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer" style="margin:0%;padding:0%;border:none;margin-bottom: 1%;">
+                  <div class="col-sm-12">
+                    <div class="row">
+                      <div class="col-sm-1"></div>
+                      <div class="col-sm-4">
+                        <button class="btn btn-danger" style="margin-right:1%" data-dismiss="modal" autofocus (click)="passwordblockscancel()">No</button>
+                        <button type="reset" class="btn btn-success" data-dismiss="modal" (click)="passwordblocksokay()">Yes</button>
+                      </div>
+                      <div class="col-sm-4"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-sm-12" *ngIf="!loggedIn" style="font-size:14px;">
+    <app-login (setLoggedIn)="setLoggedIn()"></app-login>
+  </div>
+
+  <div id="loader" class="backdrop" style="display: none;">
+    <img class="load" src="https://www.animatedimages.org/data/media/35/animated-eye-image-0282.gif" />
+  </div>
+
+  <div class="backdrop" [ngStyle]="{'display':backdrop}"></div>
+  <div class="modal" role="dialog" [ngStyle]="{'display':modalCommon}">
+    <div class="modal-dialog modal-sm" [ngStyle]="{'width':modalCommonDialogWidth}">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" (click)="modalCommonClose()">&times;</button>
+          <h4 class="modal-title">{{modalCommonTitle}}</h4>
+        </div>
+        <div class="modal-body row" [innerHTML]="modalCommonBody"></div>
+        <div class="modal-footer">
+          <div *ngIf="showModalCommonYesNo">
+            <button type="button" class="btn btn-success" data-dismiss="modal" (click)="modalCommonYes()">Yes</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="modalCommonClose(); modalCommonNo()">No</button>
+          </div>
+          <div *ngIf="showModalCommonOk">
+            <button type="button" class="btn btn-success" data-dismiss="modal" (click)="modalCommonClose(); modalCommonOk()">Ok</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--<div bsModal #childModal="bs-modal" class="modal fade" tabindex="-1"
+       role="dialog" aria-labelledby="dialog-child-name">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content" style="top:120px;margin-left:30%;left:50%">
+        <div class="modal-header">
+          <h4 id="dialog-child-name" class="modal-title pull-left">You Have Been Idle!</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="padding:16px;text-align:center">
+          {{idleState}}
+          <div class="row mrgbtm" style="margin-top:4%">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+              <button type="button" (click)="Logout()" style="margin-right:2%" class="btn btn-danger">Logout</button>
+              <button type="button" (click)="stay()" class="btn btn-success">Stay</button>
+            </div>
+            <div class="col-sm-4">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>-->
+  <!--<div class="modal" role="dialog" [ngStyle]="{'display':loginYesblock}" >
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content" style="width: 400px;">
+        <div class="modal-body">-->
+  <div class="modal" role="dialog" [ngStyle]="{'display':loginYesblock}" data-keyboard="false">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!--<button type="button" class="close" data-dismiss="modal" (click)="modalcloseAccessOk()">&times;</button>-->
+          <h4 class="modal-title">Information</h4>
+        </div>
+        <div class="modal-body">
+          <p style="text-align:center;background-color:white;color:black">
+            Do you want to Sign-Out ?
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger" data-dismiss="modal" autofocus (click)="loginNo()">No</button>
+          <button type="reset" class="btn btn-success" data-dismiss="modal" (click)="loginYes()">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="modal" role="dialog" [ngStyle]="{'display':loginYesoutblock}">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+
+        <div class="modal-body">
+          <p>
+            You have successfully logged out of Wynk-EMR
+          </p>
+        </div>
+        <div class="modal-footer">
+
+          <button type="reset" class="btn btn-success" data-dismiss="modal" (click)="loginYesout()">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+<div class="modal" role="dialog" [ngStyle]="{'display':idlechildModal}">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-child-name" class="modal-title pull-left">You Have Been Idle!</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          {{idleState}}
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" (click)="stay()" class="btn btn-success">Stay</button>
+        <button type="button" (click)="loginYes()" class="btn btn-danger">Logout</button>
+      </div>
+    </div>
+  </div>
+</div>

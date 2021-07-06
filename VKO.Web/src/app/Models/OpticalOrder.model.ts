@@ -1,0 +1,31 @@
+export class OpticalOrder {
+  OrderNumber: number;
+  OrderDate: Date;
+  RefNo: string;
+  RefDate: Date;  
+  TransactionID: number;
+  CmpID: number;
+  VendorID: number;
+  DeliveryName: string;
+  DeliveryAddress1: string;
+  DeliveryAddress2: string;
+  DeliveryAddress3: string;
+  DeliveryLocationID: number;
+  Deliveryinstructions: string;
+  DeliveryDate: Date;
+  GrossProductValue: number;
+  TotalProductValue: number;
+  TotalDiscountAmount: number;
+  TotalGSTTaxValue: number;
+  TotalCGSTTaxValue: number;
+  TotalSGSTTaxValue: number;
+  TotalIGSTTaxValue: number;
+  CESSAmount: number;
+  AddCESSPerAmt: number;
+  IsCancelled: boolean;
+  TermsAndConditions: string;
+  Validity: number;
+  IsOrderExecuted: boolean;
+  CreatedBy: string;
+  UpdateBy: string;
+}

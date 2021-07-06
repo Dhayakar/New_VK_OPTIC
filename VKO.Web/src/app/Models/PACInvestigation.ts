@@ -1,0 +1,57 @@
+
+
+export class PACInvestigation {
+  PACInvestigationID: number;
+  CMPID: number;
+  ADMID: number;
+  UIN: string;
+  Hb_PCV: string;
+  PLCount: number;
+  BLGlu: string;
+  SUricAcid: number;
+  T3: string;
+  T4: string;
+  TSH: string;
+  SElectNAPlus: string;
+  SElectKPlus: string;
+  SElectCAPlus: string;
+  UrineRMALB: string;
+  UrineRMSugar: string;
+  UrineRMKET: string;
+  UrineRMPlusCells: string;
+  UrineRMWBC: string;
+  UrineRMRBC: string;
+  XRay: string;
+  ECG: string;
+  ECHO: string;
+  ABG: string;
+  SpecialInvestigation: string;
+  TLC: string;
+  BlGroup: string;
+  BUrea: number;
+  Creatinine: number;
+  HBSAG: string;
+  HIV: string;
+  DLC: string;
+  PT: string;
+  PTTk: string;
+  SBil: string;
+SGOTSGPT: string;
+ ALKPOGGT: string;
+  SProtein: string;
+  UnfitReasons: string;
+  Reviewedby1: string;
+  Reviewedby2: string;
+  Reviewedby3: string;
+  Reviewedon1: Date;
+  Reviewedon2: Date;
+  Reviewedon3: Date;
+  Remarks1: string;
+  Remarks2: string;
+  Remarks3: string;
+  PlanGA: string;
+  CreatedUTC: Date;
+  UpdatedUTC: Date;
+  CreatedBy: number;
+  UpdatedBy: number;
+}

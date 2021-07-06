@@ -1,0 +1,249 @@
+
+
+<form #AccessprivilegesForm="ngForm">
+  <div class="row">
+    <h6>Access Privileges</h6>
+  </div>
+
+  <div class="col-sm-12 dividebar">
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-2">
+        <mat-form-field appearance="outline" class="mat-width">
+          <mat-label>Roleuser</mat-label>
+          <mat-select required [(ngModel)]="Roleuser" name="Roleuser" placeholder="Select">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let Role of Rolename" [value]="Role.Value">{{ Role.Text}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-1"></div>
+
+      <div class="col-sm-2">
+        <mat-form-field appearance="outline">
+          <mat-label>View Access</mat-label>
+          <mat-select [(ngModel)]="M_Viewaccess" name="Access" placeholder="" (ngModelChange)="Selectuser()">
+            <mat-option value="all">View All</mat-option>
+            <mat-option value="granted">Grant Access</mat-option>
+            <mat-option value="pending">Pending</mat-option>
+
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-1"></div>
+
+      <!--<div class="col-sm-2">
+        <mat-form-field  appearance="outline">
+        </mat-form-field>
+      </div>-->
+    </div>
+    <div class="row">
+      <mat-accordion [togglePosition]="'before'">
+        <mat-expansion-panel *ngFor="let data of outpatientssmenusmenu">
+          <mat-expansion-panel-header class="v1" *ngIf="data.DataOriginalsubModule != 0">
+            <mat-panel-title class="v2">
+              <span class="menu-icon"></span>{{data.MainDescription}}
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+          <mat-list role="list">
+            <ng-container *ngFor="let s of data.DataOriginalsubModule">
+              <mat-expansion-panel>
+                <mat-expansion-panel-header class="v5">
+                  <mat-panel-title>
+                    <mat-checkbox class="matcheck-mr" (change)="Selectsubmodulewise($event,s,i)"></mat-checkbox>
+                    {{s.subDescription}}
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <table class="custom-table withoutbackgroung search-table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>SNo</th>
+                      <th>Description</th>
+                      <th *ngIf="s.Moduletypes !== 'Report'">All</th>
+                      <th *ngIf="s.Moduletypes !== 'Report'">Add</th>
+                      <th *ngIf="s.Moduletypes !== 'Report'">Edit</th>
+                      <th *ngIf="s.Moduletypes !== 'Report'">Update</th>
+                      <th>Export</th>
+                      <th *ngIf="s.Moduletypes !== 'Report'">Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let subItem of s.DataOriginalformsModule;let i = index">
+                      <td>{{i+1}}</td>
+                      <td>{{subItem.formDescription}}</td>
+                      <td *ngIf="subItem.Moduletypes !== 'Report'"><mat-checkbox [(checked)]="subItem.All" (change)="selecAllType($event,subItem,i)"></mat-checkbox></td>
+                      <td *ngIf="subItem.Moduletypes !== 'Report'"><mat-checkbox [(checked)]="subItem.Add" (change)="selecAddType($event,subItem,i)"></mat-checkbox></td>
+                      <td *ngIf="subItem.Moduletypes !== 'Report'"><mat-checkbox [(checked)]="subItem.Edit" (change)="selecEditType($event,subItem,i)"></mat-checkbox></td>
+                      <td *ngIf="subItem.Moduletypes !== 'Report'"><mat-checkbox [(checked)]="subItem.Update" (change)="selecUpdateType($event,subItem,i)"></mat-checkbox></td>
+                      <td><mat-checkbox [(checked)]="subItem.Export" (change)="selecExportType($event,subItem,i)"></mat-checkbox></td>
+                      <td *ngIf="subItem.Moduletypes !== 'Report'"><mat-checkbox [(checked)]="subItem.Delete" (change)="selecDeleteType($event,subItem,i)"></mat-checkbox></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </mat-expansion-panel>
+            </ng-container>
+          </mat-list>
+        </mat-expansion-panel>
+        <mat-expansion-panel *ngIf="workflow?.length > 0">
+          <mat-expansion-panel-header class="v1">
+            <mat-panel-title class="v2">
+              <span class="menu-icon"></span>OPD - Workflow
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+          <table class="custom-table withoutbackgroung search-table table-bordered">
+            <thead>
+              <tr>
+                <th>SNo</th>
+                <th>Description</th>
+                <th>All</th>
+                <th>Add</th>
+                <th>Edit</th>
+                <th>Update</th>
+                <th>Export</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let Workflowdata of workflow;let i = index">
+                <td>{{i+1}}</td>
+                <td>{{Workflowdata.formDescription}}</td>
+                <td><mat-checkbox [(checked)]="Workflowdata.All" (change)="selecworkflowAllType($event,Workflowdata,i)"></mat-checkbox></td>
+                <td><mat-checkbox [(checked)]="Workflowdata.Add" (change)="selecworkflowAddType($event,Workflowdata,i)"></mat-checkbox></td>
+                <td><mat-checkbox [(checked)]="Workflowdata.Edit" (change)="selecworkflowEditType($event,Workflowdata,i)"></mat-checkbox></td>
+                <td><mat-checkbox [(checked)]="Workflowdata.Update" (change)="selecworkflowUpdateType($event,Workflowdata,i)"></mat-checkbox></td>
+                <td><mat-checkbox [(checked)]="Workflowdata.Export" (change)="selecworkflowExportType($event,Workflowdata,i)"></mat-checkbox></td>
+                <td><mat-checkbox [(checked)]="Workflowdata.Delete" (change)="selecworkflowDeleteType($event,Workflowdata,i)"></mat-checkbox></td>
+              </tr>
+            </tbody>
+          </table>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel *ngFor="let data of findingsworkflow">
+          <mat-expansion-panel-header class="v1">
+            <mat-panel-title class="v2">
+              <span class="menu-icon"></span>Findings
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+          <mat-list role="list">
+            <ng-container *ngFor="let s of data.workflowDataOriginalsubModule;let i = index">
+              <mat-expansion-panel>
+                <mat-expansion-panel-header class="v5">
+                  <mat-panel-title>                    
+                    {{s.subDescription}}
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <table class="custom-table withoutbackgroung search-table table-bordered" *ngIf="s.workflowFgformsModule?.length > 0">
+                  <thead>
+                    <tr>
+                      <th>SNo</th>
+                      <th>Description</th>
+                      <th>All</th>
+                      <th>Add</th>
+                      <th>Edit</th>
+                      <th>Update</th>
+                      <th>Export</th>
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let subItem of s.workflowFgformsModule;let i = index">
+                      <td>{{i+1}}</td>
+                      <td>{{subItem.formDescription}}</td>
+                      <td><mat-checkbox [(checked)]="subItem.All" (change)="selecworkAllType($event,subItem,i)"></mat-checkbox></td>
+                      <td><mat-checkbox [(checked)]="subItem.Add" (change)="selecworkAddType($event,subItem,i)"></mat-checkbox></td>
+                      <td><mat-checkbox [(checked)]="subItem.Edit" (change)="selecworkEditType($event,subItem,i)"></mat-checkbox></td>
+                      <td><mat-checkbox [(checked)]="subItem.Update" (change)="selecworkUpdateType($event,subItem,i)"></mat-checkbox></td>
+                      <td><mat-checkbox [(checked)]="subItem.Export" (change)="selecworkExportType($event,subItem,i)"></mat-checkbox></td>
+                      <td><mat-checkbox [(checked)]="subItem.Delete" (change)="selecworkDeleteType($event,subItem,i)"></mat-checkbox></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <table class="custom-table withoutbackgroung search-table table-bordered" *ngIf="s.workflowFgformsModule?.length == 0">
+                  <thead>
+                    <tr>
+                      <!--<th style="width: 13%;">SNo</th>-->                      
+                      <th style="width: 13%;">All</th>
+                      <th style="width: 13%;">Add</th>
+                      <th style="width: 13%;">Edit</th>
+                      <th style="width: 13%;">Update</th>
+                      <th style="width: 13%;">Export</th>
+                      <th style="width: 13%;">Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <!--<td>{{i+1}}</td>-->
+                      <!--<td>{{s.subDescription}}</td>-->
+                      <td><mat-checkbox [(checked)]="s.All" (change)="selecsubAllType($event,s,i)"></mat-checkbox></td>
+                      <td><mat-checkbox [(checked)]="s.Add" (change)="selecsubAddType($event,s,i)"></mat-checkbox></td>
+                      <td><mat-checkbox [(checked)]="s.Edit" (change)="selecsubEditType($event,s,i)"></mat-checkbox></td>
+                      <td><mat-checkbox [(checked)]="s.Update" (change)="selecsubUpdateType($event,s,i)"></mat-checkbox></td>
+                      <td><mat-checkbox [(checked)]="s.Export" (change)="selecsubExportType($event,s,i)"></mat-checkbox></td>
+                      <td><mat-checkbox [(checked)]="s.Delete" (change)="selecsubDeleteType($event,s,i)"></mat-checkbox></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </mat-expansion-panel>
+            </ng-container>
+          </mat-list>
+          <!--<table class="custom-table withoutbackgroung search-table table-bordered">
+    <thead>
+      <tr>
+        <th>SNo</th>
+        <th>Description</th>
+        <th>All</th>
+        <th>Add</th>
+        <th>Edit</th>
+        <th>Update</th>
+        <th>Export</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let Workflowdata of workflow;let i = index">
+        <td>{{i+1}}</td>
+        <td>{{Workflowdata.formDescription}}</td>
+        <td><mat-checkbox [(checked)]="Workflowdata.All" (change)="selecworkflowAllType($event,Workflowdata,i)"></mat-checkbox></td>
+        <td><mat-checkbox [(checked)]="Workflowdata.Add" (change)="selecworkflowAddType($event,Workflowdata,i)"></mat-checkbox></td>
+        <td><mat-checkbox [(checked)]="Workflowdata.Edit" (change)="selecworkflowEditType($event,Workflowdata,i)"></mat-checkbox></td>
+        <td><mat-checkbox [(checked)]="Workflowdata.Update" (change)="selecworkflowUpdateType($event,Workflowdata,i)"></mat-checkbox></td>
+        <td><mat-checkbox [(checked)]="Workflowdata.Export" (change)="selecworkflowExportType($event,Workflowdata,i)"></mat-checkbox></td>
+        <td><mat-checkbox [(checked)]="Workflowdata.Delete" (change)="selecworkflowDeleteType($event,Workflowdata,i)"></mat-checkbox></td>
+      </tr>
+    </tbody>
+  </table>-->
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+
+
+
+  <div class="col-sm-12 pb25">
+    <div class="content-right sub-section btn-wrap">
+      <button type="button" class="btn btn-warning-default" (click)="oncancel()"> Cancel </button>
+      <button class="success btn btn-primary" id="submit" (click)="onSubmitaccess(AccessprivilegesForm)">
+        Submit
+      </button>
+    </div>
+  </div>
+
+
+  <div class="modal" role="dialog" [ngStyle]="{'display':cancelblock}">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" (click)="modalSuccessClosessss()">&times;</button>
+          <h4 class="modal-title">Do You Want to Cancel</h4>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger" data-dismiss="modal" autofocus (click)="modalcloseOk()">No</button>
+          <button type="reset" class="btn btn-success" data-dismiss="modal" (click)="modalSuccesssOk()">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,44 @@
+D:\GIT_WYNK_EMR\WYNK\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.deps.json
+D:\GIT_WYNK_EMR\WYNK\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.runtimeconfig.json
+D:\GIT_WYNK_EMR\WYNK\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.runtimeconfig.dev.json
+D:\GIT_WYNK_EMR\WYNK\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.dll
+D:\GIT_WYNK_EMR\WYNK\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.pdb
+D:\GIT_WYNK_EMR\WYNK\WYNK.Services\bin\Debug\netcoreapp2.1\SMSand EMAILService.cs.dll
+D:\GIT_WYNK_EMR\WYNK\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Data.dll
+D:\GIT_WYNK_EMR\WYNK\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Helpers.dll
+D:\GIT_WYNK_EMR\WYNK\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Data.pdb
+D:\GIT_WYNK_EMR\WYNK\WYNK.Services\bin\Debug\netcoreapp2.1\SMSand EMAILService.cs.pdb
+D:\GIT_WYNK_EMR\WYNK\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Helpers.pdb
+D:\GIT_WYNK_EMR\WYNK\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csprojAssemblyReference.cache
+D:\GIT_WYNK_EMR\WYNK\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csproj.CoreCompileInputs.cache
+D:\GIT_WYNK_EMR\WYNK\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.RazorAssemblyInfo.cache
+D:\GIT_WYNK_EMR\WYNK\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.RazorAssemblyInfo.cs
+D:\GIT_WYNK_EMR\WYNK\WYNK.Services\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
+D:\GIT_WYNK_EMR\WYNK\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.AssemblyInfoInputs.cache
+D:\GIT_WYNK_EMR\WYNK\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.AssemblyInfo.cs
+D:\GIT_WYNK_EMR\WYNK\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.RazorTargetAssemblyInfo.cache
+D:\GIT_WYNK_EMR\WYNK\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csproj.CopyComplete
+D:\GIT_WYNK_EMR\WYNK\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.dll
+D:\GIT_WYNK_EMR\WYNK\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.pdb
+D:\GIT_WYNK_EMR\VKO\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.deps.json
+D:\GIT_WYNK_EMR\VKO\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.runtimeconfig.json
+D:\GIT_WYNK_EMR\VKO\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.runtimeconfig.dev.json
+D:\GIT_WYNK_EMR\VKO\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.dll
+D:\GIT_WYNK_EMR\VKO\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.pdb
+D:\GIT_WYNK_EMR\VKO\WYNK.Services\bin\Debug\netcoreapp2.1\SMSand EMAILService.cs.dll
+D:\GIT_WYNK_EMR\VKO\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Data.dll
+D:\GIT_WYNK_EMR\VKO\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Helpers.dll
+D:\GIT_WYNK_EMR\VKO\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Data.pdb
+D:\GIT_WYNK_EMR\VKO\WYNK.Services\bin\Debug\netcoreapp2.1\SMSand EMAILService.cs.pdb
+D:\GIT_WYNK_EMR\VKO\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Helpers.pdb
+D:\GIT_WYNK_EMR\VKO\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csprojAssemblyReference.cache
+D:\GIT_WYNK_EMR\VKO\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csproj.CoreCompileInputs.cache
+D:\GIT_WYNK_EMR\VKO\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.RazorAssemblyInfo.cache
+D:\GIT_WYNK_EMR\VKO\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.RazorAssemblyInfo.cs
+D:\GIT_WYNK_EMR\VKO\WYNK.Services\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
+D:\GIT_WYNK_EMR\VKO\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.AssemblyInfoInputs.cache
+D:\GIT_WYNK_EMR\VKO\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.AssemblyInfo.cs
+D:\GIT_WYNK_EMR\VKO\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.RazorTargetAssemblyInfo.cache
+D:\GIT_WYNK_EMR\VKO\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csproj.CopyComplete
+D:\GIT_WYNK_EMR\VKO\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.dll
+D:\GIT_WYNK_EMR\VKO\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.pdb
