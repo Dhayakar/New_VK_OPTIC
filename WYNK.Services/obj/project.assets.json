@@ -12630,11 +12630,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GIT_WYNK_EMR\\VKO\\WYNK.Services\\WYNK.Services.csproj",
+      "projectUniqueName": "D:\\GIT_WYNK_EMR\\GIT_VKO\\WYNK.Services\\WYNK.Services.csproj",
       "projectName": "WYNK.Services",
-      "projectPath": "D:\\GIT_WYNK_EMR\\VKO\\WYNK.Services\\WYNK.Services.csproj",
+      "projectPath": "D:\\GIT_WYNK_EMR\\GIT_VKO\\WYNK.Services\\WYNK.Services.csproj",
       "packagesPath": "C:\\Users\\SYSTEM1\\.nuget\\packages\\",
-      "outputPath": "D:\\GIT_WYNK_EMR\\VKO\\WYNK.Services\\obj\\",
+      "outputPath": "D:\\GIT_WYNK_EMR\\GIT_VKO\\WYNK.Services\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -12653,8 +12653,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "D:\\GIT_WYNK_EMR\\VKO\\WYNK.Data\\WYNK.Data.csproj": {
-              "projectPath": "D:\\GIT_WYNK_EMR\\VKO\\WYNK.Data\\WYNK.Data.csproj"
+            "D:\\GIT_WYNK_EMR\\GIT_VKO\\WYNK.Data\\WYNK.Data.csproj": {
+              "projectPath": "D:\\GIT_WYNK_EMR\\GIT_VKO\\WYNK.Data\\WYNK.Data.csproj"
             }
           }
         }
