@@ -1,0 +1,569 @@
+
+
+<h5 class="col-sm-5 card-header bg-success text-white">
+  Tax Summary
+</h5>
+
+
+<div class="col-sm-12 borderline">
+  <!--<div class="col-sm-12 mph-0">
+    <div class="col-sm-9 mph-0">
+
+    </div>
+    <div class="col-sm-2 mph-0">
+      <button class="btn-text" (click)="Getformaccess()"><i class="fas fa-eye"></i> View Access</button>
+    </div>
+  </div>-->
+
+
+
+  <form #TaxsummaryForm="ngForm">
+    <div>
+
+
+
+      <div class="col-sm-12 mt10" *ngIf="TaxTablehidden">
+        <div class="row">
+          <div class="col-sm-3"></div>
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline">
+              <mat-label>From Date</mat-label>
+              <input [(ngModel)]="M_FromDate" name="FromDate" [max]="M_ToDate" matInput [matDatepicker]="FromDate" placeholder="FromDate">
+              <mat-datepicker-toggle matSuffix [for]="FromDate"></mat-datepicker-toggle>
+              <mat-datepicker mode="MONTH" #FromDate></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline">
+              <mat-label>To Date</mat-label>
+              <input [(ngModel)]="M_ToDate" name="ToDate" matInput [matDatepicker]="ToDate" [min]="M_FromDate" [max]="M_ToDate" placeholder="ToDate">
+              <mat-datepicker-toggle matSuffix [for]="ToDate"></mat-datepicker-toggle>
+              <mat-datepicker mode="MONTH" #ToDate></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-3"></div>
+        </div>
+
+
+        <div class="col-sm-12 pb25">
+          <div class="content-right sub-section btn-wrap">
+            <button class="btn btn-warning-default" (click)="Cancel()"><strong>Cancel</strong></button>
+            <button class="success btn btn-primary" [disabled]="DisableonSubmit" (click)="onSubmit()">Submit</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-sm-12" *ngIf="!TaxTablehidden">
+        <div class="col-sm-6">
+          <div class="row">
+            <div class="col-sm-4">
+              <label>Company Name</label>
+            </div>
+            <div class="col-sm-1">
+              <label>:</label>
+            </div>
+            <div class="col-sm-6">
+              <label>{{M_CompanyName}}</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <label>Report Date & Time </label>
+            </div>
+            <div class="col-sm-1">
+              <label>:</label>
+            </div>
+            <div class="col-sm-6">
+              <label>{{M_TodayDate| date:"dd-MMM-y, HH:mm"}}</label>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-sm-12" *ngIf="!TaxTablehidden">
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-6">
+          <mat-panel-title class="text-title pb10" *ngIf="!ThePeriodhidden">
+            Tax Summary for the Period<label> &nbsp;{{M_FromDate| date:"MMM-y"}} to {{M_ToDate| date:"MMM-y"}}</label>
+          </mat-panel-title>
+          <mat-panel-title class="text-title pb10" *ngIf="ThePeriodhidden">
+            Tax Summary for the Period<label> &nbsp;{{M_FromDate| date:"MMM-y"}}</label>
+          </mat-panel-title>
+        </div>
+        <div class="col-sm-4" *ngIf="!TaxTablehidden">
+          <button type="button" (click)="ConvertPDF()" class="btn btn-primary-default btn-Pdf mlr10"><i class="far fa-file-pdf"></i> Export to PDF</button>
+          <button (click)="ConvertEXCEL()" class="btn btn-primary-default btn-Excel"><i class="far fa-file-excel"></i> Export to Excel</button>
+        </div>
+      </div>
+
+      <div class="col-sm-12 mt5" *ngIf="!TaxTablehidden">
+        <div class="row">
+
+          <h5 class="card-header bg-success text-white">
+            Sales details
+          </h5>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <table mat-table matSort [dataSource]="dataSource" id="tableee" class="custom-table withoutbackgroung search-table table-bordered">
+
+                <ng-container matColumnDef="TaxDescription">
+                  <th mat-header-cell *matHeaderCellDef>Tax Description</th>
+                  <td mat-cell *matCellDef="let element ;let i = index;" class="text-left">{{element.TaxDescription}}</td>
+                  <td mat-footer-cell *matFooterCellDef class="text-left"><strong>Gross Total</strong></td>
+                </ng-container>
+
+                <ng-container matColumnDef="Date">
+                  <th mat-header-cell *matHeaderCellDef>Date</th>
+                  <td mat-cell *matCellDef="let element;let i = index;" class="text-end">{{element.TransactionDate| date:"MMM-y"}}</td>
+                  <td mat-footer-cell *matFooterCellDef class="text-end"> </td>
+                </ng-container>
+                <ng-container matColumnDef="GrossAmount">
+                  <th mat-header-cell *matHeaderCellDef>Gross Amount</th>
+                  <td mat-cell *matCellDef="let element" class="text-end"> {{element.GrossAmount| number : '1.2-2'}} </td>
+                  <td mat-footer-cell *matFooterCellDef class="text-end"><strong>{{TGrossAmount|currency:Country2}}</strong></td>
+                </ng-container>
+
+                <ng-container matColumnDef="TaxPercentage">
+                  <th mat-header-cell *matHeaderCellDef>Tax Percentage</th>
+                  <td mat-cell *matCellDef="let element" class="text-end"> {{element.TaxPercentage}} </td>
+                  <td mat-footer-cell *matFooterCellDef class="text-left"><strong>Total</strong></td>
+                </ng-container>
+
+                <ng-container matColumnDef="TaxValue">
+                  <th mat-header-cell *matHeaderCellDef>Tax Value</th>
+                  <td mat-cell *matCellDef="let element" class="text-end">{{element.TaxValue| number : '1.2-2'}}</td>
+                  <td mat-footer-cell *matFooterCellDef class="text-end"><strong>{{TTaxValue|currency:Country2}}</strong></td>
+                </ng-container>
+
+                <ng-container matColumnDef="Tax1Percentage">
+                  <th mat-header-cell *matHeaderCellDef>Tax1 Percentage</th>
+                  <td mat-cell *matCellDef="let element" class="text-end">{{element.Tax1Percentage}}  </td>
+                  <td mat-footer-cell *matFooterCellDef class="text-end"> </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Tax1Value">
+                  <th mat-header-cell *matHeaderCellDef>Tax1 Value</th>
+                  <td mat-cell *matCellDef="let element" class="text-end"> {{element.Tax1Value| number : '1.2-2'}} </td>
+                  <td mat-footer-cell *matFooterCellDef class="text-end"><strong> {{TTax1Value|currency:Country2}}</strong></td>
+                </ng-container>
+
+                <ng-container matColumnDef="Tax2Percentage">
+                  <th mat-header-cell *matHeaderCellDef>Tax2 Percentage</th>
+                  <td mat-cell *matCellDef="let element" class="text-end">{{element.Tax2Percentage}} </td>
+                  <td mat-footer-cell *matFooterCellDef class="text-end"> </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Tax2Value">
+                  <th mat-header-cell *matHeaderCellDef>Tax2 Value</th>
+                  <td mat-cell *matCellDef="let element;let id = index;" class="text-end">{{element.Tax2Value| number : '1.2-2'}}</td>
+                  <td mat-footer-cell *matFooterCellDef class="text-end"><strong>{{TTax2Value|currency:Country2}}</strong></td>
+                </ng-container>
+
+                <ng-container matColumnDef="CESSPercentage">
+                  <th mat-header-cell *matHeaderCellDef>CESS Percentage</th>
+                  <td mat-cell *matCellDef="let element" class="text-end">{{element.CESSPercentage| number : '1.2-2'}} </td>
+                  <td mat-footer-cell *matFooterCellDef class="text-end"> </td>
+                </ng-container>
+
+                <ng-container matColumnDef="CESSValue">
+                  <th mat-header-cell *matHeaderCellDef>CESS Value</th>
+                  <td mat-cell *matCellDef="let element" class="text-end">{{element.CESSValue| number : '1.2-2'}} </td>
+                  <td mat-footer-cell *matFooterCellDef class="text-end"><strong>{{TCESSValue|currency:Country2}}</strong> </td>
+                </ng-container>
+
+                <ng-container matColumnDef="AddlCESSPercentage">
+                  <th mat-header-cell *matHeaderCellDef> AddlCESS Percentage</th>
+                  <td mat-cell *matCellDef="let element;let id = index;" class="text-end">{{element.AddlCESSPercentage}} </td>
+                  <td mat-footer-cell *matFooterCellDef class="text-end"> </td>
+                </ng-container>
+
+                <ng-container matColumnDef="AddlCESSValue">
+                  <th mat-header-cell *matHeaderCellDef>Addl CESS Value</th>
+                  <td mat-cell *matCellDef="let element" class="text-end"> {{element.AddlCESSValue| number : '1.2-2'}} </td>
+                  <td mat-footer-cell *matFooterCellDef class="text-end"><strong>{{TAddlCESSValue|currency:Country2}}</strong> </td>
+                </ng-container>
+
+                <ng-container matColumnDef="TaxPayable">
+                  <th mat-header-cell *matHeaderCellDef>Tax Payable</th>
+                  <td mat-cell *matCellDef="let element" class="text-end">{{element.TaxPayable| number : '1.2-2'}} </td>
+                  <td mat-footer-cell *matFooterCellDef class="text-end"><strong>{{TTaxPayable|currency:Country2}}</strong> </td>
+                </ng-container>
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row;  columns: displayedColumns;"></tr>
+                <tr mat-footer-row *matFooterRowDef="displayedColumns;sticky:true"></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12" *ngIf="!TaxTablehidden && SourceData1.length!=0">
+        <div class="row">
+
+          <h5 class="card-header bg-success text-white">
+            Sales Return
+          </h5>
+
+          <div class="row">
+            <div class="col-sm-12 tableoverflowheight ">
+              <table class="custom-table withoutbackgroung search-table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Tax Description</th>
+                    <!--<th>Date</th>-->
+                    <th>Gross Amount</th>
+                    <th>Tax Value</th>
+                    <!--<th>Tax1 Value</th>
+                <th>Tax2 Value</th>-->
+                    <th>CESS Value</th>
+                    <th>Addl CESS Value</th>
+                    <th>Tax Payable</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let x of SourceData1">
+                    <td class="text-left">{{x.TaxDescription}}</td>
+                    <!--<td class="text-end">{{x.TransactionDate| date:"MMM-y"}}</td>-->
+                    <td class="text-end">{{x.GrossAmount| number : '1.2-2'}}</td>
+                    <td class="text-end">{{x.TaxValue| number : '1.2-2'}}</td>
+                    <!--<td class="text-end">{{x.Tax1Value| number : '1.2-2'}}</td>
+                <td class="text-end">{{x.Tax2Value| number : '1.2-2'}}</td>-->
+                    <td class="text-end">{{x.CESSValue| number : '1.2-2'}}</td>
+                    <td class="text-end">{{x.AddlCESSValue| number : '1.2-2'}}</td>
+                    <td class="text-end">{{x.TaxPayable| number : '1.2-2'}}</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td class="text-left"><strong>Net Sales</strong></td>
+                    <!--<td class="text-end"><strong></strong></td>-->
+                    <td class="text-end"><strong>{{(TGrossAmount)-(TGrossAmountR)|currency:Country2}}</strong></td>
+                    <td class="text-end"><strong>{{(TTaxValue)-(TTaxValueR)|currency:Country2}}</strong></td>
+                    <!--<td class="text-end"><strong>{{(TTax1Value)-(TTax1ValueR)|currency:Country2}}</strong></td>
+                <td class="text-end"><strong>{{(TTax2ValueR)-(TTax2ValueR)|currency:Country2}}</strong></td>-->
+                    <td class="text-end"><strong>{{(TCESSValue)-(TCESSValueR)|currency:Country2}}</strong></td>
+                    <td class="text-end"><strong>{{(TAddlCESSValue)-(TAddlCESSValueR)|currency:Country2}}</strong></td>
+                    <td class="text-end"><strong>{{(TTaxPayable)-(TTaxPayableR)|currency:Country2}}</strong></td>
+                  </tr>
+                </tfoot>
+                <tfoot>
+                  <tr>
+                    <td class="text-left"><strong>Gross Total</strong></td>
+                    <!--<td class="text-end"><strong></strong></td>-->
+                    <td class="text-end"><strong>{{TGrossAmountR|currency:Country2}}</strong></td>
+                    <td class="text-end"><strong>{{TTaxValueR|currency:Country2}}</strong></td>
+                    <!--<td class="text-end"><strong>{{TTax1ValueR|currency:Country2}}</strong></td>
+                <td class="text-end"><strong>{{TTax2ValueR|currency:Country2}}</strong></td>-->
+                    <td class="text-end"><strong>{{TCESSValueR|currency:Country2}}</strong></td>
+                    <td class="text-end"><strong>{{TAddlCESSValueR|currency:Country2}}</strong></td>
+                    <td class="text-end"><strong>{{TTaxPayableR|currency:Country2}}</strong></td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-sm-12" *ngIf="!TaxTablehidden">
+      <div class="row">
+        <div class="col-sm-4">
+        </div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-2"><button type="button" class="btn btn-warning-default" (click)="Cancel1()">Cancel</button></div>
+        <div class="col-sm-4"></div>
+      </div>
+    </div>
+  </form>
+
+
+
+</div>
+
+<!--////////////////////////////////////////view asses//////////////////////////////////////////-->
+
+
+
+
+
+<div class="modal cust-model" role="dialog" [ngStyle]="{'display':accesspopup}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="modalcloseAccessOk()">&times;</button>
+        <h4 class="modal-title text-left">Tax Summary - View Access</h4>
+      </div>
+      <div class="modal-body">
+        <table align="center" class="table custom-table">
+          <thead>
+            <tr>
+              <th>Add</th>
+              <th>Edit</th>
+              <th>Delete</th>
+              <th>Export</th>
+              <th>Print</th>
+
+            </tr>
+          </thead>
+          <tbody>
+
+
+            <tr *ngFor="let x of accessdata ; index as i">
+              <td>
+                <mat-checkbox [(checked)]="x.Add" disabled></mat-checkbox>
+              </td>
+              <td>
+                <mat-checkbox [(checked)]="x.Edit" disabled></mat-checkbox>
+              </td>
+              <td>
+                <mat-checkbox [(checked)]="x.Delete" disabled></mat-checkbox>
+              </td>
+              <td>
+                <mat-checkbox [(checked)]="x.Export" disabled></mat-checkbox>
+              </td>
+              <td>
+                <mat-checkbox [(checked)]="x.Print" disabled></mat-checkbox>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" data-dismiss="modal" autofocus (click)="modalcloseAccessOk()">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--////////////////////////////////////////////print///////////////////////////-->
+
+
+<div id="section" style="display:none;">
+  <div class="col-sm-12">
+
+    
+    <div class="col-sm-12">
+      <label>Company Name</label>&nbsp;<label>:</label>&nbsp;<label>{{M_CompanyName}}</label>
+    </div>
+   
+    
+      <div class="col-sm-12">
+        <label>Report Date & Time </label>&nbsp;<label>:</label>&nbsp;<label>{{M_TodayDate| date:"dd-MMM-y, HH:mm"}}</label>
+      </div>
+   
+
+
+
+
+
+    <div class="col-sm-12">
+      <div class="col-sm-3">
+      </div>
+      <div class="col-sm-6">
+        <mat-panel-title class="text-title pb10" *ngIf="!ThePeriodhidden">
+          Tax Summary for the Period<label> &nbsp;{{M_FromDate| date:"MMM-y"}} to {{M_ToDate| date:"MMM-y"}}</label>
+        </mat-panel-title>
+        <mat-panel-title class="text-title pb10" *ngIf="ThePeriodhidden">
+          Tax Summary for the Period<label> &nbsp;{{M_FromDate| date:"MMM-y"}}</label>
+        </mat-panel-title>
+      </div>
+      <div class="col-sm-3">
+      </div>
+    </div>
+
+
+
+    <div class="col-sm-12 mt5">
+      
+        <div class="col-sm-12">
+          <h5>
+            Sales details
+          </h5>
+        </div>
+       
+          
+            <div class="col-sm-12">
+              <table mat-table matSort [dataSource]="dataSourceP" class="custom-table withoutbackgroung search-table table-bordered">
+
+                <ng-container matColumnDef="TaxDescriptionP">
+                  <th mat-header-cell *matHeaderCellDef>TaxDescription</th>
+                  <td mat-cell *matCellDef="let element ;let i = index;" class="text-left">{{element.TaxDescription}}</td>
+                  <td mat-footer-cell *matFooterCellDef class="text-left"><strong>Gross Total</strong></td>
+                </ng-container>
+
+                <ng-container matColumnDef="DateP">
+                  <th mat-header-cell *matHeaderCellDef>Date</th>
+                  <td mat-cell *matCellDef="let element;let i = index;" class="text-end">{{element.TransactionDate| date:"MMM-y"}}</td>
+                  <td mat-footer-cell *matFooterCellDef class="text-end"> </td>
+                </ng-container>
+                <ng-container matColumnDef="GrossAmountP">
+                  <th mat-header-cell *matHeaderCellDef>Gross Amount</th>
+                  <td mat-cell *matCellDef="let element" class="text-end"> {{element.GrossAmount| currency:Country2}} </td>
+                  <td mat-footer-cell *matFooterCellDef class="text-end"><strong>{{TGrossAmount|currency:Country2}}</strong></td>
+                </ng-container>
+
+                <ng-container matColumnDef="TaxPercentageP">
+                  <th mat-header-cell *matHeaderCellDef>Tax Percentage</th>
+                  <td mat-cell *matCellDef="let element" class="text-end"> {{element.TaxPercentage}} </td>
+                  <td mat-footer-cell *matFooterCellDef class="text-left"><strong>Total</strong></td>
+                </ng-container>
+
+                <ng-container matColumnDef="TaxValueP">
+                  <th mat-header-cell *matHeaderCellDef>Tax Value</th>
+                  <td mat-cell *matCellDef="let element" class="text-end">{{element.TaxValue| currency:Country2}}</td>
+                  <td mat-footer-cell *matFooterCellDef class="text-end"><strong>{{TTaxValue|currency:Country2}}</strong></td>
+                </ng-container>
+
+                <ng-container matColumnDef="Tax1PercentageP">
+                  <th mat-header-cell *matHeaderCellDef>Tax1 Percentage</th>
+                  <td mat-cell *matCellDef="let element" class="text-end">{{element.Tax1Percentage}}  </td>
+                  <td mat-footer-cell *matFooterCellDef class="text-end"> </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Tax1ValueP">
+                  <th mat-header-cell *matHeaderCellDef>Tax1 Value</th>
+                  <td mat-cell *matCellDef="let element" class="text-end"> {{element.Tax1Value| currency:Country2}} </td>
+                  <td mat-footer-cell *matFooterCellDef class="text-end"><strong> {{TTax1Value|currency:Country2}}</strong></td>
+                </ng-container>
+
+                <ng-container matColumnDef="Tax2PercentageP">
+                  <th mat-header-cell *matHeaderCellDef>Tax2 Percentage</th>
+                  <td mat-cell *matCellDef="let element" class="text-end">{{element.Tax2Percentage}} </td>
+                  <td mat-footer-cell *matFooterCellDef class="text-end"> </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Tax2ValueP">
+                  <th mat-header-cell *matHeaderCellDef>Tax2 Value</th>
+                  <td mat-cell *matCellDef="let element;let id = index;" class="text-end">{{element.Tax2Value| currency:Country2}}</td>
+                  <td mat-footer-cell *matFooterCellDef class="text-end"><strong>{{TTax2Value|currency:Country2}}</strong></td>
+                </ng-container>
+
+                <ng-container matColumnDef="CESSPercentageP">
+                  <th mat-header-cell *matHeaderCellDef>CESS Percentage</th>
+                  <td mat-cell *matCellDef="let element" class="text-end">{{element.CESSPercentage| currency:Country2}} </td>
+                  <td mat-footer-cell *matFooterCellDef class="text-end"> </td>
+                </ng-container>
+
+                <ng-container matColumnDef="CESSValueP">
+                  <th mat-header-cell *matHeaderCellDef>CESS Value</th>
+                  <td mat-cell *matCellDef="let element" class="text-end">{{element.CESSValue| currency:Country2}} </td>
+                  <td mat-footer-cell *matFooterCellDef class="text-end"><strong>{{TCESSValue|currency:Country2}}</strong> </td>
+                </ng-container>
+
+                <ng-container matColumnDef="AddlCESSPercentageP">
+                  <th mat-header-cell *matHeaderCellDef> AddlCESS Percentage</th>
+                  <td mat-cell *matCellDef="let element;let id = index;" class="text-end">{{element.AddlCESSPercentage}} </td>
+                  <td mat-footer-cell *matFooterCellDef class="text-end"> </td>
+                </ng-container>
+
+                <ng-container matColumnDef="AddlCESSValueP">
+                  <th mat-header-cell *matHeaderCellDef>AddlCESS Value</th>
+                  <td mat-cell *matCellDef="let element" class="text-end"> {{element.AddlCESSValue| currency:Country2}} </td>
+                  <td mat-footer-cell *matFooterCellDef class="text-end"><strong>{{TAddlCESSValue|currency:Country2}}</strong> </td>
+                </ng-container>
+
+                <ng-container matColumnDef="TaxPayableP">
+                  <th mat-header-cell *matHeaderCellDef>Tax Payable</th>
+                  <td mat-cell *matCellDef="let element" class="text-end">{{element.TaxPayable| currency:Country2}} </td>
+                  <td mat-footer-cell *matFooterCellDef class="text-end"><strong>{{TTaxPayable|currency:Country2}}</strong> </td>
+                </ng-container>
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsP; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row;  columns: displayedColumnsP;"></tr>
+                <tr mat-footer-row *matFooterRowDef="displayedColumnsP;sticky:true"></tr>
+              </table>
+            </div>
+         
+       
+
+    </div>
+
+    <div class="col-sm-12" *ngIf="!TaxTablehidden && SourceData1.length!=0">
+    
+        <div class="col-sm-12">
+          <h5>
+            Sales Return
+          </h5>
+        </div>
+
+     
+         
+        <div class="row">
+          <div class="col-sm-12 tableoverflowheight ">
+            <table class="custom-table withoutbackgroung search-table table-bordered">
+              <thead>
+                <tr>
+                  <th>Tax Description</th>
+                  <th>Date</th>
+                  <th>Gross Amount</th>
+                  <th>Tax Value</th>
+                  <th>Tax1 Value</th>
+                  <th>Tax2 Value</th>
+                  <th>CESS Value</th>
+                  <th>AddlCESS Value</th>
+                  <th>Tax Payable</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let x of SourceData1">
+                  <td class="text-left">{{x.TaxDescription}}</td>
+                  <td class="text-end">{{x.TransactionDate| date:"MMM-y"}}</td>
+                  <td class="text-end">{{x.GrossAmount| currency:Country2}}</td>
+                  <td class="text-end">{{x.TaxValue| currency:Country2}}</td>
+                  <td class="text-end">{{x.Tax1Value| currency:Country2}}</td>
+                  <td class="text-end">{{x.Tax2Value| currency:Country2}}</td>
+                  <td class="text-end">{{x.CESSValue| currency:Country2}}</td>
+                  <td class="text-end">{{x.AddlCESSValue| currency:Country2}}</td>
+                  <td class="text-end">{{x.TaxPayable| currency:Country2}}</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td class="text-left"><strong>Net Sales</strong></td>
+                  <td class="text-end"><strong></strong></td>
+                  <td class="text-end"><strong>{{(TGrossAmount)-(TGrossAmountR)|currency:Country2}}</strong></td>
+                  <td class="text-end"><strong>{{(TTaxValue)-(TTaxValueR)|currency:Country2}}</strong></td>
+                  <td class="text-end"><strong>{{(TTax1Value)-(TTax1ValueR)|currency:Country2}}</strong></td>
+                  <td class="text-end"><strong>{{(TTax2ValueR)-(TTax2ValueR)|currency:Country2}}</strong></td>
+                  <td class="text-end"><strong>{{(TCESSValue)-(TCESSValueR)|currency:Country2}}</strong></td>
+                  <td class="text-end"><strong>{{(TAddlCESSValue)-(TAddlCESSValueR)|currency:Country2}}</strong></td>
+                  <td class="text-end"><strong>{{(TTaxPayable)-(TTaxPayableR)|currency:Country2}}</strong></td>
+                </tr>
+              </tfoot>
+              <tfoot>
+                <tr>
+                  <td class="text-left"><strong>Gross Total</strong></td>
+                  <td class="text-end"><strong></strong></td>
+                  <td class="text-end"><strong>{{TGrossAmountR|currency:Country2}}</strong></td>
+                  <td class="text-end"><strong>{{TTaxValueR|currency:Country2}}</strong></td>
+                  <td class="text-end"><strong>{{TTax1ValueR|currency:Country2}}</strong></td>
+                  <td class="text-end"><strong>{{TTax2ValueR|currency:Country2}}</strong></td>
+                  <td class="text-end"><strong>{{TCESSValueR|currency:Country2}}</strong></td>
+                  <td class="text-end"><strong>{{TAddlCESSValueR|currency:Country2}}</strong></td>
+                  <td class="text-end"><strong>{{TTaxPayableR|currency:Country2}}</strong></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+         
+
+       
+
+    </div>
+    
+
+  </div>
+</div>
+
+     

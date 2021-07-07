@@ -1,0 +1,746 @@
+
+
+
+<form #LensFrameUploaded="ngForm">
+
+  <div class="col-sm-12 borfiglau-0">
+
+    <h5 class="card-header center">
+      Lens / Frame Upload
+    </h5>
+
+    <div class="col-sm-12">
+      <div class="row pgtop20-0">
+        <div class="col-sm-3">
+        </div>
+        <div class="col-sm-3">
+        </div>
+        <div class="col-sm-4">
+        </div>
+        <div class="col-sm-2">
+          <button class="btn-text" (click)="Getformaccess()"><i class="fas fa-eye"></i> View Access</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-12">
+      <div class="row">
+        <div class="col-sm-3">
+          <button class="btn btn-primary" (click)="Convertexcellensmaster()">Download Excel Format Lens</button>
+        </div>
+        <div class="col-sm-3">
+          <button class="btn btn-primary" (click)="Convertexcelframemaster()">Download Excel Format Frame</button>
+        </div>
+        <div class="col-sm-3">
+          <input #inputFilelens type="file" (change)="onChangelens($event)" style="display: none">
+          <button class="btn btn-warning-default" (click)="inputFilelens.click()">Choose file to upload</button>
+        </div>
+
+        <div class="col-sm-3">
+          <mat-label><b>Total Items</b>&nbsp;:&nbsp;{{TotoalItems}}</mat-label><br />
+          <mat-label><b>Uploaded items</b>&nbsp;:&nbsp;{{Uploadeditems}}</mat-label><br />
+          <mat-label><b>Items unable to upload</b>&nbsp;:&nbsp;{{UnUplodeditems}}</mat-label>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="col-sm-12 mt-1p">
+
+      <div *ngIf="orginaltable">
+
+        <div class="row heightAuto-350px">
+          <table mat-table matSort [dataSource]="dataSourcesq" class="custom-table withoutbackgroung search-table table-bordered">
+
+
+            <ng-container matColumnDef="Type">
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Type</th>
+              <td mat-cell *matCellDef="let element ;let i = index;">{{element.Type}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="Types">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Type </th>
+            </ng-container>
+
+            <ng-container matColumnDef="Brand">
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Brand</th>
+              <td mat-cell *matCellDef="let element ;let i = index;">{{element.Brand}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="Brands">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Brand </th>
+            </ng-container>
+
+            <ng-container matColumnDef="lensoption">
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Lens Option</th>
+              <td mat-cell *matCellDef="let element ;let i = index;">{{element.LensOption}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="lensoptions">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Lens Option </th>
+            </ng-container>
+
+            <ng-container matColumnDef="Model">
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Model</th>
+              <td mat-cell *matCellDef="let element ;let i = index;">{{element.Model}}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Models">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Model </th>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Index">
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Index</th>
+              <td mat-cell *matCellDef="let element ;let i = index;">{{element.Index}}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Indexs">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Index </th>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Color">
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Color</th>
+              <td mat-cell *matCellDef="let element ;let i = index">{{element.Colour}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="Colors">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Color </th>
+            </ng-container>
+
+
+
+            <ng-container matColumnDef="Size">
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Size</th>
+              <td mat-cell *matCellDef="let element ;let i = index;">{{element.Size}}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Sizes">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Size </th>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Description">
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Description</th>
+              <td mat-cell *matCellDef="let element ;let i = index;">{{element.Description}}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Descriptions">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Description </th>
+            </ng-container>
+
+            <ng-container matColumnDef="Price">
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Price</th>
+              <td mat-cell *matCellDef="let element ;let i = index;">{{element.Prize | number : '1.2-2'}}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Prices">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Price</th>
+            </ng-container>
+
+            <ng-container matColumnDef="UOM">
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">UOM</th>
+              <td mat-cell *matCellDef="let element ;let i = index;">{{element.UOM}}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="UOMs">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> UOM </th>
+            </ng-container>
+
+            <ng-container matColumnDef="TaxDescription">
+              <th mat-header-cell *matHeaderCellDef>Description</th>
+              <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">
+                <div class="row">
+                  <div *ngIf="element.TaxDescription != null && (element.GSTPercentage != null && element.GSTPercentage != 0)" class="col-sm-12 mt-8p">
+                    {{element.TaxDescription}}
+                  </div>
+                  <br />
+                  <div *ngIf="element.CessDescription != null && (element.CESSPercentage != null && element.CESSPercentage != 0)" class="col-sm-12">
+                    {{element.CessDescription}}
+                  </div>
+                  <br />
+                  <div *ngIf="element.AddtionalDescription != null && (element.ADDCESSPercentage != null && element.ADDCESSPercentage != 0)" class="col-sm-12">
+                    {{element.AddtionalDescription}}
+                  </div>
+                </div>
+              </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="GST">
+              <th mat-header-cell *matHeaderCellDef>%</th>
+              <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">
+                <div class="row">
+                  <div *ngIf="(element.GSTPercentage != null && element.GSTPercentage != 0) != null && element.TaxDescription != null" class="col-sm-12 mt-8p">
+                    {{element.GSTPercentage | number : '1.2-2'}}
+                  </div>
+                  <br />
+                  <div *ngIf="(element.CESSPercentage != null && element.CESSPercentage != 0) && element.CessDescription != null" class="col-sm-12">
+                    {{element.CESSPercentage | number : '1.2-2'}}
+                  </div>
+                  <br />
+                  <div *ngIf="(element.ADDCESSPercentage != null && element.ADDCESSPercentage != 0) && element.AddtionalDescription != null" class="col-sm-12">
+                    {{element.ADDCESSPercentage | number : '1.2-2'}}
+                  </div>
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Status">
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Status</th>
+              <td mat-cell *matCellDef="let element ;let i = index" [style.color]="getColor(element.Status)">{{element.Status}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="Statuss">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Status </th>
+            </ng-container>
+
+
+            <ng-container matColumnDef="header-row-third-group">
+              <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> Tax </th>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="['Types','Brands','lensoptions','Models','Indexs','Colors','Sizes','Descriptions','Prices','UOMs','header-row-third-group','Statuss'];sticky:true"></tr>
+            <tr mat-header-row *matHeaderRowDef="displayedColumnssq;sticky:true"></tr>
+            <tr mat-row *matRowDef="let row;  let even = even;columns: displayedColumnssq;" [ngClass]="{gray: even}"></tr>
+          </table>
+
+        </div>
+
+      </div>
+
+      <div *ngIf="bindingtable">
+
+        <div class="row heightAuto-350px">
+          <table mat-table matSort [dataSource]="dataSourcesqq" class="custom-table withoutbackgroung search-table table-bordered">
+
+            <ng-container matColumnDef="Type">
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Type</th>
+              <td mat-cell *matCellDef="let element ;let i = index;">{{element.Type}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="Types">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Type </th>
+            </ng-container>
+
+            <ng-container matColumnDef="Brand">
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Brand</th>
+              <td mat-cell *matCellDef="let element ;let i = index;">{{element.Brand}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="Brands">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Brand </th>
+            </ng-container>
+
+
+            <ng-container matColumnDef="lensoption">
+              <th mat-header-cell *matHeaderCellDef>Option</th>
+              <td mat-cell *matCellDef="let element ;let i = index;">{{element.LensOption}}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="FrameShape">
+              <th mat-header-cell *matHeaderCellDef>Shape</th>
+              <td mat-cell *matCellDef="let element ;let i = index;">{{element.FrameShape}}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="FrameType">
+              <th mat-header-cell *matHeaderCellDef>Type</th>
+              <td mat-cell *matCellDef="let element ;let i = index;">{{element.FrameType}}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="FrameWidth">
+              <th mat-header-cell *matHeaderCellDef>Width</th>
+              <td mat-cell *matCellDef="let element ;let i = index;">{{element.FrameWidth}}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="FrameStyle">
+              <th mat-header-cell *matHeaderCellDef>Style</th>
+              <td mat-cell *matCellDef="let element ;let i = index;">{{element.FrameStyle}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="Model">
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Model</th>
+              <td mat-cell *matCellDef="let element ;let i = index;">{{element.Model}}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Models">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Model </th>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Color">
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Color</th>
+              <td mat-cell *matCellDef="let element ;let i = index;">{{element.Colour}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="Colors">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Color </th>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Size">
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Size</th>
+              <td mat-cell *matCellDef="let element ;let i = index;">{{element.Size}}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Sizes">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Size </th>
+            </ng-container>
+
+            <ng-container matColumnDef="Description">
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Description</th>
+              <td mat-cell *matCellDef="let element ;let i = index;">{{element.Description}}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Descriptions">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Description </th>
+            </ng-container>
+
+            <ng-container matColumnDef="Price">
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Price</th>
+              <td mat-cell *matCellDef="let element ;let i = index;">{{element.Prize}}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Prices">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Price</th>
+            </ng-container>
+
+            <ng-container matColumnDef="UOM">
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">UOM</th>
+              <td mat-cell *matCellDef="let element ;let i = index;">{{element.UOM}}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="UOMs">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> UOM </th>
+            </ng-container>
+
+
+            <ng-container matColumnDef="TaxDescription">
+              <th mat-header-cell *matHeaderCellDef>Description</th>
+              <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">
+                <div class="row">
+                  <div *ngIf="element.TaxDescription != null && (element.GSTPercentage != null || element.GSTPercentage != 0)" class="col-sm-12 mt-8p">
+                    {{element.TaxDescription}}
+                  </div>
+                  <br />
+                  <div *ngIf="element.CessDescription != null && (element.CESSPercentage != null || element.CESSPercentage != 0)" class="col-sm-12">
+                    {{element.CessDescription}}
+                  </div>
+                  <br />
+                  <div *ngIf="element.AddtionalDescription != null && (element.ADDCESSPercentage != null || element.ADDCESSPercentage != 0)" class="col-sm-12">
+                    {{element.AddtionalDescription}}
+                  </div>
+                </div>
+              </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="GST">
+              <th mat-header-cell *matHeaderCellDef>%</th>
+              <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">
+                <div class="row">
+                  <div *ngIf="(element.GSTPercentage != null || element.GSTPercentage != 0) && element.TaxDescription != null" class="col-sm-12 mt-8p">
+                    {{element.GSTPercentage | number : '1.2-2'}}
+                  </div>
+                  <br />
+                  <div *ngIf="(element.CESSPercentage != null || element.CESSPercentage != 0) && element.CessDescription != null" class="col-sm-12">
+                    {{element.CESSPercentage | number : '1.2-2'}}
+                  </div>
+                  <br />
+                  <div *ngIf="(element.ADDCESSPercentage != null || element.ADDCESSPercentage != 0) && element.AddtionalDescription != null" class="col-sm-12">
+                    {{element.ADDCESSPercentage | number : '1.2-2'}}
+                  </div>
+                </div>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Status">
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Status</th>
+              <td mat-cell *matCellDef="let element ;let i = index" [style.color]="getColor(element.Status)">{{element.Status}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="Statuss">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Status </th>
+            </ng-container>
+
+            <ng-container matColumnDef="header-row-group">
+              <th mat-header-cell *matHeaderCellDef [attr.colspan]="5"> Frame </th>
+            </ng-container>
+
+            <ng-container matColumnDef="header-row-third-group">
+              <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> Tax </th>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="['Types','Brands','header-row-group','Models','Colors','Sizes','Descriptions','Prices','UOMs','header-row-third-group','Statuss'];sticky:true"></tr>
+            <tr mat-header-row *matHeaderRowDef="displayedColumnssqq;sticky:true"></tr>
+            <tr mat-row *matRowDef="let row;  let even = even;columns: displayedColumnssqq;" [ngClass]="{gray: even}"></tr>
+          </table>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+  <div class="col-sm-12 m-3">
+    <div class="col-sm-12 pb25">
+      <div class="col-sm-4  sub-section btn-wrap f-r">
+        <button type="button" class="btn btn-warning-default" (click)="CancelClk()"> Cancel </button>
+        <button type="submit" class="success btn btn-primary  ml-2p" (click)="onSubmit()">Submit</button>
+      </div>
+    </div>
+  </div>
+
+</form>
+
+<!----*LensmasterTemplate-table*---->
+<div class="co-sm-12" style="display:none">
+  <div class="row" id="LensmasterTemplate-table">
+    <table class="custom-table withoutbackgroung search-table table-bordered" style="margin-top:5%">
+      <thead>
+        <tr>
+          <th>Type *</th>
+          <th>Brand *</th>
+          <th>LensOption*</th>
+          <th>Model</th>
+          <th>Index</th>
+          <th>Color</th>
+          <th>Size</th>
+          <th>Description</th>
+          <th>Price *</th>
+          <th>HSNNo</th>
+          <th>TaxDescription</th>
+          <th>Tax</th>
+          <th>Add1Tax1Desc1</th>
+          <th>Add1Tax1</th>
+          <th>Add1Tax2Desc2</th>
+          <th>Add1Tax2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>varchar</th>
+          <th>varchar</th>
+          <th>varchar</th>
+          <th>varchar</th>
+          <th>varchar</th>
+          <th>varchar</th>
+          <th>varchar</th>
+          <th>varchar</th>
+          <th>number</th>
+          <th>varchar</th>
+          <th>varchar</th>
+          <th>number</th>
+          <th>varchar</th>
+          <th>number</th>
+          <th>varchar</th>
+          <th>number</th>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <table class="custom-table withoutbackgroung search-table table-bordered" style="margin-top:5%">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Brand</th>
+          <th>LensOption</th>
+          <th>Model</th>
+          <th>Index</th>
+          <th>Color</th>
+          <th>Size</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>HSNNo</th>
+          <th>TaxDescription</th>
+          <th>Tax</th>
+          <th>Add1Tax1Desc1</th>
+          <th>Add1Tax1</th>
+          <th>Add1Tax2Desc2</th>
+          <th>Add1Tax2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Lens</td>
+          <td>Trivex</td>
+          <td>concave lens</td>
+          <td>Nikkor</td>
+          <td>1.5</td>
+          <td>White</td>
+          <td>8</td>
+          <td>Protected eye</td>
+          <td>2000</td>
+          <td>0803</td>
+          <td>2021 Tax</td>
+          <td>2</td>
+          <td>2021 Addl Tax1</td>
+          <td>1</td>
+          <td>2021 Add2 Tax2</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>Lens</td>
+          <td>Polycarbonate</td>
+          <td>concave lens</td>
+          <td>Wide Angle</td>
+          <td>1.6</td>
+          <td>Gray</td>
+          <td>7</td>
+          <td>Protected eye</td>
+          <td>2500</td>
+          <td>0808</td>
+          <td>2021 Tax</td>
+          <td>2</td>
+          <td>2021 Addl Tax1</td>
+          <td>1</td>
+          <td>2021 Add2 Tax2</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>Lens</td>
+          <td>Bausch & Lomb </td>
+          <td>Contact Lens</td>
+          <td>Wide Angle</td>
+          <td>1.8</td>
+          <td>Black</td>
+          <td>9</td>
+          <td>Protected eye</td>
+          <td>3000</td>
+          <td>0808</td>
+          <td>2021 Tax</td>
+          <td>2</td>
+          <td>2021 Addl Tax1</td>
+          <td>1</td>
+          <td>2021 Add2 Tax2</td>
+          <td>1</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!----*FramemasterTemplate-table*---->
+<div class="co-sm-12" style="display:none">
+  <div class="row" id="FramemasterTemplate-table">
+    <table class="custom-table withoutbackgroung search-table table-bordered" style="margin-top:5%">
+      <thead>
+        <tr>
+          <th>Type *</th>
+          <th>Brand *</th>
+          <th>FrameOption*</th>
+          <th>FrameShape</th>
+          <th>FrameType</th>
+          <th>FrameWidth</th>
+          <th>FrameStyle</th>
+          <th>Model</th>
+          <th>Color</th>
+          <th>Size</th>
+          <th>Description</th>
+          <th>Price *</th>
+          <th>HSNNo</th>
+          <th>TaxDescription</th>
+          <th>Tax</th>
+          <th>Add1Tax1Desc1</th>
+          <th>Add1Tax1</th>
+          <th>Add1Tax2Desc2</th>
+          <th>Add1Tax2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>varchar</th>
+          <th>varchar</th>
+          <th>varchar</th>
+          <th>varchar</th>
+          <th>varchar</th>
+          <th>varchar</th>
+          <th>varchar</th>
+          <th>varchar</th>
+          <th>varchar</th>
+          <th>varchar</th>
+          <th>varchar</th>
+          <th>varchar</th>
+          <th>number</th>
+          <th>varchar</th>
+          <th>number</th>
+          <th>varchar</th>
+          <th>number</th>
+          <th>varchar</th>
+          <th>number</th>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <table class="custom-table withoutbackgroung search-table table-bordered" style="margin-top:5%">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Brand</th>
+          <th>FrameOption</th>
+          <th>FrameShape</th>
+          <th>FrameType</th>
+          <th>FrameWidth</th>
+          <th>FrameStyle</th>
+          <th>Model</th>
+          <th>Color</th>
+          <th>Size</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>HSNNo</th>
+          <th>TaxDescription</th>
+          <th>Tax</th>
+          <th>Add1Tax1Desc1</th>
+          <th>Add1Tax1</th>
+          <th>Add1Tax2Desc2</th>
+          <th>Add1Tax2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Frame</td>
+          <td>Adidas</td>
+          <td>Heritage</td>
+          <td>rectangular </td>
+          <td>Floating </td>
+          <td>116 mm</td>
+          <td>Aviators</td>
+          <td>Light Weight</td>
+          <td>White</td>
+          <td>8</td>
+          <td>Protected eye</td>
+          <td>2000</td>
+          <td>0803</td>
+          <td>2021 Tax</td>
+          <td>2</td>
+          <td>2021 Addl Tax1</td>
+          <td>1</td>
+          <td>2021 Add2 Tax2</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>Frame</td>
+          <td>Carrera</td>
+          <td>Dolce & Gabbana</td>
+          <td>square </td>
+          <td>Modern </td>
+          <td>115 mm</td>
+          <td>Wayfarer</td>
+          <td>Vintage </td>
+          <td>Gray</td>
+          <td>9</td>
+          <td>Protected eye</td>
+          <td>2500</td>
+          <td>0808</td>
+          <td>2021 Tax</td>
+          <td>2</td>
+          <td>2021 Addl Tax1</td>
+          <td>1</td>
+          <td>2021 Add2 Tax2</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>Frame</td>
+          <td>Opium</td>
+          <td>Burberry</td>
+          <td>retro square</td>
+          <td>Gallery </td>
+          <td>114 mm</td>
+          <td>Clubmaster </td>
+          <td>Latest </td>
+          <td>Black</td>
+          <td>7</td>
+          <td>Protected eye</td>
+          <td>3000</td>
+          <td>0808</td>
+          <td>2021 Tax</td>
+          <td>2</td>
+          <td>2021 Addl Tax1</td>
+          <td>1</td>
+          <td>2021 Add2 Tax2</td>
+          <td>1</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+<div class="modal" role="dialog" [ngStyle]="{'display':accesspopup}">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title center">Lens / Frame Upload - View Access</h5>
+      </div>
+      <div class="modal-body">
+        <table class="custom-table withoutbackgroung search-table table-bordered">
+          <thead>
+            <tr>
+              <th>Add</th>
+              <th>Edit</th>
+              <th>Delete</th>
+              <th>Export</th>
+              <th>Print</th>
+            </tr>
+          </thead>
+          <tbody>
+
+
+            <tr *ngFor="let x of accessdata; index as i">
+              <td><mat-checkbox [(checked)]="x.Add" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Edit" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Delete" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Export" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Print" disabled></mat-checkbox></td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success cursor" data-dismiss="modal" autofocus (click)="modalcloseAccessOk()">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" role="dialog" [ngStyle]="{'display':cancelblock}">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" matTooltip="close" (click)="modalSuccessClosessss()">&times;</button>
+        <h5 class="modal-title center">Do you want to cancel?</h5>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-danger cursor" data-dismiss="modal" autofocus (click)="modalcloseOk()">No</button>
+        <button type="reset" class="btn btn-success cursor" data-dismiss="modal" (click)="modalSuccesssOk()">Yes</button>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,680 @@
+
+
+
+
+<div class="col-sm-12">
+  <h5 style="font-size:18px;font-family:'Proxima Nova Semibold';text-align:center;background-color:deepskyblue;color:white;border: 2px solid gray;border-radius: 10px; padding-bottom: 2px;margin-bottom:-12px">
+    <strong>Operation Theatre Indent</strong>
+  </h5>
+</div>
+
+<form #IndentForm="ngForm">
+
+  <div class="col-sm-12" style="margin-top:1%;border:2px solid darkgrey;border-radius:8px;font-family:'Proxima Nova Semibold'">
+    <div class="row" style="margin-top:10px">
+
+
+      <div class="col-sm-7">
+        <div class="row">
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline">
+              <mat-label>Indent Raised From</mat-label>
+              <mat-select required [(ngModel)]="M_operationtheatre" name="Operationtheatres">
+                <mat-option *ngFor="let operation of OPerationnames" [value]="operation">{{operation.Text}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-1" style="margin-top:1%">
+            <mat-icon class="grab" (click)="Opensearch()">search</mat-icon>
+          </div>
+          <div class="col-sm-4">
+            <mat-form-field appearance="outline">
+              <mat-label>Indent raised by</mat-label>
+              <input [(ngModel)]="M_Iraisedby" name="M_Iraisedbyss" matInput placeholder="Enter">
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-4">
+            <mat-form-field style="width: 200px;" appearance="outline">
+              <mat-label>Indent date</mat-label>
+              <input required matInput [matDatepicker]="pickerschedule" [(ngModel)]="M_Scheduled" name="Scheduleddate" [min]="minDate">
+              <mat-datepicker-toggle matSuffix [for]="pickerschedule"></mat-datepicker-toggle>
+              <mat-datepicker #pickerschedule></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-sm-5">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="row">
+
+              <div class="col-sm-4">
+                <mat-label>Indent raised to:</mat-label>
+              </div>
+              <div class="col-sm-1">
+                <mat-icon (click)="Registeredstore()" data-toggle="tooltip" title="Search store " class="grab">search</mat-icon>
+              </div>
+              <div class="col-sm-7">
+                <mat-label style="color:blue" [(ngModel)]="M_CUSTNAME" name="USTNAMEddate">{{M_CustomerName}}</mat-label>
+              </div>
+
+
+
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-sm-4" style="height: 37px;">
+            <mat-label>Address:</mat-label>
+          </div>
+          <div class="col-sm-1"></div>
+          <div class="col-sm-7">
+            <mat-label style="color:blue">{{M_Address}}</mat-label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <mat-label>Store Keeper:</mat-label>
+          </div>
+          <div class="col-sm-1">
+
+          </div>
+
+          <div class="col-sm-7">
+            <mat-label style="color:blue">{{M_store}}</mat-label>
+          </div>
+        </div>
+
+
+
+        <div class="row" style="margin-bottom:1%">
+          <div class="col-sm-4" style="margin-top: 1%;">
+            <mat-label>Contact No:</mat-label>
+          </div>
+          <div class="col-sm-1"></div>
+          <div class="col-sm-7">
+            <mat-label style="color:blue">{{M_MobileNo}}</mat-label>
+          </div>
+        </div>
+
+
+
+
+
+      </div>
+
+
+
+      <!--<div class="col-sm-2">
+
+    </div>
+    <div class="col-sm-1" style="margin-top:1%">
+
+    </div>
+    <div class="col-sm-3">
+
+    </div>
+    <div class="col-sm-3">
+
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field appearance="outline">
+        <mat-label>Is Cancelled</mat-label>
+        <mat-select required [(ngModel)]="M_Cancelled" name="Cancellation">
+          <mat-option value="1">Yes</mat-option>
+          <mat-option value="0">No</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>-->
+    </div>
+    <div class="col-sm-12" *ngIf="Hidetotalgrids" style="margin-top:1%">
+      <div class="row">
+
+        <div class="col-sm-4">
+
+          <!--<mat-form-field appearance="outline">
+            <mat-label>IsCancelled</mat-label>
+            <mat-select [(ngModel)]="M_status" name="Statuss">
+              <mat-option value="Yes">Yes</mat-option>
+              <mat-option value="No">No</mat-option>
+            </mat-select>
+          </mat-form-field>-->
+
+        </div>
+        <div class="col-sm-4">
+          <label>Indent number : &nbsp;</label>
+          <span [(ngModel)]="M_Indents" name="Indents" style="color:blue">{{Indewntnumberss}}</span>
+        </div>
+        <div class="col-sm-4">
+          <button class="btn btn-primary" type="button" style="border-radius:8px" (click)="AddUpdatdeItemDetails()" data-toggle="tooltip" title="Add Items">Add Drugs</button>
+        </div>
+
+
+
+      </div>
+    </div>
+
+
+
+    <div class="col-sm-12" *ngIf="HideUpdatetotalgrid">
+
+      <div class="row">
+        <div>
+          <h3 style="text-align:center">Material Indent Info</h3>
+        </div>
+        <div style="text-align:end;margin-right: 3%;margin-bottom:1%">
+          <button class="search" type="button" style="border-radius:8px;background-color:deepskyblue;color:white" (click)="AddIpDTETOTALItemDetails()" data-toggle="tooltip" title="Add Items">Add New</button>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <table mat-table matSort [dataSource]="dataSourceTotalgrid" class="table table-bordered table-striped" style="width: -webkit-fill-available;position:sticky">
+          <ng-container matColumnDef="GridGeneric">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px"> Generic </th>
+            <td mat-cell *matCellDef="let element" style="text-align:left"> {{element.Generic}} </td>
+          </ng-container>
+
+
+
+          <ng-container matColumnDef="Gridmanufacture">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Manufacture </th>
+            <td mat-cell *matCellDef="let element" style="text-align:left"> {{element.Manufacture}} </td>
+          </ng-container>
+       
+          <ng-container matColumnDef="GridUOM">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px"> UOM </th>
+            <td mat-cell *matCellDef="let element" style="text-align:left"> {{element.UOM}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Gridbrand">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px"> Brand </th>
+            <td mat-cell *matCellDef="let element;let id = index;" style="text-align:left;border:1px solid gray" contenteditable="false">
+              <input id="c" type="text" matInput value="{{element.Brand}}" [matAutocomplete]="auto">
+
+              <mat-autocomplete #auto="matAutocomplete" (optionSelected)="DrugDetailsSearchS($event,id)">
+                <mat-option *ngFor="let DrugName of onlydrugsdate" [value]="DrugName">
+                  {{DrugName.Description}}
+                </mat-option>
+              </mat-autocomplete>
+
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="GrifIQTY">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="width:8%;text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Indent QTY </th>
+            <td mat-cell *matCellDef="let element;let id = index;" style="text-align:right" contenteditable="true" (keyup)="changeValuead(id,'IndentQty',$event)"> {{element.IndnetQTY}} </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="GridDruggroup">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px"> Drug Group </th>
+            <td mat-cell *matCellDef="let element" style="text-align:left"> {{element.Drugdroup}} </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="GridDelete">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="width:6%;text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px"> Action </th>
+            <td mat-cell *matCellDef="let element; let i = index;"> <mat-icon data-toggle="tooltip" title="Remove Record" (click)="removePatients(i)" style="color:red" class="grab">delete</mat-icon></td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="Griddisplayedcolumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: Griddisplayedcolumns;"></tr>
+        </table>
+
+      </div>
+
+
+
+    </div>
+
+
+
+    <div class="col-sm-12" *ngIf="Hidetotalgrid">
+
+      <div class="row">
+        <div>
+          <h3 style="text-align:center">Material Indent Info</h3>
+        </div>
+        <div style="text-align:end;margin-right: 3%;margin-bottom:1%">
+          <button class="search" type="button" style="border-radius:8px" (click)="AddItemDetails()" data-toggle="tooltip" title="Add Items">Add Drug</button>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <table mat-table matSort [dataSource]="dataSource" class="table table-bordered table-striped" style="width: -webkit-fill-available;position:sticky">
+          <ng-container matColumnDef="Genericname">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px"> Generic </th>
+            <td mat-cell *matCellDef="let element" style="text-align:left"> {{element.Generic}} </td>
+          </ng-container>
+
+
+
+          <ng-container matColumnDef="Manufacture">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Manufacture </th>
+            <td mat-cell *matCellDef="let element" style="text-align:left"> {{element.Manufacture}} </td>
+          </ng-container>
+          <ng-container matColumnDef="OtData">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px"> OT Raised Date </th>
+            <td mat-cell *matCellDef="let element" style="text-align:left"> {{element.OTRAISEDDATE| date: "dd-MMM-y"}} </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="UOM">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px"> UOM </th>
+            <td mat-cell *matCellDef="let element" style="text-align:left"> {{element.UOM}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Brand">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px"> Brand </th>
+            <td mat-cell *matCellDef="let element;let id = index;" style="text-align:left;border:1px solid gray" contenteditable="false">
+              <input id="c" type="text" matInput value="{{element.Brand}}" [matAutocomplete]="auto">
+
+              <mat-autocomplete #auto="matAutocomplete" (optionSelected)="DrugDetailsSearch($event,id)">
+                <mat-option *ngFor="let DrugName of onlydrugsdate" [value]="DrugName">
+                  {{DrugName.Description}}
+                </mat-option>
+              </mat-autocomplete>
+
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="IndentQty">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="width:8%;text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Indent QTY </th>
+            <td mat-cell *matCellDef="let element;let id = index;" style="text-align:right" contenteditable="true" (keyup)="changeValuea(id,'IndentQty',$event)"> {{element.IndnetQTY}} </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="Druggroup">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px"> Drug Group </th>
+            <td mat-cell *matCellDef="let element" style="text-align:left"> {{element.Drugdroup}} </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="Delete">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px"> Action </th>
+            <td mat-cell *matCellDef="let element; let i = index;"> <mat-icon data-toggle="tooltip" title="Remove Record" (click)="removePatient(i)" style="color:red" class="grab">delete</mat-icon></td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+      </div>
+
+
+
+    </div>
+
+
+    <div class="col-sm-12" *ngIf="Hidetotalgrids">
+      <div class="row">
+        <div>
+          <h3 style="text-align:center">Indent History</h3>
+        </div>
+        <!--<div style="text-align:end;margin-right: 3%;margin-bottom:1%">
+          <button class="search" type="button" style="border-radius:8px" (click)="AddUpdatdeItemDetails()" data-toggle="tooltip" title="Add Items"><i class="fa fa-plus" style="font-size:24px"></i></button>
+        </div>-->
+      </div>
+
+      <!--<div class="row">
+
+      <table mat-table matSort [dataSource]="dataSourceTotalgrid" class="table table-bordered table-striped" style="width: -webkit-fill-available;position:sticky">
+        <ng-container matColumnDef="Position">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px"> Sno </th>
+          <td mat-cell *matCellDef="let element;let i=index" style="text-align:left"> {{i+1}} </td>
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="Gridbrand">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Brand </th>
+          <td mat-cell *matCellDef="let element" style="text-align:left"> {{element.Brand}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="GridGeneric">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px"> Generic </th>
+          <td mat-cell *matCellDef="let element" style="text-align:left"> {{element.Generic}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="Gridmanufacture">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px"> Manufacture </th>
+          <td mat-cell *matCellDef="let element" style="text-align:left"> {{element.Manufacture}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="GridDruggroup">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px"> Drug Group </th>
+          <td mat-cell *matCellDef="let element" style="text-align:left"> {{element.druggroup}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="GridUOM">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px"> UOM </th>
+          <td mat-cell *matCellDef="let element" style="text-align:left"> {{element.uom}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="GrifIQTY">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px"> Indent QTY </th>
+          <td mat-cell *matCellDef="let element" style="text-align:left"> {{element.Iqty}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="GridRQTY">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Received QTY </th>
+          <td mat-cell *matCellDef="let element" style="text-align:left"> {{element.Rqty}} </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+    </div>-->
+
+
+      <div class="row">
+        <table class="table table-bordered table-striped" style="width:-webkit-fill-available;position:sticky">
+          <thead>
+            <tr>
+              <th style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">SNo</th>
+              <th style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Brand</th>
+              <th style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Generic</th>
+              <th style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Manufacture</th>
+              <th style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Drug Group</th>
+              <th style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">UOM</th>
+
+              <th style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Indent QTY</th>
+              <th style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Received QTY</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let iddatsa of InnsideIndentdatas;let i = index">
+              <td style="text-align:center;">{{i+1}}</td>
+              <td style="text-align:center;">{{iddatsa.Brand}}</td>
+              <td style="text-align:center;">{{iddatsa.Generic}}</td>
+              <td style="text-align:center;">{{iddatsa.Manufacture}}</td>
+              <td style="text-align:center;">{{iddatsa.druggroup}}</td>
+              <td style="text-align:center;">{{iddatsa.uom}}</td>
+              <td style="text-align:center;">{{iddatsa.Iqty}}</td>
+              <td style="text-align:center;" data-toggle="tooltip" title="Received Qty"><a>{{iddatsa.Rqty}}</a></td>
+
+            </tr>
+          </tbody>
+        </table>
+
+
+
+      </div>
+
+    </div>
+
+    <div class="col-sm-12" *ngIf="HideUpdatetotalgridsubmit" style="margin-top:10px;margin-bottom:2%">
+      <div class="row">
+        <div class="col-sm-5"></div>
+        <div class="col-sm-3">
+          <button class="success" style="margin-right:1%" (click)="onUpdateIndentForm(M_status,Indewntnumberss)" mat-raised-button>Submit</button>
+          <button type="button" class="btn btn-warning" style="font-size:15px;color:orange;background-color:white;" (click)="Cancel()"><strong>Cancel</strong></button>
+        </div>
+        <div class="col-sm-3"></div>
+      </div>
+    </div>
+
+
+
+    <div class="row" style="margin-top:10px;margin-bottom:2%" *ngIf="Hidetotalgrid">
+      <div class="col-sm-5">
+      </div>
+      <div class="col-sm-3">
+        <button class="success" style="margin-right:1%" (click)="onsubmitIndentForm(IndentForm)" mat-raised-button>Submit</button>
+
+        <button type="button" class="btn btn-warning" style="font-size:15px;color:orange;background-color:white;" (click)="Cancel()"><strong>Cancel</strong></button>
+      </div>
+      <div class="col-sm-3"></div>
+    </div>
+  </div>
+</form>
+
+
+
+
+
+<div class="modal" role="dialog" [ngStyle]="{'display':modalmed}">
+  <div class="modal-dialog modal-lg" style="width:78%;padding-top:10px;padding-left:290px">
+    <div class="modal-content" style="height:450px">
+      <div class="modal-header" style="background-color:#51b8f2;color:white;">
+        <button type="button" class="close" data-dismiss="modal" (click)="modalSuccessmed()">&times;</button>
+        <h5 class="modal-title" style="text-align:center">
+          <strong>List Of Generics</strong>
+        </h5>
+      </div>
+      <div class="modal-body">
+
+        <div class="col-sm-12">
+          <div class="row">
+            <div class="col-sm-4">
+              <input class="form-control" id="myInputg" type="text" placeholder="Search Generics ...">
+            </div>
+          </div>
+          <div class="col-sm-12" style="height:200px;overflow:auto;box-shadow: 0px 10px 8px 1px #888888;">
+            <div class="row">
+
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Action</th>
+                    <th style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Brand</th>
+                    <th style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Generic Name</th>
+                    <th style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Drug Group</th>
+                    <th style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Manufacturer</th>
+
+
+                  </tr>
+                </thead>
+                <tbody id="myTableg">
+
+                  <tr *ngFor="let sb of selbrnd; index as i">
+
+                    <td style="text-align:center;"><mat-radio-button (click)="selecttypes(sb)"></mat-radio-button></td>
+                    <td style="text-align:center;">{{sb.Brand}}</td>
+                    <td style="text-align:center;">{{sb.MedicineName}}</td>
+                    <td style="text-align:center;">{{sb.DrugGroup}}</td>
+                    <td style="text-align:center;">{{sb.Manufacturer}}</td>
+
+
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+
+        </div>
+
+
+
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!--<div class="modal" role="dialog" [ngStyle]="{'display':modalmeds}" *ngIf="Hideactionbmenu">
+  <div class="modal-dialog modal-lg" style="width:78%;padding-top:10px;padding-left:290px">
+    <div class="modal-content" style="height:450px">
+      <div class="modal-header" style="background-color:#51b8f2;color:white;">
+        <button type="button" class="close" data-dismiss="modal" (click)="modalSuccessmeds()">&times;</button>
+        <h5 class="modal-title" style="text-align:center">
+          <strong>List Of Generics</strong>
+        </h5>
+      </div>
+      <div class="modal-body">
+
+        <div class="col-sm-12">
+          <div class="row">
+            <div class="col-sm-4">
+              <input class="form-control" id="myInputg" type="text" placeholder="Search Generics ...">
+            </div>
+          </div>
+          <div class="col-sm-12" style="height:200px;overflow:auto;box-shadow: 0px 10px 8px 1px #888888;">
+            <div class="row">
+
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Action</th>
+                    <th style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Brand</th>
+                    <th style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Generic Name</th>
+                    <th style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Drug Group</th>
+                    <th style="background-color: #F0F3F5; color: #8FA3B0; font-family: 'Proxima Nova Semibold'; font-size: 14px; height: 40px">Manufacturer</th>
+
+
+                  </tr>
+                </thead>
+                <tbody id="myTableg">
+
+                  <tr *ngFor="let sb of selbrnd; index as i">
+
+                    <td style="text-align:center;"><mat-radio-button (click)="DrugDetailsSearch(sb,i)"></mat-radio-button></td>
+                    <td style="text-align: center;">{{sb.Brand}}</td>
+                    <td style="text-align:center;">{{sb.MedicineName}}</td>
+                    <td style="text-align:center;">{{sb.DrugGroup}}</td>
+                    <td style="text-align:center;">{{sb.Manufacturer}}</td>
+
+
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+
+        </div>
+
+
+
+
+
+      </div>
+
+    </div>
+  </div>
+</div>-->
+
+
+
+
+
+
+
+
+
+<div class="modal" role="dialog" [ngStyle]="{'display':modalsuccessmeds}">
+  <div class="modal-dialog modal-lg" style="width:30%;padding-top:10px">
+    <div class="modal-content" style="height:200px">
+      <div class="modal-header" style="background-color:#51b8f2;color:white;">
+        <!--<button type="button" class="close" data-dismiss="modal" (click)="modalSuccesssuccessmedssss()">&times;</button>-->
+        <h5 class="modal-title" style="text-align:center">
+          <strong>Indent Raised Number</strong>
+        </h5>
+      </div>
+      <div class="modal-body">
+        <div class="col-sm-12">
+          <div class="row">
+            <div class="col-sm-4">
+              <label>Indent Number : </label>
+            </div>
+            <div class="col-sm-4">
+              {{IDDDD}}
+            </div>
+            <div class="col-sm-4"></div>
+          </div>
+
+          <div class="row" style="margin-top:2%">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+              <button type="button" class="btn btn-primary" (click)="modalSuccesssuccessmeds()">OK</button>
+            </div>
+            <div class="col-sm-4">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="modal" role="dialog" [ngStyle]="{'display':modalIndentDetails}">
+  <div class="modal-dialog modal-lg" style="padding-top:40px;width:80%">
+    <div class="modal-content" style="height:400px">
+      <div class="modal-header" style="background-color:#51b8f2;color:white;">
+        <button type="button" class="close" data-dismiss="modal" (click)="modalIndentDetailsss()">&times;</button>
+        <h5 class="modal-title" style="text-align:center">
+          <strong>Indent Raised Details</strong>
+        </h5>
+      </div>
+      <div class="modal-body">
+
+        <div class="col-sm-12">
+          <div class="row" style="height:250px;overflow:auto">
+            <table class="table table-bordered table-striped" style="width:-webkit-fill-available">
+              <thead>
+                <tr>
+                  <th style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Action</th>
+                  <th style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Indent raised From</th>
+                  <th style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Indent Raisede By</th>
+                  <th style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Indent Raised date</th>
+                  <th style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Indent Raised To</th>
+                  <th style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Address1</th>
+                  <th style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Address2</th>
+                  <th style="text-align:center;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">IsCancelled</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let iddata of Indentdatas;let i = index">
+                  <td style="text-align:center;"><mat-radio-button (click)="selectDetailsSearch(iddata)"></mat-radio-button></td>
+                  <td style="text-align:center;">{{iddata.Operationtheatre}}</td>
+                  <td style="text-align:center;">{{iddata.Indentraisedby}}</td>
+                  <td style="text-align:center;">{{iddata.Indentdate | date:'dd-MMM-y'}}</td>
+                  <td style="text-align:center;">{{iddata.storename}}</td>
+                  <td style="text-align:center;">{{iddata.Address1}}</td>
+                  <td style="text-align:center;">{{iddata.Address2}}</td>
+                  <td style="text-align:center;">{{iddata.status}}</td>
+
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

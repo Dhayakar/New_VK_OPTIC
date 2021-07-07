@@ -1,0 +1,1394 @@
+
+
+
+<form #purchaseorderPrintingForm="ngForm">
+
+  <div class="col-sm-12">
+    <div class="row">
+
+      <div class="col-sm-12 borfiglau-0">
+
+        <div class="row card-header center">
+          <h5>PO Print</h5>
+        </div>
+
+        <div class="row mt-1p">
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline">
+              <mat-label>Purchase Date</mat-label>
+              <input [(ngModel)]="PurchaseDate" name="PurchaseDate" matInput [matDatepicker]="picker1" placeholder="Purchase order Date" disabled>
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-2">
+            <button (click)="Purchaseorderhistory()" class="btn-text grab f-r" data-toggle="tooltip" matTooltip="View Purchase Order">
+              <i class="fas fa-info-circle"></i>View Purchase Order
+            </button>
+          </div>
+          <div class="col-sm-2">
+            <mat-form-field appearance="outline">
+              <mat-label>Quotation No</mat-label>
+              <input [(ngModel)]="Quotationno" name="Quotationno" matInput placeholder="Quotation No" autocomplete="off" disabled>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-3">
+            <input disabled [owlDateTimeTrigger]="dt4" autocomplete="off" class="form-control" [owlDateTime]="dt4" placeholder="Quotation Date" [(ngModel)]="Quotationdate" name="Quotationdate">
+            <owl-date-time #dt4></owl-date-time>
+          </div>
+        </div>
+
+        <div class="row mt-1p">
+
+          <div class="col-sm-4">
+            <span class="uinborder refcol">
+              Supplier Details:
+            </span>
+          </div>
+
+          <div class="col-sm-4">
+            <span class="uinborder refcol">
+              Delivery Details:
+            </span>
+          </div>
+
+          <div class="col-sm-4">
+            <span class="uinborder refcol">
+              Others:
+            </span>
+          </div>
+
+
+        </div>
+
+        <div class="row  mt-2p">
+
+          <div class="col-sm-3">
+
+            <div class="row">
+              <div class="col-sm-10">
+                <mat-form-field appearance="outline">
+                  <mat-label>Supplier Name</mat-label>
+                  <mat-select class="purchase" [(ngModel)]="Supplier" name="Suppliers" disabled>
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let Suppliers of Suppliername" [value]="Suppliers.Values">{{Suppliers.Text}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row ml-1p">
+              <div class="col-sm-4">
+                <div class="row">
+                  <mat-label class="refcol">Address</mat-label>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <mat-label>{{Address1}}</mat-label>
+              </div>
+            </div>
+
+            <div class="row ml-1p">
+              <div class="col-sm-4">
+                <div class="row">
+                  <mat-label class="refcol">Phone No</mat-label>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <mat-label>{{PhoneNo}}</mat-label>
+              </div>
+            </div>
+
+
+            <div class="row ml-1p">
+              <div class="col-sm-4">
+                <div class="row">
+                  <mat-label class="refcol">Tax No</mat-label>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <mat-label>{{GSTNo}}</mat-label>
+              </div>
+            </div>
+
+
+            <div class="row ml-1p">
+              <div class="col-sm-4">
+                <div class="row">
+                  <mat-label class="refcol">Location&nbsp;/&nbsp;City</mat-label>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <mat-label>{{Location}}</mat-label>
+              </div>
+            </div>
+
+
+            <div class="row ml-1p">
+              <div class="col-sm-4">
+                <div class="row">
+                  <mat-label class="refcol">State&nbsp;/&nbsp;Country</mat-label>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <mat-label>{{Statesuplier}}</mat-label>
+              </div>
+            </div>
+
+
+          </div>
+
+          <div class="col-sm-4">
+
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="row">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input [(ngModel)]="DeliveryName" name="DeliveryName" matInput placeholder="DeliveryName" autocomplete="off" disabled>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <mat-form-field appearance="outline">
+                  <mat-label>City</mat-label>
+                  <mat-select [(ngModel)]="Locations" name="Locationssss" disabled>
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let Locationnns of Locationname" [value]="Locationnns.Value">{{Locationnns.Text}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="row">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Address1</mat-label>
+                    <textarea [(ngModel)]="DAddress1" name="DAddress1" placeholder="Address1" matInput maxlength="100" autocomplete="off" disabled></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <mat-form-field appearance="outline">
+                  <mat-label>Location</mat-label>
+                  <mat-select [(ngModel)]="Locationcity" name="Locationcity" disabled>
+                    <mat-option *ngFor="let Locationcities of Locationcitiesname" [value]="Locationcities.Value">{{Locationcities.Text}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="row">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Address2</mat-label>
+                    <textarea [(ngModel)]="DAddress2" name="DAddress2" placeholder="Address2" matInput maxlength="100" autocomplete="off" disabled></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <mat-form-field appearance="outline">
+                  <mat-label>State&nbsp;/&nbsp;Country</mat-label>
+                  <input [(ngModel)]="Statecountry" name="Statecountry" matInput placeholder="State / country" disabled>
+                </mat-form-field>
+              </div>
+            </div>
+
+
+          </div>
+
+          <div class="col-sm-1"></div>
+
+          <div class="col-sm-4">
+
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="row">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Validity</mat-label>
+                    <textarea [(ngModel)]="Validity" name="Validity" placeholder="Validity" matInput maxlength="250" autocomplete="off" disabled></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <mat-form-field appearance="outline">
+                  <mat-label>Delivery Description</mat-label>
+                  <textarea [(ngModel)]="Delivery" name="Delivery" placeholder="Delivery Description" matInput maxlength="250" autocomplete="off" disabled></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="row">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Terms of payment</mat-label>
+                    <textarea [(ngModel)]="PaymentandTerms" name="PaymentandTerms" placeholder="Terms of payment" matInput maxlength="250" autocomplete="off" disabled></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <mat-form-field appearance="outline">
+                  <mat-label>Instructions</mat-label>
+                  <textarea [(ngModel)]="Instructions" name="Instructions" placeholder="Instructions" matInput maxlength="250" autocomplete="off" disabled></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="row mt-n1p">
+
+          <div class="col-sm-12">
+            <div class="card mb-3">
+              <h5 class="card-header">
+                Item Details
+              </h5>
+              <div class="card-body">
+                <div class="row heightAuto-250px">
+
+                  <table mat-table [dataSource]="dataSource" class="custom-table withoutbackgroung search-table table-bordered">
+
+
+                    <ng-container matColumnDef="DrugName">
+                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Drug Name </th>
+                      <td mat-cell *matCellDef="let element;let id = index" class="width-15p">
+                        {{element.ItemDrug}}
+                      </td>
+                      <td mat-footer-cell *matFooterCellDef></td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="DrugNamesymbol">
+                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Drug Name </th>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="PurchaseUOM">
+                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> UOM </th>
+                      <td mat-cell *matCellDef="let element"> {{element.UOMname}}</td>
+                      <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="PurchaseUOMsymbol">
+                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">  UOM </th>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Quantity">
+                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Po Qty </th>
+                      <td mat-cell *matCellDef="let element;let id = index;">{{element.ItemQty | number : '1.2-2'}}</td>
+                      <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Quantitysymbol">
+                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> PO Qty </th>
+                    </ng-container>
+
+                    <ng-container matColumnDef="recevicedQuantity">
+                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Qty recd </th>
+                      <td mat-cell *matCellDef="let element">{{element.PORecdQty | number : '1.2-2'}}</td>
+                      <td mat-footer-cell *matFooterCellDef></td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="recevicedQuantitysymbol">
+                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Qty recd </th>
+                    </ng-container>
+
+                    <ng-container matColumnDef="UnitPrice">
+                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Unit rate </th>
+                      <td mat-cell *matCellDef="let element">{{element.ItemRate | number : '1.2-2'}}</td>
+                      <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="UnitPricesymbol">
+                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Unit rate </th>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Amount">
+                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Amount</th>
+                      <td mat-cell *matCellDef="let element" contenteditable="false">{{element.ItemValue | number : '1.2-2'}}</td>
+                      <td mat-footer-cell *matFooterCellDef><b>{{GetTotalcost() | currency:Country2}}</b></td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Amountsymbol">
+                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Amount</th>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="Discount">
+                      <th mat-header-cell *matHeaderCellDef> % </th>
+                      <td mat-cell *matCellDef="let element;let id = index;">{{element.DiscountPercentage | number : '1.2-2'}}</td>
+                      <td mat-footer-cell *matFooterCellDef></td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="DiscountAmount">
+                      <th mat-header-cell *matHeaderCellDef> Amount</th>
+                      <td mat-cell *matCellDef="let element;let id = index;">{{element.DiscountAmount | number : '1.2-2'}}</td>
+                      <td mat-footer-cell *matFooterCellDef><b>{{GetDiscountAmount() | currency:Country2}}</b></td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="Grosssymbol">
+                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Gross Amount </th>
+                    </ng-container>
+
+                    <ng-container matColumnDef="GrossAmount">
+                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Gross Amount</th>
+                      <td mat-cell *matCellDef="let element;let id = index;">{{element.GrossAmount | number : '1.2-2'}}</td>
+                      <td mat-footer-cell *matFooterCellDef><b>{{GetGrossAmount() | currency:Country2}}</b></td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="TaxDescription">
+                      <th mat-header-cell *matHeaderCellDef>Description</th>
+                      <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">
+                        <div class="row">
+                          <div *ngIf="element.TaxDescription != null && element.GSTPercentage != 0" class="col-sm-12">
+                            {{element.TaxDescription}}
+                          </div>
+                          <br />
+                          <div *ngIf="element.CESSDescription != null && element.CESSPercentage != 0" class="col-sm-12">
+                            {{element.CESSDescription}}
+                          </div>
+                          <br />
+                          <div *ngIf="element.AdditionalCESSDescription != null && element.AdditionalCESSPercentage != 0" class="col-sm-12">
+                            {{element.AdditionalCESSDescription}}
+                          </div>
+                        </div>
+                      </td>
+                      <td mat-footer-cell *matFooterCellDef></td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="GST">
+                      <th mat-header-cell *matHeaderCellDef>%</th>
+                      <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">
+                        <div class="row">
+                          <div *ngIf="element.GSTPercentage != 0 && element.TaxDescription != null" class="col-sm-12">
+                            {{element.GSTPercentage | number : '1.2-2'}}
+                          </div>
+                          <br />
+                          <div *ngIf="element.CESSPercentage != 0 && element.CESSDescription != null" class="col-sm-12">
+                            {{element.CESSPercentage | number : '1.2-2'}}
+                          </div>
+                          <br />
+                          <div *ngIf="element.AdditionalCESSPercentage != 0 && element.AdditionalCESSDescription != null" class="col-sm-12">
+                            {{element.AdditionalCESSPercentage | number : '1.2-2'}}
+                          </div>
+                        </div>
+                      </td>
+                      <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="GSTValue">
+                      <th mat-header-cell *matHeaderCellDef> Amount</th>
+                      <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">
+                        <div class="row">
+                          <div *ngIf="element.GSTPercentage != 0 && element.TaxDescription != null" class="col-sm-12">
+                            {{element.GSTTaxValue | number : '1.2-2'}}
+                          </div>
+                          <br />
+                          <div *ngIf="element.CESSPercentage != 0 && element.CESSDescription != null" class="col-sm-12">
+                            {{element.CESSAmount | number : '1.2-2'}}
+                          </div>
+                          <br />
+                          <div *ngIf="element.AdditionalCESSPercentage != 0 && element.AdditionalCESSDescription != null" class="col-sm-12">
+                            {{element.AddCESSAmount | number : '1.2-2'}}
+                          </div>
+                        </div>
+                      </td>
+                      <td mat-footer-cell *matFooterCellDef><b>{{Taxtotalamount() | currency:Country2}} </b></td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="TotalAmountsymbol">
+                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">Total Amount</th>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="TotalAmount">
+                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> TotalAmount</th>
+                      <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">{{element.TotalAmount | number : '1.2-2'}}</td>
+                      <td mat-footer-cell *matFooterCellDef><b> {{GetTotalAmount() | currency:Country2}}</b></td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="header-row-group">
+                      <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> Discount </th>
+                    </ng-container>
+
+                    <ng-container matColumnDef="header-row-third-group">
+                      <th mat-header-cell *matHeaderCellDef [attr.colspan]="3"> Tax </th>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="['DrugNamesymbol','PurchaseUOMsymbol','Quantitysymbol','recevicedQuantitysymbol','UnitPricesymbol','Amountsymbol','header-row-group','Grosssymbol','header-row-third-group','TotalAmountsymbol'];sticky:true"></tr>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
+                    <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumns;" [ngClass]="{gray: even}"></tr>
+                    <tr mat-footer-row *matFooterRowDef="displayedColumns;sticky:true"></tr>
+                  </table>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+
+
+      </div>
+
+      <div class="col-sm-12 m-3">
+        <div class="col-sm-12 pb25">
+          <div class="col-sm-4  sub-section btn-wrap f-r">
+            <button type="button" class="btn btn-warning-default" (click)="CancelClk()"> Cancel </button>
+            <button type="button" class="success btn btn-primary  ml-2p" [disabled]="isDisabled" (click)="print()">Print</button>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+</form>
+
+
+<div class="modal" role="dialog" [ngStyle]="{'display':modalpreview}">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" matTooltip="close" (click)="modalSuccesspreview()">&times;</button>
+        <h5 class="modal-title center">
+          Purchase Order
+        </h5>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline">
+              <mat-label>Search</mat-label>
+              <input id="myInputgrn" type="text" matInput placeholder="Search">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row heightAuto-300px">
+
+          <table class="custom-table withoutbackgroung search-table table-bordered" style="width:98%;margin:1%">
+
+            <tr>
+              <th rowspan="2">Action</th>
+              <th colspan="2">Purchase Order</th>
+              <th colspan="2">Quotation</th>
+              <th rowspan="2">Supplier Name</th>
+              <th rowspan="2">Tobedelivered</th>
+              <th rowspan="2">Status</th>
+            </tr>
+
+            <tr>
+              <th>Number</th>
+              <th>Date</th>
+              <th>Number</th>
+              <th>Date</th>
+            </tr>
+
+            <tbody id="myTablegrn">
+              <tr *ngFor="let s of dataSourcem;index as i">
+                <td>
+                  <button mat-icon-button>
+                    <mat-icon data-toggle="tooltip" title="Select" class="example-tab-icon cursor" (click)="selectpurchase(s)">create</mat-icon>
+                  </button>
+                </td>
+
+                <td>{{s.PONumber}}</td>
+                <td>{{s.PODate | date:"dd-MMM-y HH:mm"}}</td>
+                <td>{{s.QuotationNumber}}</td>
+                <td>{{s.QuotationDate | date:"dd-MMM-y HH:mm"}}</td>
+                <td>{{s.VendorName}}</td>
+                <td>{{s.DeliveryName}}</td>
+                <td [style.color]="getColor(s.Status)">{{s.Status}}</td>
+              </tr>
+            </tbody>
+
+          </table>
+        </div>
+
+      </div>
+
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+<div class="modal" role="dialog" [ngStyle]="{'display':purchaseprint}">
+  <div class="example-box">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="col-sm-11">
+                <h5 class="modal-title center">Purchase Order</h5>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="col-sm-1">
+              </div>
+              <div class="col-sm-10">
+                <p><strong>Do you want to Print?</strong></p>
+              </div>
+              <div class="col-sm-1">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+
+          <button (click)="printsss()" class="btn btn-primary">Yes</button>
+          <button type="button" id="theButton" class="btn btn-success" data-dismiss="modal" (click)="printclose()" cdkFocusInitial>No</button>
+
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" role="dialog" [ngStyle]="{'display':cancelblock}">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" matTooltip="close" (click)="modalSuccessClosessss()">&times;</button>
+        <h5 class="modal-title center">Do you want to cancel?</h5>
+      </div>
+
+
+
+      <div class="modal-footer">
+        <button class="btn btn-danger" data-dismiss="modal" autofocus (click)="modalcloseOk()">No</button>
+        <button type="reset" class="btn btn-success" data-dismiss="modal" (click)="modalSuccesssOk()">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div id="printss" style="display:none">
+
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6">
+        <div style="text-align:center"><strong>{{company}}</strong></div>
+        <div style="text-align:center"><strong>{{CAddress}}</strong></div>
+        <div style="text-align:center"><strong>Phone No:{{CPhone}} &nbsp; Website:{{CWebb}}</strong></div>
+      </div>
+      <div class="col-sm-3"></div>
+    </div>
+  </div>
+
+  <div class="col-sm-12" style="margin-top: 1%">
+    <div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6">
+        <div style="text-align:center"><strong>PURCHASE ORDER</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-12" style="margin-top: 1%">
+    <div class="row">
+
+      <div class="col-sm-4">
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>PO Number&nbsp;</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <mat-label><b>: &nbsp;</b> {{purchaseno}}</mat-label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>PO Date&nbsp;</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <mat-label><b>: &nbsp;</b> {{PurchaseDate | date:"dd-MMM-y HH:mm"}} &nbsp;Hrs</mat-label>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-sm-4">
+
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Qtn Number&nbsp;</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <mat-label><b>: &nbsp;</b> {{Quotationno}}</mat-label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Qtn Date&nbsp;</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <mat-label><b>: &nbsp;</b> {{Quotationdate | date:"dd-MMM-y HH:mm"}}</mat-label>
+            <mat-label *ngIf="QDate != null">&nbsp; Hrs</mat-label>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-sm-12" style="margin-top: 1%">
+    <div class="row">
+
+      <div class="col-sm-5">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="row">
+              <mat-label><b>SUPPLIER DETAILS&nbsp;:</b></mat-label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-2"></div>
+
+      <div class="col-sm-5">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="row">
+              <mat-label><b>DELIVERY DETAILS &nbsp;:</b></mat-label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-sm-12" style="margin-top: 1%">
+    <div class="row">
+
+      <div class="col-sm-5">
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Name</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <mat-label><b>:</b></mat-label>
+          </div>
+          <div class="col-sm-6">
+            <mat-label>{{Suppliernameprint}}</mat-label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Address</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <mat-label><b>:</b></mat-label>
+          </div>
+          <div class="col-sm-6">
+            <mat-label>{{Address1}}</mat-label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Phone No</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <mat-label><b>:</b></mat-label>
+          </div>
+          <div class="col-sm-6">
+            <mat-label>{{PhoneNo}}</mat-label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Tax No</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <mat-label><b>:</b></mat-label>
+          </div>
+          <div class="col-sm-6">
+            <mat-label>{{GSTNo}}</mat-label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Location&nbsp;/&nbsp;City</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <mat-label><b>:</b></mat-label>
+          </div>
+          <div class="col-sm-6">
+            <mat-label>{{Location}}</mat-label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>State&nbsp;/&nbsp;Country</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <mat-label><b>:</b></mat-label>
+          </div>
+          <div class="col-sm-6">
+            <mat-label>{{Statesuplier}}</mat-label>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-sm-2"></div>
+
+      <div class="col-sm-5">
+
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Name</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <mat-label><b>:</b></mat-label>
+          </div>
+          <div class="col-sm-6">
+            <mat-label>{{DeliveryName}}</mat-label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Address</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <mat-label><b>:</b></mat-label>
+          </div>
+          <div class="col-sm-6">
+            <mat-label>{{DAddress3}}</mat-label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Location&nbsp;/&nbsp;City</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <mat-label><b>:</b></mat-label>
+          </div>
+          <div class="col-sm-6">
+            <mat-label>{{PLocationn}}</mat-label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>State&nbsp;/&nbsp;Country</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <mat-label><b>:</b></mat-label>
+          </div>
+          <div class="col-sm-6">
+            <mat-label>{{Statecountry}}</mat-label>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-sm-12" style="margin-top: 1%">
+    <div class="row">
+      <strong>Item Details&nbsp;: &nbsp;</strong>
+    </div>
+  </div>
+
+  <div class="col-sm-12" style="margin-top: 1%">
+    <div class="row">
+
+      <table mat-table [dataSource]="dataSourceprint" class="custom-table withoutbackgroung search-table table-bordered" style="width: 100%">
+
+
+        <ng-container matColumnDef="DrugNameprint">
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Drug Description </th>
+          <td mat-cell *matCellDef="let element;let id = index" style="text-align:left">{{element.ItemDrug}}</td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="DrugNamesymbolprint">
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Drug Description </th>
+        </ng-container>
+
+
+        <ng-container matColumnDef="PurchaseUOMprint">
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> UOM </th>
+          <td mat-cell *matCellDef="let element;let id = index;" style="text-align:left"> {{element.UOMname}} </td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <ng-container matColumnDef="PurchaseUOMsymbolprint">
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">  UOM </th>
+        </ng-container>
+
+        <ng-container matColumnDef="Quantityprint">
+          <th mat-header-cell *matHeaderCellDef> Qty </th>
+          <td mat-cell *matCellDef="let element;let id = index;" style="text-align:right">{{element.ItemQty | number : '1.2-2'}}</td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="recdQuantityprint">
+          <th mat-header-cell *matHeaderCellDef> Qty recd </th>
+          <td mat-cell *matCellDef="let element;let id = index;" style="text-align:right">{{element.PORecdQty | number : '1.2-2'}}</td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="UnitPriceprint">
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Unit rate </th>
+          <td mat-cell *matCellDef="let element" contenteditable="false" style="text-align:right"> {{element.ItemRate | number : '1.2-2'}} </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="UnitPricesymbolprint">
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Unit rate </th>
+        </ng-container>
+
+        <ng-container matColumnDef="Amountprint">
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Amount</th>
+          <td mat-cell *matCellDef="let element;let id = index;" style="text-align:right">{{element.ItemValue | number : '1.2-2'}} </td>
+          <td mat-footer-cell *matFooterCellDef style="text-align:right"> <b>{{GetTotalcost() | currency:Country2}}</b></td>
+        </ng-container>
+
+        <ng-container matColumnDef="Amountsymbolprint">
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Amount</th>
+        </ng-container>
+
+
+        <ng-container matColumnDef="Discountprint">
+          <th mat-header-cell *matHeaderCellDef> % </th>
+          <td mat-cell *matCellDef="let element;let id = index;" style="text-align:right">{{element.DiscountPercentage | number : '1.2-2'}} </td>
+          <td mat-cell *matCellDef="let element;let id = index;">{{element.DiscountPercentage | number : '1.2-2'}} </td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <ng-container matColumnDef="DiscountAmountprint">
+          <th mat-header-cell *matHeaderCellDef> Amount</th>
+          <td mat-cell *matCellDef="let element;let id = index;" style="text-align:right">{{element.DiscountAmount | number : '1.2-2'}} </td>
+          <td mat-footer-cell *matFooterCellDef style="text-align:right"><b *ngIf="GetDiscountAmount() != 0">{{GetDiscountAmount() | currency:Country2}}</b></td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="Grosssymbolprint">
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Gross Amount </th>
+        </ng-container>
+
+        <ng-container matColumnDef="GrossAmountprint">
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Gross Amount</th>
+          <td mat-cell *matCellDef="let element;let id = index;" style="text-align:right">{{element.GrossAmount | number : '1.2-2'}} </td>
+          <td mat-footer-cell *matFooterCellDef style="text-align:right"><b>{{GetGrossAmount() | currency:Country2}}</b></td>
+        </ng-container>
+
+        <ng-container matColumnDef="TaxDescriptionprint">
+          <th mat-header-cell *matHeaderCellDef>Description</th>
+          <td mat-cell *matCellDef="let element;let id = index;">
+            <div class="row" style="text-align:left">
+              <div *ngIf="element.TaxDescription != null && (element.GSTPercentage != 0 && element.GSTPercentage != null)" class="col-sm-12">
+                {{element.TaxDescription}}
+              </div>
+              <br />
+              <div *ngIf="element.CESSDescription != null && (element.CESSPercentage != 0 && element.CESSPercentage != null)" class="col-sm-12">
+                {{element.CESSDescription}}
+              </div>
+              <br />
+              <div *ngIf="element.AdditionalCESSDescription != null && (element.AdditionalCESSPercentage != 0 && element.AdditionalCESSPercentage != null)" class="col-sm-12">
+                {{element.AdditionalCESSDescription}}
+              </div>
+            </div>
+          </td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <ng-container matColumnDef="GSTprint">
+          <th mat-header-cell *matHeaderCellDef>%</th>
+          <td mat-cell *matCellDef="let element;let id = index;">
+            <div class="row" style="text-align:right">
+              <div *ngIf="(element.GSTPercentage != 0 && element.GSTPercentage != null) && element.TaxDescription != null" class="col-sm-12">
+                {{element.GSTPercentage | number : '1.2-2'}}
+              </div>
+              <br />
+              <div *ngIf="(element.CESSPercentage != 0 && element.CESSPercentage != null) && element.CESSDescription != null" class="col-sm-12">
+                {{element.CESSPercentage | number : '1.2-2'}}
+              </div>
+              <br />
+              <div *ngIf="(element.AdditionalCESSPercentage != 0 && element.AdditionalCESSPercentage != null) && element.AdditionalCESSDescription != null" class="col-sm-12">
+                {{element.AdditionalCESSPercentage | number : '1.2-2'}}
+              </div>
+            </div>
+          </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="GSTValueprint">
+          <th mat-header-cell *matHeaderCellDef> Amount</th>
+          <td mat-cell *matCellDef="let element;let id = index;">
+            <div class="row" style="text-align:right">
+              <div *ngIf="(element.GSTPercentage != 0 && element.GSTPercentage != null) && element.TaxDescription != null" class="col-sm-12">
+                {{element.GSTTaxValue | number : '1.2-2'}}
+              </div>
+              <br />
+              <div *ngIf="(element.CESSPercentage != 0 && element.CESSPercentage != null) && element.CESSDescription != null" class="col-sm-12">
+                {{element.CESSAmount | number : '1.2-2'}}
+              </div>
+              <br />
+              <div *ngIf="(element.AdditionalCESSPercentage != 0 && element.AdditionalCESSPercentage != null) && element.AdditionalCESSDescription != null" class="col-sm-12">
+                {{element.AddCESSAmount | number : '1.2-2'}}
+              </div>
+            </div>
+          </td>
+          <td mat-footer-cell *matFooterCellDef style="text-align:right"><b *ngIf="Taxtotalamount() != 0">{{Taxtotalamount() | currency:Country2}} </b> </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="TotalAmountsymbolprint">
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">Total Amount</th>
+        </ng-container>
+
+
+        <ng-container matColumnDef="TotalAmountprint">
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Total Amount</th>
+          <td mat-cell *matCellDef="let element;let id = index;" style="text-align:right">{{element.TotalAmount | number : '1.2-2'}} </td>
+          <td mat-footer-cell *matFooterCellDef style="text-align:right"><b> {{GetTotalAmount() | currency:Country2}}</b></td>
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="POreceivedquantity">
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> PO </th>
+        </ng-container>
+
+        <ng-container matColumnDef="header-row-groupprint">
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> Discount </th>
+        </ng-container>
+
+
+        <ng-container matColumnDef="header-row-third-groupprint">
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="3"> Tax </th>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="['DrugNamesymbolprint','PurchaseUOMsymbolprint','POreceivedquantity','UnitPricesymbolprint','Amountsymbolprint','header-row-groupprint','Grosssymbolprint','header-row-third-groupprint','TotalAmountsymbolprint']"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsprint;sticky:true"></tr>
+        <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumnsprint;" [ngClass]="{gray: even}"></tr>
+        <tr mat-footer-row *matFooterRowDef="displayedColumnsprint;sticky:true"></tr>
+      </table>
+
+
+    </div>
+  </div>
+
+  <div class="col-sm-12" style="margin-top: 1%">
+    <div class="row">
+      <mat-label>
+        <strong>Amount in Words :</strong> &nbsp;&nbsp;{{Country1}}&nbsp;{{transformValue(PTotalpoo)}} only
+      </mat-label><br />
+    </div>
+  </div>
+
+  <div class="col-sm-12" style="margin-top: 1%">
+    <div class="row">
+
+
+      <div class="col-sm-3">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="row">
+              <mat-label><strong>Validity&nbsp;: &nbsp;</strong></mat-label>
+            </div>
+            <div class="row">
+              <mat-label>{{Validity}}</mat-label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+        <div class="col-sm-12">
+          <div class="row">
+            <mat-label><strong>Delivery Description&nbsp;: &nbsp;</strong></mat-label>
+          </div>
+          <div class="row">
+            <mat-label> {{Delivery}}</mat-label>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+        <div class="col-sm-12">
+          <div class="row">
+            <mat-label><strong>Payment & Terms&nbsp;: &nbsp;</strong></mat-label>
+          </div>
+          <div class="row">
+            <mat-label>{{PaymentandTerms}}</mat-label>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+        <div class="col-sm-12">
+          <div class="row">
+            <mat-label><strong>Instructions&nbsp;: &nbsp;</strong></mat-label>
+          </div>
+          <div class="row">
+            <mat-label>{{Instructions}}</mat-label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-sm-12" style="margin-top: 5%">
+    <div class="row">
+
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4" style="text-align:right">
+        <mat-label><strong>Authorized Signatory &nbsp;</strong></mat-label>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="printss" style="display:none">
+
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6">
+        <div style="text-align:center"><strong>{{company}}</strong></div>
+        <div style="text-align:center"><strong>{{CAddress}}</strong></div>
+        <div style="text-align:center"><strong>Phone No:{{CPhone}} &nbsp; Website:{{CWebb}}</strong></div>
+      </div>
+      <div class="col-sm-3"></div>
+    </div>
+  </div>
+
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6">
+        <div style="text-align:center"><strong>PURCHASE ORDER</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-12" style="margin-top:10px">
+    <div class="row">
+
+      <div class="col-sm-4">
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Po Number</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <mat-label>{{purchaseno}}</mat-label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Po Date</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <mat-label>{{PurchaseDate | date:"dd-MMM-y HH:mm"}}</mat-label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Qtn Number</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <mat-label>{{Quotationno}}</mat-label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Qtn Date</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <mat-label>{{Quotationdate | date:"dd-MMM-y HH:mm"}}</mat-label>
+          </div>
+        </div>
+
+
+
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-sm-12" style="margin-top:10px">
+    <div class="row">
+
+      <div class="col-sm-4">
+        <b>SUPPLIER DETAILS:</b>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Name</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <mat-label>{{Suppliernameprint}}</mat-label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Address</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <mat-label>{{Address1}}</mat-label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Phone No</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <mat-label>{{PhoneNo}}</mat-label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Tax No</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <mat-label>{{GSTNo}}</mat-label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Location&nbsp;/&nbsp;City</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <mat-label>{{Location}}</mat-label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>State&nbsp;/&nbsp;Country</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <mat-label>{{Statesuplier}}</mat-label>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="col-sm-4"></div>
+
+      <div class="col-sm-4">
+        <b>DELIVERY ADDRESS:</b>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Name</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <mat-label>{{DeliveryName}}</mat-label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Address</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <mat-label>{{DAddress3}}</mat-label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Location&nbsp;/&nbsp;City</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <mat-label>{{PLocationn}}</mat-label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>State&nbsp;/&nbsp;Country</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <mat-label>{{Statecountry}}</mat-label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+  <div class="col-sm-12" style="margin-top:10px">
+    <div class="row">
+      <div class="col-sm-3">
+        <mat-label><strong>Validity: &nbsp;</strong></mat-label>
+        {{Validity}}
+      </div>
+      <div class="col-sm-3">
+        <mat-label><strong>Delivery: &nbsp;</strong></mat-label>
+        {{Delivery}}
+      </div>
+      <div class="col-sm-3">
+        <mat-label><strong>PaymentandTerms: &nbsp;</strong></mat-label>
+        {{PaymentandTerms}}
+      </div>
+      <div class="col-sm-3">
+        <mat-label><strong>Instructions: &nbsp;</strong></mat-label>
+        {{Instructions}}
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-12" style="margin-top: 5%">
+    <div class="row">
+      <div class="col-sm-4">
+        <mat-label><strong>Authorized Signatory &nbsp;</strong></mat-label>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>

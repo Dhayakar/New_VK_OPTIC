@@ -1,0 +1,210 @@
+
+<div>
+  <form #CustomerMaster="ngForm" name="CustomerMaster" (keydown.enter)="$event.preventDefault()" novalidate>
+    <div class="col-sm-12">
+      <div class="row">
+        <h5 align="center" class="card-header">
+          <b>Customer &nbsp; Master</b>
+        </h5>
+      </div>
+    </div>
+    <div class="col-sm-12 border-blue border-radius ">
+      <div class="col-sm-12 m-3">
+        <div class="row">
+          <div class="col-sm-9"></div>
+          <div class="col-sm-3 f-r">
+            <button type="button" class="btn-text f-r" (click)="Getformaccess()"><i class="fas fa-eye"></i> View Access</button>
+          </div>
+        </div>
+        <div class="row">
+          <input #CustomerID name="M_CustomerID" [(ngModel)]="M_CustomerID" type="hidden">
+          <div class="col-sm-3">
+            <div class="col-sm-10 ml-n5p width-90p">
+              <mat-form-field appearance="outline">
+                <mat-label>UIN</mat-label>
+                <input [(ngModel)]="M_UIN" matInput placeholder="Enter UIN" name="UIN" type="text" disabled>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-1 mt-4p">
+              <mat-icon (click)="SearchUIN()" class="cursor" data-toggle="tooltip" title="Search UIN">search</mat-icon>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="col-sm-8 ml-n5p width-90p">
+              <mat-form-field appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input [(ngModel)]="M_Name" matInput autocomplete="off" placeholder="Enter Name" name="Name" type="text" [disabled]="SearchedUin" maxlength="100" required>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-1 mt-4p">
+              <mat-icon (click)="RegisteredCustomer()" class="cursor" data-toggle="tooltip" title="Search Registered Customer">search</mat-icon>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline">
+              <mat-label>Middle Name</mat-label>
+              <input [(ngModel)]="M_MName" matInput autocomplete="off" placeholder="Enter Name" name="MName" type="text" maxlength="100">
+            </mat-form-field>
+          </div>
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline">
+              <mat-label>Last Name</mat-label>
+              <input [(ngModel)]="M_LName" matInput autocomplete="off" placeholder="Enter Name" name="LName" type="text" required maxlength="100">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline" hintLabel="Max 100 characters">
+              <mat-label>Address 1</mat-label>
+              <textarea matInput [(ngModel)]="M_Address1" autocomplete="off" name="address1" placeholder="Address" #add1 maxlength="100" required></textarea>
+              <mat-hint align="end">{{add1.value?.length || 0}}/100</mat-hint>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline" hintLabel="Max 100 characters">
+              <mat-label>Address 2</mat-label>
+              <textarea matInput [(ngModel)]="M_Address2" autocomplete="off" name="address2" placeholder="Address" #add2 maxlength="100"></textarea>
+              <mat-hint align="end">{{add2.value?.length || 0}}/100</mat-hint>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline" hintLabel="Max 100 characters">
+              <mat-label>Address 3</mat-label>
+              <textarea matInput [(ngModel)]="M_Address3" autocomplete="off" name="address3" placeholder="Address" #add3 maxlength="100"></textarea>
+              <mat-hint align="end">{{add3.value?.length || 0}}/100</mat-hint>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline">
+              <mat-label>Tax No</mat-label>
+              <input [(ngModel)]="M_GST" matInput autocomplete="off" placeholder="Enter Tax No" name="GST" type="text" minlength="15" maxlength="50">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline">
+              <mat-label>City</mat-label>
+              <mat-select [(ngModel)]="M_City" name="City" [disabled]="DisabledREV" (ngModelChange)="CitySearch()">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let City of Cityname" [value]="City.Value">{{City.Text}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline">
+              <mat-label>Location</mat-label>
+              <mat-select [(ngModel)]="M_Location" name="Locations" [disabled]="disableLOC">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let Location of Locationnames" [value]="Location.Value">{{Location.Text}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline">
+              <mat-label>State</mat-label>
+              <strong>
+                <input [(ngModel)]="M_State" name="State" matInput placeholder="State Name" disabled>
+              </strong>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline">
+              <mat-label>Country</mat-label>
+              <strong>
+                <input [(ngModel)]="M_Country" name="Country" matInput placeholder="Country Name" disabled>
+              </strong>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline">
+              <mat-label>Contact Person</mat-label>
+              <input [(ngModel)]="M_ContactPerson" matInput autocomplete="off" placeholder="Contact Person" name="ContactPerson" maxlength="50" type="text" (keypress)="nameField($event)">
+            </mat-form-field>
+          </div>
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline">
+              <mat-label>Phone No</mat-label>
+              <input [(ngModel)]="M_PhoneNo" (keypress)="numberOnly($event)"  maxlength="15" autocomplete="off" matInput placeholder="Enter PhoneNo" #PhoneNo name="PhoneNo"  type="text">
+            </mat-form-field>
+          </div>
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline">
+              <mat-label>Mobile No</mat-label>
+              <input [(ngModel)]="M_MobileNo" matInput placeholder="Enter MobileNo" maxlength="15" (keypress)="numberOnly($event)" autocomplete="off" #MobileNo name="MobileNo"  type="text">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 m-3">
+      <div class="col-sm-12 pb25">
+        <div class="col-sm-5  sub-section btn-wrap f-r">
+          <button type="button" class="btn btn-warning-default" (click)="CancelClk()"><strong>Cancel</strong></button>
+          <button type="button" *ngIf="CustomerID.value != '' " class="btn btn-warning-default"  [disabled]="isNextDelete" (click)="Deleteclk(CustomerID.value)"><strong>Delete</strong></button>
+          <button [disabled]="CustomerID.value == '' ? isNextButton:isNextupdate" (click)="CustomerID.value == '' ? Submit(CustomerMaster):Update(CustomerMaster,CustomerID.value)" class="success btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+
+
+<!----*Cancel Popup*---->
+<div class="modal" role="dialog" [ngStyle]="{'display':cancelblock}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="modalcloseOk()">&times;</button>
+        <h6 class="modal-title">Do You Want to Cancel ?</h6>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" data-dismiss="modal" autofocus (click)="modalcloseOk()">No</button>
+        <button type="reset" class="btn btn-success" data-dismiss="modal" (click)="modalSuccesssOk()">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!----*Access Popup*---->
+<div class="modal" role="dialog" [ngStyle]="{'display':accesspopup}">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="modalcloseAccessOk()">&times;</button>
+        <h4 class="modal-title">Customer Master - View Access</h4>
+      </div>
+      <div class="modal-body">
+        <table align="center" class=" table custom-table">
+          <thead>
+            <tr>
+              <th>Add</th>
+              <th>Edit</th>
+              <th>Delete</th>
+              <th>Export</th>
+              <th>Print</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let x of accessdata; index as i">
+              <td><mat-checkbox [(checked)]="x.Add" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Edit" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Delete" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Export" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Print" disabled></mat-checkbox></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" data-dismiss="modal" autofocus (click)="modalcloseAccessOk()">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>

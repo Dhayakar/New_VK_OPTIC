@@ -1,0 +1,325 @@
+
+<div>
+  <form #ICDForm="ngForm" name="ICDForm" (keydown.enter)="$event.preventDefault()">
+    <div class="col-sm-12 mt-1p">
+      <div class="row">
+        <h5 align="center" class="card-header bg-success text-white rounded-top">
+          ICD Master
+        </h5>
+      </div>
+    </div>
+    <div class="col-sm-12 border-blue border-radius">
+      <div class="col-sm-12">
+        <div class="col-sm-2 ml-n2p mt-1p f-r">
+          <button type="button" class="btn-text f-r" (click)="Getformaccess()"><i class="fas fa-eye"></i> View Access</button>
+        </div>
+      </div>
+      <div class="col-sm-12  m-3">
+        <div class="row">
+          <input #icdcoded name="M_icdcode" [(ngModel)]="M_icdcode" type="hidden">
+          <input #SurgeryCostDetailid name="M_SurgeryCostDetailid" [(ngModel)]="M_SurgeryCostDetailid" type="hidden">
+          <div class="col-sm-4">
+            <div class="col-sm-12">
+              <div class="col-sm-8 ml-n3p">
+                <mat-form-field appearance="outline">
+                  <mat-label>ICD Group</mat-label>
+                  <mat-select [(ngModel)]="icdgroup" name="icdgroup" required (selectionChange)="icdgroupChange()">
+                    <mat-option *ngFor="let icd of ICD" [value]="icd">{{icd.Text}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-sm-1 ml-n3p">
+                <button mat-icon-button [disabled]="IcdGroupPathSubmit" type="button">
+                  <mat-icon class="grab" matTooltip="Add ICD Group" (click)="IcdGroupPathSubmit !=true ? Clickicdgroup():AccessDenied()">add</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4" *ngIf="icdcoded.value!=0;else notShow1">
+            <div class="col-sm-8">
+              <mat-form-field appearance="outline">
+                <mat-label>ICD CODE</mat-label>
+                <input [(ngModel)]="icdcode" matInput placeholder="Enter ICD CODE" name="icdcode" type="text" required disabled>
+              </mat-form-field>
+            </div>
+          </div>
+          <ng-template #notShow1>
+            <div class="col-sm-4">
+              <div class="col-sm-8">
+                <mat-form-field appearance="outline">
+                  <mat-label>ICD CODE</mat-label>
+                  <input [(ngModel)]="icdcode" (keypress)="RestrictSymbol($event)" maxlength="15" #icdcodes matInput placeholder="Enter ICD CODE" name="icdcode" type="text" required>
+                  <mat-hint align="end">{{icdcodes.value?.length || 0}}/15</mat-hint>
+                </mat-form-field>
+              </div>
+            </div>
+          </ng-template>
+          <div class="col-sm-4 ml-n2p">
+            <div class="col-sm-8">
+              <mat-form-field appearance="outline">
+                <mat-label>ICD Description</mat-label>
+                <input [(ngModel)]="icddescription" matInput placeholder="Enter ICD Description" name="icddescription" type="text" required>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-4 ml-n5p mt-2p">
+              <button type="button" (click)="openDialog(icdgroup)" class="btn-text grab mt-2p ml-n5p">
+                <i class="fas fa-info-circle"> </i> Help
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="row  mt-1p" *ngIf="hiddenicdspy" >
+          <div class="col-sm-4">
+            <div class="col-sm-12">
+              <div class="col-sm-8 ml-n3p">
+                <mat-form-field appearance="outline">
+                  <mat-label>Speciality</mat-label>
+                  <mat-select [(ngModel)]="special" name="special" required>
+                    <mat-option *ngFor="let special of specials" [value]="special.Value">{{special.Text}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-sm-1  ml-n3p">
+                <button mat-icon-button [disabled]="IcdSpecPathSubmit" type="button">
+                  <mat-icon class="grab" matTooltip="Add Speciality" (click)="IcdSpecPathSubmit !=true ? ClickSpec():AccessDenied()">add</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="col-sm-8">
+              <mat-form-field appearance="outline">
+                <mat-label>IOL Reqd</mat-label>
+                <mat-select [(ngModel)]="M_IsIOLReqd" name="IsIOLReqd" required>
+                  <mat-option value=true>Yes</mat-option>
+                  <mat-option value=false>No</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--////////Surgery Cost Details  ///////////-->
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="col-sm-3 ml-2p">
+            <h5 align="center" class="card-header bg-success text-white rounded-top">
+              Surgery Cost Details
+            </h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 ml-n1p">
+        <div class="col-sm-6">
+          <div class="row m-3">
+            <div class="col-sm-4">
+                <mat-form-field appearance="outline">
+                  <mat-label>Room Type</mat-label>
+                  <mat-select [(ngModel)]="roomtype" name="roomtype">
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let Room of Rooms" [value]="Room.Value">{{Room.Text}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+              
+                <mat-form-field appearance="outline">
+                  <mat-label>Surgery Cost</mat-label>
+                  <input [(ngModel)]="surgerycost" matInput placeholder="Enter Surgery Cost" name="surgerycost" type="text" (keypress)="numberOnly($event)">
+                </mat-form-field>
+             
+            </div>
+            <div class="col-sm-4">
+              
+                <mat-form-field appearance="outline">
+                  <mat-label>Package Rate</mat-label>
+                  <input [(ngModel)]="packagerate" matInput placeholder="Enter Package Rate" name="packagerate" type="text" (keypress)="numberOnly($event)" required>
+                </mat-form-field>
+              
+            </div>
+          </div>
+          <div class="row m-3">
+            <div class="col-sm-4">
+            
+                <mat-form-field appearance="outline">
+                  <mat-label>Dressing Charge</mat-label>
+                  <input [(ngModel)]="dressingcharges" matInput placeholder="Enter Dressing Charge" name="dressingcharges" type="text" (keypress)="numberOnly($event)">
+                </mat-form-field>
+
+            </div>
+
+            <div class="col-sm-4">
+              
+                <mat-form-field appearance="outline">
+                  <mat-label>Consultation Charge</mat-label>
+                  <input [(ngModel)]="medicinecharges" matInput placeholder="Enter Consultation Charge" name="medicinecharges" type="text" (keypress)="numberOnly($event)">
+                </mat-form-field>
+          
+            </div>
+
+            <div class="col-sm-4">
+            
+                <mat-form-field appearance="outline">
+                  <mat-label>Surgeon Charges</mat-label>
+                  <input [(ngModel)]="surgeoncharges" matInput placeholder="Enter Surgeon Charges" name="surgeoncharges" type="text" (keypress)="numberOnly($event)">
+                </mat-form-field>
+          
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+         
+          
+
+            <div class="row">
+              <h5 class="card-header bg-success text-white">
+                Surgeon professional Charges
+                <button (click)="AddIcdmappingNewgrid();" class="btnuserdefined btn-dark"><i matTooltip="Add Payment Details" class="fa fa-plus"></i></button>
+              </h5>
+
+              <div class="tableoverflowheight-100">
+                <table mat-table [dataSource]="dataSourceIcdEx" class="custom-table withoutbackgroung search-table table-bordered">
+
+                  <ng-container matColumnDef="Doctorname">
+                    <th mat-header-cell *matHeaderCellDef>Doctor</th>
+                    <td mat-cell *matCellDef="let element;let id = index;" >
+
+                      <mat-form-field appearance="outline">
+                        <mat-select (selectionChange)="DoctornamesChange(id,$event,element)">
+                          <mat-option *ngFor="let Doctornames of Doctornames" [value]="Doctornames.Values">
+                            {{Doctornames.Text}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </td>
+                  </ng-container>
+                  <ng-container matColumnDef="DoctorSpeciality">
+                    <th mat-header-cell *matHeaderCellDef>Speciality</th>
+                    <td mat-cell *matCellDef="let element;let id = index;">
+                      {{element.DoctorSpeciality}}
+                    </td>
+                  </ng-container>
+                  <ng-container matColumnDef="SurgeonCharges">
+                    <th mat-header-cell *matHeaderCellDef>Surgeon Charges</th>
+                    <td mat-cell *matCellDef="let element;let id = index;" contenteditable="true" (keyup)="SurgeonAmount(id,'SurgeonCharges',$event,element)">
+                      {{element.SurgeonCharges| number : '1.2-2'}}
+                    </td>
+                  </ng-container>
+                  <ng-container matColumnDef="ConsultationCharges">
+                    <th mat-header-cell *matHeaderCellDef>Consultation Charges</th>
+                    <td mat-cell *matCellDef="let element;let id = index;" contenteditable="true" (keyup)="SurgeonAmount(id,'SurgeonCharges',$event,element)">
+                      {{element.SurgeonCharges| number : '1.2-2'}}
+                    </td>
+                  </ng-container>
+                  <ng-container matColumnDef="Action">
+                    <th mat-header-cell *matHeaderCellDef>Action</th>
+                    <td mat-cell *matCellDef="let element;let id = index" contenteditable="false">
+                      <i class="fas fa-trash-alt icon-delete grab" title="Delete" (click)="removePaytype(i)"></i>
+                    </td>
+                    <td mat-footer-cell *matFooterCellDef></td>
+                  </ng-container>
+                  <tr mat-header-row *matHeaderRowDef="displayedColumnIcdEx;sticky: true"></tr>
+                  <tr mat-row *matRowDef="let element;  let even = even; columns: displayedColumnIcdEx"></tr>
+
+                </table>
+              </div>
+
+            </div>
+
+        </div>
+        </div>
+
+        <!--//////////////////////////////////////////////ICD Extenstion ///////////////////////////////////////////////////////////-->
+
+        <div class="col-sm-12">
+          
+        </div>
+
+
+
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+
+
+      </div>
+
+    <div class="col-sm-12 ">
+      <div class="content-right sub-section btn-wrap">
+       
+          <button type="button" class="btn btn-warning-default" (click)="cancel()"><strong>Cancel</strong></button>
+          <button type="button" mat-raised-button *ngIf="SurgeryCostDetailid.value!=0" class="danger btn-danger-default " (click)="Deleteclk(icdcoded.value)"><strong>Delete</strong></button>
+          <button *ngIf="SurgeryCostDetailid.value!=0" [disabled]="isNextupdate" class="success btn btn-primary" (click)="Updateclk(ICDForm,icdcoded.value,SurgeryCostDetailid.value)">Submit</button>
+          <button *ngIf="SurgeryCostDetailid.value==0" [disabled]="isNextButton" class="success btn btn-primary" (click)="icdcoded.value == 0 ? onSubmit(ICDForm) : onSurgeryCostDetailSubmit(ICDForm)"> Submit </button>
+       
+      </div>
+    </div>
+
+
+
+
+
+  </form>
+</div>
+
+
+
+<!----*Access Popup*---->
+<div class="modal" role="dialog" [ngStyle]="{'display':accesspopup}">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="modalcloseAccessOk()">&times;</button>
+        <h6 class="modal-title text-left">Icd Master - View Access</h6>
+      </div>
+      <div class="modal-body">
+        <table align="center" class=" table custom-table">
+          <thead>
+            <tr>
+              <th>Add</th>
+              <th>Edit</th>
+              <th>Delete</th>
+              <th>Export</th>
+              <th>Print</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let x of accessdata; index as i">
+              <td><mat-checkbox [(checked)]="x.Add" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Edit" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Delete" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Export" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Print" disabled></mat-checkbox></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" data-dismiss="modal" autofocus (click)="modalcloseAccessOk()">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!----*Cancel Popup*---->
+<div class="modal" role="dialog" [ngStyle]="{'display':cancelblock}">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="modalcloseOk()">&times;</button>
+        <h6 class="modal-title">Do You Want to Cancel ?</h6>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" data-dismiss="modal" autofocus (click)="modalcloseOk()">No</button>
+        <button type="reset" class="btn btn-success" data-dismiss="modal" (click)="modalSuccesssOk()">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

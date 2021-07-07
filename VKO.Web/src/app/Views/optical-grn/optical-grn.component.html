@@ -417,7 +417,7 @@
                 <ng-container matColumnDef="ActualQuantity">
                   <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Qty</th>
                   <td mat-cell *matCellDef="let element;let id = index;" class="width-4p">
-                    <input (keypress)="RestrictNegativeValues($event)"  (keyup)="qntyrestrict(id,$event);changeValue(id,'ActualQuantity',$event);changeValueAmount(id,element,'Value');changeValueDiscountAmount(id,element,'DiscountAmount');changeValueTotal(id,element,'TotalCost')" matInput value="{{element.ActualQuantity}}" class="form-control tableinputheight"  autocomplete="off">
+                    <input (keypress)="RestrictNegativeValues($event)" (keyup)="qntyrestrict(id,$event);changeValue(id,'ActualQuantity',$event);changeValueAmount(id,element,'Value');changeValueDiscountAmount(id,element,'DiscountAmount');changeValueTotal(id,element,'TotalCost')" matInput value="{{element.ActualQuantity}}" class="form-control tableinputheight" autocomplete="off">
                   </td>
                   <td mat-footer-cell *matFooterCellDef> </td>
                 </ng-container>
@@ -482,7 +482,7 @@
                   <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Action</th>
                   <td mat-cell *matCellDef="let element;let id = index;">
                     <button mat-icon-button (click)="removeopt(id)">
-                      <mat-icon data-toggle="tooltip" matTooltip="Remove"  class="grab">delete</mat-icon>
+                      <mat-icon data-toggle="tooltip" matTooltip="Remove" class="grab">delete</mat-icon>
                     </button>
                   </td>
                   <td mat-footer-cell *matFooterCellDef></td>
@@ -705,7 +705,7 @@
             <div class="col-sm-3">
               <mat-form-field appearance="outline">
                 <mat-label>Instructions</mat-label>
-                <textarea matInput [(ngModel)]="Instructions" name="Instructions" maxlength="100"  placeholder="Enter Instructions"></textarea>
+                <textarea matInput [(ngModel)]="Instructions" name="Instructions" maxlength="100" placeholder="Enter Instructions"></textarea>
               </mat-form-field>
             </div>
 
@@ -741,7 +741,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" id="enable" matTooltip="close" (click)="modalSuccesspreview()">&times;</button>
         <h5 class="modal-title center">
-          Optical Order 
+          Optical Order
         </h5>
       </div>
       <div class="modal-body">
@@ -760,7 +760,7 @@
 
 
         <div class="row heightAuto-300px">
-          <table class="custom-table withoutbackgroung search-table table-bordered">
+          <table class="custom-table withoutbackgroung search-table table-bordered" style="width:98%;margin:1%">
 
             <tr>
               <th rowspan="2">Action</th>
@@ -809,9 +809,9 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" id="enablegrn" matTooltip="close" (click)="modalSuccesspreviewgrn()">&times;</button>
+        <button type="button" class="close" data-dismiss="modal" id="enablegrn" matTooltip="Close" (click)="modalSuccesspreviewgrn()">&times;</button>
         <h5 class="modal-title center">
-          Optical GRN 
+          Optical GRN
         </h5>
       </div>
       <div class="modal-body">
@@ -826,7 +826,7 @@
         </div>
 
         <div class="row heightAuto-300px">
-          <table class="custom-table withoutbackgroung search-table table-bordered">
+          <table class="custom-table withoutbackgroung search-table table-bordered" style="width:98%;margin:1%">
 
             <tr>
               <th rowspan="2">Action</th>
@@ -854,7 +854,7 @@
                   <button mat-icon-button>
                     <mat-icon class="grab" data-toggle="tooltip" matTooltip="select" (click)="selecttypesgrn(d)">create</mat-icon>
                   </button>
-                 
+
                   <button mat-icon-button>
                     <mat-icon class="grab" data-toggle="tooltip" matTooltip="Print" (click)="selecttypesgrnprint(d)">local_printshop</mat-icon>
                   </button>
@@ -1356,27 +1356,27 @@
 
   </div>
 
-    <div class="col-sm-12" style="margin-top: 1%">
-      <div class="row">
-        <mat-label>
-          <strong>Amount in Words :</strong> &nbsp;&nbsp;{{Country1}}&nbsp;{{transformValue(TotalPOValue)}} only
-        </mat-label><br />
-      </div>
+  <div class="col-sm-12" style="margin-top: 1%">
+    <div class="row">
+      <mat-label>
+        <strong>Amount in Words :</strong> &nbsp;&nbsp;{{Country1}}&nbsp;{{transformValue(TotalPOValue)}} only
+      </mat-label><br />
     </div>
+  </div>
 
-    <div class="col-sm-12" style="margin-top: 5%">
-      <div class="row">
+  <div class="col-sm-12" style="margin-top: 5%">
+    <div class="row">
 
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4" style="text-align:right">
-          <mat-label><strong>Authorized Signatory &nbsp;</strong></mat-label>
-        </div>
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4" style="text-align:right">
+        <mat-label><strong>Authorized Signatory &nbsp;</strong></mat-label>
       </div>
-
     </div>
 
   </div>
+
+</div>
 
 <div class="modal" role="dialog" [ngStyle]="{'display':accesspopup}">
   <div class="modal-dialog modal-md">

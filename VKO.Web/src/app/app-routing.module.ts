@@ -20,6 +20,11 @@ const appRoutes: Routes = [
     path: 'Opticalslazy',
     loadChildren: './Opticals.module#OpticalsLazyModule'
   },
+
+    {
+    path: 'Inventorylazy',
+    loadChildren: './Inventory.module#InventoryLazyModule'
+  },
   //{ path: 'Drugslazy/olm/Manufacturer', component: OnelinemasterComponent },
   //{ path: 'Drugslazy/olm/Frequency', component: OnelinemasterComponent },
   //{ path: 'Drugslazy/olm/Drug Instruction', component: OnelinemasterComponent },
@@ -142,10 +147,7 @@ const appRoutes: Routes = [
   //  loadChildren: './Admission.module#AdmissionLazyModule'
   //},
 
-  //{
-  //  path: 'Inventorylazy',
-  //  loadChildren: './Inventory.module#InventoryLazyModule'
-  //},
+
   //{
   //  path: 'Administrationlazy',
   //  loadChildren: './Administration.module#AdminLazyModule'
