@@ -25,3 +25,12 @@ D:\GIT_WYNK_EMR\GIT_VKO\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand E
 D:\GIT_WYNK_EMR\GIT_VKO\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.AssemblyInfo.cs
 D:\GIT_WYNK_EMR\GIT_VKO\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.dll
 D:\GIT_WYNK_EMR\GIT_VKO\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
+D:\WYNK_GIT_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.deps.json
+D:\WYNK_GIT_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.dll
+D:\WYNK_GIT_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
+D:\WYNK_GIT_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.csprojAssemblyReference.cache
+D:\WYNK_GIT_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.csproj.CoreCompileInputs.cache
+D:\WYNK_GIT_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.AssemblyInfoInputs.cache
+D:\WYNK_GIT_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.AssemblyInfo.cs
+D:\WYNK_GIT_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.dll
+D:\WYNK_GIT_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.pdb

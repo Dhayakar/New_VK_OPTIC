@@ -1212,11 +1212,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GIT_WYNK_EMR\\GIT_VKO\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj",
+      "projectUniqueName": "D:\\WYNK_GIT_DESKTOP\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj",
       "projectName": "SMSand EMAILService.cs",
-      "projectPath": "D:\\GIT_WYNK_EMR\\GIT_VKO\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj",
+      "projectPath": "D:\\WYNK_GIT_DESKTOP\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj",
       "packagesPath": "C:\\Users\\SYSTEM1\\.nuget\\packages\\",
-      "outputPath": "D:\\GIT_WYNK_EMR\\GIT_VKO\\SMSand EMAILService.cs\\obj\\",
+      "outputPath": "D:\\WYNK_GIT_DESKTOP\\VK_Optic_Point\\SMSand EMAILService.cs\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

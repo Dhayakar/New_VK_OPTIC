@@ -279,11 +279,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GIT_WYNK_EMR\\GIT_VKO\\WYNK.Helpers\\WYNK.Helpers.csproj",
+      "projectUniqueName": "D:\\WYNK_GIT_DESKTOP\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj",
       "projectName": "WYNK.Helpers",
-      "projectPath": "D:\\GIT_WYNK_EMR\\GIT_VKO\\WYNK.Helpers\\WYNK.Helpers.csproj",
+      "projectPath": "D:\\WYNK_GIT_DESKTOP\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj",
       "packagesPath": "C:\\Users\\SYSTEM1\\.nuget\\packages\\",
-      "outputPath": "D:\\GIT_WYNK_EMR\\GIT_VKO\\WYNK.Helpers\\obj\\",
+      "outputPath": "D:\\WYNK_GIT_DESKTOP\\VK_Optic_Point\\WYNK.Helpers\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

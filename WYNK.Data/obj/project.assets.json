@@ -3962,11 +3962,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GIT_WYNK_EMR\\GIT_VKO\\WYNK.Data\\WYNK.Data.csproj",
+      "projectUniqueName": "D:\\WYNK_GIT_DESKTOP\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj",
       "projectName": "WYNK.Data",
-      "projectPath": "D:\\GIT_WYNK_EMR\\GIT_VKO\\WYNK.Data\\WYNK.Data.csproj",
+      "projectPath": "D:\\WYNK_GIT_DESKTOP\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj",
       "packagesPath": "C:\\Users\\SYSTEM1\\.nuget\\packages\\",
-      "outputPath": "D:\\GIT_WYNK_EMR\\GIT_VKO\\WYNK.Data\\obj\\",
+      "outputPath": "D:\\WYNK_GIT_DESKTOP\\VK_Optic_Point\\WYNK.Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -3985,11 +3985,11 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "D:\\GIT_WYNK_EMR\\GIT_VKO\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj": {
-              "projectPath": "D:\\GIT_WYNK_EMR\\GIT_VKO\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj"
+            "D:\\WYNK_GIT_DESKTOP\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj": {
+              "projectPath": "D:\\WYNK_GIT_DESKTOP\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj"
             },
-            "D:\\GIT_WYNK_EMR\\GIT_VKO\\WYNK.Helpers\\WYNK.Helpers.csproj": {
-              "projectPath": "D:\\GIT_WYNK_EMR\\GIT_VKO\\WYNK.Helpers\\WYNK.Helpers.csproj"
+            "D:\\WYNK_GIT_DESKTOP\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj": {
+              "projectPath": "D:\\WYNK_GIT_DESKTOP\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj"
             }
           }
         }
