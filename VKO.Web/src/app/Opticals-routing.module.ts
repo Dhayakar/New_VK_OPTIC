@@ -53,9 +53,20 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
   declarations: [
-    OpticalOrderComponent,
-    OpticalGrnComponent,
     LensMasterComponent,
+    OpticalComponent,
+    CustomerMasterComponent,
+    BrandMasterComponent,
+    OpticalOrderComponent,
+    CustomerOrderComponent,
+    CustomerOrderCancellationComponent,
+    OpticalBillingComponent,
+    OpticalGrnComponent,
+    OpticalStockSummaryComponent,    
+    OpticalStockLedgerComponent,
+    OpticalBillingRegisterComponent,
+    LensFrameUploadedComponent,
+    LensframestockuploadComponent,
     MaterialreturntovendorComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
