@@ -109,5 +109,14 @@ namespace WYNK.Services.Controllers
             return _repoWrapper.Meterial.Submitopticaldata(OpticalMaterialretrunsavedata);
 
         }
+
+        [HttpGet("GetHistoryDetails/{Phase}/{cmpid}")]
+        public dynamic GetHistoryDetails(int Phase, int cmpid)
+        {
+            return _repoWrapper.Meterial.GetHistoryDetails(Phase, cmpid);
+        }
+
+        
+
     }
 }

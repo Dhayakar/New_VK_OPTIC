@@ -19,6 +19,7 @@ namespace WYNK.Data.Model.ViewModel
         public ICollection<OpticalMaterial> OpticalMaterial { get; set; }
         public ICollection<Opticamreturndetails> Opticamreturndetails { get; set; }
         public ICollection<Opticamreturnsubmitdetails> Opticamreturnsubmitdetails { get; set; }
+        public ICollection<OpticalMaterialHistoryDetails> OpticalMaterialHistoryDetails { get; set; }
         public string storename { get; set; }
         public bool Yearstatus { get; set; }
         public string storekeeper { get; set; }
@@ -49,6 +50,17 @@ namespace WYNK.Data.Model.ViewModel
         public DateTime Issuedate { get; set; }
     }
 
+    public class OpticalMaterialHistoryDetails
+    {
+        public string Docnumber { get; set; }
+        public decimal ItemQty { get; set; }
+        public DateTime? DocDate { get; set; }
+        public decimal? ItemValue { get; set; }
+        public string Vendor { get; set; }
+        public string Brand { get; set; }
+        public string Brandtype { get; set; }
+        public string Store { get; set; }
+    }
     public class Opticamreturnsubmitdetails
     {
         public string Item { get; set; }

@@ -19,5 +19,6 @@ namespace WYNK.Data.Repository
         dynamic getmaterialreturndetailsbasedonGRN(string Phase);
         dynamic getallreturndetailsbasedonrn(string Phase, int CMPID, int trid);
         dynamic Submitopticaldata(Meterialview OpticalMaterialretrunsavedata);
+        dynamic GetHistoryDetails(int Phase, int cmpid);
     }
 }

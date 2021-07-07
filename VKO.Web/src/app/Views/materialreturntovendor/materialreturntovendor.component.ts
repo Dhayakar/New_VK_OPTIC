@@ -87,9 +87,15 @@ export class MaterialreturntovendorComponent implements OnInit {
         },
       });
     }
-
+    this.commonService.getListOfData('Common/GetCurrencyvalues/' + localStorage.getItem('CompanyID')).subscribe(data => {
+      debugger;
+      this.Country1 = data[0].Value;
+      this.Country2 = data[0].Text;
+    });
 
   }
+  Country1;
+  Country2;
   numberOnly(event): boolean {
     debugger;
     const charCode = (event.which) ? event.which : event.keyCode;
@@ -655,13 +661,33 @@ export class MaterialreturntovendorComponent implements OnInit {
   }
   M_OPDAte;
   minDate;
+  Datecomparision;
+  compareDates(d1, d2) {
+  const date1 = new Date(d1);
+  const date2 = new Date(d2);
+
+  if (date1.getTime() > date2.getTime()) {
+    return this.Datecomparision = "Greater";
+  } else if (date1.getFullYear() < date2.getFullYear()) {
+    return   this.Datecomparision = "Lesser";
+  } else if (date1.getDate() === date2.getDate()) {
+    return this.Datecomparision = "Equal";
+  }
+  }
+
+
   Calculatedate(event) {
     debugger;
     if (this.M_OPDAte != null && this.GRNDate != null) {
-      var resultdate = this.M_OPDAte;
+      var resultdate = new Date(this.M_OPDAte);
       var targetdate = new Date(this.GRNDate);
-      if (resultdate <= targetdate) {
-        this.minDate = resultdate;
+
+      var orgresuldate = this.Datepipe.transform(resultdate, "yyyy-MMM-dd");
+      var orgtargetdate = this.Datepipe.transform(targetdate, "yyyy-MMM-dd");
+      var comparison = this.compareDates(orgtargetdate, orgresuldate);
+      var resultant = this.Datecomparision;
+      if (resultant == "Lesser" || resultant == "Equal") {
+       // this.minDate = resultdate;
         var sectargetdate = this.Datepipe.transform(resultdate, "dd-MMM-yyyy");
         this.commonService.getListOfData('Meterialreturn/Checkfinancialyear/' + sectargetdate + '/' + localStorage.getItem("CompanyID")).subscribe(data => {
           debugger;
@@ -713,6 +739,39 @@ export class MaterialreturntovendorComponent implements OnInit {
       });
     }
 
+  }
+  HistoryGriddata;
+  Itemname;
+  Itemtype;
+  viewHistory(datas) {
+    debugger;
+    
+    this.commonService.getListOfData('Meterialreturn/GetHistoryDetails/' + datas.ItemID + '/' + localStorage.getItem("CompanyID")).subscribe(data => {
+      if (data.length != 0) {
+        this.HistoryGriddata = data;
+        this.Itemname = datas.Item;
+        this.Itemtype = datas.type;
+        this.Itemblock = 'block';
+      } else {
+        Swal.fire({
+          type: 'warning',
+          title: 'warning',
+          text: 'No Data',
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 1500,
+          customClass: {
+            popup: 'alert-warp',
+            container: 'alert-container'
+          },
+        });
+        this.HistoryGriddata = null;
+      }
+    });
+  }
+  Itemblock;
+  ItemblockClosessss() {
+    this.Itemblock = 'none';
   }
   ///////////////////////
 }

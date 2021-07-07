@@ -26,3 +26,17 @@ D:\GIT_WYNK_EMR\VKO\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.AssemblyInfo.cs
 D:\GIT_WYNK_EMR\VKO\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.csproj.CopyComplete
 D:\GIT_WYNK_EMR\VKO\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.dll
 D:\GIT_WYNK_EMR\VKO\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.pdb
+D:\GIT_WYNK_EMR\GIT_VKO\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Data.deps.json
+D:\GIT_WYNK_EMR\GIT_VKO\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Data.dll
+D:\GIT_WYNK_EMR\GIT_VKO\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Data.pdb
+D:\GIT_WYNK_EMR\GIT_VKO\WYNK.Data\bin\Debug\netcoreapp2.1\SMSand EMAILService.cs.dll
+D:\GIT_WYNK_EMR\GIT_VKO\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Helpers.dll
+D:\GIT_WYNK_EMR\GIT_VKO\WYNK.Data\bin\Debug\netcoreapp2.1\SMSand EMAILService.cs.pdb
+D:\GIT_WYNK_EMR\GIT_VKO\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Helpers.pdb
+D:\GIT_WYNK_EMR\GIT_VKO\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.csprojAssemblyReference.cache
+D:\GIT_WYNK_EMR\GIT_VKO\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.csproj.CoreCompileInputs.cache
+D:\GIT_WYNK_EMR\GIT_VKO\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.AssemblyInfoInputs.cache
+D:\GIT_WYNK_EMR\GIT_VKO\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.AssemblyInfo.cs
+D:\GIT_WYNK_EMR\GIT_VKO\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.csproj.CopyComplete
+D:\GIT_WYNK_EMR\GIT_VKO\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.dll
+D:\GIT_WYNK_EMR\GIT_VKO\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.pdb

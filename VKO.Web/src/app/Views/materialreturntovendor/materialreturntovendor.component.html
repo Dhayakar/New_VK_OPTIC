@@ -22,7 +22,7 @@
         </div>
         <div class="col-sm-4 content-left pb20">
           <div class="row">
-            <div class="col-sm-4" style="color:darkblue"><b>GRN</b></div>
+            <div class="col-sm-4" style="color:darkblue"><b>GRN Number</b></div>
             <div class="col-sm-1">:</div>
             <div class="col-sm-6"><b>{{GRNNUMBER}}</b></div>
           </div>
@@ -35,14 +35,14 @@
         <div class="col-sm-2 content-left pb20">
           <mat-form-field appearance="outline">
             <mat-label>Issue Date</mat-label>
-            <input required autocomplete="off" [max]="DLDateMAXop" [min]="minDate" matInput [matDatepicker]="pickerop"
+            <input required autocomplete="off" [max]="DLDateMAXop"  matInput [matDatepicker]="pickerop"
                    placeholder="Choose a date" [(ngModel)]="M_OPDAte" name="issuedayte" (dateChange)="Calculatedate($event);">
             <mat-datepicker-toggle matSuffix [for]="pickerop"></mat-datepicker-toggle>
             <mat-datepicker #pickerop></mat-datepicker>
           </mat-form-field>
         </div>
         <div class="col-sm-2  f-r content-right pb20">
-          <button class="btn btn-warning-default" data-dismiss="modal" autofocus (click)="Clicksch()">View Details</button>
+          <button class="btn btn-primary" style="margin-top:5%" data-dismiss="modal" autofocus (click)="Clicksch()">View Details</button>
         </div>
       </div>
     </div>
@@ -73,6 +73,11 @@
           <div class="col-sm-8">{{vendoradd2}}</div>
         </div>
         <div class="row">
+          <div class="col-sm-3" style="color:darkblue">Tax No.</div>
+          <div class="col-sm-1">:</div>
+          <div class="col-sm-8">{{vendorgst}}</div>
+        </div>
+        <div class="row">
           <div class="col-sm-3" style="color:darkblue">Location / City</div>
           <div class="col-sm-1">:</div>
           <div class="col-sm-8">{{vendorloc}} / {{vendorcity}}</div>
@@ -83,15 +88,11 @@
           <div class="col-sm-1">:</div>
           <div class="col-sm-8">{{vendorstate}} / {{vendorcountry}}</div>
         </div>
-        <div class="row">
-          <div class="col-sm-3" style="color:darkblue">Tax No.</div>
-          <div class="col-sm-1">:</div>
-          <div class="col-sm-8">{{vendorgst}}</div>
-        </div>
+
       </div>
     </div>
-    <div class="row tableFixHead" style="height:180px;padding: 0px;">
-      <table class="custom-table withoutbackgroung search-table table-bordered" style="width: 98%;margin: 12px;margin-top: -1px;">
+    <div class="row tableFixHead" style="height: 180px; padding: 0px; width: 100%; margin: 0%;">
+      <table class="custom-table withoutbackgroung search-table table-bordered" style="margin-top: -1px;">
         <thead>
           <tr>
             <th>Sno</th>
@@ -116,13 +117,13 @@
             <!--<td>{{data.Brand}}</td>-->
             <td>{{data.model}}</td>
             <td>{{data.color}}</td>
-            <td>{{data.ClosingQty}}</td>
-            <td>{{data.itemqty}}</td>
+            <td>{{data.ClosingQty | number : '1.2-2'}}</td>
+            <td>{{data.itemqty | number : '1.2-2'}}</td>
             <td contenteditable="true" (keyup)="changeqty(data,$event);" (keypress)="RestrictNegativeValues($event)">0</td>
-            <td>{{data.itemrate}}</td>
-            <td>{{data.itemvalue}}</td>
+            <td>{{data.itemrate | number : '1.2-2'}}</td>
+            <td>{{data.itemvalue | currency:Country2}}</td>
             <td>
-              <mat-icon style="color:blue;cursor:pointer" data-toggle="tooltip" data-placement="top" title="View History" (click)="viewHistory()">receipt</mat-icon>
+              <mat-icon style="color:blue;cursor:pointer" data-toggle="tooltip" data-placement="top" title="View History" (click)="viewHistory(data)">receipt</mat-icon>
               <mat-icon style="color:red;margin-left:1%;cursor:pointer" data-toggle="tooltip" data-placement="top" title="Remove Item" (click)="DeleteRecord(i)">delete_sweep</mat-icon>
             </td>
           </tr>
@@ -134,7 +135,7 @@
       <div class="col-sm-4">
         <mat-form-field appearance="outline" style="width: -webkit-fill-available;">
           <mat-label>Remarks</mat-label>
-          <textarea required [(ngModel)]="M_reasons" name="M_reasond" #messageFH maxlength="250" rows="3" cols="20" matInput placeholder="Enter Reasons for return"></textarea>
+          <textarea [(ngModel)]="M_reasons" name="M_reasond" #messageFH maxlength="250" rows="3" cols="20" matInput placeholder="Enter Reasons for return"></textarea>
         </mat-form-field>
       </div>
       <div class="col-sm-4"></div>
@@ -270,4 +271,62 @@
     </div>
   </div>
 </div>
+
+
+<div class="modal" role="dialog" [ngStyle]="{'display':Itemblock}">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="ItemblockClosessss()">&times;</button>
+        <h6 class="modal-title">History</h6>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-2" style="color:darkblue"><b>Item Description</b></div>
+          <div class="col-sm-1">:</div>
+          <div class="col-sm-5"><b>{{Itemname}}</b></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-2" style="color:darkblue"><b>Item Type</b></div>
+          <div class="col-sm-1">:</div>
+          <div class="col-sm-5"><b>{{Itemtype}}</b></div>
+        </div>
+        <table class="custom-table withoutbackgroung search-table table-bordered" style="width: 98%;margin: 1%;">
+          <thead>
+            <tr>
+              <th style="text-align:center">Sno</th>
+              <!--<th style="text-align:center">Item</th>
+        <th style="text-align:center">Brand Type</th>-->
+              <th style="text-align:center">Issue Number</th>
+              <th style="text-align:center">Issue Date</th>
+              <th style="text-align:center">Issue Qty</th>
+              <th style="text-align:center">Qty Value</th>
+              <!--<th style="text-align:center">Store</th>
+              <th style="text-align:center">Vendor</th>-->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of HistoryGriddata; let i = index">
+              <td>{{i+1}}</td>
+              <!--<td>{{data.Brand}}</td>
+        <td>{{data.Brandtype}}</td>-->
+              <td>{{data.Docnumber}}</td>
+              <td>{{data.DocDate | date: "dd-MMM-y HH:mm"}}</td>
+              <td>{{data.ItemQty | number : '1.2-2'}}</td>
+              <td>{{data.ItemValue | currency:Country2}}</td>
+              <!--<td>{{data.Store}}</td>
+              <td>{{data.Vendor}}</td>-->
+            </tr>
+          </tbody>
+
+        </table>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-warning-default" data-dismiss="modal" autofocus (click)="ItemblockClosessss()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 

@@ -16,3 +16,12 @@ D:\GIT_WYNK_EMR\VKO\WYNK.Helpers\obj\Debug\netstandard2.0\WYNK.Helpers.AssemblyI
 D:\GIT_WYNK_EMR\VKO\WYNK.Helpers\obj\Debug\netstandard2.0\WYNK.Helpers.AssemblyInfo.cs
 D:\GIT_WYNK_EMR\VKO\WYNK.Helpers\obj\Debug\netstandard2.0\WYNK.Helpers.dll
 D:\GIT_WYNK_EMR\VKO\WYNK.Helpers\obj\Debug\netstandard2.0\WYNK.Helpers.pdb
+D:\GIT_WYNK_EMR\GIT_VKO\WYNK.Helpers\bin\Debug\netstandard2.0\WYNK.Helpers.deps.json
+D:\GIT_WYNK_EMR\GIT_VKO\WYNK.Helpers\bin\Debug\netstandard2.0\WYNK.Helpers.dll
+D:\GIT_WYNK_EMR\GIT_VKO\WYNK.Helpers\bin\Debug\netstandard2.0\WYNK.Helpers.pdb
+D:\GIT_WYNK_EMR\GIT_VKO\WYNK.Helpers\obj\Debug\netstandard2.0\WYNK.Helpers.csprojAssemblyReference.cache
+D:\GIT_WYNK_EMR\GIT_VKO\WYNK.Helpers\obj\Debug\netstandard2.0\WYNK.Helpers.csproj.CoreCompileInputs.cache
+D:\GIT_WYNK_EMR\GIT_VKO\WYNK.Helpers\obj\Debug\netstandard2.0\WYNK.Helpers.AssemblyInfoInputs.cache
+D:\GIT_WYNK_EMR\GIT_VKO\WYNK.Helpers\obj\Debug\netstandard2.0\WYNK.Helpers.AssemblyInfo.cs
+D:\GIT_WYNK_EMR\GIT_VKO\WYNK.Helpers\obj\Debug\netstandard2.0\WYNK.Helpers.dll
+D:\GIT_WYNK_EMR\GIT_VKO\WYNK.Helpers\obj\Debug\netstandard2.0\WYNK.Helpers.pdb

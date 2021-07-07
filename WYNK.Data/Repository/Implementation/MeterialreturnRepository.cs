@@ -520,7 +520,7 @@ namespace WYNK.Data.Repository.Implementation
             var materialreturn = new Meterialview();
             var opticalstockmaster = WYNKContext.OpticalStockMaster.Where(x => x.DocumentNumber == Phase).AsNoTracking().ToList();
             var optram = WYNKContext.OpticalStockTran.AsNoTracking().ToList();
-            var opbalance = WYNKContext.OpticalBalance.AsNoTracking().ToList();
+            var opbalance = WYNKContext.OpticalBalance.Where(x => x.ClosingBalance > 0).AsNoTracking().ToList();
             var lenstran = WYNKContext.Lenstrans.AsNoTracking().ToList();
             var brandmastrer = WYNKContext.Brand.AsNoTracking().ToList();
             var vendorm = CMPSContext.VendorMaster.AsNoTracking().ToList();
@@ -545,7 +545,7 @@ namespace WYNK.Data.Repository.Implementation
                                                        color = lt.Colour,
                                                        ClosingQty = ob.ClosingBalance,
                                                        itemqty = Checkquantity(ot.ItemQty, ot.ContraQty),
-                                                       itemrate =  ot.ItemRate,
+                                                       itemrate = ot.ItemRate,
                                                        itemvalue = Checkquantity(ot.ItemQty, ot.ContraQty) * ot.ItemRate,
                                                        storename = storemas.Where(x => x.StoreID == os.StoreID).Select(x => x.Storename).FirstOrDefault(),
                                                        storekeeper = storemas.Where(x => x.StoreID == os.StoreID).Select(x => x.StoreKeeper).FirstOrDefault(),
@@ -690,8 +690,8 @@ namespace WYNK.Data.Repository.Implementation
                         oErrorLogstran.WriteErrorLogArray("OpticalStockTran", namestr);
 
                         var otran = WYNKContext.OpticalStockTran.Where(x => x.STID == Convert.ToInt32(item.STID)).FirstOrDefault();
-                      
-                        if(otran.ContraQty != null)
+
+                        if (otran.ContraQty != null)
                         {
                             otran.ContraQty = item.Returnqty + otran.ContraQty;
                         }
@@ -782,6 +782,40 @@ namespace WYNK.Data.Repository.Implementation
                 Success = false,
                 Message = CommonMessage.Missing,
             };
+        }
+
+
+        public dynamic GetHistoryDetails(int Phase, int cmpid)
+        {
+
+            var materialreturn = new Meterialview();
+            var opticalstockmaster = WYNKContext.OpticalStockMaster.Where(x => x.CMPID == cmpid && x.TransactionType == "I").AsNoTracking().ToList();
+            var optram = WYNKContext.OpticalStockTran.Where(x => x.LMIDID == Phase && x.ContraQty == null).AsNoTracking().ToList();
+            var lenstran = WYNKContext.Lenstrans.AsNoTracking().ToList();
+            var brandmastrer = WYNKContext.Brand.AsNoTracking().ToList();
+            var vendorm = CMPSContext.VendorMaster.AsNoTracking().ToList();
+            var storemas = CMPSContext.Storemasters.AsNoTracking().ToList();
+            //var locationmas = CMPSContext.LocationMaster.AsNoTracking().ToList();
+            var utctime = CMPSContext.Setup.Where(x => x.CMPID == cmpid).Select(x => x.UTCTime).FirstOrDefault();
+            TimeSpan ts = TimeSpan.Parse(utctime);
+
+            materialreturn.OpticalMaterialHistoryDetails = (from ot in optram
+                                                            join os in opticalstockmaster on ot.RandomUniqueID equals os.RandomUniqueID
+                                                            join lt in lenstran on ot.LMIDID equals lt.ID
+                                                            join br in brandmastrer on lt.Brand equals br.ID
+                                                            select new OpticalMaterialHistoryDetails
+                                                            {
+                                                               Docnumber = os.DocumentNumber,
+                                                               DocDate =os.DocumentDate + ts,
+                                                               ItemQty = ot.ItemQty,
+                                                               ItemValue = ot.ItemValue,
+                                                              // Vendor = vendorm.Where(x =>x.ID == os.VendorID).Select(x =>x.Name).FirstOrDefault(),
+                                                               //Store = storemas.Where(x =>x.StoreID == os.StoreID).Select(x =>x.Storename).FirstOrDefault(),
+                                                               //Brand = br.Description,
+                                                               //Brandtype = br.BrandType,
+                                                            }).OrderBy(x => x.Brand).ToList();
+            return materialreturn.OpticalMaterialHistoryDetails;
+
         }
     }
 
