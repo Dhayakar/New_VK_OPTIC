@@ -22,12 +22,12 @@
         </div>
         <div class="col-sm-4 content-left pb20">
           <div class="row">
-            <div class="col-sm-4" style="color:darkblue"><b>GRN Number</b></div>
+            <div class="col-sm-4" style="color:darkblue;width:40%"><b>GRN Number</b></div>
             <div class="col-sm-1">:</div>
             <div class="col-sm-6"><b>{{GRNNUMBER}}</b></div>
           </div>
           <div class="row">
-            <div class="col-sm-4" style="color:darkblue"><b>GRN Date</b></div>
+            <div class="col-sm-4" style="color:darkblue;width:40%"><b>GRN Date & Time</b></div>
             <div class="col-sm-1">:</div>
             <div class="col-sm-6"><b>{{GRNDate | date: "dd-MMM-y HH:mm"}}</b></div>
           </div>
@@ -112,16 +112,16 @@
         <tbody>
           <tr *ngFor="let data of Lensgriddata; let i=index;">
             <td>{{i+1}}</td>
-            <td>{{data.Item}}</td>
-            <td>{{data.type}}</td>
+            <td style="text-align:left">{{data.Item}}</td>
+            <td style="text-align:left">{{data.type}}</td>
             <!--<td>{{data.Brand}}</td>-->
-            <td>{{data.model}}</td>
-            <td>{{data.color}}</td>
-            <td>{{data.ClosingQty | number : '1.2-2'}}</td>
-            <td>{{data.itemqty | number : '1.2-2'}}</td>
+            <td style="text-align:left">{{data.model}}</td>
+            <td style="text-align:left">{{data.color}}</td>
+            <td style="text-align:right">{{data.ClosingQty | number : '1.2-2'}}</td>
+            <td style="text-align:right">{{data.itemqty | number : '1.2-2'}}</td>
             <td contenteditable="true" (keyup)="changeqty(data,$event);" (keypress)="RestrictNegativeValues($event)">0</td>
-            <td>{{data.itemrate | number : '1.2-2'}}</td>
-            <td>{{data.itemvalue | currency:Country2}}</td>
+            <td style="text-align:right">{{data.itemrate | number : '1.2-2'}}</td>
+            <td style="text-align:right">{{data.itemvalue | currency:Country2}}</td>
             <td>
               <mat-icon style="color:blue;cursor:pointer" data-toggle="tooltip" data-placement="top" title="View History" (click)="viewHistory(data)">receipt</mat-icon>
               <mat-icon style="color:red;margin-left:1%;cursor:pointer" data-toggle="tooltip" data-placement="top" title="Remove Item" (click)="DeleteRecord(i)">delete_sweep</mat-icon>
@@ -307,13 +307,13 @@
           </thead>
           <tbody>
             <tr *ngFor="let data of HistoryGriddata; let i = index">
-              <td>{{i+1}}</td>
+              <td style="text-align:left">{{i+1}}</td>
               <!--<td>{{data.Brand}}</td>
         <td>{{data.Brandtype}}</td>-->
-              <td>{{data.Docnumber}}</td>
-              <td>{{data.DocDate | date: "dd-MMM-y HH:mm"}}</td>
-              <td>{{data.ItemQty | number : '1.2-2'}}</td>
-              <td>{{data.ItemValue | currency:Country2}}</td>
+              <td style="text-align:left">{{data.Docnumber}}</td>
+              <td style="text-align:left">{{data.DocDate | date: "dd-MMM-y HH:mm"}}</td>
+              <td style="text-align:right">{{data.ItemQty | number : '1.2-2'}}</td>
+              <td style="text-align:right">{{data.ItemValue | currency:Country2}}</td>
               <!--<td>{{data.Store}}</td>
               <td>{{data.Vendor}}</td>-->
             </tr>
