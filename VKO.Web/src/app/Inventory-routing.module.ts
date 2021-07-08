@@ -13,7 +13,6 @@ import { PoregisterComponent } from './Views/poregister/poregister.component';
 import { MedicaprescriptionvsmedicalbillingComponent } from './Views/medicaprescriptionvsmedicalbilling/medicaprescriptionvsmedicalbilling.component';
 import { PatientmedicinelistComponent } from './Views/patientmedicinelist/patientmedicinelist.component';
 import { DrugStockSummaryComponent } from './Views/drug-stock-summary/drug-stock-summary.component';
-import { IcdmasterComponent } from './Views/icdmaster/icdmaster.component';
 import { MeterialReturnComponent } from './Views/meterial-return/meterial-return.component';
 import { ItemvsvendorComponent } from './Views/itemvsvendor/itemvsvendor.component';
 import { InterDepartmentTransferComponent } from './Views/inter-department-transfer/inter-department-transfer.component';
@@ -30,7 +29,6 @@ import { GRNComponent } from './Views/grn/grn.component';
 import { GRNwithoutpoComponent } from './Views/grnwithoutpo/grnwithoutpo.component';
 import { PurchaseorderComponent } from './Views/purchaseorder/purchaseorder.component';
 import { IndentFormComponent } from './Views/indent-form/indent-form.component';
-import { InvestigationBillingComponent } from './Views/investigationBilling/investigationbilling.component';
 import { DrugstockledgerComponent } from './Views/drugstockledger/drugstockledger.component';
 
 const routes: Routes = [
