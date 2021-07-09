@@ -8,6 +8,7 @@ import { LoginComponent } from './Views/login/login.component';
 import { DashboardnewregisteredvaluesComponent } from './Views/dashboardnewregisteredvalues/dashboardnewregisteredvalues.component';
 import { AccessprivilegesComponent } from './Views/accessprivileges/accessprivileges.component';
 import { MaterialreturntovendorComponent } from './Views/materialreturntovendor/materialreturntovendor.component';
+//import { WhatsapptemplateComponent } from './Views/whatsapptemplate/whatsapptemplate.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -15,10 +16,16 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'dash', component: DashboardnewregisteredvaluesComponent },
   { path: 'useraccess', component: AccessprivilegesComponent },
+  //{ path: 'Whatsapp', component: WhatsapptemplateComponent },
 
   {
     path: 'Opticalslazy',
     loadChildren: './Opticals.module#OpticalsLazyModule'
+  },
+
+    {
+    path: 'Inventorylazy',
+    loadChildren: './Inventory.module#InventoryLazyModule'
   },
   //{ path: 'Drugslazy/olm/Manufacturer', component: OnelinemasterComponent },
   //{ path: 'Drugslazy/olm/Frequency', component: OnelinemasterComponent },
@@ -142,10 +149,7 @@ const appRoutes: Routes = [
   //  loadChildren: './Admission.module#AdmissionLazyModule'
   //},
 
-  //{
-  //  path: 'Inventorylazy',
-  //  loadChildren: './Inventory.module#InventoryLazyModule'
-  //},
+
   //{
   //  path: 'Administrationlazy',
   //  loadChildren: './Administration.module#AdminLazyModule'

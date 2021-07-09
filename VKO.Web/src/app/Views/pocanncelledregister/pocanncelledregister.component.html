@@ -1,0 +1,213 @@
+
+
+
+<div class="col-sm-12" style="margin-top:2%">
+  <div>
+    <h4 style="text-align:center">
+      <label><b> Cancelled PO Register</b></label>
+    </h4>
+  </div>
+</div>
+
+
+<div class="col-sm-12">
+  <div class="col-sm-12" style="border:2px solid #51b8f2; border-radius:8px;margin-top:-1% ">
+
+    <form #C_Po_OrdForm="ngForm" style="margin-top:1%">
+      <div class="col-sm-1" style="margin-top:1%"><label style="width:100%"> Period:</label></div>
+
+      <div class="col-sm-2">
+        <mat-form-field appearance="outline" style="font-size: 11px; width:100%">
+          <mat-label>From Date</mat-label>
+          <input [(ngModel)]="MFromDate" [max]="maxDate()" (dateChange)="CheckToDate()" name="FromDate" matInput [matDatepicker]="FromDate" placeholder="FromDate" required>
+          <mat-datepicker-toggle matSuffix [for]="FromDate"></mat-datepicker-toggle>
+          <mat-datepicker #FromDate></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="col-sm-2">
+        <mat-form-field appearance="outline" style="font-size: 11px;width:100%">
+          <mat-label>To Date</mat-label>
+          <input [(ngModel)]="MToDate" [min]="minToDate" [max]="maxDate()" (dateChange)="CheckToDate()" name="ToDate" matInput [matDatepicker]="ToDate" placeholder="ToDate" required>
+          <mat-datepicker-toggle matSuffix [for]="ToDate"></mat-datepicker-toggle>
+          <mat-datepicker #ToDate></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-6" style="justify-content:center">
+        <button mat-raised-button class="success" (click)="onSubmit(C_Po_OrdForm)" style="justify-content:center"> Submit </button>
+        <!--<mat-checkbox (click)="onSubmit(P_OrdDetForm)" class="checkmark"> Include cancelled P0</mat-checkbox>-->
+        &nbsp; &nbsp;
+
+        <button type="button" class="btn btn-warning" style="font-size:15px;color:orange;background-color:white;margin-bottom:1%" (click)="Cancel()"><strong>Cancel</strong></button>
+        <!--<button type="button" class="btn btn-warning" style="font-size:15px;color:orange;background-color:white;" (click)="Cancel()"><strong>Cancel</strong></button>-->
+        <!--<button matbutton mat-stroked-button color="btn btn-warning" style="color:orange;background-color:white;" (click)="Cancel()"> Cancel</button>-->
+      </div>
+
+      <div class="col-sm-1"></div>
+      <!--Cancel Popup-->
+      <div class="modal" role="dialog" [ngStyle]="{'display':cancelblock}">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content" style="width: 400px;">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" (click)="modalClose()">&times;</button>
+              <h4 class="modal-title">Cancel Po Register </h4>
+            </div><br />
+            <p align="center">Do you want to cancel</p>
+            <div class="modal-footer">
+              <button class="btn btn-danger" data-dismiss="modal" autofocus (click)="CancelNo()">No</button>
+              <button type="reset" class="btn btn-success " data-dismiss="modal" (click)="CancelYes()">Yes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+<div class="col-sm-12" style="margin-top:2%" [hidden]="!C_POLable">
+  <div>
+    <h4 style="text-align:center">
+      <label><b> Cancelled PO Register</b></label>
+    </h4>
+  </div>
+</div>
+
+
+<div class="col-sm-12" [hidden]="!CancelledPoOrderTable">
+  <div class="col-sm-12" style="border:2px solid #51b8f2; border-radius:8px;margin-top:-1%">
+    <div [hidden]="!Export_Cancelled_PO_Det" style="margin-top:1%">
+
+      <div class="col-sm-10">
+
+      </div>
+
+      <div class="col-sm-2" style="margin-left:-32px;">
+        <button mat-icon-button matTooltip="Export to PPF" id="cmd" (click)="getPdf()"><img style="height:35px;width:35px;" src="assets/pdf.png" /></button>
+        &nbsp;&nbsp;<button mat-icon-button matTooltip="Export to Excel" (click)="getExcel()"><img style="height:35px;width:45px;" src="assets/excel.svg" /></button>
+      </div>
+    </div>
+    <div class="col-sm-12" style="margin-top:1%" #table>
+      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" id="CPOTable" style="width:100%;margin-bottom:1%" #CPOTable>
+
+        <ng-container matColumnDef="S_no">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px" style="text-align:center">S_No</th>
+          <td mat-cell *matCellDef="let element; let i = index;"> {{i+1}} </td>
+          <td mat-footer-cell *matFooterCellDef>  </td>
+
+        </ng-container>
+        <ng-container matColumnDef="PoNo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px"> PO Cancellation Number </th>
+          <td mat-cell *matCellDef="let element" style="text-align:left"> {{element.PoNo}} </td>
+          <td mat-footer-cell *matFooterCellDef> <b>Total</b> </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="PoDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px"> PO Cancellation Date </th>
+          <td mat-cell *matCellDef="let element" style="text-align:left"> {{element.PoDate | date:'dd-MMM-y'  }} </td>
+          <td mat-footer-cell *matFooterCellDef>  </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="Parent_No">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px"> Original PO Number </th>
+
+          <td mat-cell *matCellDef="let element" style="text-align:left"> {{element.Parent_No}} </td>
+          <td mat-footer-cell *matFooterCellDef>  </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="Parent_Date">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px"> Original PO Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.Parent_Date | date:'dd-MMM-y'}} </td>
+          <td mat-footer-cell *matFooterCellDef>  </td>
+        </ng-container>
+        <ng-container matColumnDef="VendorName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px"> Vendor Name </th>
+          <td mat-cell *matCellDef="let element" style="text-align:left"> {{element.VendorName}} </td>
+          <td mat-footer-cell *matFooterCellDef>  </td>
+        </ng-container>
+
+
+        <!--<ng-container matColumnDef="Dlvry_Name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px"> Delivery Name </th>
+          <td mat-cell *matCellDef="let element" style="text-align:left"> {{element.Dlvry_Name}} </td>
+
+        </ng-container>
+
+
+        <ng-container matColumnDef="Dlvry_Addrss">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px"> Delivery address </th>
+          <td mat-cell *matCellDef="let element"> {{element.Dlvry_Addrss}} </td>
+
+        </ng-container>
+
+
+        <ng-container matColumnDef="Location">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Delivery Location </th>
+          <td mat-cell *matCellDef="let element"> {{element.Location}} </td>
+
+        </ng-container>-->
+        <ng-container matColumnDef="Gross_Prod_val">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px"> Gross Product value </th>
+          <td mat-cell *matCellDef="let element"> {{element.Gross_Prod_val | number : '1.2-2'}} </td>
+          <td mat-footer-cell *matFooterCellDef style="text-align:center"> {{getTotGrossProdValue() | number : '1.2-2'}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="Tot_Dis_val">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px"> Total Discount value </th>
+          <td mat-cell *matCellDef="let element"> {{element.Tot_Dis_val | number : '1.2-2'}} </td>
+          <td mat-footer-cell *matFooterCellDef style="text-align:center"> {{getTotDisValue() | number : '1.2-2'}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="Tot_Tax_val">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Total Tax value </th>
+          <td mat-cell *matCellDef="let element"> {{element.Tot_Tax_val | number : '1.2-2'}} </td>
+          <td mat-footer-cell *matFooterCellDef style="text-align:center"> {{getTotTaxValue() | number : '1.2-2'}}  </td>
+        </ng-container>
+
+
+        <!--<ng-container matColumnDef="Tot_CGSTTax_val">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px"> Total_CGSTTax_value </th>
+          <td mat-cell *matCellDef="let element"> {{element.Tot_CGSTTax_val | number : '1.2-2'}} </td>
+          <td mat-footer-cell *matFooterCellDef>  </td>
+        </ng-container>
+        <ng-container matColumnDef="Tot_SGSTTax_val">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Total_SGSTTax_value </th>
+          <td mat-cell *matCellDef="let element"> {{element.Tot_SGSTTax_val | number : '1.2-2'}} </td>
+          <td mat-footer-cell *matFooterCellDef>  </td>
+        </ng-container>-->
+
+
+        <ng-container matColumnDef="Tot_Po_val">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px"> Total PO Value </th>
+          <td mat-cell *matCellDef="let element"> {{element.Tot_Po_val | number : '1.2-2'}} </td>
+          <td mat-footer-cell *matFooterCellDef style="text-align:center"> {{getTotPOValue() | number : '1.2-2'}}  </td>
+        </ng-container>
+
+
+        <!--<ng-container matColumnDef="PO_status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px"> PO Status </th>
+          <td mat-cell *matCellDef="let element" > {{element.PO_status}} </td>
+
+        </ng-container>-->
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let element; let even = even;  columns: displayedColumns;" [ngClass]="{gray: even}"></tr>
+        <tr mat-footer-row *matFooterRowDef="displayedColumns;"></tr>
+
+
+        <!--<tr mat-row *matRowDef="let element;  let even = even;  columns: displayedColumn;" [ngClass]="{gray: even}" (click)="getDrugDet(element)"></tr>-->
+
+      </table>
+    </div>
+
+
+
+  </div>
+</div>
+

@@ -71,7 +71,7 @@ export class OpticalGrnComponent implements OnInit {
   serializedDate = new FormControl((new Date()).toISOString());
 
   constructor(public commonService: CommonService<OpticalgrnViewModel>, public datepipe: DatePipe, public dialog: MatDialog,
-    public appComponent: AppComponent, public el: ElementRef, private changeDatectorrefs: ChangeDetectorRef, private router: Router, ) { }
+    public appComponent: AppComponent, public el: ElementRef, private changeDatectorrefs: ChangeDetectorRef, private router: Router,) { }
 
   a = [
     '',
@@ -204,7 +204,7 @@ export class OpticalGrnComponent implements OnInit {
         this.CompanyID = localStorage.getItem("CompanyID");
         this.Getloctime = localStorage.getItem('GMTTIME');
         this.M_ReceiptDate = this.date.value;
-        this.commonService.getListOfData('Common/GetstoreDropdownvalues/' + parseInt(localStorage.getItem("CompanyID"))).subscribe(data => { this.StoreName = data; })
+        this.commonService.getListOfData('Common/GetstoreDropdownvaluesdesc/' + this.CompanyID + '/' + "Optical Department").subscribe(data => { this.StoreName = data; })
       }
       else {
         Swal.fire({
@@ -238,6 +238,7 @@ export class OpticalGrnComponent implements OnInit {
 
     else if (sstring == true) {
       if (Objdata.find(el => el.Parentmoduledescription === Pathname)) {
+
         this.commonService.getListOfData('Common/GetAccessdetailsstring/' + localStorage.getItem("CompanyID") + '/' + localStorage.getItem("userroleID") + '/' + Pathname).subscribe(data => {
           debugger;
           this.accessdata = data.GetAvccessDetails;
@@ -272,10 +273,10 @@ export class OpticalGrnComponent implements OnInit {
         this.CompanyID = localStorage.getItem("CompanyID");
         this.Getloctime = localStorage.getItem('GMTTIME');
         this.M_ReceiptDate = this.date.value;
-        this.commonService.getListOfData('Common/GetstoreDropdownvalues/' + parseInt(localStorage.getItem("CompanyID"))).subscribe(data => {
+        this.commonService.getListOfData('Common/GetstoreDropdownvaluesdesc/' + this.CompanyID + '/' + "Optical Department").subscribe(data => {
           debugger;
           this.StoreName = data;
-        })
+        });
       }
       else {
         Swal.fire({
@@ -503,8 +504,8 @@ export class OpticalGrnComponent implements OnInit {
     this.Locations = this.Locationsgrn;
     this.State = this.Locationcitygrn;
     if (id.store != null) {
-      let ID = this.StoreName.find(x => x.Text == id.store)
-      this.storename = ID.Value
+      let ResultID = this.StoreName.find(x => x.Text.replace(/\s+/g, '').toLowerCase() == id.store.replace(/\s+/g, '').toLowerCase());
+      this.storename = ResultID.Value;
     }
     else {
       this.storename = '';
@@ -960,6 +961,10 @@ export class OpticalGrnComponent implements OnInit {
     this.orginaltable = true;
     this.bindingtable = false;
     this.submitgrn = false;
+    this.commonService.getListOfData('Common/GetstoreDropdownvaluesdesc/' + this.CompanyID + '/' + "Optical Department").subscribe(data => {
+      debugger;
+      this.StoreName = data;
+    });
     this.backdrop = 'none';
     this.cancelblock = 'none';
   }

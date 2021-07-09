@@ -1,0 +1,290 @@
+<form #DrugStockLedger="ngForm">
+  <div class="col-sm-12 borfiglau-0">
+    <h5 class="card-header bg-success text-white center">
+      Drug Stock Ledger
+
+    </h5>
+    <div class="col-sm-12">
+
+      <div class="col-sm-12" *ngIf="TableMain">
+        <div class="row pgtop20-0">
+          <div class="col-sm-3">
+          </div>
+          <div class="col-sm-3">
+          </div>
+          <div class="col-sm-4">
+          </div>
+          <div class="col-sm-2">
+            <button class="btn-text" (click)="Getformaccess()"><i class="fas fa-eye"></i> View Access</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12" *ngIf="TableMain">
+        <div class="row">
+          <div class="col-sm-6 borfiglau-0">
+            <div class="row">
+
+              <div class="col-sm-12 pgtop20-0">
+                <div class="row">
+
+
+                  <div class="col-sm-4">
+
+                    <div class='input-group date'>
+                      <input [(ngModel)]="M_FromDate" name="FromDate" placeholder="From Date"
+                             class="form-control"
+                             #dpM="bsDatepicker"
+                             [maxDate]="maxDatef"
+                             bsDatepicker
+                             autocomplete="off"
+                             [bsConfig]="{ dateInputFormat: 'MMM-YYYY',isAnimated: true }"
+                             (onShown)="onOpenCalendar($event)">
+                      <span class="input-group-addon">
+                        <span class="fa fa-calendar grab" (click)="dpM.toggle()" [attr.aria-expanded]="dpM.isOpen"></span>
+                      </span>
+                    </div>
+                  </div>
+
+
+                  <div class="col-sm-4">
+                    <div class='input-group date'>
+                      <input [(ngModel)]="M_ToDate" name="ToDate" placeholder="To Date"
+                             class="form-control"
+                             #dpRM="bsDatepicker"
+                             [maxDate]="maxDateRMf"
+                             bsDatepicker
+                             autocomplete="off"
+                             [bsConfig]="{ dateInputFormat: 'MMM-YYYY',isAnimated: true }"
+                             (onShown)="onOpenCalendar($event)">
+                      <span class="input-group-addon">
+                        <span class="fa fa-calendar grab" (click)="dpRM.toggle()" [attr.aria-expanded]="dpRM.isOpen"></span>
+                      </span>
+                    </div>
+                  </div>
+
+
+                  <div class="col-sm-4">
+                    <mat-form-field appearance="outline">
+                      <mat-label> Branch </mat-label>
+                      <mat-select [(ngModel)]="AllBranch" name="AllBranch" (ngModelChange)="OptionSelectbr()">
+                        <mat-option value="All">All</mat-option>
+                        <mat-option value="Selective">Selective</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+
+                  </div>
+
+
+
+
+                </div>
+              </div>
+
+
+
+
+
+
+              <div class="col-sm-12">
+                <div class="row">
+
+
+
+                  <div class="col-sm-4">
+
+                    <mat-form-field appearance="outline">
+                      <mat-label>Select Branch</mat-label>
+                      <mat-select [(ngModel)]="BranchDrop" name="BranchDrop" (selectionChange)="selectdBranch(Brancha,$event, id)" [disabled]="HideBranddropp">
+                        <mat-option *ngFor="let Brancha of GetBranchdata" [value]="Brancha">{{Brancha.Text}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+
+
+                  <div class="col-sm-4">
+
+                    <mat-form-field appearance="outline" class="mat-width">
+                      <mat-label>Store</mat-label>
+                      <mat-select [(ngModel)]="storename" name="storename" (selectionChange)="selectdstore(storename)" [disabled]="disSubmit">
+                        <mat-option *ngFor="let Store of StoreName" [value]="Store">{{Store.Text}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+
+
+                  <div class="col-sm-4">
+                    <mat-form-field appearance="outline" class="mat-width">
+                      <mat-label> Brand </mat-label>
+                      <mat-select [(ngModel)]="M_AllSeDrop" name="AllSeDrop" (ngModelChange)="OptionSelect()" [disabled]="submitbrnd">
+                        <mat-option value="All">All</mat-option>
+                        <mat-option value="Selective">Selective</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+
+                  </div>
+
+
+
+                </div>
+              </div>
+
+
+
+              <div class="col-sm-12">
+                <div class="row">
+
+                  <div class="col-sm-4">
+
+                    <mat-form-field appearance="outline" class="mat-width">
+                      <mat-label>Select Brand</mat-label>
+                      <mat-select [(ngModel)]="M_BrandDataDrop" name="BrandDrop" (selectionChange)="selectdBrand(Branda,$event, id)" [disabled]="HideBranddrop">
+                        <mat-option *ngFor="let Branda of GetBranddata" [value]="Branda">{{Branda.Text}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-sm-2">
+
+                    <button class="btn btn-warning-default" type="button" (click)="Cancel(DrugStockLedger)">Cancel</button>
+
+                  </div>
+
+
+                  <div class="col-sm-2">
+
+                    <button type="button" class="success btn btn-primary  ml-2p" [disabled]="disSubmit" (click)="Submit(DrugStockLedger)">Submit</button>
+
+                  </div>
+
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+              <div class="col-sm-12">
+                <div class="row">
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+
+      <div class="col-sm-12" *ngIf="TableData">
+        <div class="row">
+          <h5 class="card-header bg-success text-white center"><label><b>Stock Ledger</b>  &nbsp;&nbsp;<b> for the period&nbsp;&nbsp;{{this.M_FromDate| date :'dd-MMM-y'}} &nbsp;&nbsp;to&nbsp;&nbsp; {{this.M_ToDate| date :'dd-MMM-y'}}</b></label></h5>
+        </div>
+
+        <div class="col-sm-12 pgtop20-0">
+          <mat-label class="fcolor">Branch : </mat-label>
+          {{cmpname}}
+        </div>
+        <div class="col-sm-12 pgtop20-0">
+          <div class="row">
+            <div class="col-sm-2">
+              <mat-label class="fcolor">Brand : </mat-label>
+              {{brnd}}
+            </div>
+           
+            <div class="col-sm-3">
+              <mat-label class="fcolor">Opening Stock : </mat-label>
+              {{opstk}}
+            </div>
+            <div class="col-sm-3">
+              <mat-label class="fcolor">Closing Stock : </mat-label>
+              {{clostk}}
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-sm-12 custpopht-0" #table>
+
+            <table mat-table matSort [dataSource]="dataSource" id="contentToConvert" class="custom-table withoutbackgroung search-table table-bordered" #contentToConvert style="overflow:auto">
+
+
+
+              <ng-container matColumnDef="DNumber">
+                <th mat-header-cell *matHeaderCellDef>Document Number</th>
+                <td mat-cell *matCellDef="let element ;let i = index;">{{element.DocumentNo}}  </td>
+                <td mat-footer-cell *matFooterCellDef> </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Date">
+                <th mat-header-cell *matHeaderCellDef>Document Date & Time</th>
+                <td mat-cell *matCellDef="let element ;let i = index;">{{element.DocumentDate | date: 'dd-MMM-y HH:mm'}}</td>
+                <td mat-footer-cell *matFooterCellDef> </td>
+              </ng-container>
+
+              <ng-container matColumnDef="DocType">
+                <th mat-header-cell *matHeaderCellDef>Document Type</th>
+                <td mat-cell *matCellDef="let element ;let i = index;">{{element.DocumentType}}  </td>
+                <td mat-footer-cell *matFooterCellDef> </td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="UOM">
+                <th mat-header-cell *matHeaderCellDef>UOM</th>
+                <td mat-cell *matCellDef="let element;let id = index;"> {{element.UOM}} </td>
+                <td mat-footer-cell *matFooterCellDef> </td>
+              </ng-container>
+
+              
+
+
+
+              <ng-container matColumnDef="Receipts">
+                <th mat-header-cell *matHeaderCellDef>Receipts</th>
+                <td mat-cell *matCellDef="let element;let id = index;"> {{element.Receipt| number : '1.2-2'}} </td>
+                <td mat-footer-cell *matFooterCellDef><b>{{getTotalRecieptsValue()| number : '1.2-2'}}</b></td>
+              </ng-container>
+
+              <ng-container matColumnDef="Issues">
+                <th mat-header-cell *matHeaderCellDef>Issues</th>
+                <td mat-cell *matCellDef="let element;let id = index;"> {{element.Issue| number : '1.2-2'}} </td>
+                <td mat-footer-cell *matFooterCellDef><b>{{getTotalIssuesValue()| number : '1.2-2'}}</b></td>
+              </ng-container>
+
+
+
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
+              <tr mat-row *matRowDef="let row;  let even = even;columns: displayedColumns;" [ngClass]="{gray: even}"></tr>
+              <tr mat-footer-row *matFooterRowDef="displayedColumns;sticky: true"></tr>
+            </table>
+          </div>
+        </div>
+
+
+
+
+
+
+      </div>
+
+      <div class="col-sm-12" *ngIf="TableData">
+        <div class="row">
+          <div class="col-sm-11">
+          </div>
+          <div class="col-sm-1">
+            <button type="button" class="btn btn-danger" (click)="close()">Close</button>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+</form>

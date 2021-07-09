@@ -1,0 +1,1240 @@
+
+
+
+
+
+<form #purchaseorderForm="ngForm">
+
+  <div class="col-sm-12">
+    <div class="row">
+
+      <div class="col-sm-12 borfiglau-0">
+
+        <div class="card-header center">
+          <h5>Purchase Order</h5>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-3">
+            <button (click)="Purchaseorderhistory()" class="btn-text grab f-r" data-toggle="tooltip" matTooltip="View Purchase Order">
+              <i class="fas fa-info-circle"></i>View Purchase Order
+            </button>
+          </div>
+          <div class="col-sm-2">
+
+          </div>
+          <div class="col-sm-3">
+
+          </div>
+          <div class="col-sm-2">
+
+          </div>
+          <div class="col-sm-2">
+            <button class="btn-text" (click)="Getformaccess()"><i class="fas fa-eye"></i> View Access</button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline">
+              <mat-label>Purchase Order Date</mat-label>
+              <input [(ngModel)]="PurchaseDate" name="PurchaseDate" matInput [matDatepicker]="picker1" placeholder="Purchase order Date" disabled>
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-2">
+            <mat-form-field appearance="outline">
+              <mat-label>Quotation No</mat-label>
+              <input [(ngModel)]="Quotationno" name="Quotationno" matInput placeholder="Quotation No" autocomplete="off" [disabled]="recevicedpurchase">
+            </mat-form-field>
+          </div>
+          <div class="col-sm-3">
+            <div class="col-sm-10">
+              <input disabled [owlDateTimeTrigger]="dt4" autocomplete="off" [max]="minToDate" (dateTimeChange)="QuotationdateEvents()" class="form-control" [owlDateTime]="dt4" placeholder="Quotation Date" [(ngModel)]="Quotationdate" name="Quotationdate">
+              <owl-date-time [disabled]="recevicedpurchase" #dt4></owl-date-time>
+            </div>
+            <div class="col-sm-1 ml-n7p mt-2p">
+              <span [owlDateTimeTrigger]="dt4"><i class="fa fa-calendar"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-1p">
+
+          <div class="col-sm-4">
+            <span class="uinborder refcol">
+              Supplier Details:
+            </span>
+          </div>
+
+          <div class="col-sm-4">
+            <span class="uinborder refcol">
+              Delivery Details:
+            </span>
+          </div>
+
+          <div class="col-sm-4">
+            <span class="uinborder refcol">
+              Others:
+            </span>
+          </div>
+
+
+        </div>
+
+        <div class="row  mt-2p">
+
+          <div class="col-sm-3">
+
+            <div class="row">
+              <div class="col-sm-10">
+                <mat-form-field appearance="outline">
+                  <mat-label>Supplier Name</mat-label>
+                  <mat-select class="purchase" [(ngModel)]="Supplier" name="Suppliers" (ngModelChange)="Suppliersumbit()" [disabled]="recevicedpurchase" required>
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let Suppliers of Suppliername" [value]="Suppliers.Values">{{Suppliers.Text}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row ml-1p">
+              <div class="col-sm-4">
+                <div class="row">
+                  <mat-label class="refcol">Address</mat-label>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <mat-label>{{Address1}}</mat-label>
+              </div>
+            </div>
+
+            <div class="row ml-1p">
+              <div class="col-sm-4">
+                <div class="row">
+                  <mat-label class="refcol">Phone No</mat-label>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <mat-label>{{PhoneNo}}</mat-label>
+              </div>
+            </div>
+
+
+            <div class="row ml-1p">
+              <div class="col-sm-4">
+                <div class="row">
+                  <mat-label class="refcol">Tax No</mat-label>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <mat-label>{{GSTNo}}</mat-label>
+              </div>
+            </div>
+
+
+            <div class="row ml-1p">
+              <div class="col-sm-4">
+                <div class="row">
+                  <mat-label class="refcol">Location&nbsp;/&nbsp;City</mat-label>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <mat-label>{{Location}}</mat-label>
+              </div>
+            </div>
+
+
+            <div class="row ml-1p">
+              <div class="col-sm-4">
+                <div class="row">
+                  <mat-label class="refcol">State&nbsp;/&nbsp;Country</mat-label>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <mat-label>{{Statesuplier}}</mat-label>
+              </div>
+            </div>
+
+
+          </div>
+
+          <div class="col-sm-4">
+
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="row">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input [(ngModel)]="DeliveryName" name="DeliveryName" matInput placeholder="DeliveryName" autocomplete="off" [disabled]="recevicedpurchase">
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <mat-form-field appearance="outline">
+                  <mat-label>City</mat-label>
+                  <mat-select [(ngModel)]="Locations" name="Locationssss" (ngModelChange)="Citysumbit()" [disabled]="recevicedpurchase">
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let Locationnns of Locationname" [value]="Locationnns.Value">{{Locationnns.Text}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="row">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Address1</mat-label>
+                    <textarea [(ngModel)]="DAddress1" name="DAddress1" placeholder="Address1" matInput maxlength="100" autocomplete="off" [disabled]="recevicedpurchase"></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <mat-form-field appearance="outline">
+                  <mat-label>Location</mat-label>
+                  <mat-select [(ngModel)]="Locationcity" name="Locationcity" [disabled]="Presentloc || recevicedpurchase">
+                    <mat-option *ngFor="let Locationcities of Locationcitiesname" [value]="Locationcities.Value">{{Locationcities.Text}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="row">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Address2</mat-label>
+                    <textarea [(ngModel)]="DAddress2" name="DAddress2" placeholder="Address2" matInput maxlength="100" autocomplete="off" [disabled]="recevicedpurchase"></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <mat-form-field appearance="outline">
+                  <mat-label>State&nbsp;/&nbsp;Country</mat-label>
+                  <input [(ngModel)]="Statecountry" name="Statecountry" matInput placeholder="State / country" disabled>
+                </mat-form-field>
+              </div>
+            </div>
+
+
+          </div>
+
+          <div class="col-sm-1"></div>
+
+          <div class="col-sm-4">
+
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="row">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Validity</mat-label>
+                    <textarea [(ngModel)]="Validity" name="Validity" placeholder="Validity" matInput maxlength="250" autocomplete="off" [disabled]="recevicedpurchase"></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <mat-form-field appearance="outline">
+                  <mat-label>Delivery Description</mat-label>
+                  <textarea [(ngModel)]="Delivery" name="Delivery" placeholder="Delivery Description" matInput maxlength="250" autocomplete="off" [disabled]="recevicedpurchase"></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="row">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Terms of payment</mat-label>
+                    <textarea [(ngModel)]="PaymentandTerms" name="PaymentandTerms" placeholder="Terms of payment" matInput maxlength="250" autocomplete="off" [disabled]="recevicedpurchase"></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <mat-form-field appearance="outline">
+                  <mat-label>Instructions</mat-label>
+                  <textarea [(ngModel)]="Instructions" name="Instructions" placeholder="Instructions" matInput maxlength="250" autocomplete="off" [disabled]="recevicedpurchase"></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="row mt-n1p">
+
+          <div class="col-sm-12">
+            <div class="card mb-3">
+              <h5 class="card-header">
+                Item Details
+                <label class="labelfloat">
+                  <button type="button" (click)="Addpurchase()" [disabled]="disableaddpurchase" data-toggle="tooltip" matTooltip="Add purchaseorder" class="btn btn-primary-default btn-Excel buttonsfloat cursor">Add Item </button>
+                </label>
+              </h5>
+
+              <div class="card-body">
+                <div class="row heightAuto-250px">
+
+                  <table mat-table [dataSource]="dataSource" class="custom-table withoutbackgroung search-table table-bordered">
+
+
+                    <ng-container matColumnDef="DrugName">
+                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Drug Description </th>
+                      <td mat-cell *matCellDef="let element;let id = index" class="width-15p" onkeydown="return (event.keyCode!=8)" id="tablepress" (keypress)="tablepressevent($event)" (keyup.enter)="enterDrugView(id)" (keyup.ArrowLeft)="arrowleftdrug(id,$event,element)" (keyup.arrowright)="arrowrightdrugs(id,$event,element)" (keyup.ArrowDown)="arrowdowndrug(id)" (keyup.ArrowUp)="arrowupdrug(id)" [attr.contenteditable]="element.ItemDrug != '' || element.ItemDrug == ''" #DrugNameinsert>
+                        <mat-select #DrugNames (focus)="DrugNames.open()" (keyup.enter)="saveDrugView(id,$event,element)" (selectionChange)="DrugView($event,id);DrugNames.close()" (openedChange)="someMethodDrugView(id,$event,element)" value="{{element.ItemID}}" [disabled]="element.PORecd != 0 || element.POCancel != 0">
+                          <input matInput class="search" #inputdrug (keyup.arrowright)="arrowrightdrug(id,$event,element)" (input)="FIlterdatadrug($event.target.value)" autocomplete="off">
+                          <mat-option *ngFor="let purchasedrugname of DrugNameList" [value]="purchasedrugname.Value" [disabled]="purchasedrugname.checkStatus">{{purchasedrugname.Text}}</mat-option>
+                        </mat-select>
+                      </td>
+                      <td mat-footer-cell *matFooterCellDef></td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="DrugNamesymbol">
+                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Drug Description </th>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="PurchaseUOM">
+                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> UOM </th>
+                      <td mat-cell *matCellDef="let element" contenteditable="false"> {{element.UOMname}} </td>
+                      <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="PurchaseUOMsymbol">
+                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">  UOM </th>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Quantity">
+                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Po Qty </th>
+                      <td mat-cell *matCellDef="let element;let id = index;">
+                        <input [disabled]="element.PORecd != 0 || element.POCancel != 0" maxlength="5" (keypress)="RestrictNegativeValues($event)" (keyup)="changeValue(id,'ItemQty',$event);changeValueAmount(id,element,'ItemRate');changeItemValue(id,element,'ItemValue');changeValueGrossAmount(id,element,'GrossAmount');changeValueDiscountAmount(id,element,'DiscountAmount');changeGStAmount(id,element,'GSTTaxValue');changeCESSAmount(id,element,'CESSAmount');changeAdditionalCESSAmount(id,element,'AddCESSAmount');changeValueTotal(id,element,'TotalAmount')" matInput value="{{element.ItemQty}}" type="text" class="form-control tableinputheight" (keyup.ArrowLeft)="arrowleftamount(id,$event,element)" (keyup.arrowright)="arrowrightamount(id,$event,element)" (keyup.ArrowDown)="arrowdownamount(id,$event,element)" (keyup.ArrowUp)="arrowupamount(id,$event,element)" (keyup.enter)="Enteramount(id,$event,element)" autocomplete="off" #Quantityamount>
+                      </td>
+                      <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Quantitysymbol">
+                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> PO Qty </th>
+                    </ng-container>
+
+                    <ng-container matColumnDef="recevicedQuantity">
+                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Qty recd </th>
+                      <td mat-cell *matCellDef="let element" contenteditable="false"> {{element.PORecdQty | number : '1.2-2'}} </td>
+                      <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="recevicedQuantitysymbol">
+                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Qty recd </th>
+                    </ng-container>
+
+                    <ng-container matColumnDef="UnitPrice">
+                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Unit rate </th>
+                      <td mat-cell *matCellDef="let element" contenteditable="false"> {{element.ItemRate | number : '1.2-2'}} </td>
+                      <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="UnitPricesymbol">
+                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Unit rate </th>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Amount">
+                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Amount</th>
+                      <td mat-cell *matCellDef="let element" contenteditable="false">{{element.ItemValue | number : '1.2-2'}} </td>
+                      <td mat-footer-cell *matFooterCellDef> <b>{{GetTotalcost() | currency:Country2}}</b></td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Amountsymbol">
+                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Amount</th>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="Discount">
+                      <th mat-header-cell *matHeaderCellDef> % </th>
+                      <td mat-cell *matCellDef="let element;let id = index;">
+                        <input [disabled]="element.PORecd != 0 || element.POCancel != 0" (keypress)="RestrictNegativeValues($event)" (keyup)="Restrict($event);changeValue(id,'DiscountPercentage',$event);changeValueDiscountAmount(id,element,'DiscountAmount');changeValueGrossAmount(id,element,'GrossAmount');changeGStAmount(id,element,'GSTTaxValue');changeCESSAmount(id,element,'CESSAmount');changeAdditionalCESSAmount(id,element,'AddCESSAmount');changeValueTotal(id,element,'TotalAmount')" matInput value="{{element.DiscountPercentage}}" type="text" class="form-control tableinputheight" (keyup.ArrowLeft)="arrowleftDiscountpercentage(id,$event,element)" (keyup.arrowright)="arrowrightDiscountpercentage(id,$event,element)" (keyup.ArrowDown)="arrowdownDiscountpercentage(id,$event,element)" (keyup.ArrowUp)="arrowupDiscountpercentage(id,$event,element)" (keyup.enter)="EnterDiscountpercentage(id,$event,element)" autocomplete="off" #Discountpercentage>
+                      </td>
+                      <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="DiscountAmount">
+                      <th mat-header-cell *matHeaderCellDef> Amount</th>
+                      <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">{{element.DiscountAmount | number : '1.2-2'}} </td>
+                      <td mat-footer-cell *matFooterCellDef><b>{{GetDiscountAmount() | currency:Country2}}</b></td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="Grosssymbol">
+                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Gross Amount </th>
+                    </ng-container>
+
+                    <ng-container matColumnDef="GrossAmount">
+                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Gross Amount</th>
+                      <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">{{element.GrossAmount | number : '1.2-2'}} </td>
+                      <td mat-footer-cell *matFooterCellDef><b>{{GetGrossAmount() | currency:Country2}}</b></td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="TaxDescription">
+                      <th mat-header-cell *matHeaderCellDef>Description</th>
+                      <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">
+                        <div class="row">
+                          <div *ngIf="element.TaxDescription != null && element.GSTPercentage != 0" class="col-sm-12">
+                            {{element.TaxDescription}}
+                          </div>
+                          <br />
+                          <div *ngIf="element.CESSDescription != null && element.CESSPercentage != 0" class="col-sm-12">
+                            {{element.CESSDescription}}
+                          </div>
+                          <br />
+                          <div *ngIf="element.AdditionalCESSDescription != null && element.AdditionalCESSPercentage != 0" class="col-sm-12">
+                            {{element.AdditionalCESSDescription}}
+                          </div>
+                        </div>
+                      </td>
+                      <td mat-footer-cell *matFooterCellDef></td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="GST">
+                      <th mat-header-cell *matHeaderCellDef>%</th>
+                      <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">
+                        <div class="row">
+                          <div *ngIf="element.GSTPercentage != 0 && element.TaxDescription != null" class="col-sm-12">
+                            {{element.GSTPercentage | number : '1.2-2'}}
+                          </div>
+                          <br />
+                          <div *ngIf="element.CESSPercentage != 0 && element.CESSDescription != null" class="col-sm-12">
+                            {{element.CESSPercentage | number : '1.2-2'}}
+                          </div>
+                          <br />
+                          <div *ngIf="element.AdditionalCESSPercentage != 0 && element.AdditionalCESSDescription != null" class="col-sm-12">
+                            {{element.AdditionalCESSPercentage | number : '1.2-2'}}
+                          </div>
+                        </div>
+                      </td>
+                      <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="GSTValue">
+                      <th mat-header-cell *matHeaderCellDef> Amount</th>
+                      <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">
+                        <div class="row">
+                          <div *ngIf="element.GSTPercentage != 0 && element.TaxDescription != null" class="col-sm-12">
+                            {{element.GSTTaxValue | number : '1.2-2'}}
+                          </div>
+                          <br />
+                          <div *ngIf="element.CESSPercentage != 0 && element.CESSDescription != null" class="col-sm-12">
+                            {{element.CESSAmount | number : '1.2-2'}}
+                          </div>
+                          <br />
+                          <div *ngIf="element.AdditionalCESSPercentage != 0 && element.AdditionalCESSDescription != null" class="col-sm-12">
+                            {{element.AddCESSAmount | number : '1.2-2'}}
+                          </div>
+                        </div>
+                      </td>
+                      <td mat-footer-cell *matFooterCellDef><b>{{Taxtotalamount() | currency:Country2}} </b> </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="TotalAmountsymbol">
+                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">Total Amount</th>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Deletesymbol">
+                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Action </th>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="TotalAmount">
+                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> TotalAmount</th>
+                      <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">{{element.TotalAmount | number : '1.2-2'}} </td>
+                      <td mat-footer-cell *matFooterCellDef><b> {{GetTotalAmount() | currency:Country2}}</b></td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Delete">
+                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Action </th>
+                      <td mat-cell *matCellDef="let element;let i = index;">
+                        <button mat-icon-button [disabled]="element.PORecd != 0 || element.POCancel != 0">
+                          <mat-icon data-toggle="tooltip" title="Remove" (click)="removepurchase(i,element)">delete</mat-icon>
+                        </button>
+                      </td>
+                      <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="header-row-group">
+                      <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> Discount </th>
+                    </ng-container>
+
+                    <ng-container matColumnDef="header-row-third-group">
+                      <th mat-header-cell *matHeaderCellDef [attr.colspan]="3"> Tax </th>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="['DrugNamesymbol','PurchaseUOMsymbol','Quantitysymbol','recevicedQuantitysymbol','UnitPricesymbol','Amountsymbol','header-row-group','Grosssymbol','header-row-third-group','TotalAmountsymbol','Deletesymbol'];sticky:true"></tr>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
+                    <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumns;" [ngClass]="{gray: even}"></tr>
+                    <tr mat-footer-row *matFooterRowDef="displayedColumns;sticky:true"></tr>
+                  </table>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+
+
+      </div>
+
+      <div class="col-sm-12 m-3">
+        <div class="col-sm-12 pb25">
+          <div class="col-sm-4  sub-section btn-wrap f-r">
+            <button type="button" class="btn btn-warning-default" (click)="CancelClk()"> Cancel </button>
+            <button type="submit" class="success btn btn-primary  ml-2p" [disabled]="disSubmit || recevicedpurchase" (click)="onSubmit(purchaseorderForm)">Submit</button>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+</form>
+
+
+
+<div class="modal" role="dialog" [ngStyle]="{'display':cancelblock}">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" matTooltip="close" (click)="modalSuccessClosessss()">&times;</button>
+        <h5 class="modal-title center">Do you want to cancel?</h5>
+      </div>
+
+
+      <div class="modal-footer">
+        <button class="btn btn-danger" data-dismiss="modal" autofocus (click)="modalcloseOk()">No</button>
+        <button type="reset" class="btn btn-success" data-dismiss="modal" (click)="modalSuccesssOk()">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" role="dialog" [ngStyle]="{'display':modalpurchase}">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col-sm-12">
+          <div class="row">
+            <div class="col-sm-11">
+              <h5 class="modal-title center">Purchase Order</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="row form-horizontal">
+          <div class="form-group">
+            <label class="control-label col-sm-4">PO Number:</label>
+            <label class="control-label col-sm-2">{{ponumber}}</label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal" (click)="modalSuccessssspurchaseOk()">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" role="dialog" [ngStyle]="{'display':purchaseprint}">
+  <div class="example-box">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="col-sm-11">
+                <h5 class="modal-title center">Purchase Order</h5>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="col-sm-1">
+              </div>
+              <div class="col-sm-10">
+                <p><strong>Do you want to Print?</strong></p>
+              </div>
+              <div class="col-sm-1">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+
+          <button (click)="printsss()" class="btn btn-primary">Yes</button>
+          <button type="button" id="theButton" class="btn btn-success" data-dismiss="modal" (click)="printclose()" cdkFocusInitial>No</button>
+
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" role="dialog" [ngStyle]="{'display':modalpreview}">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" matTooltip="Close" (click)="modalSuccesspreview()">&times;</button>
+        <h5 class="modal-title center">
+          Purchase Order
+        </h5>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline">
+              <mat-label>Search</mat-label>
+              <input id="myInputgrn" type="text" matInput placeholder="Search">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row heightAuto-300px">
+          <table class="custom-table withoutbackgroung search-table table-bordered center" style="width:98%;margin:1%">
+
+            <tr>
+              <th rowspan="2">Action</th>
+              <th colspan="2">Purchase Order</th>
+              <th colspan="2">Quotation</th>
+              <th rowspan="2">Supplier Name</th>
+              <th rowspan="2">To Be delivered</th>
+              <th rowspan="2">Status</th>
+            </tr>
+
+            <tr>
+              <th>Number</th>
+              <th>Date</th>
+              <th>Number</th>
+              <th>Date</th>
+            </tr>
+
+            <tbody id="myTablegrn">
+              <tr *ngFor="let s of dataSourcem;index as i">
+                <td>
+                  <button mat-icon-button>
+                    <mat-icon data-toggle="tooltip" title="Select" class="example-tab-icon cursor" (click)="selectpurchase(s)">create</mat-icon>
+                  </button>
+                  <button mat-icon-button>
+                    <mat-icon class="grab" data-toggle="tooltip" title="Print" (click)="print(s)">local_printshop</mat-icon>
+                  </button>
+                </td>
+
+                <td>{{s.PONumber}}</td>
+                <td>{{s.PODate | date:"dd-MMM-y HH:mm"}}</td>
+                <td>{{s.QuotationNumber}}</td>
+                <td>{{s.QuotationDate | date:"dd-MMM-y HH:mm"}}</td>
+                <td>{{s.VendorName}}</td>
+                <td>{{s.DeliveryName}}</td>
+                <td [style.color]="getColor(s.Status)">{{s.Status}}</td>
+              </tr>
+            </tbody>
+
+          </table>
+
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="printss" style="display:none">
+
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6">
+        <div style="text-align:center"><strong>{{company}}</strong></div>
+        <div style="text-align:center"><strong>{{CAddress}}</strong></div>
+        <div style="text-align:center"><strong>Phone No:{{CPhone}} &nbsp; Website:{{CWebb}}</strong></div>
+      </div>
+      <div class="col-sm-3"></div>
+    </div>
+  </div>
+
+  <div class="col-sm-12" style="margin-top: 1%">
+    <div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6">
+        <div style="text-align:center"><strong>PURCHASE ORDER</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-12" style="margin-top: 1%">
+    <div class="row">
+
+      <div class="col-sm-4">
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>PO Number&nbsp;</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <mat-label><b>: &nbsp;</b> {{Pnumber}}</mat-label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>PO Date&nbsp;</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <mat-label><b>: &nbsp;</b> {{PDate | date:"dd-MMM-y HH:mm"}} &nbsp;Hrs</mat-label>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-sm-4">
+
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Qtn Number&nbsp;</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <mat-label><b>: &nbsp;</b> {{QNo}}</mat-label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Qtn Date&nbsp;</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-8">
+            <mat-label><b>: &nbsp;</b> {{QDate | date:"dd-MMM-y HH:mm"}}</mat-label>
+            <mat-label *ngIf="QDate != null">&nbsp; Hrs</mat-label>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-sm-12" style="margin-top: 1%">
+    <div class="row">
+
+      <div class="col-sm-5">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="row">
+              <mat-label><b>SUPPLIER DETAILS&nbsp;:</b></mat-label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-2"></div>
+
+      <div class="col-sm-5">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="row">
+              <mat-label><b>DELIVERY DETAILS &nbsp;:</b></mat-label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-sm-12" style="margin-top: 1%">
+    <div class="row">
+
+      <div class="col-sm-5">
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Name</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <mat-label><b>:</b></mat-label>
+          </div>
+          <div class="col-sm-6">
+            <mat-label>{{VNamee}}</mat-label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Address</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <mat-label><b>:</b></mat-label>
+          </div>
+          <div class="col-sm-6">
+            <mat-label>{{VAddresss1}}</mat-label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Phone No</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <mat-label><b>:</b></mat-label>
+          </div>
+          <div class="col-sm-6">
+            <mat-label>{{VPhonenoo}}</mat-label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Tax No</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <mat-label><b>:</b></mat-label>
+          </div>
+          <div class="col-sm-6">
+            <mat-label>{{VGstnoo}}</mat-label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Location&nbsp;/&nbsp;City</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <mat-label><b>:</b></mat-label>
+          </div>
+          <div class="col-sm-6">
+            <mat-label>{{VLocationn}}</mat-label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>State&nbsp;/&nbsp;Country</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <mat-label><b>:</b></mat-label>
+          </div>
+          <div class="col-sm-6">
+            <mat-label>{{Vstate}}</mat-label>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-sm-2"></div>
+
+      <div class="col-sm-5">
+
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Name</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <mat-label><b>:</b></mat-label>
+          </div>
+          <div class="col-sm-6">
+            <mat-label>{{PDeliveryy}}</mat-label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Address</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <mat-label><b>:</b></mat-label>
+          </div>
+          <div class="col-sm-6">
+            <mat-label>{{PDeliveryaddd1}}</mat-label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>Location&nbsp;/&nbsp;City</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <mat-label><b>:</b></mat-label>
+          </div>
+          <div class="col-sm-6">
+            <mat-label>{{PLocationn}}</mat-label>
+          </div>
+        </div>
+
+
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>State&nbsp;/&nbsp;Country</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <mat-label><b>:</b></mat-label>
+          </div>
+          <div class="col-sm-6">
+            <mat-label>{{Pstate}}</mat-label>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-sm-12" style="margin-top: 1%">
+    <div class="row">
+      <strong>Item Details&nbsp;: &nbsp;</strong>
+    </div>
+  </div>
+
+  <div class="col-sm-12" style="margin-top: 1%">
+    <div class="row">
+
+      <table mat-table [dataSource]="dataSourceprint" class="custom-table withoutbackgroung search-table table-bordered" style="width: 100%">
+
+
+        <ng-container matColumnDef="DrugNameprint">
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Drug Description </th>
+          <td mat-cell *matCellDef="let element;let id = index" style="text-align:left">{{element.ItemDrug}}</td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="DrugNamesymbolprint">
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Drug Description </th>
+        </ng-container>
+
+
+        <ng-container matColumnDef="PurchaseUOMprint">
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> UOM </th>
+          <td mat-cell *matCellDef="let element;let id = index;" style="text-align:left"> {{element.UOMname}} </td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <ng-container matColumnDef="PurchaseUOMsymbolprint">
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">  UOM </th>
+        </ng-container>
+
+        <ng-container matColumnDef="Quantityprint">
+          <th mat-header-cell *matHeaderCellDef> Qty </th>
+          <td mat-cell *matCellDef="let element;let id = index;" style="text-align:right">{{element.ItemQty | number : '1.2-2'}}</td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="recdQuantityprint">
+          <th mat-header-cell *matHeaderCellDef> Qty recd </th>
+          <td mat-cell *matCellDef="let element;let id = index;" style="text-align:right">{{element.PORecdQty | number : '1.2-2'}}</td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="UnitPriceprint">
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Unit rate </th>
+          <td mat-cell *matCellDef="let element" contenteditable="false" style="text-align:right"> {{element.ItemRate | number : '1.2-2'}} </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="UnitPricesymbolprint">
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Unit rate </th>
+        </ng-container>
+
+        <ng-container matColumnDef="Amountprint">
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Amount</th>
+          <td mat-cell *matCellDef="let element;let id = index;" style="text-align:right">{{element.ItemValue | number : '1.2-2'}} </td>
+          <td mat-footer-cell *matFooterCellDef style="text-align:right"> <b>{{overallamount | currency:Country2}}</b></td>
+        </ng-container>
+
+        <ng-container matColumnDef="Amountsymbolprint">
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Amount</th>
+        </ng-container>
+
+
+        <ng-container matColumnDef="Discountprint">
+          <th mat-header-cell *matHeaderCellDef> % </th>
+          <td mat-cell *matCellDef="let element;let id = index;" style="text-align:right">{{element.DiscountPercentage | number : '1.2-2'}} </td>
+          <td mat-cell *matCellDef="let element;let id = index;">{{element.DiscountPercentage | number : '1.2-2'}} </td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <ng-container matColumnDef="DiscountAmountprint">
+          <th mat-header-cell *matHeaderCellDef> Amount</th>
+          <td mat-cell *matCellDef="let element;let id = index;" style="text-align:right">{{element.DiscountAmount | number : '1.2-2'}} </td>
+          <td mat-footer-cell *matFooterCellDef style="text-align:right"><b *ngIf="PDiscountt != 0">{{PDiscountt | currency:Country2}}</b></td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="Grosssymbolprint">
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Gross Amount </th>
+        </ng-container>
+
+        <ng-container matColumnDef="GrossAmountprint">
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Gross Amount</th>
+          <td mat-cell *matCellDef="let element;let id = index;" style="text-align:right">{{element.GrossAmount | number : '1.2-2'}} </td>
+          <td mat-footer-cell *matFooterCellDef style="text-align:right"><b>{{PGrosss | currency:Country2}}</b></td>
+        </ng-container>
+
+        <ng-container matColumnDef="TaxDescriptionprint">
+          <th mat-header-cell *matHeaderCellDef>Description</th>
+          <td mat-cell *matCellDef="let element;let id = index;">
+            <div class="row" style="text-align:left">
+              <div *ngIf="element.TaxDescription != null && (element.GSTPercentage != 0 && element.GSTPercentage != null)" class="col-sm-12">
+                {{element.TaxDescription}}
+              </div>
+              <br />
+              <div *ngIf="element.CESSDescription != null && (element.CESSPercentage != 0 && element.CESSPercentage != null)" class="col-sm-12">
+                {{element.CESSDescription}}
+              </div>
+              <br />
+              <div *ngIf="element.AdditionalCESSDescription != null && (element.AdditionalCESSPercentage != 0 && element.AdditionalCESSPercentage != null)" class="col-sm-12">
+                {{element.AdditionalCESSDescription}}
+              </div>
+            </div>
+          </td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <ng-container matColumnDef="GSTprint">
+          <th mat-header-cell *matHeaderCellDef>%</th>
+          <td mat-cell *matCellDef="let element;let id = index;">
+            <div class="row" style="text-align:right">
+              <div *ngIf="(element.GSTPercentage != 0 && element.GSTPercentage != null) && element.TaxDescription != null" class="col-sm-12">
+                {{element.GSTPercentage | number : '1.2-2'}}
+              </div>
+              <br />
+              <div *ngIf="(element.CESSPercentage != 0 && element.CESSPercentage != null) && element.CESSDescription != null" class="col-sm-12">
+                {{element.CESSPercentage | number : '1.2-2'}}
+              </div>
+              <br />
+              <div *ngIf="(element.AdditionalCESSPercentage != 0 && element.AdditionalCESSPercentage != null) && element.AdditionalCESSDescription != null" class="col-sm-12">
+                {{element.AdditionalCESSPercentage | number : '1.2-2'}}
+              </div>
+            </div>
+          </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="GSTValueprint">
+          <th mat-header-cell *matHeaderCellDef> Amount</th>
+          <td mat-cell *matCellDef="let element;let id = index;">
+            <div class="row" style="text-align:right">
+              <div *ngIf="(element.GSTPercentage != 0 && element.GSTPercentage != null) && element.TaxDescription != null" class="col-sm-12">
+                {{element.GSTTaxValue | number : '1.2-2'}}
+              </div>
+              <br />
+              <div *ngIf="(element.CESSPercentage != 0 && element.CESSPercentage != null) && element.CESSDescription != null" class="col-sm-12">
+                {{element.CESSAmount | number : '1.2-2'}}
+              </div>
+              <br />
+              <div *ngIf="(element.AdditionalCESSPercentage != 0 && element.AdditionalCESSPercentage != null) && element.AdditionalCESSDescription != null" class="col-sm-12">
+                {{element.AddCESSAmount | number : '1.2-2'}}
+              </div>
+            </div>
+          </td>
+          <td mat-footer-cell *matFooterCellDef style="text-align:right"><b *ngIf="PTotalaxx != 0">{{PTotalaxx | currency:Country2}} </b> </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="TotalAmountsymbolprint">
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">Total Amount</th>
+        </ng-container>
+
+
+        <ng-container matColumnDef="TotalAmountprint">
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> TotalAmount</th>
+          <td mat-cell *matCellDef="let element;let id = index;" style="text-align:right">{{element.TotalAmount | number : '1.2-2'}} </td>
+          <td mat-footer-cell *matFooterCellDef style="text-align:right"><b> {{PTotalpoo | currency:Country2}}</b></td>
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="POreceivedquantity">
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> PO </th>
+        </ng-container>
+
+        <ng-container matColumnDef="header-row-groupprint">
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> Discount </th>
+        </ng-container>
+
+
+        <ng-container matColumnDef="header-row-third-groupprint">
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="3"> Tax </th>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="['DrugNamesymbolprint','PurchaseUOMsymbolprint','POreceivedquantity','UnitPricesymbolprint','Amountsymbolprint','header-row-groupprint','Grosssymbolprint','header-row-third-groupprint','TotalAmountsymbolprint']"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsprint;sticky:true"></tr>
+        <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumnsprint;" [ngClass]="{gray: even}"></tr>
+        <tr mat-footer-row *matFooterRowDef="displayedColumnsprint;sticky:true"></tr>
+      </table>
+
+
+    </div>
+  </div>
+
+  <div class="col-sm-12" style="margin-top: 1%">
+    <div class="row">
+      <mat-label>
+        <strong>Amount in Words :</strong> &nbsp;&nbsp;{{Country1}}&nbsp;{{transformValue(ptotalwords)}} only
+      </mat-label><br />
+    </div>
+  </div>
+
+  <div class="col-sm-12" style="margin-top: 1%">
+    <div class="row">
+
+
+      <div class="col-sm-3">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="row">
+              <mat-label><strong>Validity&nbsp;: &nbsp;</strong></mat-label>
+            </div>
+            <div class="row">
+              <mat-label>{{valid}}</mat-label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+        <div class="col-sm-12">
+          <div class="row">
+            <mat-label><strong>Delivery Description&nbsp;: &nbsp;</strong></mat-label>
+          </div>
+          <div class="row">
+            <mat-label> {{deliveryy}}</mat-label>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+        <div class="col-sm-12">
+          <div class="row">
+            <mat-label><strong>Payment & Terms&nbsp;: &nbsp;</strong></mat-label>
+          </div>
+          <div class="row">
+            <mat-label>{{paymen}}</mat-label>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+        <div class="col-sm-12">
+          <div class="row">
+            <mat-label><strong>Instructions&nbsp;: &nbsp;</strong></mat-label>
+          </div>
+          <div class="row">
+            <mat-label>{{Termc}}</mat-label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-sm-12" style="margin-top: 5%">
+    <div class="row">
+
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4" style="text-align:right">
+        <mat-label><strong>Authorized Signatory &nbsp;</strong></mat-label>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="modal" role="dialog" [ngStyle]="{'display':accesspopup}">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title center">PurchaseOrder - View Access</h5>
+      </div>
+      <div class="modal-body">
+        <table class="custom-table withoutbackgroung search-table table-bordered">
+          <thead>
+            <tr>
+              <th>Add</th>
+              <th>Edit</th>
+              <th>Delete</th>
+              <th>Export</th>
+              <th>Print</th>
+
+            </tr>
+          </thead>
+          <tbody>
+
+
+            <tr *ngFor="let x of accessdata">
+              <td><mat-checkbox [(checked)]="x.Add" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Edit" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Delete" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Export" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Print" disabled></mat-checkbox></td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" data-dismiss="modal" autofocus (click)="modalcloseAccessOk()">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>

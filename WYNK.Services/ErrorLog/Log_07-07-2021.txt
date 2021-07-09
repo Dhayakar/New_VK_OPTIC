@@ -75,3 +75,42 @@
 07-07-2021 06:22:52 	NumberControl 	{"VCID":12217,"TransactionID":1045,"DepartmentID":0,"CmpID":1062,"Prefix":"ISS","Suffix":"OMR","Description":"Optical Material Return","Autonumber":true,"RunningNumber":14,"EffectiveFrom":"2020-07-08T00:00:00","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2020-07-08T00:00:00","UpdatedUTC":null,"CreatedBy":1062,"UpdatedBy":null}
 07-07-2021 06:22:53 	OpticalStockTran 	{"STID":-9223372036854774807,"RandomUniqueID":"c9e8738d-cbb8-4069-932f-61f59a6504a7","LMIDID":72,"POID":5,"ItemQty":10.0,"UOMID":3008,"ItemRate":2000.0,"ItemValue":20000.0,"ContraSMID":null,"ContraSTID":null,"ContraQty":null,"DiscountPercentage":0.0,"DiscountAmount":0.0,"GSTPercentage":null,"GSTTaxValue":null,"CGSTPercentage":null,"CGSTTaxValue":null,"SGSTPercentage":null,"SGSTTaxValue":null,"IGSTPercentage":null,"IGSTTaxValue":null,"IsDeleted":false,"CESSPercentage":null,"CESSAmount":null,"AdditionalCESSPercentage":null,"AddCESSAmount":null,"CreatedUTC":"2021-07-07T06:22:53.1813706Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null}
 07-07-2021 06:22:53 	OpticalBalance 	{"ID":18,"LTID":72,"OpeningBalance":0,"REC01":0,"REC02":0,"REC03":0,"REC04":0,"REC05":0,"REC06":0,"REC07":22,"REC08":0,"REC09":0,"REC10":0,"REC11":0,"REC12":0,"ISS01":0,"ISS02":0,"ISS03":0,"ISS04":0,"ISS05":0,"ISS06":0,"ISS07":10,"ISS08":0,"ISS09":0,"ISS10":0,"ISS11":0,"ISS12":0,"ClosingBalance":12,"FYID":16,"CreatedUTC":"2021-07-07T06:08:25.267","UpdatedUTC":"2021-07-07T06:22:53.2662984Z","CreatedBy":32246,"UpdatedBy":32246,"CmpID":1062,"StoreID":5,"UOMID":3008}
+07-07-2021 07:16:03 	NumberControl 	{"VCID":12217,"TransactionID":1045,"DepartmentID":0,"CmpID":1062,"Prefix":"ISS","Suffix":"OMR","Description":"Optical Material Return","Autonumber":true,"RunningNumber":15,"EffectiveFrom":"2020-07-08T00:00:00","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2020-07-08T00:00:00","UpdatedUTC":null,"CreatedBy":1062,"UpdatedBy":null}
+07-07-2021 07:16:03 	OpticalStockTran 	{"STID":-9223372036854774807,"RandomUniqueID":"6b8870f9-b8ba-4374-9cae-a05edec15f6a","LMIDID":71,"POID":5,"ItemQty":3.0,"UOMID":3008,"ItemRate":500.0,"ItemValue":1500.0,"ContraSMID":null,"ContraSTID":null,"ContraQty":null,"DiscountPercentage":0.0,"DiscountAmount":0.0,"GSTPercentage":null,"GSTTaxValue":null,"CGSTPercentage":null,"CGSTTaxValue":null,"SGSTPercentage":null,"SGSTTaxValue":null,"IGSTPercentage":null,"IGSTTaxValue":null,"IsDeleted":false,"CESSPercentage":null,"CESSAmount":null,"AdditionalCESSPercentage":null,"AddCESSAmount":null,"CreatedUTC":"2021-07-07T07:16:03.9600708Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null}
+07-07-2021 07:16:04 	OpticalBalance 	{"ID":17,"LTID":71,"OpeningBalance":0,"REC01":0,"REC02":0,"REC03":0,"REC04":0,"REC05":0,"REC06":0,"REC07":15,"REC08":0,"REC09":0,"REC10":0,"REC11":0,"REC12":0,"ISS01":0,"ISS02":0,"ISS03":0,"ISS04":0,"ISS05":0,"ISS06":0,"ISS07":3,"ISS08":0,"ISS09":0,"ISS10":0,"ISS11":0,"ISS12":0,"ClosingBalance":12,"FYID":16,"CreatedUTC":"2021-07-07T06:08:25.263","UpdatedUTC":"2021-07-07T07:16:04.066686Z","CreatedBy":32246,"UpdatedBy":32246,"CmpID":1062,"StoreID":5,"UOMID":3008}
+
+07-07-2021 07:25:56 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+07-07-2021 07:25:56 	Message : 	Successfully Logged-In
+
+07-07-2021 07:27:59 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+07-07-2021 07:27:59 	Message : 	Successfully Logged-In
+
+07-07-2021 10:11:10 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+07-07-2021 10:11:10 	Message : 	Successfully Logged-In
+
+07-07-2021 13:25:02 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+07-07-2021 13:25:02 	Message : 	Successfully Logged-In
+
+07-07-2021 13:25:02 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+07-07-2021 13:25:02 	Message : 	Successfully Logged-In
+
+07-07-2021 13:30:45 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+07-07-2021 13:30:45 	Message : 	Successfully Logged-In
+
+07-07-2021 13:33:05 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+07-07-2021 13:33:05 	Message : 	Successfully Logged-In
+
+07-07-2021 13:39:09 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+07-07-2021 13:39:09 	Message : 	Successfully Logged-In
+
+07-07-2021 13:42:24 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+07-07-2021 13:42:24 	Message : 	Successfully Logged-In
+
+07-07-2021 13:43:06 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+07-07-2021 13:43:06 	Message : 	Successfully Logged-In
+
+07-07-2021 13:44:05 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+07-07-2021 13:44:05 	Message : 	Successfully Logged-In
+
+07-07-2021 13:46:23 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+07-07-2021 13:46:23 	Message : 	Successfully Logged-In

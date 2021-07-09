@@ -1,0 +1,1287 @@
+<form #CustomerOrderCancel="ngForm" name="CustomerOrderCancel" (keydown.enter)="$event.preventDefault()" novalidate>
+    <div class="col-sm-12">
+      <div class="row">
+        <h5 align="center" class="card-header bg-success text-white rounded-top">
+          <b>Customer &nbsp; Order  &nbsp; Cancellation</b>
+        </h5>
+      </div>
+    </div>
+    <div class="col-sm-12 border-blue border-radius">
+      <div class="row">
+        <div class="col-sm-2 f-r">
+          <button type="button" class="btn-text f-r" (click)="Getformaccess()"><i class="fas fa-eye"></i> View Access</button>
+        </div>
+      </div>
+      <div class="row mt-1p">
+        <div class="col-sm-3 mt-1p">
+          <div class="row">
+            <div class="col-sm-7">
+              <div class="row">
+                <div class="col-sm-10">
+                  <mat-label class="refcol">Cancellation No:</mat-label>
+                </div>
+                <div class="col-sm-2 ml-n26p">
+                  <mat-icon (click)="CancelOrderedList()" class="cursor" data-toggle="tooltip" title="Search Cancelled Ordered List">search</mat-icon>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-5  ml-n15p">
+              <mat-label>{{M_CancelNo}}</mat-label>
+            </div>
+          </div>
+          <div class="row mt-8%">
+            <div class="col-sm-7 mt-6p">
+              <mat-label class="refcol">Cancellation Date:</mat-label>
+            </div>
+            <div class="col-sm-4 mt-n5p ml-n14p width-53p">
+              <mat-form-field appearance="outline" class="mt-12p  width-130p">
+                <mat-label>Cancellation Date</mat-label>
+                <input [(ngModel)]="M_CancelDate"  name="CancelDate" matInput [matDatepicker]="picker3" [min]="M_OrderDate" placeholder="" [(disabled)]="Prints" required>
+                <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                <mat-datepicker #picker3></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3 mt-1p">
+          <div class="row">
+            <div class="col-sm-7">
+              <div class="row">
+                <div class="col-sm-9">
+                  <mat-label class="col-sm-12 refcol ml-6p">Order No:</mat-label>
+                </div>
+                <div class="col-sm-1 ml-n26p">
+                  <mat-icon (click)="PlacedOrderedList()" class="cursor" data-toggle="tooltip" title="Search Ordered List">search</mat-icon>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-5  ml-n12p">
+              <mat-label>{{M_OrderNo}}</mat-label>
+            </div>
+          </div>
+          <div class="row mt-1p">
+            <div class="col-sm-5 mt-6p ml-4p">
+              <mat-label class="refcol">Order Date:</mat-label>
+            </div>
+            <div class="col-sm-6 mt-6p">
+              <mat-label class="mt-12p">{{M_OrderDate | date:'dd-MMM-y, HH:mm'}}</mat-label>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3 mt-1p">
+          <div class="row">
+            <div class="col-sm-5 ml-3p">
+              <mat-label class="refcol">Ref No:</mat-label>
+            </div>
+            <div class="col-sm-5 ml-n21p">
+              <mat-label>{{M_RefNo}}</mat-label>
+            </div>
+          </div>
+          <div class="row mt-1p">
+            <div class="col-sm-6 mt-9p">
+              <mat-label class="refcol">Ref Date:</mat-label>
+            </div>
+            <div class="col-sm-5 mt-9p ml-n25p">
+              <mat-label class="mt-12p">{{M_Refdate | date:'dd-MMM-y'}}</mat-label>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3 ml-n5p mt-1p">
+          <div class="row ml-n2p">
+            <div class="col-sm-6">
+              <div class="row">
+                <mat-label class="refcol">Customer Name:</mat-label>
+              </div>
+            </div>
+            <div class="col-sm-6 ml-n15p">
+              <mat-label>{{M_CustomerName}}</mat-label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-2 ml-15p height-50px">
+              <mat-label class="refcol">Address:</mat-label>
+            </div>
+            <div class="col-sm-7 ml-5p">
+              <mat-label>{{M_Address}}</mat-label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-5 ml-11p mt-1p">
+              <mat-label class="refcol">Contact No:</mat-label>
+            </div>
+            <div class="col-sm-5 ml-n14p mt-1p">
+              <mat-label>{{M_MobileNo}}</mat-label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <input id="tab-1" class="ItemDetailsTab" type="radio" name="tabs" checked="checked" />
+        <input id="tab-2" type="radio" name="tabs" />
+
+        <div class="tabs">
+          <label for="tab-1">Item Details</label>
+          <label for="tab-2">Advance & Refund Details</label>
+        </div>
+
+        <div class="content">
+          <div class="tab position-sticky width-100p">
+            <div class="row">
+              <div class="col-sm-12 heightAuto-300px  position-sticky">
+                <table mat-table matSort [dataSource]="PrintdataSource" class="custom-table withoutbackgroung search-table table-bordered">
+                  <ng-container matColumnDef="SNo">
+                    <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">SNo</th>
+                    <td mat-cell *matCellDef="let element ;let i = index;"> {{i+1}} </td>
+                    <td mat-footer-cell *matFooterCellDef> </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="Serials">
+                    <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> S.No </th>
+                  </ng-container>
+
+                  <ng-container matColumnDef="Type">
+                    <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Type</th>
+                    <td mat-cell *matCellDef="let element ;let i = index;">{{element.Type}}  </td>
+                    <td mat-footer-cell *matFooterCellDef> </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="Types">
+                    <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Type </th>
+                  </ng-container>
+
+
+                  <ng-container matColumnDef="Brand">
+                    <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Brand</th>
+                    <td mat-cell *matCellDef="let element;let i = index;">
+                      {{element.Brand}}
+                    </td>
+                    <td mat-footer-cell *matFooterCellDef> </td>
+                  </ng-container>
+
+
+                  <ng-container matColumnDef="Brands">
+                    <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Brand </th>
+                  </ng-container>
+
+
+                  <ng-container matColumnDef="Model">
+                    <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Model</th>
+                    <td mat-cell *matCellDef="let element"> {{element.Model }} </td>
+                    <td mat-footer-cell *matFooterCellDef> </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="Models">
+                    <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Model </th>
+                  </ng-container>
+
+
+                  <ng-container matColumnDef="LensOption">
+                    <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">LensOption</th>
+                    <td mat-cell *matCellDef="let element"> {{element.LensOptions }} </td>
+                    <td mat-footer-cell *matFooterCellDef> </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="LensOptions">
+                    <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> LensOption </th>
+                  </ng-container>
+
+                  <ng-container matColumnDef="Index">
+                    <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Index</th>
+                    <td mat-cell *matCellDef="let element"> {{element.Index }} </td>
+                    <td mat-footer-cell *matFooterCellDef> </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="Indexs">
+                    <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Index </th>
+                  </ng-container>
+
+
+                  <ng-container matColumnDef="Color">
+                    <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Color</th>
+                    <td mat-cell *matCellDef="let element"> {{element.Color }} </td>
+                    <td mat-footer-cell *matFooterCellDef> </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="Colors">
+                    <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Color </th>
+                  </ng-container>
+
+                  <ng-container matColumnDef="HSN">
+                    <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">HSN</th>
+                    <td mat-cell *matCellDef="let element"> {{element.HSNNo }} </td>
+                    <td mat-footer-cell *matFooterCellDef> </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="HSNs">
+                    <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> HSN </th>
+                  </ng-container>
+
+
+                  <ng-container matColumnDef="UOM">
+                    <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">UOM</th>
+                    <td mat-cell *matCellDef="let element"> {{element.UOM}} </td>
+                    <td mat-footer-cell *matFooterCellDef> </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="UOMs">
+                    <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> UOM </th>
+                  </ng-container>
+
+                  <ng-container matColumnDef="QTY">
+                    <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">QTY</th>
+                    <td mat-cell *matCellDef="let element; let id = index;" contenteditable="false" (keypress)="RestrictNegativeValues($event)" (keyup)="changeQtyValue(id,'Quantity',$event);changeGivenQtyValue(id,element,'GivenQtyPrice');changeValueDiscountAmount(id,element,'DiscountAmount');changeValueGrossAmount(id,element,'GrossAmount');changeGstValue(id,element,'GSTValue');changeValueTotal(id,element,'Amount')"> {{element.Quantity| number : '1.2-2'}} </td>
+                    <td mat-footer-cell *matFooterCellDef> </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="QTYs">
+                    <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> QTY </th>
+                  </ng-container>
+
+                  <ng-container matColumnDef="Price">
+                    <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Price</th>
+                    <td mat-cell *matCellDef="let element"> {{element.UnitPrice| number : '1.2-2'}} </td>
+                    <td mat-footer-cell *matFooterCellDef> </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="Prices">
+                    <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Price </th>
+                  </ng-container>
+
+
+
+                  <ng-container matColumnDef="Amount">
+                    <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Amount</th>
+                    <td mat-cell *matCellDef="let element">{{ element.GivenQtyPrice | number : '1.2-2'}} </td>
+                    <td mat-footer-cell *matFooterCellDef class="text-end"><b>{{getItemAmount() | currency:Country2}}</b></td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="Amounts">
+                    <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Amount </th>
+                  </ng-container>
+
+                  <ng-container matColumnDef="Discount%">
+                    <th mat-header-cell *matHeaderCellDef>%</th>
+                    <td mat-cell *matCellDef="let element"> {{element.Discount| number : '1.2-2'}} </td>
+                    <td mat-footer-cell *matFooterCellDef> </td>
+                  </ng-container>
+                  <ng-container matColumnDef="DiscountAmount">
+                    <th mat-header-cell *matHeaderCellDef> Amount </th>
+                    <td mat-cell *matCellDef="let element">{{element.DiscountAmount| number : '1.2-2'}} </td>
+                    <td mat-footer-cell *matFooterCellDef class="text-end"><b>{{getDiscountAmount() | currency:Country2}}</b></td>
+                  </ng-container>
+
+
+                  <ng-container matColumnDef="GrossAmount">
+                    <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">GrossAmount</th>
+                    <td mat-cell *matCellDef="let element">{{element.GrossAmount| number : '1.2-2'}} </td>
+                    <td mat-footer-cell *matFooterCellDef class="text-end"><b>{{getGrossAmount() | currency:Country2}}</b></td>
+                  </ng-container>
+
+
+                  <ng-container matColumnDef="GrossAmounts">
+                    <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> GrossAmount </th>
+                  </ng-container>
+
+                  <ng-container matColumnDef="GSTDesc">
+                    <th mat-header-cell *matHeaderCellDef>Desc</th>
+                    <td mat-cell *matCellDef="let element">
+                      <div class="row">
+                        <div *ngIf="element.GSTDesc != null" class="col-sm-10 mt-8p">
+                          {{element.GSTDesc}}
+                        </div>
+                        <br />
+                        <div *ngIf="element.CESSDesc != null" class="col-sm-10">
+                          {{element.CESSDesc}}
+                        </div>
+                        <br />
+                        <div *ngIf="element.AddCessDesc != null" class="col-sm-10">
+                          {{element.AddCessDesc}}
+                        </div>
+                      </div>
+                    </td>
+                    <td mat-footer-cell *matFooterCellDef> </td>
+                  </ng-container>
+                  <ng-container matColumnDef="GST%">
+                    <th mat-header-cell *matHeaderCellDef>%</th>
+                    <td mat-cell *matCellDef="let element">
+                      <div class="row">
+                        <div *ngIf="element.GST != null" class="col-sm-10 mt-12p">
+                          {{element.GST | number : '1.2-2'}}
+                        </div>
+                        <br />
+                        <div *ngIf="element.CESS != null" class="col-sm-10">
+                          {{element.CESS | number : '1.2-2'}}
+                        </div>
+                        <br />
+                        <div *ngIf="element.AddCess != null" class="col-sm-10">
+                          {{element.AddCess | number : '1.2-2'}}
+                        </div>
+                      </div>
+                    </td>
+                    <td mat-footer-cell *matFooterCellDef> </td>
+                  </ng-container>
+                  <ng-container matColumnDef="GSTValue">
+                    <th mat-header-cell *matHeaderCellDef>Amount</th>
+                    <td mat-cell *matCellDef="let element">
+                      <div class="row">
+                        <div *ngIf="element.GST != null" class="col-sm-10 mt-8p">
+                          {{element.GSTValue | number : '1.2-2'}}
+                        </div>
+                        <br />
+                        <div *ngIf="element.CESS != null" class="col-sm-10">
+                          {{element.CESSValue| number : '1.2-2'}}
+                        </div>
+                        <br />
+                        <div *ngIf="element.AddCess != null" class="col-sm-10">
+                          {{element.AddCessValue| number : '1.2-2'}}
+                        </div>
+                      </div>
+                    </td>
+                    <td mat-footer-cell *matFooterCellDef class="text-center"><b>{{getGstTotalAmount() | currency:Country2}}</b></td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="NetAmount">
+                    <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Net Amount</th>
+                    <td mat-cell *matCellDef="let element">{{element.Amount| number : '1.2-2'}} </td>
+                    <td mat-footer-cell *matFooterCellDef><b>{{getTotalAmount()| number : '1.2-2'}}</b></td>
+                  </ng-container>
+
+
+                  <ng-container matColumnDef="NetAmounts">
+                    <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Net Amount</th>
+                  </ng-container>
+
+                  <ng-container matColumnDef="header-row-group">
+                    <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> Discount </th>
+                  </ng-container>
+
+                  <ng-container matColumnDef="header-row-third-group">
+                    <th mat-header-cell *matHeaderCellDef [attr.colspan]="3"> Tax </th>
+                  </ng-container>
+
+
+                  <tr mat-header-row *matHeaderRowDef="['Serials','Types','Brands','Models','LensOptions','Indexs','Colors','UOMs','QTYs','Prices','Amounts',
+              'header-row-group','GrossAmounts','header-row-third-group','NetAmounts'];sticky:true"></tr>
+
+
+                  <tr mat-header-row *matHeaderRowDef="PrintdisplayedColumns;sticky:true"></tr>
+                  <tr mat-row *matRowDef="let row;  let even = even;columns: PrintdisplayedColumns;"></tr>
+                  <tr mat-footer-row *matFooterRowDef="PrintdisplayedColumns;sticky: true"></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="tab position-sticky width-100p">
+            <div class="col-sm-12 ml-n1p">
+              <div class="row">
+                <div class="col-sm-3">
+                  <h5 align="center" class="card-header bg-success text-white rounded-top">
+                    <b>Advance Details</b>
+                  </h5>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12 heightAuto-200px ml-n1p position-sticky">
+                  <table mat-table matSort [dataSource]="dataSource3" class="custom-table withoutbackgroung search-table table-bordered">
+                    <ng-container matColumnDef="PaymentMode">
+                      <th mat-header-cell *matHeaderCellDef>PaymentMode</th>
+                      <td mat-cell *matCellDef="let element">{{element.PaymentMode}}</td>
+                      <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+                    <ng-container matColumnDef="InstrumentNumber">
+                      <th mat-header-cell *matHeaderCellDef>Instrument Number</th>
+                      <td mat-cell *matCellDef="let element">{{element.InstrumentNumber}} </td>
+                      <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+                    <ng-container matColumnDef="InstrumentDate">
+                      <th mat-header-cell *matHeaderCellDef>Instrument Date</th>
+                      <td mat-cell *matCellDef="let element">{{element.Instrumentdate| date:'dd-MMM-y'}} </td>
+                      <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+                    <ng-container matColumnDef="BankName">
+                      <th mat-header-cell *matHeaderCellDef>Bank Name</th>
+                      <td mat-cell *matCellDef="let element">{{element.BankName}} </td>
+                      <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+                    <ng-container matColumnDef="Branch">
+                      <th mat-header-cell *matHeaderCellDef>Branch</th>
+                      <td mat-cell *matCellDef="let element">{{element.BankBranch}} </td>
+                      <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+                    <ng-container matColumnDef="ExpiryDate">
+                      <th mat-header-cell *matHeaderCellDef>Expiry Date</th>
+                      <td mat-cell *matCellDef="let element">{{element.Expirydate| date:'dd-MMM-y'}} </td>
+                      <td mat-footer-cell *matFooterCellDef><strong>Total Amount</strong> </td>
+                    </ng-container>
+                    <ng-container matColumnDef="Amount">
+                      <th mat-header-cell *matHeaderCellDef>Amount</th>
+                      <td mat-cell *matCellDef="let element">{{element.Amount | number : '1.2-2'}} </td>
+                      <td mat-footer-cell *matFooterCellDef><b>{{getPaymentTotalCost() | currency : Country2}}</b> </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns3;sticky: true"></tr>
+                    <tr mat-row *matRowDef="let element;  let even = even; columns: displayedColumns3"></tr>
+                    <tr mat-footer-row *matFooterRowDef="displayedColumns3;sticky: true"></tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 ml-n1p">
+              <div class="col-sm-12 mt-1p" *ngIf="!Prints && !NoPayment">
+                <div class="card mb-12">
+                  <h5 class="card-header bg-success text-white">
+                    Refund details
+                    <button (click)="AddPaymentDetailsNewgrid();" class="btnuserdefined btn-dark"><i matTooltip="Add Payment Details" class="fa fa-plus"></i></button>
+                  </h5>
+                  <div class="card-body">
+                    <div class="row" heightAuto-300px>
+                      <table mat-table [dataSource]="dataSource5" class="custom-table withoutbackgroung search-table table-bordered">
+
+                        <ng-container matColumnDef="PaymentMode">
+                          <th mat-header-cell *matHeaderCellDef>Payment Mode</th>
+                          <td mat-cell *matCellDef="let element;let id = index;">
+                            <mat-form-field appearance="outline">
+                              <mat-select (selectionChange)="PaymentChange(id,$event,element)">
+                                <mat-option *ngFor="let Paymentsmode of Paymentsmodes" [value]="Paymentsmode.Value">
+                                  {{Paymentsmode.Text}}
+                                </mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                          </td>
+                          <td mat-footer-cell *matFooterCellDef> </td>
+                        </ng-container>
+                        <ng-container matColumnDef="BankName">
+                          <th mat-header-cell *matHeaderCellDef>Bank Name</th>
+                          <td mat-cell *matCellDef="let element" [contentEditable]="element.PaymentMode !='Cash'">
+                            <mat-form-field appearance="outline">
+                              <input (blur)="BankName($event,element)" (keypress)="nameField($event)" [disabled]="element.PaymentMode =='Cash'  " maxlength="100" matInput placeholder="Enter BankName" name="BankName" type="text">
+                            </mat-form-field>
+                          </td>
+                          <td mat-footer-cell *matFooterCellDef> </td>
+                        </ng-container>
+                        <ng-container matColumnDef="InstrumentNumber">
+                          <th mat-header-cell *matHeaderCellDef>Instrument Number</th>
+                          <td mat-cell *matCellDef="let element" [contentEditable]="element.PaymentMode !='Cash'">
+                            <mat-form-field appearance="outline">
+                              <input (blur)="InstrumentNumber($event,element)" [disabled]="element.PaymentMode =='Cash'" maxlength="15" (keypress)="numberOnly($event)" matInput placeholder="Enter Instrument Number" name="InstrumentNumber" type="text">
+                            </mat-form-field>
+                          </td>
+                          <td mat-footer-cell *matFooterCellDef> </td>
+                        </ng-container>
+                        <ng-container matColumnDef="InstrumentDate">
+                          <th mat-header-cell *matHeaderCellDef>Instrument Date</th>
+                          <td mat-cell *matCellDef="let element" [contentEditable]="element.PaymentMode !='Cash' || element.PaymentMode !='Debit card'|| element.PaymentMode !='Credit Card'">
+                            <mat-form-field appearance="outline">
+                              <input [disabled]="element.PaymentMode =='Cash' || element.PaymentMode =='Debit card'|| element.PaymentMode =='Credit Card' "
+                                     name="InstrumentDate" autocomplete="off" [min]="maxToDate" matInput [matDatepicker]="InstrumentDate" (dateChange)="dateofinstrument($event,element)" placeholder="InstrumentDate">
+                              <mat-datepicker-toggle matSuffix [for]="InstrumentDate"></mat-datepicker-toggle>
+                              <mat-datepicker #InstrumentDate></mat-datepicker>
+                            </mat-form-field>
+                          </td>
+                          <td mat-footer-cell *matFooterCellDef> </td>
+                        </ng-container>
+                        <ng-container matColumnDef="ExpiryDate">
+                          <th mat-header-cell *matHeaderCellDef>Expiry Date</th>
+                          <td mat-cell *matCellDef="let element" [contentEditable]="element.PaymentMode !='Cash'|| element.PaymentMode !='Demand Draft' ">
+                            <mat-form-field appearance="outline">
+                              <input (dateChange)="dateexpiry($event,element)" [disabled]="element.PaymentMode =='Cash'|| element.PaymentMode =='Demand Draft' " autocomplete="off" [min]="MINExpiryDate"
+                                     name="ExpiryDate" matInput [matDatepicker]="ExpiryDate" placeholder="ExpiryDate" type="datetime">
+                              <mat-datepicker-toggle matSuffix [for]="ExpiryDate"></mat-datepicker-toggle>
+                              <mat-datepicker #ExpiryDate></mat-datepicker>
+                            </mat-form-field>
+                          </td>
+                          <td mat-footer-cell *matFooterCellDef><b>Total</b></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Branch">
+                          <th mat-header-cell *matHeaderCellDef>Branch</th>
+                          <td mat-cell *matCellDef="let element"
+                              [contentEditable]="element.PaymentMode !='Cash'|| element.PaymentMode !='Debit card' || element.PaymentMode !='Credit Card'">
+                            <mat-form-field appearance="outline">
+                              <input (blur)="Branch($event,element)"
+                                     [disabled]="element.PaymentMode =='Cash' || element.PaymentMode =='Debit card' || element.PaymentMode =='Credit Card'"
+                                     (keypress)="nameField($event)" maxlength="50" matInput name="Branch" placeholder="Branch" type="text">
+                            </mat-form-field>
+
+                          </td>
+                          <td mat-footer-cell *matFooterCellDef></td>
+                        </ng-container>
+                        <ng-container matColumnDef="Amount">
+                          <th mat-header-cell *matHeaderCellDef>Amount</th>
+                          <td mat-cell *matCellDef="let element;let id = index" required (keyup)="Amount(id,'Amount',$event,element)" (keypress)="numberOnly($event)" [contentEditable]="disableRow">
+                            {{element.Amount | number :'1.2-2'}}
+
+                          </td>
+                          <td mat-footer-cell *matFooterCellDef>
+                            <strong>
+                              {{PTotalAmount1() | currency:Country2}}
+                            </strong>
+                          </td>
+                        </ng-container>
+                        <ng-container matColumnDef="Action">
+                          <th mat-header-cell *matHeaderCellDef>Action</th>
+                          <td mat-cell *matCellDef="let element;let id = index" [contentEditable]="disableRow">
+                            <i class="fas fa-trash-alt icon-delete" title="Delete" (click)="removePaytype(i)"></i>
+                          </td>
+                          <td mat-footer-cell *matFooterCellDef></td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns5;sticky: true"></tr>
+                        <tr mat-row *matRowDef="let element;  let even = even; columns: displayedColumns5"></tr>
+                        <tr mat-footer-row *matFooterRowDef="displayedColumns5;"></tr>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row" *ngIf="Prints">
+                <div class="col-sm-6">
+                  <div class="col-sm-7">
+                    <h5 align="center" class="card-header bg-success text-white rounded-top">
+                      <b>Refund Details</b>
+                    </h5>
+                  </div>
+                </div>
+              </div>
+              <div class="row  position-sticky" *ngIf="Prints">
+                <div class="col-sm-12 heightAuto-200px">
+                  <table mat-table matSort [dataSource]="dataSource5" class="custom-table withoutbackgroung search-table table-bordered">
+
+                    <ng-container matColumnDef="PaymentMode">
+                      <th mat-header-cell *matHeaderCellDef >PaymentMode</th>
+                      <td mat-cell *matCellDef="let element" >{{element.PaymentMode}}</td>
+                      <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="InstrumentNumber">
+                      <th mat-header-cell *matHeaderCellDef >Instrument Number</th>
+                      <td mat-cell *matCellDef="let element" >{{element.InstrumentNumber}} </td>
+                      <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="InstrumentDate">
+                      <th mat-header-cell *matHeaderCellDef >Instrument Date</th>
+                      <td mat-cell *matCellDef="let element" >{{element.Instrumentdate| date:'dd-MMM-y'}} </td>
+                      <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="BankName">
+                      <th mat-header-cell *matHeaderCellDef >Bank Name</th>
+                      <td mat-cell *matCellDef="let element" >{{element.BankName}} </td>
+                      <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Branch">
+                      <th mat-header-cell *matHeaderCellDef >Branch</th>
+                      <td mat-cell *matCellDef="let element">{{element.BankBranch}} </td>
+                      <td mat-footer-cell *matFooterCellDef> </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="ExpiryDate">
+                      <th mat-header-cell *matHeaderCellDef >Expiry Date</th>
+                      <td mat-cell *matCellDef="let element" >{{element.Expirydate| date:'dd-MMM-y'}} </td>
+                      <td mat-footer-cell *matFooterCellDef><strong>Total Amount</strong> </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Amount">
+                      <th mat-header-cell *matHeaderCellDef>Amount</th>
+                      <td mat-cell *matCellDef="let element">{{element.Amount | number : '1.2-2'}} </td>
+                      <td mat-footer-cell *matFooterCellDef><strong>{{getPaymentTotalCost1() | number : '1.2-2'}}</strong> </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns5;sticky: true"></tr>
+                    <tr mat-row *matRowDef="let element;  let even = even; columns: displayedColumns5"></tr>
+                    <tr mat-footer-row *matFooterRowDef="displayedColumns5;sticky: true"></tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="row col-sm-3" style="margin:12px">
+              <mat-form-field appearance="outline" hintLabel="Max 250 characters">
+                <mat-label>Cancel Reasons:</mat-label>
+                <textarea matInput [(ngModel)]="M_CancelReason" name="CancelReason" placeholder="" #CancelReason maxlength="250" required [disabled]="Prints"></textarea>
+                <mat-hint align="end">{{CancelReason.value?.length || 0}}/250</mat-hint>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 m-3">
+        <div class="col-sm-12 pb25 ml-12p">
+          <div class="col-sm-4  sub-section btn-wrap f-r">
+            <button type="button" class="btn btn-warning-default" (click)="clear()"><strong>Cancel</strong></button>
+            <button *ngIf="Prints" type="button"  [disabled]="isNextPrint" class="success btn btn-primary" (click)="Print()"> Print </button>
+            <button *ngIf="!Prints" type="button"  [disabled]="isNextButton" class="success btn btn-primary" (click)="Submit(CustomerOrderCancel)">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</form>
+
+
+<!--/* Ordered List Popup */-->
+<div class="modal" role="dialog" [ngStyle]="{'display':OrderedListModel}">
+  <div class="modal-dialog modal-lg width-90p pt15 ml-n2p padding-lef15p">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="OrderedListModelClose()">&times;</button>
+        <h5 class="modal-title text-center">
+          <strong>Customer Order Details</strong>
+        </h5>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline">
+              <mat-label>Search</mat-label>
+              <input matInput (keyup)="applyFilter2($event)" placeholder="">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row heightAuto-300px">
+          <table mat-table [dataSource]="dataSource4" class="custom-table withoutbackgroung search-table table-bordered">
+            <ng-container matColumnDef="Action">
+              <th mat-header-cell *matHeaderCellDef >Action</th>
+              <td mat-cell *matCellDef="let element; let i = index;"> <mat-icon data-toggle="tooltip" class="cursor" title="select" (click)="SelectOrderNo(element)">create</mat-icon></td>
+            </ng-container>
+            <ng-container matColumnDef="OrderNo">
+              <th mat-header-cell *matHeaderCellDef>Order No</th>
+              <td mat-cell  *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.OrderNo}}</td>
+            </ng-container>
+            <ng-container matColumnDef="OrderDate">
+              <th mat-header-cell *matHeaderCellDef>Order Date</th>
+              <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.OrderDate | date:'dd-MMM-y'}} </td>
+            </ng-container>
+            <ng-container matColumnDef="CustomerName">
+              <th mat-header-cell *matHeaderCellDef >Customer Name</th>
+              <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.CustomerName}} </td>
+            </ng-container>
+            <ng-container matColumnDef="OrderStatus">
+              <th mat-header-cell *matHeaderCellDef>Order Status</th>
+              <td mat-cell *matCellDef="let element"> {{element.OrderStatus}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns4;sticky:true"></tr>
+            <tr mat-row *matRowDef="let row;  let even = even;columns: displayedColumns4;"></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--/* CancelOrder List Popup */-->
+<div class="modal" role="dialog" [ngStyle]="{'display':CancelOrderListModel}">
+  <div class="modal-dialog modal-lg width-90p pt15 ml-n2p padding-lef15p">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="CancelOrderModelClose()">&times;</button>
+        <h5 class="modal-title text-center">
+          <strong>Cancelled Order Details</strong>
+        </h5>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline">
+              <mat-label>Search</mat-label>
+              <input matInput (keyup)="applyFilter3($event)" placeholder="">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row heightAuto-300px">
+          <table mat-table [dataSource]="dataSource6" class="custom-table withoutbackgroung search-table table-bordered">
+            <ng-container matColumnDef="Action">
+              <th mat-header-cell *matHeaderCellDef >Action</th>
+              <td mat-cell *matCellDef="let element; let i = index;"> <mat-icon data-toggle="tooltip" class="cursor" title="select" (click)="SelectCancelOrder(element)">create</mat-icon></td>
+            </ng-container>
+            <ng-container matColumnDef="CancelOrderNo">
+              <th mat-header-cell *matHeaderCellDef >Cancelled Order No</th>
+              <td mat-cell style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;text-align: center;" *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.OrderNo}}</td>
+            </ng-container>
+            <ng-container matColumnDef="CancelOrderDate">
+              <th mat-header-cell *matHeaderCellDef >Cancelled Date</th>
+              <td mat-cell  *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.OrderDate | date:'dd-MMM-y'}} </td>
+            </ng-container>
+            <ng-container matColumnDef="CustomerName">
+              <th mat-header-cell *matHeaderCellDef >Customer Name</th>
+              <td mat-cell  *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.CustomerName}} </td>
+            </ng-container>
+            <ng-container matColumnDef="OrderStatus">
+              <th mat-header-cell *matHeaderCellDef >Order Status</th>
+              <td mat-cell *matCellDef="let element" > {{element.OrderStatus}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns6;sticky:true"></tr>
+            <tr mat-row *matRowDef="let row;  let even = even;columns: displayedColumns6;"></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Print-->
+<div id="section" style="display:none">
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="col-sm-4"></div>
+      <div class="col-sm-6">
+        <label style="font-size:16px"><strong>{{CompanyName}}</strong> </label>
+      </div>
+      <div class="col-sm-2"></div>
+    </div>
+  </div>
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-7"> <label style="text-align:center;margin-left:28%"><strong>{{CompanyAddress1 + ' '+ CompanyAddress2 + ' '+ CompanyAddress3}}</strong></label></div>
+      <div class="col-sm-3"></div>
+    </div>
+  </div>
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-7"> <label style="text-align:center;margin-left:1%"><strong>{{'Phone No:'+' '+ CompanyPhone1 + ',' + ' ' + 'Website:' + ' ' + CompanyWebsite}}</strong></label></div>
+      <div class="col-sm-1"></div>
+    </div>
+  </div>
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="col-sm-5"></div>
+      <div class="col-sm-3" style="margin-left:-3%"><label style="text-align:center;margin-left:-5%"><strong>Customer Order Cancellation</strong></label></div>
+      <div class="col-sm-4"></div>
+    </div>
+  </div>
+  <div class="col-sm-12">
+    <div class="row">
+
+      <div class="col-sm-3" style="margin-top: 14px;">
+        <div class="row">
+          <div class="col-sm-6">
+            <mat-label><strong>Cancellation No : </strong></mat-label>
+          </div>
+          <div class="col-sm-6" style="margin-left: -12%;">
+            <mat-label>{{M_CancelNo}}</mat-label>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 7px;">
+          <div class="col-sm-6" style="margin-top: 5%;">
+            <mat-label><strong>Cancellation Date:</strong></mat-label>
+          </div>
+          <div class="col-sm-6" style="margin-top: 5%;margin-left:-6%">
+            <mat-label style="margin-top:12%">{{M_CancelDate | date:'dd-MMM-y, HH:mm'}}</mat-label>&nbsp; Hrs
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-3" style="margin-top: 14px;">
+        <div class="row">
+          <div class="col-sm-7">
+            <mat-label class="col-sm-9" style="margin-left: 6%;"><strong>Order No:</strong></mat-label>
+          </div>
+          <div class="col-sm-5" style="margin-left: -15%;">
+            <mat-label>{{M_OrderNo}}</mat-label>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 17px;">
+          <div class="col-sm-6" style="margin-top: 6%;margin-left: 4%;">
+            <mat-label><strong>Order Date:</strong></mat-label>
+          </div>
+          <div class="col-sm-6" style="margin-top: 6%;margin-left: -6%;">
+            <mat-label style="margin-top:12%;">{{M_OrderDate | date:'dd-MMM-y, HH:mm'}}</mat-label>&nbsp; Hrs
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-sm-3" style="margin-top: 14px;">
+        <div class="row">
+          <div class="col-sm-5" style="margin-left: 3%;">
+            <mat-label><strong>Ref No:</strong></mat-label>
+          </div>
+          <div class="col-sm-5" style="margin-left: -18%;">
+            <mat-label>{{M_RefNo}}</mat-label>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 17px;">
+          <div class="col-sm-6" style="margin-top: 9%;">
+            <mat-label><strong>Ref Date:</strong></mat-label>
+          </div>
+          <div class="col-sm-6" style="margin-top: 9%;margin-left: -21%;">
+            <mat-label style="margin-top:12%;">{{M_Refdate | date:'dd-MMM-y'}}</mat-label>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-sm-3" style="margin-top: 6px;margin-left: -50px;">
+        <div class="row">
+          <div class="col-sm-7" style="margin-left: -13%;">
+            <mat-label style="font-size:15px"><strong>Customer Name: </strong></mat-label>
+          </div>
+          <div class="col-sm-5" style="margin-left: -8%;">
+            <mat-label>{{M_CustomerName}}</mat-label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-5" style="margin-left: 5%;height: 50px;">
+            <mat-label><strong>Address:</strong></mat-label>
+          </div>
+          <div class="col-sm-7" style="margin-left: -9%">
+            <mat-label>{{M_Address}}</mat-label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6" style="margin-left: 1%;margin-top: 1%;">
+            <mat-label><strong>Contact No:</strong></mat-label>
+          </div>
+          <div class="col-sm-6" style="margin-left: -7%;margin-top: 1%;">
+            <mat-label>{{M_MobileNo}}</mat-label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="col-sm-12" style="margin-top:2%">
+    <div class="row">
+      <div class="col-sm-6">
+        <label style="text-align:center;margin-left:2%"><strong>Item Details :</strong></label>
+      </div>
+    </div>
+    <div class="row">
+      <table mat-table matSort [dataSource]="PrintdataSource" class="mat-elevation-z8 table-bordered" style="width: 100%;">
+        <ng-container matColumnDef="SNo">
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">SNo</th>
+          <td mat-cell *matCellDef="let element ;let i = index;" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px"> {{i+1}} </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Serials">
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;width:4%;"> S.No </th>
+        </ng-container>
+
+        <ng-container matColumnDef="Type">
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Type</th>
+          <td mat-cell *matCellDef="let element ;let i = index;" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px">{{element.Type}}  </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Types">
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;width: 4%;"> Type </th>
+        </ng-container>
+
+
+        <ng-container matColumnDef="Brand">
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px;width: 2%;">Brand</th>
+          <td mat-cell *matCellDef="let element;let i = index;" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;width: 9%;word-break: break-word;">
+            {{element.Brand}}
+          </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="Brands">
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;width: 2%;"> Brand </th>
+        </ng-container>
+
+
+        <ng-container matColumnDef="Model">
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px;width: 7%;">Model</th>
+          <td mat-cell *matCellDef="let element" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;text-align:center"> {{element.Model }} </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Models">
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;width: 7%;"> Model </th>
+        </ng-container>
+
+
+        <ng-container matColumnDef="LensOption">
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">LensOption</th>
+          <td mat-cell *matCellDef="let element" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;text-align:center"> {{element.LensOptions }} </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="LensOptions">
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;width: 7%;"> LensOption </th>
+        </ng-container>
+
+        <ng-container matColumnDef="Index">
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Index</th>
+          <td mat-cell *matCellDef="let element" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;text-align:center"> {{element.Index }} </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Indexs">
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;width: 4%;"> Index </th>
+        </ng-container>
+
+
+        <ng-container matColumnDef="Color">
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Color</th>
+          <td mat-cell *matCellDef="let element" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;text-align:center"> {{element.Color }} </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Colors">
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;width: 5%;"> Color </th>
+        </ng-container>
+
+        <ng-container matColumnDef="HSN">
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">HSN</th>
+          <td mat-cell *matCellDef="let element" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;text-align:center"> {{element.HSNNo }} </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="HSNs">
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;width: 7%;"> HSN </th>
+        </ng-container>
+
+
+        <ng-container matColumnDef="UOM">
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">UOM</th>
+          <td mat-cell *matCellDef="let element" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;text-align:center"> {{element.UOM}} </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="UOMs">
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;width: 5%;"> UOM </th>
+        </ng-container>
+
+        <ng-container matColumnDef="QTY">
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">QTY</th>
+          <td mat-cell *matCellDef="let element; let id = index;" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;text-align:end" contenteditable="false" (keypress)="RestrictNegativeValues($event)" (keyup)="changeQtyValue(id,'Quantity',$event);changeGivenQtyValue(id,element,'GivenQtyPrice');changeValueDiscountAmount(id,element,'DiscountAmount');changeValueGrossAmount(id,element,'GrossAmount');changeGstValue(id,element,'GSTValue');changeValueTotal(id,element,'Amount')"> {{element.Quantity| number : '1.2-2'}} </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="QTYs">
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;width: 3%;"> QTY </th>
+        </ng-container>
+
+        <ng-container matColumnDef="Price">
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Price</th>
+          <td mat-cell *matCellDef="let element" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;text-align:end"> {{element.UnitPrice| number : '1.2-2'}} </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Prices">
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;width:5%;"> Price </th>
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="Amount">
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Amount</th>
+          <td mat-cell *matCellDef="let element" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;text-align:end">{{ element.GivenQtyPrice | number : '1.2-2'}} </td>
+          <td mat-footer-cell *matFooterCellDef class="text-end"><b>{{getItemAmount() | currency:Country2}}</b></td>
+        </ng-container>
+
+        <ng-container matColumnDef="Amounts">
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;width:5%;"> Amount </th>
+        </ng-container>
+
+        <ng-container matColumnDef="Discount%">
+          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px;text-align: center;width: 3%;">%</th>
+          <td mat-cell *matCellDef="let element" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;text-align:end"> {{element.Discount| number : '1.2-2'}} </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+        <ng-container matColumnDef="DiscountAmount">
+          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px;text-align: center;width: 5%;"> Amount </th>
+          <td mat-cell *matCellDef="let element" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;text-align:end">{{element.DiscountAmount| number : '1.2-2'}} </td>
+          <td mat-footer-cell *matFooterCellDef style="text-align:end"><b>{{getDiscountAmount() | currency:Country2}}</b></td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="GrossAmount">
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">GrossAmount</th>
+          <td mat-cell *matCellDef="let element" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;text-align:end">{{element.GrossAmount| number : '1.2-2'}} </td>
+          <td mat-footer-cell *matFooterCellDef style="text-align:end"><b>{{getGrossAmount() | currency:Country2}}</b></td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="GrossAmounts">
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;width: 6%;"> GrossAmount </th>
+        </ng-container>
+
+        <ng-container matColumnDef="GSTDesc">
+          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px;text-align:center;width: 7%;">Desc</th>
+          <td mat-cell *matCellDef="let element" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;text-align:center">
+            <ng-container style="height: 4px;text-align: center;"> {{element.GSTDesc}}</ng-container> <br />
+            <ng-container style="font-size:12px;text-align: center;height:4px"> {{element.CESSDesc}}</ng-container> <br />
+            <ng-container style="font-size:12px;text-align: center;height:4px"> {{element.AddCessDesc}}</ng-container>
+          </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+        <ng-container matColumnDef="GST%">
+          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px;text-align:center;width: 4%;">%</th>
+          <td mat-cell *matCellDef="let element" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;text-align:end">
+            <ng-container *ngIf="element.GST != null" style="font-size:12px;height:4px"> {{element.GST}} </ng-container> <br />
+            <ng-container *ngIf="element.CESS != null" style="font-size:12px;height:4px"> {{element.CESS}} </ng-container> <br />
+            <ng-container *ngIf="element.AddCess != null" style="font-size:12px;height:4px"> {{element.AddCess}}</ng-container>
+          </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+        <ng-container matColumnDef="GSTValue">
+          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px;text-align:center;width: 5%;">Amount </th>
+          <td mat-cell *matCellDef="let element" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;text-align:end">
+            <ng-container style="height: 4px;text-align: center;">{{element.GSTValue | number : '1.2-2'}}</ng-container> <br />
+            <ng-container *ngIf="element.CESS != null" style="font-size:12px;text-align: center;height:4px"> {{element.CESSValue| number : '1.2-2'}}</ng-container> <br />
+            <ng-container *ngIf="element.AddCess != null" style="font-size:12px;text-align: center;height:4px"> {{element.AddCessValue| number : '1.2-2'}}</ng-container>
+          </td>
+          <td mat-footer-cell *matFooterCellDef style="text-align:end"><b>{{getGstTotalAmount() | currency:Country2}}</b></td>
+        </ng-container>
+
+        <ng-container matColumnDef="NetAmount">
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Net Amount </th>
+          <td mat-cell *matCellDef="let element" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;text-align:end">{{element.Amount| number : '1.2-2'}} </td>
+          <td mat-footer-cell *matFooterCellDef style="text-align:end"><b>{{getTotalAmount()| currency:Country2 }}</b></td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="NetAmounts">
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;width: 7%;"> Net Amount </th>
+        </ng-container>
+
+        <ng-container matColumnDef="header-row-group">
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="2" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center"> Discount </th>
+        </ng-container>
+
+        <ng-container matColumnDef="header-row-third-group">
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="3" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center"> Tax </th>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="['Serials','Types','Brands','Models','LensOptions','Indexs','Colors','UOMs','QTYs','Prices','Amounts',
+              'header-row-group','GrossAmounts','header-row-third-group','NetAmounts']"></tr>
+
+
+        <tr mat-header-row *matHeaderRowDef="PrintdisplayedColumns;sticky:true"></tr>
+        <tr mat-row *matRowDef="let row;  let even = even;columns: PrintdisplayedColumns;"></tr>
+        <tr mat-footer-row *matFooterRowDef="PrintdisplayedColumns;sticky: true"></tr>
+      </table>
+    </div>
+    <div class="row">
+      <mat-label>
+        <strong>{{Country2}} in Words :</strong> &nbsp;&nbsp;{{transformValue(getTotalAmount())}} {{Country2}} only
+      </mat-label><br />
+    </div>
+  </div>
+  <div class="col-sm-12" style="margin-top:2%" *ngIf="!NoPayment">
+    <div class="row">
+      <div class="col-sm-6">
+        <label style="text-align:center;margin-left:2%"><strong>Advance Details :</strong></label>
+      </div>
+    </div>
+    <div class="row">
+      <table mat-table matSort [dataSource]="dataSource3" class="table table-bordered" style="width:100%;">
+
+        <ng-container matColumnDef="PaymentMode">
+          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">PaymentMode</th>
+          <td mat-cell *matCellDef="let element">{{element.PaymentMode}}</td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="InstrumentNumber">
+          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Instrument Number</th>
+          <td mat-cell *matCellDef="let element">{{element.InstrumentNumber}} </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="InstrumentDate">
+          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Instrument Date</th>
+          <td mat-cell *matCellDef="let element">{{element.Instrumentdate| date:'dd-MMM-y'}} </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="BankName">
+          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Bank Name</th>
+          <td mat-cell *matCellDef="let element">{{element.BankName}} </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Branch">
+          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Branch</th>
+          <td mat-cell *matCellDef="let element">{{element.BankBranch}} </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="ExpiryDate">
+          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Expiry Date</th>
+          <td mat-cell *matCellDef="let element">{{element.Expirydate| date:'dd-MMM-y'}} </td>
+          <td mat-footer-cell *matFooterCellDef><strong>Total Amount</strong> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Amount">
+          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Amount</th>
+          <td mat-cell *matCellDef="let element">{{element.Amount | number : '1.2-2'}} </td>
+          <td mat-footer-cell *matFooterCellDef><strong>{{getPaymentTotalCost() | currency:Country2}}</strong> </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns3;sticky: true"></tr>
+        <tr mat-row *matRowDef="let element;  let even = even; columns: displayedColumns3" [ngClass]="{gray: even}"></tr>
+        <tr mat-footer-row *matFooterRowDef="displayedColumns3;sticky: true"></tr>
+      </table>
+    </div>
+  </div>
+  <div class="col-sm-12" style="margin-top:2%" *ngIf="!NoPayment">
+    <div class="row">
+      <div class="col-sm-6">
+        <label style="text-align:center;margin-left:2%"><strong>Refund Details :</strong></label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="row">
+          <div class="col-sm-6">
+            <mat-label><strong>Receipt No</strong></mat-label> &nbsp;&nbsp;:
+          </div>
+          <div class="col-sm-6" style="margin-left:-2%">
+            <mat-label style="margin-left:-20%">{{M_ReceiptNo}}</mat-label>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="row">
+          <div class="col-sm-6">
+            <mat-label> <strong>Receipt Date</strong></mat-label>&nbsp;:
+          </div>
+          <div class="col-sm-6" style="margin-left:-12%">
+            <mat-label style="margin-left:-20%">{{M_ReceiptNoDate | date:'dd-MMM-y, HH:mm'}}</mat-label>&nbsp; Hrs
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <table mat-table matSort [dataSource]="dataSource5" class="table table-bordered" style="width:100%;">
+
+        <ng-container matColumnDef="PaymentMode">
+          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">PaymentMode</th>
+          <td mat-cell *matCellDef="let element">{{element.PaymentMode}}</td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="InstrumentNumber">
+          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Instrument Number</th>
+          <td mat-cell *matCellDef="let element">{{element.InstrumentNumber}} </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="InstrumentDate">
+          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Instrument Date</th>
+          <td mat-cell *matCellDef="let element">{{element.Instrumentdate| date:'dd-MMM-y'}} </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="BankName">
+          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Bank Name</th>
+          <td mat-cell *matCellDef="let element">{{element.BankName}} </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Branch">
+          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Branch</th>
+          <td mat-cell *matCellDef="let element">{{element.BankBranch}} </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="ExpiryDate">
+          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Expiry Date</th>
+          <td mat-cell *matCellDef="let element">{{element.Expirydate| date:'dd-MMM-y'}} </td>
+          <td mat-footer-cell *matFooterCellDef><strong>Total Amount</strong> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Amount">
+          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Amount</th>
+          <td mat-cell *matCellDef="let element">{{element.Amount | number : '1.2-2'}} </td>
+          <td mat-footer-cell *matFooterCellDef><strong>{{getPaymentTotalCost() | currency:Country2}}</strong> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Action">
+          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px"> Action </th>
+          <td mat-cell *matCellDef="let element; let i = index;"> <mat-icon data-toggle="tooltip" title="Edit" (click)="EditPaytype(i,element)">create</mat-icon> &nbsp;&nbsp;&nbsp;&nbsp;<mat-icon data-toggle="tooltip" title="Drop" (click)="removePaytype(i)">delete</mat-icon>  </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns5;sticky: true"></tr>
+        <tr mat-row *matRowDef="let element;  let even = even; columns: displayedColumns5" [ngClass]="{gray: even}"></tr>
+        <tr mat-footer-row *matFooterRowDef="displayedColumns5;sticky: true"></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" role="dialog" [ngStyle]="{'display':Submitprint}">
+  <div class="example-box">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="col-sm-11">
+                <h6 class="modal-title">Information</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="col-sm-1">
+              </div>
+              <div class="col-sm-10">
+                <p><strong> Do you want to Print ?</strong></p>
+              </div>
+              <div class="col-sm-1">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button (click)="Print()" class="btn btn-primary">Yes</button>
+          <button type="button" class="btn btn-success" data-dismiss="modal" (click)="printclose()" cdkFocusInitial>No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!----*Access Popup*---->
+<div class="modal" role="dialog" [ngStyle]="{'display':accesspopup}">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="modalcloseAccessOk()">&times;</button>
+        <h4 class="modal-title">Customer Order Cancellation- View Access</h4>
+      </div>
+      <div class="modal-body">
+        <table align="center" class=" table custom-table">
+          <thead>
+            <tr>
+              <th>Add</th>
+              <th>Edit</th>
+              <th>Delete</th>
+              <th>Export</th>
+              <th>Print</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let x of accessdata; index as i">
+              <td><mat-checkbox [(checked)]="x.Add" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Edit" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Delete" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Export" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Print" disabled></mat-checkbox></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" data-dismiss="modal" autofocus (click)="modalcloseAccessOk()">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+

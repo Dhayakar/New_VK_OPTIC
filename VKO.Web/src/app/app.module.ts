@@ -76,6 +76,7 @@ import { DashboardnewregisteredvaluesComponent } from './Views/dashboardnewregis
 import { AccessprivilegesComponent } from './Views/accessprivileges/accessprivileges.component';
 import { MaterialreturntovendorComponent } from './Views/materialreturntovendor/materialreturntovendor.component';
 import { SearchComponent } from './Views/search/search.component';
+import { WhatsapptemplateComponent } from './Views/whatsapptemplate/whatsapptemplate.component';
 
 
 const shortcutConfig: NgShortcutConfig[] = [
@@ -94,7 +95,9 @@ const shortcutConfig: NgShortcutConfig[] = [
     SearchComponent,
     AccessprivilegesComponent,
     DashboardnewregisteredvaluesComponent,
-    MouseEnterLeaveDebounceDirective,    
+    MouseEnterLeaveDebounceDirective,
+ WhatsapptemplateComponent,
+
   ],
   imports: [
     NgShortcutModule.forRoot(shortcutConfig),

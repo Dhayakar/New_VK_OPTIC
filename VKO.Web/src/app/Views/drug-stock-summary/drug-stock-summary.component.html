@@ -1,0 +1,871 @@
+
+<form #DrugStockSummary="ngForm">
+  <div class="col-sm-12 borfiglau-0">
+    <h5 class="card-header bg-success text-white center">
+      Drug Stock Summary
+
+    </h5>
+    <div class="col-sm-12">
+
+      <div class="col-sm-12" *ngIf="TableMain">
+        <div class="row pgtop20-0">
+          <div class="col-sm-3">
+          </div>
+          <div class="col-sm-3">
+          </div>
+          <div class="col-sm-4">
+          </div>
+          <div class="col-sm-2">
+            <button class="btn-text" (click)="Getformaccess()"><i class="fas fa-eye"></i> View Access</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12" *ngIf="TableMain">
+        <div class="row">
+          <div class="col-sm-6 borfiglau-0">
+            <div class="row">
+
+              <div class="col-sm-12 pgtop20-0">
+                <div class="row">
+
+
+                  <div class="col-sm-4">
+
+                    <div class='input-group date'>
+                      <input [(ngModel)]="M_FromDate" name="FromDate" placeholder="From Date"
+                             class="form-control"
+                             #dpM="bsDatepicker"
+                             [maxDate]="maxDatef"
+                             bsDatepicker
+                             autocomplete="off"
+                             [bsConfig]="{ dateInputFormat: 'MMM-YYYY',isAnimated: true }"
+                             (onShown)="onOpenCalendar($event)">
+                      <span class="input-group-addon">
+                        <span class="fa fa-calendar grab" (click)="dpM.toggle()" [attr.aria-expanded]="dpM.isOpen"></span>
+                      </span>
+                    </div>
+                  </div>
+
+
+                  <div class="col-sm-4">
+                    <div class='input-group date'>
+                      <input [(ngModel)]="M_ToDate" name="ToDate" placeholder="To Date"
+                             class="form-control"
+                             #dpRM="bsDatepicker"
+                             [maxDate]="maxDateRMf"
+                             bsDatepicker
+                             autocomplete="off"
+                             [bsConfig]="{ dateInputFormat: 'MMM-YYYY',isAnimated: true }"
+                             (onShown)="onOpenCalendar($event)">
+                      <span class="input-group-addon">
+                        <span class="fa fa-calendar grab" (click)="dpRM.toggle()" [attr.aria-expanded]="dpRM.isOpen"></span>
+                      </span>
+                    </div>
+                  </div>
+
+
+                  <div class="col-sm-4">
+                    <mat-form-field appearance="outline">
+                      <mat-label> Branch </mat-label>
+                      <mat-select [(ngModel)]="AllBranch" name="AllBranch" (ngModelChange)="OptionSelectbr()">
+                        <mat-option value="All">All</mat-option>
+                        <mat-option value="Selective">Selective</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <!--<mat-form-field appearance="outline" style="font-family:'Proxima Nova Semibold';font-size:14px;width:190px;">
+                  <mat-label>Select Branch</mat-label>
+                  <mat-select [(ngModel)]="BranchDrop" name="BranchDrop" (selectionChange)="selectdBranch(Brancha,$event, id)">
+                    <mat-option *ngFor="let Brancha of GetBranchdata" [value]="Brancha">{{Brancha.Text}}</mat-option>
+                  </mat-select>
+                </mat-form-field>-->
+                  </div>
+
+
+
+
+                </div>
+              </div>
+
+
+
+
+
+
+              <div class="col-sm-12">
+                <div class="row">
+
+
+
+                  <div class="col-sm-4">
+
+                    <mat-form-field appearance="outline">
+                      <mat-label>Select Branch</mat-label>
+                      <mat-select [(ngModel)]="BranchDrop" name="BranchDrop" (selectionChange)="selectdBranch(Brancha,$event, id)" [disabled]="HideBranddropp">
+                        <mat-option *ngFor="let Brancha of GetBranchdata" [value]="Brancha">{{Brancha.Text}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+
+
+                  <div class="col-sm-4">
+
+                    <mat-form-field appearance="outline" class="mat-width">
+                      <mat-label>Store</mat-label>
+                      <mat-select [(ngModel)]="storename" name="storename" (selectionChange)="selectdstore(storename)" [disabled]="disSubmit">
+                        <mat-option *ngFor="let Store of StoreName" [value]="Store">{{Store.Text}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+
+
+                  <div class="col-sm-4">
+                    <mat-form-field appearance="outline" class="mat-width">
+                      <mat-label> Brand </mat-label>
+                      <mat-select [(ngModel)]="M_AllSeDrop" name="AllSeDrop" (ngModelChange)="OptionSelect()" [disabled]="submitbrnd">
+                        <mat-option value="All">All</mat-option>
+                        <mat-option value="Selective">Selective</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+
+                  </div>
+                  <!--<div class="col-sm-3" *ngIf="HideBranddrop">
+
+
+
+                <mat-form-field appearance="outline" class="mat-width">
+                  <mat-label>Select Brand</mat-label>
+                  <mat-select [(ngModel)]="M_BrandDataDrop" name="BrandDrop" (selectionChange)="selectdBrand(Branda,$event, id)" [disabled]="disSubmit">
+                    <mat-option *ngFor="let Branda of GetBranddata" [value]="Branda">{{Branda.Text}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+
+
+              </div>-->
+
+
+                </div>
+              </div>
+
+
+
+              <div class="col-sm-12">
+                <div class="row">
+
+                  <div class="col-sm-4">
+
+                    <mat-form-field appearance="outline" class="mat-width">
+                      <mat-label>Select Brand</mat-label>
+                      <mat-select [(ngModel)]="M_BrandDataDrop" name="BrandDrop" (selectionChange)="selectdBrand(Branda,$event, id)" [disabled]="HideBranddrop">
+                        <mat-option *ngFor="let Branda of GetBranddata" [value]="Branda">{{Branda.Text}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-sm-2">
+
+                    <button class="btn btn-warning-default" type="button" (click)="Cancel(DrugStockSummary)">Cancel</button>
+
+                  </div>
+
+
+                  <div class="col-sm-2">
+
+                    <button type="button" class="success btn btn-primary  ml-2p" [disabled]="disSubmit" (click)="Submit(DrugStockSummary)">Submit</button>
+
+                  </div>
+
+
+                </div>
+              </div>
+
+
+
+              <!--<div class="col-sm-12">
+            <div class="row">
+
+              <div class="col-sm-3" style="width:200px">
+
+
+              </div>
+              <div class="col-sm-2">
+                <button type="button" class="btn btn-success" [disabled]="disSubmit" style="margin-top:19px" (click)="Submit(DrugStockSummary)">Submit</button>
+              </div>
+
+
+              <div class="col-sm-2">
+                <button class="btn btn-warning" type="button" style="margin-right: 10px;font-size:15px;color:orange;background-color:white;margin-top:19px" (click)="Cancel(DrugStockSummary)">Cancel</button>
+              </div>
+
+
+            </div>
+          </div>-->
+
+
+
+
+
+              <div class="col-sm-12">
+                <div class="row">
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+
+      <div class="col-sm-12" *ngIf="TableData">
+        <div class="row">
+          <div class="col-sm-4">
+            <mat-label class="fcolor">Branch/Location : </mat-label>
+            {{brname}}
+          </div>
+          <div class="col-sm-7">
+          </div>
+          <div class="col-sm-1">
+            <button mat-icon-button matTooltip="Export to Excel" [disabled]="disprint" (click)="fireEvent()"><img style="height:35px;width:45px;" src="assets/excel.svg" /></button>
+
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="col-sm-12" *ngIf="TableData">
+
+        <h5 class="card-header bg-success text-white center marreport-0"><label><b>Stock Summary</b>&nbsp;&nbsp;<b> for the period&nbsp;&nbsp;{{this.M_FromDate| date :'MMM-yyyy'}} &nbsp;to&nbsp; {{this.M_ToDate| date :'MMM-yyyy'}}</b></label></h5>
+
+        <div class="col-sm-12 custpopht-0">
+          <table mat-table matSort [dataSource]="dataSource" id="contentToConvert" class="custom-table withoutbackgroung search-table table-bordered" #table style="overflow:auto">
+
+
+
+            <ng-container matColumnDef="Store">
+              <th mat-header-cell *matHeaderCellDef>Store</th>
+              <td mat-cell *matCellDef="let element ;let i = index;">{{element.Store}}  </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Brand">
+              <th mat-header-cell *matHeaderCellDef>Brand</th>
+              <td mat-cell *matCellDef="let element;let id = index;"> {{element.Brand }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="GenericName">
+              <th mat-header-cell *matHeaderCellDef>Generic Name</th>
+              <td mat-cell *matCellDef="let element;let id = index;"> {{element.GenericName }} </td>
+              <td mat-footer-cell *matFooterCellDef> </td>
+            </ng-container>
+
+            <ng-container matColumnDef="DrugGroup">
+              <th mat-header-cell *matHeaderCellDef>Drug Group</th>
+              <td mat-cell *matCellDef="let element;let id = index;"> {{element.DrugGroup }} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="UOM">
+              <th mat-header-cell *matHeaderCellDef>UOM</th>
+              <td mat-cell *matCellDef="let element;let id = index;"> {{element.UOM}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="OpeningBalance">
+              <th mat-header-cell *matHeaderCellDef>Opening Balance</th>
+              <td mat-cell *matCellDef="let element;let id = index;"> {{element.OpeningBalance| number : '1.2-2' }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Receipt">
+              <th mat-header-cell *matHeaderCellDef>Receipts</th>
+              <td mat-cell *matCellDef="let element;let id = index;" class="grab" (click)="ViewReceiptDetails(element)"> {{element.Receipt| number : '1.2-2'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Issue">
+              <th mat-header-cell *matHeaderCellDef>Issues</th>
+              <td mat-cell *matCellDef="let element;let id = index;" class="grab" (click)="ViewIssueDetails(element)"> {{element.Issue| number : '1.2-2'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="ClosingBalance">
+              <th mat-header-cell *matHeaderCellDef>Closing Balance</th>
+              <td mat-cell *matCellDef="let element;let id = index;" class="grab" (click)="ViewClosingDetails(element)"> {{element.ClosingBalance| number : '1.2-2'}} </td>
+            </ng-container>
+
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
+            <tr mat-row *matRowDef="let row;  let even = even;columns: displayedColumns;" [ngClass]="{gray: even}"></tr>
+          </table>
+
+        </div>
+
+        <div class="col-sm-12" *ngIf="TableData">
+          <div class="row">
+            <div class="col-sm-11">
+            </div>
+            <div class="col-sm-1">
+              <button type="button" class="btn btn-danger" (click)="close()">Close</button>
+            </div>
+          </div>
+        </div>
+
+
+
+
+      </div>
+
+
+
+    </div>
+  </div>
+</form>
+
+
+
+
+
+
+<div class="modal" role="dialog" [ngStyle]="{'display':modalviewBatchDetailspopup}">
+  <div class="modal-dialog modal-lg borimgpop-0">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="ModalViewBatchPopupclose()">&times;</button>
+        
+        <h5 class="card-header bg-success text-white center">
+          Serial Details
+        </h5>
+      </div>
+
+      <div class="modal-body">
+        <div class="Genrricsheight">
+
+
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="row">
+                <div class="col-sm-2">
+                </div>
+                <div class="col-sm-3">
+                  <mat-label class="fcolor">Brand : </mat-label>
+                  {{bname}}
+                </div>
+                <div class="col-sm-3">
+                  <mat-label class="fcolor">Generic Name : </mat-label>
+                  {{gname}}
+                </div>
+                <div class="col-sm-3">
+                  <mat-label class="fcolor">Total No of Receipts : </mat-label>
+                  {{recept}}
+                </div>
+
+              </div>
+            </div>
+
+            <div class="col-sm-2 pgtop20-0">
+            </div>
+            <div class="col-sm-8 pgtop20-0">
+              <table class="custom-table withoutbackgroung search-table table-bordered Tablemaxht">
+                <thead>
+                  <tr>
+                    <th>Grn No</th>
+                    <th>Grn Date</th>
+                    <th>Mode of receipt</th>
+                    <th>Serial No</th>
+                    <th>Expiry Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let grnba of gserial; index as i">
+                    <td>{{grnba.grnno}}</td>
+                    <td>{{grnba.grndt | date: 'dd-MMM-y'}}</td>
+                    <td>{{grnba.trans}}</td>
+                    <td>{{grnba.SerialNo}}</td>
+                    <td>{{grnba.ExpiryDt | date: 'dd-MMM-y'}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-sm-2">
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<div class="modal" role="dialog" [ngStyle]="{'display':ibmodalviewBatchDetailspopup}">
+  <div class="modal-dialog modal-lg borimgpop-0">
+
+    <div class="modal-content ">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="ibModalViewBatchPopupclose()">&times;</button>
+       
+        <h5 class="card-header bg-success text-white center">
+          Batch Details
+        </h5>
+      </div>
+
+      <div class="modal-body">
+        <div class="Genrricsheight">
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="row">
+                <div class="col-sm-2">
+                </div>
+                <div class="col-sm-3">
+                  <mat-label class="fcolor">Brand : </mat-label>
+                  {{bname}}
+                </div>
+                <div class="col-sm-3">
+                  <mat-label class="fcolor">Generic Name : </mat-label>
+                  {{gname}}
+                </div>
+                <div class="col-sm-3">
+                  <mat-label class="fcolor">Total No of Receipts : </mat-label>
+                  {{recept}}
+                </div>
+
+              </div>
+            </div>
+            <div class="col-sm-2 pgtop20-0">
+            </div>
+            <div class="col-sm-8 pgtop20-0">
+              <table class="custom-table withoutbackgroung search-table table-bordered Tablemaxht">
+                <thead>
+                  <tr>
+                    <th>Grn No</th>
+                    <th>Grn Date</th>
+                    <th>Mode of receipt</th>
+                    <th>Batch No</th>
+                    <th>Batch Quantity</th>
+                    <th>Expiry Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let grnba of ibgbatch; index as i">
+                    <td>{{grnba.grnno}}</td>
+                    <td>{{grnba.grndt | date: 'dd-MMM-y'}}</td>
+                    <td>{{grnba.trans}}</td>
+                    <td>{{grnba.BatchNo}}</td>
+                    <td>{{grnba.BatchQty}}</td>
+                    <td>{{grnba.ExpiryDt | date: 'dd-MMM-y'}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-sm-2">
+            </div>
+          </div>
+
+
+
+        </div>
+
+
+      </div>
+
+
+
+
+
+
+
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+<div class="modal" role="dialog" [ngStyle]="{'display':imodalviewBatchDetailspopup}">
+  <div class="modal-dialog modal-lg borimgpop-0">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="iModalViewBatchPopupclose()">&times;</button>
+        <h5 class="card-header bg-success text-white center">
+          Serial Details
+        </h5>
+      </div>
+
+      <div class="modal-body">
+        <div class="Genrricsheight">
+
+       
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="row">
+                <div class="col-sm-2">
+                </div>
+                <div class="col-sm-3">
+                  <mat-label class="fcolor">Brand : </mat-label>
+                  {{Ibnames}}
+                </div>
+                <div class="col-sm-3">
+                  <mat-label class="fcolor">Generic Name : </mat-label>
+                  {{Ignames}}
+                </div>
+                <div class="col-sm-3">
+                  <mat-label class="fcolor">Total No of Issues : </mat-label>
+                  {{issue}}
+                </div>
+
+              </div>
+            </div>
+
+            <div class="col-sm-2 pgtop20-0">
+            </div>
+            <div class="col-sm-8 pgtop20-0">
+              <table class="custom-table withoutbackgroung search-table table-bordered Tablemaxht">
+                <thead>
+                  <tr>
+                    <th>Issue No</th>
+                    <th>Issue Date</th>
+                    <th>Mode of issue</th>
+                    <th>Serial No</th>
+                    <th>Expiry Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let igrnba of igserial; index as i">
+                    <td>{{igrnba.grnno}}</td>
+                    <td>{{igrnba.grndt | date: 'dd-MMM-y'}}</td>
+                    <td>{{igrnba.trans}}</td>
+                    <td>{{igrnba.SerialNo}}</td>
+                    <td>{{igrnba.ExpiryDt | date: 'dd-MMM-y'}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-sm-2">
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<div class="modal" role="dialog" [ngStyle]="{'display':iibmodalviewBatchDetailspopup}">
+  <div class="modal-dialog modal-lg borimgpop-0">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="iibModalViewBatchPopupclose()">&times;</button>
+        
+        <h5 class="card-header bg-success text-white center">
+          Batch Details
+        </h5>
+      </div>
+
+      <div class="modal-body">
+        <div class="Genrricsheight">
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="row">
+                <div class="col-sm-2">
+                </div>
+                <div class="col-sm-3">
+                  <mat-label class="fcolor">Brand : </mat-label>
+                  {{Ibnames}}
+                </div>
+                <div class="col-sm-3">
+                  <mat-label class="fcolor">Generic Name : </mat-label>
+                  {{Ignames}}
+                </div>
+                <div class="col-sm-3">
+                  <mat-label class="fcolor">Total No of Issues : </mat-label>
+                  {{issue}}
+                </div>
+
+              </div>
+            </div>
+            <div class="col-sm-2 pgtop20-0">
+            </div>
+            <div class="col-sm-8 pgtop20-0">
+              <table class="custom-table withoutbackgroung search-table table-bordered Tablemaxht">
+                <thead>
+                  <tr>
+                    <th>Issue No</th>
+                    <th>Issue Date</th>
+                    <th>Mode of issue</th>
+                    <th>Batch No</th>
+                    <th>Batch Quantity</th>
+                    <th>Expiry Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let igrnba of iibgbatch; index as i">
+                    <td>{{igrnba.grnno}}</td>
+                    <td>{{igrnba.grndt | date: 'dd-MMM-y'}}</td>
+                    <td>{{igrnba.trans}}</td>
+                    <td>{{igrnba.BatchNo}}</td>
+                    <td>{{igrnba.BatchQty}}</td>
+                    <td>{{igrnba.ExpiryDt | date: 'dd-MMM-y'}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-sm-2">
+            </div>
+          </div>
+
+
+
+        </div>
+
+
+      </div>
+
+
+
+
+
+
+
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+<div class="modal" role="dialog" [ngStyle]="{'display':cimodalviewBatchDetailspopup}">
+  <div class="modal-dialog modal-lg borimgpop-0">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="ciModalViewBatchPopupclose()">&times;</button>
+        <h5 class="card-header bg-success text-white center">
+          Serial Details
+        </h5>
+      </div>
+
+      <div class="modal-body">
+        <div class="Genrricsheight">
+
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="row">
+                <div class="col-sm-2">
+                </div>
+                <div class="col-sm-3">
+                  <mat-label class="fcolor">Brand : </mat-label>
+                  {{Cbnames}}
+                </div>
+                <div class="col-sm-3">
+                  <mat-label class="fcolor">Generic Name : </mat-label>
+                  {{Cgnames}}
+                </div>
+                <div class="col-sm-3">
+                  <mat-label class="fcolor">Closing Balance : </mat-label>
+                  {{cissue}}
+                </div>
+
+              </div>
+            </div>
+
+            <div class="col-sm-2 pgtop20-0">
+            </div>
+            <div class="col-sm-8 pgtop20-0">
+              <table class="custom-table withoutbackgroung search-table table-bordered Tablemaxht">
+                <thead>
+                  <tr>
+                    <th>Grn No</th>
+                    <th>Grn Date</th>
+                    <th>Mode of receipt</th>
+                    <th>Serial No</th>
+                    <th>Expiry Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let cigrnba of cigserial; index as i">
+                    <td>{{cigrnba.grnno}}</td>
+                    <td>{{cigrnba.grndt| date: 'dd-MMM-y'}}</td>
+                    <td>{{cigrnba.trans}}</td>
+                    <td>{{cigrnba.SerialNo}}</td>
+                    <td>{{cigrnba.ExpiryDt | date: 'dd-MMM-y'}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-sm-2">
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<div class="modal" role="dialog" [ngStyle]="{'display':cibmodalviewBatchDetailspopup}">
+  <div class="modal-dialog modal-lg borimgpop-0">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="cibModalViewBatchPopupclose()">&times;</button>
+        <h5 class="card-header bg-success text-white center">
+          Batch Details
+        </h5>
+      </div>
+
+      <div class="modal-body">
+        <div class="Genrricsheight">
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="row">
+                <div class="col-sm-2">
+                </div>
+                <div class="col-sm-3">
+                  <mat-label class="fcolor">Brand : </mat-label>
+                  {{Cbnames}}
+                </div>
+                <div class="col-sm-3">
+                  <mat-label class="fcolor">Generic Name : </mat-label>
+                  {{Cgnames}}
+                </div>
+                <div class="col-sm-3">
+                  <mat-label class="fcolor">Closing Balance : </mat-label>
+                  {{cissue}}
+                </div>
+
+              </div>
+            </div>
+            <div class="col-sm-2 pgtop20-0">
+            </div>
+            <div class="col-sm-8 pgtop20-0">
+              <table class="custom-table withoutbackgroung search-table table-bordered Tablemaxht">
+                <thead>
+                  <tr>
+                    <th>Grn No</th>
+                    <th>Grn Date</th>
+                    <th>Mode of receipt</th>
+                    <th>Batch No</th>
+                    <th>Batch Quantity</th>
+                    <th>Expiry Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let cigrnba of cibgbatch; index as i">
+                    <td>{{cigrnba.grnno}}</td>
+                    <td>{{cigrnba.grndt | date: 'dd-MMM-y'}}</td>
+                    <td>{{cigrnba.trans}}</td>
+                    <td>{{cigrnba.BatchNo}}</td>
+                    <td>{{cigrnba.BatchQty}}</td>
+                    <td>{{cigrnba.ExpiryDt | date: 'dd-MMM-y'}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-sm-2">
+            </div>
+          </div>
+
+
+
+        </div>
+
+
+      </div>
+
+
+
+
+
+
+
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+<div class="modal" role="dialog" [ngStyle]="{'display':accesspopup}">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content accpop-0">
+      <div class="modal-header">
+        <h4 class="modal-title">Drug Stock Summary - View Access</h4>
+      </div>
+      <div class="modal-body sltpop-0">
+        <table align="center" class="custom-table withoutbackgroung search-table table-bordered">
+          <thead>
+            <tr>
+              <th>Add</th>
+              <th>Edit</th>
+              <th>Delete</th>
+              <th>Export</th>
+              <th>Print</th>
+
+            </tr>
+          </thead>
+          <tbody>
+
+
+            <tr *ngFor="let x of accessdata; index as i">
+              <td><mat-checkbox [(checked)]="x.Add" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Edit" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Delete" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Export" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Print" disabled></mat-checkbox></td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" data-dismiss="modal" autofocus (click)="modalcloseAccessOk()">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>

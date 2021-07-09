@@ -1,0 +1,124 @@
+<div class="col-sm-12">
+  <div class="row">
+    <h5 align="center" class="card-header">
+      <b>Medical Prescription vs Medical Billing</b>
+    </h5>
+  </div>
+</div>
+<div class="col-sm-12 border-blue border-radius">
+  <div class="col-sm-12 mt-1p">
+    <div class="col-sm-3 f-r">
+      <button type="button" class="btn-text f-r" (click)="Getformaccess()"><i class="fas fa-eye"></i> View Access</button>
+    </div>
+  </div>
+  <div class="col-sm-12 mt-1p">
+    <div class="col-sm-3">
+      <mat-form-field appearance="outline">
+        <mat-label>From Date</mat-label>
+        <input [(ngModel)]="M_FromDate" (dateChange)="CheckToDate()" [max]="date" name="FromDate" autocomplete="off" matInput [matDatepicker]="FromDate" placeholder="FromDate" required>
+        <mat-datepicker-toggle matSuffix [for]="FromDate"></mat-datepicker-toggle>
+        <mat-datepicker #FromDate></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field appearance="outline">
+        <mat-label>To Date</mat-label>
+        <input [(ngModel)]="M_ToDate" [min]="minToDate" (dateChange)="CheckToDate()" [max]="date" name="ToDate" autocomplete="off" matInput [matDatepicker]="ToDate" placeholder="ToDate" required>
+        <mat-datepicker-toggle matSuffix [for]="ToDate"></mat-datepicker-toggle>
+        <mat-datepicker #ToDate></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="col-sm-12" *ngIf="ExportMedPres">
+    <div class="col-sm-4 f-r">
+      <button (click)="ConvertPDF()" class="btn btn-primary-default btn-Pdf"><i class="far fa-file-pdf"></i> Export to PDF</button> &nbsp;&nbsp;&nbsp;&nbsp;
+      <button (click)="ConvertEXCEL()" class="btn btn-primary-default btn-Excel"><i class="far fa-file-excel"></i> Export to Excel</button>
+    </div>
+  </div>
+  <div class="col-sm-12 mt-1p mb-1p heightAuto-300px">
+    <table id="table" mat-table [dataSource]="dataSource" class="custom-table withoutbackgroung search-table table-bordered position-sticky">
+      <ng-container matColumnDef="Sno">
+        <th mat-header-cell *matHeaderCellDef>S.No</th>
+        <td mat-cell *matCellDef="let element;let i = index;"> {{i+1}} </td>
+      </ng-container>
+      <ng-container matColumnDef="PrescriptionNo">
+        <th mat-header-cell *matHeaderCellDef>Prescription No</th>
+        <td mat-cell *matCellDef="let element"> {{element.PrescriptionNo}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Date">
+        <th mat-header-cell *matHeaderCellDef>Date</th>
+        <td mat-cell *matCellDef="let element"> {{element.Date| date:"dd-MMM-y"}} </td>
+      </ng-container>
+      <ng-container matColumnDef="PrescribedBy">
+        <th mat-header-cell *matHeaderCellDef>Prescribed By</th>
+        <td mat-cell *matCellDef="let element">{{element.PrescribedBy}}  </td>
+      </ng-container>
+      <ng-container matColumnDef="MedPresAmount">
+        <th mat-header-cell *matHeaderCellDef>Med.Prescription Amount</th>
+        <td mat-cell *matCellDef="let element"> {{element.MedPresAmount | currency:Country}} </td>
+      </ng-container>
+      <ng-container matColumnDef="BillNo">
+        <th mat-header-cell *matHeaderCellDef>Bill No</th>
+        <td mat-cell *matCellDef="let element"> {{element.BillNo}} </td>
+      </ng-container>
+      <ng-container matColumnDef="BillDate">
+        <th mat-header-cell *matHeaderCellDef>Bill Date</th>
+        <td mat-cell *matCellDef="let element"> {{element.BillDate| date:"dd-MMM-y"}} </td>
+      </ng-container>
+      <ng-container matColumnDef="BillAmount">
+        <th mat-header-cell *matHeaderCellDef>Bill Amount</th>
+        <td mat-cell *matCellDef="let element"> {{element.BillAmount | currency:Country}} </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>
+<div class="col-sm-12 pb25 ml-12p mt-1p">
+  <div class="col-sm-4  sub-section btn-wrap f-r">
+    <button type="button" class="btn btn-warning-default" (click)="Cancel()">Cancel</button>
+    <button type="button" (click)="Submit()" class="success btn btn-primary">Submit</button>
+  </div>
+</div>
+
+
+
+
+
+
+<!----*Access Popup*---->
+<div class="modal" role="dialog" [ngStyle]="{'display':accesspopup1}">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="modalcloseAccessOk()">&times;</button>
+        <h4 class="modal-title">MedicalPres vs MedBilling - View Access</h4>
+      </div>
+      <div class="modal-body">
+        <table align="center" class=" table custom-table">
+          <thead>
+            <tr>
+              <th>Add</th>
+              <th>Edit</th>
+              <th>Delete</th>
+              <th>Export</th>
+              <th>Print</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let x of accessdata; index as i">
+              <td><mat-checkbox [(checked)]="x.Add" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Edit" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Delete" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Export" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Print" disabled></mat-checkbox></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" data-dismiss="modal" autofocus (click)="modalcloseAccessOk()">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
