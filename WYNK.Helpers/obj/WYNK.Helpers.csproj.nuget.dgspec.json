@@ -1,6 +1,20 @@
 {
   "format": 1,
   "restore": {
+    "E:\\Git_desktop\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj": {}
+  },
+  "projects": {
+    "E:\\Git_desktop\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\Git_desktop\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj",
+        "projectName": "WYNK.Helpers",
+        "projectPath": "E:\\Git_desktop\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "E:\\Git_desktop\\VK_Optic_Point\\WYNK.Helpers\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
     "D:\\WYNK_GIT_DESKTOP\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj": {}
   },
   "projects": {
@@ -61,6 +75,16 @@
             }
           },
           "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
             "net461"
           ],
           "assetTargetFallback": true,
