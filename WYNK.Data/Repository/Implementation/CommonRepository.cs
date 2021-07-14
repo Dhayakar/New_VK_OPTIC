@@ -710,12 +710,12 @@ namespace WYNK.Data.Repository.Implementation
         }
 
 
-        public IEnumerable<Dropdown> GetDrugvalues(int id)
+        public IEnumerable<Dropdown> GetDrugvalues(int id, int cmpid)
 
         {
             var I = WYNKContext.ItemVendorMapping.ToList();
             var E = WYNKContext.DrugMaster.ToList();
-            var A = CMPSContext.VendorMaster.Where(x => x.ID == id).Select(u => u.VendorCode).FirstOrDefault();
+            var A = CMPSContext.VendorMaster.Where(x => x.ID == id && x.CmpID == cmpid).Select(u => u.VendorCode).FirstOrDefault();
             return (from s in I.Where(x => x.VendorID == A)
                     join e in E on s.ItemID equals e.ID
                     where s.IsDeleted == false && s.IsActive == true
@@ -751,15 +751,12 @@ namespace WYNK.Data.Repository.Implementation
             return CMPSContext.DoctorMaster.Where(x => x.IsActive == true && x.CMPID == Cmpid && x.IsDeleted == false && x.RoleID == 1).Select(x => new Dropdown { Text = x.Firstname + " " + x.MiddleName + " " + x.LastName, Value = x.DoctorID.ToString() }).OrderBy(x => x.Text).ToList();
 
         }
-        public IEnumerable<Dropdown> GetOperationTheatre()
-        {
-            return WYNKContext.OperationTheatre.Where(x => x.IsActive == true && x.IsDeleted == false).Select(x => new Dropdown { Text = x.OTDescription, Value = x.OTID.ToString() }).OrderBy(x => x.Text).ToList();
-        }
-
         public IEnumerable<Dropdown> GetOperationTheatre(int Cmpid)
         {
             return WYNKContext.OperationTheatre.Where(x => x.IsActive == true && x.IsDeleted == false && x.CMPID == Cmpid).Select(x => new Dropdown { Text = x.OTDescription, Value = x.OTID.ToString() }).OrderBy(x => x.Text).ToList();
         }
+
+
         //public IEnumerable<Dropdown> GetAnesthetistName()
         //{
         //    return (from OLM in CMPSContext.OneLineMaster
@@ -814,21 +811,24 @@ namespace WYNK.Data.Repository.Implementation
             return CMPSContext.Storemasters.Where(x => x.IsActive == true).Select(x => new Dropdown { Text = x.Storename, Value = x.StoreID.ToString() }).OrderBy(x => x.Text).ToList();
         }
 
-        public IEnumerable<Dropdown> GetstoreDropdownvalues(int CompanyID, int id)
+        public IEnumerable<Dropdown> GetstoreDropdownvalues(int CompanyID, int id, string name)
         {
-            var OnelineStoreID = CMPSContext.OneLineMaster.Where(x => x.ParentTag == "DEPT").Select(x => x.OLMID).FirstOrDefault();
+            var OnelineStoreID = CMPSContext.OneLineMaster.Where(x => x.ParentDescription.Replace(" ", string.Empty).Equals(name.Replace(" ", string.Empty), StringComparison.OrdinalIgnoreCase)).Select(x => x.OLMID).FirstOrDefault();
             return CMPSContext.Storemasters.Where(X => X.IsActive == true && X.CmpID == CompanyID && X.StoreID != id && X.CatgType == OnelineStoreID).Select(x => new Dropdown { Text = x.Storename, Value = x.StoreID.ToString() }).OrderBy(x => x.Text).ToList();
         }
 
-        public IEnumerable<Dropdown> GetstoreDropdownvalues(int CompanyID)
+
+        public IEnumerable<Dropdown> GetbranchstoreDropdownvalues(int CompanyID, string name)
         {
-            var OnelineStoreID = CMPSContext.OneLineMaster.Where(x => x.ParentTag == "DEPT").Select(x => x.OLMID).FirstOrDefault();
+            var OnelineStoreID = CMPSContext.OneLineMaster.Where(x => x.ParentDescription.Replace(" ", string.Empty).Equals(name.Replace(" ", string.Empty), StringComparison.OrdinalIgnoreCase)).Select(x => x.OLMID).FirstOrDefault();
+
             return CMPSContext.Storemasters.Where(x => x.IsActive == true && x.CmpID == CompanyID && x.CatgType == OnelineStoreID).Select(x => new Dropdown { Text = x.Storename, Value = x.StoreID.ToString() }).OrderBy(x => x.Text).ToList();
         }
 
-        public IEnumerable<Dropdown> GetbranchstoreDropdownvalues(int CompanyID)
+        public IEnumerable<Dropdown> GetstoreDropdownvaluesdesc(int CompanyID, string name)
         {
-            return CMPSContext.Storemasters.Where(x => x.IsActive == true && x.CmpID == CompanyID).Select(x => new Dropdown { Text = x.Storename, Value = x.StoreID.ToString() }).OrderBy(x => x.Text).ToList();
+            var OnelineStoreID = CMPSContext.OneLineMaster.Where(x => x.ParentDescription.Replace(" ", string.Empty).Equals(name.Replace(" ", string.Empty), StringComparison.OrdinalIgnoreCase)).Select(x => x.OLMID).FirstOrDefault();
+            return CMPSContext.Storemasters.Where(x => x.IsActive == true && x.CmpID == CompanyID && x.CatgType == OnelineStoreID).Select(x => new Dropdown { Text = x.Storename, Value = x.StoreID.ToString() }).OrderBy(x => x.Text).ToList();
         }
 
         public IEnumerable<Dropdown> GetBranchAll(int CompanyID)
@@ -1125,27 +1125,35 @@ namespace WYNK.Data.Repository.Implementation
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         public IEnumerable<Dropdown> GetDepartments()
         {
             return CMPSContext.Department.Where(x => x.IsActive == true).Select(x => new Dropdown { Text = x.Description, Value = x.ID.ToString() }).OrderBy(x => x.Text).ToList();
         }
 
+        public IEnumerable<Dropdown> GetPositionofGlobe()
+        {
+            return CMPSContext.OneLineMaster.Where(x => x.ParentTag == "POG" && x.IsActive == true && x.IsDeleted == false && x.ParentID != 0).Select(x => new Dropdown { Text = x.ParentDescription, Value = x.OLMID.ToString() }).OrderBy(x => x.Text).ToList();
+        }
+        public IEnumerable<Dropdown> GetGradeofThyroidEyeDisease()
+        {
+            return CMPSContext.OneLineMaster.Where(x => x.ParentTag == "GOTED" && x.IsActive == true && x.IsDeleted == false && x.ParentID != 0).Select(x => new Dropdown { Text = x.ParentDescription, Value = x.OLMID.ToString() }).OrderBy(x => x.Text).ToList();
+        }
+        public IEnumerable<Dropdown> GetPalpableMassLocation()
+        {
+            return CMPSContext.OneLineMaster.Where(x => x.ParentTag == "PML" && x.IsActive == true && x.IsDeleted == false && x.ParentID != 0).Select(x => new Dropdown { Text = x.ParentDescription, Value = x.OLMID.ToString() }).OrderBy(x => x.Text).ToList();
+        }
+        public IEnumerable<Dropdown> GetPalpableMassShape()
+        {
+            return CMPSContext.OneLineMaster.Where(x => x.ParentTag == "PMShape" && x.IsActive == true && x.IsDeleted == false && x.ParentID != 0).Select(x => new Dropdown { Text = x.ParentDescription, Value = x.OLMID.ToString() }).OrderBy(x => x.Text).ToList();
+        }
+        public IEnumerable<Dropdown> GetPalpableMassTexture()
+        {
+            return CMPSContext.OneLineMaster.Where(x => x.ParentTag == "PMT" && x.IsActive == true && x.IsDeleted == false && x.ParentID != 0).Select(x => new Dropdown { Text = x.ParentDescription, Value = x.OLMID.ToString() }).OrderBy(x => x.Text).ToList();
+        }
+        public IEnumerable<Dropdown> GetPalpableMassSize()
+        {
+            return CMPSContext.OneLineMaster.Where(x => x.ParentTag == "PMS" && x.IsActive == true && x.IsDeleted == false && x.ParentID != 0).Select(x => new Dropdown { Text = x.ParentDescription, Value = x.OLMID.ToString() }).OrderBy(x => x.Text).ToList();
+        }
 
 
 
@@ -1158,14 +1166,14 @@ namespace WYNK.Data.Repository.Implementation
             //return CMPSContext.Services.Where(x => x.ParentID == pid).Select(x => new Dropdown { Text = x.Description, Value = x.ID.ToString(), Amt = x.Amount }).OrderBy(x => x.Text).ToList();
 
             return (from SE in services.Where(x => x.ParentID == pid)
-                    //join SM in servicemaster
-                    //on SE.ID equals SM.Convert.ToInt32(ChildDescription)
-                    
+                        //join SM in servicemaster
+                        //on SE.ID equals SM.Convert.ToInt32(ChildDescription)
+
                     select new Dropdown
                     {
                         Text = SE.Description,
                         Value = SE.ID.ToString(),
-                        Amt = servicemaster.Where(x =>x.ChildDescription == Convert.ToString(SE.ID)).Select(x => x.TotalAmount).FirstOrDefault(),
+                        Amt = servicemaster.Where(x => x.ChildDescription == Convert.ToString(SE.ID)).Select(x => x.TotalAmount).FirstOrDefault(),
 
                     }).OrderBy(x => x.Text).ToList();
         }
@@ -1187,7 +1195,7 @@ namespace WYNK.Data.Repository.Implementation
             var pid = CMPSContext.Services.Where(x => x.Description == "Investigation" && x.CMPID == CmpID).Select(x => x.ID).FirstOrDefault();
 
             return (from SE in services.Where(x => x.ParentID == pid)
-                        
+
 
                     select new Dropdown
                     {
@@ -1564,9 +1572,7 @@ namespace WYNK.Data.Repository.Implementation
         }
         public IEnumerable<Dropdown> GetRooms(int cmpid)
         {
-            var onelinemaster = CMPSContext.OneLineMaster.ToList();
-            var room = WYNKContext.Room.Where(x => x.CMPID == cmpid && x.IsActive == true).ToList();
-            return room.Select(x => new Dropdown { Text = x.RoomType, Value = x.ID.ToString() }).OrderBy(x => x.Text).ToList();
+            return CMPSContext.OneLineMaster.Where(x => x.ParentTag == "RoomType").Select(x => new Dropdown { Text = x.ParentDescription, Value = x.OLMID.ToString() }).OrderBy(x => x.Text).ToList();
         }
         public IEnumerable<Dropdown> GetSurgeryLens(int CMPID)
         {
@@ -2151,14 +2157,30 @@ namespace WYNK.Data.Repository.Implementation
             return WYNKContext.allergy.Where(x => x.IsActive == true && x.IsDeleted == false && x.ParentID == 0).Select(x => new Dropdown { Text = x.ParentDescription, Value = x.ID.ToString() }).OrderBy(x => x.Text).ToList();
         }
 
-        public IEnumerable<Dropdown> GetFDDTDescriptionsvalues()
+        public IEnumerable<Dropdown> GetFDDTDescriptionsvalues(int Cmpid)
         {
-            return CMPSContext.OneLineMaster.Where(x => x.IsActive == true && x.ParentTag == "FDDT").Select(x => new Dropdown { Text = x.ParentDescription.ToString(), Value = x.OLMID.ToString() }).OrderBy(x => x.Text).ToList();
+            return WYNKContext.SpecialityMaster.Where(x => x.IsActive == true && x.ParentTag == "FDDT" && x.CmpID == Cmpid).Select(x => new Dropdown { Text = x.ParentDescription.ToString(), Value = x.ID.ToString() }).OrderBy(x => x.Text).ToList();
         }
 
-        public IEnumerable<Dropdown> GetSyringingDescriptions()
+        public IEnumerable<Dropdown> GetSyringingDescriptions(int Cmpid)
         {
-            return CMPSContext.OneLineMaster.Where(x => x.IsActive == true && x.ParentTag == "SYRINGING").Select(x => new Dropdown { Text = x.ParentDescription.ToString(), Value = x.OLMID.ToString() }).OrderBy(x => x.Text).ToList();
+            return WYNKContext.SpecialityMaster.Where(x => x.IsActive == true && x.ParentTag == "SYRINGING" && x.CmpID == Cmpid).Select(x => new Dropdown { Text = x.ParentDescription.ToString(), Value = x.ID.ToString() }).OrderBy(x => x.Text).ToList();
+        }
+
+
+        public IEnumerable<Dropdown> GetRegurgitationDescriptions(int Cmpid)
+        {
+            return WYNKContext.SpecialityMaster.Where(x => x.IsActive == true && x.ParentTag == "Regurgitation" && x.CmpID == Cmpid).Select(x => new Dropdown { Text = x.ParentDescription.ToString(), Value = x.ParentDescription }).OrderBy(x => x.Text).ToList();
+        }
+
+        public IEnumerable<Dropdown> GetFluidDescriptions(int Cmpid)
+        {
+            return WYNKContext.SpecialityMaster.Where(x => x.IsActive == true && x.ParentTag == "Fluid" && x.CmpID == Cmpid).Select(x => new Dropdown { Text = x.ParentDescription.ToString(), Value = x.ParentDescription }).OrderBy(x => x.Text).ToList();
+        }
+
+        public IEnumerable<Dropdown> GetStopDescriptions(int Cmpid)
+        {
+            return WYNKContext.SpecialityMaster.Where(x => x.IsActive == true && x.ParentTag == "Stop" && x.CmpID == Cmpid).Select(x => new Dropdown { Text = x.ParentDescription.ToString(), Value = x.ParentDescription }).OrderBy(x => x.Text).ToList();
         }
 
 
@@ -2309,6 +2331,7 @@ namespace WYNK.Data.Repository.Implementation
             return CMPSContext.OneLineMaster.Where(X => X.ParentTag == "TBUT" && X.IsActive == true && X.IsDeleted == false).OrderByDescending(x => x.OLMID).Select(x => new Dropdown { Text = x.ParentDescription, Value = x.OLMID.ToString() }).ToList();
         }
 
+
         public dynamic GetCMID(string URL)
         {
             var data = new SetupMasterViewModel();
@@ -2339,7 +2362,7 @@ namespace WYNK.Data.Repository.Implementation
         {
             var data = new ServicesViewModel();
             data.ServicesGridData = new List<ServicesGridData>();
-            var fulllistdat = WYNKContext.ServiceMaster.Where(x => x.parentDescription ==Convert.ToString(id)).ToList();
+            var fulllistdat = WYNKContext.ServiceMaster.Where(x => x.parentDescription == Convert.ToString(id)).ToList();
             if (fulllistdat != null)
             {
                 foreach (var item in fulllistdat)
@@ -2353,8 +2376,8 @@ namespace WYNK.Data.Repository.Implementation
                     dd.parentid = Convert.ToString(item.parentDescription);
                     dd.childid = Convert.ToString(item.ChildDescription);
                     dd.docid = Convert.ToString(item.DoctorID);
-                    dd.roomid =  Convert.ToString(item.RoomID);
-                    dd.insuranceid =  Convert.ToString(item.InsuranceID);
+                    dd.roomid = Convert.ToString(item.RoomID);
+                    dd.insuranceid = Convert.ToString(item.InsuranceID);
                     dd.serviceamt = Convert.ToString(item.ServiceCharge);
                     dd.percentage = Convert.ToString(item.DiscountPercentage);
                     dd.eligibleamt = Convert.ToString(item.AmountEligible);

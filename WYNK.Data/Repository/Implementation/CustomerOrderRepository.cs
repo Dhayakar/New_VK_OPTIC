@@ -941,12 +941,15 @@ namespace WYNK.Data.Repository.Implementation
             final.opfinalprescri = new List<opfinalprescri>();
 
             var groups = (from REF in WYNKContext.OpticalPrescription.Where(u => u.CMPID == CMPID && u.COID == null)
-                          join us in user on
-                          REF.CreatedBy equals us.Userid
+                          join us in user on REF.CreatedBy equals us.Userid
+
+
                           join doc in docmas on
                           us.Username equals doc.EmailID
                           join usr in userrole on
                           us.Username equals usr.UserName
+
+
                           select new
                           {
                               RID = REF.RegistrationTranID,
@@ -1093,6 +1096,263 @@ namespace WYNK.Data.Repository.Implementation
             }
         }
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        public dynamic InsertOpticalPrescription(CustomerOrderViewModel AddOpticalPrescription, int CustomerID, int cmpID, int userid)
+        {
+            using (var dbContextTransaction = WYNKContext.Database.BeginTransaction())
+            {
+                try
+                {
+                    var OPMcount = WYNKContext.OpticalPrescriptionmaster.Where(x => x.CustomerMasterID == CustomerID && x.CMPID == cmpID).Count();
+
+                    if (OPMcount != 0)
+                    {
+                        var opm = WYNKContext.OpticalPrescriptionmaster.Where(x => x.CustomerMasterID == CustomerID && x.CMPID == cmpID).ToList();
+                        var op = WYNKContext.OpticalPrescription.Where(x => x.CustomerMasterID == CustomerID && x.CMPID == cmpID).ToList();
+                        WYNKContext.OpticalPrescriptionmaster.RemoveRange(opm);
+                        WYNKContext.OpticalPrescription.RemoveRange(op);
+                        WYNKContext.SaveChanges();
+                    }
+
+                    if (AddOpticalPrescription.FINALPRESCRIPTION != null)
+                    {
+                        if (AddOpticalPrescription.FINALPRESCRIPTION.Count() > 0)
+                        {
+
+                            var finod = AddOpticalPrescription.FINALPRESCRIPTION.Where(x => x.Description == "Final Prescription").ToList();
+                            var finos = AddOpticalPrescription.FINALPRESCRIPTION.Where(x => x.Description == "Final Prescription").ToList();
+                            var one = CMPSContext.OneLineMaster.ToList();
+                            var masteroptical = WYNKContext.CustomerMaster.Where(x => x.ID == CustomerID && x.CmpID == cmpID && x.IsDeleted == false).FirstOrDefault();
+
+                            var RefOP = new OpticalPrescriptionmaster();
+                            RefOP.UIN = masteroptical.UIN;
+                            RefOP.CustomerMasterID = CustomerID;
+                            RefOP.Name = masteroptical.Name;
+                            RefOP.MiddleName = masteroptical.MiddleName;
+                            RefOP.LastName = masteroptical.LastName;
+                            RefOP.Phone = masteroptical.PhoneNo;
+                            RefOP.PrescriptionDate = DateTime.UtcNow;
+                            RefOP.CMPID = cmpID;
+                            RefOP.CreatedUTC = DateTime.UtcNow;
+                            RefOP.CreatedBy = userid;
+                            WYNKContext.OpticalPrescriptionmaster.AddRange(RefOP);
+                            ErrorLog oErrorLogstran2 = new ErrorLog();
+                            object namestr2 = RefOP;
+                            oErrorLogstran2.WriteErrorLogArray("OpticalPrescription", namestr2);
+
+                            if (finod.Count() > 0)
+                            {
+                                foreach (var item in finod.ToList())
+                                {
+                                    var Ref1 = new OpticalPrescriptionn();
+                                    var st = item.DVName = "Distance Vision";
+
+                                    if (item.Ocular == "OD" && st == one.Where(z => z.ParentDescription == "Distance Vision").Select(s => s.ParentDescription).FirstOrDefault() && (item.DistSph != "" || item.NearCyl != "" || item.PinAxis != "" || item.Add != "" || item.Remarks != ""))
+                                    {
+                                        //Ref.RegistrationTranID = refid;
+                                        Ref1.UIN = masteroptical.UIN;
+                                        Ref1.CustomerMasterID = CustomerID;
+                                        Ref1.PrescriptionDate = DateTime.UtcNow;
+                                        Ref1.Ocular = item.Ocular;
+                                        Ref1.DistSph = item.DistSph;
+                                        Ref1.NearCyl = item.NearCyl;
+                                        Ref1.PinAxis = item.PinAxis;
+                                        Ref1.Add = item.Add;
+                                        Ref1.Remarks = item.Remarks;
+                                        Ref1.PD = item.PD;
+                                        Ref1.MPDOD = item.MPDOD;
+                                        Ref1.MPDOS = item.MPDOS;
+                                        Ref1.CMPID = cmpID;
+                                        Ref1.Type = item.DV == 0 ? one.Where(z => z.ParentDescription == "Distance Vision" && item.DVName == "Distance Vision").Select(s => s.OLMID).FirstOrDefault() : item.DV;
+                                        Ref1.CreatedUTC = DateTime.UtcNow;
+                                        Ref1.CreatedBy = userid;
+                                        WYNKContext.OpticalPrescription.AddRange(Ref1);
+                                        ErrorLog oErrorLogstran1 = new ErrorLog();
+                                        object namestr1 = Ref1;
+                                        oErrorLogstran1.WriteErrorLogArray("OpticalPrescription", namestr1);
+
+                                    }
+                                }
+
+                            }
+
+                            if (finod.Count() > 0)
+                            {
+                                foreach (var item in finod.ToList())
+                                {
+                                    var Ref = new OpticalPrescriptionn();
+                                    var st = item.DVName = "Near Vision";
+                                    if (item.Ocular == "OD" && st == one.Where(z => z.ParentDescription == "Near Vision").Select(s => s.ParentDescription).FirstOrDefault() && (item.DistSphNVOD != "" || item.AddNVOD != ""))
+                                    {
+
+                                        //Ref.RegistrationTranID = refid;
+                                        Ref.UIN = masteroptical.UIN;
+                                        Ref.CustomerMasterID = CustomerID;
+                                        Ref.PrescriptionDate = DateTime.UtcNow;
+                                        Ref.Ocular = item.Ocular;
+                                        Ref.DistSph = item.DistSphNVOD;
+                                        Ref.Add = item.AddNVOD;
+                                        Ref.PD = item.PD;
+                                        Ref.MPDOD = item.MPDOD;
+                                        Ref.MPDOS = item.MPDOS;
+                                        Ref.CMPID = cmpID;
+                                        Ref.Remarks = item.Remarks;
+                                        Ref.Type = item.NV == 0 ? one.Where(z => z.ParentDescription == "Near Vision" && item.DVName == "Near Vision").Select(s => s.OLMID).FirstOrDefault() : item.NV;
+                                        Ref.CreatedUTC = DateTime.UtcNow;
+                                        Ref.CreatedBy = userid;
+                                        WYNKContext.OpticalPrescription.AddRange(Ref);
+                                        ErrorLog oErrorLogstran = new ErrorLog();
+                                        object namestr = Ref;
+                                        oErrorLogstran.WriteErrorLogArray("OpticalPrescription", namestr);
+
+                                    }
+                                }
+
+                            }
+
+                            if (finos.Count() > 0)
+                            {
+                                foreach (var item in finos.ToList())
+                                {
+                                    var Ref = new OpticalPrescriptionn();
+                                    var st = item.DVName = "Distance Vision";
+
+                                    if (item.OcularOS == "OS" && st == one.Where(z => z.ParentDescription == "Distance Vision").Select(s => s.ParentDescription).FirstOrDefault() && (item.DistSphOS != "" || item.NearCylOS != "" || item.PinAxisOS != "" || item.AddOS != "" || item.Remarks != ""))
+                                    {
+
+                                        //Ref.RegistrationTranID = refid;
+                                        Ref.UIN = masteroptical.UIN;
+                                        Ref.CustomerMasterID = CustomerID;
+                                        Ref.PrescriptionDate = DateTime.UtcNow;
+                                        Ref.Ocular = item.OcularOS;
+                                        Ref.DistSph = item.DistSphOS;
+                                        Ref.NearCyl = item.NearCylOS;
+                                        Ref.PinAxis = item.PinAxisOS;
+                                        Ref.Add = item.AddOS;
+                                        Ref.Remarks = item.Remarks;
+                                        Ref.PD = item.PD;
+                                        Ref.MPDOD = item.MPDOD;
+                                        Ref.MPDOS = item.MPDOS;
+                                        Ref.CMPID = cmpID;
+                                        Ref.Type = item.DV == 0 ? one.Where(z => z.ParentDescription == "Distance Vision" && item.DVName == "Distance Vision").Select(s => s.OLMID).FirstOrDefault() : item.DV;
+                                        Ref.CreatedUTC = DateTime.UtcNow;
+                                        Ref.CreatedBy = userid;
+                                        WYNKContext.OpticalPrescription.AddRange(Ref);
+                                        ErrorLog oErrorLogstran = new ErrorLog();
+                                        object namestr = Ref;
+                                        oErrorLogstran.WriteErrorLogArray("OpticalPrescription", namestr);
+
+                                    }
+
+                                }
+                            }
+
+                            if (finos.Count() > 0)
+                            {
+                                foreach (var item in finos.ToList())
+                                {
+                                    var Ref = new OpticalPrescriptionn();
+                                    var st = item.DVName = "Near Vision";
+
+                                    if (item.OcularOS == "OS" && st == one.Where(z => z.ParentDescription == "Near Vision").Select(s => s.ParentDescription).FirstOrDefault() && (item.DistSphNVOS != "" || item.AddNVOS != ""))
+                                    {
+
+                                        //Ref.RegistrationTranID = refid;
+                                        Ref.UIN = masteroptical.UIN;
+                                        Ref.CustomerMasterID = CustomerID;
+                                        Ref.PrescriptionDate = DateTime.UtcNow;
+                                        Ref.Ocular = item.OcularOS;
+                                        Ref.DistSph = item.DistSphNVOS;
+                                        Ref.Add = item.AddNVOS;
+                                        Ref.PD = item.PD;
+                                        Ref.MPDOD = item.MPDOD;
+                                        Ref.MPDOS = item.MPDOS;
+                                        Ref.CMPID = cmpID;
+                                        Ref.Remarks = item.Remarks;
+                                        Ref.Type = item.NV == 0 ? one.Where(z => z.ParentDescription == "Near Vision" && item.DVName == "Near Vision").Select(s => s.OLMID).FirstOrDefault() : item.NV;
+                                        Ref.CreatedUTC = DateTime.UtcNow;
+                                        Ref.CreatedBy = userid;
+                                        WYNKContext.OpticalPrescription.AddRange(Ref);
+                                        ErrorLog oErrorLogstran = new ErrorLog();
+                                        object namestr = Ref;
+                                        oErrorLogstran.WriteErrorLogArray("OpticalPrescription", namestr);
+
+                                    }
+
+                                }
+                            }
+
+
+                        }
+                    }
+
+
+
+
+
+
+                    WYNKContext.SaveChanges();
+                    dbContextTransaction.Commit();
+
+                    return new
+                    {
+                        Success = true,
+                    };
+
+                }
+
+
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    Console.Write(ex);
+                }
+                return new
+                {
+                    Success = false,
+                };
+
+
+            }
+        }
+
+
+
+        public dynamic GetOpticalPrescription(int CusMasID, int CMPID)
+        {
+            var GetOpticalPrescription = new CustomerOrderViewModel();
+
+            var OpticalPrescriptionmaster = WYNKContext.OpticalPrescriptionmaster.Where(x => x.CMPID == CMPID).ToList();
+            var OpticalPrescription = WYNKContext.OpticalPrescription.Where(x => x.CMPID == CMPID).ToList();
+
+
+            var one = CMPSContext.OneLineMaster.ToList();
+
+            GetOpticalPrescription.opticprescription1 = (from op in OpticalPrescription.Where(x => x.CustomerMasterID == CusMasID)
+                                                             // join OP in OpticalPrescription on OPM.CustomerMasterID equals OP.CustomerMasterID
+
+                                                         select new opticprescription1
+                                                         {
+                                                             Type = op.Type,
+                                                             Ocular = op.Ocular,
+                                                             DistSph = op.DistSph,
+                                                             NearCyl = op.NearCyl,
+                                                             PinAxis = op.PinAxis,
+                                                             Add = op.Add,
+                                                             Remarks = op.Remarks,
+                                                             PD = op.PD,
+                                                             MPDOD = op.MPDOD,
+                                                             MPDOS = op.MPDOS,
+
+                                                         }).ToList();
+
+            return GetOpticalPrescription;
+
+
+
+        }
+
+
     }
 }
 

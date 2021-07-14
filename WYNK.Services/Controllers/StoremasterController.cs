@@ -21,7 +21,7 @@ namespace WYNK.Services.Controllers
         }
 
         [HttpPost("InsertStoreMas")]
-        public dynamic InsertStoreMas([FromBody]Storemasterviewmodel StoreMas)
+        public dynamic InsertStoreMas([FromBody] Storemasterviewmodel StoreMas)
         {
             return _repoWrapper.Storemaster.InsertStoreMas(StoreMas);
         }
@@ -39,17 +39,17 @@ namespace WYNK.Services.Controllers
             return _repoWrapper.Storemaster.DeleteStoreMas(ID);
         }
 
-        [HttpGet("saveonelineStoreMas/{ID}")]
-        public dynamic saveonelineStoreMas(string ID)
+        [HttpGet("saveonelineStoreMas/{ID}/{docotorid}")]
+        public dynamic saveonelineStoreMas(string ID, int docotorid)
         {
-            return _repoWrapper.Storemaster.saveonelineStoreMas(ID);
+            return _repoWrapper.Storemaster.saveonelineStoreMas(ID, docotorid);
         }
-        [HttpGet("updatenelineStoreMas/{ID}/{status}/{OLMID}")]
-        public dynamic updatenelineStoreMas(string ID, string status, string OLMID)
+        [HttpGet("updatenelineStoreMas/{ID}/{status}/{OLMID}/{docotorid}")]
+        public dynamic updatenelineStoreMas(string ID, string status, string OLMID, int docotorid)
         {
-            return _repoWrapper.Storemaster.updatenelineStoreMas(ID, status, OLMID);
+            return _repoWrapper.Storemaster.updatenelineStoreMas(ID, status, OLMID, docotorid);
         }
-        
+
     }
 
 }

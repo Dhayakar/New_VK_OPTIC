@@ -1,7 +1,6 @@
 {
   "format": 1,
   "restore": {
-
     "E:\\Git_desktop\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj": {}
   },
   "projects": {
@@ -16,25 +15,6 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-
-    "D:\\WYNK_GIT_DESKTOP\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj": {}
-  },
-  "projects": {
-    "D:\\WYNK_GIT_DESKTOP\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "D:\\WYNK_GIT_DESKTOP\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj",
-        "projectName": "SMSand EMAILService.cs",
-        "projectPath": "D:\\WYNK_GIT_DESKTOP\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj",
-        "packagesPath": "C:\\Users\\SYSTEM1\\.nuget\\packages\\",
-        "outputPath": "D:\\WYNK_GIT_DESKTOP\\VK_Optic_Point\\SMSand EMAILService.cs\\obj\\",
-        "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
-        "configFilePaths": [
-          "C:\\Users\\SYSTEM1\\AppData\\Roaming\\NuGet\\NuGet.Config",
-
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -78,7 +58,6 @@
             }
           },
           "imports": [
-
             "net461",
             "net462",
             "net47",
@@ -89,10 +68,6 @@
           "assetTargetFallback": true,
           "warn": true,
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
-            "net461"
-          ],
-          "assetTargetFallback": true,
-          "warn": true
         }
       }
     }

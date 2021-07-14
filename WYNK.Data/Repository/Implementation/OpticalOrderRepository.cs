@@ -347,7 +347,7 @@ namespace WYNK.Data.Repository.Implementation
 
                                                        select new OpticalOrderUpdate
                                                        {
-                                                           ID = OO.ID,
+                                                           ID = OO.RandomUniqueID,
                                                            OrderNumber = OO.OrderNumber,
                                                            OrderDate = OO.OrderDate,
                                                            RefNo = OO.RefNo,
@@ -695,13 +695,15 @@ namespace WYNK.Data.Repository.Implementation
                                           BankBranch = PTY.BankBranch,
                                           Expirydate = PTY.Expirydate,
                                           Amount = PTY.Amount,
-                                      }
-                        ).ToList();
+                                          InVoiceDate = PTY.InVoiceDate,
+                                          InVoiceNumber = PTY.InVoiceNumber,
+                                      }).ToList();
 
             payment.TOpayMode1 = payment.paymentReMode1.Select(x => x.Amount).Sum();
 
             return payment;
         }
+
 
 
     }

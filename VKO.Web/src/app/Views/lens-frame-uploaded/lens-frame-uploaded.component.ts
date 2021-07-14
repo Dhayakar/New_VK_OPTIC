@@ -240,7 +240,7 @@ export class LensFrameUploadedComponent implements OnInit {
       }
     }
 
-      let result3 = data.filter(o1 => !this.Lensarray.some(o2 => o1.Brand.replace(/\s+/g, '').toLowerCase() === o2.Brand.replace(/\s+/g, '').toLowerCase()
+    let result3 = data.filter(o1 => !this.Lensarray.some(o2 => o1.Brand.replace(/\s+/g, '').toLowerCase() === o2.Brand.replace(/\s+/g, '').toLowerCase()
       && o1.Color.replace(/\s+/g, '').toLowerCase() === o2.Colour.replace(/\s+/g, '').toLowerCase() && o1.Size === o2.Size
       && o1.Price === o2.Prize));
 
@@ -249,8 +249,8 @@ export class LensFrameUploadedComponent implements OnInit {
         for (var i = 0; i < result3.length; i++) {
           var la = new Lensarray();
           la.Type = result3[i].Type,
-          la.Brand = result3[i].Brand,
-          la.LensOption = result3[i].LensOption;
+            la.Brand = result3[i].Brand,
+            la.LensOption = result3[i].LensOption;
           la.Model = result3[i].Model;
           la.Index = result3[i].Index;
           la.Colour = result3[i].Color;
@@ -335,7 +335,7 @@ export class LensFrameUploadedComponent implements OnInit {
       this.orginaltable = false;
       this.bindingtable = true;
     }
-  
+
   }
 
 
@@ -344,56 +344,28 @@ export class LensFrameUploadedComponent implements OnInit {
     this.commonService.data.Lensarray = this.Lensarray;
     console.log(this.commonService.data);
     this.commonService.postData('LensMaster/InsertUploadedExceldata/' + this.CompanyID + '/' + this.docotorid, this.commonService.data)
-        .subscribe(data => {
-          if (data.Success == true) {
-            debugger
-            this.Lensarray = data.lensframemaster;
-            this.commonService.data.Lensarray = this.Lensarray;
-            const str = "LENS";
-            const str1 = this.Lensarray[0].Type.replace(/\s+/g, '');
-            const result = str.toLowerCase() === str1.toLowerCase();
-            if (result == true) {
-              this.dataSourcesq.data = this.commonService.data.Lensarray;
-              this.dataSourcesq._updateChangeSubscription();
-            }
-            else {
-              this.dataSourcesqq.data = this.commonService.data.Lensarray;
-              this.dataSourcesqq._updateChangeSubscription();
-            }
-            this.Uploadeditems = data.Uploaded;
-            this.UnUplodeditems = data.Duplicate + data.Error;
-            if (this.Uploadeditems != 0) {
-              Swal.fire({
-                type: 'success',
-                title: 'Data Uploaded Successfully !',
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 1500,
-                customClass: {
-                  popup: 'alert-warp',
-                  container: 'alert-container',
-                },
-              });
-            }
-            else {
-              Swal.fire({
-                type: 'warning',
-                title: 'Data Uploaded Failed !',
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 1500,
-                customClass: {
-                  popup: 'alert-warp',
-                  container: 'alert-container',
-                },
-              });
-            }
-
+      .subscribe(data => {
+        if (data.Success == true) {
+          debugger
+          this.Lensarray = data.lensframemaster;
+          this.commonService.data.Lensarray = this.Lensarray;
+          const str = "LENS";
+          const str1 = this.Lensarray[0].Type.replace(/\s+/g, '');
+          const result = str.toLowerCase() === str1.toLowerCase();
+          if (result == true) {
+            this.dataSourcesq.data = this.commonService.data.Lensarray;
+            this.dataSourcesq._updateChangeSubscription();
           }
-          else if (data.Success == false && data.Message == "No Files To Upload") {
+          else {
+            this.dataSourcesqq.data = this.commonService.data.Lensarray;
+            this.dataSourcesqq._updateChangeSubscription();
+          }
+          this.Uploadeditems = data.Uploaded;
+          this.UnUplodeditems = data.Duplicate + data.Error;
+          if (this.Uploadeditems != 0) {
             Swal.fire({
-              type: 'warning',
-              title: 'No Files To Upload',
+              type: 'success',
+              title: 'Data Uploaded Successfully !',
               position: 'top-end',
               showConfirmButton: false,
               timer: 1500,
@@ -403,8 +375,36 @@ export class LensFrameUploadedComponent implements OnInit {
               },
             });
           }
-        });
-    }
+          else {
+            Swal.fire({
+              type: 'warning',
+              title: 'Data Uploaded Failed !',
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 1500,
+              customClass: {
+                popup: 'alert-warp',
+                container: 'alert-container',
+              },
+            });
+          }
+
+        }
+        else if (data.Success == false && data.Message == "No Files To Upload") {
+          Swal.fire({
+            type: 'warning',
+            title: 'No Files To Upload',
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            customClass: {
+              popup: 'alert-warp',
+              container: 'alert-container',
+            },
+          });
+        }
+      });
+  }
 
   modalcloseAccessOk() {
     this.backdrop = 'none';
@@ -456,7 +456,7 @@ export class LensFrameUploadedComponent implements OnInit {
     this.dataSourcesq._updateChangeSubscription();
     this.orginaltable = true;
     this.bindingtable = false;
-    
+
   }
   CancelClk() {
     debugger;

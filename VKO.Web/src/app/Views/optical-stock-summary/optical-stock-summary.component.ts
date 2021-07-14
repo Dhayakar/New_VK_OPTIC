@@ -23,6 +23,7 @@ import { Sort } from '@angular/material/sort';
 import { MatDatepicker } from '@angular/material/datepicker';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 
+
 declare var jQuery: any;
 
 
@@ -204,7 +205,7 @@ export class OpticalStockSummaryComponent implements OnInit {
     debugger;
     this.allSelected = false;
     let result = event.value.Value;
-    this.commonService.getListOfData('Common/GetbranchstoreDropdownvalues/' + result + '/' + "Optical Department").subscribe(data => { this.StoreName = data });
+    this.commonService.getListOfData('Common/GetbranchstoreDropdownvalues/' + result + '/' + "Stock Department").subscribe(data => { this.StoreName = data });
   }
 
   selectdBrand(event) {
@@ -369,11 +370,11 @@ export class OpticalStockSummaryComponent implements OnInit {
     if (form.valid) {
       this.isInvalid = false;
 
-      let FromDate = this.M_FromDate.toISOString();
-      let ToDate = this.M_ToDate.toISOString();
+      let Fromdate = this.datepipe.transform(this.M_FromDate, "dd-MMM-yyyy");
+      let Todate = this.datepipe.transform(this.M_ToDate, "dd-MMM-yyyy");  
 
       console.log(this.commonService.data);
-      this.commonService.postData('OpticalStockSummary/GetStockSummary/' + FromDate + '/' + ToDate + '/' + this.BranchDrop.Value + '/' + this.Getloctime, this.commonService.data)
+      this.commonService.postData('OpticalStockSummary/GetStockSummary/' + Fromdate + '/' + Todate + '/' + this.BranchDrop.Value + '/' + this.Getloctime, this.commonService.data)
         .subscribe(data => {
           debugger;
           if (data.OpticalStocksummaryarray.length > 0 || data.Companycommu > 0) {
@@ -556,15 +557,6 @@ export class OpticalStockSummaryComponent implements OnInit {
   printclose() {
     this.opprint = 'none';
   }
-
-
-
-
-
-
-
-
-
 
 
   ////Excel

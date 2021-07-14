@@ -813,7 +813,12 @@ namespace WYNK.Data.Repository.Implementation
                                 Index = onelinemaster.OLMID;
                             }
 
-                            int? TaxID = CMPSContext.TaxMaster.Where(x => x.TaxDescription.Replace(" ", string.Empty).Equals(lensframe.TaxDescription.Replace(" ", string.Empty), StringComparison.OrdinalIgnoreCase) && x.GSTPercentage == lensframe.GSTPercentage && x.CESSDescription.Replace(" ", string.Empty).Equals(lensframe.CessDescription.Replace(" ", string.Empty), StringComparison.OrdinalIgnoreCase) && x.CESSPercentage == lensframe.CESSPercentage && x.AdditionalCESSDescription.Replace(" ", string.Empty).Equals(lensframe.AddtionalDescription.Replace(" ", string.Empty), StringComparison.OrdinalIgnoreCase) && x.AdditionalCESSPercentage == lensframe.ADDCESSPercentage && x.IsActive == true).Select(x => (int?)x.ID).FirstOrDefault();
+                            var taxdesc = lensframe.TaxDescription != null ? lensframe.TaxDescription.Replace(" ", string.Empty) : string.Empty;
+                            var cessdesc = lensframe.CessDescription != null ? lensframe.CessDescription.Replace(" ", string.Empty) : string.Empty;
+                            var addcessdesc = lensframe.AddtionalDescription != null ? lensframe.AddtionalDescription.Replace(" ", string.Empty) : string.Empty;
+
+                            int? TaxID = CMPSContext.TaxMaster.Where(x => x.TaxDescription.Replace(" ", string.Empty).ToLower().Contains(taxdesc) && x.GSTPercentage == lensframe.GSTPercentage && x.CESSDescription.Replace(" ", string.Empty).ToLower().Contains(cessdesc) && x.CESSPercentage == lensframe.CESSPercentage && x.AdditionalCESSDescription.Replace(" ", string.Empty).ToLower().Contains(addcessdesc) && x.AdditionalCESSPercentage == lensframe.ADDCESSPercentage && x.IsActive == true).Select(x => (int?)x.ID).FirstOrDefault();
+
 
                             /*TaxDescription Insertion and assign to IsTaxDescription*/
                             if (TaxID == null)
@@ -836,8 +841,12 @@ namespace WYNK.Data.Repository.Implementation
 
                             if (lensframe.Type.Equals("Frame", StringComparison.OrdinalIgnoreCase))
                             {
+                                var FrameShape = lensframe.FrameShape != null ? lensframe.FrameShape.Replace(" ", string.Empty) : string.Empty;
+                                var FrameType = lensframe.FrameType != null ? lensframe.FrameType.Replace(" ", string.Empty) : string.Empty;
+                                var FrameStyle = lensframe.FrameStyle != null ? lensframe.FrameStyle.Replace(" ", string.Empty) : string.Empty;
+                                var FrameWidth = lensframe.FrameWidth != null ? lensframe.FrameWidth.Replace(" ", string.Empty) : string.Empty;
 
-                                getData.FrameShap = CMPSContext.OneLineMaster.Where(x => x.ParentDescription.Replace(" ", string.Empty).Equals(lensframe.FrameShape.Replace(" ", string.Empty), StringComparison.OrdinalIgnoreCase) && x.ParentTag == "FrameShape" && x.IsActive == true && x.IsDeleted == false).Select(x => (int?)x.OLMID).FirstOrDefault();
+                                getData.FrameShap = CMPSContext.OneLineMaster.Where(x => x.ParentDescription.Replace(" ", string.Empty).ToLower().Contains(FrameShape) && x.ParentTag == "FrameShape" && x.IsActive == true && x.IsDeleted == false).Select(x => (int?)x.OLMID).FirstOrDefault();
 
                                 /*FrameShape Insertion and assign to IsFrameShape*/
                                 if (getData.FrameShap == null)
@@ -856,7 +865,7 @@ namespace WYNK.Data.Repository.Implementation
                                     getData.FrameShap = onelinemaster.OLMID;
                                 }
 
-                                getData.FrameTyp = CMPSContext.OneLineMaster.Where(x => x.ParentDescription.Replace(" ", string.Empty).Equals(lensframe.FrameType.Replace(" ", string.Empty), StringComparison.OrdinalIgnoreCase) && x.ParentTag == "FrameType" && x.IsActive == true && x.IsDeleted == false).Select(x => (int?)x.OLMID).FirstOrDefault();
+                                getData.FrameTyp = CMPSContext.OneLineMaster.Where(x => x.ParentDescription.Replace(" ", string.Empty).ToLower().Contains(FrameType) && x.ParentTag == "FrameType" && x.IsActive == true && x.IsDeleted == false).Select(x => (int?)x.OLMID).FirstOrDefault();
 
                                 /*FrameType Insertion and assign to IsFrameType*/
                                 if (getData.FrameTyp == null)
@@ -875,7 +884,7 @@ namespace WYNK.Data.Repository.Implementation
                                     getData.FrameTyp = onelinemaster.OLMID;
                                 }
 
-                                getData.FrameStyl = CMPSContext.OneLineMaster.Where(x => x.ParentDescription.Replace(" ", string.Empty).Equals(lensframe.FrameStyle.Replace(" ", string.Empty), StringComparison.OrdinalIgnoreCase) && x.ParentTag == "FrameStyle" && x.IsActive == true && x.IsDeleted == false).Select(x => (int?)x.OLMID).FirstOrDefault();
+                                getData.FrameStyl = CMPSContext.OneLineMaster.Where(x => x.ParentDescription.Replace(" ", string.Empty).ToLower().Contains(FrameStyle) && x.ParentTag == "FrameStyle" && x.IsActive == true && x.IsDeleted == false).Select(x => (int?)x.OLMID).FirstOrDefault();
 
                                 /*FrameStyle Insertion and assign to IsFrameStyle*/
                                 if (getData.FrameStyl == null)
@@ -894,7 +903,7 @@ namespace WYNK.Data.Repository.Implementation
                                     getData.FrameStyl = onelinemaster.OLMID;
                                 }
 
-                                getData.FrameWidt = CMPSContext.OneLineMaster.Where(x => x.ParentDescription.Replace(" ", string.Empty).Equals(lensframe.FrameWidth.Replace(" ", string.Empty), StringComparison.OrdinalIgnoreCase) && x.ParentTag == "FrameWidth" && x.IsActive == true && x.IsDeleted == false).Select(x => (int?)x.OLMID).FirstOrDefault();
+                                getData.FrameWidt = CMPSContext.OneLineMaster.Where(x => x.ParentDescription.Replace(" ", string.Empty).ToLower().Contains(FrameWidth) && x.ParentTag == "FrameWidth" && x.IsActive == true && x.IsDeleted == false).Select(x => (int?)x.OLMID).FirstOrDefault();
 
                                 /*FrameWidth Insertion and assign to IsFrameWidth*/
                                 if (getData.FrameWidt == null)
@@ -953,7 +962,10 @@ namespace WYNK.Data.Repository.Implementation
                             if (lensframe.Type.Equals("Lens".Replace(" ", string.Empty), StringComparison.OrdinalIgnoreCase))
                             {
 
-                                int? Lensframetran = WYNKContext.Lenstrans.Where(x => x.Brand == Brand && x.Colour.Equals(lensframe.Colour, StringComparison.OrdinalIgnoreCase) && x.IsActive == true).Select(x => (int?)x.ID).FirstOrDefault();
+
+                                var color = lensframe.Colour != null ? lensframe.Colour.Replace(" ", string.Empty) : string.Empty;
+
+                                int? Lensframetran = WYNKContext.Lenstrans.Where(x => x.Brand == Brand && x.Colour.Replace(" ", string.Empty).ToLower().Contains(color) && x.Size == lensframe.Size && x.Prize == lensframe.Prize && x.IsActive == true).Select(x => (int?)x.ID).FirstOrDefault();
 
                                 /*Lensframetran Insertion and assign to IsLensframetran*/
                                 if (Lensframetran == null)
@@ -994,8 +1006,9 @@ namespace WYNK.Data.Repository.Implementation
 
                             else
                             {
+                                var color = lensframe.Colour != null ? lensframe.Colour.Replace(" ", string.Empty) : string.Empty;
 
-                                int? Lensframetran = WYNKContext.Lenstrans.Where(x => x.Brand == Brand && x.Colour.Equals(lensframe.Colour.Replace(" ", string.Empty), StringComparison.OrdinalIgnoreCase) && x.IsActive == true).Select(x => (int?)x.ID).FirstOrDefault();
+                                int? Lensframetran = WYNKContext.Lenstrans.Where(x => x.Brand == Brand && x.Colour.Replace(" ", string.Empty).ToLower().Contains(color) && x.Size == lensframe.Size && x.Prize == lensframe.Prize && x.IsActive == true).Select(x => (int?)x.ID).FirstOrDefault();
 
                                 if (Lensframetran == null)
                                 {

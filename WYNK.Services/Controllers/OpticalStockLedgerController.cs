@@ -21,7 +21,7 @@ namespace WYNK.Services.Controllers
         }
 
         [HttpPost("GetStockLedger/{From}/{To}/{CompanyID}/{Time}")]
-        public dynamic GetStockLedger([FromBody] OpticalStockLedgerDataView stockledger, DateTime From, DateTime To, int CompanyID, string Time)
+        public dynamic GetStockLedger([FromBody] OpticalStockLedgerDataView stockledger, string From, string To, int CompanyID, string Time)
         {
             return _repoWrapper.OpticalStockLedger.GetStockLedger(stockledger, From, To, CompanyID, Time);
         }

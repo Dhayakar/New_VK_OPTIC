@@ -148,7 +148,7 @@ namespace WYNK.Data.Model.ViewModel
     {
         public string Prescribedby1 { get; set; }
         public DateTime prescribeddate1 { get; set; }
-        public int regid1 { get; set; }
+        public int? regid1 { get; set; }
     }
 
     public class CurrentMedication

@@ -13,7 +13,7 @@ import { MatSort, MatTableDataSource, MatPaginator, MatDialogConfig, MatInput, M
 declare var $: any;
 declare var jQuery: any;
 import * as _ from 'lodash';
-import { ExcelModel, Lensframestock,  } from '../../Models/ViewModels/ExcelViewModel';
+import { ExcelModel, Lensframestock, } from '../../Models/ViewModels/ExcelViewModel';
 import { MatOption } from '@angular/material/core';
 
 @Component({
@@ -26,7 +26,7 @@ export class LensframestockuploadComponent implements OnInit {
   displayedColumnssq = ['Type', 'Brand', 'Quantity', 'Status'];
   dataSourcesq = new MatTableDataSource();
 
-BranchDrop;
+  BranchDrop;
   constructor(public commonService: CommonService<ExcelModel>, private router: Router) { }
   isNextButton = true;
   isNextupdate = true;
@@ -54,7 +54,7 @@ BranchDrop;
     this.TransactionId = res.TransactionID;
     this.docotorid = localStorage.getItem('userroleID');
     this.CompanyID = localStorage.getItem("CompanyID");
-    this.commonService.getListOfData('Common/GetBranchAll/' + parseInt(localStorage.getItem("CompanyID"))).subscribe((data: any) => {this.GetBranchdata = data});
+    this.commonService.getListOfData('Common/GetBranchAll/' + parseInt(localStorage.getItem("CompanyID"))).subscribe((data: any) => { this.GetBranchdata = data });
     var Objdata = JSON.parse(localStorage.getItem("AllCollectionData"));
     if (this.TransactionId == null) {
       Swal.fire({
@@ -160,9 +160,9 @@ BranchDrop;
   isInvalid = false;
   data: any = [
     {
-    Type: 'varchar',
-    Brand: 'varchar',
-    Quantity: 'number'
+      Type: 'varchar',
+      Brand: 'varchar',
+      Quantity: 'number'
     },
     {
       Type: 'Lens',
@@ -233,13 +233,12 @@ BranchDrop;
   Lensframestock = [];
   lensdata(data) {
     debugger;
-
-    let result3 = data.filter(o1 => !this.Lensframestock.some(o2 => o1.Type.replace(/\s+/g, '').toLowerCase() === o2.Type.replace(/\s+/g, '').toLowerCase() && o1.Brand.replace(/\s+/g, '').toLowerCase() === o2.Brand.replace(/\s+/g, '').toLowerCase() && o1.Quantity === o2.Quantity));
+    var result3 = data.filter(o1 => !this.Lensframestock.some(o2 => o1.Type.replace(/\s+/g, '').toLowerCase() === o2.Type.replace(/\s+/g, '').toLowerCase() && o1.Brand.replace(/\s+/g, '').toLowerCase() === o2.Brand.replace(/\s+/g, '').toLowerCase()));
 
     if (result3.length > 0) {
       for (var i = 0; i < data.length; i++) {
         var la = new Lensframestock();
-          la.Type = data[i].Type,
+        la.Type = data[i].Type,
           la.Brand = data[i].Brand,
           la.Quantity = data[i].Quantity,
           la.Status = "Open",
@@ -321,7 +320,7 @@ BranchDrop;
   selectdBranch(event) {
     debugger;
     let result = event.value.Value;
-    this.commonService.getListOfData('Common/GetbranchstoreDropdownvalues/' + result).subscribe(data => { this.StoreName = data });
+    this.commonService.getListOfData('Common/GetbranchstoreDropdownvalues/' + result + '/' + "Stock Department").subscribe(data => { this.StoreName = data });
   }
 
   selectdBrand(event) {
@@ -394,7 +393,7 @@ BranchDrop;
                   popup: 'alert-warp',
                   container: 'alert-container',
                 },
-              }); 
+              });
             }
             else {
               Swal.fire({
@@ -408,7 +407,7 @@ BranchDrop;
                   container: 'alert-container',
                 },
               });
-            }         
+            }
           }
           else if (data.Success == false) {
             if (data.Message == "Running Number Does'nt Exist") {
@@ -477,5 +476,5 @@ BranchDrop;
 
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

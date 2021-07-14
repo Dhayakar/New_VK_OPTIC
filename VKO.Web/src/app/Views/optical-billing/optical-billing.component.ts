@@ -90,7 +90,7 @@ export class OpticalBillingComponent implements OnInit {
     this.Getloctime = localStorage.getItem('GMTTIME');
     this.docotorid = localStorage.getItem('userroleID');
     this.CompanyID = localStorage.getItem("CompanyID");
-    this.commonService.getListOfData('Common/GetstoreDropdownvalues/' + parseInt(localStorage.getItem("CompanyID")) + '/' + "Optical Department").subscribe(data => { this.StoreName = data; });
+    this.commonService.getListOfData('Common/GetstoreDropdownvaluesdesc/' + parseInt(localStorage.getItem("CompanyID")) + '/' + "Stock Department").subscribe(data => { this.StoreName = data; });
     this.commonService.getListOfData('Common/Getpaymentvalues').subscribe(data => { this.Paymentsmodes = data; });
     this.commonService.getListOfData('Common/GetCurrencyvalues/' + localStorage.getItem('CompanyID')).subscribe(data => {
       debugger;
@@ -594,8 +594,8 @@ export class OpticalBillingComponent implements OnInit {
   oddate;
   podno;
   poddate;
-
-
+  pGstNo;
+  pGSTIN;
 
 
   onSubmit(form: NgForm) {
@@ -718,6 +718,7 @@ export class OpticalBillingComponent implements OnInit {
 
                   this.pUIN = data.pUIN;
                   this.pCustomerName = data.pCustomerName;
+                  this.pGSTIN = data.pGSTIN;
                   this.pAddress = data.pAddress;
                   this.pMobileno = data.pMobileno;
                   this.pOrderNumber = data.pOrderNumber;
@@ -725,6 +726,7 @@ export class OpticalBillingComponent implements OnInit {
                   this.pcompanyAddress = data.pcompanyAddress + "" + data.pcompanyAddress1 + "" + data.pcompanyAddress2;
                   this.pphone = data.pphone;
                   this.pweb = data.pweb;
+                  this.pGstNo = data.pGstNo;
                   this.pCompnayname = data.pCompnayname;
                   let res = data.optransdetails.map((s) => +s.Totalamount).reduce((sum, c) => sum + c);
                   this.pTotalPOValue = Math.trunc(res);
@@ -953,7 +955,7 @@ export class OpticalBillingComponent implements OnInit {
     this.item = [];
     this.searchicon = true;
     this.searchiconrefresh = true;
-    this.commonService.getListOfData('Common/GetstoreDropdownvalues/' + parseInt(localStorage.getItem("CompanyID")) + '/' + "Optical Department").subscribe(data => { this.StoreName = data; })
+    this.commonService.getListOfData('Common/GetstoreDropdownvaluesdesc/' + parseInt(localStorage.getItem("CompanyID")) + '/' + "Stock Department").subscribe(data => { this.StoreName = data; })
     this.backdrop = 'none';
     this.cancelblock = 'none';
   }

@@ -69,8 +69,8 @@ namespace WYNK.Data.Model
         public DbSet<Surgery_CarriedOutDetails> SurgeryCarriedOutDetails { get; set; }
         public DbSet<SurgeryCostDetails> SurgeryCostDetail { get; set; }
         public DbSet<ICDExtenstion> ICDExtenstion { get; set; }
+        public DbSet<SpecialityMaster> SpecialityMaster { get; set; }
 
-        
         public DbSet<OpticalPrescriptionn> OpticalPrescription { get; set; }
         public DbSet<allergy> allergy { get; set; }
         public DbSet<AllergyTran> AllergyTran { get; set; }

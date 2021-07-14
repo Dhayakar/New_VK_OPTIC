@@ -8,13 +8,13 @@ namespace WYNK.Data.Repository
     public interface IStoremasterRepository : IRepositoryBase<Storemasterviewmodel>
 
     {
-       dynamic InsertStoreMas(Storemasterviewmodel StoreMas);
+        dynamic InsertStoreMas(Storemasterviewmodel StoreMas);
 
         dynamic UpdateStoreMas(Storemasterviewmodel storeup, int ID);
 
         dynamic DeleteStoreMas(int ID);
-        dynamic saveonelineStoreMas(string ID);
-        dynamic updatenelineStoreMas(string ID, string status, string OLMID);
+        dynamic saveonelineStoreMas(string ID, int CreatedBy);
+        dynamic updatenelineStoreMas(string ID, string status, string OLMID, int UpdatedBy);
 
     }
 

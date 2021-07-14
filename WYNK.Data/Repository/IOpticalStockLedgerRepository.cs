@@ -7,6 +7,6 @@ namespace WYNK.Data.Repository
 {
     public interface IOpticalStockLedgerRepository : IRepositoryBase<OpticalStockLedgerDataView>
     {
-        dynamic GetStockLedger(OpticalStockLedgerDataView stockledger, DateTime From, DateTime To, int CompanyID, string Time);
+        dynamic GetStockLedger(OpticalStockLedgerDataView stockledger, string From, string To, int CompanyID, string Time);
     }
 }

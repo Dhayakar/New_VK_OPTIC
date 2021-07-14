@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -23,7 +24,7 @@ namespace WYNK.Data.Repository.Implementation
 
         }
 
-        public dynamic GetStockLedger(OpticalStockLedgerDataView stockledger, DateTime From, DateTime To, int CompanyID, string Time)
+        public dynamic GetStockLedger(OpticalStockLedgerDataView stockledger, string From, string To, int CompanyID, string Time)
         {
             var FinancialYear = WYNKContext.FinancialYear.ToList();
             var OpticalBalance = WYNKContext.OpticalBalance.ToList();
@@ -39,6 +40,19 @@ namespace WYNK.Data.Repository.Implementation
             TimeSpan ts = TimeSpan.Parse(Time);
 
 
+            DateTime DT;
+            var appdate = DateTime.TryParseExact(From.Trim(), "dd-MMM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DT);
+            {
+                DT.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture);
+            }
+            var fdate = DT;
+
+            DateTime DT1;
+            var appdate1 = DateTime.TryParseExact(To.Trim(), "dd-MMM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DT1);
+            {
+                DT1.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture);
+            }
+            var tdate = DT1;
 
             var Opticalstkledger = new OpticalStockLedgerDataView();
             Opticalstkledger.StoreArray = new List<StoreArray>();
@@ -83,14 +97,14 @@ namespace WYNK.Data.Repository.Implementation
                         {
 
 
-                            Opticalstkledger.Receipt = (from OB in OpticalBalance.Where(x => x.StoreID == Convert.ToInt32(sa.ID) && Convert.ToDateTime(x.CreatedUTC.Add(ts).ToString("yyyy/MM")) >= Convert.ToDateTime((From).ToString("yyyy/MM")) && Convert.ToDateTime(x.CreatedUTC.Add(ts).ToString("yyyy/MM")) <= Convert.ToDateTime((To).ToString("yyyy/MM")) && x.CmpID == CompanyID)
+                            Opticalstkledger.Receipt = (from OB in OpticalBalance.Where(x => x.StoreID == Convert.ToInt32(sa.ID) && x.CreatedUTC.Date >= fdate && x.CreatedUTC.Date <= tdate && x.CmpID == CompanyID)
                                                         join LT in Lenstrans on OB.LTID equals LT.ID
                                                         join BR in Brand.Where(x => x.ID == Convert.ToInt32(ba.ID)) on LT.Brand equals BR.ID
                                                         join UM in uommaster on LT.UOMID equals UM.id
                                                         join LM in Lensmaster on LT.LMID equals LM.RandomUniqueID
                                                         join ST in Storemasters.Where(x => x.CmpID == CompanyID) on OB.StoreID equals ST.StoreID
                                                         join STR in OpticalStockTran on OB.LTID equals STR.LMIDID
-                                                        join SM in OpticalStockMaster.Where(x => Convert.ToDateTime(x.CreatedUTC.Add(ts).ToString("yyyy/MM")) >= Convert.ToDateTime((From).ToString("yyyy/MM")) && Convert.ToDateTime(x.CreatedUTC.Add(ts).ToString("yyyy/MM")) <= Convert.ToDateTime((To).ToString("yyyy/MM")) && x.TransactionType == "R" && x.CMPID == CompanyID && x.StoreID == Convert.ToInt32(sa.ID)) on STR.RandomUniqueID equals SM.RandomUniqueID
+                                                        join SM in OpticalStockMaster.Where(x => x.CreatedUTC.Date >= fdate && x.CreatedUTC.Date <= tdate && x.TransactionType == "R" && x.CMPID == CompanyID && x.StoreID == Convert.ToInt32(sa.ID)) on STR.RandomUniqueID equals SM.RandomUniqueID
                                                         join TR in TransactionType on SM.TransactionID equals TR.TransactionID
                                                         join cm in Company.Where(x => x.CmpID == CompanyID) on OB.CmpID equals cm.CmpID
                                                         select new Receipt
@@ -151,14 +165,14 @@ namespace WYNK.Data.Repository.Implementation
                         foreach (var sa in StoreArray.ToList())
                         {
 
-                            Opticalstkledger.Issue = (from OB in OpticalBalance.Where(x => x.StoreID == Convert.ToInt32(sa.ID) && Convert.ToDateTime(x.CreatedUTC.Add(ts).ToString("yyyy/MM")) >= Convert.ToDateTime((From).ToString("yyyy/MM")) && Convert.ToDateTime(x.CreatedUTC.Add(ts).ToString("yyyy/MM")) <= Convert.ToDateTime((To).ToString("yyyy/MM")) && x.CmpID == CompanyID)
+                            Opticalstkledger.Issue = (from OB in OpticalBalance.Where(x => x.StoreID == Convert.ToInt32(sa.ID) && x.CreatedUTC.Date >= fdate && x.CreatedUTC.Date <= tdate && x.CmpID == CompanyID)
                                                       join LT in Lenstrans on OB.LTID equals LT.ID
                                                       join BR in Brand.Where(x => x.ID == Convert.ToInt32(ba.ID)) on LT.Brand equals BR.ID
                                                       join UM in uommaster on LT.UOMID equals UM.id
                                                       join LM in Lensmaster on LT.LMID equals LM.RandomUniqueID
                                                       join ST in Storemasters.Where(x => x.CmpID == CompanyID) on OB.StoreID equals ST.StoreID
                                                       join STR in OpticalStockTran on OB.LTID equals STR.LMIDID
-                                                      join SM in OpticalStockMaster.Where(x => Convert.ToDateTime(x.CreatedUTC.Add(ts).ToString("yyyy/MM")) >= Convert.ToDateTime((From).ToString("yyyy/MM")) && Convert.ToDateTime(x.CreatedUTC.Add(ts).ToString("yyyy/MM")) <= Convert.ToDateTime((To).ToString("yyyy/MM")) && x.TransactionType == "I" && x.CMPID == CompanyID && x.StoreID == Convert.ToInt32(sa.ID)) on STR.RandomUniqueID equals SM.RandomUniqueID
+                                                      join SM in OpticalStockMaster.Where(x => x.CreatedUTC.Date >= fdate && x.CreatedUTC.Date <= tdate && x.TransactionType == "I" && x.CMPID == CompanyID && x.StoreID == Convert.ToInt32(sa.ID)) on STR.RandomUniqueID equals SM.RandomUniqueID
                                                       join TR in TransactionType on SM.TransactionID equals TR.TransactionID
                                                       join cm in Company.Where(x => x.CmpID == CompanyID) on OB.CmpID equals cm.CmpID
                                                       select new Issue
@@ -229,14 +243,14 @@ namespace WYNK.Data.Repository.Implementation
                         {
 
 
-                            Opticalstkledger.Issue = (from OB in OpticalBalance.Where(x => x.StoreID == Convert.ToInt32(sa.ID) && Convert.ToDateTime(x.CreatedUTC.Add(ts).ToString("yyyy/MM")) >= Convert.ToDateTime((From).ToString("yyyy/MM")) && Convert.ToDateTime(x.CreatedUTC.Add(ts).ToString("yyyy/MM")) <= Convert.ToDateTime((To).ToString("yyyy/MM")) && x.CmpID == CompanyID)
+                            Opticalstkledger.Issue = (from OB in OpticalBalance.Where(x => x.StoreID == Convert.ToInt32(sa.ID) && x.CreatedUTC.Date >= fdate && x.CreatedUTC.Date <= tdate && x.CmpID == CompanyID)
                                                       join LT in Lenstrans on OB.LTID equals LT.ID
                                                       join BR in Brand.Where(x => x.ID == Convert.ToInt32(ba.ID)) on LT.Brand equals BR.ID
                                                       join UM in uommaster on LT.UOMID equals UM.id
                                                       join LM in Lensmaster on LT.LMID equals LM.RandomUniqueID
                                                       join ST in Storemasters.Where(x => x.CmpID == CompanyID) on OB.StoreID equals ST.StoreID
                                                       join STR in OpticalStockTran on OB.LTID equals STR.LMIDID
-                                                      join SM in OpticalStockMaster.Where(x => Convert.ToDateTime(x.CreatedUTC.Add(ts).ToString("yyyy/MM")) >= Convert.ToDateTime((From).ToString("yyyy/MM")) && Convert.ToDateTime(x.CreatedUTC.Add(ts).ToString("yyyy/MM")) <= Convert.ToDateTime((To).ToString("yyyy/MM")) && x.TransactionType == "I" && x.CMPID == CompanyID && x.StoreID == Convert.ToInt32(sa.ID)) on STR.RandomUniqueID equals SM.RandomUniqueID
+                                                      join SM in OpticalStockMaster.Where(x => x.CreatedUTC.Date >= fdate && x.CreatedUTC.Date <= tdate && x.TransactionType == "I" && x.CMPID == CompanyID && x.StoreID == Convert.ToInt32(sa.ID)) on STR.RandomUniqueID equals SM.RandomUniqueID
                                                       join TR in TransactionType on SM.TransactionID equals TR.TransactionID
                                                       join cm in Company.Where(x => x.CmpID == CompanyID) on OB.CmpID equals cm.CmpID
                                                       select new Issue
@@ -300,14 +314,14 @@ namespace WYNK.Data.Repository.Implementation
                         {
 
 
-                            Opticalstkledger.Receipt = (from OB in OpticalBalance.Where(x => x.StoreID == Convert.ToInt32(sa.ID) && Convert.ToDateTime(x.CreatedUTC.Add(ts).ToString("yyyy/MM")) >= Convert.ToDateTime((From).ToString("yyyy/MM")) && Convert.ToDateTime(x.CreatedUTC.Add(ts).ToString("yyyy/MM")) <= Convert.ToDateTime((To).ToString("yyyy/MM")) && x.CmpID == CompanyID)
+                            Opticalstkledger.Receipt = (from OB in OpticalBalance.Where(x => x.StoreID == Convert.ToInt32(sa.ID) && x.CreatedUTC.Date >= fdate && x.CreatedUTC.Date <= tdate && x.CmpID == CompanyID)
                                                         join LT in Lenstrans on OB.LTID equals LT.ID
                                                         join BR in Brand.Where(x => x.ID == Convert.ToInt32(ba.ID)) on LT.Brand equals BR.ID
                                                         join UM in uommaster on LT.UOMID equals UM.id
                                                         join LM in Lensmaster on LT.LMID equals LM.RandomUniqueID
                                                         join ST in Storemasters.Where(x => x.CmpID == CompanyID) on OB.StoreID equals ST.StoreID
                                                         join STR in OpticalStockTran on OB.LTID equals STR.LMIDID
-                                                        join SM in OpticalStockMaster.Where(x => Convert.ToDateTime(x.CreatedUTC.Add(ts).ToString("yyyy/MM")) >= Convert.ToDateTime((From).ToString("yyyy/MM")) && Convert.ToDateTime(x.CreatedUTC.Add(ts).ToString("yyyy/MM")) <= Convert.ToDateTime((To).ToString("yyyy/MM")) && x.TransactionType == "R" && x.CMPID == CompanyID && x.StoreID == Convert.ToInt32(sa.ID)) on STR.RandomUniqueID equals SM.RandomUniqueID
+                                                        join SM in OpticalStockMaster.Where(x => x.CreatedUTC.Date >= fdate && x.CreatedUTC.Date <= tdate && x.TransactionType == "R" && x.CMPID == CompanyID && x.StoreID == Convert.ToInt32(sa.ID)) on STR.RandomUniqueID equals SM.RandomUniqueID
                                                         join TR in TransactionType on SM.TransactionID equals TR.TransactionID
                                                         join cm in Company.Where(x => x.CmpID == CompanyID) on OB.CmpID equals cm.CmpID
                                                         select new Receipt

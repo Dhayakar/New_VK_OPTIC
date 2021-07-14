@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -25,7 +26,7 @@ namespace WYNK.Data.Repository.Implementation
         }
 
 
-        public dynamic GetStockSummary(OpticalStockSummaryDataView stocksummary, DateTime From, DateTime To, int CompanyID, string Time)
+        public dynamic GetStockSummary(OpticalStockSummaryDataView stocksummary, string From, string To, int CompanyID, string Time)
         {
             var FinancialYear = WYNKContext.FinancialYear.ToList();
             var OpticalBalance = WYNKContext.OpticalBalance.ToList();
@@ -36,8 +37,6 @@ namespace WYNK.Data.Repository.Implementation
             var Storemasters = CMPSContext.Storemasters.ToList();
             var Company = CMPSContext.Company.ToList();
             TimeSpan ts = TimeSpan.Parse(Time);
-            var MF = From.ToString("yyyy/MM");
-            var MT = To.ToString("yyyy/MM");
 
             var Opticalstksummary = new OpticalStockSummaryDataView();
 
@@ -46,6 +45,23 @@ namespace WYNK.Data.Repository.Implementation
             Opticalstksummary.BrandArrays = new List<BrandArrays>();
             Opticalstksummary.Stocksummaryarray = new List<Stocksummaryarray>();
             Opticalstksummary.OpticalStocksummaryarray = new List<OpticalStocksummaryarray>();
+
+
+            DateTime DT;
+            var appdate = DateTime.TryParseExact(From.Trim(), "dd-MMM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DT);
+            {
+                DT.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture);
+            }
+            var fdate = DT;
+
+            DateTime DT1;
+            var appdate1 = DateTime.TryParseExact(To.Trim(), "dd-MMM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DT1);
+            {
+                DT1.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture);
+            }
+            var tdate = DT1;
+
+
 
             var StoreArray = (from s in stocksummary.StoreArrays
 
@@ -79,7 +95,7 @@ namespace WYNK.Data.Repository.Implementation
                         foreach (var sa in StoreArray.ToList())
                         {
 
-                            Opticalstksummary.Stocksummaryarray = (from OB in OpticalBalance.Where(x => x.StoreID == Convert.ToInt32(sa.ID) && Convert.ToDateTime(x.CreatedUTC.Add(ts).ToString("yyyy/MM")) >= Convert.ToDateTime(MF) && Convert.ToDateTime(x.CreatedUTC.Add(ts).ToString("yyyy/MM")) <= Convert.ToDateTime(MT) && x.CmpID == CompanyID)
+                            Opticalstksummary.Stocksummaryarray = (from OB in OpticalBalance.Where(x => x.StoreID == Convert.ToInt32(sa.ID) && x.CreatedUTC.Date >= fdate && x.CreatedUTC.Date <= tdate && x.CmpID == CompanyID)
                                                                    join LT in Lenstrans on OB.LTID equals LT.ID
                                                                    join BR in Brand.Where(x => x.ID == Convert.ToInt32(ba.ID)) on LT.Brand equals BR.ID
                                                                    join UM in uommaster on LT.UOMID equals UM.id
@@ -152,7 +168,7 @@ namespace WYNK.Data.Repository.Implementation
                     {
                         foreach (var ba in BrandArray.ToList())
                         {
-                            Opticalstksummary.Stocksummaryarray = (from OB in OpticalBalance.Where(x => x.StoreID == Convert.ToInt32(sa.ID) && Convert.ToDateTime(x.CreatedUTC.Add(ts).ToString("yyyy/MM")) >= Convert.ToDateTime(MF) && Convert.ToDateTime(x.CreatedUTC.Add(ts).ToString("yyyy/MM")) <= Convert.ToDateTime(MT) && x.CmpID == CompanyID)
+                            Opticalstksummary.Stocksummaryarray = (from OB in OpticalBalance.Where(x => x.StoreID == Convert.ToInt32(sa.ID) && x.CreatedUTC.Date >= fdate && x.CreatedUTC.Date <= tdate && x.CmpID == CompanyID)
                                                                    join LT in Lenstrans on OB.LTID equals LT.ID
                                                                    join BR in Brand.Where(x => x.ID == Convert.ToInt32(ba.ID)) on LT.Brand equals BR.ID
                                                                    join UM in uommaster on LT.UOMID equals UM.id
@@ -207,16 +223,9 @@ namespace WYNK.Data.Repository.Implementation
                                     Opticalstksummary.OpticalStocksummaryarray.Add(osl);
                                 }
                             }
-
-
-
                         }
-
                     }
-
-
                 }
-
             }
 
             Opticalstksummary.Companycommu = (from c in Company.Where(u => u.CmpID == CompanyID)

@@ -116,6 +116,8 @@ export class OpticalOrderComponent implements OnInit {
     return true;
   }
   maxDate = new Date();
+  MINExpiryDate = new Date();
+  maxInstrumentDate = new Date();
   M_OrderDate;
   Vendorname;
   M_VendorName;
@@ -592,7 +594,7 @@ export class OpticalOrderComponent implements OnInit {
           }
           OPDetails.GSTAmount;
           OPDetails.TotalAmount;
-          this.commonService.data.OPticalDetails.push(OPDetails);// = this.OpticalOrder;
+          this.commonService.data.OPticalDetails.unshift(OPDetails);// = this.OpticalOrder;
           this.dataSource.data = this.commonService.data.OPticalDetails;
           this.dataSource._updateChangeSubscription();
           this.FrameModel = 'none';
@@ -686,7 +688,7 @@ export class OpticalOrderComponent implements OnInit {
 
   Restrict(event) {
     debugger;
-    if (event.target.textContent > 100) {
+    if (event.target.value > 100) {
       Swal.fire({
         type: 'warning',
         title: 'warning',
@@ -699,17 +701,17 @@ export class OpticalOrderComponent implements OnInit {
           container: 'alert-container'
         },
       });
-      event.target.textContent = 0;
+      event.target.value = 0;
     }
   }
 
   changeValue(id, property: string, event: any) {
     debugger;
-    let result: number = Number(event.target.textContent);
+    let result: number = Number(event.target.value);
     this.dataSource.filteredData[id][property] = result;
     this.dataSource._updateChangeSubscription();
   }
-
+  
   changeValueAmount(id, element, property: string) {
     element.Amount = element.Quantity * element.Prize;
   }
@@ -1935,7 +1937,8 @@ export class OpticalOrderComponent implements OnInit {
   OLMhidden1: boolean = true;
   MasterName = "Payment";
   dataas;
-  Help() {
+  Help()
+  {
     debugger;
     this.dataSourceinvdep.filter = null;
     this.OLMhidden1 = false;

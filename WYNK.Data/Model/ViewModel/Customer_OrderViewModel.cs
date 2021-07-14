@@ -19,6 +19,8 @@ namespace WYNK.Data.Model.ViewModel
 
         public string RunningNo { get; set; }
 
+        public ICollection<opticprescription1> opticprescription1 { get; set; }
+        public ICollection<OpticalPRESCRIPTION> FINALPRESCRIPTION { get; set; }
 
         public ICollection<Payment_Master> paymenttran { get; set; }
 
@@ -35,7 +37,54 @@ namespace WYNK.Data.Model.ViewModel
         
     }
 
+    public class opticprescription1
+    {
+        public int? Type { get; set; }
+        public string Ocular { get; set; }
+        public string DistSph { get; set; }
+        public string NearCyl { get; set; }
+        public string PinAxis { get; set; }
+        public string Add { get; set; }
+        public string Remarks { get; set; }
+        public string PD { get; set; }
+        public string MPDOD { get; set; }
+        public string MPDOS { get; set; }
 
+    }
+
+
+    public class OpticalPRESCRIPTION
+    {
+        public int ID { get; set; }
+        public int IDOS { get; set; }
+        public string Description { get; set; }
+        public string Ocular { get; set; }
+        public string OcularOS { get; set; }
+        public string DistSph { get; set; }
+        public string NearCyl { get; set; }
+        public string PinAxis { get; set; }
+        public string Add { get; set; }
+        public string DistSphOS { get; set; }
+        public string NearCylOS { get; set; }
+        public string PinAxisOS { get; set; }
+        public string AddOS { get; set; }
+        public string DistSphNVOD { get; set; }
+        public string AddNVOD { get; set; }
+        public string DistSphNVOS { get; set; }
+        public string AddNVOS { get; set; }
+        public string Remarks { get; set; }
+        public string PD { get; set; }
+        public string MPDOD { get; set; }
+        public string MPDOS { get; set; }
+        public int DV { get; set; }
+        public int NV { get; set; }
+        public string DVName { get; set; }
+        public string NVName { get; set; }
+        public DateTime CreatedUTc { get; set; }
+        public int? Subcategory { get; set; }
+        public Boolean OD { get; set; }
+        public Boolean OS { get; set; }
+    }
     public class CustomerOrderedList
     {
         public string RefNo { get; set; }

@@ -74,7 +74,7 @@ namespace WYNK.Data.Repository.Implementation
             var CityID = CMPSContext.LocationMaster.Where(x => x.ID == LocationID).Select(x => x.ParentID).FirstOrDefault();
             var StateID = CMPSContext.LocationMaster.Where(x => x.ID == CityID).Select(x => x.ParentID).FirstOrDefault();
             var CountryID = CMPSContext.LocationMaster.Where(x => x.ID == StateID).Select(x => x.ParentID).FirstOrDefault();
-            GetGrn.Supplierlocation = LocationID != 0 ? Locations.Where(x => x.ID == LocationID).Select(x => x.ParentDescription).FirstOrDefault() : string.Empty;
+            GetGrn.Supplierlocation = LocationID != null ? Locations.Where(x => x.ID == LocationID).Select(x => x.ParentDescription).FirstOrDefault() : string.Empty;
             GetGrn.Suppliercity = CityID != null ? Locations.Where(x => x.ID == CityID).Select(x => x.ParentDescription).FirstOrDefault() : string.Empty;
             GetGrn.SupplierState = StateID != null ? Locations.Where(x => x.ID == StateID).Select(x => x.ParentDescription).FirstOrDefault() : string.Empty;
             GetGrn.Suppliercountry = CountryID != null ? Locations.Where(x => x.ID == CountryID).Select(x => x.ParentDescription).FirstOrDefault() : string.Empty;
@@ -82,7 +82,7 @@ namespace WYNK.Data.Repository.Implementation
             var City = CMPSContext.LocationMaster.Where(x => x.ID == Location).Select(x => x.ParentID).FirstOrDefault();
             var Statee = CMPSContext.LocationMaster.Where(x => x.ID == City).Select(x => x.ParentID).FirstOrDefault();
             var Country = CMPSContext.LocationMaster.Where(x => x.ID == Statee).Select(x => x.ParentID).FirstOrDefault();
-            GetGrn.Deliverylocation = Location != 0 ? Locations.Where(x => x.ID == Location).Select(x => x.ParentDescription).FirstOrDefault() : string.Empty;
+            GetGrn.Deliverylocation = Location != null ? Locations.Where(x => x.ID == Location).Select(x => x.ParentDescription).FirstOrDefault() : string.Empty;
             GetGrn.Deliverycity = City != null ? Locations.Where(x => x.ID == City).Select(x => x.ParentDescription).FirstOrDefault() : string.Empty;
             GetGrn.DeliveryState = Statee != null ? Locations.Where(x => x.ID == Statee).Select(x => x.ParentDescription).FirstOrDefault() : string.Empty;
             GetGrn.Deliverycountry = Country != null ? Locations.Where(x => x.ID == Country).Select(x => x.ParentDescription).FirstOrDefault() : string.Empty;

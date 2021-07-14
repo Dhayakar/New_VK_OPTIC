@@ -43,6 +43,8 @@ namespace WYNK.Data.Model.ViewModel
         public string BankBranch { get; set; }
         public DateTime? Expirydate { get; set; }
         public decimal Amount { get; set; }
+        public string InVoiceNumber { get; set; }
+        public DateTime? InVoiceDate { get; set; }
 
     }
     public class OpticalbindingDetStatus
@@ -98,7 +100,7 @@ namespace WYNK.Data.Model.ViewModel
     }
     public class OpticalOrderUpdate
     {
-        public int ID { get; set; }
+        public string ID { get; set; }
         public string OrderNumber { get; set; }
         public DateTime OrderDate { get; set; }
         public string RefNo { get; set; }

@@ -1,3 +1,5 @@
+import { FINALPRESCRIPTION } from '../FINALPRESCRIPTION.model';
+import { Refraction } from '../Refractionmaster.model';
 import { paymenttran } from './Payment_master.model';
 
 
@@ -11,7 +13,8 @@ export class CustomerOrderViewModel {
   CustomerId: number;
   RefDate: Date;
   RefNo: number;
-
+  Refracion: Array<Refraction> = [];
+  FINALPRESCRIPTION: Array<FINALPRESCRIPTION> = [];
   CustomerItemOrders: Array<CustomerItemOrder> = [];
   paymenttran: Array<paymenttran> = [];
 

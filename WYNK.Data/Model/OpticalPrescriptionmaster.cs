@@ -10,11 +10,11 @@ namespace WYNK.Data.Model
         [Key]
         public int ID { get; set; }
         public string UIN { get; set; }
-        public int RegistrationID { get; set; }
+        public int? RegistrationID { get; set; }
         public string Name { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
-        public DateTime DateofBirth { get; set; }
+        public DateTime? DateofBirth { get; set; }
         public string Gender { get; set; }
         public string Phone { get; set; }
         public DateTime PrescriptionDate { get; set; }
@@ -23,6 +23,7 @@ namespace WYNK.Data.Model
         public DateTime? UpdatedUTC { get; set; }
         public int CreatedBy { get; set; }
         public int? UpdatedBy { get; set; }
+        public int? CustomerMasterID { get; set; }
 
     }
 }

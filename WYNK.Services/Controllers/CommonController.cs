@@ -37,7 +37,7 @@ namespace WYNK.Services.Controllers
         {
             return _repoWrapper.Common.Getalldinsurance(cmpid);
         }
-        
+
 
         [HttpGet("Getallchilddropdownvalues/{id}")]
         public dynamic Getallchilddropdownvalues(int id)
@@ -53,9 +53,41 @@ namespace WYNK.Services.Controllers
 
 
         [HttpGet("savechilddesc/{id}/{desc}/{cmpid}")]
-        public dynamic savechilddesc(string id, string desc,int cmpid)
+        public dynamic savechilddesc(string id, string desc, int cmpid)
         {
             return _repoWrapper.Common.savechilddesc(id, desc, cmpid);
+        }
+
+
+        [HttpGet("GetPositionofGlobe")]
+        public IEnumerable<Dropdown> GetPositionofGlobe()
+        {
+            return _repoWrapper.Common.GetPositionofGlobe();
+        }
+        [HttpGet("GetGradeofThyroidEyeDisease")]
+        public IEnumerable<Dropdown> GetGradeofThyroidEyeDisease()
+        {
+            return _repoWrapper.Common.GetGradeofThyroidEyeDisease();
+        }
+        [HttpGet("GetPalpableMassLocation")]
+        public IEnumerable<Dropdown> GetPalpableMassLocation()
+        {
+            return _repoWrapper.Common.GetPalpableMassLocation();
+        }
+        [HttpGet("GetPalpableMassShape")]
+        public IEnumerable<Dropdown> GetPalpableMassShape()
+        {
+            return _repoWrapper.Common.GetPalpableMassShape();
+        }
+        [HttpGet("GetPalpableMassTexture")]
+        public IEnumerable<Dropdown> GetPalpableMassTexture()
+        {
+            return _repoWrapper.Common.GetPalpableMassTexture();
+        }
+        [HttpGet("GetPalpableMassSize")]
+        public IEnumerable<Dropdown> GetPalpableMassSize()
+        {
+            return _repoWrapper.Common.GetPalpableMassSize();
         }
 
 
@@ -77,11 +109,11 @@ namespace WYNK.Services.Controllers
             return _repoWrapper.Common.Getstorecatgalltypes(cmpid);
         }
 
-        
+
         [HttpGet("GetDoctorFees/{CMPID}/{DOCID}")]
         public dynamic GetDoctorFees(int CMPID, int DOCID)
         {
-            return _repoWrapper.Common.GetDoctorFees(CMPID,DOCID);
+            return _repoWrapper.Common.GetDoctorFees(CMPID, DOCID);
         }
 
         [HttpGet("GetCMID/{URL}")]
@@ -190,7 +222,7 @@ namespace WYNK.Services.Controllers
         //}
 
         [HttpGet("Getlogdetails/{Cmpid}/{user}/{path}")]
-        public dynamic Getlogdetails(int cmpid,string user, string path)
+        public dynamic Getlogdetails(int cmpid, string user, string path)
         {
             return _repoWrapper.Common.Getlogdetails(cmpid, user, path);
         }
@@ -214,9 +246,9 @@ namespace WYNK.Services.Controllers
             return _repoWrapper.Common.GetAccessdetailsstring(cmpid, user, path, suffix);
         }
 
-  
+
         [HttpGet("GetAccessdetailsolm/{Cmpid}/{user}/{path}/{MasterNameplus}")]
-        public dynamic GetAccessdetailsolm(int cmpid, string user, string path,string MasterNameplus)
+        public dynamic GetAccessdetailsolm(int cmpid, string user, string path, string MasterNameplus)
         {
             return _repoWrapper.Common.GetAccessdetailsolm(cmpid, user, path, MasterNameplus);
         }
@@ -304,7 +336,7 @@ namespace WYNK.Services.Controllers
         }
 
 
-        
+
 
 
         [HttpGet("GetAllModels")]
@@ -322,13 +354,13 @@ namespace WYNK.Services.Controllers
         public IEnumerable<Dropdown> GetRoleDescription()
         {
             return _repoWrapper.Common.GetRoleDescription();
-        }   
+        }
         [HttpGet("GetInsurance")]
         public IEnumerable<Dropdown> GetInsurance()
         {
             return _repoWrapper.Common.GetInsurance();
         }
-        
+
         [HttpGet("Desc")]
         public IEnumerable<Dropdown> Desc()
         {
@@ -375,7 +407,7 @@ namespace WYNK.Services.Controllers
         }
 
 
-        
+
 
 
         [HttpGet("GetLocvalues")]
@@ -419,11 +451,7 @@ namespace WYNK.Services.Controllers
         {
             return _repoWrapper.Common.GetSurgeonName(Cmpid);
         }
-        [HttpGet("GetOperationTheatre")]
-        public IEnumerable<Dropdown> GetOperationTheatre()
-        {
-            return _repoWrapper.Common.GetOperationTheatre();
-        }
+
 
         [HttpGet("GetOperationTheatre/{Cmpid}")]
         public IEnumerable<Dropdown> GetOperationTheatre(int Cmpid)
@@ -571,7 +599,7 @@ namespace WYNK.Services.Controllers
             return _repoWrapper.Common.getrolevaluesexceptadmin();
         }
 
-        
+
 
         [HttpGet("GetViewvalues")]
         public IEnumerable<Dropdown> GetViewvalues()
@@ -714,7 +742,7 @@ namespace WYNK.Services.Controllers
         public IEnumerable<Dropdown> GetICDSpecialityCode()
         {
             return _repoWrapper.Common.GetICDSpecialityCode();
-        }   
+        }
 
         [HttpGet("GetspecDropdownvalues")]
         public IEnumerable<Dropdown> GetspecDropdownvalues()
@@ -762,7 +790,7 @@ namespace WYNK.Services.Controllers
         {
             return _repoWrapper.Common.GetUOM();
         }
-                
+
         [HttpGet("GetVendornames/{CMPID}")]
         public IEnumerable<Dropdown> GetVendornames(int CMPID)
         {
@@ -786,17 +814,18 @@ namespace WYNK.Services.Controllers
             return _repoWrapper.Common.GetVendornamevalues(Cmpid);
         }
 
-        [HttpGet("GetstoreDropdownvalues/{CompanyID}/{id}")]
-        public IEnumerable<Dropdown> GetstoreDropdownvalues(int CompanyID,int id)
+        [HttpGet("GetstoreDropdownvalues/{CompanyID}/{id}/{name}")]
+        public IEnumerable<Dropdown> GetstoreDropdownvalues(int CompanyID, int id, string name)
         {
-            return _repoWrapper.Common.GetstoreDropdownvalues(CompanyID,id);
+            return _repoWrapper.Common.GetstoreDropdownvalues(CompanyID, id, name);
         }
 
-        [HttpGet("GetstoreDropdownvalues/{CompanyID}")]
-        public IEnumerable<Dropdown> GetstoreDropdownvalues(int CompanyID)
+        [HttpGet("GetstoreDropdownvaluesdesc/{CompanyID}/{name}")]
+        public IEnumerable<Dropdown> GetstoreDropdownvaluesdesc(int CompanyID, string name)
         {
-            return _repoWrapper.Common.GetstoreDropdownvalues(CompanyID);
+            return _repoWrapper.Common.GetstoreDropdownvaluesdesc(CompanyID, name);
         }
+
 
         [HttpGet("GetFullstoreDropdownvalues/{CompanyID}")]
         public IEnumerable<Dropdown> GetFullstoreDropdownvalues(int CompanyID)
@@ -811,16 +840,16 @@ namespace WYNK.Services.Controllers
         }
 
 
-        [HttpGet("GetbranchstoreDropdownvalues/{CompanyID}")]
-        public IEnumerable<Dropdown> GetbranchstoreDropdownvalues(int CompanyID)
+        [HttpGet("GetbranchstoreDropdownvalues/{CompanyID}/{name}")]
+        public IEnumerable<Dropdown> GetbranchstoreDropdownvalues(int CompanyID, string name)
         {
-            return _repoWrapper.Common.GetbranchstoreDropdownvalues(CompanyID);
+            return _repoWrapper.Common.GetbranchstoreDropdownvalues(CompanyID, name);
         }
 
-        [HttpGet("GetDrugvalues/{id}")]
-        public IEnumerable<Dropdown> GetDrugvalues(int id)
+        [HttpGet("GetDrugvalues/{id}/{cmpid}")]
+        public IEnumerable<Dropdown> GetDrugvalues(int id, int cmpid)
         {
-            return _repoWrapper.Common.GetDrugvalues(id);
+            return _repoWrapper.Common.GetDrugvalues(id, cmpid);
         }
 
         [HttpGet("Getlensvalues1/{VID}")]
@@ -1078,7 +1107,7 @@ namespace WYNK.Services.Controllers
         }
 
         ///////////////////////////////currency////////////////////////////////////////
-   
+
         [HttpGet("GetCurrencyvalues/{CMPID}")]
         public IEnumerable<Dropdown> GetCurrencyvalues(int CMPID)
         {
@@ -1096,16 +1125,38 @@ namespace WYNK.Services.Controllers
         }
 
 
-        [HttpGet("GetFDDTDescriptionsvalues")]
-        public IEnumerable<Dropdown> GetFDDTDescriptionsvalues()
+        [HttpGet("GetFDDTDescriptionsvalues/{CMPID}")]
+        public IEnumerable<Dropdown> GetFDDTDescriptionsvalues(int CMPID)
         {
-            return _repoWrapper.Common.GetFDDTDescriptionsvalues();
+            return _repoWrapper.Common.GetFDDTDescriptionsvalues(CMPID);
         }
 
-        [HttpGet("GetSyringingDescriptions")]
-        public IEnumerable<Dropdown> GetSyringingDescriptions()
+        [HttpGet("GetSyringingDescriptions/{CMPID}")]
+        public IEnumerable<Dropdown> GetSyringingDescriptions(int CMPID)
         {
-            return _repoWrapper.Common.GetSyringingDescriptions();
+            return _repoWrapper.Common.GetSyringingDescriptions(CMPID);
+        }
+
+
+
+        [HttpGet("GetRegurgitationDescriptions/{CMPID}")]
+        public IEnumerable<Dropdown> GetRegurgitationDescriptions(int CMPID)
+        {
+            return _repoWrapper.Common.GetRegurgitationDescriptions(CMPID);
+        }
+
+
+        [HttpGet("GetFluidDescriptions/{CMPID}")]
+        public IEnumerable<Dropdown> GetFluidDescriptions(int CMPID)
+        {
+            return _repoWrapper.Common.GetFluidDescriptions(CMPID);
+        }
+
+
+        [HttpGet("GetStopDescriptions/{CMPID}")]
+        public IEnumerable<Dropdown> GetStopDescriptions(int CMPID)
+        {
+            return _repoWrapper.Common.GetStopDescriptions(CMPID);
         }
 
         [HttpGet("Loadallavailablelanguages")]
@@ -1118,7 +1169,7 @@ namespace WYNK.Services.Controllers
         [HttpGet("GetPatientDob/{UIN}/{CMPID}")]
         public dynamic GetPatientDob(string UIN, int CMPID)
         {
-            return _repoWrapper.Common.GetPatientDob(UIN,CMPID);
+            return _repoWrapper.Common.GetPatientDob(UIN, CMPID);
         }
 
         [HttpGet("Getocularvalues")]
@@ -1244,7 +1295,7 @@ namespace WYNK.Services.Controllers
 
 
         [HttpGet("GettingRunningNo/{CMPID}/{TC}")]
-        public dynamic GettingRunningNo(int CMPID,int TC)
+        public dynamic GettingRunningNo(int CMPID, int TC)
         {
             return _repoWrapper.Common.GettingRunningNo(CMPID, TC);
         }
@@ -1259,5 +1310,7 @@ namespace WYNK.Services.Controllers
         {
             return _repoWrapper.Common.Gettbutvalues();
         }
+
+
     }
 }

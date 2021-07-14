@@ -122,6 +122,7 @@ export class StoremasterComponent implements OnInit {
         this.docotorid = localStorage.getItem('userroleID');
         this.commonService.getListOfData('Common/Getstorecatgtypes/' + localStorage.getItem("CompanyID")).subscribe(data => {
           this.getcatgtypes = data;
+
         });
       }
       else {
@@ -283,7 +284,7 @@ export class StoremasterComponent implements OnInit {
 
 
   Clickstore() {
-
+    debugger;
     localStorage.setItem('helpname', 'Store');
     const dialogRef = this.dialog.open(SearchComponent, {
       height: '70%',
@@ -409,9 +410,10 @@ export class StoremasterComponent implements OnInit {
 
   CancelClk() {
     debugger;
-    this.router.navigateByUrl('/dash', { skipLocationChange: true }).then(() => {
-      this.router.navigate(["Inventorylazy/Storemaster"]);
-    });
+    if (this.M_Store != null || this.M_Location != null || this.M_Keeper != null || this.M_Address1 != null || this.M_Address2) {
+      this.backdrop = 'block';
+      this.cancelblock = 'block';
+    }
   }
 
   accesspopup;

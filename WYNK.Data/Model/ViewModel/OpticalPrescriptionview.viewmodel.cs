@@ -35,7 +35,7 @@ namespace WYNK.Data.Model.ViewModel
         public string Gender { get; set; }
         public DateTime PrescriptionDate { get; set; }
         public string DateofBirth { get; set; }
-        public int RegistrationTranID { get; set; }
+        public int? RegistrationTranID { get; set; }
         public string Doctorname { get; set; }
         public string Role { get; set; }
     }

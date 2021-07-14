@@ -15,7 +15,7 @@
         <div class="col-sm-12 mph-0">
           <div class="col-sm-8 mph-0 pb20">
             <span class="uinborder">
-              <strong>{{uin}} / {{name}} / {{age}} / {{gender}}</strong>
+              <strong>{{uin}} <mat-label *ngIf="uin != ''">/</mat-label> {{name}} <mat-label *ngIf="age != ''">/</mat-label> {{age}} <mat-label *ngIf="gender != ''">/</mat-label> {{gender}}</strong>
             </span>
           </div>
 

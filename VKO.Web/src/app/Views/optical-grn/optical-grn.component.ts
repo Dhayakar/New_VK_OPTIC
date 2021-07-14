@@ -147,6 +147,12 @@ export class OpticalGrnComponent implements OnInit {
 
     let res = Objdata.find(x => x.Parentmoduledescription == Pathname);
     this.G_Transactiontypeid = res.TransactionID;
+    this.docotorid = localStorage.getItem('userroleID');
+    this.CompanyID = localStorage.getItem("CompanyID");
+    this.Getloctime = localStorage.getItem('GMTTIME');
+    this.M_ReceiptDate = this.date.value;
+    this.getAllDropdowns();
+
 
     if (this.G_Transactiontypeid == null) {
       Swal.fire({
@@ -194,17 +200,7 @@ export class OpticalGrnComponent implements OnInit {
             this.Disabled = true;
           }
         });
-        this.commonService.getListOfData('Common/GetCurrencyvalues/' + localStorage.getItem('CompanyID')).subscribe(data => {
-          debugger;
-          this.Country1 = data[0].Value;
-          this.Country2 = data[0].Text;
-        });
 
-        this.docotorid = localStorage.getItem('userroleID');
-        this.CompanyID = localStorage.getItem("CompanyID");
-        this.Getloctime = localStorage.getItem('GMTTIME');
-        this.M_ReceiptDate = this.date.value;
-        this.commonService.getListOfData('Common/GetstoreDropdownvaluesdesc/' + this.CompanyID + '/' + "Optical Department").subscribe(data => { this.StoreName = data; })
       }
       else {
         Swal.fire({
@@ -264,19 +260,7 @@ export class OpticalGrnComponent implements OnInit {
             this.Disabled = true;
           }
         });
-        this.commonService.getListOfData('Common/GetCurrencyvalues/' + localStorage.getItem('CompanyID')).subscribe(data => {
-          debugger;
-          this.Country1 = data[0].Value;
-          this.Country2 = data[0].Text;
-        });
-        this.docotorid = localStorage.getItem('userroleID');
-        this.CompanyID = localStorage.getItem("CompanyID");
-        this.Getloctime = localStorage.getItem('GMTTIME');
-        this.M_ReceiptDate = this.date.value;
-        this.commonService.getListOfData('Common/GetstoreDropdownvaluesdesc/' + this.CompanyID + '/' + "Optical Department").subscribe(data => {
-          debugger;
-          this.StoreName = data;
-        });
+
       }
       else {
         Swal.fire({
@@ -308,7 +292,10 @@ export class OpticalGrnComponent implements OnInit {
 
   }
 
-
+  getAllDropdowns() {
+    this.commonService.getListOfData('Common/GetCurrencyvalues/' + localStorage.getItem('CompanyID')).subscribe(data => { debugger; this.Country1 = data[0].Value; this.Country2 = data[0].Text; });
+    this.commonService.getListOfData('Common/GetstoreDropdownvaluesdesc/' + this.CompanyID + '/' + "Stock Department").subscribe(data => { this.StoreName = data; })
+  }
 
   displayedColumnss: string[] = ['DrugName', 'Type', 'Brand', 'Model', 'Color', 'PurchaseUOM', 'Quantity', 'ReceivedQuantity', 'ActualQuantity', 'Rate', 'Value', 'Discount(%)', 'DiscountValue', 'Totalamount', 'Delete'];
   dataSources = new MatTableDataSource();
@@ -961,7 +948,7 @@ export class OpticalGrnComponent implements OnInit {
     this.orginaltable = true;
     this.bindingtable = false;
     this.submitgrn = false;
-    this.commonService.getListOfData('Common/GetstoreDropdownvaluesdesc/' + this.CompanyID + '/' + "Optical Department").subscribe(data => {
+    this.commonService.getListOfData('Common/GetstoreDropdownvaluesdesc/' + this.CompanyID + '/' + "Stock Department").subscribe(data => {
       debugger;
       this.StoreName = data;
     });

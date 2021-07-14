@@ -1176,8 +1176,12 @@ export class LensMasterComponent implements OnInit {
   hiddenSubmitd = true;
   hiddenUpdated = false;
   hiddenDeleted = false;
+  @ViewChild('FrameShapefocus') FrameShapefocus;
   AddFrameShape() {
     debugger;
+    setTimeout(() => {
+      this.FrameShapefocus.nativeElement.focus()
+    }, 50)
     this.modalframeshape = 'block';
     this.backdrop = 'block';
   }
@@ -1219,6 +1223,9 @@ export class LensMasterComponent implements OnInit {
           container: 'alert-container',
         },
       });
+      setTimeout(() => {
+        this.FrameShapefocus.nativeElement.focus()
+      }, 50)
       return;
     } else if (this.masterFrameShape == "") {
       Swal.fire({
@@ -1233,6 +1240,9 @@ export class LensMasterComponent implements OnInit {
           container: 'alert-container',
         },
       });
+      setTimeout(() => {
+        this.FrameShapefocus.nativeElement.focus()
+      }, 50)
       return;
     }
 
@@ -1254,9 +1264,12 @@ export class LensMasterComponent implements OnInit {
               container: 'alert-container',
             },
           });
-          this.oncancelFrameShape();
           this.hiddenUpdated = false;
           this.hiddenSubmitd = true;
+          this.masterFrameShape = "";
+          setTimeout(() => {
+            this.FrameShapefocus.nativeElement.focus()
+          }, 50)
           this.commonService.getListOfData('Common/GetFrameShape/').subscribe((data: any) => {
             this.getFrameShape = data;
           });
@@ -1295,6 +1308,9 @@ export class LensMasterComponent implements OnInit {
           container: 'alert-container',
         },
       });
+      setTimeout(() => {
+        this.FrameShapefocus.nativeElement.focus()
+      }, 50)
       return;
     } else if (this.masterFrameShape == "") {
       Swal.fire({
@@ -1309,6 +1325,9 @@ export class LensMasterComponent implements OnInit {
           container: 'alert-container',
         },
       });
+      setTimeout(() => {
+        this.FrameShapefocus.nativeElement.focus()
+      }, 50)
       return;
     }
     this.commonService.data.OneLineMaster = new OneLine_Master();
@@ -1332,7 +1351,10 @@ export class LensMasterComponent implements OnInit {
               container: 'alert-container',
             },
           });
-          this.oncancelFrameShape();
+          this.masterFrameShape = "";
+          setTimeout(() => {
+            this.FrameShapefocus.nativeElement.focus()
+          }, 50)
           this.commonService.getListOfData('Common/GetFrameShape/').subscribe((data: any) => {
             this.getFrameShape = data;
           });
@@ -1442,8 +1464,12 @@ export class LensMasterComponent implements OnInit {
   hiddenSubmitt = true;
   hiddenUpdatet = false;
   hiddenDeletet = false;
+  @ViewChild('FrameTypefocus') FrameTypefocus;
   AddFrameType() {
     debugger;
+    setTimeout(() => {
+      this.FrameTypefocus.nativeElement.focus()
+    }, 50)
     this.modalframetype = 'block';
     this.backdrop = 'block';
   }
@@ -1483,6 +1509,9 @@ export class LensMasterComponent implements OnInit {
           container: 'alert-container',
         },
       });
+      setTimeout(() => {
+        this.FrameTypefocus.nativeElement.focus()
+      }, 50)
       return;
     } else if (this.masterFrameType == "") {
       Swal.fire({
@@ -1497,6 +1526,9 @@ export class LensMasterComponent implements OnInit {
           container: 'alert-container',
         },
       });
+      setTimeout(() => {
+        this.FrameTypefocus.nativeElement.focus()
+      }, 50)
       return;
     }
 
@@ -1519,9 +1551,12 @@ export class LensMasterComponent implements OnInit {
               container: 'alert-container',
             },
           });
-          this.oncancelFrameType();
           this.hiddenUpdatet = false;
           this.hiddenSubmitt = true;
+          this.masterFrameType = "";
+          setTimeout(() => {
+            this.FrameTypefocus.nativeElement.focus()
+          }, 50)
           this.commonService.getListOfData('Common/GetFrameType/').subscribe((data: any) => {
             this.getFrameType = data;
           });
@@ -1560,6 +1595,9 @@ export class LensMasterComponent implements OnInit {
           container: 'alert-container',
         },
       });
+      setTimeout(() => {
+        this.FrameTypefocus.nativeElement.focus()
+      }, 50)
       return;
     }
     else if (this.masterFrameType == "") {
@@ -1575,6 +1613,9 @@ export class LensMasterComponent implements OnInit {
           container: 'alert-container',
         },
       });
+      setTimeout(() => {
+        this.FrameTypefocus.nativeElement.focus()
+      }, 50)
       return;
     }
     this.commonService.data.OneLineMaster = new OneLine_Master();
@@ -1598,7 +1639,10 @@ export class LensMasterComponent implements OnInit {
               container: 'alert-container',
             },
           });
-          this.oncancelFrameType();
+          this.masterFrameType = "";
+          setTimeout(() => {
+            this.FrameTypefocus.nativeElement.focus()
+          }, 50)
           this.commonService.getListOfData('Common/GetFrameType/').subscribe((data: any) => {
             this.getFrameType = data;
           });
@@ -1709,8 +1753,12 @@ export class LensMasterComponent implements OnInit {
   hiddenSubmits = true;
   hiddenUpdates = false;
   hiddenDeletes = false;
+  @ViewChild('FrameStylefocus') FrameStylefocus;
   AddFrameStyle() {
     debugger;
+    setTimeout(() => {
+      this.FrameStylefocus.nativeElement.focus()
+    }, 50)
     this.modalframestyle = 'block';
     this.backdrop = 'block';
   }
@@ -1751,6 +1799,9 @@ export class LensMasterComponent implements OnInit {
           container: 'alert-container',
         },
       });
+      setTimeout(() => {
+        this.FrameStylefocus.nativeElement.focus()
+      }, 50)
       return;
     }
     else if (this.masterFrameStyle == "") {
@@ -1766,6 +1817,9 @@ export class LensMasterComponent implements OnInit {
           container: 'alert-container',
         },
       });
+      setTimeout(() => {
+        this.FrameStylefocus.nativeElement.focus()
+      }, 50)
       return;
     }
     this.commonService.data.OneLineMaster = new OneLine_Master();
@@ -1787,9 +1841,12 @@ export class LensMasterComponent implements OnInit {
             },
           });
 
-          this.oncancelFrameStyle();
           this.hiddenUpdates = false;
           this.hiddenSubmits = true;
+          this.masterFrameStyle = "";
+          setTimeout(() => {
+            this.FrameStylefocus.nativeElement.focus()
+          }, 50)
           this.commonService.getListOfData('Common/GetFrameStyle/').subscribe((data: any) => {
             this.getFrameStyle = data;
           });
@@ -1828,6 +1885,9 @@ export class LensMasterComponent implements OnInit {
           container: 'alert-container',
         },
       });
+      setTimeout(() => {
+        this.FrameStylefocus.nativeElement.focus()
+      }, 50)
       return;
     }
     else if (this.masterFrameStyle == "") {
@@ -1843,6 +1903,9 @@ export class LensMasterComponent implements OnInit {
           container: 'alert-container',
         },
       });
+      setTimeout(() => {
+        this.FrameStylefocus.nativeElement.focus()
+      }, 50)
       return;
     }
     this.commonService.data.OneLineMaster = new OneLine_Master();
@@ -1866,7 +1929,10 @@ export class LensMasterComponent implements OnInit {
               container: 'alert-container',
             },
           });
-          this.oncancelFrameStyle();
+          this.masterFrameStyle = "";
+          setTimeout(() => {
+            this.FrameStylefocus.nativeElement.focus()
+          }, 50)
           this.commonService.getListOfData('Common/GetFrameStyle/').subscribe((data: any) => {
             this.getFrameStyle = data;
           });
@@ -1971,8 +2037,12 @@ export class LensMasterComponent implements OnInit {
   hiddenSubmitw = true;
   hiddenUpdatew = false;
   hiddenDeletew = false;
+  @ViewChild('FrameWidthfocus') FrameWidthfocus;
   AddFrameWidth() {
     debugger;
+    setTimeout(() => {
+      this.FrameWidthfocus.nativeElement.focus()
+    }, 50)
     this.modalframewidth = 'block';
     this.backdrop = 'block';
   }
@@ -2012,6 +2082,9 @@ export class LensMasterComponent implements OnInit {
           container: 'alert-container',
         },
       });
+      setTimeout(() => {
+        this.FrameWidthfocus.nativeElement.focus()
+      }, 50)
       return;
     } else if (this.masterFrameWidth == "") {
       Swal.fire({
@@ -2026,6 +2099,9 @@ export class LensMasterComponent implements OnInit {
           container: 'alert-container',
         },
       });
+      setTimeout(() => {
+        this.FrameWidthfocus.nativeElement.focus()
+      }, 50)
       return;
     }
 
@@ -2047,9 +2123,12 @@ export class LensMasterComponent implements OnInit {
               container: 'alert-container',
             },
           });
-          this.oncancelFrameWidth();
           this.hiddenUpdatew = false;
           this.hiddenSubmitw = true;
+          this.masterFrameWidth = "";
+          setTimeout(() => {
+            this.FrameWidthfocus.nativeElement.focus()
+          }, 50)
           this.commonService.getListOfData('Common/GetFrameWidth/').subscribe((data: any) => {
             this.getFrameWidth = data;
           });
@@ -2089,6 +2168,9 @@ export class LensMasterComponent implements OnInit {
           container: 'alert-container',
         },
       });
+      setTimeout(() => {
+        this.FrameWidthfocus.nativeElement.focus()
+      }, 50)
       return;
     }
     else if (this.masterFrameWidth == "") {
@@ -2105,6 +2187,9 @@ export class LensMasterComponent implements OnInit {
           container: 'alert-container',
         },
       });
+      setTimeout(() => {
+        this.FrameWidthfocus.nativeElement.focus()
+      }, 50)
       return;
     }
     this.commonService.data.OneLineMaster = new OneLine_Master();
@@ -2128,7 +2213,10 @@ export class LensMasterComponent implements OnInit {
               container: 'alert-container',
             },
           });
-          this.oncancelFrameWidth();
+          this.masterFrameWidth = "";
+          setTimeout(() => {
+            this.FrameWidthfocus.nativeElement.focus()
+          }, 50)
           this.commonService.getListOfData('Common/GetFrameWidth/').subscribe((data: any) => {
             this.getFrameWidth = data;
           });

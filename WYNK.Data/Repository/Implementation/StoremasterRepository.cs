@@ -13,7 +13,7 @@ namespace WYNK.Data.Repository.Implementation
     {
         private readonly WYNKContext _Wynkcontext;
         private readonly CMPSContext _Cmpscontext;
-        
+
 
         public StoremasterRepository(WYNKContext context, CMPSContext Cmpscontext) : base(context, Cmpscontext)
         {
@@ -26,9 +26,9 @@ namespace WYNK.Data.Repository.Implementation
         public dynamic InsertStoreMas(Storemasterviewmodel StoreMas)
 
         {
-            
 
-           
+
+
             try
             {
                 var StoreMasters = new Storemasters();
@@ -56,25 +56,23 @@ namespace WYNK.Data.Repository.Implementation
                 CMPSContext.SaveChanges();
 
                 return new
-                    {
-                        Success = true,
-                        
-                    };
+                {
+                    Success = true,
+
+                };
             }
-            
+
             catch (Exception ex)
             {
                 ErrorLog oErrorLog = new ErrorLog();
-                oErrorLog.WriteErrorLog("Error :",ex.InnerException.Message.ToString());
+                oErrorLog.WriteErrorLog("Error :", ex.InnerException.Message.ToString());
                 return new
                 {
                     Success = false,
                 };
             }
-            
+
         }
-
-
         public dynamic UpdateStoreMas(Storemasterviewmodel storeup, int ID)
         {
 
@@ -116,14 +114,12 @@ namespace WYNK.Data.Repository.Implementation
             };
 
         }
-
-
         public dynamic DeleteStoreMas(int ID)
         {
             var stoMas = CMPSContext.Storemasters.Where(x => x.StoreID == ID).ToList();
             if (stoMas != null)
             {
-                stoMas.All(x => { x.IsDelete = true;return true; });
+                stoMas.All(x => { x.IsDelete = true; return true; });
                 CMPSContext.Storemasters.UpdateRange(stoMas);
 
             }
@@ -149,10 +145,21 @@ namespace WYNK.Data.Repository.Implementation
         }
 
 
-        public dynamic saveonelineStoreMas(string ID)
+        public dynamic saveonelineStoreMas(string ID, int CreatedBy)
         {
             try
             {
+                var name = CMPSContext.OneLineMaster.Where(x => x.ParentDescription.Replace(" ", string.Empty).Equals(ID.Replace(" ", string.Empty), StringComparison.OrdinalIgnoreCase) && x.IsActive == true).Select(x => x.OLMID).FirstOrDefault();
+
+                if (name != 0)
+                {
+                    return new
+                    {
+                        Success = false,
+                        Message = "Department Already Exists",
+                    };
+                }
+
                 var one = new OneLine_Masters();
                 one.Amount = null;
                 one.ParentDescription = ID;
@@ -161,7 +168,7 @@ namespace WYNK.Data.Repository.Implementation
                 one.IsDeleted = false;
                 one.IsActive = true;
                 one.CreatedUTC = DateTime.UtcNow;
-                one.CreatedBy = 1;
+                one.CreatedBy = CreatedBy;
                 CMPSContext.OneLineMaster.AddRange(one);
                 CMPSContext.SaveChanges();
 
@@ -182,14 +189,27 @@ namespace WYNK.Data.Repository.Implementation
                 Message = CommonRepository.Missing
             };
         }
-        public dynamic updatenelineStoreMas(string ID, string status, string OLMID)
+        public dynamic updatenelineStoreMas(string ID, string status, string OLMID, int UpdatedBy)
         {
             try
             {
+
+                var name = CMPSContext.OneLineMaster.Where(x => x.ParentDescription.Replace(" ", string.Empty).Equals(ID.Replace(" ", string.Empty), StringComparison.OrdinalIgnoreCase) && x.IsActive == Convert.ToBoolean(status)).Select(x => x.OLMID).FirstOrDefault();
+
+                if (name != 0)
+                {
+                    return new
+                    {
+                        Success = false,
+                        Message = "Department Already Exists",
+                    };
+                }
+
                 var olmdata = CMPSContext.OneLineMaster.Where(x => x.OLMID == Convert.ToInt32(OLMID)).FirstOrDefault();
                 olmdata.ParentDescription = ID;
                 olmdata.IsActive = Convert.ToBoolean(status);
                 olmdata.UpdatedUTC = DateTime.UtcNow;
+                olmdata.UpdatedBy = UpdatedBy;
                 CMPSContext.OneLineMaster.UpdateRange(olmdata);
                 CMPSContext.SaveChanges();
                 if (CMPSContext.SaveChanges() >= 0)

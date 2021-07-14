@@ -19,6 +19,14 @@ namespace WYNK.Data.Repository
         dynamic GetAccessdetailsolm(int cmpid, string user, string path, string MasterNameplus);//ErrorList
         dynamic GetAccessdetailsSquintM(int cmpid, string user, string path, string MasterNameplus);//ErrorList
         dynamic ErrorList(string ErrMsg, string Fname, int cmpid, int Uid);
+
+        IEnumerable<Dropdown> GetPositionofGlobe();
+        IEnumerable<Dropdown> GetGradeofThyroidEyeDisease();
+        IEnumerable<Dropdown> GetPalpableMassLocation();
+        IEnumerable<Dropdown> GetPalpableMassShape();
+        IEnumerable<Dropdown> GetPalpableMassTexture();
+        IEnumerable<Dropdown> GetPalpableMassSize();
+
         IEnumerable<Dropdown> Getuniversity();
         IEnumerable<Dropdown> GetChartype();
         IEnumerable<Dropdown> GetRoomType();
@@ -46,7 +54,7 @@ namespace WYNK.Data.Repository
         dynamic GetDoctorFees(int CMPID, int DOCID);
 
         IEnumerable<Dropdown> GetDescriptionsvalues();
-        
+
         IEnumerable<Dropdown> Gettonometrymas();
 
         IEnumerable<Dropdown> getdatetime(int cmpid, string uin, string Time);
@@ -54,7 +62,7 @@ namespace WYNK.Data.Repository
         IEnumerable<Dropdown> Getdocnae(int Cmpid);
 
         IEnumerable<Dropdown> Getcountryvalues();
-        
+
         IEnumerable<Dropdown> getanathesthist();
         IEnumerable<Dropdown> Getqualification();
         IEnumerable<Dropdown> GetLocvalues();
@@ -63,7 +71,7 @@ namespace WYNK.Data.Repository
         IEnumerable<Dropdown> GetDescvalues(int id);
         IEnumerable<Dropdown> GetEyedoctornamevalues(int CompanyID);
         //IEnumerable<Dropdown> Getvisiondoctornamevalues(int CompanyID);
-      dynamic Getvisiondoctornamevalues(int CompanyID);
+        dynamic Getvisiondoctornamevalues(int CompanyID);
         IEnumerable<Dropdown> GetAllModels();
         IEnumerable<Dropdown> GetBrands();
         IEnumerable<Dropdown> GetInsuranceData();
@@ -71,7 +79,7 @@ namespace WYNK.Data.Repository
 
 
         IEnumerable<Dropdown> GetComplainrdetailsvalues();
-        
+
         IEnumerable<Dropdown> Desc();
         IEnumerable<Dropdown> Descc();
         IEnumerable<Dropdown> Getdoctornamedetails(int CompanyID);
@@ -85,7 +93,6 @@ namespace WYNK.Data.Repository
         //-----------------------surgery-------------------
         IEnumerable<Dropdown> GetSurgeryDescription();
         IEnumerable<Dropdown> GetSurgeonName(int Cmpid);
-        IEnumerable<Dropdown> GetOperationTheatre();
         IEnumerable<Dropdown> GetOperationTheatre(int Cmpid);
         //IEnumerable<Dropdown> GetAnesthetistName();
 
@@ -93,7 +100,7 @@ namespace WYNK.Data.Repository
         IEnumerable<Dropdown> GetMiddleman();
         IEnumerable<Dropdown> GetRoleDescription();
         IEnumerable<Dropdown> GetInsurance();
-        
+
         //-------------Doctormastervalues--------------------
         IEnumerable<Dropdown> GetlocDropdownvalues();
         IEnumerable<Dropdown> GetspecDropdownvalues();
@@ -119,9 +126,9 @@ namespace WYNK.Data.Repository
         IEnumerable<Dropdown> GetUOM();
         IEnumerable<Dropdown> Getsurgerydescvalues();
         IEnumerable<Dropdown> GetopiniondoctorDropdownvalues();
-      //  IEnumerable<Dropdown> GetFINDINGSSTATUSvalues();
+        //  IEnumerable<Dropdown> GetFINDINGSSTATUSvalues();
         IEnumerable<Dropdown> GetmedicineDropdownvalues();
-     //   IEnumerable<Dropdown> GetINESTIAFvalues();
+        //   IEnumerable<Dropdown> GetINESTIAFvalues();
         IEnumerable<Dropdown> GetICDDropdownvalues();
         IEnumerable<Dropdown> Getdoctorvalues();
         IEnumerable<Dropdown> GetCompdoctorvalues(int Cmpid);
@@ -132,8 +139,8 @@ namespace WYNK.Data.Repository
 
         IEnumerable<Dropdown> GetTranTypes();
 
-        string GenerateRunningCtrlNoo(int TransactionTypeid,int CompanyID, string updateRno);
-       // string GenerateRunningCtrlNoo2(int TransactionTypeid, int CompanyID, string updateRno);
+        string GenerateRunningCtrlNoo(int TransactionTypeid, int CompanyID, string updateRno);
+        // string GenerateRunningCtrlNoo2(int TransactionTypeid, int CompanyID, string updateRno);
         dynamic GettingRunningNo(int Cmpid, int TC);
 
         int? GettingReceiptTcID(int TC, int CompanyID);
@@ -153,13 +160,13 @@ namespace WYNK.Data.Repository
         IEnumerable<Dropdown> GetBrandValues(int CMPID);
         IEnumerable<Dropdown> Getsuppliervalues(int id);
         IEnumerable<Dropdown> GetVendornamevalues(int Cmpid);
-        IEnumerable<Dropdown> GetstoreDropdownvalues(int CompanyID,int id);//Getdrugndgroup
-        IEnumerable<Dropdown> GetstoreDropdownvalues(int CompanyID);
+        IEnumerable<Dropdown> GetstoreDropdownvalues(int CompanyID, int id, string name);//Getdrugndgroup
+        IEnumerable<Dropdown> GetstoreDropdownvaluesdesc(int CompanyID, string name);
         IEnumerable<Dropdown> GetFullstoreDropdownvalues(int CompanyID);
         IEnumerable<Dropdown> Getdrugndgroup(int CompanyID);
-        IEnumerable<Dropdown> GetbranchstoreDropdownvalues(int CompanyID);
+        IEnumerable<Dropdown> GetbranchstoreDropdownvalues(int CompanyID, string name);
+        IEnumerable<Dropdown> GetDrugvalues(int id, int cmpid);
         IEnumerable<Dropdown> GetInvDep(int CmpID);
-        IEnumerable<Dropdown> GetDrugvalues(int id);
         IEnumerable<Dropdown> GetDrugvalues1(int CompanyID);
         IEnumerable<Dropdown> GetstoreDropdownvalues();
         IEnumerable<Dropdown> GetBranchAll(int CompanyID);
@@ -173,7 +180,7 @@ namespace WYNK.Data.Repository
         IEnumerable<Dropdown> GetDepartments();
         IEnumerable<Dropdown> GetBRModuleDescription(int CompanyID);
         IEnumerable<Dropdown> GetICDSpecialityDescription();
-        
+
         IEnumerable<Dropdown> GetNumberControlDes();
         //string GenerateRunningCtrlNoo(string rnControlCode);
         IEnumerable<Dropdown> GetDrug(string Grn, int StoreID, int CompanyID);
@@ -227,13 +234,16 @@ namespace WYNK.Data.Repository
 
         IEnumerable<Dropdown> GetCurrencyvalues(int CMPID);
         IEnumerable<Dropdown> Getsetupregvalues(int CMPID);
-        
+
         IEnumerable<Dropdown> GetEyedoctornamevalueswithappointmentonly(int CMPID);
         dynamic GetCountryDetail(int cmpid);
-        
+
         //IEnumerable<Dropdown> GetDoctorSpecialitydetails(int DID,int CMPID);
-        IEnumerable<Dropdown> GetFDDTDescriptionsvalues();
-        IEnumerable<Dropdown> GetSyringingDescriptions();
+        IEnumerable<Dropdown> GetFDDTDescriptionsvalues(int CMPID);
+        IEnumerable<Dropdown> GetSyringingDescriptions(int CMPID);
+        IEnumerable<Dropdown> GetRegurgitationDescriptions(int CMPID);
+        IEnumerable<Dropdown> GetFluidDescriptions(int CMPID);
+        IEnumerable<Dropdown> GetStopDescriptions(int CMPID);
         dynamic Loadallavailablelanguages();
 
         dynamic GetPatientDob(string UIN, int CMPID);
@@ -263,6 +273,7 @@ namespace WYNK.Data.Repository
         IEnumerable<Dropdown> GetGenericvalue(int ID);
         IEnumerable<Dropdown> Gettmhvalues();
         IEnumerable<Dropdown> Gettbutvalues();
+
 
     }
 }

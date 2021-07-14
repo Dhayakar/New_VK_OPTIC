@@ -142,7 +142,7 @@
         <div class="tab  position-sticky width-100p">
           <div class="col-sm-12 mt-1p">
             <div class="mb-12">
-              <h5 class="card-header bg-success text-white">
+              <h5 class="card-header text-white">
                 Item Details
                 <button *ngIf="!Prints" type="button" (click)="AddItemDetails();" class="btnuserdefined btn-dark"><i matTooltip="Add Items" class="fa fa-plus"></i></button>
               </h5>
@@ -548,7 +548,7 @@
                     </ng-container>
 
                     <ng-container matColumnDef="Discount%">
-                      <th mat-header-cell *matHeaderCellDef >%</th>
+                      <th mat-header-cell *matHeaderCellDef>%</th>
                       <td mat-cell *matCellDef="let element"> {{element.Discount| number : '1.2-2'}} </td>
                       <td mat-footer-cell *matFooterCellDef> </td>
                     </ng-container>
@@ -589,11 +589,11 @@
                       <td mat-footer-cell *matFooterCellDef> </td>
                     </ng-container>
                     <ng-container matColumnDef="GST%">
-                      <th mat-header-cell *matHeaderCellDef >%</th>
+                      <th mat-header-cell *matHeaderCellDef>%</th>
                       <td mat-cell *matCellDef="let element" class="width-5p text-end">
                         <div class="row">
                           <div *ngIf="element.GST != null" class="col-sm-10 mt-12p">
-                            {{element.GST | number : '1.2-2'}} 
+                            {{element.GST | number : '1.2-2'}}
                           </div>
                           <br />
                           <div *ngIf="element.CESS != null" class="col-sm-10">
@@ -654,7 +654,7 @@
                 </div>
                 <div class="row mt-1p">
                   <div class="col-sm-3" *ngIf="!Prints">
-                    <mat-form-field appearance="outline" >
+                    <mat-form-field appearance="outline">
                       <mat-label class="refcol">Delivery Date</mat-label>
                       <input [(ngModel)]="M_Deliverydate" name="Deliverydate" matInput [matDatepicker]="picker2" [min]="date" placeholder="">
                       <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
@@ -1067,13 +1067,33 @@
 
 <!--Print-->
 <div id="section" style="display:none">
+
+
+
   <div class="col-sm-12">
     <div class="row">
-      <div class="col-sm-4"></div>
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6">
+        <div style="text-align:center"><strong>{{CompanyName}}</strong></div>
+        <div style="text-align:center"><strong>{{CompanyAddress1 + ' '+ CompanyAddress2 + ' '+ CompanyAddress3}}</strong></div>
+        <div style="text-align:center"><strong>Phone No:{{CompanyPhone1}} &nbsp; Website:{{CompanyWebsite}}</strong></div>
+        <div style="text-align:center"><strong>Customer Order</strong></div>
+      </div>
+      <div class="col-sm-3"></div>
+    </div>
+  </div>
+
+
+
+
+
+  <!--<div class="col-sm-12">
+    <div class="row">
+      <div class="col-sm-3"></div>
       <div class="col-sm-6">
         <label style="font-size:16px"><strong>{{CompanyName}}</strong> </label>
       </div>
-      <div class="col-sm-2"></div>
+      <div class="col-sm-3"></div>
     </div>
   </div>
   <div class="col-sm-12">
@@ -1096,9 +1116,110 @@
       <div class="col-sm-3" style="margin-left:-3%"><label style="text-align:center;margin-left:-5%"><strong>Customer Order</strong></label></div>
       <div class="col-sm-4"></div>
     </div>
-  </div>
+  </div>-->
+
   <div class="col-sm-12 row">
-    <div class="col-sm-3" style="margin-top: 14px;">
+
+
+
+    <div class="col-sm-4">
+
+      <div class="row">
+        <div class="col-sm-5">
+          <div class="row">
+            <mat-label><b>Order No</b></mat-label>
+          </div>
+        </div>
+
+        <div class="col-sm-7">
+          <mat-label>:&nbsp;</mat-label>
+          <mat-label>{{M_OrderNo}}</mat-label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-5">
+          <div class="row">
+            <mat-label><b>Order Date</b></mat-label>
+          </div>
+        </div>
+        <div class="col-sm-7">
+          <mat-label>:&nbsp;</mat-label>
+          <mat-label>{{M_OrderDate | date:'dd-MMM-y, HH:mm'}}</mat-label>Hrs
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="col-sm-4">
+
+      <div class="row">
+        <div class="col-sm-5">
+          <div class="row">
+            <mat-label><b>Ref No</b></mat-label>
+          </div>
+        </div>
+
+        <div class="col-sm-7">
+          <mat-label>:&nbsp;</mat-label>
+          <mat-label>{{M_RefNo}}</mat-label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-5">
+          <div class="row">
+            <mat-label><b>Ref Date</b></mat-label>
+          </div>
+        </div>
+        <div class="col-sm-7">
+          <mat-label>:&nbsp;</mat-label>
+          <mat-label>{{M_Refdate | date:'dd-MMM-y'}}</mat-label>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-sm-4">
+
+      <div class="row">
+        <div class="col-sm-5">
+          <div class="row">
+            <mat-label><b>Customer Name</b></mat-label>
+          </div>
+        </div>
+        <div class="col-sm-7">
+          <mat-label>:&nbsp;</mat-label>
+          <mat-label>{{M_CustomerName}}</mat-label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-5">
+          <div class="row">
+            <mat-label><b>Address</b></mat-label>
+          </div>
+        </div>
+        <div class="col-sm-7">
+          <mat-label>:&nbsp;</mat-label>
+          <mat-label>{{M_Address}}</mat-label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-5">
+          <div class="row">
+            <mat-label><b>Contact No</b></mat-label>
+          </div>
+        </div>
+        <div class="col-sm-7">
+          <mat-label>:&nbsp;</mat-label>
+          <mat-label>{{M_MobileNo}}</mat-label>
+        </div>
+      </div>
+
+    </div>
+    <!--<div class="col-sm-3" style="margin-top: 14px;">
       <div class="row">
         <div class="col-sm-6">
           <mat-label><strong>Order No</strong></mat-label> &nbsp;&nbsp;:
@@ -1134,6 +1255,7 @@
         </div>
       </div>
     </div>
+
     <div class="col-sm-6" style="margin-top: 6px;">
       <div class="row">
         <div class="col-sm-6">
@@ -1161,8 +1283,15 @@
           <mat-label>{{M_MobileNo}}</mat-label>
         </div>
       </div>
-    </div>
+    </div>-->
   </div>
+
+
+
+
+
+
+
   <div class="col-sm-12" style="margin-top:2%">
     <div class="row">
       <div class="col-sm-6">
@@ -1170,31 +1299,31 @@
       </div>
     </div>
     <div class="row">
-      <table mat-table matSort [dataSource]="PrintdataSource" class="mat-elevation-z8 table-bordered" style="width: 100%;">
+      <table mat-table matSort [dataSource]="PrintdataSource" class="custom-table withoutbackgroung search-table table-bordered" style="width: 100%;">
         <ng-container matColumnDef="SNo">
-          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">SNo</th>
-          <td mat-cell *matCellDef="let element ;let i = index;" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px"> {{i+1}} </td>
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">SNo</th>
+          <td mat-cell *matCellDef="let element ;let i = index;"> {{i+1}} </td>
           <td mat-footer-cell *matFooterCellDef> </td>
         </ng-container>
 
         <ng-container matColumnDef="Serials">
-          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;width:4%;"> S.No </th>
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="width:4%;"> S.No </th>
         </ng-container>
 
         <ng-container matColumnDef="Type">
-          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Type</th>
-          <td mat-cell *matCellDef="let element ;let i = index;" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px">{{element.Type}}  </td>
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Type</th>
+          <td mat-cell *matCellDef="let element ;let i = index;">{{element.Type}}  </td>
           <td mat-footer-cell *matFooterCellDef> </td>
         </ng-container>
 
         <ng-container matColumnDef="Types">
-          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;width: 4%;"> Type </th>
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="width: 4%;"> Type </th>
         </ng-container>
 
 
         <ng-container matColumnDef="Brand">
-          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px;width: 2%;">Brand</th>
-          <td mat-cell *matCellDef="let element;let i = index;" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;width: 9%;word-break: break-word;">
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}" style="width: 2%;">Brand</th>
+          <td mat-cell *matCellDef="let element;let i = index;" style="width: 9%;word-break: break-word;">
             {{element.Brand}}
           </td>
           <td mat-footer-cell *matFooterCellDef> </td>
@@ -1202,117 +1331,117 @@
 
 
         <ng-container matColumnDef="Brands">
-          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;width: 2%;"> Brand </th>
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="width: 2%;"> Brand </th>
         </ng-container>
 
 
         <ng-container matColumnDef="Model">
-          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px;width: 7%;">Model</th>
-          <td mat-cell *matCellDef="let element" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;text-align:center"> {{element.Model }} </td>
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}" style="width: 7%;">Model</th>
+          <td mat-cell *matCellDef="let element"> {{element.Model }} </td>
           <td mat-footer-cell *matFooterCellDef> </td>
         </ng-container>
 
         <ng-container matColumnDef="Models">
-          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;width: 7%;"> Model </th>
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="width: 7%;"> Model </th>
         </ng-container>
 
 
         <ng-container matColumnDef="LensOption">
-          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">LensOption</th>
-          <td mat-cell *matCellDef="let element" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;text-align:center"> {{element.LensOptions }} </td>
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">LensOption</th>
+          <td mat-cell *matCellDef="let element"> {{element.LensOptions }} </td>
           <td mat-footer-cell *matFooterCellDef> </td>
         </ng-container>
 
         <ng-container matColumnDef="LensOptions">
-          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;width: 7%;"> LensOption </th>
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="width: 7%;"> LensOption </th>
         </ng-container>
 
         <ng-container matColumnDef="Index">
-          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Index</th>
-          <td mat-cell *matCellDef="let element" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;text-align:center"> {{element.Index}} </td>
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Index</th>
+          <td mat-cell *matCellDef="let element"> {{element.Index}} </td>
           <td mat-footer-cell *matFooterCellDef> </td>
         </ng-container>
 
         <ng-container matColumnDef="Indexs">
-          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;width: 4%;"> Index </th>
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="width: 4%;"> Index </th>
         </ng-container>
 
 
         <ng-container matColumnDef="Color">
-          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Color</th>
-          <td mat-cell *matCellDef="let element" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;text-align:center"> {{element.Color }} </td>
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Color</th>
+          <td mat-cell *matCellDef="let element"> {{element.Color }} </td>
           <td mat-footer-cell *matFooterCellDef> </td>
         </ng-container>
 
         <ng-container matColumnDef="Colors">
-          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;width: 5%;"> Color </th>
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="width: 5%;"> Color </th>
         </ng-container>
 
         <ng-container matColumnDef="HSN">
-          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">HSN</th>
-          <td mat-cell *matCellDef="let element" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;text-align:center"> {{element.HSNNo }} </td>
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">HSN</th>
+          <td mat-cell *matCellDef="let element"> {{element.HSNNo }} </td>
           <td mat-footer-cell *matFooterCellDef> </td>
         </ng-container>
 
         <ng-container matColumnDef="HSNs">
-          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;width: 7%;"> HSN </th>
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="width: 7%;"> HSN </th>
         </ng-container>
 
 
         <ng-container matColumnDef="UOM">
-          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">UOM</th>
-          <td mat-cell *matCellDef="let element" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;text-align:center"> {{element.UOM}} </td>
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">UOM</th>
+          <td mat-cell *matCellDef="let element"> {{element.UOM}} </td>
           <td mat-footer-cell *matFooterCellDef> </td>
         </ng-container>
 
         <ng-container matColumnDef="UOMs">
-          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;width: 5%;"> UOM </th>
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="width: 5%;"> UOM </th>
         </ng-container>
 
         <ng-container matColumnDef="QTY">
-          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">QTY</th>
-          <td mat-cell *matCellDef="let element; let id = index;" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;text-align:end" contenteditable="true" (keypress)="RestrictNegativeValues($event)" (keyup)="changeQtyValue(id,'Quantity',$event);changeGivenQtyValue(id,element,'GivenQtyPrice');changeValueDiscountAmount(id,element,'DiscountAmount');changeValueGrossAmount(id,element,'GrossAmount');changeGstValue(id,element,'GSTValue');changeValueTotal(id,element,'Amount')"> {{element.Quantity| number : '1.2-2'}} </td>
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">QTY</th>
+          <td mat-cell *matCellDef="let element; let id = index;" contenteditable="true" (keypress)="RestrictNegativeValues($event)" (keyup)="changeQtyValue(id,'Quantity',$event);changeGivenQtyValue(id,element,'GivenQtyPrice');changeValueDiscountAmount(id,element,'DiscountAmount');changeValueGrossAmount(id,element,'GrossAmount');changeGstValue(id,element,'GSTValue');changeValueTotal(id,element,'Amount')"> {{element.Quantity| number : '1.2-2'}} </td>
           <td mat-footer-cell *matFooterCellDef> </td>
         </ng-container>
 
         <ng-container matColumnDef="QTYs">
-          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;width: 3%;"> QTY </th>
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="width: 3%;"> QTY </th>
         </ng-container>
 
         <ng-container matColumnDef="Price">
-          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Price</th>
-          <td mat-cell *matCellDef="let element" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;text-align:end"> {{element.UnitPrice| number : '1.2-2'}} </td>
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Price</th>
+          <td mat-cell *matCellDef="let element" style="text-align:end"> {{element.UnitPrice| number : '1.2-2'}} </td>
           <td mat-footer-cell *matFooterCellDef> </td>
         </ng-container>
 
         <ng-container matColumnDef="Prices">
-          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;width:5%;"> Price </th>
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="width:5%;"> Price </th>
         </ng-container>
 
 
 
         <ng-container matColumnDef="Amount">
-          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">
             Amount
           </th>
-          <td mat-cell *matCellDef="let element" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;text-align:end">{{ element.GivenQtyPrice | number : '1.2-2'}} </td>
+          <td mat-cell *matCellDef="let element" style="text-align:end">{{ element.GivenQtyPrice | number : '1.2-2'}} </td>
           <td mat-footer-cell *matFooterCellDef style="text-align:end"><b>{{getItemAmount() | currency:Country2}}</b></td>
         </ng-container>
 
         <ng-container matColumnDef="Amounts">
-          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;width:5%;">
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="width:5%;">
             Amount
           </th>
         </ng-container>
 
         <ng-container matColumnDef="Discount%">
-          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px;text-align: center;width: 3%;">%</th>
-          <td mat-cell *matCellDef="let element" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;text-align:end"> {{element.Discount| number : '1.2-2'}} </td>
+          <th mat-header-cell *matHeaderCellDef style="width: 3%;">%</th>
+          <td mat-cell *matCellDef="let element"> {{element.Discount| number : '1.2-2'}} </td>
           <td mat-footer-cell *matFooterCellDef> </td>
         </ng-container>
         <ng-container matColumnDef="DiscountAmount">
-          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px;text-align: center;width: 5%;"> Amount</th>
-          <td mat-cell *matCellDef="let element" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;text-align:end">{{element.DiscountAmount| number : '1.2-2'}} </td>
+          <th mat-header-cell *matHeaderCellDef style="width: 5%;"> Amount</th>
+          <td mat-cell *matCellDef="let element" style="text-align:end">{{element.DiscountAmount| number : '1.2-2'}} </td>
           <td mat-footer-cell *matFooterCellDef style="text-align:end"><b>{{getDiscountAmount() | currency:Country2}}</b></td>
         </ng-container>
 
@@ -1321,20 +1450,20 @@
           <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">
             GrossAmount
           </th>
-          <td mat-cell *matCellDef="let element" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;text-align:end">{{element.GrossAmount| number : '1.2-2'}} </td>
+          <td mat-cell *matCellDef="let element" style="text-align:end">{{element.GrossAmount| number : '1.2-2'}} </td>
           <td mat-footer-cell *matFooterCellDef style="text-align:end"><b>{{getGrossAmount() | currency:Country2}}</b></td>
         </ng-container>
 
 
         <ng-container matColumnDef="GrossAmounts">
-          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;width: 6%;">
-            GrossAmount
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="width: 6%;">
+            Gross Amount
           </th>
         </ng-container>
 
         <ng-container matColumnDef="GSTDesc">
-          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px;text-align:center;width: 8%;">Desc</th>
-          <td mat-cell *matCellDef="let element" style="width:8%;color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;text-align:center">
+          <th mat-header-cell *matHeaderCellDef style="width: 8%;">Desc</th>
+          <td mat-cell *matCellDef="let element" style="width:8%;text-align:center">
             <ng-container style="height: 4px;text-align: center;"> {{element.GSTDesc}}</ng-container> <br />
             <ng-container style="font-size:12px;text-align: center;height:4px"> {{element.CESSDesc}}</ng-container> <br />
             <ng-container style="font-size:12px;text-align: center;height:4px"> {{element.AddCessDesc}}</ng-container>
@@ -1342,8 +1471,8 @@
           <td mat-footer-cell *matFooterCellDef> </td>
         </ng-container>
         <ng-container matColumnDef="GST%">
-          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px;text-align:center;width: 4%;">%</th>
-          <td mat-cell *matCellDef="let element" style="width: 5%; color: #212121; font-family: 'Proxima Nova Semibold'; font-size: 13px; text-align: end">
+          <th mat-header-cell *matHeaderCellDef style="width: 4%;">%</th>
+          <td mat-cell *matCellDef="let element" style="width: 5%; text-align: end">
             <ng-container *ngIf="element.GST != null" style="font-size:12px;height:4px"> {{element.GST}} </ng-container> <br />
             <ng-container *ngIf="element.CESS != null" style="font-size:12px;height:4px"> {{element.CESS}}</ng-container> <br />
             <ng-container *ngIf="element.AddCess != null" style="font-size:12px;height:4px"> {{element.AddCess}}</ng-container>
@@ -1351,8 +1480,8 @@
           <td mat-footer-cell *matFooterCellDef> </td>
         </ng-container>
         <ng-container matColumnDef="GSTValue">
-          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px;text-align:center;width: 5%;">Amount</th>
-          <td mat-cell *matCellDef="let element" style="width: 6%; color: #212121; font-family: 'Proxima Nova Semibold'; font-size: 13px; text-align: end">
+          <th mat-header-cell *matHeaderCellDef style="width: 5%;">Amount</th>
+          <td mat-cell *matCellDef="let element" style="width: 6%;  text-align: end">
             <ng-container style="height: 4px;text-align: center;">{{element.GSTValue | number : '1.2-2'}}</ng-container> <br />
             <ng-container *ngIf="element.CESS != null" style="font-size:12px;text-align: center;height:4px"> {{element.CESSValue| number : '1.2-2'}}</ng-container> <br />
             <ng-container *ngIf="element.AddCess != null" style="font-size:12px;text-align: center;height:4px"> {{element.AddCessValue| number : '1.2-2'}}</ng-container>
@@ -1361,24 +1490,24 @@
         </ng-container>
 
         <ng-container matColumnDef="NetAmount">
-          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Net Amount</th>
-          <td mat-cell *matCellDef="let element" style="color:#212121;font-family:'Proxima Nova Semibold';font-size:13px;text-align:end">{{element.Amount | currency:Country2}} </td>
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Net Amount</th>
+          <td mat-cell *matCellDef="let element" style="text-align:end">{{element.Amount | currency:Country2}} </td>
           <td mat-footer-cell *matFooterCellDef style="text-align:end"><b>{{getTotalAmount() | currency:Country2}}</b></td>
         </ng-container>
 
 
         <ng-container matColumnDef="NetAmounts">
-          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;width: 8%;">
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="width: 8%;">
             Net Amount
           </th>
         </ng-container>
 
         <ng-container matColumnDef="header-row-group">
-          <th mat-header-cell *matHeaderCellDef [attr.colspan]="2" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center"> Discount </th>
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> Discount </th>
         </ng-container>
 
         <ng-container matColumnDef="header-row-third-group">
-          <th mat-header-cell *matHeaderCellDef [attr.colspan]="3" style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center"> Tax </th>
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="3"> Tax </th>
         </ng-container>
 
 
@@ -1393,7 +1522,7 @@
     </div>
     <div class="row">
       <mat-label>
-        <strong>{{Country2}} in Words :</strong> &nbsp;&nbsp;{{transformValue(getTotalAmount())}} {{Country2}} only
+        <strong>Amount in Words :</strong> &nbsp;&nbsp;{{Country1}} {{transformValue(getTotalAmount())}} only
       </mat-label><br />
     </div>
     <div class="row">
@@ -1453,46 +1582,46 @@
     </div>
 
     <div class="row">
-      <table mat-table matSort [dataSource]="dataSource3" class="table table-bordered" style="width:100%;">
+      <table mat-table matSort [dataSource]="dataSource3" class="custom-table withoutbackgroung search-table table-bordered" style="width:100%;">
 
         <ng-container matColumnDef="PaymentMode">
-          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">PaymentMode</th>
+          <th mat-header-cell *matHeaderCellDef>PaymentMode</th>
           <td mat-cell *matCellDef="let element">{{element.PaymentMode}}</td>
           <td mat-footer-cell *matFooterCellDef> </td>
         </ng-container>
 
         <ng-container matColumnDef="InstrumentNumber">
-          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Instrument Number</th>
+          <th mat-header-cell *matHeaderCellDef>Instrument Number</th>
           <td mat-cell *matCellDef="let element">{{element.InstrumentNumber}} </td>
           <td mat-footer-cell *matFooterCellDef> </td>
         </ng-container>
 
         <ng-container matColumnDef="InstrumentDate">
-          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Instrument Date</th>
+          <th mat-header-cell *matHeaderCellDef>Instrument Date</th>
           <td mat-cell *matCellDef="let element">{{element.Instrumentdate| date:'dd-MMM-y'}} </td>
           <td mat-footer-cell *matFooterCellDef> </td>
         </ng-container>
 
         <ng-container matColumnDef="BankName">
-          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Bank Name</th>
+          <th mat-header-cell *matHeaderCellDef>Bank Name</th>
           <td mat-cell *matCellDef="let element">{{element.BankName}} </td>
           <td mat-footer-cell *matFooterCellDef> </td>
         </ng-container>
 
         <ng-container matColumnDef="Branch">
-          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Branch</th>
+          <th mat-header-cell *matHeaderCellDef>Branch</th>
           <td mat-cell *matCellDef="let element">{{element.BankBranch}} </td>
           <td mat-footer-cell *matFooterCellDef> </td>
         </ng-container>
 
         <ng-container matColumnDef="ExpiryDate">
-          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Expiry Date</th>
+          <th mat-header-cell *matHeaderCellDef>Expiry Date</th>
           <td mat-cell *matCellDef="let element">{{element.Expirydate| date:'dd-MMM-y'}} </td>
           <td mat-footer-cell *matFooterCellDef><strong>Total Amount</strong> </td>
         </ng-container>
 
         <ng-container matColumnDef="Amount">
-          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">
+          <th mat-header-cell *matHeaderCellDef>
             Amount
           </th>
           <td mat-cell *matCellDef="let element">{{element.Amount | number : '1.2-2'}} </td>
@@ -1500,7 +1629,7 @@
         </ng-container>
 
         <ng-container matColumnDef="Action">
-          <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px"> Action </th>
+          <th mat-header-cell *matHeaderCellDef> Action </th>
           <td mat-cell *matCellDef="let element; let i = index;"> <mat-icon data-toggle="tooltip" class="grab" title="Select" (click)="EditPaytype(i,element)">create</mat-icon> &nbsp;&nbsp;&nbsp;&nbsp;<mat-icon data-toggle="tooltip" title="Select" class="grab" (click)="removePaytype(i)" style="color:red">delete</mat-icon>  </td>
           <td mat-footer-cell *matFooterCellDef> </td>
         </ng-container>
@@ -1511,8 +1640,19 @@
       </table>
     </div>
   </div>
+  <div class="col-sm-12" style="margin-top: 5%">
+    <div class="row">
 
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4" style="text-align:right">
+        <mat-label><strong>Authorized Signatory &nbsp;</strong></mat-label>
+      </div>
+    </div>
+
+  </div>
 </div>
+
 
 <div class="modal" role="dialog" [ngStyle]="{'display':Submitprint}">
   <div class="example-box">
@@ -1712,21 +1852,207 @@
         <h6 class="modal-title">Upload Prescription</h6>
       </div>
       <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-1"></div>
+          <div class="col-sm-5">
+            <div style="margin-top:7px;margin-left: 30px;margin-right: 0px;">
+              <img *ngFor='let url of urls; index as i' [lightbox]="i" [src]="url.data.thumb" height="100" width="50" style="margin-left: 8px;border:1px solid #51b8f2;width: 42%;"> <br />
+              <span><mat-icon *ngFor='let url of urls; index as i' data-toggle="tooltip" title="Drop Image" (click)="removeUploadImage(i,$event)" class="cursor"> cancel </mat-icon></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="choose_file">
+            <input type="file" id="UploadPres" #UploadPres accept=".jpg" (change)="selectFiles($event,UploadPres.files)" />
+            <button type="button" class="btn btn-warning-default" (click)="UploadPres.click()">Choose file to upload</button>
+          </div>
+          <small class="refcol"><b> .png, .jpeg Images Supported</b></small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--/* Prescription  input popup */-->
+<div class="modal" role="dialog" [ngStyle]="{'display':opticalPrescriptionpopup}">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content ">
+      <div class="modal-header">
+        <h4 class="modal-title text-left">Customer Order</h4>
+        <button type="button" class="close" data-dismiss="modal" (click)="opticalPrescriptionpopupNo()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h5 class="modal-title center">Do you want to Add optical Prescription for the Patient ?</h5>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" data-dismiss="modal" autofocus (click)="opticalPrescriptionpopupNo()">No</button>
+        <button type="reset" class="btn btn-success" data-dismiss="modal" (click)="opticalPrescriptionpopupYes()">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!---------------------------------------optical Prescription data entry form popup----------------------->
+
+<div class="modal height-700px" role="dialog" [ngStyle]="{'display':opticalPrescriptionblock}">
+  <div class="modal-dialog modal-lg width-80P">
+    <div class="modal-content ">
+
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="opticalPrescriptionClose()">&times;</button>
+        <h5>
+          Optical Prescription
+        </h5>
+      </div>
+
+      <div class="modal-body">
+
+        <div id="ocular" class="tab-pane fade in active">
           <div class="row">
-            <div class="col-sm-1"></div>
-            <div class="col-sm-5">
-              <div style="margin-top:7px;margin-left: 30px;margin-right: 0px;">
-                <img  *ngFor='let url of urls; index as i' [lightbox]="i" [src]="url.data.thumb" height="100" width="50" style="margin-left: 8px;border:1px solid #51b8f2;width: 42%;"> <br />
-                <span><mat-icon *ngFor='let url of urls; index as i' data-toggle="tooltip" title="Drop Image" (click)="removeUploadImage(i,$event)" class="cursor"> cancel </mat-icon></span>
+            <div class="col-sm-12">
+              <div class="card mb-3">
+                <h5 class="card-header">
+                  Optical prescription
+                </h5>
+                <div class="card-body">
+
+
+
+                  <div class="row heightAuto-150px">
+
+                    <table class="custom-table vawithoutbackgroung search-table table-bordered">
+
+                      <tr>
+                        <th colspan="6" style="border-right:2px solid gray">OD</th>
+                        <th colspan="6">OS</th>
+                        <th rowspan="3">BPD</th>
+                        <th colspan="2">MPD</th>
+                        <th rowspan="3">Remarks</th>
+
+                      </tr>
+
+                      <tr>
+                        <th colspan="4">Distance Vision</th>
+                        <th colspan="2" style="border-right:2px solid gray">Near Vision</th>
+                        <th colspan="4">Distance Vision</th>
+                        <th colspan="2">Near Vision</th>
+                        <th colspan="1" class="acc">OD</th>
+                        <th colspan="1" class="acc">OS</th>
+                      </tr>
+
+
+
+                      <tr>
+
+                        <th>SPH</th>
+                        <th>CYL</th>
+                        <th>AXIS</th>
+                        <th>V/A</th>
+                        <th>SPH</th>
+                        <th style="border-right:2px solid gray">V/A</th>
+                        <th>SPH</th>
+                        <th>CYL</th>
+                        <th>AXIS</th>
+                        <th>V/A</th>
+                        <th>SPH</th>
+                        <th>V/A</th>
+                        <th colspan="1" class="accw"></th>
+                        <th colspan="1"></th>
+                      </tr>
+
+                      <tbody>
+                        <tr *ngFor="let FINAL of FINALPRESCRIPTION;index as i">
+
+                          <td>
+                            <input #DistSphFINAL matInput maxlength="10" value="{{FINAL.DistSph}}" type="text" class="form-control tableinputheight" (keyup.enter)="DescriptionDistSphFINAL(i)" (keyup)="changeValueDistSphFINAL(i,'DistSph',$event);"  autocomplete="off" >
+                          </td>
+                          <td>
+                            <input #NearCylFINAL matInput maxlength="10" value="{{FINAL.NearCyl}}" type="text" class="form-control tableinputheight" (keyup)="changeValueNearCylFINAL(i,'NearCyl',$event);" (keyup.enter)="DescriptionNearCylFINAL(i)"  autocomplete="off" >
+                          </td>
+                          <td>
+                            <input #PinAxisFINAL matInput maxlength="10" value="{{FINAL.PinAxis}}" type="text" class="form-control tableinputheight" (keyup)="changeValuePinAxisFINAL(i,'PinAxis',$event);" (keyup.enter)="DescriptionPinAxisFINAL(i)"  autocomplete="off" >
+                          </td>
+                          <td id="tablepress" (keypress)="DistanceODtablepress($event)">
+                            <mat-select   (keyup.enter)="saveDistanceODfinal(i)"  (selectionChange)="ChangeDistancefinal(i,$event);DistanceODDfinal.close()" value="{{FINAL.Add}}" >
+                              <input matInput  class="search"   autocomplete="off">
+                              <mat-option>None</mat-option>
+                              <mat-option *ngFor="let VAs of VAname" [value]="VAs.Value">{{VAs.Text}}</mat-option>
+                            </mat-select>
+                          </td>
+                          <td>
+                            <input #DistSphNVODFINAL maxlength="10" matInput value="{{FINAL.DistSphNVOD}}" type="text" class="form-control tableinputheight" (keyup)="changeValueDistSphNVODFINAL(i,'DistSphNVOD',$event);" (keyup.enter)="DescriptionDistSphNVODFINAL(i)"   autocomplete="off" [disabled]="FINAL.OD">
+                          </td>
+                          <td style="border-right:2px solid gray" id="tablepress" (keypress)="DistanceODtablepress($event)" (keyup.enter)="DescriptionAddNVODFINAL(i)"   [attr.contenteditable]="FINAL.AddNVOD == '' || FINAL.AddNVOD != ''" #AddNVODFINAL>
+                            <mat-select #DistanceODDfinalp  (keyup.enter)="saveDistanceODfinalp(i)"  (selectionChange)="ChangeDistancefinalp(i,$event);DistanceODDfinalp.close()" value="{{FINAL.AddNVOD}}" [disabled]="FINAL.OD">
+                              <input matInput class="search"    autocomplete="off">
+                              <mat-option>None</mat-option>
+                              <mat-option *ngFor="let VAsnear1 of VAnamenear1" [value]="VAsnear1.Value">{{VAsnear1.Text}}</mat-option>
+                            </mat-select>
+                          </td>
+                          <td>
+                            <input #DistSphOSFINAL maxlength="10" matInput value="{{FINAL.DistSphOS}}" type="text" class="form-control tableinputheight" (keyup)="changeValueDistSphOSFINAL(i,'DistSphOS',$event);" (keyup.enter)="DescriptionDistSphOSFINAL(i)" autocomplete="off" [disabled]="FINAL.OS">
+                          </td>
+                          <td>
+                            <input #NearCylOSFINAL maxlength="10" matInput value="{{FINAL.NearCylOS}}" type="text" class="form-control tableinputheight" (keyup)="changeValueNearCylOSFINAL(i,'NearCylOS',$event);" (keyup.enter)="DescriptionNearCylOSFINAL(i)" autocomplete="off" [disabled]="FINAL.OS">
+                          </td>
+                          <td>
+                            <input #PinAxisOSFINAL maxlength="10" matInput value="{{FINAL.PinAxisOS}}" type="text" class="form-control tableinputheight" (keyup)="changeValuePinAxisOSFINAL(i,'PinAxisOS',$event);" (keyup.enter)="DescriptionPinAxisOSFINAL(i)" autocomplete="off" [disabled]="FINAL.OS">
+                          </td>
+                          <td id="tablepress" (keypress)="DistanceODtablepress($event)" (keyup.enter)="DescriptionAddOSFINAL(i)"   [attr.contenteditable]="FINAL.AddOS == '' || FINAL.AddOS != ''" #AddOSFINAL>
+                            <mat-select #DistanceODDfinalos  (keyup.enter)="saveDistanceODfinalos(i)"  (selectionChange)="ChangeDistancefinalos(i,$event);DistanceODDfinalos.close()" value="{{FINAL.AddOS}}" [disabled]="FINAL.OS">
+                              <input matInput #Accepinputdistancefinalos class="search"   autocomplete="off">
+                              <mat-option>None</mat-option>
+                              <mat-option *ngFor="let VAs of VAname" [value]="VAs.Value">{{VAs.Text}}</mat-option>
+                            </mat-select>
+                          </td>
+                          <td>
+                            <input #DistSphNVOSFINAL maxlength="10" matInput value="{{FINAL.DistSphNVOS}}" type="text" class="form-control tableinputheight" (keyup)="changeValuesDistSphNVOSFINAL(i,'DistSphNVOS',$event);" (keyup.enter)="DescriptionDistSphNVOSFINAL(i)"   autocomplete="off" [disabled]="FINAL.OS">
+                          </td>
+                          <td id="tablepress" (keypress)="DistanceODtablepress($event)" (keyup.enter)="DescriptionAddNVOSFINAL(i)"   [attr.contenteditable]="FINAL.AddNVOS == '' || FINAL.AddNVOS != ''" #AddNVOSFINAL>
+                            <mat-select #DistanceODDfinalpos  (keyup.enter)="saveDistanceODfinalpos(i)"  (selectionChange)="ChangeDistancefinalpos(i,$event);DistanceODDfinalpos.close()" value="{{FINAL.AddNVOS}}" [disabled]="FINAL.OS">
+                              <input matInput #Accepinputdistancefinalpos class="search" (input)="FIlterdataNearODacc($event.target.value)"   autocomplete="off">
+                              <mat-option>None</mat-option>
+                              <mat-option *ngFor="let VAsnear1 of VAnamenear1" [value]="VAsnear1.Value">{{VAsnear1.Text}}</mat-option>
+                            </mat-select>
+                          </td>
+
+                          <td>
+                            <input  maxlength="5" matInput value="{{FINAL.PD}}" type="text" class="form-control tableinputheight" (keypress)="numberOnlypdno($event)" (keyup)="numberOnlypd(i,'PD',$event);changeValuesPDcommon(i,'PD',$event)" (keyup.enter)="DescriptionPDFINAL(i)"   autocomplete="off">
+                          </td>
+
+                          <td>
+                            <input  maxlength="5" matInput value="{{FINAL.MPDOD}}" type="text" class="form-control tableinputheight" (keyup)="changeValuesMPDODcommon(i,'MPDOD',$event);MPDOD(i,$event);" (keyup.enter)="DescriptionMPDODFINAL(i)"     autocomplete="off">
+                          </td>
+
+                          <td>
+                            <input  maxlength="5" matInput value="{{FINAL.MPDOS}}" type="text" class="form-control tableinputheight" (keyup)="changeValuesMPDOScommon(i,'MPDOS',$event);MPDOS(i,$event);" (keyup.enter)="DescriptionMPDOSFINAL(i)"     autocomplete="off">
+                          </td>
+
+                          <td>
+                            <input  matInput value="{{FINAL.Remarks}}" type="text" class="form-control tableinputheight" (keyup)="changeValuesRemarksFINAL(i,'Remarks',$event);" (keyup.enter)="DescriptionRemarksFINAL(i)"  autocomplete="off">
+                          </td>
+
+                        </tr>
+                      </tbody>
+
+                    </table>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="choose_file">
-              <input  type="file" id="UploadPres" #UploadPres accept=".jpg" (change)="selectFiles($event,UploadPres.files)" />
-              <button type="button" class="btn btn-warning-default" (click)="UploadPres.click()">Choose file to upload</button>
-            </div>
-            <small class="refcol"><b> .png, .jpeg Images Supported</b></small>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <div class="row ">
+          <div class="content-right sub-section btn-wrap">
+            <button class="btn btn-warning-default" (click)="CancelOpticalPrescription()">Cancel</button>
+            <button class="success btn btn-primary" (click)="onsubmitOpticalPrescription()">Submit</button>
           </div>
       </div>
     </div>

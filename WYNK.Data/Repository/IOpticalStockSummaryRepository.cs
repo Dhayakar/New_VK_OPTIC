@@ -7,6 +7,6 @@ namespace WYNK.Data.Repository
 {
     public interface IOpticalStockSummaryRepository : IRepositoryBase<OpticalStockSummaryDataView>
     {
-        dynamic GetStockSummary(OpticalStockSummaryDataView stocksummary, DateTime From, DateTime To, int CompanyID, string Time);
+        dynamic GetStockSummary(OpticalStockSummaryDataView stocksummary, string From, string To, int CompanyID, string Time);
     }
 }

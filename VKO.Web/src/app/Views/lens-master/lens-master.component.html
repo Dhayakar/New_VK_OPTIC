@@ -10,7 +10,6 @@
           <h5> Lens / Frame Master</h5>
         </div>
 
-
         <div class="row mt-1p">
           <div class="col-sm-2">
             <button type="button" (click)="AddFrameShape()" matTooltip="Frame Shape Master" class="btn btn-primary-default btn-Excel buttonsfloat"> Frame Shape</button>
@@ -565,15 +564,15 @@
                   <th mat-header-cell *matHeaderCellDef class="text-left">Description</th>
                   <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">
                     <div class="row text-left">
-                      <div *ngIf="element.TaxDescription != null && (element.GST != null || element.GST != 0)" class="col-sm-10 mt-8p">
+                      <div *ngIf="element.TaxDescription != null && (element.GST != null && element.GST != 0)" class="col-sm-10 mt-8p">
                         {{element.TaxDescription}}
                       </div>
                       <br />
-                      <div *ngIf="element.CessDescription != null && (element.CESSAmount != null || element.CESSAmount != 0)" class="col-sm-10">
+                      <div *ngIf="element.CessDescription != null && (element.CESSAmount != null && element.CESSAmount != 0)" class="col-sm-10">
                         {{element.CessDescription}}
                       </div>
                       <br />
-                      <div *ngIf="element.AddtionalDescription != null && (element.ADDCESSAmount != null || element.ADDCESSAmount != 0)" class="col-sm-10">
+                      <div *ngIf="element.AddtionalDescription != null && (element.ADDCESSAmount != null && element.ADDCESSAmount != 0)" class="col-sm-10">
                         {{element.AddtionalDescription}}
                       </div>
                     </div>
@@ -587,15 +586,15 @@
                   <th mat-header-cell *matHeaderCellDef class="text-end">%</th>
                   <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">
                     <div class="row text-end">
-                      <div *ngIf="(element.GST != null || element.GST != 0) && element.TaxDescription != null" class="col-sm-10 mt-8p">
+                      <div *ngIf="(element.GST != null && element.GST != 0) && element.TaxDescription != null" class="col-sm-10 mt-8p">
                         {{element.GST | number : '1.2-2'}}
                       </div>
                       <br />
-                      <div *ngIf="(element.CESSAmount != null || element.CESSAmount != 0) && element.CessDescription != null" class="col-sm-10">
+                      <div *ngIf="(element.CESSAmount != null && element.CESSAmount != 0) && element.CessDescription != null" class="col-sm-10">
                         {{element.CESSAmount | number : '1.2-2'}}
                       </div>
                       <br />
-                      <div *ngIf="(element.ADDCESSAmount != null || element.ADDCESSAmount != 0) && element.AddtionalDescription != null" class="col-sm-10">
+                      <div *ngIf="(element.ADDCESSAmount != null && element.ADDCESSAmount != 0) && element.AddtionalDescription != null" class="col-sm-10">
                         {{element.ADDCESSAmount | number : '1.2-2'}}
                       </div>
                     </div>
@@ -696,7 +695,7 @@
           <div class="col-sm-4">
             <mat-form-field appearance="outline">
               <mat-label>Frame Shape</mat-label>
-              <input [(ngModel)]="masterFrameShape" name="masterFrameShape" matInput placeholder="FrameShape">
+              <input #FrameShapefocus  [(ngModel)]="masterFrameShape" name="masterFrameShape" matInput placeholder="FrameShape" autocomplete="off">
             </mat-form-field>
           </div>
 
@@ -792,12 +791,12 @@
           <div class="col-sm-4">
             <mat-form-field appearance="outline">
               <mat-label>Frame Type</mat-label>
-              <input [(ngModel)]="masterFrameType" name="masterFrameType" matInput placeholder="Frame Type">
+              <input #FrameTypefocus [(ngModel)]="masterFrameType" name="masterFrameType" matInput placeholder="Frame Type">
             </mat-form-field>
           </div>
 
           <div class="col-sm-1">
-            <button (click)="ClickFrameType()" class="btn-text cursor" data-toggle="tooltip" title="FrameType">
+            <button (click)="ClickFrameType()" class="btn-text cursor" data-toggle="tooltip" title="FrameType" autocomplete="off">
               <i class="fas fa-info-circle"> </i> Help
             </button>
           </div>
@@ -887,7 +886,7 @@
           <div class="col-sm-4">
             <mat-form-field appearance="outline">
               <mat-label>Frame Style</mat-label>
-              <input [(ngModel)]="masterFrameStyle" name="masterFrameStyle" matInput placeholder="Frame Style">
+              <input #FrameStylefocus [(ngModel)]="masterFrameStyle" name="masterFrameStyle" matInput placeholder="Frame Style" autocomplete="off">
             </mat-form-field>
           </div>
 
@@ -982,7 +981,7 @@
           <div class="col-sm-4">
             <mat-form-field appearance="outline">
               <mat-label>Frame Width</mat-label>
-              <input [(ngModel)]="masterFrameWidth" name="masterFrameWidth" matInput placeholder="Frame Width">
+              <input  #FrameWidthfocus [(ngModel)]="masterFrameWidth" name="masterFrameWidth" matInput placeholder="Frame Width" autocomplete="off">
             </mat-form-field>
           </div>
 

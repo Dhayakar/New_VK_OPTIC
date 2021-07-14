@@ -21,7 +21,7 @@ namespace WYNK.Services.Controllers
         }
 
         [HttpPost("GetStockSummary/{From}/{To}/{CompanyID}/{Time}")]
-        public dynamic GetStockSummary([FromBody] OpticalStockSummaryDataView stocksummary, DateTime From, DateTime To, int CompanyID, string Time)
+        public dynamic GetStockSummary([FromBody] OpticalStockSummaryDataView stocksummary, string From, string To, int CompanyID, string Time)
         {
             return _repoWrapper.OpticalStockSummary.GetStockSummary(stocksummary, From, To, CompanyID, Time);
         }

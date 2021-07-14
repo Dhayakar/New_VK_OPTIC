@@ -824,7 +824,7 @@
         <div style="text-align:center"><strong>{{pCompnayname}}</strong></div>
         <div style="text-align:center"><strong>{{pcompanyAddress}}</strong></div>
         <div style="text-align:center"><strong>Phone No:{{pphone}} &nbsp; Website:{{pweb}}</strong></div>
-
+        <div style="text-align:center"><strong>GSTN&nbsp; :{{pcompanyAddress}}</strong></div>
       </div>
       <div class="col-sm-3"></div>
     </div>
@@ -952,6 +952,19 @@
           </div>
         </div>
 
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <mat-label><b>GSTN</b></mat-label>
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <mat-label><b>:</b></mat-label>
+          </div>
+          <div class="col-sm-6">
+            <mat-label>{{pGSTIN}}</mat-label>
+          </div>
+        </div>
 
       </div>
 
@@ -1243,16 +1256,33 @@
     </div>
   </div>
 
+  <div class="col-sm-12" style="margin-top: 1%">
+    <div class="row">
+      <div class="col-sm-4">
+        <mat-label><strong>Declaration&nbsp;</strong></mat-label>
+      </div>
+    </div>
+
+  </div>
+
   <div class="col-sm-12" style="margin-top: 5%">
+
     <div class="row">
 
       <div class="col-sm-4">
-        <mat-label><strong>E & O E&nbsp;</strong></mat-label>
+        <mat-label>E & O E</mat-label>
+        <mat-label>Subject to Jurisdiction only</mat-label>
+        <mat-label>No Exchange No Refund</mat-label>
+        <mat-label>E & O E</mat-label>
+        <mat-label>Order once placed, cannot be cancelled</mat-label>
       </div>
+
       <div class="col-sm-4"></div>
       <div class="col-sm-4" style="text-align:right">
         <mat-label><strong>Authorized Signatory &nbsp;</strong></mat-label>
       </div>
+
+
     </div>
 
   </div>

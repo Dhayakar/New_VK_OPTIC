@@ -22,7 +22,6 @@ import { PocanncelledregisterComponent } from './Views/pocanncelledregister/poca
 import { POCANCELLATIONPRINTComponent } from './Views/pocancellationprint/pocancellationprint.component';
 import { POCANCELLATIONComponent } from './Views/pocancellation/pocancellation.component';
 import { POPRINTComponent } from './Views/poprint/poprint.component';
-import { StoremasterComponent } from './Views/storemaster/storemaster.component';
 import { VendorMasterComponent } from './Views/vendor-master/vendor-master.component';
 import { TaxMasterComponent } from './Views/tax-master/tax-master.component';
 import { GRNComponent } from './Views/grn/grn.component';
@@ -30,6 +29,7 @@ import { GRNwithoutpoComponent } from './Views/grnwithoutpo/grnwithoutpo.compone
 import { PurchaseorderComponent } from './Views/purchaseorder/purchaseorder.component';
 import { IndentFormComponent } from './Views/indent-form/indent-form.component';
 import { DrugstockledgerComponent } from './Views/drugstockledger/drugstockledger.component';
+import { StoremasterComponent } from './Views/storemaster/storemaster.component';
 
 const routes: Routes = [
     { path: 'Storemaster', component: StoremasterComponent },

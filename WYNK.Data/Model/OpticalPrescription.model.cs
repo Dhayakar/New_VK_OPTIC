@@ -10,7 +10,7 @@ namespace WYNK.Data.Model
         [Key]
         public int ID { get; set; }
         public int? COID { get; set; }
-        public int RegistrationTranID { get; set; }
+        public int? RegistrationTranID { get; set; }
         public string UIN { get; set; }
         public DateTime PrescriptionDate { get; set; }
         public int? Type { get; set; }
@@ -29,6 +29,7 @@ namespace WYNK.Data.Model
         public string PD { get; set; }
         public string MPDOD { get; set; }
         public string MPDOS { get; set; }
+        public int? CustomerMasterID { get; set; }
 
 
     }

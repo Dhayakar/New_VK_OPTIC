@@ -202,7 +202,7 @@ export class OpticalStockLedgerComponent implements OnInit {
     debugger;
     this.allSelected = false;
     let result = event.value.Value;
-    this.commonService.getListOfData('Common/GetbranchstoreDropdownvalues/' + result + '/' + "Optical Department").subscribe(data => { this.StoreName = data });
+    this.commonService.getListOfData('Common/GetbranchstoreDropdownvalues/' + result + '/' + "Stock Department").subscribe(data => { this.StoreName = data });
   }
 
   selectdBrand(event) {
@@ -364,10 +364,11 @@ export class OpticalStockLedgerComponent implements OnInit {
 
     if (form.valid) {
       this.isInvalid = false;
-      let FromDate = this.M_FromDate.toISOString();
-      let ToDate = this.M_ToDate.toISOString();
 
-      this.commonService.postData('OpticalStockLedger/GetStockLedger/' + FromDate + '/' + ToDate + '/' + this.BranchDrop.Value + '/' + this.Getloctime, this.commonService.data)
+      let Fromdate = this.datepipe.transform(this.M_FromDate, "dd-MMM-yyyy");
+      let Todate = this.datepipe.transform(this.M_ToDate, "dd-MMM-yyyy");  
+
+      this.commonService.postData('OpticalStockLedger/GetStockLedger/' + Fromdate + '/' + Todate + '/' + this.BranchDrop.Value + '/' + this.Getloctime, this.commonService.data)
         .subscribe(data => {
           debugger;
           if (data.Opticalstockledger.length > 0 || data.OpticalstockledgerI.length > 0 || data.Companycomm > 0) {
