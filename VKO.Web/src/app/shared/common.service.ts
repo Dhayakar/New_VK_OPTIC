@@ -35,11 +35,6 @@ const apiurl = 'http://localhost:54669/';
 export class CommonService<T> {
  apiurl: any;
   constructor(public http: Http, public router: Router, private httpp: HttpClient) {
-    //this.http.get('assets/ConnectionstringURL/Connection.json').subscribe(
-    //  (data: any) => {
-    //    var apiurls = JSON.parse(data._body);
-    //    return apiurl = apiurls[0];
-    //  });
   }
   data: T;
   listOfData: T[];
