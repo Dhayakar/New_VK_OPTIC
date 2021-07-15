@@ -144,7 +144,7 @@ namespace WYNK.Data.Repository.Implementation
         public IForm3cRepository _form3c;
         public IMedicineMappingRepository _MedicineMapping;
         public IServiceMasterRepository _service;
-        
+        public IExpenseRepository _Expense;
 
 
         public RepositoryWrapper(WYNKContext context, CMPSContext Cmpscontext)
@@ -152,6 +152,18 @@ namespace WYNK.Data.Repository.Implementation
             _Wynkcontext = context;
             _Cmpscontext = Cmpscontext;
             
+        }
+        public IExpenseRepository Expense
+        {
+            get
+            {
+                if (_Expense == null)
+                {
+                    _Expense = new ExpenseRepository(_Wynkcontext, _Cmpscontext);
+
+                }
+                return _Expense;
+            }
         }
 
         public IServiceMasterRepository service

@@ -682,8 +682,8 @@ export class MaterialreturntovendorComponent implements OnInit {
       var resultdate = new Date(this.M_OPDAte);
       var targetdate = new Date(this.GRNDate);
 
-      var orgresuldate = this.Datepipe.transform(resultdate, "yyyy-MMM-dd");
-      var orgtargetdate = this.Datepipe.transform(targetdate, "yyyy-MMM-dd");
+      var orgresuldate = this.Datepipe.transform(resultdate, "dd-MMM-yyyy");
+      var orgtargetdate = this.Datepipe.transform(targetdate, "dd-MMM-yyyy");
       var comparison = this.compareDates(orgtargetdate, orgresuldate);
       var resultant = this.Datecomparision;
       if (resultant == "Lesser" || resultant == "Equal") {

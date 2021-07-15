@@ -142,6 +142,7 @@ namespace WYNK.Data.Repository
         IForm3cRepository form3c { get; }
         IMedicineMappingRepository MedicineMapping { get; }
         IServiceMasterRepository service { get; }
+        IExpenseRepository Expense { get; }
     }
 
 }

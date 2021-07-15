@@ -250,8 +250,8 @@ namespace WYNK.Data.Model
         public DbSet<AlternativeDrug> AlternativeDrug { get; set; }
         public DbSet<EyelidDisorder> EyelidDisorder { get; set; }
         public DbSet<EyelidImage> EyelidImage { get; set; }
-
-
+        public DbSet<ExpenseMaster> ExpenseMaster { get; set; }
+        public DbSet<ExpenseTran> ExpenseTran { get; set; }
     }
     public class CMPSContext : DbContext
     {

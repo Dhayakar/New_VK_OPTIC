@@ -1,14 +1,49 @@
-<form #VendorMasterForm="ngForm">
+<form #ExpenseMasterForm="ngForm">
   <div class="col-sm-12 borderline">
     <div class="row">
-      <h6>Expense</h6>
+      <h6>Expense Master</h6>
     </div>
     <div class="row">
-      <div class="col-sm-3">
-        <mat-form-field appearance="outline">
-          <mat-label>Vendor Code</mat-label>
-          <input autocomplete="off" maxlength="25" required [(ngModel)]="M_VendorCode" name="VendorCode" matInput placeholder="">
-        </mat-form-field>
+      <div class="col-sm-4">
+        <div class="row">
+          <div class="col-sm-10">
+            <mat-form-field appearance="outline">
+              <mat-label>Description</mat-label>
+              <input autocomplete="off" [(ngModel)]="M_Description" name="Desc" matInput placeholder="Enter Description" required>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-2" style="margin-top: 1%;">
+            <button class="btn btn-warning-default" (click)="Gethelp()">Help</button>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 1%;margin-bottom:1%">
+          <div class="col-sm-4">
+            <button class="btn btn-warning-default" (click)="Cancelhelp(ExpenseMasterForm)">Cancel</button>
+          </div>
+          <div class="col-sm-4">
+            <button *ngIf="Hideupdatebtn" class="btn btn-primary" (click)="Updatedata(ExpenseMasterForm)">Update</button>
+            <button *ngIf="Hidesubmitbtn" class="btn btn-primary" (click)="Submitdata(ExpenseMasterForm)">Submit</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3"></div>
+      <div class="col-sm-4" *ngIf="hidestatustable">
+        <table mat-table [dataSource]="dataSource" class="custom-table withoutbackgroung search-table table-bordered">
+          <ng-container matColumnDef="Actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let transaction"> <mat-checkbox></mat-checkbox> </td>
+          </ng-container>
+          <ng-container matColumnDef="Description">
+            <th mat-header-cell *matHeaderCellDef> Description </th>
+            <td mat-cell *matCellDef="let transaction">{{transaction.Description}} </td>
+          </ng-container>
+          <ng-container matColumnDef="Statuss">
+            <th mat-header-cell *matHeaderCellDef> IsActive </th>
+            <td mat-cell *matCellDef="let transaction">{{transaction.Status}}</td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
       </div>
     </div>
   </div>

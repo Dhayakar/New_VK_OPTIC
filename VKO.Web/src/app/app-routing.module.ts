@@ -10,7 +10,7 @@ import { MaterialreturntovendorComponent } from './Views/materialreturntovendor/
 import { DashboardComponent } from './Views/dashboard/dashboard.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },  
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'dash', component: DashboardComponent },
   { path: 'useraccess', component: AccessprivilegesComponent },
@@ -20,15 +20,18 @@ const appRoutes: Routes = [
     loadChildren: './Opticals.module#OpticalsLazyModule'
   },
 
-    {
+  {
     path: 'Inventorylazy',
     loadChildren: './Inventory.module#InventoryLazyModule'
   },
-  
+  {
+    path: 'ExpenseModule',
+    loadChildren: './Expense.module#ExpenseLazyModule'
+  },
 ]
 
 @NgModule({
-  declarations: [    
+  declarations: [
   ],
   imports: [
     RouterModule.forRoot(appRoutes, { useHash: true }),
