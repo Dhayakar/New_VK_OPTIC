@@ -1,0 +1,330 @@
+<form #MROForm="ngForm">
+  <div class="col-sm-12" style="margin-top:-2%">
+    <div class="row">
+      <h6>Optical Material Return</h6>
+    </div>
+  </div>
+  <div class="col-sm-12 borderline">
+    <div class="col-sm-12">
+      <div class="row">
+
+        <div class="col-sm-4  content-left pb20">
+          <div class="row">
+            <div class="col-sm-5" style="color:darkblue"><b>Order Number</b></div>
+            <div class="col-sm-1">:</div>
+            <div class="col-sm-5"><b>{{vendorOpnumber}}</b></div>
+          </div>
+          <div class="row">
+            <div class="col-sm-5" style="color:darkblue"><b>Order Date</b></div>
+            <div class="col-sm-1">:</div>
+            <div class="col-sm-5"><b>{{vendoropdate | date: "dd-MMM-y"}}</b></div>
+          </div>
+        </div>
+        <div class="col-sm-4 content-left pb20">
+          <div class="row">
+            <div class="col-sm-4" style="color:darkblue;width:40%"><b>GRN Number</b></div>
+            <div class="col-sm-1">:</div>
+            <div class="col-sm-6"><b>{{GRNNUMBER}}</b></div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4" style="color:darkblue;width:40%"><b>GRN Date & Time</b></div>
+            <div class="col-sm-1">:</div>
+            <div class="col-sm-6"><b>{{GRNDate | date: "dd-MMM-y HH:mm"}}</b></div>
+          </div>
+        </div>
+        <div class="col-sm-2 content-left pb20">
+          <mat-form-field appearance="outline">
+            <mat-label>Issue Date</mat-label>
+            <input required autocomplete="off" [max]="DLDateMAXop" matInput [matDatepicker]="pickerop"
+                   placeholder="Choose a date" [(ngModel)]="M_OPDAte" name="issuedayte" (dateChange)="Calculatedate($event);">
+            <mat-datepicker-toggle matSuffix [for]="pickerop"></mat-datepicker-toggle>
+            <mat-datepicker #pickerop></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-2  f-r content-right pb20">
+          <button class="btn btn-primary" style="margin-top:5%" data-dismiss="modal" autofocus (click)="Clicksch()">View Details</button>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin: 1%;">
+      <div class="col-sm-6 borderline" style="height:166px">
+        <h1 style="padding: 0px; margin: 0px; text-align: center; font-weight: 600;font-size: 16px; margin-bottom: 5px;">Store Details</h1>
+        <div class="row">
+          <div class="col-sm-3" style="color:darkblue">Store Name</div>
+          <div class="col-sm-1">:</div>
+          <div class="col-sm-8">{{storename}}</div>
+        </div>
+      </div>
+      <div class="col-sm-6 borderline">
+        <h1 style="padding: 0px; margin: 0px; text-align: center; font-weight: 600;font-size: 16px; margin-bottom: 5px;">Vendor Details</h1>
+        <div class="row">
+          <div class="col-sm-3" style="color:darkblue">Name</div>
+          <div class="col-sm-1">:</div>
+          <div class="col-sm-8">{{vendorname}}</div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3" style="color:darkblue">Address1</div>
+          <div class="col-sm-1">:</div>
+          <div class="col-sm-8">{{vendoradd}}</div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3" style="color:darkblue">Address2</div>
+          <div class="col-sm-1">:</div>
+          <div class="col-sm-8">{{vendoradd2}}</div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3" style="color:darkblue">Tax No.</div>
+          <div class="col-sm-1">:</div>
+          <div class="col-sm-8">{{vendorgst}}</div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3" style="color:darkblue">Location / City</div>
+          <div class="col-sm-1">:</div>
+          <div class="col-sm-8">{{vendorloc}} / {{vendorcity}}</div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-3" style="color:darkblue">State / Country</div>
+          <div class="col-sm-1">:</div>
+          <div class="col-sm-8">{{vendorstate}} / {{vendorcountry}}</div>
+        </div>
+
+      </div>
+    </div>
+    <div class="row tableFixHead" style="height: 180px; padding: 0px; width: 100%; margin: 0%;">
+      <table class="custom-table withoutbackgroung search-table table-bordered" style="margin-top: -1px;">
+        <thead>
+          <tr>
+            <th>Sno</th>
+            <th>Item</th>
+            <th>Type</th>
+            <!--<th>Brand</th>-->
+            <th>Model</th>
+            <th>Color</th>
+            <th style="width: 10%;">Grn Qty</th>
+            <th style="width: 10%;">Available Qty</th>
+            <th style="width: 10%;">Return Qty</th>
+            <th>Rate</th>
+            <th>Value</th>
+            <th style="width: 10%;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of Lensgriddata; let i=index;">
+            <td>{{i+1}}</td>
+            <td style="text-align:left">{{data.Item}}</td>
+            <td style="text-align:left">{{data.type}}</td>
+            <!--<td>{{data.Brand}}</td>-->
+            <td style="text-align:left">{{data.model}}</td>
+            <td style="text-align:left">{{data.color}}</td>
+            <td style="text-align:right">{{data.ClosingQty | number : '1.2-2'}}</td>
+            <td style="text-align:right">{{data.itemqty | number : '1.2-2'}}</td>
+            <td contenteditable="true" (keyup)="changeqty(data,$event);" (keypress)="RestrictNegativeValues($event)">0</td>
+            <td style="text-align:right">{{data.itemrate | number : '1.2-2'}}</td>
+            <td style="text-align:right">{{data.itemvalue | currency:Country2}}</td>
+            <td>
+              <mat-icon style="color:blue;cursor:pointer" data-toggle="tooltip" data-placement="top" title="View History" (click)="viewHistory(data)">receipt</mat-icon>
+              <mat-icon style="color:red;margin-left:1%;cursor:pointer" data-toggle="tooltip" data-placement="top" title="Remove Item" (click)="DeleteRecord(i)">delete_sweep</mat-icon>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-sm-12" style="margin-top:1%">
+      <div class="col-sm-4">
+        <mat-form-field appearance="outline" style="width: -webkit-fill-available;">
+          <mat-label>Remarks</mat-label>
+          <textarea [(ngModel)]="M_reasons" name="M_reasond" #messageFH maxlength="250" rows="3" cols="20" matInput placeholder="Enter Reasons for return"></textarea>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4" style="margin-top:4%">
+        <div class="content-right sub-section btn-wrap">
+          <button type="button" class="btn btn-warning-default" (click)="CancelOptical()"> Cancel </button>
+          <button class="success btn btn-primary" (click)="Onsubmit(MROForm)">Submit</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</form>
+
+
+
+<div class="modal" role="dialog" [ngStyle]="{'display':Helpblock}">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="HelpblocksClosessss()">&times;</button>
+        <h6 class="modal-title">Optical Material Return</h6>
+      </div>
+      <div class="modal-body">
+        <form #MROHelpForm="ngForm">
+          <div class="row">
+            <div class="col-sm-2">
+              <mat-form-field appearance="outline" style="width: 120%;">
+                <mat-label>Search Criteria</mat-label>
+                <mat-select [(ngModel)]="Searchcriter_M" required name="Searchcriter_Ms" (ngModelChange)="selectsearchcrriteria()">
+                  <mat-option value="Item">Item</mat-option>
+                  <mat-option value="Barcode">Barcode</mat-option>
+                  <mat-option value="RN">Receipt Number</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="col-sm-2" *ngIf="HideItemdropdown">
+              <mat-form-field appearance="outline" style="width: 120%;">
+                <mat-label>Item</mat-label>
+                <mat-select [(ngModel)]="SearchItem_M" required name="SearchItem_Ms" (ngModelChange)="Citysumbit()">
+                  <mat-option>None</mat-option>
+                  <mat-option *ngFor="let City of Itemdata" [value]="City.Value">{{City.Text}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+
+            <div class="col-sm-2" *ngIf="HideBarcodedropdown">
+              <mat-form-field appearance="outline" style="width: 120%;">
+                <mat-label>Bar Code</mat-label>
+                <input autocomplete="off" (keypress)="numberOnly($event)" required [(ngModel)]="M_Barcode" name="M_Barcodes" matInput placeholder="Enter Barcode">
+              </mat-form-field>
+            </div>
+
+            <div class="col-sm-2" *ngIf="HideRN">
+              <mat-form-field appearance="outline" style="width: 120%;">
+                <mat-label>Receipt Number</mat-label>
+                <input autocomplete="off" required [(ngModel)]="M_ReceiptnUmber" name="M_ReceiptnUmbers" matInput placeholder="Enter Receipt Number">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-2" *ngIf="HideItemdropdown">
+              <mat-form-field appearance="outline" style="width: 120%;">
+                <mat-label>Search Period</mat-label>
+                <mat-select [(ngModel)]="M_Periodsearch" name="sp" (ngModelChange)="Datesearch()">
+                  <mat-option>Select</mat-option>
+                  <mat-option value="Fromto">Specific period</mat-option>
+                  <mat-option value="onemonth">Last one month</mat-option>
+                  <mat-option value="three">Last three months</mat-option>
+                  <mat-option value="six">Last six months</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-2" *ngIf="HideDatepicker">
+              <mat-form-field appearance="outline" style="width: 120%;">
+                <mat-label>From Date</mat-label>
+                <input autocomplete="off" [max]="DLDateMAX1" matInput [matDatepicker]="picker1" placeholder="Choose a date" [(ngModel)]="M_DLNODate1" name="DLNODate1">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-2" *ngIf="HideDatepicker">
+              <mat-form-field appearance="outline" style="width: 120%;">
+                <mat-label>To Date</mat-label>
+                <input autocomplete="off" [max]="DLDateMAX2" matInput [matDatepicker]="picker2" placeholder="Choose a date" [(ngModel)]="M_DLNODate2" name="DLNODate2">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-2" style="margin-top:5px">
+              <button class="btn btn-primary" data-dismiss="modal" autofocus (click)="Searchalldata()">Get Details</button>
+            </div>
+          </div>
+          <div class="row" *ngIf="hidegrid">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+              <!--<input type="text" id="myInput" (keyup)="searchfiletr()" placeholder="Search..." title="Search">-->
+              <mat-form-field appearance="outline">
+                <mat-label>Search</mat-label>
+                <input autocomplete="off" id="myInput" (keyup)="searchfiletr()" matInput placeholder="Search...">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row" *ngIf="hidegrid">
+
+            <table class="custom-table withoutbackgroung search-table table-bordered" style="width: 98%;margin: 1%;">
+              <thead>
+                <tr>
+                  <th style="text-align:center">Action</th>
+                  <th style="text-align:center">Vendor</th>
+                  <th style="text-align:center">Receipt Number</th>
+                  <th style="text-align:center">Receipt Date</th>
+                  <!--<th style="text-align:center">Qty</th>-->
+                </tr>
+              </thead>
+              <tbody id="myTable">
+                <tr *ngFor="let data of Tabledata; let i = index;">
+                  <td style="text-align:center"><mat-checkbox (click)="selectreceiptnumber(data.RnNumber,data.RnDate)"></mat-checkbox></td>
+                  <td style="text-align:center">{{data.Vendor}}</td>
+                  <td style="text-align:center">{{data.RnNumber}}</td>
+                  <td style="text-align:center">{{data.RnDate | date: "dd-MMM-y"}}</td>
+                  <!--<td style="text-align:center">{{data.Tqty}}</td>-->
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-warning-default" data-dismiss="modal" autofocus (click)="HelpblocksClosessss()">Clear</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" role="dialog" [ngStyle]="{'display':Itemblock}">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="ItemblockClosessss()">&times;</button>
+        <h6 class="modal-title">History</h6>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-2" style="color:darkblue"><b>Item Description</b></div>
+          <div class="col-sm-1">:</div>
+          <div class="col-sm-5"><b>{{Itemname}}</b></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-2" style="color:darkblue"><b>Item Type</b></div>
+          <div class="col-sm-1">:</div>
+          <div class="col-sm-5"><b>{{Itemtype}}</b></div>
+        </div>
+        <table class="custom-table withoutbackgroung search-table table-bordered" style="width: 98%;margin: 1%;">
+          <thead>
+            <tr>
+              <th style="text-align:center">Sno</th>
+              <!--<th style="text-align:center">Item</th>
+              <th style="text-align:center">Brand Type</th>-->
+              <th style="text-align:center">Issue Number</th>
+              <th style="text-align:center">Issue Date</th>
+              <th style="text-align:center">Issue Qty</th>
+              <th style="text-align:center">Qty Value</th>
+              <!--<th style="text-align:center">Store</th>
+              <th style="text-align:center">Vendor</th>-->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of HistoryGriddata; let i = index">
+              <td style="text-align:left">{{i+1}}</td>
+              <!--<td>{{data.Brand}}</td>
+              <td>{{data.Brandtype}}</td>-->
+              <td style="text-align:left">{{data.Docnumber}}</td>
+              <td style="text-align:left">{{data.DocDate | date: "dd-MMM-y HH:mm"}}</td>
+              <td style="text-align:right">{{data.ItemQty | number : '1.2-2'}}</td>
+              <td style="text-align:right">{{data.ItemValue | currency:Country2}}</td>
+              <!--<td>{{data.Store}}</td>
+              <td>{{data.Vendor}}</td>-->
+            </tr>
+          </tbody>
+
+        </table>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-warning-default" data-dismiss="modal" autofocus (click)="ItemblockClosessss()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

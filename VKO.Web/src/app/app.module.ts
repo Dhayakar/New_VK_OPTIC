@@ -72,11 +72,9 @@ import { MouseEnterLeaveDebounceDirective } from './mouse-enter-leave-debounce.d
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgShortcutModule, NgShortcutConfig } from 'ng-shortcut';
 import { LoginComponent } from './Views/login/login.component';
-import { DashboardnewregisteredvaluesComponent } from './Views/dashboardnewregisteredvalues/dashboardnewregisteredvalues.component';
 import { AccessprivilegesComponent } from './Views/accessprivileges/accessprivileges.component';
 import { MaterialreturntovendorComponent } from './Views/materialreturntovendor/materialreturntovendor.component';
-import { SearchComponent } from './Views/search/search.component';
-import { WhatsapptemplateComponent } from './Views/whatsapptemplate/whatsapptemplate.component';
+import { DashboardComponent } from './Views/dashboard/dashboard.component';
 
 
 const shortcutConfig: NgShortcutConfig[] = [
@@ -92,11 +90,9 @@ const shortcutConfig: NgShortcutConfig[] = [
   declarations: [
     AppComponent,
     LoginComponent,
-    SearchComponent,
     AccessprivilegesComponent,
-    DashboardnewregisteredvaluesComponent,
+    DashboardComponent,
     MouseEnterLeaveDebounceDirective,
- WhatsapptemplateComponent,
 
   ],
   imports: [
@@ -166,7 +162,7 @@ const shortcutConfig: NgShortcutConfig[] = [
     AppRoutingModule
   ],
   exports: [MatFormFieldModule, MatInputModule, DragDropModule],
-  entryComponents: [SearchComponent],
+  entryComponents: [],
   providers: [CommonService, AuthGuard, DatePipe, EncrDecrServiceService, CurrencyPipe],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

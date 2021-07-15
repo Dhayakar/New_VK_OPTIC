@@ -1,0 +1,1102 @@
+<form #LensMaster="ngForm">
+
+
+  <div class="col-sm-12">
+    <div class="row">
+
+      <div class="col-sm-12 borfiglau-0">
+
+        <div class="row card-header center">
+          <h5> Lens / Frame Master</h5>
+        </div>
+
+        <div class="row mt-1p">
+          <div class="col-sm-2">
+            <button type="button" (click)="AddFrameShape()" matTooltip="Frame Shape Master" class="btn btn-primary-default btn-Excel buttonsfloat"> Frame Shape</button>
+          </div>
+          <div class="col-sm-2">
+            <button type="button" (click)="AddFrameType()" matTooltip="Frame Type Master" class="btn btn-primary-default btn-Excel buttonsfloat"> Frame Type</button>
+          </div>
+          <div class="col-sm-2">
+            <button type="button" (click)="AddFrameStyle()" matTooltip="Frame Style Master" class="btn btn-primary-default btn-Excel buttonsfloat"> Frame Style</button>
+          </div>
+          <div class="col-sm-2">
+            <button type="button" (click)="AddFrameWidth()" matTooltip="Frame Width Master" class="btn btn-primary-default btn-Excel buttonsfloat"> Frame Width</button>
+          </div>
+          <div class="col-sm-2">
+          </div>
+          <div class="col-sm-2">
+            <button class="btn-text cursor" (click)="Getformaccess()"><i class="fas fa-eye"></i> View Access</button>
+          </div>
+        </div>
+
+        <div class="row">
+
+
+          <div class="col-sm-2 mt10">
+            <mat-form-field appearance="outline">
+              <mat-label> Type </mat-label>
+              <mat-select [(ngModel)]="M_SelectedType" name="Type" (ngModelChange)="OptionSelect()" [disabled]="selectdisable">
+                <mat-option value="Frame">Frame</mat-option>
+                <mat-option value="Lens">Lens</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-2 mt10">
+            <mat-form-field appearance="outline">
+              <mat-label> Brand </mat-label>
+              <mat-select [(ngModel)]="M_Brand" name="Brand" [disabled]="M_Branddisable">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let Branda of getBranddata" [value]="Branda">{{Branda.Text}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-2 mt10">
+
+            <div *ngIf="FrameModel">
+              <mat-form-field appearance="outline">
+                <mat-label> Frame Option </mat-label>
+                <input [(ngModel)]="M_FrameModel" name="Frame" maxlength="25" autocomplete="off" matInput placeholder="Frame">
+              </mat-form-field>
+            </div>
+            <div *ngIf="LensType">
+              <mat-form-field appearance="outline">
+                <mat-label> Lens Option </mat-label>
+                <input [(ngModel)]="M_LensType" name="Lens" maxlength="25" autocomplete="off" matInput placeholder="Lens">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="col-sm-2 mt10">
+            <mat-form-field appearance="outline">
+              <mat-label>Model</mat-label>
+              <input [(ngModel)]="M_Model" name="Model" maxlength="25" autocomplete="off" matInput placeholder="Model">
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-2 mt10">
+
+            <mat-form-field appearance="outline">
+              <mat-label> Index </mat-label>
+              <mat-select [(ngModel)]="M_Index" name="Index" [disabled]="M_Indexdisable">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let Indexs of getIndexsdata" [value]="Indexs">{{Indexs.Text}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-2 mt10">
+            <mat-form-field appearance="outline">
+              <mat-label>Color</mat-label>
+              <input [(ngModel)]="M_Color" name="Color" maxlength="25" autocomplete="off" matInput placeholder="Color">
+            </mat-form-field>
+          </div>
+
+
+
+        </div>
+
+        <div class="row" *ngIf="Framechoose">
+
+          <div class="col-sm-2 mt10">
+            <mat-form-field appearance="outline">
+              <mat-label> Frame Shape </mat-label>
+              <mat-select [(ngModel)]="M_FrameShape" name="FrameShape">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let Shape of getFrameShape" [value]="Shape">{{Shape.Text}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+
+
+          <div class="col-sm-2 mt10">
+            <mat-form-field appearance="outline">
+              <mat-label> Frame Type </mat-label>
+              <mat-select [(ngModel)]="M_FrameType" name="FrameType">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let Type of getFrameType" [value]="Type">{{Type.Text}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+
+
+          <div class="col-sm-2 mt10">
+            <mat-form-field appearance="outline">
+              <mat-label> Frame Style </mat-label>
+              <mat-select [(ngModel)]="M_FrameStyle" name="FrameStyle">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let Style of getFrameStyle" [value]="Style">{{Style.Text}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+
+
+          <div class="col-sm-2 mt10">
+            <mat-form-field appearance="outline">
+              <mat-label> Frame Width </mat-label>
+              <mat-select [(ngModel)]="M_FrameWidth" name="FrameWidth">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let Width of getFrameWidth" [value]="Width">{{Width.Text}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-sm-2 mt10">
+            <mat-form-field appearance="outline">
+              <mat-label>Size</mat-label>
+              <input [(ngModel)]="M_Size" name="Size" autocomplete="off" maxlength="25" matInput placeholder="Size">
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-2 mt10">
+            <mat-form-field appearance="outline">
+              <mat-label> Description </mat-label>
+              <input [(ngModel)]="M_Description" name="Description" maxlength="25" autocomplete="off" matInput placeholder="Description">
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-2 mt10">
+            <mat-form-field appearance="outline">
+              <mat-label>Price</mat-label>
+              <input [(ngModel)]="M_Price" name="Price" maxlength="9" autocomplete="off" matInput placeholder="Price" (keypress)="numberOnly($event)">
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-2 mt10">
+            <mat-form-field appearance="outline">
+              <mat-label>HSN No</mat-label>
+              <input [(ngModel)]="M_HSNNo" name="HSNNo" maxlength="50" autocomplete="off" matInput placeholder="HSN No">
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-2 mt10">
+            <mat-form-field appearance="outline">
+              <mat-label>UOM</mat-label>
+              <mat-select style="font-weight:bold" [(ngModel)]="M_UOM" name="UOM" disabled>
+                <mat-option *ngFor="let UOM of getUOMdata" [value]="UOM">{{UOM.Text}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-2 mt10">
+            <mat-form-field appearance="outline">
+              <mat-label> Tax Description </mat-label>
+              <mat-select [(ngModel)]="M_GSTPER" name="GSTPER" (ngModelChange)="GSTSelected()">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let gst of getGSTdata" [value]="gst">{{gst.Text}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-sm-2 mt10">
+            <mat-form-field appearance="outline">
+              <mat-label>Tax</mat-label>
+              <input [(ngModel)]="M_BGST" name="BGST" autocomplete="off" matInput placeholder="GST" disabled>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-2 mt10">
+            <mat-form-field appearance="outline">
+              <mat-label>Addl Tax1 Desc1</mat-label>
+              <input [(ngModel)]="Addltax" name="CESSPERdesc" autocomplete="off" matInput placeholder="Addl Tax1 Desc1" disabled>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-2 mt10">
+            <mat-form-field appearance="outline">
+              <mat-label>Addl Tax1</mat-label>
+              <input [(ngModel)]="M_CESSPER" name="CESSPER" maxlength="25" autocomplete="off" matInput placeholder="CESSPER" disabled>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-2 mt10">
+            <mat-form-field appearance="outline">
+              <mat-label>Addl Tax1 Desc2</mat-label>
+              <input [(ngModel)]="Addltax1" name="CESSPERDesc2" autocomplete="off" matInput placeholder="AddlTax1Desc2" disabled>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-2 mt10">
+            <mat-form-field appearance="outline">
+              <mat-label>Addl Tax2</mat-label>
+              <input [(ngModel)]="M_ADDCESSPER" name="ADDCESSPER" maxlength="25" autocomplete="off" matInput placeholder="ADDCESS" disabled>
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-2 mt10">
+            <button type="button" (click)="AddRows()" data-toggle="tooltip" title="Add Item" class="btn btn-primary-default btn-Excel buttonsfloat cursor">Add Item </button>
+          </div>
+
+
+        </div>
+
+
+        <div class="row">
+
+          <div class="col-sm-2 mt10">
+
+          </div>
+
+          <div class="col-sm-3 mt10">
+
+          </div>
+
+          <div class="col-sm-3 mt10">
+          </div>
+
+          <div class="col-sm-3 mt10">
+
+            <div *ngIf="orginaltablefilter">
+              <mat-form-field appearance="outline">
+                <mat-label>Search</mat-label>
+                <input matInput (keyup)="applyFilter($event)" #input placeholder="Search" autocomplete="off">
+              </mat-form-field>
+            </div>
+
+            <div *ngIf="bindingtablefilter">
+              <mat-form-field appearance="outline">
+                <mat-label>Search</mat-label>
+                <input matInput (keyup)="applyFilter1($event)" #input placeholder="Search" autocomplete="off">
+              </mat-form-field>
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="col-sm-12">
+
+          <div *ngIf="orginaltable">
+
+            <div class="row heightAuto-250px">
+              <table mat-table matSort [dataSource]="dataSourcesq" class="custom-table withoutbackgroung search-table table-bordered">
+
+                <ng-container matColumnDef="Brand">
+                  <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Brand</th>
+                  <td mat-cell *matCellDef="let element ;let i = index;" class="text-left">{{element.Brandname}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Brands">
+                  <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" class="text-left"> Brand </th>
+                </ng-container>
+
+                <ng-container matColumnDef="lensoption">
+                  <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Lens Option</th>
+                  <td mat-cell *matCellDef="let element ;let i = index;" class="text-left">{{element.LensOption}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="lensoptions">
+                  <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" class="text-left"> Lens Option </th>
+                </ng-container>
+
+                <ng-container matColumnDef="Model">
+                  <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Model</th>
+                  <td mat-cell *matCellDef="let element ;let i = index;" class="text-left">{{element.Model}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="Models">
+                  <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" class="text-left"> Model </th>
+                </ng-container>
+
+
+                <ng-container matColumnDef="Index">
+                  <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Index</th>
+                  <td mat-cell *matCellDef="let element ;let i = index;" class="text-end">{{element.Indexname}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="Indexs">
+                  <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" class="text-end"> Index </th>
+                </ng-container>
+
+
+                <ng-container matColumnDef="Color">
+                  <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Color</th>
+                  <td mat-cell *matCellDef="let element ;let i = index;" class="text-left">{{element.Colour}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Colors">
+                  <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" class="text-left"> Color </th>
+                </ng-container>
+
+
+
+                <ng-container matColumnDef="Size">
+                  <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Size</th>
+                  <td mat-cell *matCellDef="let element ;let i = index;" class="text-end">{{element.Size}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="Sizes">
+                  <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" class="text-end"> Size </th>
+                </ng-container>
+
+
+                <ng-container matColumnDef="Description">
+                  <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Description</th>
+                  <td mat-cell *matCellDef="let element ;let i = index;" class="text-left">{{element.Description}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="Descriptions">
+                  <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" class="text-left"> Description </th>
+                </ng-container>
+
+                <ng-container matColumnDef="Price">
+                  <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Price</th>
+                  <td mat-cell *matCellDef="let element ;let i = index;" class="text-end">{{element.Prize | number : '1.2-2'}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="Prices">
+                  <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" class="text-end"> Price</th>
+                </ng-container>
+
+                <ng-container matColumnDef="UOM">
+                  <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">UOM</th>
+                  <td mat-cell *matCellDef="let element ;let i = index;" class="text-left">{{element.UOMname}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="UOMs">
+                  <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" class="text-left"> UOM </th>
+                </ng-container>
+
+
+                <ng-container matColumnDef="TaxDescription">
+                  <th mat-header-cell *matHeaderCellDef class="text-left">Description</th>
+                  <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">
+                    <div class="row text-left">
+                      <div *ngIf="element.TaxDescription != null && (element.GST != null && element.GST != 0)" class="col-sm-10 mt-8p">
+                        {{element.TaxDescription}}
+                      </div>
+                      <br />
+                      <div *ngIf="element.CessDescription != null && (element.CESSAmount != null && element.CESSAmount != 0)" class="col-sm-10">
+                        {{element.CessDescription}}
+                      </div>
+                      <br />
+                      <div *ngIf="element.AddtionalDescription != null && (element.ADDCESSAmount != null && element.ADDCESSAmount != 0)" class="col-sm-10">
+                        {{element.AddtionalDescription}}
+                      </div>
+                    </div>
+                  </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="GST">
+                  <th mat-header-cell *matHeaderCellDef class="text-end">%</th>
+                  <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">
+
+                    <div class="row text-end">
+
+                      <div *ngIf="(element.GST != null && element.GST != 0) && element.TaxDescription != null" class="col-sm-10 mt-8p">
+                        {{element.GST | number : '1.2-2'}}
+                      </div>
+                      <br />
+                      <div *ngIf="(element.CESSAmount != null && element.CESSAmount != 0) && element.CessDescription != null" class="col-sm-10">
+                        {{element.CESSAmount | number : '1.2-2'}}
+                      </div>
+                      <br />
+                      <div *ngIf="(element.ADDCESSAmount != null && element.ADDCESSAmount != 0) && element.AddtionalDescription != null" class="col-sm-10">
+                        {{element.ADDCESSAmount | number : '1.2-2'}}
+                      </div>
+                    </div>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Delete">
+                  <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Action</th>
+                  <td mat-cell *matCellDef="let element;let i = index;">
+                    <button mat-icon-button (click)="Editlensframemaster(i,element)">
+                      <mat-icon data-toggle="tooltip" title="Edit" class="grab">create</mat-icon>
+                    </button>&nbsp;&nbsp;
+                    <button mat-icon-button (click)="remove(i,element)" [disabled]="element.IsActive == true">
+                      <mat-icon data-toggle="tooltip" title="Remove" class="grab">delete</mat-icon>
+                    </button>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Deletes">
+                  <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">
+                    Action
+                  </th>
+                </ng-container>
+
+                <ng-container matColumnDef="header-row-third-group">
+                  <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> Tax </th>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="['Brands','lensoptions','Models','Indexs','Colors','Sizes','Descriptions','Prices','UOMs','header-row-third-group','Deletes'];sticky:true"></tr>
+                <tr mat-header-row *matHeaderRowDef="displayedColumnssq;sticky:true"></tr>
+                <tr mat-row *matRowDef="let row;  let even = even;columns: displayedColumnssq;" [ngClass]="{gray: even}"></tr>
+              </table>
+
+            </div>
+
+          </div>
+
+          <div *ngIf="bindingtable">
+
+            <div class="row heightAuto-250px">
+              <table mat-table matSort [dataSource]="dataSourcesqq" class="custom-table withoutbackgroung search-table table-bordered">
+
+                <ng-container matColumnDef="Brand">
+                  <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Brand</th>
+                  <td mat-cell *matCellDef="let element ;let i = index;" class="text-left">{{element.Brandname}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Brands">
+                  <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" class="text-left"> Brand </th>
+                </ng-container>
+
+
+
+                <ng-container matColumnDef="lensoption">
+                  <th mat-header-cell *matHeaderCellDef class="text-left">Option</th>
+                  <td mat-cell *matCellDef="let element ;let i = index;" class="text-left">{{element.LensOption}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="FrameShape">
+                  <th mat-header-cell *matHeaderCellDef class="text-left">Shape</th>
+                  <td mat-cell *matCellDef="let element ;let i = index;" class="text-left">{{element.FrameShape}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="FrameType">
+                  <th mat-header-cell *matHeaderCellDef class="text-left">Type</th>
+                  <td mat-cell *matCellDef="let element ;let i = index;" class="text-left">{{element.FrameType}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="FrameWidth">
+                  <th mat-header-cell *matHeaderCellDef class="text-left">Width</th>
+                  <td mat-cell *matCellDef="let element ;let i = index;" class="text-left">{{element.FrameWidth}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="FrameStyle">
+                  <th mat-header-cell *matHeaderCellDef class="text-left">Style</th>
+                  <td mat-cell *matCellDef="let element ;let i = index;" class="text-left">{{element.FrameStyle}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Model">
+                  <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Model</th>
+                  <td mat-cell *matCellDef="let element ;let i = index;" class="text-left">{{element.Model}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="Models">
+                  <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" class="text-left"> Model </th>
+                </ng-container>
+
+
+                <ng-container matColumnDef="Color">
+                  <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Color</th>
+                  <td mat-cell *matCellDef="let element ;let i = index;" class="text-left">{{element.Colour}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Colors">
+                  <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" class="text-left"> Color </th>
+                </ng-container>
+
+
+                <ng-container matColumnDef="Size">
+                  <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Size</th>
+                  <td mat-cell *matCellDef="let element ;let i = index;" class="text-end">{{element.Size}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="Sizes">
+                  <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" class="text-end"> Size </th>
+                </ng-container>
+
+                <ng-container matColumnDef="Description">
+                  <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Description</th>
+                  <td mat-cell *matCellDef="let element ;let i = index;" class="text-left">{{element.Description}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="Descriptions">
+                  <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" class="text-left"> Description </th>
+                </ng-container>
+
+                <ng-container matColumnDef="Price">
+                  <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Price</th>
+                  <td mat-cell *matCellDef="let element ;let i = index;" class="text-end">{{element.Prize | number : '1.2-2'}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="Prices">
+                  <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" class="text-end"> Price</th>
+                </ng-container>
+
+                <ng-container matColumnDef="UOM">
+                  <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">UOM</th>
+                  <td mat-cell *matCellDef="let element ;let i = index;" class="text-left">{{element.UOMname}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="UOMs">
+                  <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" class="text-left"> UOM </th>
+                </ng-container>
+
+
+                <ng-container matColumnDef="TaxDescription">
+                  <th mat-header-cell *matHeaderCellDef class="text-left">Description</th>
+                  <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">
+                    <div class="row text-left">
+                      <div *ngIf="element.TaxDescription != null && (element.GST != null && element.GST != 0)" class="col-sm-10 mt-8p">
+                        {{element.TaxDescription}}
+                      </div>
+                      <br />
+                      <div *ngIf="element.CessDescription != null && (element.CESSAmount != null && element.CESSAmount != 0)" class="col-sm-10">
+                        {{element.CessDescription}}
+                      </div>
+                      <br />
+                      <div *ngIf="element.AddtionalDescription != null && (element.ADDCESSAmount != null && element.ADDCESSAmount != 0)" class="col-sm-10">
+                        {{element.AddtionalDescription}}
+                      </div>
+                    </div>
+
+
+                  </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="GST">
+                  <th mat-header-cell *matHeaderCellDef class="text-end">%</th>
+                  <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">
+                    <div class="row text-end">
+                      <div *ngIf="(element.GST != null && element.GST != 0) && element.TaxDescription != null" class="col-sm-10 mt-8p">
+                        {{element.GST | number : '1.2-2'}}
+                      </div>
+                      <br />
+                      <div *ngIf="(element.CESSAmount != null && element.CESSAmount != 0) && element.CessDescription != null" class="col-sm-10">
+                        {{element.CESSAmount | number : '1.2-2'}}
+                      </div>
+                      <br />
+                      <div *ngIf="(element.ADDCESSAmount != null && element.ADDCESSAmount != 0) && element.AddtionalDescription != null" class="col-sm-10">
+                        {{element.ADDCESSAmount | number : '1.2-2'}}
+                      </div>
+                    </div>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Delete">
+                  <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Action</th>
+                  <td mat-cell *matCellDef="let element;let i = index;">
+                    <button mat-icon-button (click)="Editlensframemaster(i,element)">
+                      <mat-icon data-toggle="tooltip" title="Edit" class="grab">create</mat-icon>
+                    </button>
+                    &nbsp;&nbsp;
+                    <button mat-icon-button (click)="removeframe(i,element)" [disabled]="element.IsActive == true">
+                      <mat-icon data-toggle="tooltip" title="Remove" class="grab">delete</mat-icon>
+                    </button>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Deletes">
+                  <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">
+                    Action
+                  </th>
+                </ng-container>
+
+                <ng-container matColumnDef="header-row-group">
+                  <th mat-header-cell *matHeaderCellDef [attr.colspan]="5"> Frame </th>
+                </ng-container>
+
+                <ng-container matColumnDef="header-row-third-group">
+                  <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> Tax </th>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="['Brands','header-row-group','Models','Colors','Sizes','Descriptions','Prices','UOMs','header-row-third-group','Deletes'];sticky:true"></tr>
+                <tr mat-header-row *matHeaderRowDef="displayedColumnssqq;sticky:true"></tr>
+                <tr mat-row *matRowDef="let row;  let even = even;columns: displayedColumnssqq;" [ngClass]="{gray: even}"></tr>
+              </table>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+      <div class="col-sm-12 m-3">
+        <div class="col-sm-12 pb25">
+          <div class="col-sm-4  sub-section btn-wrap f-r">
+            <button type="button" class="btn btn-warning-default" (click)="CancelClk()"> Cancel </button>
+            <button type="submit" class="success btn btn-primary  ml-2p" *ngIf="hiddenUpdate" [disabled]="disupdate" id="update" (click)="onupdate()">Submit</button>
+            <button type="submit" class="success btn btn-primary  ml-2p" *ngIf="hiddenSubmit" [disabled]="disSubmit" id="submit" (click)="onSubmit()">Submit</button>
+            <button type="button" mat-raised-button class="danger btn-danger-default " *ngIf="hiddenDeleted" (click)="Deletelensframe()"><strong>Delete</strong></button>
+
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+</form>
+
+<div class="modal" role="dialog" [ngStyle]="{'display':cancelblock}">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" matTooltip="close" (click)="modalSuccessClosessss()">&times;</button>
+        <h5 class="modal-title center">Do you want to cancel?</h5>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-danger cursor" data-dismiss="modal" autofocus (click)="modalcloseOk()">No</button>
+        <button type="reset" class="btn btn-success cursor" data-dismiss="modal" (click)="modalSuccesssOk()">Yes</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal" role="dialog" [ngStyle]="{'display':modalframeshape}">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" matTooltip="close" (click)="modalSuccessframeshape()">&times;</button>
+        <h5 class="modal-title center">
+          Frame Shape
+        </h5>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+
+          <div class="col-sm-4">
+            <mat-form-field appearance="outline">
+              <mat-label>Frame Shape</mat-label>
+              <input #FrameShapefocus [(ngModel)]="masterFrameShape" name="masterFrameShape" matInput placeholder="FrameShape" autocomplete="off">
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-1">
+            <button (click)="ClickFrameShape()" class="btn-text cursor" data-toggle="tooltip" title="FrameShape">
+              <i class="fas fa-info-circle"> </i> Help
+            </button>
+          </div>
+
+
+          <div class="col-sm-2" *ngIf="Activeisd">
+            <mat-form-field appearance="outline">
+              <mat-label> IsActive </mat-label>
+              <mat-select [(ngModel)]="IsActive" name="Active">
+                <mat-option>Select</mat-option>
+                <mat-option value="true">Active</mat-option>
+                <mat-option value="false">InActive</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+        </div>
+
+
+        <div class="row">
+
+          <div class="col-sm-5" *ngIf="tableFrameShape">
+
+            <mat-form-field appearance="outline">
+              <mat-label>Search</mat-label>
+              <input matInput (keyup)="applyFilterFrameShape($event)" placeholder="Search">
+            </mat-form-field>
+
+            <div class="row heightAuto-300px">
+              <table mat-table [dataSource]="dataSourcesqd" class="custom-table withoutbackgroung search-table table-bordered">
+
+                <ng-container matColumnDef="Action">
+                  <th mat-header-cell *matHeaderCellDef>  Action </th>
+                  <td mat-cell *matCellDef="let element;let id = index">
+                    <mat-checkbox (click)="selecttyped(element)"></mat-checkbox>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Description">
+                  <th mat-header-cell *matHeaderCellDef>  Description </th>
+                  <td mat-cell *matCellDef="let element">{{element.Description}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="IsActive">
+                  <th mat-header-cell *matHeaderCellDef> Status </th>
+                  <td mat-cell *matCellDef="let element">{{element.IsActive}}</td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumnssqd"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnssqd;"></tr>
+              </table>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="row pb25">
+          <div class="col-sm-5  sub-section btn-wrap f-r">
+            <button class="btn btn-warning-default ml-2p cursor" (click)="oncancelFrameShape()">Cancel</button>
+            <button type="submit" class="success btn btn-primary  ml-2p cursor" *ngIf="hiddenUpdated" id="update" (click)="onupdateFrameShape()">Submit</button>
+            <button type="submit" class="success btn btn-primary  ml-2p cursor" *ngIf="hiddenSubmitd" id="submit" (click)="onSubmitFrameShape()">Submit</button>
+            <button mat-raised-button color="warn" class="ml-2p cursor" *ngIf="hiddenDeleted" (click)="onDeleteFrameShape()">Delete</button>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" role="dialog" [ngStyle]="{'display':modalframetype}">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" matTooltip="close" (click)="modalSuccessframetype()">&times;</button>
+        <h5 class="modal-title center">
+          Frame Type
+        </h5>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+
+          <div class="col-sm-4">
+            <mat-form-field appearance="outline">
+              <mat-label>Frame Type</mat-label>
+              <input #FrameTypefocus [(ngModel)]="masterFrameType" name="masterFrameType" matInput placeholder="Frame Type">
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-1">
+            <button (click)="ClickFrameType()" class="btn-text cursor" data-toggle="tooltip" title="FrameType" autocomplete="off">
+              <i class="fas fa-info-circle"> </i> Help
+            </button>
+          </div>
+
+
+          <div class="col-sm-2" *ngIf="Activeist">
+            <mat-form-field appearance="outline">
+              <mat-label> IsActive </mat-label>
+              <mat-select [(ngModel)]="IsActivet" name="Activet">
+                <mat-option>Select</mat-option>
+                <mat-option value="true">Active</mat-option>
+                <mat-option value="false">InActive</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-sm-5" *ngIf="tableFrameType">
+
+            <mat-form-field appearance="outline">
+              <mat-label>Search</mat-label>
+              <input matInput (keyup)="applyFilterFrameType($event)" placeholder="Search">
+            </mat-form-field>
+
+            <div class="row heightAuto-300px">
+              <table mat-table [dataSource]="dataSourcesqt" class="custom-table withoutbackgroung search-table table-bordered">
+
+                <ng-container matColumnDef="Action">
+                  <th mat-header-cell *matHeaderCellDef>  Action </th>
+                  <td mat-cell *matCellDef="let element;let id = index">
+                    <mat-checkbox (click)="selecttypet(element)"></mat-checkbox>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Description">
+                  <th mat-header-cell *matHeaderCellDef>  Description </th>
+                  <td mat-cell *matCellDef="let element">{{element.Description}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="IsActive">
+                  <th mat-header-cell *matHeaderCellDef> Status </th>
+                  <td mat-cell *matCellDef="let element">{{element.IsActive}}</td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumnssqt"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnssqt;"></tr>
+              </table>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+        <div class="row pb25">
+          <div class="col-sm-5  sub-section btn-wrap f-r">
+            <button class="btn btn-warning-default ml-2p cursor" (click)="oncancelFrameType()">Cancel</button>
+            <button type="submit" class="success btn btn-primary  ml-2p cursor" *ngIf="hiddenUpdatet" id="update" (click)="onupdateFrameType()">Submit</button>
+            <button type="submit" class="success btn btn-primary  ml-2p cursor" *ngIf="hiddenSubmitt" id="submit" (click)="onSubmitFrameType()">Submit</button>
+            <button mat-raised-button color="warn" class="ml-2p cursor" *ngIf="hiddenDeletet" (click)="onDeleteFrameType()">Delete</button>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" role="dialog" [ngStyle]="{'display':modalframestyle}">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" matTooltip="close" (click)="modalSuccessframestyle()">&times;</button>
+        <h5 class="modal-title center">
+          Frame Style
+        </h5>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+
+          <div class="col-sm-4">
+            <mat-form-field appearance="outline">
+              <mat-label>Frame Style</mat-label>
+              <input #FrameStylefocus [(ngModel)]="masterFrameStyle" name="masterFrameStyle" matInput placeholder="Frame Style" autocomplete="off">
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-1">
+            <button (click)="ClickFrameStyle()" class="btn-text cursor" data-toggle="tooltip" title="FrameStyle">
+              <i class="fas fa-info-circle"> </i> Help
+            </button>
+          </div>
+
+          <div class="col-sm-2" *ngIf="Activeiss">
+            <mat-form-field appearance="outline">
+              <mat-label> IsActive </mat-label>
+              <mat-select [(ngModel)]="IsActives" name="Actives">
+                <mat-option>Select</mat-option>
+                <mat-option value="true">Active</mat-option>
+                <mat-option value="false">InActive</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-sm-5" *ngIf="tableFrameStyle">
+
+            <mat-form-field appearance="outline">
+              <mat-label>Search</mat-label>
+              <input matInput (keyup)="applyFilterFrameStyle($event)" placeholder="Search">
+            </mat-form-field>
+
+            <div class="row heightAuto-300px">
+
+              <table mat-table [dataSource]="dataSourcesqs" class="custom-table withoutbackgroung search-table table-bordered">
+
+                <ng-container matColumnDef="Action">
+                  <th mat-header-cell *matHeaderCellDef>  Action </th>
+                  <td mat-cell *matCellDef="let element;let id = index">
+                    <mat-checkbox (click)="selecttypes(element)"></mat-checkbox>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Description">
+                  <th mat-header-cell *matHeaderCellDef>  Description </th>
+                  <td mat-cell *matCellDef="let element">{{element.Description}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="IsActive">
+                  <th mat-header-cell *matHeaderCellDef> Status </th>
+                  <td mat-cell *matCellDef="let element">{{element.IsActive}}</td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumnssqs"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnssqs;"></tr>
+              </table>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+        <div class="row pb25">
+          <div class="col-sm-5  sub-section btn-wrap f-r">
+            <button class="btn btn-warning-default ml-2p cursor" (click)="oncancelFrameStyle()">Cancel</button>
+            <button type="submit" class="success btn btn-primary  ml-2p cursor" *ngIf="hiddenUpdates" id="update" (click)="onupdateFrameStyle()">Submit</button>
+            <button type="submit" class="success btn btn-primary  ml-2p cursor" *ngIf="hiddenSubmits" id="submit" (click)="onSubmitFrameStyle()">Submit</button>
+            <button mat-raised-button color="warn" class="ml-2p cursor" *ngIf="hiddenDeletes" (click)="onDeleteFrameStyle()">Delete</button>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" role="dialog" [ngStyle]="{'display':modalframewidth}">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" matTooltip="close" (click)="modalSuccessframewidth()">&times;</button>
+        <h5 class="modal-title center">
+          Frame Width
+        </h5>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+
+          <div class="col-sm-4">
+            <mat-form-field appearance="outline">
+              <mat-label>Frame Width</mat-label>
+              <input #FrameWidthfocus [(ngModel)]="masterFrameWidth" name="masterFrameWidth" matInput placeholder="Frame Width" autocomplete="off">
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-1">
+            <button (click)="ClickFrameWidth()" class="btn-text cursor" data-toggle="tooltip" title="FrameWidth">
+              <i class="fas fa-info-circle"> </i> Help
+            </button>
+          </div>
+
+
+          <div class="col-sm-2" *ngIf="Activeisw">
+            <mat-form-field appearance="outline">
+              <mat-label> IsActive </mat-label>
+              <mat-select [(ngModel)]="IsActivew" name="Activew">
+                <mat-option>Select</mat-option>
+                <mat-option value="true">Active</mat-option>
+                <mat-option value="false">InActive</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-sm-5" *ngIf="tableFrameWidth">
+
+            <mat-form-field appearance="outline">
+              <mat-label>Search</mat-label>
+              <input matInput (keyup)="applyFilterFrameWidth($event)" placeholder="Search">
+            </mat-form-field>
+
+            <div class="row heightAuto-300px">
+
+              <table mat-table [dataSource]="dataSourcesqw" class="custom-table withoutbackgroung search-table table-bordered">
+
+                <ng-container matColumnDef="Action">
+                  <th mat-header-cell *matHeaderCellDef>  Action </th>
+                  <td mat-cell *matCellDef="let element;let id = index">
+                    <mat-checkbox (click)="selecttypew(element)" [disabled]="disablefw"></mat-checkbox>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Description">
+                  <th mat-header-cell *matHeaderCellDef>  Description </th>
+                  <td mat-cell *matCellDef="let element">{{element.Description}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="IsActive">
+                  <th mat-header-cell *matHeaderCellDef> Status </th>
+                  <td mat-cell *matCellDef="let element">{{element.IsActive}}</td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumnssqw"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnssqw;"></tr>
+              </table>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+        <div class="row pb25">
+          <div class="col-sm-5  sub-section btn-wrap f-r">
+            <button class="btn btn-warning-default ml-2p cursor" (click)="oncancelFrameWidth()">Cancel</button>
+            <button type="submit" class="success btn btn-primary  ml-2p cursor" *ngIf="hiddenUpdatew" id="update" (click)="onupdateFrameWidth()">Submit</button>
+            <button type="submit" class="success btn btn-primary  ml-2p cursor" *ngIf="hiddenSubmitw" id="submit" (click)="onSubmitFrameWidth()">Submit</button>
+            <button mat-raised-button color="warn" class="ml-2p cursor" *ngIf="hiddenDeletew" (click)="onDeleteFrameWidth()">Delete</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" role="dialog" [ngStyle]="{'display':accesspopup}">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title center">Lens / Frame Master - View Access</h5>
+      </div>
+      <div class="modal-body">
+        <table class="custom-table withoutbackgroung search-table table-bordered">
+          <thead>
+            <tr>
+              <th>Add</th>
+              <th>Edit</th>
+              <th>Delete</th>
+              <th>Export</th>
+              <th>Print</th>
+            </tr>
+          </thead>
+          <tbody>
+
+
+            <tr *ngFor="let x of accessdata; index as i">
+              <td><mat-checkbox [(checked)]="x.Add" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Edit" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Delete" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Export" disabled></mat-checkbox></td>
+              <td><mat-checkbox [(checked)]="x.Print" disabled></mat-checkbox></td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success cursor" data-dismiss="modal" autofocus (click)="modalcloseAccessOk()">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

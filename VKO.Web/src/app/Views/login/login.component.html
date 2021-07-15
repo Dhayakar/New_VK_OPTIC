@@ -1,0 +1,140 @@
+<div class="container" id="container" style="margin-top:5%">
+  <div class="form-container sign-in-container">
+
+    <p style="font-size:73px;color:black;margin-left:25%;margin-top:56%"><strong>WYNK</strong></p>
+    <p style="color:black;font-size:26px;width:max-content;margin-left:14%"><strong>Electronic Medical Record</strong></p>
+    <p style="color:black;font-size:16px;margin-left:42%;width:max-content"><strong>Ver : 1.1.4.5</strong></p>
+
+
+  </div>
+  <div class="overlay-container">
+    <div class="overlay">
+      <div class="overlay-panel overlay-left" style="background-color:white;border-right:4px solid #299696;border-radius: 2px; color: black;">
+        <p style="background-color:white;font-size:28px;color:black"><strong>Welcome Back!</strong></p>
+        <p><strong>To keep connected with us please login with your personal info</strong></p>
+        <!--<button class="ghost" id="signIn"  style="color:blue;cursor: pointer"><b>Sign In</b></button>-->
+
+        <button style="background-color: #32a852;border: coral;color:white;cursor: pointer" id="signIn">Sign In</button>
+      </div>
+      <div class="overlay-panel overlay-right" style="background-color:white;border-left:4px solid #299696;border-radius: 2px; color: black;">
+
+
+        <div class="form-container sign-in-container">
+          <form action="#">
+            <mat-form-field appearance="outline" style="width:-webkit-fill-available">
+              <mat-label>Email</mat-label>
+              <input matInput autocomplete="off" placeholder="Email" [(ngModel)]="user" [formControl]="email" name="email">
+              <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <div id="input_container">
+              <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input [disabled]="SubmitTdisabled" [(ngModel)]="password" autocomplete="off" id="myInput" matInput placeholder="password" (keydown.Enter)="login()" name="Password" [type]="hide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+
+            <mat-form-field *ngIf="HIdeRoledata" appearance="outline" style="width:-webkit-fill-available;margin-top:1%">
+              <mat-label>Role</mat-label>
+              <mat-select required [(ngModel)]="SelectRolesWIse" name="SelectRoless">
+
+                <mat-option *ngFor="let EngageROles of SelectRoles" [value]="EngageROles.Roles">{{EngageROles.Roles}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <!--<mat-form-field appearance="outline" *ngIf="HIdecompany" style="width:-webkit-fill-available;margin-top:1%">
+              <mat-label style="color:blue">Organization</mat-label>
+              <input [(ngModel)]="Branch" matInput placeholder="password" style="color:black;font-weight:bold" name="SelectCompanys" disabled />
+            </mat-form-field>-->
+            <mat-form-field *ngIf="HIdecompany" appearance="outline" style="width:-webkit-fill-available;margin-top:1%">
+              <mat-label>Branch</mat-label>
+              <mat-select required [(ngModel)]="SelectBranchWIse" name="SelectBranchCompanys">
+                <!--<mat-option value="Selectall">Select All</mat-option>-->
+                <mat-option *ngFor="let Engage of SelectCompany" [value]="Engage.CompanyIDS">{{Engage.CompanyNames}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <button style="background-color: #32a852;border: coral;color:white" type="submit" (click)="login()">Sign In</button>
+            <a (click)="forgetpassword()" class="grab" style="color:blue;cursor: pointer"><b>Forgot Password</b></a>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="modal" role="dialog" [ngStyle]="{'display':loginblock}" style="top:30%">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content" style="width: 450px;">
+      <div class="modal-body">
+        <p style="    text-align: center;
+    background-color: white;
+    color: black;
+    font-size: 17px">
+          You have already logged in another session <br />or the previous session was closed abruptly<br />
+          To close previous session and login, please logout based on link sent to your E-Mail/Phone.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" data-dismiss="modal" autofocus (click)="loginblockNo()">No</button>
+        <button type="reset" class="btn btn-success" style="background-color:green;border-color:green;" data-dismiss="modal" (click)="loginblockYes(user,password)">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal" role="dialog" [ngStyle]="{'display':Previoussuccesslogin}" style="top:30%">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content" style="width: 450px;">
+
+      <div class="modal-body">
+        <p style="text-align:center;background-color:white;color:black;font-size:17px">
+          You have successfully logged out of Previous session, Please login now.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="reset" class="btn btn-success" style="background-color:green;border-color:green;" data-dismiss="modal" (click)="PrevioussuccessloginYes()">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="modal cust-model" role="dialog" [ngStyle]="{'display':Forgotlogin}" style="z-index: 9999 !important;">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="ForgotloginOk()">&times;</button>
+        <h4 class="modal-title text-left">Forgot Password</h4>
+      </div>
+      <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+              <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input required matInput autocomplete="off" placeholder="Email" [(ngModel)]="Emaildid" [formControl]="emailf" name="mailid">
+                <mat-error *ngIf="emailf.invalid">{{getErrorMessagef()}}</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-2"></div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button class="success btn btn-primary"  (click)="Forlogtsend(Emaildid)">Submit</button>
+        <button class="btn btn-danger" autofocus (click)="ForgotloginOk()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,222 @@
+
+
+<form #StockForm="ngForm">
+
+  <div class="col-sm-12">
+    <div>
+      <h4 style="text-align:center;margin-top:12px;margin-bottom:-11px">
+        <label><b>Stock</b></label>
+      </h4>
+    </div>
+  </div>
+  <div class="col-sm-12" style="border:2px solid #51b8f2;background-color:white;border-radius:15px;margin-top:1%">
+    <br>
+    <div class="row">
+      <div class="col-sm-1"></div>
+
+      <div class="col-sm-2">
+        <mat-form-field appearance="outline" style="width:100%">
+          <mat-label>Date</mat-label>
+          <input [(ngModel)]="M_Date" [max]="maxDate()" name="Date" matInput [matDatepicker]="Date" placeholder="Date">
+          <mat-datepicker-toggle matSuffix [for]="Date"></mat-datepicker-toggle>
+          <mat-datepicker #Date></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-1" style="margin-top:1%">
+        <button type="submit" class="success" (click)="onSubmit(StockForm)" mat-raised-button>Submit</button>
+      </div>
+      <div class="col-sm-1" style="margin-top:1%">
+        <button class="btn btn-warning" type="button" style="margin-right: 10px;font-size:15px;color:orange;background-color:white" (click)="CancelClk()">Cancel</button>
+      </div>
+    </div>
+    <br>
+  </div>
+
+
+
+  <!------------table1----------->
+
+  <div *ngIf="StockTable">
+
+    <div class="col-sm-12" style="margin-top:3%">
+      <div class="row">
+        <div class="col-sm-1"></div>
+        <h4 class="col-sm-5" style="text-align:center;margin-left:1.5%;margin-bottom:1.5px">
+          <label><b>Stock Details</b></label>
+        </h4>
+      </div>
+    </div>
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10" style="border:2px solid #51b8f2;background-color:white;border-radius:15px">
+      <br>
+      <div class="row">
+        <div class="col-sm-2">
+          <mat-form-field appearance="outline" style="margin-left:16%;width:130%">
+            <mat-label>Search</mat-label>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Criteria">
+          </mat-form-field>
+        </div>
+        <div class="col-sm-8"></div>
+        <div class="col-sm-2" style="margin-left:-32px; align-content: flex-end">
+          <button mat-icon-button matTooltip="Export to PDF" (click)="getPdf2()"><img style="height:35px;width:35px;" src="assets/pdf.png" /></button>
+          &nbsp;&nbsp;<button mat-icon-button matTooltip="Export to Excel" (click)="getExcel2()"><img style="height:35px;width:45px;" src="assets/excel.svg" /></button>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="col-sm-1"></div>
+          <div class="col-sm-12 form" style="height:230px;overflow:auto;position:sticky" #table2>
+            <table mat-table #sortCol1="matSort" [dataSource]="dataSource" matSort id="stock_table2" class="mat-elevation-z8" style="width:130%;" #stock_table2>
+              <ng-container matColumnDef="tapp">
+                <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Action</th>
+                <td mat-cell *matCellDef="let element">
+                  <i class="material-icons">touch_app</i>
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="Brand Name">
+                <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Brand Name</th>
+                <td mat-cell *matCellDef="let element"> {{element.BrandName}} </td>
+              </ng-container>
+              <ng-container matColumnDef="Physical Stock">
+                <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Physical Stock</th>
+                <td mat-cell *matCellDef="let element" class="grab" data-toggle="tooltip" title="Search" (click)="selecttype(element)"> {{element.PhysicalStock}} </td>
+              </ng-container>
+              <ng-container matColumnDef="Consumable Stock">
+                <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Consumable Stock</th>
+                <td mat-cell *matCellDef="let element" class="grab" data-toggle="tooltip" title="Search" (click)="selecttype1(element)"> {{element.ConsumableStock}} </td>
+              </ng-container>
+              <ng-container matColumnDef="Expired Stock">
+                <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Expired Stock</th>
+                <td mat-cell *matCellDef="let element" class="grab" data-toggle="tooltip" title="Search" (click)="selecttype2(element)"> {{element.ExpiredStock}} </td>
+              </ng-container>
+              <ng-container matColumnDef="UOM">
+                <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">UOM</th>
+                <td mat-cell *matCellDef="let element"> {{element.UOM}} </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
+              <tr mat-row *matRowDef="let element;  let even = even; columns: displayedColumns;" [ngClass]="{gray: even}"></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+  </div>
+
+  <!--<----------table2------->
+  <div *ngIf="StockTable1">
+    <div class="col-sm-12" style="margin-top:3%">
+      <div class="row" *ngIf="hide1">
+        <div class="col-sm-1"></div>
+        <h4 class="col-sm-5" style="text-align:center;margin-left:1.5%">
+          <label><b>Physical Stock Details</b></label>
+        </h4>
+      </div>
+      <div class="row" *ngIf="hide2">
+        <div class="col-sm-1"></div>
+        <h4 class="col-sm-5" style="text-align:center;margin-left:1.5%">
+          <label><b>Consumable Stock Details</b></label>
+        </h4>
+      </div>
+      <div class="row" *ngIf="hide3">
+        <div class="col-sm-1"></div>
+        <h4 class="col-sm-5" style="text-align:center;margin-left:1.5%">
+          <label><b>Expiry Stock Details</b></label>
+        </h4>
+      </div>
+    </div>
+
+
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10" style="border:2px solid #51b8f2;background-color:white;border-radius:15px;margin-top:-1%;margin-bottom:90px">
+      <br>
+      <div class="col-sm-12">
+        <div class="col-sm-3">
+          <mat-form-field appearance="outline">
+            <!--style="width:19%;margin-left:1%"-->
+            <mat-label>Brand Name</mat-label>
+            <strong><input [(ngModel)]="brand" matInput name="brandname" style="color:darkblue" disabled></strong>
+          </mat-form-field>&#160;
+        </div>
+        <div class="col-sm-3">
+          <mat-form-field appearance="outline">
+            <mat-label>Manufacturer</mat-label>
+            <strong><input [(ngModel)]="M_facture" matInput name="manu" style="color:darkblue" disabled></strong>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-2" style="margin-left:-4%; align-content: flex-end">
+          <button mat-icon-button matTooltip="Export to PDF" (click)="getPdf3()"><img style="height:35px;width:35px;" src="assets/pdf.png" /></button>
+          &nbsp;&nbsp;<button mat-icon-button matTooltip="Export to Excel" (click)="getExcel3()"><img style="height:35px;width:45px;" src="assets/excel.svg" /></button>
+        </div>
+      </div>
+
+      <div class="col-sm-12 form" style="height:230px;" #table3>
+
+
+
+        <div class="col-sm-10" style="border:2px solid white; width:-webkit-fill-available;overflow:auto;background-color:white;border-radius: 0px;height: 229px;margin-top:-1%">
+          <table mat-table matSort [dataSource]="dataSource1" #sortCol2="matSort" id="stock_table3" class="mat-elevation-z8" style="width:889px;margin-bottom:-2%;" #stock_table3>
+            <ng-container matColumnDef="Batch Number">
+              <th mat-header-cell *matHeaderCellDef>Batch Number</th>
+              <td mat-cell *matCellDef="let element"> {{element.BatchNumber}} </td>
+            </ng-container>
+            <ng-container matColumnDef="Batch Qty">
+              <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Batch Qty</th>
+              <td mat-cell *matCellDef="let element"> {{element.BatchQty}} </td>
+            </ng-container>
+            <ng-container matColumnDef="Batch IssuedQty">
+              <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Batch IssuedQty</th>
+              <td mat-cell *matCellDef="let element"> {{element.BatchIssueQty}} </td>
+            </ng-container>
+            <ng-container matColumnDef="Batch BalanceQty">
+              <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Batch BalanceQty</th>
+              <td mat-cell *matCellDef="let element"> {{element.BatchBalanceQty}} </td>
+            </ng-container>
+            <ng-container matColumnDef="Batch Expiry">
+              <th mat-header-cell *matHeaderCellDef style="background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;height:40px">Batch Expiry</th>
+              <td mat-cell *matCellDef="let element"> {{element.BatchExpiry|date:'dd-MMM-y'}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns1;sticky:true"></tr>
+            <tr mat-row *matRowDef="let element;  let even = even;  columns: displayedColumns1;" [ngClass]="{gray: even}"></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+<!--------------POPUP-------------->
+<div class="modal" role="dialog" [ngStyle]="{'display':cancelblock}">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content" style="width: 400px;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="modalSuccessClose()">&times;</button>
+        <h4 class="modal-title">Stock</h4>
+      </div>
+      <p align="center">Do you want to cancel</p>
+      <div class="modal-footer">
+        <button class="btn btn-danger" data-dismiss="modal" autofocus (click)="modalcloseOk()">No</button>
+        <button class="btn btn-success" data-dismiss="modal" (click)="modalSuccessOk()">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
