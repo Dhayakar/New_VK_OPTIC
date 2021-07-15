@@ -367,7 +367,7 @@ export class MaterialreturntovendorComponent implements OnInit {
   invalid: boolean = false;
   CancelOptical() {
     this.router.navigateByUrl('/dash', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['OpticalMaterialReturn']);
+      this.router.navigate(['Opticalslazy/OpticalMaterialReturn']);
     });
   }
 
@@ -662,6 +662,7 @@ export class MaterialreturntovendorComponent implements OnInit {
   minDate;
   Datecomparision;
   compareDates(d1, d2) {
+    debugger;
     const date1 = new Date(d1);
     const date2 = new Date(d2);
 
