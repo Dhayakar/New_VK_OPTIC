@@ -1,0 +1,116 @@
+
+16-07-2021 04:43:45 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 04:43:45 	Message : 	Successfully Logged-In
+
+16-07-2021 04:43:45 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 04:43:45 	Message : 	Successfully Logged-In
+
+16-07-2021 05:13:13 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 05:13:13 	Message : 	Successfully Logged-In
+16-07-2021 05:16:47 	NumberControl 	{"VCID":11257,"TransactionID":1045,"DepartmentID":0,"CmpID":1062,"Prefix":"ISS","Suffix":"OMR","Description":"Optical Material Return","Autonumber":true,"RunningNumber":1,"EffectiveFrom":"2020-02-04T05:05:54.863","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2020-02-04T05:05:54.863","UpdatedUTC":null,"CreatedBy":1062,"UpdatedBy":null}
+16-07-2021 05:16:48 	OpticalStockTran 	{"STID":-9223372036854774807,"RandomUniqueID":"c96523b5-70d4-4688-af9c-47fb09146506","LMIDID":91,"POID":5,"ItemQty":5.0,"UOMID":3008,"ItemRate":3000.0,"ItemValue":15000.0,"ContraSMID":null,"ContraSTID":null,"ContraQty":null,"DiscountPercentage":0.0,"DiscountAmount":0.0,"GSTPercentage":null,"GSTTaxValue":null,"CGSTPercentage":null,"CGSTTaxValue":null,"SGSTPercentage":null,"SGSTTaxValue":null,"IGSTPercentage":null,"IGSTTaxValue":null,"IsDeleted":false,"CESSPercentage":null,"CESSAmount":null,"AdditionalCESSPercentage":null,"AddCESSAmount":null,"CreatedUTC":"2021-07-16T05:16:47.994442Z","UpdatedUTC":null,"CreatedBy":29163,"UpdatedBy":null}
+16-07-2021 05:16:48 	OpticalBalance 	{"ID":12,"LTID":91,"OpeningBalance":0,"REC01":0,"REC02":0,"REC03":0,"REC04":0,"REC05":0,"REC06":0,"REC07":20,"REC08":0,"REC09":0,"REC10":0,"REC11":0,"REC12":0,"ISS01":0,"ISS02":0,"ISS03":0,"ISS04":0,"ISS05":0,"ISS06":0,"ISS07":5,"ISS08":0,"ISS09":0,"ISS10":0,"ISS11":0,"ISS12":0,"ClosingBalance":15,"FYID":16,"CreatedUTC":"2021-07-09T11:39:59.463","UpdatedUTC":"2021-07-16T05:16:48.1608363Z","CreatedBy":32246,"UpdatedBy":29163,"CmpID":1062,"StoreID":10030,"UOMID":3008}
+
+16-07-2021 05:28:27 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 05:28:27 	Message : 	Successfully Logged-In
+
+16-07-2021 05:29:52 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 05:29:52 	Message : 	Successfully Logged-In
+
+16-07-2021 05:38:24 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 05:38:24 	Message : 	Successfully Logged-In
+
+16-07-2021 05:51:59 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 05:51:59 	Message : 	Successfully Logged-In
+
+16-07-2021 05:54:13 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 05:54:13 	Message : 	Successfully Logged-In
+
+16-07-2021 05:55:44 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 05:55:44 	Message : 	Successfully Logged-In
+
+16-07-2021 05:57:51 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 05:57:51 	Message : 	Successfully Logged-In
+
+16-07-2021 06:31:30 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 06:31:30 	Message : 	Successfully Logged-In
+
+16-07-2021 06:32:45 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 06:32:45 	Message : 	Successfully Logged-In
+
+16-07-2021 06:34:51 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 06:34:51 	Message : 	Successfully Logged-In
+
+16-07-2021 06:35:36 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 06:35:36 	Message : 	Successfully Logged-In
+
+16-07-2021 06:38:29 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 06:38:29 	Message : 	Successfully Logged-In
+
+16-07-2021 06:46:23 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 06:46:23 	Message : 	Successfully Logged-In
+
+16-07-2021 06:55:35 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 06:55:35 	Message : 	Successfully Logged-In
+
+16-07-2021 06:58:50 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 06:58:50 	Message : 	Successfully Logged-In
+
+16-07-2021 07:01:58 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 07:01:58 	Message : 	Successfully Logged-In
+
+16-07-2021 07:10:22 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 07:10:22 	Message : 	Successfully Logged-In
+
+16-07-2021 07:17:33 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 07:17:33 	Message : 	Successfully Logged-In
+
+16-07-2021 07:18:51 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 07:18:51 	Message : 	Successfully Logged-In
+
+16-07-2021 07:44:50 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 07:44:50 	Message : 	Successfully Logged-In
+
+16-07-2021 07:53:42 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 07:53:42 	Message : 	Successfully Logged-In
+
+16-07-2021 07:56:56 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 07:56:56 	Message : 	Successfully Logged-In
+
+16-07-2021 07:58:30 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 07:58:30 	Message : 	Successfully Logged-In
+
+16-07-2021 08:01:01 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 08:01:01 	Message : 	Successfully Logged-In
+
+16-07-2021 08:14:03 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 08:14:03 	Message : 	Successfully Logged-In
+
+16-07-2021 08:19:12 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 08:19:12 	Message : 	Successfully Logged-In
+
+16-07-2021 11:24:08 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 11:24:08 	Message : 	Successfully Logged-In
+
+16-07-2021 11:26:34 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 11:26:34 	Message : 	Successfully Logged-In
+16-07-2021 11:27:24 	NumberControl 	{"VCID":11330,"TransactionID":1047,"DepartmentID":0,"CmpID":1062,"Prefix":"EXP","Suffix":"PAY","Description":"Expense Transaction","Autonumber":true,"RunningNumber":1,"EffectiveFrom":"2021-05-17T05:22:02.21","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2021-05-17T05:22:02.21","UpdatedUTC":null,"CreatedBy":1062,"UpdatedBy":null}
+
+16-07-2021 11:31:48 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+16-07-2021 11:31:48 	Message : 	Successfully Logged-In
+16-07-2021 11:32:37 	NumberControl 	{"VCID":11330,"TransactionID":1047,"DepartmentID":0,"CmpID":1062,"Prefix":"EXP","Suffix":"PAY","Description":"Expense Transaction","Autonumber":true,"RunningNumber":2,"EffectiveFrom":"2021-05-17T05:22:02.21","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2021-05-17T05:22:02.21","UpdatedUTC":null,"CreatedBy":1062,"UpdatedBy":null}
+16-07-2021 11:38:11 	NumberControl 	{"VCID":11330,"TransactionID":1047,"DepartmentID":0,"CmpID":1062,"Prefix":"EXP","Suffix":"PAY","Description":"Expense Transaction","Autonumber":true,"RunningNumber":3,"EffectiveFrom":"2021-05-17T05:22:02.21","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2021-05-17T05:22:02.21","UpdatedUTC":null,"CreatedBy":1062,"UpdatedBy":null}
+16-07-2021 11:41:56 	NumberControl 	{"VCID":11330,"TransactionID":1047,"DepartmentID":0,"CmpID":1062,"Prefix":"EXP","Suffix":"PAY","Description":"Expense Transaction","Autonumber":true,"RunningNumber":4,"EffectiveFrom":"2021-05-17T05:22:02.21","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2021-05-17T05:22:02.21","UpdatedUTC":null,"CreatedBy":1062,"UpdatedBy":null}
+16-07-2021 11:51:18 	NumberControl 	{"VCID":11330,"TransactionID":1047,"DepartmentID":0,"CmpID":1062,"Prefix":"EXP","Suffix":"PAY","Description":"Expense Transaction","Autonumber":true,"RunningNumber":5,"EffectiveFrom":"2021-05-17T05:22:02.21","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2021-05-17T05:22:02.21","UpdatedUTC":null,"CreatedBy":1062,"UpdatedBy":null}
+16-07-2021 11:54:11 	NumberControl 	{"VCID":11330,"TransactionID":1047,"DepartmentID":0,"CmpID":1062,"Prefix":"EXP","Suffix":"PAY","Description":"Expense Transaction","Autonumber":true,"RunningNumber":6,"EffectiveFrom":"2021-05-17T05:22:02.21","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2021-05-17T05:22:02.21","UpdatedUTC":null,"CreatedBy":1062,"UpdatedBy":null}
+16-07-2021 11:56:38 	NumberControl 	{"VCID":11330,"TransactionID":1047,"DepartmentID":0,"CmpID":1062,"Prefix":"EXP","Suffix":"PAY","Description":"Expense Transaction","Autonumber":true,"RunningNumber":7,"EffectiveFrom":"2021-05-17T05:22:02.21","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2021-05-17T05:22:02.21","UpdatedUTC":null,"CreatedBy":1062,"UpdatedBy":null}
+16-07-2021 11:58:16 	Expense Master 	"An error occurred while updating the entries. See the inner exception for details."
+16-07-2021 12:00:53 	NumberControl 	{"VCID":11330,"TransactionID":1047,"DepartmentID":0,"CmpID":1062,"Prefix":"EXP","Suffix":"PAY","Description":"Expense Transaction","Autonumber":true,"RunningNumber":8,"EffectiveFrom":"2021-05-17T05:22:02.21","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2021-05-17T05:22:02.21","UpdatedUTC":null,"CreatedBy":1062,"UpdatedBy":null}
+16-07-2021 12:07:27 	NumberControl 	{"VCID":11330,"TransactionID":1047,"DepartmentID":0,"CmpID":1062,"Prefix":"EXP","Suffix":"PAY","Description":"Expense Transaction","Autonumber":true,"RunningNumber":9,"EffectiveFrom":"2021-05-17T05:22:02.21","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2021-05-17T05:22:02.21","UpdatedUTC":null,"CreatedBy":1062,"UpdatedBy":null}
+16-07-2021 12:08:15 	NumberControl 	{"VCID":11330,"TransactionID":1047,"DepartmentID":0,"CmpID":1062,"Prefix":"EXP","Suffix":"PAY","Description":"Expense Transaction","Autonumber":true,"RunningNumber":10,"EffectiveFrom":"2021-05-17T05:22:02.21","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2021-05-17T05:22:02.21","UpdatedUTC":null,"CreatedBy":1062,"UpdatedBy":null}
+16-07-2021 12:12:15 	NumberControl 	{"VCID":11330,"TransactionID":1047,"DepartmentID":0,"CmpID":1062,"Prefix":"EXP","Suffix":"PAY","Description":"Expense Transaction","Autonumber":true,"RunningNumber":11,"EffectiveFrom":"2021-05-17T05:22:02.21","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2021-05-17T05:22:02.21","UpdatedUTC":null,"CreatedBy":1062,"UpdatedBy":null}
+16-07-2021 12:15:18 	NumberControl 	{"VCID":11330,"TransactionID":1047,"DepartmentID":0,"CmpID":1062,"Prefix":"EXP","Suffix":"PAY","Description":"Expense Transaction","Autonumber":true,"RunningNumber":12,"EffectiveFrom":"2021-05-17T05:22:02.21","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2021-05-17T05:22:02.21","UpdatedUTC":null,"CreatedBy":1062,"UpdatedBy":null}
+16-07-2021 12:16:51 	NumberControl 	{"VCID":11330,"TransactionID":1047,"DepartmentID":0,"CmpID":1062,"Prefix":"EXP","Suffix":"PAY","Description":"Expense Transaction","Autonumber":true,"RunningNumber":13,"EffectiveFrom":"2021-05-17T05:22:02.21","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2021-05-17T05:22:02.21","UpdatedUTC":null,"CreatedBy":1062,"UpdatedBy":null}
+16-07-2021 12:20:09 	NumberControl 	{"VCID":11330,"TransactionID":1047,"DepartmentID":0,"CmpID":1062,"Prefix":"EXP","Suffix":"PAY","Description":"Expense Transaction","Autonumber":true,"RunningNumber":14,"EffectiveFrom":"2021-05-17T05:22:02.21","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2021-05-17T05:22:02.21","UpdatedUTC":null,"CreatedBy":1062,"UpdatedBy":null}
+16-07-2021 13:10:38 	NumberControl 	{"VCID":11330,"TransactionID":1047,"DepartmentID":0,"CmpID":1062,"Prefix":"EXP","Suffix":"PAY","Description":"Expense Transaction","Autonumber":true,"RunningNumber":15,"EffectiveFrom":"2021-05-17T05:22:02.21","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2021-05-17T05:22:02.21","UpdatedUTC":null,"CreatedBy":1062,"UpdatedBy":null}
+16-07-2021 13:12:10 	NumberControl 	{"VCID":11330,"TransactionID":1047,"DepartmentID":0,"CmpID":1062,"Prefix":"EXP","Suffix":"PAY","Description":"Expense Transaction","Autonumber":true,"RunningNumber":16,"EffectiveFrom":"2021-05-17T05:22:02.21","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2021-05-17T05:22:02.21","UpdatedUTC":null,"CreatedBy":1062,"UpdatedBy":null}

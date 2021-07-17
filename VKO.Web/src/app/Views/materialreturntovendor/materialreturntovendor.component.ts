@@ -399,7 +399,7 @@ export class MaterialreturntovendorComponent implements OnInit {
         this.commonService.data.Remarks = this.M_reasons;
         this.commonService.data.GRN = this.GRNNUMBER;
         this.commonService.data.TransactiomnID = this.G_Transactiontypeid;
-        this.commonService.data.Issuedate = this.M_OPDAte;
+        this.commonService.data.Issuedate = new Date();
         this.commonService.data.vendorid = this.Vendorid;
         this.commonService.data.storeiud = this.storeid;
         this.commonService.postData('Meterialreturn/Submitopticaldata', this.commonService.data)

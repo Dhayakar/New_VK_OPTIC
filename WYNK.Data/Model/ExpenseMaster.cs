@@ -13,7 +13,7 @@ namespace WYNK.Data.Model
         public DateTime CreatedUTC { get; set; }
         public DateTime? UpdatedUTC { get; set; }
         public int CreatedBY { get; set; }
-        public int UpdatedBY { get; set; }
+        public int? UpdatedBY { get; set; }
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
     }
