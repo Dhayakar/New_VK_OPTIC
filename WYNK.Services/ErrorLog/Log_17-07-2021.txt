@@ -200,3 +200,7 @@
 
 17-07-2021 11:29:40 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
 17-07-2021 11:29:40 	Message : 	Successfully Logged-In
+
+17-07-2021 12:51:08 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+17-07-2021 12:51:08 	Message : 	Successfully Logged-In
+17-07-2021 12:59:18 	NumberControl 	{"VCID":11330,"TransactionID":1047,"DepartmentID":0,"CmpID":1062,"Prefix":"EXP","Suffix":"PAY","Description":"Expense Transaction","Autonumber":true,"RunningNumber":37,"EffectiveFrom":"2021-05-17T05:22:02.21","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2021-05-17T05:22:02.21","UpdatedUTC":null,"CreatedBy":1062,"UpdatedBy":null}

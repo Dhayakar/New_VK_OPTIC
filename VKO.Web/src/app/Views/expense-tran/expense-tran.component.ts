@@ -63,6 +63,7 @@ export class ExpenseTranComponent implements OnInit {
   ngOnInit() {
     // this.myEventsQ.push = function () { Array.prototype.push.apply(this, arguments); this.processQ(); };
     this.TotalAmt = 0;
+    this.M_DAte = new Date();
     var Pathname = "ExpenseModule/ExpTran";
     var n = Pathname;
     this.getalldropdowons();
@@ -607,7 +608,7 @@ export class ExpenseTranComponent implements OnInit {
   }
 
   DateChange() {
-    debugger;
+    debugger;    
     var date = this.Datepipe.transform(this.M_DAte, "dd-MMM-yyyy");
     this.commonService.getListOfData('Expense/GetdatabasedonDate/' + localStorage.getItem("CompanyID") + '/' + date)
       .subscribe(data => {
@@ -625,6 +626,7 @@ export class ExpenseTranComponent implements OnInit {
             this.commonService.data.Expesneitemdata.push(paydetails);
           }
         } else {
+          this.TotalAmt = 0;
           Swal.fire({
             type: 'warning',
             title: 'warning',
@@ -641,6 +643,28 @@ export class ExpenseTranComponent implements OnInit {
           this.dataSource.data = [];
         }
       });
+  }
+  Paymentamount;
+
+  totalamounttobepaid() {
+    debugger;
+    if (this.TotalAmt != 0 && this.TotalAmt != undefined && this.TotalAmt != null) {
+      this.Paymentamount = this.TotalAmt;
+     // this.PTotalAmount = this.TotalAmt;
+    } else {
+      Swal.fire({
+        type: 'warning',
+        title: 'warning',
+        text: 'Add Expense details',
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 2500,
+        customClass: {
+          popup: 'alert-warp',
+          container: 'alert-container',
+        },
+      });
+    }
   }
 
   /////////////////////////////////////////////////////////The End////////////////////////////////////////////////////

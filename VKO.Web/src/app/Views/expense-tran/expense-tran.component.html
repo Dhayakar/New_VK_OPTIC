@@ -28,7 +28,7 @@
 
     <div class="container">
       <input id="tab-1" type="radio" name="tabs" checked="checked" />
-      <input id="tab-2" type="radio" name="tabs" />
+      <input id="tab-2" type="radio" name="tabs" (click)="totalamounttobepaid()"/>
       <div class="tabs">
         <label for="tab-1">Expense Details</label>
         <label for="tab-2">Payment details</label>
@@ -100,7 +100,7 @@
           <div class="col-sm-12">
             <div class="card mb-3">
               <h5 class="card-header">
-                Payment
+                Payment - Expense total amount to be paid : {{Paymentamount | currency:Country2}}
                 <button style="float:right" class="btn btn-warning-default" data-toggle="tooltip" title="Add Payment details" (click)="AddPaymentDetailsNewgrid()"><i style="margin-right:1%" class="fa fa-money"></i>Add Payment</button>
               </h5>
               <div class="card-body">
