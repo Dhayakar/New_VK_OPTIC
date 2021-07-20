@@ -10,3 +10,128 @@
 
 19-07-2021 05:11:14 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
 19-07-2021 05:11:14 	Message : 	Successfully Logged-In
+
+19-07-2021 06:48:35 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 06:48:35 	Message : 	Successfully Logged-In
+
+19-07-2021 06:54:10 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 06:54:10 	Message : 	Successfully Logged-In
+
+19-07-2021 06:58:37 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 06:58:37 	Message : 	Successfully Logged-In
+
+19-07-2021 06:58:37 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 06:58:37 	Message : 	Successfully Logged-In
+
+19-07-2021 07:00:10 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 07:00:10 	Message : 	Successfully Logged-In
+19-07-2021 07:03:05 	NumberControl 	{"VCID":11330,"TransactionID":1047,"DepartmentID":0,"CmpID":1062,"Prefix":"EXP","Suffix":"PAY","Description":"Expense Transaction","Autonumber":true,"RunningNumber":41,"EffectiveFrom":"2021-05-17T05:22:02.21","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2021-05-17T05:22:02.21","UpdatedUTC":null,"CreatedBy":1062,"UpdatedBy":null}
+
+19-07-2021 07:11:20 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 07:11:20 	Message : 	Successfully Logged-In
+
+19-07-2021 07:11:46 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 07:11:46 	Message : 	Successfully Logged-In
+
+19-07-2021 07:30:09 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 07:30:09 	Message : 	Successfully Logged-In
+
+19-07-2021 07:30:47 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 07:30:47 	Message : 	Successfully Logged-In
+
+19-07-2021 07:38:52 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 07:38:52 	Message : 	Successfully Logged-In
+
+19-07-2021 07:41:07 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 07:41:07 	Message : 	Successfully Logged-In
+
+19-07-2021 07:45:13 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 07:45:13 	Message : 	Successfully Logged-In
+
+19-07-2021 07:47:55 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 07:47:55 	Message : 	Successfully Logged-In
+
+19-07-2021 07:52:31 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 07:52:31 	Message : 	Successfully Logged-In
+
+19-07-2021 07:53:37 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 07:53:37 	Message : 	Successfully Logged-In
+
+19-07-2021 07:54:08 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 07:54:08 	Message : 	Successfully Logged-In
+
+19-07-2021 07:55:39 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 07:55:39 	Message : 	Successfully Logged-In
+19-07-2021 08:06:03 	NumberControl 	{"VCID":11330,"TransactionID":1047,"DepartmentID":0,"CmpID":1062,"Prefix":"EXP","Suffix":"PAY","Description":"Expense Transaction","Autonumber":true,"RunningNumber":42,"EffectiveFrom":"2021-05-17T05:22:02.21","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2021-05-17T05:22:02.21","UpdatedUTC":null,"CreatedBy":1062,"UpdatedBy":null}
+19-07-2021 08:07:18 	NumberControl 	{"VCID":11330,"TransactionID":1047,"DepartmentID":0,"CmpID":1062,"Prefix":"EXP","Suffix":"PAY","Description":"Expense Transaction","Autonumber":true,"RunningNumber":43,"EffectiveFrom":"2021-05-17T05:22:02.21","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2021-05-17T05:22:02.21","UpdatedUTC":null,"CreatedBy":1062,"UpdatedBy":null}
+19-07-2021 08:10:56 	NumberControl 	{"VCID":11330,"TransactionID":1047,"DepartmentID":0,"CmpID":1062,"Prefix":"EXP","Suffix":"PAY","Description":"Expense Transaction","Autonumber":true,"RunningNumber":44,"EffectiveFrom":"2021-05-17T05:22:02.21","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2021-05-17T05:22:02.21","UpdatedUTC":null,"CreatedBy":1062,"UpdatedBy":null}
+19-07-2021 08:11:48 	NumberControl 	{"VCID":11330,"TransactionID":1047,"DepartmentID":0,"CmpID":1062,"Prefix":"EXP","Suffix":"PAY","Description":"Expense Transaction","Autonumber":true,"RunningNumber":45,"EffectiveFrom":"2021-05-17T05:22:02.21","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2021-05-17T05:22:02.21","UpdatedUTC":null,"CreatedBy":1062,"UpdatedBy":null}
+19-07-2021 08:17:30 	NumberControl 	{"VCID":11330,"TransactionID":1047,"DepartmentID":0,"CmpID":1062,"Prefix":"EXP","Suffix":"PAY","Description":"Expense Transaction","Autonumber":true,"RunningNumber":46,"EffectiveFrom":"2021-05-17T05:22:02.21","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2021-05-17T05:22:02.21","UpdatedUTC":null,"CreatedBy":1062,"UpdatedBy":null}
+19-07-2021 08:19:01 	NumberControl 	{"VCID":11330,"TransactionID":1047,"DepartmentID":0,"CmpID":1062,"Prefix":"EXP","Suffix":"PAY","Description":"Expense Transaction","Autonumber":true,"RunningNumber":47,"EffectiveFrom":"2021-05-17T05:22:02.21","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2021-05-17T05:22:02.21","UpdatedUTC":null,"CreatedBy":1062,"UpdatedBy":null}
+
+19-07-2021 09:21:22 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 09:21:22 	Message : 	Successfully Logged-In
+
+19-07-2021 09:44:18 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 09:44:18 	Message : 	Successfully Logged-In
+
+19-07-2021 09:52:38 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 09:52:38 	Message : 	Successfully Logged-In
+
+19-07-2021 10:13:31 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 10:13:31 	Message : 	Successfully Logged-In
+
+19-07-2021 10:29:51 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 10:29:51 	Message : 	Successfully Logged-In
+19-07-2021 10:30:36 	NumberControl 	{"VCID":11330,"TransactionID":1047,"DepartmentID":0,"CmpID":1062,"Prefix":"EXP","Suffix":"PAY","Description":"Expense Transaction","Autonumber":true,"RunningNumber":48,"EffectiveFrom":"2021-05-17T05:22:02.21","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2021-05-17T05:22:02.21","UpdatedUTC":null,"CreatedBy":1062,"UpdatedBy":null}
+
+19-07-2021 10:33:25 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 10:33:25 	Message : 	Successfully Logged-In
+19-07-2021 10:38:12 	NumberControl 	{"VCID":11257,"TransactionID":1045,"DepartmentID":0,"CmpID":1062,"Prefix":"ISS","Suffix":"OMR","Description":"Optical Material Return","Autonumber":true,"RunningNumber":2,"EffectiveFrom":"2020-02-04T05:05:54.863","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2020-02-04T05:05:54.863","UpdatedUTC":null,"CreatedBy":1062,"UpdatedBy":null}
+19-07-2021 10:38:13 	OpticalStockTran 	{"STID":-9223372036854774807,"RandomUniqueID":"76ac6313-f002-45f4-8ad3-3b70e7fb1972","LMIDID":91,"POID":5,"ItemQty":3.0,"UOMID":3008,"ItemRate":3000.0,"ItemValue":9000.0,"ContraSMID":null,"ContraSTID":null,"ContraQty":null,"DiscountPercentage":0.0,"DiscountAmount":0.0,"GSTPercentage":null,"GSTTaxValue":null,"CGSTPercentage":null,"CGSTTaxValue":null,"SGSTPercentage":null,"SGSTTaxValue":null,"IGSTPercentage":null,"IGSTTaxValue":null,"IsDeleted":false,"CESSPercentage":null,"CESSAmount":null,"AdditionalCESSPercentage":null,"AddCESSAmount":null,"CreatedUTC":"2021-07-19T10:38:12.9961119Z","UpdatedUTC":null,"CreatedBy":29163,"UpdatedBy":null}
+19-07-2021 10:38:13 	OpticalBalance 	{"ID":12,"LTID":91,"OpeningBalance":0,"REC01":0,"REC02":0,"REC03":0,"REC04":0,"REC05":0,"REC06":0,"REC07":20,"REC08":0,"REC09":0,"REC10":0,"REC11":0,"REC12":0,"ISS01":0,"ISS02":0,"ISS03":0,"ISS04":0,"ISS05":0,"ISS06":0,"ISS07":8,"ISS08":0,"ISS09":0,"ISS10":0,"ISS11":0,"ISS12":0,"ClosingBalance":12,"FYID":16,"CreatedUTC":"2021-07-09T11:39:59.463","UpdatedUTC":"2021-07-19T10:38:13.1558045Z","CreatedBy":32246,"UpdatedBy":29163,"CmpID":1062,"StoreID":10030,"UOMID":3008}
+
+19-07-2021 11:43:44 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 11:43:44 	Message : 	Successfully Logged-In
+
+19-07-2021 11:49:57 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 11:49:57 	Message : 	Successfully Logged-In
+
+19-07-2021 12:20:38 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 12:20:38 	Message : 	Successfully Logged-In
+
+19-07-2021 12:22:58 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 12:22:58 	Message : 	Successfully Logged-In
+
+19-07-2021 12:36:29 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 12:36:29 	Message : 	Successfully Logged-In
+
+19-07-2021 12:40:57 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 12:40:57 	Message : 	Successfully Logged-In
+
+19-07-2021 12:41:46 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 12:41:46 	Message : 	Successfully Logged-In
+
+19-07-2021 12:44:01 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 12:44:01 	Message : 	Successfully Logged-In
+
+19-07-2021 12:45:28 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 12:45:28 	Message : 	Successfully Logged-In
+
+19-07-2021 12:46:43 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 12:46:43 	Message : 	Successfully Logged-In
+
+19-07-2021 12:48:36 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 12:48:36 	Message : 	Successfully Logged-In
+
+19-07-2021 12:50:01 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 12:50:01 	Message : 	Successfully Logged-In
+
+19-07-2021 12:51:35 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 12:51:35 	Message : 	Successfully Logged-In
+
+19-07-2021 12:55:52 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 12:55:52 	Message : 	Successfully Logged-In
+
+19-07-2021 13:43:01 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+19-07-2021 13:43:01 	Message : 	Successfully Logged-In

@@ -28,7 +28,7 @@
 
     <div class="container">
       <input id="tab-1" type="radio" name="tabs" checked="checked" />
-      <input id="tab-2" type="radio" name="tabs" (click)="totalamounttobepaid()"/>
+      <input id="tab-2" type="radio" name="tabs" (click)="totalamounttobepaid()" />
       <div class="tabs">
         <label for="tab-1">Expense Details</label>
         <label for="tab-2">Payment details</label>
@@ -39,7 +39,8 @@
             <div class="card mb-3">
               <h5 class="card-header  text-white">
                 Expense
-                <button style="float:right" class="btn btn-warning-default" data-toggle="tooltip" title="Add Expense details" (click)="AddExpenseNewgrid()">Add Expense</button>
+                <button style="float:right;margin-left:1%" class="btn btn-warning-default" data-toggle="tooltip" title="Add Expense Master" (click)="AddExpenseMaster()">Add Expense Master</button>
+                <button style="float:right" class="btn btn-warning-default" data-toggle="tooltip" title="Add Expense details" (click)="AddExpenseNewgrid()">Add Item</button>
               </h5>
               <div class="card-body">
                 <div class="row">
@@ -71,7 +72,7 @@
                       <ng-container matColumnDef="Remmrk">
                         <th mat-header-cell *matHeaderCellDef style="width:30%"> Narration </th>
                         <td mat-cell *matCellDef="let transaction; let id = index">
-                          <input value="{{transaction.Remarks}}" style="border: 1px solid lightgray; padding: 6px; margin-top: -10px;border-radius: 4px;" matInput (keyup)="changeRemarks(id,'Remmrk',$event);" placeholder="Enter Remarks">                         
+                          <input value="{{transaction.Remarks}}" style="border: 1px solid lightgray; padding: 6px; margin-top: -10px;border-radius: 4px;" matInput (keyup)="changeRemarks(id,'Remmrk',$event);" placeholder="Enter Remarks">
                         </td>
                         <td mat-footer-cell *matFooterCellDef> </td>
                       </ng-container>
@@ -206,7 +207,7 @@
             </div>
           </div>
         </div>
-      </div>    
+      </div>
     </div>
     <div class="col-sm-12 m-3">
       <div class="col-sm-12 pb25 ml-12p">
@@ -256,3 +257,86 @@
     </div>
   </div>
 </div>
+
+<div class="modal" role="dialog" [ngStyle]="{'display':Expensemasterpopup}">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="Expensemasterpopupclose()">&times;</button>
+        <h4 class="modal-title">Expense Master</h4>
+      </div>
+      <div class="modal-body">
+        <form #ExpenseMasterForm="ngForm">
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="row">
+                  <div class="col-sm-10">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Description</mat-label>
+                      <input autocomplete="off" [(ngModel)]="M_Description" name="Desc" matInput placeholder="Enter Description" required>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-sm-2" style="margin-top: 1%;">
+                    <button class="btn btn-warning-default" (click)="Gethelp()">Help</button>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-sm-3" style="margin-left: 5%;width: 10%;">
+                <mat-form-field appearance="outline" *ngIf="Hideupdatebtn">
+                  <mat-label>Is Active</mat-label>
+                  <mat-select required [(ngModel)]="activecol" name="statusact">
+                    <mat-option value="Yes">Yes</mat-option>
+                    <mat-option value="No">No</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-sm-4" *ngIf="hidestatustable">
+                <table mat-table [dataSource]="dataSourcemaster" class="custom-table withoutbackgroung search-table table-bordered">
+                  <ng-container matColumnDef="Actions">
+                    <th mat-header-cell *matHeaderCellDef> Action </th>
+                    <td mat-cell *matCellDef="let transaction"> <mat-checkbox (click)="selectitem(transaction)"></mat-checkbox> </td>
+                  </ng-container>
+                  <ng-container matColumnDef="Description">
+                    <th mat-header-cell *matHeaderCellDef> Description </th>
+                    <td mat-cell *matCellDef="let transaction">{{transaction.Description}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="Statuss">
+                    <th mat-header-cell *matHeaderCellDef> IsActive </th>
+                    <td mat-cell *matCellDef="let transaction">{{transaction.Status}}</td>
+                  </ng-container>
+                  <tr mat-header-row *matHeaderRowDef="displayedColumnsMaSTER;sticky: true"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumnsMaSTER;"></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </form>
+
+
+
+      </div>
+      <div class="modal-footer" style="border:none">
+        <div class="row" style="margin-top: 1%;margin-bottom:1%">
+          <div class="col-sm-4">
+          
+          </div>
+          <div class="col-sm-4">
+          
+
+          </div>
+          <div class="col-sm-4">
+            <button class="btn btn-warning-default" style="margin-right:1%" (click)="Cancelhelp(ExpenseMasterForm)">Cancel</button>
+            <button *ngIf="Hideupdatebtn" class="btn btn-danger" style="margin-right:1%" (click)="Deletedata(ExpenseMasterForm)">Delete</button>
+            <button *ngIf="Hideupdatebtn"  class="btn btn-primary" (click)="Updatedata(ExpenseMasterForm)">Submit</button>
+            <button *ngIf="Hidesubmitbtn"  class="btn btn-primary" (click)="Submitdata(ExpenseMasterForm)">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

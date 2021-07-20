@@ -229,7 +229,7 @@ namespace WYNK.Data.Repository.Implementation
                                 exptracking.ExpenseID = Convert.ToInt32(item.ID);
                                 exptracking.NewValue = Convert.ToDecimal(item.Amount);
                                 exptracking.OldValue = trcliddata.Amount;
-                                exptracking.ModifiedDate = DateTime.UtcNow;
+                                exptracking.ModifiedDate = DT;
                                 exptracking.username = CMPSContext.Users.Where(x => x.Userid == ExpenseDetails.Userid).Select(x => x.Username).FirstOrDefault();
                                 exptracking.CreatedUTC = DateTime.UtcNow;
                                 exptracking.CreatedBY = ExpenseDetails.Userid;
@@ -244,7 +244,7 @@ namespace WYNK.Data.Repository.Implementation
                                 exptracking.ExpenseID = Convert.ToInt32(item.ID);
                                 exptracking.NewValue = Convert.ToDecimal(0);
                                 exptracking.OldValue = Convert.ToDecimal(item.Amount);
-                                exptracking.ModifiedDate = DateTime.UtcNow;
+                                exptracking.ModifiedDate = DT;
                                 exptracking.username = CMPSContext.Users.Where(x => x.Userid == ExpenseDetails.Userid).Select(x => x.Username).FirstOrDefault();
                                 exptracking.CreatedUTC = DateTime.UtcNow;
                                 exptracking.CreatedBY = ExpenseDetails.Userid;
@@ -348,6 +348,39 @@ namespace WYNK.Data.Repository.Implementation
             return data;
         }
 
+        public dynamic Getexpensestatement(int cmpid, string date, string tdate)
+        {
+            var data = new ExpenseViewModel();
+            data.Expensestatementdata = new List<Expensestatementdata>();
+            
+            DateTime DT;
+            var appdate = DateTime.TryParseExact(date.Trim(), "dd-MMM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DT);
+            {
+                DT.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture);
+            }
+            DateTime TDT;
+            var appTdate = DateTime.TryParseExact(tdate.Trim(), "dd-MMM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out TDT);
+            {
+                TDT.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture);
+            }
+            var exptran = WYNKContext.ExpenseTran.Where(x => x.ExpenseDate.Date >= DT && x.ExpenseDate.Date <= TDT && x.CMPID == cmpid).ToList();
+            var expmaster = WYNKContext.ExpenseMaster.Where(x => x.CMPID == cmpid).ToList();
+            data.Expensestatementdata = (from et in exptran
+                                         join em in expmaster on et.ExpenseMasterID equals em.ID
+                                         select new Expensestatementdata
+                                         {
+                                              ID = et.ExpenseMasterID,
+                                              Date = et.ExpenseDate.ToString("dd-MMM-yyyy"),
+                                              ExpenseDescription =em.ExpenseDescription,
+                                              TotalAmount = et.Amount,
+                                              Remarks = et.Remarks,
+                                         }).ToList();
+            data.orderedamount = data.Expensestatementdata.Sum(x => x.TotalAmount);
+            data.Comapnyaddress = CMPSContext.Company.Where(x => x.CmpID == cmpid).Select(x => x.Address1).FirstOrDefault();
+            data.Comapnyaddress2 = CMPSContext.Company.Where(x => x.CmpID == cmpid).Select(x => x.Address2).FirstOrDefault();
+            data.ComapnyPhone = CMPSContext.Company.Where(x => x.CmpID == cmpid).Select(x => x.Phone1).FirstOrDefault();
+            return data;
+        }
 
         ////////////////////////////////////////////////////////////////////////////The End///////////////////////////////////
     }

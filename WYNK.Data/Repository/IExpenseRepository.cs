@@ -15,5 +15,6 @@ namespace WYNK.Data.Repository
         dynamic DeleteExpenseMaster(int Desc, int cmpid, int userid);
         dynamic Submitexpensetrandata(ExpenseViewModel ExpenseDetails);
         dynamic GetdatabasedonDate(int cmpid, string date);
+        dynamic Getexpensestatement(int cmpid, string date, string tdate);
     }
 }

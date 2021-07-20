@@ -59,9 +59,19 @@ export class ExpenseTranComponent implements OnInit {
   backdrop;
   TotalAmt;
   Tc;
-  // myEventsQ = [];
+  //Master Variables
+
+  Hideupdatebtn: boolean = false;
+  hidestatustable: boolean = false;
+  Hidesubmitbtn: boolean = false;
+  M_Description;
+  activecol;
+  Dataid;
+  Datadesc;
+  DataStatus;
+
   ngOnInit() {
-    // this.myEventsQ.push = function () { Array.prototype.push.apply(this, arguments); this.processQ(); };
+    this.Hidesubmitbtn = true;
     this.TotalAmt = 0;
     this.M_DAte = new Date();
     var Pathname = "ExpenseModule/ExpTran";
@@ -666,6 +676,241 @@ export class ExpenseTranComponent implements OnInit {
       });
     }
   }
+  Expensemasterpopup;
+  Expensemasterpopupclose() {
+    this.Expensemasterpopup = 'none';
+  }
+  AddExpenseMaster() {
+    this.Expensemasterpopup = 'block';
+    this.Hidesubmitbtn = true;
+    this.hidestatustable = false;
+    this.Hideupdatebtn = false;
+  }
+  displayedColumnsMaSTER = ['Actions', 'Description', 'Statuss'];
+  dataSourcemaster = new MatTableDataSource();
+  @ViewChild('ExpenseMasterForm') Forms: NgForm
+  Cancelhelp(Forms: NgForm) {
+    Forms.resetForm();
+    this.Hideupdatebtn = false;
+    this.Hidesubmitbtn = true;
+    this.hidestatustable = false;
+  }
 
+  Gethelp() {
+    debugger;
+    this.commonService.getListOfData('Expense/GetExpenseMaster/' + localStorage.getItem("CompanyID"))
+      .subscribe(data => {
+        if (data.length != 0) {
+          this.dataSourcemaster.data = data;
+          this.hidestatustable = true;
+        } else {
+          Swal.fire({
+            type: 'warning',
+            title: 'warning',
+            text: 'No Data',
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2500,
+            customClass: {
+              popup: 'alert-warp',
+              container: 'alert-container',
+            },
+          });
+        }
+      });
+  }
+  Submitdata(Forms: NgForm) {
+    if (Forms.valid) {
+      if (this.M_Description != null && this.M_Description != undefined && this.M_Description != " " && this.M_Description != "") {
+        this.commonService.getListOfData('Expense/InsertExpenseMaster/' + this.M_Description + '/' + localStorage.getItem("CompanyID") + '/' + localStorage.getItem("userroleID"))
+          .subscribe(data => {
+            if (data.Success == true) {
+              Swal.fire({
+                type: 'success',
+                title: 'success',
+                text: 'Saved Successfully',
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2500,
+                customClass: {
+                  popup: 'alert-warp',
+                  container: 'alert-container',
+                },
+              });
+              Forms.resetForm();
+              this.Hideupdatebtn = false;
+              this.Hidesubmitbtn = true;
+              this.hidestatustable = false;
+              this.commonService.getListOfData('Expense/GetactiveExpenseMaster/' + localStorage.getItem("CompanyID"))
+                .subscribe(data => {
+                  if (data.length != 0) {
+                    this.expensearry = data;
+                    //this.DummyHistorydata = data;          
+                  }
+                });
+            } else {
+              Swal.fire({
+                type: 'warning',
+                title: 'warning',
+                text: 'Invalid Data',
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2500,
+                customClass: {
+                  popup: 'alert-warp',
+                  container: 'alert-container',
+                },
+              });
+            }
+          });
+      } else {
+        Swal.fire({
+          type: 'warning',
+          title: 'warning',
+          text: 'Enter Description',
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 2500,
+          customClass: {
+            popup: 'alert-warp',
+            container: 'alert-container',
+          },
+        });
+      }
+    }
+  }
+  selectitem(data) {
+    debugger;
+    this.hidestatustable = false;
+    this.Hidesubmitbtn = false;
+    this.Hideupdatebtn = true;
+    this.activecol = data.Status;
+    this.M_Description = data.Description;
+    this.Dataid = data.ID;
+    this.Datadesc = data.Description;
+    this.DataStatus = data.Status;
+  }
+
+  Deletedata(Forms: NgForm) {
+    debugger;
+    if (Forms.valid) {
+      this.commonService.getListOfData('Expense/DeleteExpenseMaster/' + localStorage.getItem("CompanyID") + '/' + localStorage.getItem("userroleID") + '/' + this.Dataid)
+        .subscribe(data => {
+          if (data.Success == true) {
+            Swal.fire({
+              type: 'success',
+              title: 'success',
+              text: 'Deleted Successfully',
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 2500,
+              customClass: {
+                popup: 'alert-warp',
+                container: 'alert-container',
+              },
+            });
+            Forms.resetForm();
+            this.Hideupdatebtn = false;
+            this.Hidesubmitbtn = true;
+            this.hidestatustable = false;
+            this.commonService.getListOfData('Expense/GetactiveExpenseMaster/' + localStorage.getItem("CompanyID"))
+              .subscribe(data => {
+                if (data.length != 0) {
+                  this.expensearry = data;
+                  //this.DummyHistorydata = data;          
+                }
+              });
+          } else {
+            Swal.fire({
+              type: 'warning',
+              title: 'warning',
+              text: 'Invalid Data',
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 2500,
+              customClass: {
+                popup: 'alert-warp',
+                container: 'alert-container',
+              },
+            });
+          }
+        });
+    }
+  }
+
+  Updatedata(Forms: NgForm) {
+    debugger;
+    if (Forms.valid) {
+      if (this.Datadesc == this.M_Description && this.DataStatus == this.activecol) {
+        Swal.fire({
+          type: 'warning',
+          title: 'warning',
+          text: 'Description Duplicate',
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 2500,
+          customClass: {
+            popup: 'alert-warp',
+            container: 'alert-container',
+          },
+        });
+      } else {
+        this.commonService.getListOfData('Expense/UpdateExpenseMaster/' + this.M_Description + '/' + localStorage.getItem("CompanyID") + '/' + localStorage.getItem("userroleID") + '/' + this.Dataid + '/' + this.activecol)
+          .subscribe(data => {
+            if (data.Success == true) {
+              Swal.fire({
+                type: 'success',
+                title: 'success',
+                text: 'Saved Successfully',
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2500,
+                customClass: {
+                  popup: 'alert-warp',
+                  container: 'alert-container',
+                },
+              });
+              Forms.resetForm();
+              this.Hideupdatebtn = false;
+              this.Hidesubmitbtn = true;
+              this.hidestatustable = false;
+              this.commonService.getListOfData('Expense/GetactiveExpenseMaster/' + localStorage.getItem("CompanyID"))
+                .subscribe(data => {
+                  if (data.length != 0) {
+                    this.expensearry = data;
+                    //this.DummyHistorydata = data;          
+                  }
+                });
+            } else {
+              Swal.fire({
+                type: 'warning',
+                title: 'warning',
+                text: 'Invalid Data',
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2500,
+                customClass: {
+                  popup: 'alert-warp',
+                  container: 'alert-container',
+                },
+              });
+            }
+          });
+      }
+    } else {
+      Swal.fire({
+        type: 'warning',
+        title: 'warning',
+        text: 'Check Inputs',
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 2500,
+        customClass: {
+          popup: 'alert-warp',
+          container: 'alert-container',
+        },
+      });
+    }
+  }
   /////////////////////////////////////////////////////////The End////////////////////////////////////////////////////
 }

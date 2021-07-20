@@ -13,6 +13,7 @@ namespace WYNK.Data.Model.ViewModel
         public ICollection<Payment_Master> paymenttran { get; set; }
         public ICollection<Paymentexpesne> Paymentexpesne { get; set; }
         public ICollection<ExpenseMasterUpdatehelpdata> ExpenseMasterUpdatehelpdata { get; set; }
+        public ICollection<Expensestatementdata> Expensestatementdata { get; set; }
 
         public string paidto { get; set; }
         public int Cmpid { get; set; }
@@ -22,6 +23,11 @@ namespace WYNK.Data.Model.ViewModel
         public string PaymentNumber { get; set; }
         public int TransactionID { get; set; }
         public decimal orderedamount { get; set; }
+
+
+        public string Comapnyaddress { get; set; }
+        public string Comapnyaddress2 { get; set; }
+        public string ComapnyPhone { get; set; }
     }
     public class Paymentexpesne
     {
@@ -35,6 +41,15 @@ namespace WYNK.Data.Model.ViewModel
         public string Description { get; set; }
         public string Status { get; set; }
         public decimal Amount { get; set; }
+    }
+
+    public class Expensestatementdata
+    {
+        public int ID { get; set; }
+        public string ExpenseDescription { get; set; }
+        public string Date { get; set; }
+        public string Remarks { get; set; }
+        public decimal TotalAmount { get; set; }
     }
 
     public class ExpenseMasterUpdatehelpdata

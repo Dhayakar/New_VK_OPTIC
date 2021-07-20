@@ -53,7 +53,14 @@ namespace WYNK.Services.Controllers
         }
 
 
+        [HttpGet("Getexpensestatement/{cmpid}/{date}/{tdate}")]
+        public dynamic Getexpensestatement(int cmpid, string date, string tdate)
+        {
+            return _repoWrapper.Expense.Getexpensestatement(cmpid, date, tdate);
+        }
         
+
+
 
         [HttpPost("Submitexpensetrandata")]
         public dynamic Submitexpensetrandata([FromBody] ExpenseViewModel ExpenseDetails)
