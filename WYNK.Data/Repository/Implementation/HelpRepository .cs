@@ -3839,5 +3839,17 @@ namespace WYNK.Data.Repository.Implementation
             return consum;
 
         }
+
+        public dynamic getopticalMaterialdetails()
+        {
+            return (from lt in WYNKContext.Lenstrans
+                    join b in WYNKContext.Brand on lt.Brand equals b.ID
+                    join ob in WYNKContext.OpticalBalance.Where(x => x.ClosingBalance > 0) on lt.ID equals ob.LTID
+                    select new serviceDropdown
+                    {
+                        Text = b.Description,
+                        Value = b.ID.ToString(),
+                    }).OrderBy(x => x.Text).ToList();
+        }
     }
 }

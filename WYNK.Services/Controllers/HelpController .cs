@@ -554,9 +554,13 @@ namespace WebApiCore.Controllers
         }
 
 
-        
 
 
+        [HttpGet("getopticalMaterialdetails")]
+        public dynamic getopticalMaterialdetails()
+        {
+            return _repoWrapper.Help.getopticalMaterialdetails();
+        }
 
         [HttpGet("getMedicalRegisters/{FromDate}/{ToDate}/{CMPID}")]
         public dynamic getMedicalRegisters(DateTime FromDate, DateTime ToDate,  int CMPID)
