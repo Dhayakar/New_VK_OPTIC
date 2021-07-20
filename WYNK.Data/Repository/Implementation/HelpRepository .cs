@@ -1,11 +1,13 @@
 ﻿//using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using WYNK.Data.Model;
 using WYNK.Data.Model.ViewModel;
 using WYNK.Helpers;
+
+using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 //using System.Text;
 
 
@@ -1067,13 +1069,13 @@ namespace WYNK.Data.Repository.Implementation
             return help;
         }
 
-        public Help getCode1(int ICDGROUPCODE)
+        public Help getCode1(int ICDGROUPCODE, int CMPID)
         {
             var help = new Help();
 
             var icdmaster = WYNKContext.ICDMaster.ToList();
             var onelinemaster = CMPSContext.OneLineMaster.ToList();
-            var surgerycost = WYNKContext.SurgeryCostDetail.ToList();
+            var surgerycost = WYNKContext.SurgeryCostDetail.Where(x => x.CMPID == CMPID).ToList();
             var ICDSpecialityCode = WYNKContext.ICDSpecialityCode.ToList();
             var room = WYNKContext.Room.ToList();
 
@@ -1088,10 +1090,11 @@ namespace WYNK.Data.Repository.Implementation
                                   icdgroup = onelinemaster.Where(x => x.OLMID == Convert.ToInt32(ICD.ICDGroup)).Select(x => x.ParentDescription).FirstOrDefault(),
                                   Status = ICD.IsActive == true ? "Active" : "InActive",
                                   IsIOLReqd = ICD.IsIOLReqd,
-                                  roomtype = room.Where(x => x.ID == Convert.ToInt32(SC.RoomType)).Select(x => x.RoomType).FirstOrDefault(),
+                                  //roomtype = room.Where(x => x.ID == Convert.ToInt32(SC.RoomType)).Select(x => x.RoomType).FirstOrDefault(),
+                                  //roomtype = SC.RoomType != "" ? room.Where(x => x.ID == Convert.ToInt32(SC.RoomType)).Select(x => x.RoomDescription).FirstOrDefault() : string.Empty,
+                                  roomtype = SC.RoomType,
+                                  roomtype1 = onelinemaster.Where(x => x.OLMID == Convert.ToInt32(SC.RoomType)).Select(x => x.ParentDescription).FirstOrDefault(),
                               }
-
-
                              ).ToList();
 
             return help;
@@ -1788,7 +1791,7 @@ namespace WYNK.Data.Repository.Implementation
                                      select new SurgeryDischargedetail
                                      {
                                          UIN = admission.UIN,
-                                         Name = registration.Where(x => x.UIN == admission.UIN).Select(x => x.Name).FirstOrDefault(),
+                                         Name = registration.Where(x => x.UIN == admission.UIN).Select(reg => String.Concat(reg.Name + " " + (reg.MiddleName != null ? reg.MiddleName : " ") + " " + reg.LastName)).FirstOrDefault(),
                                          DOB = registration.Where(x => x.UIN == admission.UIN).Select(x => x.DateofBirth).FirstOrDefault(),
                                          Age = ToAgeString(registration.Where(x => x.UIN == admission.UIN).Select(x => x.DateofBirth).FirstOrDefault()),
                                          Gender = registration.Where(x => x.UIN == admission.UIN).Select(x => x.Gender).FirstOrDefault(),
@@ -1836,7 +1839,7 @@ namespace WYNK.Data.Repository.Implementation
                                                         UIN = reg.UIN,
                                                         RegistrationTranId = surDischarge.RegTranID,
                                                         SurgeryId = surDischarge.SurgeryID,
-                                                        Name = reg.Name,
+                                                        Name = String.Concat(reg.Name + " " + (reg.MiddleName != null ? reg.MiddleName : " ") + " " + reg.LastName),
                                                         DischargeDate = surDischarge.DischargeDate + ts,
                                                         SurgeryDate = Convert.ToDateTime(Sur.DateofSurgery + ts),
                                                         AdmissionDate = admission.AdmDate + ts,
@@ -2244,7 +2247,7 @@ namespace WYNK.Data.Repository.Implementation
                                                ParentModule = ModuleMas.Where(x => x.ModuleID == details.ParentModuleid).Select(x => x.ModuleDescription).FirstOrDefault(),
                                                Parentmoduledescription = details.Parentmoduledescription,
                                                IsActive = details.IsActive
-                                           }).ToList();
+                                           }).OrderBy(x => x.ModuleDescription).ToList();
 
             return getData;
         }
@@ -2371,7 +2374,7 @@ namespace WYNK.Data.Repository.Implementation
                                                 TID = LT.ID,
                                                 ID = LM.ID,
                                                 Brand = BM.Description,
-                                                LensType = LT.LensOption,
+                                                //LensType = LT.LensOption,
                                                 Description = LM.Description,
                                                 Index = LT.Index,
                                                 Color = LT.Colour,
@@ -2496,9 +2499,10 @@ namespace WYNK.Data.Repository.Implementation
                                               LTID = LT.ID,
                                               LMID = LM.ID,
                                               Brand = BM.Description,
-                                              LensOptions = LT.LensOption,
+                                              //LensOptions = LT.LensOption,
                                               Description = LT.Description,
-                                              Index = Onelinemaster.Where(x => x.OLMID == Convert.ToInt32(LT.Index)).Select(x => x.ParentDescription).FirstOrDefault(),
+                                              //Index = Onelinemaster.Where(x => x.OLMID == Convert.ToInt32(LT.Index)).Select(x => x.ParentDescription).FirstOrDefault(),
+                                              Index = LT.Index != "" ? Onelinemaster.Where(x => x.OLMID == Convert.ToInt32(LT.Index)).Select(x => x.ParentDescription).FirstOrDefault() : string.Empty,
                                               Color = LT.Colour,
                                               Size = LT.Size,
                                               Price = LT.Prize,
@@ -2514,7 +2518,22 @@ namespace WYNK.Data.Repository.Implementation
                                               HSNNo = LT.HSNNo,
                                               UOM = UOM.Where(x => x.id == LT.UOMID).Select(x => x.Description).FirstOrDefault(),
                                               uomid = LT.UOMID,
-                                          }).ToList();
+                                              //Sph = LT.Sph,
+                                              //Cyl = LT.Cyl,
+                                              //Axis = LT.Axis,
+                                              //Add = LT.Add,
+                                              Sph = LT.Sph != null ? "Sph : " + LT.Sph + "; " : null,
+                                              Cyl = LT.Cyl != null ? "Cyl : " + LT.Cyl + "; " : null,
+                                              Axis = LT.Axis != null ? "Axis : " + LT.Axis + "; " : null,
+                                              Add = LT.Add != null ? "Add : " + LT.Add : null,
+                                              FrameShapeID = LT.FrameShapeID != null ? "Shape : " + LT.FrameShapeID + "; " : null,
+                                              FrameStyleID = LT.FrameStyleID != null ? "Style : " + LT.FrameStyleID + "; " : null,
+                                              FrameTypeID = LT.FrameTypeID != null ? "Type : " + LT.FrameTypeID + "; " : null,
+                                              FrameWidthID = LT.FrameWidthID != null ? "Width : " + LT.FrameWidthID : null,
+                                            
+
+
+        }).ToList();
             return CustomerOrder;
         }
 
@@ -2540,7 +2559,6 @@ namespace WYNK.Data.Repository.Implementation
         //                                ReferenceDate = OO.RefDate,
         //                                Validity = OO.Validity,
         //                                VendorID = OO.VendorID,
-
         //                                //Supplier
         //                                VendorName = VM.Name,
         //                                Address1 = VM.Address1,
@@ -2548,17 +2566,13 @@ namespace WYNK.Data.Repository.Implementation
         //                                PhoneNumber = VM.PhoneNo,
         //                                GST = VM.GSTNo,
         //                                Location = CMPSContext.LocationMaster.Where(x => x.ID == VM.Location).Select(x => x.ParentDescription).FirstOrDefault(),
-
         //                                //Delevery
         //                                DeliveryName = OO.DeliveryName,
         //                                DAddress1 = OO.DeliveryAddress1,
         //                                DAddress2 = OO.DeliveryAddress2,
         //                                DAddress3 = OO.DeliveryAddress3,
         //                                DLocation = CMPSContext.LocationMaster.Where(x => x.ID == OO.DeliveryLocationID).Select(x => x.ParentDescription).FirstOrDefault(),
-
-
         //                            }).ToList();
-
         //    return GetGrn;
         //}
 
@@ -3107,9 +3121,8 @@ namespace WYNK.Data.Repository.Implementation
             return Zero;
         }
 
-        public Help getInvReg(DateTime FromDate, DateTime ToDate, int CMPID)
+        public Help getInvReg(string FromDate, string ToDate, int CMPID)
         {
-
             var getInvRegData = new Help();
             var OneLineMas = CMPSContext.OneLineMaster.ToList();
             //var InvPre = WYNKContext.InvestigationPrescription.ToList();
@@ -3120,10 +3133,27 @@ namespace WYNK.Data.Repository.Implementation
             var Tax = CMPSContext.TaxMaster.ToList();
             //var RegTran = WYNKContext.RegistrationTran.ToList();
             var CompanyMaster = CMPSContext.Company.ToList();
-            var fdate = Convert.ToDateTime(FromDate).ToString("yyyy-MM-dd");
-            var tdate = Convert.ToDateTime(ToDate).ToString("yyyy-MM-dd");
-            getInvRegData.getInvRegdetail = (from Invm in InvBillMaster.Where(x => Convert.ToDateTime(x.CreatedUTC).Date >= Convert.ToDateTime(fdate)
-                                             && Convert.ToDateTime(x.CreatedUTC).Date <= Convert.ToDateTime(tdate) && x.CMPID == CMPID && x.BillNo != "0")
+            //var fdate = Convert.ToDateTime(FromDate).ToString("yyyy-MM-dd");
+            //var tdate = Convert.ToDateTime(ToDate).ToString("yyyy-MM-dd");
+
+            DateTime DT;
+            var appdate = DateTime.TryParseExact(FromDate.Trim(), "dd-MMM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DT);
+            {
+                DT.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture);
+            }
+            var fdate = DT;
+
+            DateTime DT1;
+            var appdate1 = DateTime.TryParseExact(ToDate.Trim(), "dd-MMM-yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DT1);
+            {
+                DT1.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture);
+            }
+            var tdate = DT1;
+
+
+
+            getInvRegData.getInvRegdetail = (from Invm in InvBillMaster.Where(x => x.CreatedUTC.Date >= fdate
+                                             && x.CreatedUTC.Date <= tdate && x.CMPID == CMPID && x.BillNo != "0")
                                              join Invt in InvBillTran on Invm.ID equals Invt.InvestigationBillID
                                              orderby Invm.CreatedUTC
                                              select new getInvRegdetail
@@ -3135,22 +3165,17 @@ namespace WYNK.Data.Repository.Implementation
                                                  Amount = InvBillTran.Where(x => x.InvestigationBillID == Invm.ID).Select(x => x.Amount).FirstOrDefault(),
                                                  DiscountPercentage = getvalue(Invt.DiscountPercentage),
                                                  DiscountAmount = getvalue(Invt.DiscountAmount),
-
                                                  GrossAmount = getvalue(Invt.Amount),
-
                                                  GST = getvalue(Invt.GSTPercentage),
                                                  IGST = getvalue(Invt.IGSTPercentage),
                                                  CESS = getvalue(Invt.CESSPercentage),
                                                  AdditionalCESS = getvalue(Invt.AdditionalCESSPercentage),
-
                                                  TaxDescription = CMPSContext.TaxMaster.Where(x => x.ID == Invt.TaxID).Select(t => t.TaxDescription).FirstOrDefault(),
                                                  CESSDescription = CMPSContext.TaxMaster.Where(x => x.ID == Invt.TaxID).Select(t => t.CESSDescription).FirstOrDefault(),
                                                  AdditionalCESSDescription = CMPSContext.TaxMaster.Where(x => x.ID == Invt.TaxID).Select(t => t.AdditionalCESSDescription).FirstOrDefault(),
-
                                                  GSTAmount = getvalue(Invt.GSTTaxValue),
                                                  CESSAmount = getvalue(Invt.CESSAmount),
                                                  AddlCESSAmount = getvalue(Invt.AdditionalCESSAmount),
-
                                                  NetAmount = getvalue(Invm.TotalBillValue),
                                                  CompanyName = CompanyMaster.Where(x => x.CmpID == CMPID).Select(x => x.CompanyName).FirstOrDefault(),
                                                  //CAddress1 = CompanyMaster.Where(x => x.CmpID == CMPID).Select(x => x.Address1).FirstOrDefault(),
@@ -3814,19 +3839,5 @@ namespace WYNK.Data.Repository.Implementation
             return consum;
 
         }
-
-
-        public dynamic getopticalMaterialdetails()
-        {
-            return (from lt in WYNKContext.Lenstrans
-                    join b in WYNKContext.Brand on lt.Brand equals b.ID
-                    join ob in WYNKContext.OpticalBalance.Where(x => x.ClosingBalance > 0) on lt.ID equals ob.LTID
-                    select new serviceDropdown
-                    {
-                        Text = b.Description,
-                        Value = b.ID.ToString(),
-                    }).OrderBy(x => x.Text).ToList();
-        }
-
     }
 }

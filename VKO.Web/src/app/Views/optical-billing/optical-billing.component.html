@@ -187,20 +187,240 @@
 
                 <div class="col-sm-12">
 
+                  <!--<div class="row heightAuto-250px">
+
+    <table mat-table [dataSource]="dataSources" id="contentToConvert" class="custom-table withoutbackgroung search-table table-bordered" #contentToConvert>
+
+      <ng-container matColumnDef="Description">
+        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Description</th>
+        <td mat-cell *matCellDef="let element ;let i = index;">{{element.LTname}}</td>
+        <td mat-footer-cell *matFooterCellDef><strong>Total</strong></td>
+      </ng-container>
+
+      <ng-container matColumnDef="Descriptions">
+        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Description </th>
+      </ng-container>
+
+      <ng-container matColumnDef="Brand">
+        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Brand</th>
+        <td mat-cell *matCellDef="let element ;let i = index;">{{element.Brand}}</td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <ng-container matColumnDef="Brands">
+        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Brand </th>
+      </ng-container>
+
+      <ng-container matColumnDef="Model">
+        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Model</th>
+        <td mat-cell *matCellDef="let element ;let i = index;">{{element.Model}}</td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <ng-container matColumnDef="Models">
+        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Model </th>
+      </ng-container>
+
+
+      <ng-container matColumnDef="Color">
+        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Color</th>
+        <td mat-cell *matCellDef="let element ;let i = index;">{{element.Color}}</td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <ng-container matColumnDef="Colors">
+        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Color </th>
+      </ng-container>
+
+      <ng-container matColumnDef="UOM">
+        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">
+          UOM
+        </th>
+        <td mat-cell *matCellDef="let element;let id = index;">{{element.UOMname}}</td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="UOMs">
+        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">
+          UOM
+        </th>
+      </ng-container>
+
+      <ng-container matColumnDef="Quantity">
+        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Order Qty</th>
+        <td mat-cell *matCellDef="let element;let id = index;" [ngStyle]="myStyles(element)">
+          {{element.OrderedQty | number : '1.2-2'}}
+        </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Quantitys">
+        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Order Qty </th>
+      </ng-container>
+
+      <ng-container matColumnDef="Rate">
+        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Rate</th>
+        <td mat-cell *matCellDef="let element;let id = index;">{{element.Price | number : '1.2-2'}}</td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Rates">
+        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Rate</th>
+      </ng-container>
+
+      <ng-container matColumnDef="Value">
+        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">
+          Amount
+        </th>
+        <td mat-cell *matCellDef="let element;let id = index;">{{element.Value | number : '1.2-2'}}</td>
+        <td mat-footer-cell *matFooterCellDef><b>{{GetTotalcost() | currency:Country2}}</b></td>
+      </ng-container>
+
+      <ng-container matColumnDef="Values">
+        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Amount</th>
+      </ng-container>
+
+      <ng-container matColumnDef="Discount(%)">
+        <th mat-header-cell *matHeaderCellDef>
+          %
+        </th>
+        <td mat-cell *matCellDef="let element;let id = index;">{{element.DiscountPercentage | number : '1.2-2'}}</td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="DiscountValue">
+        <th mat-header-cell *matHeaderCellDef>Amount</th>
+        <td mat-cell *matCellDef="let element;let id = index;">{{element.DiscountAmount | number : '1.2-2'}}</td>
+        <td mat-footer-cell *matFooterCellDef><b>{{GetDiscountAmount() | currency:Country2}}</b></td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="Grossamount">
+        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">
+          Gross Amount
+        </th>
+        <td mat-cell *matCellDef="let element;let id = index;">{{element.GrossValue | number : '1.2-2'}}</td>
+        <td mat-footer-cell *matFooterCellDef><b>{{GetGrossAmount() | currency:Country2}}</b></td>
+      </ng-container>
+
+      <ng-container matColumnDef="Grossamounts">
+        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Gross Amount </th>
+      </ng-container>
+
+      <ng-container matColumnDef="TaxDescription">
+        <th mat-header-cell *matHeaderCellDef>Description</th>
+        <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">
+          <div class="row">
+            <div *ngIf="element.TaxDescription != null && element.GSTPercentage != 0 && element.GSTTaxValue != 0" class="col-sm-10 mt-8p">
+              {{element.TaxDescription}}
+            </div>
+            <br />
+            <div *ngIf="element.CessDescription != null && element.CESSPercentage != 0 && element.CESSAmount != 0" class="col-sm-10 mt-8p">
+              {{element.CessDescription}}
+            </div>
+            <br />
+            <div *ngIf="element.AddcessDescription != null && element.AdditionalCESSPercentage != 0 && element.AddCESSPerAmt != 0" class="col-sm-10 mt-8p">
+              {{element.AddcessDescription}}
+            </div>
+          </div>
+        </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="GST">
+        <th mat-header-cell *matHeaderCellDef>%</th>
+        <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">
+          <div class="row">
+            <div *ngIf="element.GSTPercentage != 0 && element.TaxDescription != null && element.GSTTaxValue != 0" class="col-sm-10 mt-8p">
+              {{element.GSTPercentage | number : '1.2-2'}}
+            </div>
+            <br />
+            <div *ngIf="element.CESSPercentage != 0 && element.CessDescription != null && element.CESSAmount != 0" class="col-sm-10">
+              {{element.CESSPercentage | number : '1.2-2'}}
+            </div>
+            <br />
+            <div *ngIf="element.AdditionalCESSPercentage != 0 && element.AddcessDescription != null && element.AddCESSPerAmt != 0" class="col-sm-10">
+              {{element.AdditionalCESSPercentage | number : '1.2-2'}}
+            </div>
+          </div>
+        </td>
+        <td mat-footer-cell *matFooterCellDef> </td>
+      </ng-container>
+
+      <ng-container matColumnDef="GSTValue">
+        <th mat-header-cell *matHeaderCellDef> Amount</th>
+        <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">
+          <div class="row">
+            <div *ngIf="element.GSTTaxValue != 0 && element.GSTPercentage != 0 && element.TaxDescription != null" class="col-sm-10 mt-8p">
+              {{element.GSTTaxValue | number : '1.2-2'}}
+            </div>
+            <br />
+            <div *ngIf="element.CESSAmount != 0 && element.CESSPercentage != 0 && element.CessDescription != null" class="col-sm-10">
+              {{element.CESSAmount | number : '1.2-2'}}
+            </div>
+            <br />
+            <div *ngIf="element.AddCESSPerAmt != 0 && element.AdditionalCESSPercentage != 0 && element.AddcessDescription != null" class="col-sm-10">
+              {{element.AddCESSPerAmt | number : '1.2-2'}}
+            </div>
+          </div>
+        </td>
+        <td mat-footer-cell *matFooterCellDef> <b>{{Taxtotalamount() | currency:Country2}}</b></td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="TotalAmount">
+        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">
+          Total Amount
+        </th>
+        <td mat-cell *matCellDef="let element;let id = index;">{{element.Totalamount | number : '1.2-2'}}</td>
+        <td mat-footer-cell *matFooterCellDef><b>{{GetTotalAmount() | currency:Country2}}</b></td>
+      </ng-container>
+
+      <ng-container matColumnDef="TotalAmounts">
+        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Total Amount</th>
+      </ng-container>
+
+      <ng-container matColumnDef="Delete">
+        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Action</th>
+        <td mat-cell *matCellDef="let element;let id = index;">
+          <button mat-icon-button (click)="stockcheck(element)">
+            <mat-icon data-toggle="tooltip" title="Avalability Stock" class="grab">visibility</mat-icon>
+          </button>
+          <button mat-icon-button (click)="removeopt(id)">
+            <mat-icon data-toggle="tooltip" title="Remove" class="grab">delete</mat-icon>
+          </button>
+
+        </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <ng-container matColumnDef="Deletes">
+        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">
+          Action
+        </th>
+      </ng-container>
+
+      <ng-container matColumnDef="header-row-group">
+        <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> Discount </th>
+      </ng-container>
+
+      <ng-container matColumnDef="header-row-third-group">
+        <th mat-header-cell *matHeaderCellDef [attr.colspan]="3"> Tax </th>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="['Descriptions','Brands','Models','Colors','UOMs','Quantitys','Rates','Values','header-row-group','Grossamounts','header-row-third-group','TotalAmounts','Deletes'];sticky:true"></tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumnss;sticky:true"></tr>
+      <tr mat-row *matRowDef="let row;  let even = even;columns: displayedColumnss;" [ngClass]="{gray: even}"></tr>
+      <tr mat-footer-row *matFooterRowDef="displayedColumnss;sticky: true"></tr>
+
+    </table>
+
+  </div>-->
+                  <!--/////////////////////////////////////////////////////////////////////////////////////////////////-->
                   <div class="row heightAuto-250px">
 
                     <table mat-table [dataSource]="dataSources" id="contentToConvert" class="custom-table withoutbackgroung search-table table-bordered" #contentToConvert>
-
-                      <ng-container matColumnDef="Description">
-                        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Description</th>
-                        <td mat-cell *matCellDef="let element ;let i = index;">{{element.LTname}}</td>
-                        <td mat-footer-cell *matFooterCellDef><strong>Total</strong></td>
-                      </ng-container>
-
-                      <ng-container matColumnDef="Descriptions">
-                        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Description </th>
-                      </ng-container>
-
                       <ng-container matColumnDef="Brand">
                         <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Brand</th>
                         <td mat-cell *matCellDef="let element ;let i = index;">{{element.Brand}}</td>
@@ -210,26 +430,80 @@
                       <ng-container matColumnDef="Brands">
                         <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Brand </th>
                       </ng-container>
+                      <!--<ng-container matColumnDef="Description">
+                        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Description</th>
+                        <td mat-cell *matCellDef="let element ;let i = index;">{{element.Description}}</td>
+                        <td mat-footer-cell *matFooterCellDef><strong>Total</strong></td>
+                      </ng-container>
 
-                      <ng-container matColumnDef="Model">
-                        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Model</th>
-                        <td mat-cell *matCellDef="let element ;let i = index;">{{element.Model}}</td>
+                      <ng-container matColumnDef="Descriptions">
+                        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Description </th>
+                      </ng-container>-->
+
+                      <ng-container matColumnDef="Type">
+                        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Type</th>
+                        <td mat-cell *matCellDef="let element ;let i = index;">{{element.Type}}</td>
                         <td mat-footer-cell *matFooterCellDef></td>
                       </ng-container>
 
-                      <ng-container matColumnDef="Models">
-                        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Model </th>
+                      <ng-container matColumnDef="Types">
+                        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">Type</th>
                       </ng-container>
 
 
-                      <ng-container matColumnDef="Color">
-                        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Color</th>
-                        <td mat-cell *matCellDef="let element ;let i = index;">{{element.Color}}</td>
-                        <td mat-footer-cell *matFooterCellDef></td>
+
+                      <!--<ng-container matColumnDef="Model">
+    <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Model</th>
+    <td mat-cell *matCellDef="let element ;let i = index;">{{element.Model}}</td>
+    <td mat-footer-cell *matFooterCellDef></td>
+  </ng-container>
+
+  <ng-container matColumnDef="Models">
+    <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Model </th>
+  </ng-container>
+
+
+  <ng-container matColumnDef="Color">
+    <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Color</th>
+    <td mat-cell *matCellDef="let element ;let i = index;">{{element.Color}}</td>
+    <td mat-footer-cell *matFooterCellDef></td>
+  </ng-container>
+
+  <ng-container matColumnDef="Colors">
+    <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Color </th>
+  </ng-container>-->
+                      <!--<ng-container matColumnDef="Sph">
+    <th mat-header-cell *matHeaderCellDef>Sph</th>
+    <td mat-cell *matCellDef="let element">{{element.Sph}}</td>
+    <td mat-footer-cell *matFooterCellDef> </td>
+  </ng-container>
+  <ng-container matColumnDef="Cyl">
+    <th mat-header-cell *matHeaderCellDef>Cyl</th>
+    <td mat-cell *matCellDef="let element">{{element.Cyl}}</td>
+    <td mat-footer-cell *matFooterCellDef> </td>
+  </ng-container>
+  <ng-container matColumnDef="Axis">
+    <th mat-header-cell *matHeaderCellDef>Axis</th>
+    <td mat-cell *matCellDef="let element">{{element.Axis}}</td>
+    <td mat-footer-cell *matFooterCellDef> </td>
+  </ng-container>
+  <ng-container matColumnDef="Add">
+    <th mat-header-cell *matHeaderCellDef>Add</th>
+    <td mat-cell *matCellDef="let element">{{element.Add}} </td>
+    <td mat-footer-cell *matFooterCellDef> </td>
+  </ng-container>-->
+
+                      <ng-container matColumnDef="LensPower">
+                        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Description </th>
+                        <td mat-cell *matCellDef="let element">
+                          {{element.Sph}}{{element.Cyl}}{{element.Axis}}{{element.Add}}
+                          {{element.FrameShapeID}}{{element.FrameStyleID}}{{element.FrameTypeID}}{{element.FrameWidthID}}
+                        </td>
+                        <td mat-footer-cell *matFooterCellDef> </td>
                       </ng-container>
 
-                      <ng-container matColumnDef="Colors">
-                        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Color </th>
+                      <ng-container matColumnDef="LensPowers">
+                        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Description </th>
                       </ng-container>
 
                       <ng-container matColumnDef="UOM">
@@ -255,7 +529,7 @@
                       </ng-container>
 
                       <ng-container matColumnDef="Quantitys">
-                        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Order Qty </th>
+                        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Qty </th>
                       </ng-container>
 
                       <ng-container matColumnDef="Rate">
@@ -307,67 +581,104 @@
                         <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Gross Amount </th>
                       </ng-container>
 
-                      <ng-container matColumnDef="TaxDescription">
-                        <th mat-header-cell *matHeaderCellDef>Description</th>
-                        <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">
-                          <div class="row">
-                            <div *ngIf="element.TaxDescription != null && element.GSTPercentage != 0 && element.GSTTaxValue != 0" class="col-sm-10 mt-8p">
-                              {{element.TaxDescription}}
-                            </div>
-                            <br />
-                            <div *ngIf="element.CessDescription != null && element.CESSPercentage != 0 && element.CESSAmount != 0" class="col-sm-10 mt-8p">
-                              {{element.CessDescription}}
-                            </div>
-                            <br />
-                            <div *ngIf="element.AddcessDescription != null && element.AdditionalCESSPercentage != 0 && element.AddCESSPerAmt != 0" class="col-sm-10 mt-8p">
-                              {{element.AddcessDescription}}
-                            </div>
-                          </div>
-                        </td>
-                        <td mat-footer-cell *matFooterCellDef></td>
+                      <!--<ng-container matColumnDef="TaxDescription">
+    <th mat-header-cell *matHeaderCellDef>Description</th>
+    <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">
+      <div class="row">
+        <div *ngIf="element.TaxDescription != null && element.GSTPercentage != 0 && element.GSTTaxValue != 0" class="col-sm-10 mt-8p">
+          {{element.TaxDescription}}
+        </div>
+        <br />
+        <div *ngIf="element.CessDescription != null && element.CESSPercentage != 0 && element.CESSAmount != 0" class="col-sm-10 mt-8p">
+          {{element.CessDescription}}
+        </div>
+        <br />
+        <div *ngIf="element.AddcessDescription != null && element.AdditionalCESSPercentage != 0 && element.AddCESSPerAmt != 0" class="col-sm-10 mt-8p">
+          {{element.AddcessDescription}}
+        </div>
+      </div>
+    </td>
+    <td mat-footer-cell *matFooterCellDef></td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="GST">
+    <th mat-header-cell *matHeaderCellDef>%</th>
+    <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">
+      <div class="row">
+        <div *ngIf="element.GSTPercentage != 0 && element.TaxDescription != null && element.GSTTaxValue != 0" class="col-sm-10 mt-8p">
+          {{element.GSTPercentage | number : '1.2-2'}}
+        </div>
+        <br />
+        <div *ngIf="element.CESSPercentage != 0 && element.CessDescription != null && element.CESSAmount != 0" class="col-sm-10">
+          {{element.CESSPercentage | number : '1.2-2'}}
+        </div>
+        <br />
+        <div *ngIf="element.AdditionalCESSPercentage != 0 && element.AddcessDescription != null && element.AddCESSPerAmt != 0" class="col-sm-10">
+          {{element.AdditionalCESSPercentage | number : '1.2-2'}}
+        </div>
+      </div>
+    </td>
+    <td mat-footer-cell *matFooterCellDef> </td>
+  </ng-container>
+
+  <ng-container matColumnDef="GSTValue">
+    <th mat-header-cell *matHeaderCellDef> Amount</th>
+    <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">
+      <div class="row">
+        <div *ngIf="element.GSTTaxValue != 0 && element.GSTPercentage != 0 && element.TaxDescription != null" class="col-sm-10 mt-8p">
+          {{element.GSTTaxValue | number : '1.2-2'}}
+        </div>
+        <br />
+        <div *ngIf="element.CESSAmount != 0 && element.CESSPercentage != 0 && element.CessDescription != null" class="col-sm-10">
+          {{element.CESSAmount | number : '1.2-2'}}
+        </div>
+        <br />
+        <div *ngIf="element.AddCESSPerAmt != 0 && element.AdditionalCESSPercentage != 0 && element.AddcessDescription != null" class="col-sm-10">
+          {{element.AddCESSPerAmt | number : '1.2-2'}}
+        </div>
+      </div>
+    </td>
+    <td mat-footer-cell *matFooterCellDef> <b>{{Taxtotalamount() | currency:Country2}}</b></td>
+  </ng-container>
+
+    <ng-container matColumnDef="header-row-third-group">
+    <th mat-header-cell *matHeaderCellDef [attr.colspan]="3"> Tax </th>
+  </ng-container>-->
+
+
+                      <ng-container matColumnDef="CGSTTax">
+                        <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> CGST Tax </th>
+                      </ng-container>
+
+                      <ng-container matColumnDef="SGSTTax">
+                        <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> SGST Tax </th>
                       </ng-container>
 
 
-                      <ng-container matColumnDef="GST">
+                      <ng-container matColumnDef="CGST">
                         <th mat-header-cell *matHeaderCellDef>%</th>
-                        <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">
-                          <div class="row">
-                            <div *ngIf="element.GSTPercentage != 0 && element.TaxDescription != null && element.GSTTaxValue != 0" class="col-sm-10 mt-8p">
-                              {{element.GSTPercentage | number : '1.2-2'}}
-                            </div>
-                            <br />
-                            <div *ngIf="element.CESSPercentage != 0 && element.CessDescription != null && element.CESSAmount != 0" class="col-sm-10">
-                              {{element.CESSPercentage | number : '1.2-2'}}
-                            </div>
-                            <br />
-                            <div *ngIf="element.AdditionalCESSPercentage != 0 && element.AddcessDescription != null && element.AddCESSPerAmt != 0" class="col-sm-10">
-                              {{element.AdditionalCESSPercentage | number : '1.2-2'}}
-                            </div>
-                          </div>
-                        </td>
+                        <td mat-cell *matCellDef="let element;let id = index;">{{element.CGSTPercentage | number : '1.2-2'}}</td>
                         <td mat-footer-cell *matFooterCellDef> </td>
                       </ng-container>
 
-                      <ng-container matColumnDef="GSTValue">
+                      <ng-container matColumnDef="CGSTValue">
                         <th mat-header-cell *matHeaderCellDef> Amount</th>
-                        <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">
-                          <div class="row">
-                            <div *ngIf="element.GSTTaxValue != 0 && element.GSTPercentage != 0 && element.TaxDescription != null" class="col-sm-10 mt-8p">
-                              {{element.GSTTaxValue | number : '1.2-2'}}
-                            </div>
-                            <br />
-                            <div *ngIf="element.CESSAmount != 0 && element.CESSPercentage != 0 && element.CessDescription != null" class="col-sm-10">
-                              {{element.CESSAmount | number : '1.2-2'}}
-                            </div>
-                            <br />
-                            <div *ngIf="element.AddCESSPerAmt != 0 && element.AdditionalCESSPercentage != 0 && element.AddcessDescription != null" class="col-sm-10">
-                              {{element.AddCESSPerAmt | number : '1.2-2'}}
-                            </div>
-                          </div>
-                        </td>
-                        <td mat-footer-cell *matFooterCellDef> <b>{{Taxtotalamount() | currency:Country2}}</b></td>
+                        <td mat-cell *matCellDef="let element;let id = index;">{{element.CGSTTaxValue | number : '1.2-2'}}</td>
+                        <td mat-footer-cell *matFooterCellDef><b>{{GetCGSTAmount() | currency:Country2}}</b> </td>
                       </ng-container>
 
+                      <ng-container matColumnDef="SGST">
+                        <th mat-header-cell *matHeaderCellDef>%</th>
+                        <td mat-cell *matCellDef="let element;let id = index;">{{element.SGSTPercentage | number : '1.2-2'}}</td>
+                        <td mat-footer-cell *matFooterCellDef> </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="SGSTValue">
+                        <th mat-header-cell *matHeaderCellDef> Amount</th>
+                        <td mat-cell *matCellDef="let element;let id = index;">{{element.SGSTTaxValue | number : '1.2-2'}}</td>
+                        <td mat-footer-cell *matFooterCellDef><b>{{GetSGSTAmount() | currency:Country2}}</b> </td>
+                      </ng-container>
 
                       <ng-container matColumnDef="TotalAmount">
                         <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">
@@ -396,7 +707,7 @@
                       </ng-container>
 
                       <ng-container matColumnDef="Deletes">
-                        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">
+                        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="width:110px">
                           Action
                         </th>
                       </ng-container>
@@ -405,11 +716,9 @@
                         <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> Discount </th>
                       </ng-container>
 
-                      <ng-container matColumnDef="header-row-third-group">
-                        <th mat-header-cell *matHeaderCellDef [attr.colspan]="3"> Tax </th>
-                      </ng-container>
 
-                      <tr mat-header-row *matHeaderRowDef="['Descriptions','Brands','Models','Colors','UOMs','Quantitys','Rates','Values','header-row-group','Grossamounts','header-row-third-group','TotalAmounts','Deletes'];sticky:true"></tr>
+
+                      <tr mat-header-row *matHeaderRowDef="['Brands','Types','LensPowers','UOMs','Quantitys','Rates','Values','header-row-group','Grossamounts','CGSTTax','SGSTTax','TotalAmounts','Deletes'];sticky:true"></tr>
                       <tr mat-header-row *matHeaderRowDef="displayedColumnss;sticky:true"></tr>
                       <tr mat-row *matRowDef="let row;  let even = even;columns: displayedColumnss;" [ngClass]="{gray: even}"></tr>
                       <tr mat-footer-row *matFooterRowDef="displayedColumnss;sticky: true"></tr>
@@ -418,6 +727,8 @@
 
                   </div>
 
+
+                  <!--///////////////////////////////////////////////////////////////////////////////////////////////////-->
                 </div>
               </div>
 
@@ -448,9 +759,9 @@
 
                 <div class="col-sm-12 mt-1p">
                   <div class="card mb-12">
-                    <h5 class="card-header bg-success text-white">
+                    <h5 class="card-header  text-white">
                       Payment details
-                      <button (click)="AddPaymentDetailsNewgrid();"><i matTooltip="Add Payment Details" class="fa fa-plus"></i></button>
+                      <button class="btn btn-primary  f-r" (click)="AddPaymentDetailsNewgrid()"mat-raised-button>Add payment mode</button>
                     </h5>
                     <div class="card-body">
                       <div class="row heightAuto-300px">
@@ -983,48 +1294,72 @@
 
       <table mat-table matSort [dataSource]="dataSourcesp" class="custom-table withoutbackgroung search-table table-bordered" style="width:100%">
 
-        <ng-container matColumnDef="Description">
-          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Description</th>
-          <td mat-cell *matCellDef="let element ;let i = index;" style="text-align:left">{{element.LTname}}</td>
-          <td mat-footer-cell *matFooterCellDef></td>
-        </ng-container>
+        <!--<ng-container matColumnDef="Description">
+    <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Description</th>
+    <td mat-cell *matCellDef="let element ;let i = index;" style="text-align:left">{{element.LTname}}</td>
+    <td mat-footer-cell *matFooterCellDef></td>
+  </ng-container>
 
-        <ng-container matColumnDef="Descriptions">
-          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Description </th>
-        </ng-container>
+  <ng-container matColumnDef="Descriptions">
+    <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Description </th>
+  </ng-container>-->
 
-        <ng-container matColumnDef="Brand">
+        <ng-container matColumnDef="Brandp">
           <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Brand</th>
           <td mat-cell *matCellDef="let element ;let i = index;" style="text-align:left">{{element.Brand}}</td>
           <td mat-footer-cell *matFooterCellDef></td>
         </ng-container>
 
-        <ng-container matColumnDef="Brands">
+        <ng-container matColumnDef="Brandsp">
           <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Brand </th>
         </ng-container>
 
-        <ng-container matColumnDef="Model">
-          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Model</th>
-          <td mat-cell *matCellDef="let element ;let i = index;" style="text-align:left">{{element.Model}}</td>
+        <ng-container matColumnDef="Typep">
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Type</th>
+          <td mat-cell *matCellDef="let element ;let i = index;">{{element.Type}}</td>
           <td mat-footer-cell *matFooterCellDef></td>
         </ng-container>
 
-        <ng-container matColumnDef="Models">
-          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Model </th>
+        <ng-container matColumnDef="Typesp">
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">Type</th>
         </ng-container>
 
+        <!--<ng-container matColumnDef="Model">
+    <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Model</th>
+    <td mat-cell *matCellDef="let element ;let i = index;" style="text-align:left">{{element.Model}}</td>
+    <td mat-footer-cell *matFooterCellDef></td>
+  </ng-container>
 
-        <ng-container matColumnDef="Color">
-          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Color</th>
-          <td mat-cell *matCellDef="let element ;let i = index;" style="text-align:left">{{element.Color}}</td>
-          <td mat-footer-cell *matFooterCellDef></td>
+  <ng-container matColumnDef="Models">
+    <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Model </th>
+  </ng-container>
+
+
+  <ng-container matColumnDef="Color">
+    <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Color</th>
+    <td mat-cell *matCellDef="let element ;let i = index;" style="text-align:left">{{element.Color}}</td>
+    <td mat-footer-cell *matFooterCellDef></td>
+  </ng-container>
+
+  <ng-container matColumnDef="Colors">
+    <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Color </th>
+  </ng-container>-->
+
+        <ng-container matColumnDef="LensPowerp">
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Description </th>
+          <td mat-cell *matCellDef="let element">
+            {{element.Sph}}{{element.Cyl}}{{element.Axis}}{{element.Add}}
+            {{element.FrameShapeID}}{{element.FrameStyleID}}{{element.FrameTypeID}}{{element.FrameWidthID}}
+
+          </td>
+          <td mat-footer-cell *matFooterCellDef> </td>
         </ng-container>
 
-        <ng-container matColumnDef="Colors">
-          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Color </th>
+        <ng-container matColumnDef="LensPowersp">
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Description </th>
         </ng-container>
 
-        <ng-container matColumnDef="UOM">
+        <ng-container matColumnDef="UOMp">
           <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">
             UOM
           </th>
@@ -1032,13 +1367,13 @@
           <td mat-footer-cell *matFooterCellDef> </td>
         </ng-container>
 
-        <ng-container matColumnDef="UOMs">
+        <ng-container matColumnDef="UOMsp">
           <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">
             UOM
           </th>
         </ng-container>
 
-        <ng-container matColumnDef="Quantity">
+        <ng-container matColumnDef="Quantityp">
           <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Order Qty</th>
           <td mat-cell *matCellDef="let element;let id = index;" style="text-align:right">
             {{element.OrderedQty | number : '1.2-2'}}
@@ -1046,21 +1381,21 @@
           <td mat-footer-cell *matFooterCellDef> </td>
         </ng-container>
 
-        <ng-container matColumnDef="Quantitys">
+        <ng-container matColumnDef="Quantitysp">
           <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Order Qty </th>
         </ng-container>
 
-        <ng-container matColumnDef="Rate">
+        <ng-container matColumnDef="Ratep">
           <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Unit rate </th>
           <td mat-cell *matCellDef="let element;let id = index;" style="text-align:right">{{element.Price | number : '1.2-2'}}</td>
           <td mat-footer-cell *matFooterCellDef> </td>
         </ng-container>
 
-        <ng-container matColumnDef="Rates">
+        <ng-container matColumnDef="Ratesp">
           <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">Unit rate</th>
         </ng-container>
 
-        <ng-container matColumnDef="Value">
+        <ng-container matColumnDef="Valuep">
           <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">
             Amount
           </th>
@@ -1068,26 +1403,24 @@
           <td mat-footer-cell *matFooterCellDef style="text-align:right"><b>{{printAmount() | currency:Country2}}</b></td>
         </ng-container>
 
-        <ng-container matColumnDef="Values">
+        <ng-container matColumnDef="Valuesp">
           <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Amount </th>
         </ng-container>
 
-        <ng-container matColumnDef="Discount(%)">
-          <th mat-header-cell *matHeaderCellDef>
-            %
-          </th>
+        <ng-container matColumnDef="Discountp(%)">
+          <th mat-header-cell *matHeaderCellDef>%</th>
           <td mat-cell *matCellDef="let element;let id = index;" style="text-align:right">{{element.DiscountPercentage | number : '1.2-2'}}</td>
           <td mat-footer-cell *matFooterCellDef> </td>
         </ng-container>
 
-        <ng-container matColumnDef="DiscountValue">
+        <ng-container matColumnDef="DiscountValuep">
           <th mat-header-cell *matHeaderCellDef>Amount</th>
           <td mat-cell *matCellDef="let element;let id = index;" style="text-align:right">{{element.DiscountAmount | number : '1.2-2'}}</td>
           <td mat-footer-cell *matFooterCellDef style="text-align:right"><b *ngIf="printDiscountAmount() != 0">{{printDiscountAmount() | currency:Country2}}</b></td>
         </ng-container>
 
 
-        <ng-container matColumnDef="Grossamount">
+        <ng-container matColumnDef="Grossamountp">
           <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">
             Gross Amount
           </th>
@@ -1095,75 +1428,107 @@
           <td mat-footer-cell *matFooterCellDef style="text-align:right"><b>{{printGrossAmount() | currency:Country2}}</b></td>
         </ng-container>
 
-        <ng-container matColumnDef="Grossamounts">
+        <ng-container matColumnDef="Grossamountsp">
           <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Gross Amount  </th>
         </ng-container>
 
-        <ng-container matColumnDef="TaxDescription">
-          <th mat-header-cell *matHeaderCellDef>Description</th>
-          <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">
-            <div class="row" style="text-align:left">
-              <div *ngIf="element.TaxDescription != null && element.GSTPercentage != 0 && element.GSTTaxValue != 0" class="col-sm-12 mt-8p">
-                {{element.TaxDescription}}
-              </div>
-              <br />
-              <div *ngIf="element.CessDescription != null && element.CESSPercentage != 0 && element.CESSAmount != 0" class="col-sm-12 mt-8p">
-                {{element.CessDescription}}
-              </div>
-              <br />
-              <div *ngIf="element.AddcessDescription != null && element.AdditionalCESSPercentage != 0 && element.AddCESSPerAmt != 0" class="col-sm-12 mt-8p">
-                {{element.AddcessDescription}}
-              </div>
-            </div>
-          </td>
-          <td mat-footer-cell *matFooterCellDef></td>
+        <!--<ng-container matColumnDef="TaxDescription">
+    <th mat-header-cell *matHeaderCellDef>Description</th>
+    <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">
+      <div class="row" style="text-align:left">
+        <div *ngIf="element.TaxDescription != null && element.GSTPercentage != 0 && element.GSTTaxValue != 0" class="col-sm-12 mt-8p">
+          {{element.TaxDescription}}
+        </div>
+        <br />
+        <div *ngIf="element.CessDescription != null && element.CESSPercentage != 0 && element.CESSAmount != 0" class="col-sm-12 mt-8p">
+          {{element.CessDescription}}
+        </div>
+        <br />
+        <div *ngIf="element.AddcessDescription != null && element.AdditionalCESSPercentage != 0 && element.AddCESSPerAmt != 0" class="col-sm-12 mt-8p">
+          {{element.AddcessDescription}}
+        </div>
+      </div>
+    </td>
+    <td mat-footer-cell *matFooterCellDef></td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="GST">
+    <th mat-header-cell *matHeaderCellDef>%</th>
+    <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">
+      <div class="row" style="text-align:right">
+        <div *ngIf="element.GSTPercentage != 0 && element.TaxDescription != null && element.GSTTaxValue != 0" class="col-sm-12 mt-8p">
+          {{element.GSTPercentage | number : '1.2-2'}}
+        </div>
+        <br />
+        <div *ngIf="element.CESSPercentage != 0 && element.CessDescription != null && lement.CESSAmount != 0" class="col-sm-12 mt-8p">
+          {{element.CESSPercentage | number : '1.2-2'}}
+        </div>
+        <br />
+        <div *ngIf="element.AdditionalCESSPercentage != 0 && element.AddcessDescription != null && element.AddCESSPerAmt != 0" class="col-sm-12 mt-8p">
+          {{element.AdditionalCESSPercentage | number : '1.2-2'}}
+        </div>
+      </div>
+    </td>
+    <td mat-footer-cell *matFooterCellDef> </td>
+  </ng-container>
+
+  <ng-container matColumnDef="GSTValue">
+    <th mat-header-cell *matHeaderCellDef>
+      Amount
+    </th>
+    <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">
+      <div class="row" style="text-align:right">
+        <div *ngIf="element.GSTTaxValue != 0 && element.GSTPercentage != 0 && element.TaxDescription != null" class="col-sm-12 mt-8p">
+          {{element.GSTTaxValue | number : '1.2-2'}}
+        </div>
+        <br />
+        <div *ngIf="element.CESSAmount != 0 && element.CESSPercentage != 0 && element.CessDescription != null" class="col-sm-12 mt-8p">
+          {{element.CESSAmount | number : '1.2-2'}}
+        </div>
+        <br />
+        <div *ngIf="element.AddCESSPerAmt != 0 && element.AdditionalCESSPercentage != 0 && element.AddcessDescription != null" class="col-sm-12 mt-8p">
+          {{element.AddCESSPerAmt | number : '1.2-2'}}
+        </div>
+      </div>
+    </td>
+    <td mat-footer-cell *matFooterCellDef style="text-align:right"><b *ngIf="Taxprinttotalamount() != 0">{{Taxprinttotalamount() | currency:Country2}}</b></td>
+  </ng-container>-->
+
+        <ng-container matColumnDef="CGSTTaxp">
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> CGST Tax </th>
+        </ng-container>
+
+        <ng-container matColumnDef="SGSTTaxp">
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> SGST Tax </th>
         </ng-container>
 
 
-        <ng-container matColumnDef="GST">
+        <ng-container matColumnDef="CGSTp">
           <th mat-header-cell *matHeaderCellDef>%</th>
-          <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">
-            <div class="row" style="text-align:right">
-              <div *ngIf="element.GSTPercentage != 0 && element.TaxDescription != null && element.GSTTaxValue != 0" class="col-sm-12 mt-8p">
-                {{element.GSTPercentage | number : '1.2-2'}}
-              </div>
-              <br />
-              <div *ngIf="element.CESSPercentage != 0 && element.CessDescription != null && lement.CESSAmount != 0" class="col-sm-12 mt-8p">
-                {{element.CESSPercentage | number : '1.2-2'}}
-              </div>
-              <br />
-              <div *ngIf="element.AdditionalCESSPercentage != 0 && element.AddcessDescription != null && element.AddCESSPerAmt != 0" class="col-sm-12 mt-8p">
-                {{element.AdditionalCESSPercentage | number : '1.2-2'}}
-              </div>
-            </div>
-          </td>
+          <td mat-cell *matCellDef="let element;let id = index;">{{element.CGSTPercentage | number : '1.2-2'}}</td>
           <td mat-footer-cell *matFooterCellDef> </td>
         </ng-container>
 
-        <ng-container matColumnDef="GSTValue">
-          <th mat-header-cell *matHeaderCellDef>
-            Amount
-          </th>
-          <td mat-cell *matCellDef="let element;let id = index;" contenteditable="false">
-            <div class="row" style="text-align:right">
-              <div *ngIf="element.GSTTaxValue != 0 && element.GSTPercentage != 0 && element.TaxDescription != null" class="col-sm-12 mt-8p">
-                {{element.GSTTaxValue | number : '1.2-2'}}
-              </div>
-              <br />
-              <div *ngIf="element.CESSAmount != 0 && element.CESSPercentage != 0 && element.CessDescription != null" class="col-sm-12 mt-8p">
-                {{element.CESSAmount | number : '1.2-2'}}
-              </div>
-              <br />
-              <div *ngIf="element.AddCESSPerAmt != 0 && element.AdditionalCESSPercentage != 0 && element.AddcessDescription != null" class="col-sm-12 mt-8p">
-                {{element.AddCESSPerAmt | number : '1.2-2'}}
-              </div>
-            </div>
-          </td>
-          <td mat-footer-cell *matFooterCellDef style="text-align:right"><b *ngIf="Taxprinttotalamount() != 0">{{Taxprinttotalamount() | currency:Country2}}</b></td>
+        <ng-container matColumnDef="CGSTValuep">
+          <th mat-header-cell *matHeaderCellDef> Amount</th>
+          <td mat-cell *matCellDef="let element;let id = index;">{{element.CGSTTaxValue | number : '1.2-2'}}</td>
+          <td mat-footer-cell *matFooterCellDef><b>{{printCGSTAmount() | currency:Country2}}</b> </td>
         </ng-container>
 
+        <ng-container matColumnDef="SGSTp">
+          <th mat-header-cell *matHeaderCellDef>%</th>
+          <td mat-cell *matCellDef="let element;let id = index;">{{element.SGSTPercentage | number : '1.2-2'}}</td>
+          <td mat-footer-cell *matFooterCellDef> </td>
+        </ng-container>
 
-        <ng-container matColumnDef="TotalAmount">
+        <ng-container matColumnDef="SGSTValuep">
+          <th mat-header-cell *matHeaderCellDef> Amount</th>
+          <td mat-cell *matCellDef="let element;let id = index;">{{element.SGSTTaxValue | number : '1.2-2'}}</td>
+          <td mat-footer-cell *matFooterCellDef><b>{{printSGSTAmount() | currency:Country2}}</b> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="TotalAmountp">
           <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">
             Total Amount
           </th>
@@ -1171,22 +1536,23 @@
           <td mat-footer-cell *matFooterCellDef style="text-align:right"><b>{{printTotalAmount() | currency:Country2}}</b></td>
         </ng-container>
 
-        <ng-container matColumnDef="TotalAmounts">
+        <ng-container matColumnDef="TotalAmountsp">
           <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Total Amount  </th>
         </ng-container>
 
 
-        <ng-container matColumnDef="header-row-group">
+        <ng-container matColumnDef="header-row-groupp">
           <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> Discount </th>
         </ng-container>
 
-        <ng-container matColumnDef="header-row-third-group">
-          <th mat-header-cell *matHeaderCellDef [attr.colspan]="3"> Tax </th>
-        </ng-container>
+        <!--<ng-container matColumnDef="header-row-third-group">
+    <th mat-header-cell *matHeaderCellDef [attr.colspan]="3"> Tax </th>
+  </ng-container>-->
 
-        <tr mat-header-row *matHeaderRowDef="['Descriptions','Brands','Models','Colors','UOMs','Quantitys','Rates','Values','header-row-group','Grossamounts','header-row-third-group','TotalAmounts']"></tr>
+        <tr mat-header-row *matHeaderRowDef="['Brandsp','Typesp','LensPowersp','UOMsp','Quantitysp','Ratesp','Valuesp','header-row-groupp','Grossamountsp','CGSTTaxp','SGSTTaxp','TotalAmountsp'];sticky:true"></tr>
+
         <tr mat-header-row *matHeaderRowDef="displayedColumnssp;sticky:true"></tr>
-        <tr mat-row *matRowDef="let row;  let even = even;columns: displayedColumnssp;" [ngClass]="{gray: even}"></tr>
+        <tr mat-row *matRowDef="let row;  let even = even;columns: displayedColumnssp;"></tr>
         <tr mat-footer-row *matFooterRowDef="displayedColumnssp;sticky: true"></tr>
 
       </table>

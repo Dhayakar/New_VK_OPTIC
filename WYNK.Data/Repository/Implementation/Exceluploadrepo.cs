@@ -1431,7 +1431,7 @@ namespace WYNK.Data.Repository.Implementation
                                     OpticalID = Opticallist.OpticalID,
                                     LensType = Lensmaster.Where(lm => lm.RandomUniqueID == LensTran.Where(lt => lt.ID == Opticallist.OpticalID).Select(lt => lt.LMID).FirstOrDefault()).Select(lm => lm.LensType).FirstOrDefault(),
                                     Brand = BrandMaster.Where(Bm => Bm.ID == LensTran.Where(lt => lt.ID == Opticallist.OpticalID).Select(lt => lt.Brand).FirstOrDefault()).Select(Bm => Bm.Description).FirstOrDefault(),
-                                    LensOptions = LensTran.Where(lt => lt.ID == Opticallist.OpticalID).Select(lt => lt.LensOption).FirstOrDefault(),
+                                    //LensOptions = LensTran.Where(lt => lt.ID == Opticallist.OpticalID).Select(lt => lt.LensOption).FirstOrDefault(),
                                     Model = LensTran.Where(lt => lt.ID == Opticallist.OpticalID).Select(lt => lt.Model).FirstOrDefault(),
                                     Quantity = Opticallist.Quantity,
                                     Remarks = Opticallist.Quantity < 0 || Opticallist.Quantity == 0 ? "InValid Data" : " ",

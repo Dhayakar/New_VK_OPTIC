@@ -36,6 +36,12 @@ export class GetOpticaldetailsfullcheck {
   Totalamount: number = 0;
   AdditionalCESSPercentage: number = 0;
   AddCESSPerAmt: number = 0;
+
+  CGSTPercentage: number = 0;
+  CGSTTaxValue: number = 0;
+  SGSTPercentage: number = 0;
+  SGSTTaxValue: number = 0;
+
   TaxDescription: string;
   CessDescription: string;
   AddcessDescription: string;

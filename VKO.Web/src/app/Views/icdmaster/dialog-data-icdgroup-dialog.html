@@ -1,0 +1,22 @@
+<form #Icd="ngForm" name="Icd" (keydown.enter)="$event.preventDefault()" novalidate>
+  <div class="modal-header">
+    <h6 class="modal-title">ICD Group</h6>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-sm-4 ml-3p">
+        <mat-form-field appearance="outline">
+          <mat-label>Enter ICD Group</mat-label>
+          <input name="icds" [(ngModel)]="icds" matInput placeholder="Enter ICD Group" required>
+        </mat-form-field>
+      </div>
+    </div>
+      <div class="col-sm-12 pb25">
+        <div class="col-sm-10  sub-section btn-wrap">
+          <button class="success btn btn-primary" (click)="Addicds(Icd)">Submit</button>
+          <button class="btn btn-warning-default ml-2p" (click)="Dialogclose()"><strong>Cancel</strong></button>
+        </div>
+      </div>
+  </div>
+</form>
+

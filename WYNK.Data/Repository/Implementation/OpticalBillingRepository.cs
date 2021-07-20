@@ -72,6 +72,7 @@ namespace WYNK.Data.Repository.Implementation
             var lens = WYNKContext.Lensmaster.ToList();
             var lenstrns = WYNKContext.Lenstrans.ToList();
             var brand = WYNKContext.Brand.ToList();
+            var onel = CMPSContext.OneLineMaster.ToList();
 
 
             var opticalbal = Convert.ToInt32(WYNKContext.OpticalBalance.Where(x => x.StoreID == SID && x.CmpID == CmpID).Select(x => x.StoreID).FirstOrDefault());
@@ -103,7 +104,7 @@ namespace WYNK.Data.Repository.Implementation
                                                     COTID = Optrs.ID,
                                                     COID = Optrs.COID,
                                                     LTID = Optrs.LTID,
-                                                    LTname = lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.LensOption).FirstOrDefault(),
+                                                    Description = lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.Description).FirstOrDefault(),
                                                     UOMID = Optrs.UOMID,
                                                     UOMname = uom.Where(X => X.id == Optrs.UOMID).Select(x => x.Description).FirstOrDefault(),
                                                     Type = lens.Where(x => x.RandomUniqueID == lenstrns.Where(s => s.ID == Optrs.LTID).Select(a => a.LMID).FirstOrDefault()).Select(f => f.LensType).FirstOrDefault(),
@@ -111,11 +112,27 @@ namespace WYNK.Data.Repository.Implementation
                                                     Index = lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.Index).FirstOrDefault(),
                                                     Color = lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.Colour).FirstOrDefault(),
                                                     Model = lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.Model).FirstOrDefault(),
+                                                    Sph = lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.Sph).FirstOrDefault(),
+                                                    Cyl = lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.Cyl).FirstOrDefault(),
+                                                    Axis = lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.Axis).FirstOrDefault(),
+                                                    Add = lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.Add).FirstOrDefault(),
+
+                                                    FrameWidthID  = onel.Where(v => v.OLMID == lenstrns.Where(y => y.ID == Optrs.LTID).Select(x => x.FrameWidthID).FirstOrDefault()).Select(x => x.ParentDescription).FirstOrDefault(),
+                                                    FrameTypeID  = onel.Where(v => v.OLMID == lenstrns.Where(y => y.ID == Optrs.LTID).Select(x => x.FrameTypeID).FirstOrDefault()).Select(x => x.ParentDescription).FirstOrDefault(),
+                                                    FrameStyleID   =  onel.Where(v => v.OLMID == lenstrns.Where(y => y.ID == Optrs.LTID).Select(x => x.FrameStyleID).FirstOrDefault()).Select(x => x.ParentDescription).FirstOrDefault(),
+                                                    FrameShapeID  = onel.Where(v => v.OLMID == lenstrns.Where(y => y.ID == Optrs.LTID).Select(x => x.FrameShapeID).FirstOrDefault()).Select(x => x.ParentDescription).FirstOrDefault(),
+                                                 
                                                     OrderedQty = Optrs.OrderedQty,
                                                     Price = Optrs.ItemRate,
                                                     Value = Optrs.OrderedQty * Optrs.ItemRate,
                                                     DiscountAmount = Optrs.DiscountAmount,
                                                     DiscountPercentage = Optrs.DiscountPercentage,
+
+                                                    CGSTPercentage = Optrs.CGSTPercentage,
+                                                    CGSTTaxValue = Optrs.CGSTTaxValue,
+                                                    SGSTPercentage = Optrs.SGSTPercentage,
+                                                    SGSTTaxValue = Optrs.SGSTTaxValue,
+                                                   
                                                     GSTTaxValue = Optrs.GSTTaxValue,
                                                     GSTPercentage = Optrs.GSTPercentage,
                                                     CESSPercentage = Optrs.CESSPercentage,
@@ -158,19 +175,36 @@ namespace WYNK.Data.Repository.Implementation
                         balance.COID = itm.COID;
                         balance.COTID = itm.COTID;
                         balance.LTID = itm.LTID;
-                        balance.LTname = itm.LTname;
+                        balance.Description = itm.Description;
                         balance.UOMID = itm.UOMID;
                         balance.UOMname = itm.UOMname;
-                        balance.Type = itm.Type;
                         balance.Brand = itm.Brand;
+                        balance.Type = itm.Type;
                         balance.Index = itm.Index;
                         balance.Color = itm.Color;
                         balance.Model = itm.Model;
+
+                        balance.Sph = itm.Sph != null ? "Sph : " + itm.Sph + "; " : null;
+                        balance.Cyl = itm.Cyl != null ? "Cyl : " + itm.Cyl + "; " : null;
+                        balance.Axis = itm.Axis != null ? "Axis : " + itm.Axis + "; " : null;
+                        balance.Add = itm.Add != null ? "Add : " + itm.Add : null;
+
+                        balance.FrameShapeID = itm.FrameShapeID != null ? "Shape : " + itm.FrameShapeID + "; " : null;
+                        balance.FrameStyleID = itm.FrameStyleID != null ? "Style : " + itm.FrameStyleID + "; " : null;
+                        balance.FrameTypeID  = itm.FrameTypeID != null  ? "Type : " + itm.FrameTypeID  + "; " : null;
+                        balance.FrameWidthID = itm.FrameWidthID != null ? "Width : " + itm.FrameWidthID : null;
+
                         balance.OrderedQty = itm.OrderedQty;
                         balance.Price = itm.Price;
                         balance.Value = itm.Value;
                         balance.DiscountAmount = itm.DiscountAmount;
                         balance.DiscountPercentage = itm.DiscountPercentage;
+
+                        balance.CGSTPercentage = itm.CGSTPercentage;
+                        balance.CGSTTaxValue = itm.CGSTTaxValue;
+                        balance.SGSTPercentage = itm.SGSTPercentage;
+                        balance.SGSTTaxValue = itm.SGSTTaxValue;
+
                         balance.GSTTaxValue = itm.GSTTaxValue;
                         balance.GSTPercentage = itm.GSTPercentage;
                         balance.CESSAmount = itm.CESSAmount;
@@ -253,7 +287,7 @@ namespace WYNK.Data.Repository.Implementation
                                          Closingbalance = Optrs.ClosingBalance,
                                          Storename = store.Where(X => X.StoreID == Optrs.StoreID).Select(x => x.Storename).FirstOrDefault(),
                                          Type = lens.Where(x => x.RandomUniqueID == lenstrns.Where(s => s.ID == Optrs.LTID).Select(a => a.LMID).FirstOrDefault()).Select(f => f.LensType).FirstOrDefault(),
-                                         Description = lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.LensOption).FirstOrDefault(),
+                                         // Description = lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.LensOption).FirstOrDefault(),
                                          Brand = brand.Where(x => x.ID == lenstrns.Where(s => s.ID == Optrs.LTID).Select(a => a.Brand).FirstOrDefault()).Select(f => f.Description).FirstOrDefault(),
                                          uom = uom.Where(X => X.id == Optrs.UOMID).Select(x => x.Description).FirstOrDefault(),
                                      }).ToList();
@@ -293,7 +327,7 @@ namespace WYNK.Data.Repository.Implementation
                     balance.COID = itm.COID;
                     balance.COTID = itm.COTID;
                     balance.LTID = itm.LTID;
-                    balance.LTname = itm.LTname;
+                    balance.Description = itm.Description;
                     balance.UOMID = itm.UOMID;
                     balance.UOMname = itm.UOMname;
                     balance.Type = itm.Type;
@@ -339,8 +373,8 @@ namespace WYNK.Data.Repository.Implementation
                     var ibm = new OpticalInvoiceMaster();
                     var osm = new OpticalStockMaster();
                     var transcation = CMPSContext.TransactionType.ToList();
-                    var lensmas = WYNKContext.Lensmaster.ToList();
-                    var lenstrns = WYNKContext.Lenstrans.ToList();
+                   // var lensmas = WYNKContext.Lensmaster.ToList();
+                   // var lenstrns = WYNKContext.Lenstrans.ToList();
 
                     ibm.CMPID = CmpID;
                     ibm.TransactionId = TID;
@@ -375,7 +409,7 @@ namespace WYNK.Data.Repository.Implementation
                             ibt.COTID = item.COTID;
                             ibt.LensID = item.LTID;
                             ibt.Quantity = Convert.ToInt32(item.OrderedQty);
-                            ibt.Description = "null";
+                            ibt.Description = "NULL";
                             ibt.UOMID = item.UOMID;
                             ibt.Amount = item.Price;
                             ibt.itemValue = item.Value;
@@ -711,6 +745,63 @@ namespace WYNK.Data.Repository.Implementation
 
 
 
+
+                    if (OpticalBilling.GetOpticaldetailsfullcheck.Count() > 0)
+                    {
+                        foreach (var item in OpticalBilling.GetOpticaldetailsfullcheck.ToList())
+
+                        {
+
+                            var brandID = WYNKContext.Lenstrans.Where(x => x.ID == item.LTID).Select(v => v.Brand).FirstOrDefault();
+                            var todaynow = DateTime.UtcNow;
+                            //var first = new DateTime(now.Year, now.Month, 1);
+                            //var last = first.AddMonths(1).AddDays(-1);
+
+                            var taid = (from TS in WYNKContext.OpticalSummary.Where(x => x.Date.Date == todaynow.Date && x.CmpID == CmpID && x.FrameLensType == item.LTID && x.Brand == brandID)
+                                        select new
+                                        {
+                                            ret = TS.RandomUniqueID,
+
+                                        }).ToList();
+                            if (taid.Count == 0)
+                            {
+                                var opsum = new OpticalSummary();
+                                opsum.RandomUniqueID = PasswordEncodeandDecode.GetRandomnumber();
+                                opsum.CmpID = CmpID;
+                                opsum.Date = DateTime.Now;
+                                opsum.FrameLensType = item.LTID;
+                                opsum.Brand = brandID;
+                                //opsum.LensPower = ;
+                                opsum.BilledNumbers = 1;
+                                decimal? GSTTaxValue = item.GSTTaxValue != null ? item.GSTTaxValue : 0;
+                                decimal? CESSAmount = item.CESSAmount != null ? item.CESSAmount : 0;
+                                decimal? AddCESSPerAmt = item.AddCESSPerAmt != null ? item.AddCESSPerAmt : 0;
+                                decimal? DiscountAmount = item.DiscountAmount != null ? item.DiscountAmount : 0;
+                                opsum.BilledAmount = item.Value + GSTTaxValue + CESSAmount + AddCESSPerAmt - DiscountAmount;
+                                opsum.CollectedAmount = null;
+                                opsum.Createdby = ibm.CreatedBy;
+                                WYNKContext.OpticalSummary.AddRange(opsum);
+                            }
+                            else
+                            {
+                                var masters = WYNKContext.OpticalSummary.Where(x => x.Date.Date == todaynow.Date && x.CmpID == CmpID && x.FrameLensType == item.LTID && x.Brand == brandID).LastOrDefault();
+                                 masters.BilledNumbers  += 1;
+                                decimal? GSTTaxValue = item.GSTTaxValue != null ? item.GSTTaxValue : 0;
+                                decimal? CESSAmount = item.CESSAmount != null ? item.CESSAmount : 0;
+                                decimal? AddCESSPerAmt = item.AddCESSPerAmt != null ? item.AddCESSPerAmt : 0;
+                                decimal? DiscountAmount = item.DiscountAmount != null ? item.DiscountAmount : 0;
+                                masters.BilledAmount += item.Value + GSTTaxValue + CESSAmount + AddCESSPerAmt - DiscountAmount;
+                                masters.CollectedAmount = null;
+                                masters.Updatedby = ibm.CreatedBy;
+                                WYNKContext.OpticalSummary.UpdateRange(masters);
+                            }
+                        }
+                    }
+
+
+
+
+
                     WYNKContext.SaveChanges();
                     dbContextTransaction.Commit();
 
@@ -787,34 +878,56 @@ namespace WYNK.Data.Repository.Implementation
             var lenstrns = WYNKContext.Lenstrans.ToList();
             var brand = WYNKContext.Brand.ToList();
             var pay = WYNKContext.PaymentMaster.ToList();
-
+            var onel = CMPSContext.OneLineMaster.ToList();
             var GetGrn = new OpticalBilling();
             TimeSpan ts = TimeSpan.Parse(Time);
 
             GetGrn.UIN = cusmas.Where(q => q.ID == cusorder.Where(x => x.RandomUniqueID == opt.Where(y => y.OID == OpticalID).Select(y => y.COID).FirstOrDefault()).Select(x => x.CusID).FirstOrDefault()).Select(s => s.UIN != null ? s.UIN : string.Empty).FirstOrDefault();
-            GetGrn.CustomerName = cusmas.Where(q => q.ID == cusorder.Where(x => x.RandomUniqueID == opt.Where(y => y.OID == OpticalID).Select(y => y.COID).FirstOrDefault()).Select(x => x.CusID).FirstOrDefault()).Select(s => s.Name + "" + s.MiddleName + "" + s.LastName).FirstOrDefault();
+            GetGrn.CustomerName = cusmas.Where(q => q.ID == cusorder.Where(x => x.RandomUniqueID == opt.Where(y => y.OID == OpticalID).Select(y => y.COID).FirstOrDefault()).Select(x => x.CusID).FirstOrDefault()).Select(s => s.Name + " " + s.MiddleName + " " + s.LastName).FirstOrDefault();
+            GetGrn.GSTIN = cusmas.Where(q => q.ID == cusorder.Where(x => x.RandomUniqueID == opt.Where(y => y.OID == OpticalID).Select(y => y.COID).FirstOrDefault()).Select(x => x.CusID).FirstOrDefault()).Select(s => s.GSTNo).FirstOrDefault() != null ? cusmas.Where(q => q.ID == cusorder.Where(x => x.RandomUniqueID == opt.Where(y => y.OID == OpticalID).Select(y => y.COID).FirstOrDefault()).Select(x => x.CusID).FirstOrDefault()).Select(s => s.GSTNo).FirstOrDefault() : string.Empty;
+            GetGrn.Address = cusmas.Where(q => q.ID == cusorder.Where(x => x.RandomUniqueID == opt.Where(y => y.OID == OpticalID).Select(y => y.COID).FirstOrDefault()).Select(x => x.CusID).FirstOrDefault()).Select(s => s.Address1 + " " + s.Address2).FirstOrDefault();
+            GetGrn.Mobileno = cusmas.Where(q => q.ID == cusorder.Where(x => x.RandomUniqueID == opt.Where(y => y.OID == OpticalID).Select(y => y.COID).FirstOrDefault()).Select(x => x.CusID).FirstOrDefault()).Select(s => s.MobileNo).FirstOrDefault();
             GetGrn.InvoiceNumber = opms.Where(x => x.RandomUniqueID == OpticalID).Select(x => x.InvoiceNumber).FirstOrDefault();
             GetGrn.InvoiceDate = opms.Where(x => x.RandomUniqueID == OpticalID).Select(x => x.InvoiceDate).FirstOrDefault().Value.Add(ts);
 
             GetGrn.Compnayname = company.Where(x => x.CmpID == CMPID).Select(x => x.CompanyName).FirstOrDefault();
-            GetGrn.companyAddress = company.Where(x => x.CmpID == CMPID).Select(x => x.Address1 != null ? x.Address1 : string.Empty).FirstOrDefault();
-            GetGrn.companyAddress1 = company.Where(x => x.CmpID == CMPID).Select(x => x.Address2 != null ? x.Address2 : string.Empty).FirstOrDefault();
-            GetGrn.companyAddress2 = company.Where(x => x.CmpID == CMPID).Select(x => x.Address3 != null ? x.Address3 : string.Empty).FirstOrDefault();
-            GetGrn.phone = company.Where(x => x.CmpID == CMPID).Select(x => x.Phone1).FirstOrDefault();
-            GetGrn.web = company.Where(x => x.CmpID == CMPID).Select(x => x.Website).FirstOrDefault();
+            GetGrn.companyAddress = company.Where(x => x.CmpID == CMPID).Select(x => x.Address1).FirstOrDefault() != null ? company.Where(x => x.CmpID == CMPID).Select(x => x.Address1).FirstOrDefault() : string.Empty;
+            GetGrn.companyAddress1 = company.Where(x => x.CmpID == CMPID).Select(x => x.Address2).FirstOrDefault() != null ? company.Where(x => x.CmpID == CMPID).Select(x => x.Address2).FirstOrDefault() : string.Empty;
+            GetGrn.companyAddress2 = company.Where(x => x.CmpID == CMPID).Select(x => x.Address3).FirstOrDefault() != null ? company.Where(x => x.CmpID == CMPID).Select(x => x.Address3).FirstOrDefault() : string.Empty;
+            GetGrn.phone = company.Where(x => x.CmpID == CMPID).Select(x => x.Phone1).FirstOrDefault() != null ? company.Where(x => x.CmpID == CMPID).Select(x => x.Phone1).FirstOrDefault() : string.Empty;
+            GetGrn.web = company.Where(x => x.CmpID == CMPID).Select(x => x.Website).FirstOrDefault() != null ? company.Where(x => x.CmpID == CMPID).Select(x => x.Website).FirstOrDefault() : string.Empty;
+            GetGrn.GstNo = company.Where(x => x.CmpID == CMPID).Select(x => x.GSTNo).FirstOrDefault() != null ? company.Where(x => x.CmpID == CMPID).Select(x => x.GSTNo).FirstOrDefault() : string.Empty;
 
             GetGrn.opticalbillingtran = (from Optrs in opt.Where(x => x.OID == OpticalID)
 
                                          select new opticalbillingtran
                                          {
 
-                                             LTname = lenstrns.Where(X => X.ID == Optrs.LensID).Select(x => x.LensOption).FirstOrDefault(),
+                                             //LTname = lenstrns.Where(X => X.ID == Optrs.LensID).Select(x => x.LensOption).FirstOrDefault(),
                                              UOMname = uom.Where(X => X.id == Optrs.UOMID).Select(x => x.Description).FirstOrDefault(),
                                              Type = lens.Where(x => x.RandomUniqueID == lenstrns.Where(s => s.ID == Optrs.LensID).Select(a => a.LMID).FirstOrDefault()).Select(f => f.LensType).FirstOrDefault(),
                                              Brand = brand.Where(x => x.ID == lenstrns.Where(s => s.ID == Optrs.LensID).Select(a => a.Brand).FirstOrDefault()).Select(f => f.Description).FirstOrDefault(),
                                              Index = lenstrns.Where(X => X.ID == Optrs.LensID).Select(x => x.Index).FirstOrDefault(),
                                              Color = lenstrns.Where(X => X.ID == Optrs.LensID).Select(x => x.Colour).FirstOrDefault(),
                                              Model = lenstrns.Where(X => X.ID == Optrs.LensID).Select(x => x.Model).FirstOrDefault(),
+
+                                            
+                                             Sph = lenstrns.Where(X => X.ID == Optrs.LensID).Select(x => x.Sph).FirstOrDefault() != null ? "Sph : " + lenstrns.Where(X => X.ID == Optrs.LensID).Select(x => x.Sph).FirstOrDefault() + "; " : null,
+                                             Cyl = lenstrns.Where(X => X.ID == Optrs.LensID).Select(x => x.Cyl).FirstOrDefault() != null ? "Cyl : " + lenstrns.Where(X => X.ID == Optrs.LensID).Select(x => x.Cyl).FirstOrDefault() + "; " : null,
+                                             Axis = lenstrns.Where(X => X.ID == Optrs.LensID).Select(x => x.Axis).FirstOrDefault() != null ? "Axis : " + lenstrns.Where(X => X.ID == Optrs.LensID).Select(x => x.Axis).FirstOrDefault() + "; " : null,
+                                             Add = lenstrns.Where(X => X.ID == Optrs.LensID).Select(x => x.Add).FirstOrDefault() != null ? "Add : " + lenstrns.Where(X => X.ID == Optrs.LensID).Select(x => x.Add).FirstOrDefault() : null,
+                                           
+                                             FrameShapeID = lenstrns.Where(X => X.ID == Optrs.LensID).Select(x => x.FrameShapeID).FirstOrDefault() != null ? "Shape : " + onel.Where(v => v.OLMID == lenstrns.Where(y => y.ID == Optrs.LensID).Select(x => x.FrameWidthID).FirstOrDefault()).Select(x => x.ParentDescription).FirstOrDefault() + "; " : null,
+                                             FrameStyleID = lenstrns.Where(X => X.ID == Optrs.LensID).Select(x => x.FrameStyleID).FirstOrDefault() != null ? "Style : " + onel.Where(v => v.OLMID == lenstrns.Where(y => y.ID == Optrs.LensID).Select(x => x.FrameStyleID).FirstOrDefault()).Select(x => x.ParentDescription).FirstOrDefault() + "; " : null,
+                                             FrameTypeID = lenstrns.Where(X => X.ID == Optrs.LensID).Select(x => x.FrameTypeID).FirstOrDefault() != null ? "Type : " + onel.Where(v => v.OLMID == lenstrns.Where(y => y.ID == Optrs.LensID).Select(x => x.FrameTypeID).FirstOrDefault()).Select(x => x.ParentDescription).FirstOrDefault() + "; " : null,
+                                             FrameWidthID = lenstrns.Where(X => X.ID == Optrs.LensID).Select(x => x.FrameWidthID).FirstOrDefault() != null ? "Width : " + onel.Where(v => v.OLMID == lenstrns.Where(y => y.ID == Optrs.LensID).Select(x => x.FrameWidthID).FirstOrDefault()).Select(x => x.ParentDescription).FirstOrDefault() : null,
+
+                                             CGSTPercentage = Optrs.CGSTPercentage,
+                                             CGSTTaxValue = Optrs.CGSTTaxValue,
+                                             SGSTPercentage = Optrs.SGSTPercentage,
+                                             SGSTTaxValue = Optrs.SGSTTaxValue,
+
+
                                              OrderedQty = Optrs.Quantity,
                                              Price = Optrs.Amount,
                                              Value = Optrs.itemValue,
@@ -828,9 +941,9 @@ namespace WYNK.Data.Repository.Implementation
                                              AddCESSPerAmt = Optrs.AdditionalCESSAmount,
                                              Totalamount = ((Optrs.Quantity * Optrs.Amount) - Optrs.DiscountAmount) + (Optrs.GSTTaxValue != null ? Optrs.GSTTaxValue : 0) + (Optrs.CESSAmount != null ? Optrs.CESSAmount : 0) + (Optrs.AdditionalCESSAmount != null ? Optrs.AdditionalCESSAmount : 0),
                                              GrossValue = ((Optrs.Quantity * Optrs.Amount) - Optrs.DiscountAmount),
-                                             TaxDescription = taxMaster.Where(v => v.ID == lens.Where(x => x.RandomUniqueID == lenstrns.Where(y => y.ID == Optrs.LensID).Select(y => y.LMID).FirstOrDefault()).Select(x => x.TaxID).FirstOrDefault()).Select(x => x.TaxDescription).FirstOrDefault(),
-                                             CessDescription = taxMaster.Where(v => v.ID == lens.Where(x => x.RandomUniqueID == lenstrns.Where(y => y.ID == Optrs.LensID).Select(y => y.LMID).FirstOrDefault()).Select(x => x.TaxID).FirstOrDefault()).Select(x => x.CESSDescription).FirstOrDefault(),
-                                             AddcessDescription = taxMaster.Where(v => v.ID == lens.Where(x => x.RandomUniqueID == lenstrns.Where(y => y.ID == Optrs.LensID).Select(y => y.LMID).FirstOrDefault()).Select(x => x.TaxID).FirstOrDefault()).Select(x => x.AdditionalCESSDescription).FirstOrDefault(),
+                                             TaxDescription = taxMaster.Where(v => v.ID == lenstrns.Where(y => y.ID == Optrs.LensID).Select(x => x.TaxID).FirstOrDefault()).Select(x => x.TaxDescription).FirstOrDefault(),
+                                             CessDescription = taxMaster.Where(v => v.ID == lenstrns.Where(y => y.ID == Optrs.LensID).Select(x => x.TaxID).FirstOrDefault()).Select(x => x.CESSDescription).FirstOrDefault(),
+                                             AddcessDescription = taxMaster.Where(v => v.ID == lenstrns.Where(y => y.ID == Optrs.LensID).Select(x => x.TaxID).FirstOrDefault()).Select(x => x.AdditionalCESSDescription).FirstOrDefault(),
                                          }).ToList();
 
 
@@ -879,6 +992,8 @@ namespace WYNK.Data.Repository.Implementation
                 {
                     pUIN = GetGrn.UIN,
                     pCustomerName = GetGrn.CustomerName,
+                    pAddress = GetGrn.Address,
+                    pMobileno = GetGrn.Mobileno,
                     pOrderNumber = GetGrn.InvoiceNumber,
                     pOrderDate = GetGrn.InvoiceDate,
                     pcompanyAddress = GetGrn.companyAddress,
@@ -886,6 +1001,8 @@ namespace WYNK.Data.Repository.Implementation
                     pcompanyAddress2 = GetGrn.companyAddress2,
                     pphone = GetGrn.phone,
                     pweb = GetGrn.web,
+                    pGstNo = GetGrn.GstNo,
+                    pGSTIN = GetGrn.GSTIN,
                     pCompnayname = GetGrn.Compnayname,
                     totalamt = GetGrn.TotalAmountprinting,
                     optransdetails = GetGrn.opticalbillingtran.ToList(),

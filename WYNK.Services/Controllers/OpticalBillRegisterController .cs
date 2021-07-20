@@ -21,7 +21,7 @@ namespace WYNK.Services.Controllers
         }
 
         [HttpGet("getOpticalBillDet/{Fromdate}/{Todate}/{CMPID}")]
-        public OpticalBillRegisterViewModel getOpticalBillDet(DateTime Fromdate,DateTime Todate, int CMPID)
+        public OpticalBillRegisterViewModel getOpticalBillDet(string Fromdate, string Todate, int CMPID)
         {
             return _repoWrapper.OpticalBillRegister.getOpticalBillDet(Fromdate, Todate, CMPID);
         }

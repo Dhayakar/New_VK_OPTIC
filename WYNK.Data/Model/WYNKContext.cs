@@ -252,6 +252,7 @@ namespace WYNK.Data.Model
         public DbSet<EyelidImage> EyelidImage { get; set; }
         public DbSet<ExpenseMaster> ExpenseMaster { get; set; }
         public DbSet<ExpenseTran> ExpenseTran { get; set; }
+        public DbSet<OpticalSummary> OpticalSummary { get; set; }
     }
     public class CMPSContext : DbContext
     {

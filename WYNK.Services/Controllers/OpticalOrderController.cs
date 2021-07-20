@@ -49,19 +49,19 @@ namespace WYNK.Services.Controllers
 
             if (TransactionTypeid == 0)
             {
-                var Errordata = _repoWrapper.Common.ErrorList("TransactionTypeid=null", "OpticalOrder", Cmpid, Cmpid);
-
+               var Errordata = _repoWrapper.Common.ErrorList("TransactionTypeid=null", "OpticalOrder", Cmpid, Cmpid);
+               
                 return new
                 {
                     Success = false,
                     Message = "TransactionTypeid Does'nt Exist"
 
                 };
-
+           
             }
 
 
-            int? RecContraID = _repoWrapper.Common.GettingReceiptTcID(TransactionTypeid, Cmpid);
+            int ? RecContraID = _repoWrapper.Common.GettingReceiptTcID(TransactionTypeid, Cmpid);
 
             if (RecContraID == null)
             {
@@ -71,7 +71,7 @@ namespace WYNK.Services.Controllers
                     Message = "Receipt Number Does'nt Exist"
                 };
             }
-
+          
             if (AddOptical.paymenttran.Count > 0)
             {
 
@@ -119,10 +119,10 @@ namespace WYNK.Services.Controllers
         }
 
         [HttpPost("UpdateOpticalOrder/{Cmpid}/{TransactionTypeid}/{OpticalOrderID}")]
-        public dynamic UpdateOpticalOrder([FromBody] OpticalOrderView OpticalUpdate, int Cmpid, int TransactionTypeid, int OpticalOrderID)
+        public dynamic UpdateOpticalOrder([FromBody] OpticalOrderView OpticalUpdate, int Cmpid, int TransactionTypeid, string OpticalOrderID)
         {
 
-            if (TransactionTypeid == 0)
+            if (TransactionTypeid == 0) 
             {
                 _repoWrapper.Common.ErrorList("TransactionTypeid=null", "OpticalOrder", Cmpid, Cmpid);
                 return new
@@ -131,9 +131,9 @@ namespace WYNK.Services.Controllers
                     Message = "TransactionTypeid Does'nt Exist"
                 };
             }
+         
 
-
-
+           
             int? RecContraID = _repoWrapper.Common.GettingReceiptTcID(TransactionTypeid, Cmpid);
 
             if (RecContraID == null)

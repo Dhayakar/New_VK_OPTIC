@@ -15,7 +15,7 @@ namespace WYNK.Data.Repository
         dynamic InsertOpticalOrder(OpticalOrderView AddOptical, int Cmpid, int TransactionTypeid);
         dynamic OpticalUpdateDetails(int Cmpid);
         dynamic OpticalbindingDetails(int Cmpid,string OOID);
-        dynamic UpdateOpticalOrder(OpticalOrderView OpticalUpdate, int Cmpid, int TransactionTypeid, int OpticalOrderID);
+        dynamic UpdateOpticalOrder(OpticalOrderView OpticalUpdate, int Cmpid, int TransactionTypeid, string OpticalOrderID);
         dynamic DeleteOpticalOrder(OpticalOrderView OpticalUpdate, int Cmpid, int TransactionTypeid, int OpticaltrnID);
         OpticalOrderView getpayment(string OrderNumber, int Cmpid);
        

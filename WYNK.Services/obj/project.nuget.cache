@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "H6UxUUTRLOiG6p8DCLXdGn2O6L4AiPYGcQ4myZsJEcC96Ci5JOtOaBHywLJbI9MO3I7pqfME1zx38AeFx1+MJQ==",
+  "dgSpecHash": "b1oBML3wt1WgeQ2y8zgeswrbFgKEOVt4HpRHG29kuZcmDpKTmRKTadmtU1+RBPWg1T9ZXogifokfYJvEzOipFQ==",
   "success": true,
-  "projectFilePath": "E:\\Git_desktop\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
+  "projectFilePath": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\admin\\.nuget\\packages\\documentformat.openxml\\2.11.3\\documentformat.openxml.2.11.3.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\elasticsearch.net\\7.8.0\\elasticsearch.net.7.8.0.nupkg.sha512",

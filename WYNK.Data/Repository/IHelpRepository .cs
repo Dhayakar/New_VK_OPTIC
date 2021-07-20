@@ -13,7 +13,6 @@ namespace WYNK.Data.Repository
     {
         Help BMISearch(int ID);
         Help PACSearch(int ID);
-        dynamic getopticalMaterialdetails();
         Help SlitLamp(int ID);
         Help Fundus(int ID);
        // Help GetUserDetail(int ID);
@@ -47,7 +46,7 @@ namespace WYNK.Data.Repository
       //  Help getCode(string name);
       //  Help getGroup(string name);
         Help CustomerOrder(int CMPID);
-        Help getCode1(int ICDGROUPCODE);
+        Help getCode1(int ICDGROUPCODE,int CMPID);
         Help getUserDoc();
         Help getUserEmp();
         Help GetPatientHistory(string UIN);
@@ -100,7 +99,7 @@ namespace WYNK.Data.Repository
         dynamic GetAppointmentDetails(int CMPID,string Searchvalue);
         Help getPatientInsurance(DateTime FromDate, DateTime ToDate, string Insurancetype, int CMPID);
         Help getMedicalRegisters(DateTime FromDate, DateTime ToDate, int CMPID);
-        Help getInvReg(DateTime FromDate, DateTime ToDate,int CMPID);
+        Help getInvReg(string FromDate, string ToDate,int CMPID);
         Help getCampScreenedpatients(int CampID, DateTime FromDate, DateTime ToDate, int CMPID);
         Help getCampSurgerypatients(int CampID, DateTime FromDate, DateTime ToDate, int CMPID);
         Help getCampSurgeryunderwentpatients(int CampID, DateTime FromDate, DateTime ToDate, int CMPID);

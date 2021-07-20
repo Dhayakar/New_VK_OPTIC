@@ -111,7 +111,7 @@ namespace WYNK.Data.Repository.Implementation
                                         {
                                             RandomUniqueID = Optrs.RandomUniqueID,
                                             LTID = Optrs.LTID,
-                                            LTname = opt.Where(X => X.ID == Optrs.LTID).Select(x => x.LensOption).FirstOrDefault(),
+                                           // LTname = opt.Where(X => X.ID == Optrs.LTID).Select(x => x.LensOption).FirstOrDefault(),
                                             UOMID = Optrs.UOMID,
                                             UOMname = uom.Where(X => X.id == Optrs.UOMID).Select(x => x.Description).FirstOrDefault(),
                                             OrderedQty = Optrs.OrderedQty,
@@ -685,7 +685,7 @@ namespace WYNK.Data.Repository.Implementation
 
                                              select new GetOpticalGrntrnsstock
                                              {
-                                                 LTname = opt.Where(X => X.ID == Optrs.LMIDID).Select(x => x.LensOption).FirstOrDefault(),
+                                                // LTname = opt.Where(X => X.ID == Optrs.LMIDID).Select(x => x.LensOption).FirstOrDefault(),
                                                  UOMname = uom.Where(X => X.id == Optrs.UOMID).Select(x => x.Description).FirstOrDefault(),
                                                  ItemQty = Optrs.ItemQty,
                                                  Itemrate = Optrs.ItemRate,
@@ -771,7 +771,7 @@ namespace WYNK.Data.Repository.Implementation
 
                                                   select new GetOpticalGrntrnsstockprint
                                                   {
-                                                      LTname = opt.Where(X => X.ID == Optrs.LMIDID).Select(x => x.LensOption).FirstOrDefault(),
+                                                     // LTname = opt.Where(X => X.ID == Optrs.LMIDID).Select(x => x.LensOption).FirstOrDefault(),
                                                       UOMname = uom.Where(X => X.id == Optrs.UOMID).Select(x => x.Description).FirstOrDefault(),
                                                       ItemQty = Optrs.ItemQty,
                                                       Itemrate = Optrs.ItemRate,

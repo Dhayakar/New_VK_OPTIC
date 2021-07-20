@@ -213,7 +213,7 @@ namespace WYNK.Data.Repository
         /////Yours TM
         IEnumerable<Dropdown> GetSplName();
         IEnumerable<Dropdown> GetSquintvalue();
-        IEnumerable<Dropdown> GetRooms(int cmpid);
+        IEnumerable<Dropdown> GetRooms(int CMPID);
         IEnumerable<Dropdown> GetSurgeryLens(int CMPID);
         IEnumerable<Dropdown> GetRoomstatus();
 

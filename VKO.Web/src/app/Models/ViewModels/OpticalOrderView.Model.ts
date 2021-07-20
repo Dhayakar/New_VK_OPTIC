@@ -42,6 +42,10 @@ export class OPticalOrderdetails {
   TaxDescription: string;
   CESSDescription: string;
   AdditionalCESSDescription: string;
+  CGSTPercentage: number ;
+  CGSTTaxValue: number ;
+  SGSTPercentage: number ;
+  SGSTTaxValue: number ;
 }
 //update 
 export class OpticalOrderUpdate {
@@ -63,6 +67,13 @@ export class OPticalDetails {
   Model: string;
   Index: string;
   Color: string;
+
+  Description: string;
+   Sph :string;
+   Cyl :string;
+   Axis:string;
+   Add: string;
+
 
   LensName: string;
   LMID: string;
@@ -90,6 +101,10 @@ export class OPticalDetails {
   CESSDescription: string = "";
   AdditionalCESSDescription: string = "";
 
+  CGSTPercentage: number = 0;
+  CGSTTaxValue: number = 0;
+  SGSTPercentage: number = 0;
+  SGSTTaxValue: number = 0;
 
   CompanyName: string;
   CAddress1: string;

@@ -75,7 +75,7 @@ namespace WYNK.Data.Repository.Implementation
                             var lenstrans = new LensTranModel();
 
                             lenstrans.LMID = RandomUniqueID;
-                            lenstrans.LensOption = item.LensOption;
+                            // lenstrans.LensOption = item.LensOption;
                             lenstrans.Index = item.Index;
                             lenstrans.Model = item.Model;
                             lenstrans.Size = item.Size;
@@ -133,7 +133,7 @@ namespace WYNK.Data.Repository.Implementation
                                                  select new Taxnamelensmastertrans
                                                  {
                                                      ID = REF.ID,
-                                                     LensOption = REF.LensOption,
+                                                     //LensOption = REF.LensOption,
                                                      Indexname = REF.Index != null ? one.Where(x => x.OLMID == Convert.ToInt32(REF.Index)).Select(x => x.ParentDescription).FirstOrDefault() : string.Empty,
                                                      Index = REF.Index != null ? REF.Index : string.Empty,
                                                      Model = REF.Model != null ? REF.Model : string.Empty,
@@ -183,7 +183,7 @@ namespace WYNK.Data.Repository.Implementation
                             {
                                 lenstrans = WYNKContext.Lenstrans.Where(x => x.ID == item.ID).FirstOrDefault();
                                 lenstrans.LMID = ID;
-                                lenstrans.LensOption = item.LensOption;
+                                //lenstrans.LensOption = item.LensOption;
                                 lenstrans.Index = item.Index;
                                 lenstrans.Model = item.Model;
                                 lenstrans.Size = item.Size;
@@ -208,7 +208,7 @@ namespace WYNK.Data.Repository.Implementation
                             else
                             {
                                 lenstrans.LMID = ID;
-                                lenstrans.LensOption = item.LensOption;
+                                //lenstrans.LensOption = item.LensOption;
                                 lenstrans.Index = item.Index;
                                 lenstrans.Model = item.Model;
                                 lenstrans.Size = item.Size;
@@ -972,7 +972,7 @@ namespace WYNK.Data.Repository.Implementation
                                 {
                                     var LensTranModel = new LensTranModel();
                                     LensTranModel.LMID = Lensframemaster;
-                                    LensTranModel.LensOption = lensframe.LensOption;
+                                    //LensTranModel.LensOption = lensframe.LensOption;
                                     LensTranModel.Index = Convert.ToString(Index);
                                     LensTranModel.Model = lensframe.Model;
                                     LensTranModel.Size = lensframe.Size;
@@ -1014,7 +1014,7 @@ namespace WYNK.Data.Repository.Implementation
                                 {
                                     var LensTranModel = new LensTranModel();
                                     LensTranModel.LMID = Lensframemaster;
-                                    LensTranModel.LensOption = lensframe.LensOption;
+                                    // LensTranModel.LensOption = lensframe.LensOption;
                                     LensTranModel.Model = lensframe.Model;
                                     LensTranModel.Size = lensframe.Size;
                                     LensTranModel.Colour = lensframe.Colour;

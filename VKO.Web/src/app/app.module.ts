@@ -61,7 +61,7 @@ import { EncrDecrServiceService } from '../app/shared/encr-decr-service.service'
 import { AppComponent } from './app.component';
 import { CommonService } from './shared/common.service';
 import { AppRoutingModule } from './app-routing.module';
-
+import { SearchComponent } from './Views/search/search.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
 import { DxSchedulerModule } from 'devextreme-angular';
@@ -93,7 +93,7 @@ const shortcutConfig: NgShortcutConfig[] = [
     AccessprivilegesComponent,
     DashboardComponent,
     MouseEnterLeaveDebounceDirective,
-
+    SearchComponent,
   ],
   imports: [
     NgShortcutModule.forRoot(shortcutConfig),
@@ -162,7 +162,7 @@ const shortcutConfig: NgShortcutConfig[] = [
     AppRoutingModule
   ],
   exports: [MatFormFieldModule, MatInputModule, DragDropModule],
-  entryComponents: [],
+  entryComponents: [SearchComponent],
   providers: [CommonService, AuthGuard, DatePipe, EncrDecrServiceService, CurrencyPipe],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

@@ -62,8 +62,16 @@ namespace WYNK.Data.Model.ViewModel
         public string Brand { get; set; }
 
 
+        public int LTID { get; set; }
+        public string Sph { get; set; }
+        public string Cyl { get; set; }
+        public string Axis { get; set; }
+        public string Add { get; set; }
 
-
+        public string FrameShapeID { get; set; }
+        public string FrameStyleID { get; set; }
+        public string FrameTypeID { get; set; }
+        public string FrameWidthID { get; set; }
 
 
         public int LMID { get; set; }
@@ -175,7 +183,10 @@ namespace WYNK.Data.Model.ViewModel
         public string TaxDescription { get; set; }
         public string CESSDescription { get; set; }
         public string AdditionalCESSDescription { get; set; }
-
+        public decimal? CGSTPercentage { get; set; }
+        public decimal? CGSTTaxValue { get; set; }
+        public decimal? SGSTPercentage { get; set; }
+        public decimal? SGSTTaxValue { get; set; }
 
     }
 

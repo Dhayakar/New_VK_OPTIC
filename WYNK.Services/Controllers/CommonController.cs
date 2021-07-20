@@ -1022,10 +1022,10 @@ namespace WYNK.Services.Controllers
         }
 
 
-        [HttpGet("GetRooms/{cmpid}")]
-        public IEnumerable<Dropdown> GetRooms(int cmpid)
+        [HttpGet("GetRooms/{CMPID}")]
+        public IEnumerable<Dropdown> GetRooms(int CMPID)
         {
-            return _repoWrapper.Common.GetRooms(cmpid);
+            return _repoWrapper.Common.GetRooms(CMPID);
         }
 
 

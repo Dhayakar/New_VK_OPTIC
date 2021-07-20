@@ -7,7 +7,7 @@ namespace WYNK.Data.Repository
 {
     public interface IOpticalBillRegisterRepository : IRepositoryBase<OpticalBillRegisterViewModel>
     {
-        OpticalBillRegisterViewModel getOpticalBillDet(DateTime Fromdate, DateTime Todate, int CMPID);
+        OpticalBillRegisterViewModel getOpticalBillDet(string Fromdate, string Todate, int CMPID);
 
     }
 }

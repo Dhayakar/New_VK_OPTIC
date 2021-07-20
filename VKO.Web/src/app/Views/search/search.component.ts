@@ -2614,7 +2614,7 @@ export class SearchComponent implements OnInit {
     console.log(this.data);
     // this.commonService.data = new Search();
 
-    this.commonService.getListOfData('Help/getCode1/' + this.data.dataKey).subscribe(data => {
+    this.commonService.getListOfData('Help/getCode1/' + this.data.dataKey + '/' + parseInt(localStorage.getItem('CompanyID'))).subscribe(data => {
 
       if (data.IcdDetail.length >= 1) {
         debugger;

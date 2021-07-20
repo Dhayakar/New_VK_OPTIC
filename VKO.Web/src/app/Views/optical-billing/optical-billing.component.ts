@@ -245,14 +245,14 @@ export class OpticalBillingComponent implements OnInit {
   }
 
 
-  displayedColumnss: string[] = ['Description', 'Brand', 'Model', 'Color', 'UOM', 'Quantity', 'Rate', 'Value', 'Discount(%)', 'DiscountValue', 'Grossamount', 'TaxDescription', 'GST', 'GSTValue', 'TotalAmount', 'Delete'];
+  displayedColumnss: string[] = ['Brand', 'Type', 'LensPower', 'UOM', 'Quantity', 'Rate', 'Value', 'Discount(%)', 'DiscountValue', 'Grossamount', 'CGST', 'CGSTValue', 'SGST','SGSTValue','TotalAmount', 'Delete'];
   dataSources = new MatTableDataSource();
 
 
   displayedColumns3: string[] = ['PaymentMode', 'BankName', 'InstrumentNumber', 'InstrumentDate', 'ExpiryDate', 'Branch', 'Amount', 'Action'];
   dataSource3 = new MatTableDataSource();
 
-  displayedColumnssp: string[] = ['Description', 'Brand', 'Model', 'Color', 'UOM', 'Quantity', 'Rate', 'Value', 'Discount(%)', 'DiscountValue', 'Grossamount', 'TaxDescription', 'GST', 'GSTValue', 'TotalAmount'];
+  displayedColumnssp: string[] = ['Brandp', 'Typep', 'LensPowerp', 'UOMp', 'Quantityp', 'Ratep', 'Valuep', 'Discountp(%)', 'DiscountValuep', 'Grossamountp', 'CGSTp', 'CGSTValuep', 'SGSTp', 'SGSTValuep', 'TotalAmountp'];
   dataSourcesp = new MatTableDataSource();
 
   modalpreview;
@@ -430,7 +430,24 @@ export class OpticalBillingComponent implements OnInit {
       return restotalcost;
     }
   }
+  GetCGSTAmount() {
 
+    if (this.commonService.data.GetOpticaldetailsfullcheck != undefined) {
+      var restotalcost = this.commonService.data.GetOpticaldetailsfullcheck.map(t => t.CGSTTaxValue).reduce((acc, value) => acc + value, 0);
+      restotalcost = parseFloat(restotalcost.toFixed(2));
+      this.person.Totalpoamount = restotalcost;
+      return restotalcost;
+    }
+  }
+  GetSGSTAmount() {
+
+    if (this.commonService.data.GetOpticaldetailsfullcheck != undefined) {
+      var restotalcost = this.commonService.data.GetOpticaldetailsfullcheck.map(t => t.SGSTTaxValue).reduce((acc, value) => acc + value, 0);
+      restotalcost = parseFloat(restotalcost.toFixed(2));
+      this.person.Totalpoamount = restotalcost;
+      return restotalcost;
+    }
+  }
   GetCESSAmount() {
     if (this.commonService.data.GetOpticaldetailsfullcheck != undefined) {
       var restotalcost = this.commonService.data.GetOpticaldetailsfullcheck.map(t => t.CESSAmount).reduce((acc, value) => acc + value, 0);
@@ -845,6 +862,27 @@ export class OpticalBillingComponent implements OnInit {
   }
 
   optotal = [];
+
+
+  printCGSTAmount() {
+
+    if (this.optotal.length > 0) {
+      var restotalcost = this.optotal.map(t => t.CGSTTaxValue).reduce((acc, value) => acc + value, 0);
+      restotalcost = parseFloat(restotalcost.toFixed(2));
+      return restotalcost;
+    }
+  }
+  printSGSTAmount() {
+
+    if (this.optotal.length > 0) {
+      var restotalcost = this.optotal.map(t => t.SGSTTaxValue).reduce((acc, value) => acc + value, 0);
+      restotalcost = parseFloat(restotalcost.toFixed(2));
+      return restotalcost;
+    }
+  }
+
+
+
   printTotalAmount() {
     if (this.optotal.length > 0) {
       var restotalcost = this.optotal.map(t => t.Totalamount).reduce((acc, value) => acc + value, 0);
@@ -1330,54 +1368,5 @@ export class OpticalBillingComponent implements OnInit {
 
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -392,7 +392,7 @@ namespace WYNK.Data.Repository.Implementation
                                          StoreName = StoreMaster.Where(x => x.StoreID == FIY.StoreID && x.CmpID == cmpid).Select(x => x.Storename).FirstOrDefault(),
                                          LensType = LensMaster.Where(x => x.RandomUniqueID == LensTran.Where(lt => lt.ID == FIY.LTID).Select(lt => lt.LMID).FirstOrDefault()).Select(x => x.LensType).FirstOrDefault(),
                                          Brand = BrandMaster.Where(x => x.ID == LensTran.Where(lt => lt.ID == FIY.LTID).Select(lt => lt.Brand).FirstOrDefault()).Select(x => x.Description).FirstOrDefault(),
-                                         LensOption = LensTran.Where(lt => lt.ID == FIY.LTID).Select(lt => lt.LensOption).FirstOrDefault(),
+                                        // LensOption = LensTran.Where(lt => lt.ID == FIY.LTID).Select(lt => lt.LensOption).FirstOrDefault(),
                                          Model = LensTran.Where(lt => lt.ID == FIY.LTID).Select(lt => lt.Model).FirstOrDefault(),
                                          UOM = UOM.Where(x => x.id == LensTran.Where(lt => lt.ID == FIY.LTID).Select(lt => lt.UOMID).FirstOrDefault()).Select(x => x.Description).FirstOrDefault(),
                                          ClosingBalance = FIY.ClosingBalance,
@@ -425,7 +425,7 @@ namespace WYNK.Data.Repository.Implementation
                            {
                                LensType = LensMaster.Where(x => x.RandomUniqueID == LensTran.Where(lt => lt.ID == FY.LTID).Select(lt => lt.LMID).FirstOrDefault()).Select(x => x.LensType).FirstOrDefault(),
                                Brand = BrandMaster.Where(x => x.ID == LensTran.Where(lt => lt.ID == FY.LTID).Select(lt => lt.Brand).FirstOrDefault()).Select(x => x.Description).FirstOrDefault(),
-                               LensOption = LensTran.Where(lt => lt.ID == FY.LTID).Select(lt => lt.LensOption).FirstOrDefault(),
+                               //LensOption = LensTran.Where(lt => lt.ID == FY.LTID).Select(lt => lt.LensOption).FirstOrDefault(),
                                Model = LensTran.Where(lt => lt.ID == FY.LTID).Select(lt => lt.Model).FirstOrDefault(),
                                UOM = UOM.Where(x => x.id == LensTran.Where(lt => lt.ID == FY.LTID).Select(lt => lt.UOMID).FirstOrDefault()).Select(x => x.Description).FirstOrDefault(),
                                ClosingBalance = FY.ClosingBalance,

@@ -12,7 +12,6 @@ namespace WYNK.Data.Model
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { get; set; }
         public string LMID { get; set; }
-        public string LensOption { get; set; }
         public string Description { get; set; }
         public string Index { get; set; }
         public string Model { get; set; }
@@ -35,5 +34,9 @@ namespace WYNK.Data.Model
         public int? FrameWidthID { get; set; }
         public int? FrameStyleID { get; set; }
         public Boolean IsActive { get; set; }
+        public string Sph { get; set; }
+        public string Cyl { get; set; }
+        public string Axis { get; set; }
+        public string Add { get; set; }
     }
 }

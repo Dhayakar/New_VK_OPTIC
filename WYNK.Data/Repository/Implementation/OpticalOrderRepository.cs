@@ -115,7 +115,7 @@ namespace WYNK.Data.Repository.Implementation
                                                   {
                                                       LMID = LT.LMID,
                                                       LTID = LT.ID,
-                                                      LensName = LT.LensOption,
+                                                      //LensName = LT.LensOption,
                                                       UOMDescription = UM.Description,
                                                       Prize = LT.Prize,
                                                       GST = Convert.ToInt16(getvalue(CMPSContext.TaxMaster.Where(x => x.ID == TaxID).Select(x => x.GSTPercentage).FirstOrDefault())),
@@ -125,6 +125,11 @@ namespace WYNK.Data.Repository.Implementation
                                                       TaxDescription = CMPSContext.TaxMaster.Where(x => x.ID == TaxID).Select(t => t.TaxDescription).FirstOrDefault(),
                                                       CESSDescription = CMPSContext.TaxMaster.Where(x => x.ID == TaxID).Select(t => t.CESSDescription).FirstOrDefault(),
                                                       AdditionalCESSDescription = CMPSContext.TaxMaster.Where(x => x.ID == TaxID).Select(t => t.AdditionalCESSDescription).FirstOrDefault(),
+
+                                                      CGSTPercentage = Convert.ToInt16(getvalue(CMPSContext.TaxMaster.Where(x => x.ID == TaxID).Select(x => x.CGSTPercentage).FirstOrDefault())),
+                                                      SGSTPercentage = Convert.ToInt16(getvalue(CMPSContext.TaxMaster.Where(x => x.ID == TaxID).Select(x => x.SGSTPercentage).FirstOrDefault())),
+                                                      //SGSTPercentage = Convert.ToInt16(getvalue(CMPSContext.TaxMaster.Where(x => x.ID == TaxID).Select(x => x.IGSTPercentage).FirstOrDefault())),
+                                                      //SGSTTaxValue = Convert.ToInt16(getvalue(CMPSContext.TaxMaster.Where(x => x.ID == TaxID).Select(x => x.GSTPercentage).FirstOrDefault())),
 
                                                   }
                                         ).ToList();
@@ -393,8 +398,23 @@ namespace WYNK.Data.Repository.Implementation
                                                       select new OpticalbindingDet
                                                       {
                                                           ID = OOT.ID,
-                                                          LensName = WYNKContext.Lenstrans.Where(x => x.ID == OOT.LTID).Select(x => x.LensOption).FirstOrDefault(),
-                                                          Index = WYNKContext.Lenstrans.Where(x => x.ID == OOT.LTID).Select(x => x.Index).FirstOrDefault(),
+                                                          //LensName = WYNKContext.Lenstrans.Where(x => x.ID == OOT.LTID).Select(x => x.LensOption).FirstOrDefault(),
+                                                          //Sph = WYNKContext.Lenstrans.Where(x => x.ID == OOT.LTID).Select(x => x.Sph).FirstOrDefault(),
+                                                          //Cyl = WYNKContext.Lenstrans.Where(x => x.ID == OOT.LTID).Select(x => x.Cyl).FirstOrDefault(),
+                                                          //Axis = WYNKContext.Lenstrans.Where(x => x.ID == OOT.LTID).Select(x => x.Axis).FirstOrDefault(),
+                                                          //Add = WYNKContext.Lenstrans.Where(x => x.ID == OOT.LTID).Select(x => x.Add).FirstOrDefault(),
+                                                          //Index = WYNKContext.Lenstrans.Where(x => x.ID == OOT.LTID).Select(x => x.Index).FirstOrDefault(),
+
+                                                          Sph = WYNKContext.Lenstrans.Where(x => x.ID == OOT.LTID).Select(x => x.Sph).FirstOrDefault() != null ? "Sph : " + WYNKContext.Lenstrans.Where(x => x.ID == OOT.LTID).Select(x => x.Sph).FirstOrDefault() + "; " : null,
+                                                          Cyl = WYNKContext.Lenstrans.Where(x => x.ID == OOT.LTID).Select(x => x.Cyl).FirstOrDefault() != null ? "Cyl : " + WYNKContext.Lenstrans.Where(x => x.ID == OOT.LTID).Select(x => x.Cyl).FirstOrDefault() + "; " : null,
+                                                          Axis = WYNKContext.Lenstrans.Where(x => x.ID == OOT.LTID).Select(x => x.Axis).FirstOrDefault() != null ? "Axis : " + WYNKContext.Lenstrans.Where(x => x.ID == OOT.LTID).Select(x => x.Axis).FirstOrDefault() + "; " : null,
+                                                          Add = WYNKContext.Lenstrans.Where(x => x.ID == OOT.LTID).Select(x => x.Add).FirstOrDefault() != null ? "Add : " + WYNKContext.Lenstrans.Where(x => x.ID == OOT.LTID).Select(x => x.Add).FirstOrDefault() : null,
+                                                          FrameShapeID = WYNKContext.Lenstrans.Where(x => x.ID == OOT.LTID).Select(x => x.FrameShapeID).FirstOrDefault() != null ? "Shape : " + WYNKContext.Lenstrans.Where(x => x.ID == OOT.LTID).Select(x => x.FrameShapeID).FirstOrDefault() + "; " : null,
+                                                          FrameStyleID = WYNKContext.Lenstrans.Where(x => x.ID == OOT.LTID).Select(x => x.FrameStyleID).FirstOrDefault() != null ? "Style : " + WYNKContext.Lenstrans.Where(x => x.ID == OOT.LTID).Select(x => x.FrameStyleID).FirstOrDefault() + "; " : null,
+                                                          FrameTypeID = WYNKContext.Lenstrans.Where(x => x.ID == OOT.LTID).Select(x => x.FrameTypeID).FirstOrDefault() != null ? "Type : " + WYNKContext.Lenstrans.Where(x => x.ID == OOT.LTID).Select(x => x.FrameTypeID).FirstOrDefault() + "; " : null,
+                                                          FrameWidthID = WYNKContext.Lenstrans.Where(x => x.ID == OOT.LTID).Select(x => x.FrameWidthID).FirstOrDefault() != null ? "Width : " + WYNKContext.Lenstrans.Where(x => x.ID == OOT.LTID).Select(x => x.FrameWidthID).FirstOrDefault() : null,
+
+                                                          LTID = OOT.LTID,
                                                           Model = WYNKContext.Lenstrans.Where(x => x.ID == OOT.LTID).Select(x => x.Model).FirstOrDefault(),
                                                           Color = WYNKContext.Lenstrans.Where(x => x.ID == OOT.LTID).Select(x => x.Colour).FirstOrDefault(),
                                                           Type = WYNKContext.Brand.Where(x => x.ID == WYNKContext.Lenstrans.Where(z => z.ID == OOT.LTID).Select(z => z.Brand).FirstOrDefault())
@@ -437,14 +457,14 @@ namespace WYNK.Data.Repository.Implementation
 
 
 
-        public dynamic UpdateOpticalOrder(OpticalOrderView OpticalUpdate, int Cmpid, int TransactionTypeid, int OpticalOrderID)
+        public dynamic UpdateOpticalOrder(OpticalOrderView OpticalUpdate, int Cmpid, int TransactionTypeid, string OpticalOrderID)
         {
             using (var dbContextTransaction = WYNKContext.Database.BeginTransaction())
             {
                 try
                 {
                     var OpticalOrderM = new OpticalOrder();
-                    OpticalOrderM = WYNKContext.OpticalOrder.Where(x => x.ID == OpticalOrderID).FirstOrDefault();
+                    OpticalOrderM = WYNKContext.OpticalOrder.Where(x => x.RandomUniqueID == OpticalOrderID).FirstOrDefault();
                     OpticalOrderM.CmpID = OpticalUpdate.OpticalOrder.CmpID;
                     OpticalOrderM.OrderDate = OpticalUpdate.OpticalOrder.OrderDate;
                     OpticalOrderM.RefNo = OpticalUpdate.OpticalOrder.RefNo;
@@ -490,7 +510,8 @@ namespace WYNK.Data.Repository.Implementation
                         {
 
                             OpticalOrderTran = WYNKContext.OpticalOrderTran.Where(x => x.ID == OOID).FirstOrDefault();
-                            OpticalOrderTran.LTID = WYNKContext.Lenstrans.Where(x => x.LensOption == item.LensName).Select(x => x.ID).FirstOrDefault();
+                            //OpticalOrderTran.LTID = WYNKContext.Lenstrans.Where(x => x.LensOption == item.LTID).Select(x => x.ID).FirstOrDefault();
+                            OpticalOrderTran.LTID = item.LTID;
                             OpticalOrderTran.UOMID = CMPSContext.uommaster.Where(x => x.Description == item.UOMDescription).Select(x => x.id).FirstOrDefault();
                             OpticalOrderTran.OrderedQty = item.Quantity;
                             OpticalOrderTran.ReceivedQty = 0;
@@ -521,7 +542,8 @@ namespace WYNK.Data.Repository.Implementation
                         {
 
                             OpticalOrderTran.RandomUniqueID = Convert.ToString(OpticalOrderID);
-                            OpticalOrderTran.LTID = WYNKContext.Lenstrans.Where(x => x.LensOption == item.LensName).Select(x => x.ID).FirstOrDefault();
+                            //OpticalOrderTran.LTID = WYNKContext.Lenstrans.Where(x => x.LensOption == item.LensName).Select(x => x.ID).FirstOrDefault();
+                            OpticalOrderTran.LTID = item.LTID;
                             OpticalOrderTran.UOMID = CMPSContext.uommaster.Where(x => x.Description == item.UOMDescription).Select(x => x.id).FirstOrDefault();
                             OpticalOrderTran.OrderedQty = item.Quantity;
                             OpticalOrderTran.ReceivedQty = 0;
@@ -705,6 +727,6 @@ namespace WYNK.Data.Repository.Implementation
         }
 
 
-
+       
     }
 }

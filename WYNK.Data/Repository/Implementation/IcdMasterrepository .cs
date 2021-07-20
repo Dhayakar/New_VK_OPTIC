@@ -13,13 +13,12 @@ namespace WYNK.Data.Repository.Implementation
     {
         private readonly WYNKContext _Wynkcontext;
         private readonly CMPSContext _Cmpscontext;
-        
+
 
         public IcdMasterrepository(WYNKContext context, CMPSContext Cmpscontext) : base(context, Cmpscontext)
         {
             _Wynkcontext = context;
             _Cmpscontext = Cmpscontext;
-
         }
 
         public dynamic AddIcd(ICDMaster AddIcd)
@@ -28,31 +27,34 @@ namespace WYNK.Data.Repository.Implementation
             {
                 try
                 {
-                    var cmd = WYNKContext.ICDMaster.Where(x => x.ICDCODE == AddIcd.icdcodemasters.ICDCODE).Select(x => x.ICDCODE).FirstOrDefault();
+                    var icd = new Icd_Master();
+                    var surgerycost = new SurgeryCostDetails();
+                    var cmd = WYNKContext.SurgeryCostDetail.Where(x => x.ICDCode == AddIcd.icdcodemasters.ICDCODE && x.CMPID == AddIcd.SurgeryCostDetails.CMPID && x.RoomType == AddIcd.SurgeryCostDetails.RoomType).Select(x => x.ICDCode).FirstOrDefault();
                     if (cmd == null)
                     {
-                        var icd = new Icd_Master();
-                        var surgerycost = new SurgeryCostDetails();
+                        var cmd1 = WYNKContext.ICDMaster.Where(x => x.ICDCODE == AddIcd.icdcodemasters.ICDCODE).Select(x => x.ICDCODE).FirstOrDefault();
+                        if (cmd1 == null)
+                        {
 
-                        icd.ICDCODE = AddIcd.icdcodemasters.ICDCODE;
-                        icd.ICDDESCRIPTION = AddIcd.icdcodemasters.ICDDESCRIPTION;
-                        icd.ICDGroup = AddIcd.icdcodemasters.ICDGroup;
-                        icd.SpecialityCode = AddIcd.icdcodemasters.SpecialityCode;
-                        icd.IsIOLReqd = AddIcd.icdcodemasters.IsIOLReqd;
-                        icd.IsActive = true;
-                        icd.IsDeleted = false;
-                        icd.CreatedUTC = DateTime.UtcNow;
-                        icd.CreatedBy = AddIcd.icdcodemasters.CreatedBy;
-                        icd.ICDTYPECODE = "A";
-                        WYNKContext.ICDMaster.Add(icd);
-                        string cmpname = CMPSContext.Company.Where(x => x.CmpID == AddIcd.SurgeryCostDetails.CMPID).Select(x => x.CompanyName).FirstOrDefault();
-                        string username = CMPSContext.DoctorMaster.Where(s => s.EmailID == CMPSContext.Users.Where(x => x.Userid == AddIcd.icdcodemasters.CreatedBy).Select(x => x.Username).FirstOrDefault()).Select(c => c.Firstname + "" + c.MiddleName + "" + c.LastName).FirstOrDefault();
-                        ErrorLog oErrorLogs = new ErrorLog();
-                        object namestr = icd;
-                        oErrorLogs.WriteErrorLogTitle(cmpname, "icdMaster", "User name :", username, "User ID :", Convert.ToString(AddIcd.icdcodemasters.CreatedBy), "Mode : Add");
 
-                        WYNKContext.SaveChanges();
-
+                            icd.ICDCODE = AddIcd.icdcodemasters.ICDCODE;
+                            icd.ICDDESCRIPTION = AddIcd.icdcodemasters.ICDDESCRIPTION;
+                            icd.ICDGroup = AddIcd.icdcodemasters.ICDGroup;
+                            icd.SpecialityCode = AddIcd.icdcodemasters.SpecialityCode;
+                            icd.IsIOLReqd = AddIcd.icdcodemasters.IsIOLReqd;
+                            icd.IsActive = true;
+                            icd.IsDeleted = false;
+                            icd.CreatedUTC = DateTime.UtcNow;
+                            icd.CreatedBy = AddIcd.icdcodemasters.CreatedBy;
+                            icd.ICDTYPECODE = "A";
+                            WYNKContext.ICDMaster.Add(icd);
+                            string cmpname = CMPSContext.Company.Where(x => x.CmpID == AddIcd.SurgeryCostDetails.CMPID).Select(x => x.CompanyName).FirstOrDefault();
+                            string username = CMPSContext.DoctorMaster.Where(s => s.EmailID == CMPSContext.Users.Where(x => x.Userid == AddIcd.icdcodemasters.CreatedBy).Select(x => x.Username).FirstOrDefault()).Select(c => c.Firstname + "" + c.MiddleName + "" + c.LastName).FirstOrDefault();
+                            ErrorLog oErrorLogs = new ErrorLog();
+                            object namestr = icd;
+                            oErrorLogs.WriteErrorLogTitle(cmpname, "icdMaster", "User name :", username, "User ID :", Convert.ToString(AddIcd.icdcodemasters.CreatedBy), "Mode : Add");
+                            WYNKContext.SaveChanges();
+                        }
                         surgerycost.ICDCode = AddIcd.icdcodemasters.ICDCODE;
                         surgerycost.RoomType = AddIcd.SurgeryCostDetails.RoomType;
                         surgerycost.SURGERYCOST = AddIcd.SurgeryCostDetails.SURGERYCOST;
@@ -81,8 +83,6 @@ namespace WYNK.Data.Repository.Implementation
                             WYNKContext.SaveChanges();
 
                         }
-
-
 
                         WYNKContext.SaveChanges();
                         dbContextTransaction.Commit();
@@ -150,7 +150,7 @@ namespace WYNK.Data.Repository.Implementation
 
             ole.ParentDescription = Addicds.onelinemaster.ParentDescription;
             ole.ParentTag = "ICD GROUP";
-            ole.ParentID =  CMPSContext.OneLineMaster.Where(x => x.ParentTag == "ICD GROUP").Select(x => x.ParentID).FirstOrDefault();
+            ole.ParentID = CMPSContext.OneLineMaster.Where(x => x.ParentTag == "ICD GROUP").Select(x => x.ParentID).FirstOrDefault();
             ole.CreatedBy = Addicds.onelinemaster.CreatedBy;
             ole.IsActive = true;
             ole.IsDeleted = false;
@@ -190,11 +190,11 @@ namespace WYNK.Data.Repository.Implementation
                     WYNKContext.ICDMaster.UpdateRange(cmb);
                     WYNKContext.SaveChanges();
                 }
-                    return new
-                    {
-                        Success = true,
-                        Message = "Delete successfully"
-                    };
+                return new
+                {
+                    Success = true,
+                    Message = "Delete successfully"
+                };
             }
             catch (Exception ex)
             {
@@ -243,9 +243,9 @@ namespace WYNK.Data.Repository.Implementation
                         });
 
                         WYNKContext.SurgeryCostDetail.UpdateRange(sur);
-                       
+
                     }
-                    else 
+                    else
                     {
                         var surgerycost = new SurgeryCostDetails();
                         surgerycost.ICDCode = icdmaster.icdcodemasters.ICDCODE;
@@ -283,9 +283,13 @@ namespace WYNK.Data.Repository.Implementation
 
         public dynamic getSurgeryCostDetail(string ICDCODE, int CMPID, string roomtype)
         {
-            var IcdSurgeryCostDetail = (from sur in WYNKContext.SurgeryCostDetail.Where(x => x.ICDCode == ICDCODE && x.CMPID == CMPID && x.RoomType == roomtype)
-                                        select new {
-                                            roomtype = WYNKContext.Room.Where(x => x.ID == Convert.ToInt32(sur.RoomType)).Select(x => x.RoomType).FirstOrDefault(),
+
+            var SurgeryCostDetail = WYNKContext.SurgeryCostDetail.ToList();
+            var OneLineMaster = CMPSContext.OneLineMaster.ToList();
+            var IcdSurgeryCostDetail = (from sur in SurgeryCostDetail.Where(x => x.ICDCode == ICDCODE && x.CMPID == CMPID && x.RoomType == roomtype)
+                                        select new
+                                        {
+                                            roomtype = OneLineMaster.Where(x => x.OLMID == Convert.ToInt32(sur.RoomType)).Select(x => x.ParentDescription).FirstOrDefault(),
                                             surgerycost = sur.SURGERYCOST != null ? Convert.ToDecimal(sur.SURGERYCOST) : (decimal?)null,
                                             packagerate = sur.PackageRate != null ? Convert.ToDecimal(sur.PackageRate) : (decimal?)null,
                                             dressingcharge = sur.DressingCharge != null ? Convert.ToDecimal(sur.DressingCharge) : (decimal?)null,
@@ -294,7 +298,8 @@ namespace WYNK.Data.Repository.Implementation
                                             id = sur.ID,
                                         }).FirstOrDefault();
 
-            if (IcdSurgeryCostDetail != null) {
+            if (IcdSurgeryCostDetail != null)
+            {
                 return new
                 {
                     Success = true,
@@ -312,33 +317,33 @@ namespace WYNK.Data.Repository.Implementation
         }
         public ICDMaster GetDoctorSpecialitydetails(int DID, int CMPID)
         {
-               var DocM = CMPSContext.DoctorMaster.Where(x=>x.CMPID==CMPID).ToList();
-                var DocS = CMPSContext.DoctorSpeciality.ToList();
-               var OLM = CMPSContext.OneLineMaster.ToList();
+            var DocM = CMPSContext.DoctorMaster.Where(x => x.CMPID == CMPID).ToList();
+            var DocS = CMPSContext.DoctorSpeciality.ToList();
+            var OLM = CMPSContext.OneLineMaster.ToList();
 
             var olmid = DocS.Where(x => x.DoctorID == DID).Select(v => v.OLMID).ToList();
 
             // var DoctorSpecialitydetails
             var DoctorSpe = new ICDMaster();
-           // foreach (var item in olmid) 
-           // {
-                DoctorSpe.DoctorSpecialitydetails = (from DS in DocS.Where(x => x.DoctorID == DID)
-                                                     join OM in OLM on DS.OLMID equals OM.OLMID
-                                                     select new DoctorSpecialitydetails
-                                                     {
-                                                         DID= DS.DoctorID,
-                                                         ParentDescription = OLM.Where(x=>x.OLMID== OM.OLMID).Select(c=>c.ParentDescription).FirstOrDefault(),
-                                                     }).ToList();
+            // foreach (var item in olmid) 
+            // {
+            DoctorSpe.DoctorSpecialitydetails = (from DS in DocS.Where(x => x.DoctorID == DID)
+                                                 join OM in OLM on DS.OLMID equals OM.OLMID
+                                                 select new DoctorSpecialitydetails
+                                                 {
+                                                     DID = DS.DoctorID,
+                                                     ParentDescription = OLM.Where(x => x.OLMID == OM.OLMID).Select(c => c.ParentDescription).FirstOrDefault(),
+                                                 }).ToList();
 
 
             //}
 
 
             return DoctorSpe;
-            
-            
 
-           
+
+
+
         }
         public dynamic SurgeryCostDetailSubmit(ICDMaster AddIcd)
         {
@@ -385,12 +390,12 @@ namespace WYNK.Data.Repository.Implementation
                     Message = "Something Went Wrong"
                 };
             }
-         }
+        }
     }
 
 }
 
-      
+
 
 
 

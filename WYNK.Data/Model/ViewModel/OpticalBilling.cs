@@ -19,11 +19,16 @@ namespace WYNK.Data.Model.ViewModel
         public decimal? advance { get; set; }
         public string UIN { get; set; }
         public string CustomerName { get; set; }
+
+        public string GSTIN { get; set; }
+        public string Address { get; set; }
+        public string Mobileno { get; set; }
         public string InvoiceNumber { get; set; }
         public DateTime? InvoiceDate { get; set; }
         public string companyAddress { get; set; }
         public string phone { get; set; }
         public string web { get; set; }
+        public string GstNo { get; set; }
         public string Compnayname { get; set; }
         public string companyAddress1 { get; set; }
         public string companyAddress2 { get; set; }
@@ -74,7 +79,18 @@ namespace WYNK.Data.Model.ViewModel
         public string CessDescription { get; set; }
         public string AddcessDescription { get; set; }
 
-
+        public string Sph { get; set; }
+        public string Cyl { get; set; }
+        public string Axis { get; set; }
+        public string Add { get; set; }
+        public decimal? CGSTPercentage { get; set; }
+        public decimal? CGSTTaxValue { get; set; }
+        public decimal? SGSTPercentage { get; set; }
+        public decimal? SGSTTaxValue { get; set; }
+        public string FrameShapeID { get; set; }
+        public string FrameStyleID { get; set; }
+        public string FrameTypeID { get; set; }
+        public string FrameWidthID { get; set; }
 
 
     }
@@ -106,7 +122,7 @@ namespace WYNK.Data.Model.ViewModel
         public string COID { get; set; }
         public int COTID { get; set; }
         public int LTID { get; set; }
-        public string LTname { get; set; }
+        public string Description { get; set; }
         public int UOMID { get; set; }
         public string UOMname { get; set; }
         public string Type { get; set; }
@@ -131,14 +147,25 @@ namespace WYNK.Data.Model.ViewModel
         public string CessDescription { get; set; }
         public string AddcessDescription { get; set; }
         public int? TaxID { get; set; }
-
+        public string Sph { get; set; }
+        public string Cyl { get; set; }
+        public string Axis { get; set; }
+        public string Add { get; set; }
+        public decimal? CGSTPercentage { get; set; }
+        public decimal? CGSTTaxValue { get; set; }
+        public decimal? SGSTPercentage { get; set; }
+        public decimal? SGSTTaxValue { get; set; }
+        public string FrameShapeID { get; set; }
+        public string FrameStyleID { get; set; }
+        public string FrameTypeID { get; set; }
+        public string FrameWidthID { get; set; }
     }
     public class GetOpticaldetailsfullcheck
     {
         public string COID { get; set; }
         public int COTID { get; set; }
         public int LTID { get; set; }
-        public string LTname { get; set; }
+        public string Description { get; set; }
         public int UOMID { get; set; }
         public string UOMname { get; set; }
         public string Type { get; set; }
@@ -164,7 +191,18 @@ namespace WYNK.Data.Model.ViewModel
         public string AddcessDescription { get; set; }
         public string Stockcheck { get; set; }
         public int? TaxID { get; set; }
-
+        public string Sph { get; set; }
+        public string Cyl { get; set; }
+        public string Axis { get; set; }
+        public string Add { get; set; }
+        public decimal? CGSTPercentage { get; set; }
+        public decimal? CGSTTaxValue { get; set; }
+        public decimal? SGSTPercentage { get; set; }
+        public decimal? SGSTTaxValue { get; set; }
+        public string FrameShapeID { get; set; }
+        public string FrameStyleID { get; set; }
+        public string FrameTypeID { get; set; }
+        public string FrameWidthID { get; set; }
     }
     public class Availablestock
     {
@@ -180,7 +218,7 @@ namespace WYNK.Data.Model.ViewModel
         public string COID { get; set; }
         public int COTID { get; set; }
         public int LTID { get; set; }
-        public string LTname { get; set; }
+        public string Description { get; set; }
         public int UOMID { get; set; }
         public string UOMname { get; set; }
         public string Type { get; set; }

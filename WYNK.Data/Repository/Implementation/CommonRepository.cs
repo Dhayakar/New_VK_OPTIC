@@ -729,8 +729,7 @@ namespace WYNK.Data.Repository.Implementation
         public IEnumerable<Dropdown> Getlensvalues1(int VID)
 
         {
-            return WYNKContext.Lenstrans.Select(x => new Dropdown { Text = x.LensOption.ToString(), Value = x.ID.ToString() }).OrderBy(x => x.Text).ToList();
-
+            return WYNKContext.Lenstrans.Select(x => new Dropdown { Value = x.ID.ToString() }).OrderBy(x => x.Text).ToList();
         }
         public IEnumerable<Dropdown> GetDrugvalues1(int CompanyID)
         {
@@ -1570,9 +1569,20 @@ namespace WYNK.Data.Repository.Implementation
             return recpno;
 
         }
-        public IEnumerable<Dropdown> GetRooms(int cmpid)
+        public IEnumerable<Dropdown> GetRooms(int CMPID)
         {
-            return CMPSContext.OneLineMaster.Where(x => x.ParentTag == "RoomType").Select(x => new Dropdown { Text = x.ParentDescription, Value = x.OLMID.ToString() }).OrderBy(x => x.Text).ToList();
+            var one = CMPSContext.OneLineMaster.ToList();
+            var Room = WYNKContext.Room.ToList();
+            var RoomTypes = (from onl in Room.Where(x => x.IsActive == true && x.CMPID == CMPID)
+                             join rom in one on onl.RoomType equals rom.OLMID.ToString()
+                             select new Dropdown
+                             {
+                                 Text = rom.ParentDescription,
+                                 Value = rom.OLMID.ToString(),
+                             }).OrderBy(x => x.Text).ToList();
+
+            return RoomTypes;
+            //return CMPSContext.OneLineMaster.Where(x => x.ParentTag == "RoomType" && x.ParentID !=0 ).Select(x => new Dropdown { Text = x.ParentDescription, Value = x.OLMID.ToString() }).OrderBy(x => x.Text).ToList();
         }
         public IEnumerable<Dropdown> GetSurgeryLens(int CMPID)
         {

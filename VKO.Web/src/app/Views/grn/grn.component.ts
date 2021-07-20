@@ -287,6 +287,7 @@ export class GRNComponent implements OnInit {
           this.TranTypeID = res.TransactionID;
           if (this.TranTypeID == null || this.TranTypeID == undefined) {
             this.disableSearch = true;
+            debugger;
             Swal.fire({
               type: 'warning',
               title: 'Transaction Id Undefined',
@@ -463,7 +464,8 @@ export class GRNComponent implements OnInit {
   getAllDropdowns()
   {
     this.commonService.data = new GRN();
-    this.commonService.getListOfData('Common/GetstoreDropdownvalues/' + parseInt(localStorage.getItem("CompanyID"))).subscribe(data => { this.StoreName = data; });
+    //this.commonService.getListOfData('Common/GetstoreDropdownvalues/' + parseInt(localStorage.getItem("CompanyID"))).subscribe(data => { this.StoreName = data; });
+    this.commonService.getListOfData('Common/GetstoreDropdownvaluesdesc/' + parseInt(localStorage.getItem("CompanyID")) + '/' + "Stock Department").subscribe(data => { this.StoreName = data; });
   }
 
   applyFilter(filterValue: string) {

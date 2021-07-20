@@ -37,31 +37,29 @@ namespace WYNK.Data.Repository.Implementation
             var final = new OpticalPrescriptionview();
             final.opfinalprescri = new List<opfinalprescri>();
 
-
-            var opticalpreadm = (from REF in WYNKContext.OpticalPrescriptionmaster where REF.UIN.ToLower().Contains(Search)
-                                     || REF.Name.ToLower().Contains(Search) || REF.LastName.ToLower().Contains(Search) || REF.Phone.ToLower().Contains(Search) && REF.CMPID == id
-                                     join us in user.Where(x => x.CMPID == id) on
-                                     REF.CreatedBy equals us.Userid
-                                     join usr in userrole.Where(x => x.CMPID == id) on
-                                     us.Username equals usr.UserName
-
-
-                                     select new 
+            var opticalpreadm =  (from REF in WYNKContext.OpticalPrescriptionmaster.Where(u => u.UIN.StartsWith(Convert.ToString(Search), StringComparison.OrdinalIgnoreCase)
+                                     || u.Phone.StartsWith(Convert.ToString(Search))
+                                     || u.Name.StartsWith(Convert.ToString(Search), StringComparison.OrdinalIgnoreCase) || u.LastName.StartsWith(Convert.ToString(Search), StringComparison.OrdinalIgnoreCase) && u.CMPID == id)
+                                      join us in user.Where(x => x.CMPID == id) on
+                                      REF.CreatedBy equals us.Userid
+                                      join usr in userrole.Where(x => x.CMPID == id) on
+                                      us.Username equals usr.UserName
+                                      select new 
                                      {
-                                        RegistrationTranID = REF.RegistrationID != null ? REF.RegistrationID : REF.CustomerMasterID,
+                                        RegistrationTranID = REF.RegistrationID,
                                         PrescriptionDate = REF.PrescriptionDate,
                                         Doctorname = us.Username,
                                         Role = usr.RoleDescription,
-                                        UIN = REF.UIN != null ? REF.UIN : string.Empty,
+                                        UIN = REF.UIN,
                                         Name = REF.MiddleName == null ? REF.Name + " " + REF.LastName : REF.Name + " " + REF.MiddleName + " " + REF.LastName,
-                                        Gender = REF.Gender != null ? REF.Gender : string.Empty,
-                                        DateofBirth = REF.DateofBirth != null ? PasswordEncodeandDecode.ToAgeString(Convert.ToDateTime(REF.DateofBirth)) : string.Empty,
-                                     }).ToList();
+                                        Gender = REF.Gender,
+                                        DateofBirth = PasswordEncodeandDecode.ToAgeString(Convert.ToDateTime(REF.DateofBirth)),
+                                    }).ToList();
 
-
-            var opfinalprescri = (from REF in WYNKContext.OpticalPrescriptionmaster where REF.UIN.ToLower().Contains(Search) 
-                                  || REF.Name.ToLower().Contains(Search) || REF.LastName.ToLower().Contains(Search) || REF.Phone.ToLower().Contains(Search) && REF.CMPID == id
-                                   join us in user.Where(x => x.CMPID == id) on
+            var opfinalprescri = (from REF in WYNKContext.OpticalPrescriptionmaster.Where(u => u.UIN.StartsWith(Convert.ToString(Search), StringComparison.OrdinalIgnoreCase)
+                                     || u.Phone.StartsWith(Convert.ToString(Search))
+                                     || u.Name.StartsWith(Convert.ToString(Search), StringComparison.OrdinalIgnoreCase) || u.LastName.StartsWith(Convert.ToString(Search), StringComparison.OrdinalIgnoreCase) && u.CMPID == id)
+                                    join us in user.Where(x => x.CMPID == id) on
                                     REF.CreatedBy equals us.Userid
                                     join doc in docmas.Where(x => x.CMPID == id) on
                                     us.Username equals doc.EmailID
@@ -69,15 +67,14 @@ namespace WYNK.Data.Repository.Implementation
                                     us.Username equals usr.UserName
                                     select new 
                                     {
-
-                                        RegistrationTranID = REF.RegistrationID != null ? REF.RegistrationID : REF.CustomerMasterID,
+                                        RegistrationTranID = REF.RegistrationID,
                                         PrescriptionDate = REF.PrescriptionDate,
                                         Doctorname = doc.Firstname + " " + doc.MiddleName + " " + doc.LastName,
                                         Role = usr.RoleDescription,
-                                        UIN = REF.UIN != null ? REF.UIN : string.Empty,
+                                        UIN = REF.UIN,
                                         Name = REF.MiddleName == null ? REF.Name + " " + REF.LastName : REF.Name + " " + REF.MiddleName + " " + REF.LastName,
-                                        Gender = REF.Gender != null ? REF.Gender : string.Empty,
-                                        DateofBirth = REF.DateofBirth != null ? PasswordEncodeandDecode.ToAgeString(Convert.ToDateTime(REF.DateofBirth)) : string.Empty,
+                                        Gender = REF.Gender,
+                                        DateofBirth = PasswordEncodeandDecode.ToAgeString(Convert.ToDateTime(REF.DateofBirth)),
                                     }).ToList();
 
             var grpres = opfinalprescri.Count() > 0 ? opfinalprescri.ToList() : opticalpreadm.ToList();

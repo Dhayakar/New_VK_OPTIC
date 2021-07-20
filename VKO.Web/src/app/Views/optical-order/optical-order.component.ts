@@ -446,15 +446,20 @@ export class OpticalOrderComponent implements OnInit {
 
   }
 
-  displayedColumns: string[] = ['Type', 'Brand', 'Model', 'LensName', 'Index', 'Color', 'UOM', 'Quantity', 'Price', 'Amount', 'Discount', 'DiscountAmount', 'GrossAmount', 'TaxDescription', 'GST', 'GSTValue1', 'TotalAmount', 'Delete',];
+  //displayedColumns: string[] = ['Type', 'Brand','Description','Sph1', 'Cyl1', 'Axis1', 'Add1', 'UOM', 'Quantity', 'Price', 'Amount', 'Discount', 'DiscountAmount', 'GrossAmount', 'TaxDescription', 'GST', 'GSTValue1', 'TotalAmount', 'Delete',];
+  //dataSource = new MatTableDataSource();
+  displayedColumns: string[] = ['Brand', 'Type', 'LensPower', 'UOM', 'Quantity', 'Price', 'Amount', 'Discount', 'DiscountAmount', 'GrossAmount', 'TaxDescription', 'GST', 'GSTValue1', 'TotalAmount', 'Delete',];
   dataSource = new MatTableDataSource();
-  displayedColumnsReprint: string[] = ['TypeRP', 'BrandRP', 'ModelRP', 'LensNameRP', 'IndexRP', 'ColorRP', 'UOMRP', 'QuantityRP', 'PriceRP', 'AmountRP', 'DiscountRP', 'DiscountAmountRP', 'GrossAmountRP', 'TaxDescriptionRP', 'GSTRP', 'GSTValue1RP', 'TotalAmountRP'];
-  dataSourceReprint = new MatTableDataSource();
 
-  displayedColumnsprint: string[] = ['TypeP', 'BrandP', 'ModelP', 'LensNameP', 'IndexP', 'ColorP', 'UOMP', 'QuantityP', 'PriceP', 'AmountP', 'DiscountP', 'DiscountAmountP', 'GrossAmountP', 'TaxDescriptionP', 'GSTP', 'GSTValue1P', 'TotalAmountP'];
+  displayedColumnsReprint: string[] = ['TypeRP', 'BrandRP', 'ModelRP', 'LensNameRP', 'IndexRP', 'ColorRP', 'UOMRP', 'QuantityRP', 'PriceRP', 'AmountRP', 'DiscountRP', 'DiscountAmountRP', 'GrossAmountRP', 'TaxDescriptionRP', 'GSTRP', 'GSTValue1RP', 'TotalAmountRP'];
+
+
+  dataSourceReprint = new MatTableDataSource();
+  displayedColumnsprint: string[] = ['TypeP', 'BrandP', 'Descriptionp', 'Sphp', 'Cylp', 'Axisp', 'Addp', 'UOMP', 'QuantityP', 'PriceP', 'AmountP', 'DiscountP', 'DiscountAmountP', 'GrossAmountP', 'TaxDescriptionP', 'GSTP', 'GSTValue1P', 'TotalAmountP'];
   dataSourceprint = new MatTableDataSource();
 
-  displayedColumns1 = ['Action', 'Brand', 'Model', 'LensOptions', 'Description', 'Index', 'Color', 'Size', 'Price']
+  //displayedColumns1 = ['Action', 'Brand', 'Model', 'LensOptions', 'Description', 'Index', 'Color', 'Size', 'Price']
+  displayedColumns1 = ['Action', 'Brand', 'Description','LensPowers', 'Price']
   dataSource1 = new MatTableDataSource();
 
 
@@ -484,7 +489,6 @@ export class OpticalOrderComponent implements OnInit {
       debugger;
       this.DLocationname = data;
     });
-
   }
 
 
@@ -551,8 +555,13 @@ export class OpticalOrderComponent implements OnInit {
         if (data.OpticalOrderdetails.length > 0) {
           var OPDetails = new OPticalDetails();
 
-
+          OPDetails.Description = element.Description;
           OPDetails.Type = element.Type;
+          OPDetails.Sph = element.Sph;
+          OPDetails.Cyl = element.Cyl;
+          OPDetails.Axis = element.Axis;
+          OPDetails.Add = element.Add;
+
           OPDetails.Brand = element.Brand;
           OPDetails.Model = element.Model;
           OPDetails.Index = element.Index;
@@ -571,7 +580,8 @@ export class OpticalOrderComponent implements OnInit {
           OPDetails.CESS = this.commonService.data.OPticalOrderdetails[0].CESS;
           OPDetails.AdditionalCESS = this.commonService.data.OPticalOrderdetails[0].AdditionalCESS;
 
-
+          OPDetails.CGSTPercentage = this.commonService.data.OPticalOrderdetails[0].CGSTPercentage;
+          OPDetails.SGSTPercentage = this.commonService.data.OPticalOrderdetails[0].SGSTPercentage;
 
 
           if (this.commonService.data.OPticalOrderdetails[0].TaxDescription == null) {
@@ -1338,7 +1348,8 @@ export class OpticalOrderComponent implements OnInit {
   backdrop;
   dataSourceUpdate
   OOID;
-  Clicksch() {
+  Clicksch()
+  {
     debugger;
     this.commonService.getListOfData('OpticalOrder/OpticalUpdateDetails/' + parseInt(localStorage.getItem("CompanyID")))
       .subscribe(data => {

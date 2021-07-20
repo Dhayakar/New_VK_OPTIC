@@ -580,6 +580,7 @@ namespace WYNK.Data.Model.ViewModel
         public string Size { get; set; }
         public decimal Price { get; set; }
         public string Model { get; set; }
+
         public decimal? GST { get; set; }
         public decimal? CESS { get; set; }
         public decimal? AddCess { get; set; }
@@ -593,6 +594,17 @@ namespace WYNK.Data.Model.ViewModel
 
         
         public string HSNNo { get; set; }
+        public string Sph { get; set; }
+        public string Cyl { get; set; }
+        public string Axis { get; set; }
+        public string Add { get; set; }
+ 
+        public string FrameShapeID { get; set; }
+        public string FrameStyleID { get; set; }
+        public string FrameTypeID { get; set; }
+        public string FrameWidthID { get; set; }
+
+
     }
 
     public class GetDataArraysss
@@ -1535,6 +1547,8 @@ namespace WYNK.Data.Model.ViewModel
         //public int id { get; set; }
         //public string icdbrand { get; set; }
         public string roomtype { get; set; }
+        public string roomtype1 { get; set; }
+        
         //public decimal? surgerycost { get; set; }
         //public decimal? packagerate { get; set; }
         //public decimal? dressingcharge { get; set; }

@@ -39,13 +39,6 @@ namespace WebApiCore.Controllers
             return _repoWrapper.Help.PACSearch(ID);
         }
 
-        [HttpGet("getopticalMaterialdetails")]
-        public dynamic getopticalMaterialdetails()
-        {
-            return _repoWrapper.Help.getopticalMaterialdetails();
-        }
-
-        
 
         [HttpGet("SlitLamp/{ID}")]
         public Help SlitLamp(int ID)
@@ -359,10 +352,10 @@ namespace WebApiCore.Controllers
             return _repoWrapper.Help.CustomerOrder(CMPID);
         }
 
-        [HttpGet("getCode1/{ICDGROUPCODE}")]
-        public Help getCode1(int ICDGROUPCODE)
+        [HttpGet("getCode1/{ICDGROUPCODE}/{CMPID}")]
+        public Help getCode1(int ICDGROUPCODE,int CMPID)
         {
-            return _repoWrapper.Help.getCode1(ICDGROUPCODE);
+            return _repoWrapper.Help.getCode1(ICDGROUPCODE, CMPID);
         }
 
 
@@ -521,10 +514,8 @@ namespace WebApiCore.Controllers
             return _repoWrapper.Help.getPatientInsurance(FromDate, ToDate, Insurancetype, CMPID);
         }
 
-
-
         [HttpGet("getInvReg/{FromDate}/{ToDate}/{CMPID}")]
-        public dynamic getInvReg(DateTime FromDate, DateTime ToDate, int CMPID)
+        public dynamic getInvReg(string FromDate, string ToDate, int CMPID)
         {
             return _repoWrapper.Help.getInvReg(FromDate, ToDate, CMPID);
         }
