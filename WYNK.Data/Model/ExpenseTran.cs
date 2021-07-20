@@ -9,7 +9,7 @@ namespace WYNK.Data.Model
         public int ID { get; set; }
         public int CMPID { get; set; }
         public int ExpenseMasterID { get; set; }
-        public int RandomUniqueID { get; set; }
+        public string RandomUniqueID { get; set; }
         public DateTime ExpenseDate { get; set; }
         public string Paidto { get; set; }
         public string Remarks { get; set; }
@@ -17,6 +17,6 @@ namespace WYNK.Data.Model
         public DateTime CreatedUTC { get; set; }
         public DateTime? UpdatedUTC { get; set; }
         public int CreatedBY { get; set; }
-        public int UpdatedBY { get; set; }
+        public int? UpdatedBY { get; set; }
     }
 }

@@ -18,6 +18,7 @@ export class CustomerOrderViewModel {
   CustomerItemOrders: Array<CustomerItemOrder> = [];
   paymenttran: Array<paymenttran> = [];
 
+
   OrderNo: string;
   CancelledReasons: string;
   CustomerDatas: CustomerData = new CustomerData();
@@ -27,6 +28,9 @@ export class CustomerOrderViewModel {
   Deliverydate: Date;
   Remarks: string;
 }
+
+
+
 
 export class CustomerData {
   UIN: string

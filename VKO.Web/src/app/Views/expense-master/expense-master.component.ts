@@ -51,7 +51,7 @@ export class ExpenseMasterComponent implements OnInit {
     this.Hidesubmitbtn = true;
   }
   Cancelhelp(Form: NgForm) {
-    Form.reset();
+    Form.resetForm();
     this.Hideupdatebtn = false;
     this.Hidesubmitbtn = true;
     this.hidestatustable = false;
@@ -60,7 +60,7 @@ export class ExpenseMasterComponent implements OnInit {
     debugger;
     this.commonService.getListOfData('Expense/GetExpenseMaster/' + localStorage.getItem("CompanyID"))
       .subscribe(data => {
-        if (data != null) {
+        if (data.length != 0) {
           this.dataSource.data = data;
           this.hidestatustable = true;
         } else {
@@ -97,7 +97,7 @@ export class ExpenseMasterComponent implements OnInit {
                   container: 'alert-container',
                 },
               });
-              Form.reset();
+              Form.resetForm();
               this.Hideupdatebtn = false;
               this.Hidesubmitbtn = true;
               this.hidestatustable = false;
@@ -132,8 +132,127 @@ export class ExpenseMasterComponent implements OnInit {
       }
     }
   }
-
-
+  activecol;
+  Dataid;
+  Datadesc;
+  DataStatus;
+  selectitem(data) {
+    debugger;
+    this.hidestatustable = false;
+    this.Hidesubmitbtn = false;
+    this.Hideupdatebtn = true;
+    this.activecol = data.Status;
+    this.M_Description = data.Description;
+    this.Dataid = data.ID;
+    this.Datadesc = data.Description;
+    this.DataStatus = data.Status;
+  }
+  Deletedata(Form: NgForm) {
+    debugger;
+    if (Form.valid) {
+      this.commonService.getListOfData('Expense/DeleteExpenseMaster/' + localStorage.getItem("CompanyID") + '/' + localStorage.getItem("userroleID") + '/' + this.Dataid)
+        .subscribe(data => {
+          if (data.Success == true) {
+            Swal.fire({
+              type: 'success',
+              title: 'success',
+              text: 'Deleted Successfully',
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 2500,
+              customClass: {
+                popup: 'alert-warp',
+                container: 'alert-container',
+              },
+            });
+            Form.resetForm();
+            this.Hideupdatebtn = false;
+            this.Hidesubmitbtn = true;
+            this.hidestatustable = false;
+          } else {
+            Swal.fire({
+              type: 'warning',
+              title: 'warning',
+              text: 'Invalid Data',
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 2500,
+              customClass: {
+                popup: 'alert-warp',
+                container: 'alert-container',
+              },
+            });
+          }
+        });
+    }
+  }
+  Updatedata(Form: NgForm) {
+    debugger;
+    if (Form.valid) {
+      if (this.Datadesc == this.M_Description && this.DataStatus == this.activecol) {
+        Swal.fire({
+          type: 'warning',
+          title: 'warning',
+          text: 'Description Duplicate',
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 2500,
+          customClass: {
+            popup: 'alert-warp',
+            container: 'alert-container',
+          },
+        });
+      } else {
+        this.commonService.getListOfData('Expense/UpdateExpenseMaster/' + this.M_Description + '/' + localStorage.getItem("CompanyID") + '/' + localStorage.getItem("userroleID") + '/' + this.Dataid + '/' + this.activecol)
+          .subscribe(data => {
+            if (data.Success == true) {
+              Swal.fire({
+                type: 'success',
+                title: 'success',
+                text: 'Saved Successfully',
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2500,
+                customClass: {
+                  popup: 'alert-warp',
+                  container: 'alert-container',
+                },
+              });
+              Form.resetForm();
+              this.Hideupdatebtn = false;
+              this.Hidesubmitbtn = true;
+              this.hidestatustable = false;
+            } else {
+              Swal.fire({
+                type: 'warning',
+                title: 'warning',
+                text: 'Invalid Data',
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2500,
+                customClass: {
+                  popup: 'alert-warp',
+                  container: 'alert-container',
+                },
+              });
+            }
+          });
+      }
+    } else {
+      Swal.fire({
+        type: 'warning',
+        title: 'warning',
+        text: 'Check Inputs',
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 2500,
+        customClass: {
+          popup: 'alert-warp',
+          container: 'alert-container',
+        },
+      });
+    }
+  }
 
 
   /////////////////////////////////////////////////////////The End////////////////////////////////////////////////////

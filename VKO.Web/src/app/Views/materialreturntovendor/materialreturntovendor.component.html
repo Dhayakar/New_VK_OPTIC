@@ -36,7 +36,7 @@
           <mat-form-field appearance="outline">
             <mat-label>Issue Date</mat-label>
             <input required autocomplete="off" [max]="DLDateMAXop" matInput [matDatepicker]="pickerop"
-                   placeholder="Choose a date" [(ngModel)]="M_OPDAte" name="issuedayte" (dateChange)="Calculatedate($event);">
+                   placeholder="Choose a date" [(ngModel)]="M_OPDAte" name="issuedayte" >
             <mat-datepicker-toggle matSuffix [for]="pickerop"></mat-datepicker-toggle>
             <mat-datepicker #pickerop></mat-datepicker>
           </mat-form-field>
@@ -47,7 +47,7 @@
       </div>
     </div>
     <div class="row" style="margin: 1%;">
-      <div class="col-sm-6 borderline" style="height:148px">
+      <div class="col-sm-6 borderline" style="height:129px">
         <h1 style="padding: 0px; margin: 0px; text-align: center; font-weight: 600;font-size: 16px; margin-bottom: 5px;">Store Details</h1>
         <div class="row">
           <div class="col-sm-3" style="color:darkblue">Store Name</div>

@@ -1,0 +1,161 @@
+
+  <div class="col-sm-12 borderline" style="margin-left:2%">
+    <div class="row">
+      <h6>Expense Statement</h6>
+    </div>
+    <div class="col-sm-12">
+      <div class="row">
+
+        <div class="col-sm-2">
+          <mat-form-field appearance="outline">
+            <mat-label>From Date</mat-label>
+            <input required autocomplete="off" [max]="fromMAXop" matInput [matDatepicker]="pickerfrom"
+                   placeholder="Choose a date" [(ngModel)]="FROM_DAte" name="issuedatefrom" (ngModelChange)="Datevalidate()">
+            <mat-datepicker-toggle matSuffix [for]="pickerfrom"></mat-datepicker-toggle>
+            <mat-datepicker #pickerfrom></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-2">
+          <mat-form-field appearance="outline">
+            <mat-label>To Date</mat-label>
+            <input required autocomplete="off" [max]="toMAXop" matInput [matDatepicker]="pickerto"
+                   placeholder="Choose a date" [disabled]="isdisable" [(ngModel)]="TO_DAte" name="issuedateto" (ngModelChange)="DateChange()">
+            <mat-datepicker-toggle matSuffix [for]="pickerto"></mat-datepicker-toggle>
+            <mat-datepicker #pickerto></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="row">
+            <div class="col-sm-6">
+              <button class="btn btn-warning-default" (click)="Cancel()">Cancel</button>
+            </div>
+            <div class="col-sm-6">
+              <button class="btn btn-primary" (click)="Submitdata()">Submit</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="row">
+            <div class="col-sm-6">
+              <button (click)="ConvertPDF()" class="btn btn-primary-default btn-Pdf mlr10"><i class="far fa-file-pdf"></i> Export to PDF</button>
+            </div>
+            <div class="col-sm-6">
+              <button (click)="ConvertEXCEL()" class="btn btn-primary-default btn-Excel"><i class="far fa-file-excel"></i> Export to Spreadsheet</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:none" id="section">
+          <div class="row">
+            <div class="col-sm-2">
+
+            </div>
+            <div class="col-sm-8">
+              <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8" style="text-align:center"><b>{{companyname}}</b></div>
+                <div class="col-sm-2"></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8" style="text-align:center"><b>{{comadd1}}</b></div>
+                <div class="col-sm-2"></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8" style="text-align:center"><b>{{comadd2}}</b></div>
+                <div class="col-sm-2"></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8" style="text-align:center"><b>{{comphone}}</b></div>
+                <div class="col-sm-2"></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8" style="text-align:center"><label><b>Expense Statement from  {{Fdate}} to {{Tdate}}</b></label></div>
+                <div class="col-sm-2"></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8" style="text-align:center"><label><b>Report Date & Time - {{Currentdate | date:"dd-MMM-y HH:mm"}}</b></label></div>
+                <div class="col-sm-2"></div>
+              </div>
+            </div>
+            <div class="col-sm-2"></div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <table mat-table [dataSource]="dataSource" class="table table-bordered">
+                <ng-container matColumnDef="Sno">
+                  <th mat-header-cell *matHeaderCellDef> Sno </th>
+                  <td mat-cell *matCellDef="let transaction; let id = index"> {{id+1}} </td>
+                  <td mat-footer-cell *matFooterCellDef> </td>
+                </ng-container>
+                <ng-container matColumnDef="Description">
+                  <th mat-header-cell *matHeaderCellDef> Description </th>
+                  <td mat-cell *matCellDef="let transaction">{{transaction.ExpenseDescription}} </td>
+                  <td mat-footer-cell *matFooterCellDef> </td>
+                </ng-container>
+                <ng-container matColumnDef="Expdate">
+                  <th mat-header-cell *matHeaderCellDef> Date </th>
+                  <td mat-cell *matCellDef="let transaction">{{transaction.Date}}</td>
+                  <td mat-footer-cell *matFooterCellDef>Total </td>
+                </ng-container>
+                <ng-container matColumnDef="Amount">
+                  <th mat-header-cell *matHeaderCellDef> Amount </th>
+                  <td mat-cell *matCellDef="let transaction">{{transaction.TotalAmount| currency:Country2}}</td>
+                  <td mat-footer-cell *matFooterCellDef> {{TotalAmt| currency:Country2}} </td>
+                </ng-container>
+                <ng-container matColumnDef="Remarks">
+                  <th mat-header-cell *matHeaderCellDef> Remarks </th>
+                  <td mat-cell *matCellDef="let transaction">{{transaction.Remarks}}</td>
+                  <td mat-footer-cell *matFooterCellDef> </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+              </table>
+            </div>
+
+          </div>
+      </div>
+
+      <div class="row" style="margin-bottom:1%;">
+        <div class="col-sm-12" *ngIf="hidestatustable">          
+          <table mat-table [dataSource]="dataSource" class="custom-table withoutbackgroung search-table table-bordered">
+            <ng-container matColumnDef="Sno">
+              <th mat-header-cell *matHeaderCellDef class="remove-this"> Sno </th>
+              <td mat-cell *matCellDef="let transaction; let id = index"> {{id+1}} </td>
+              <td mat-footer-cell *matFooterCellDef class="remove-this"> </td>
+            </ng-container>
+            <ng-container matColumnDef="Description">
+              <th mat-header-cell *matHeaderCellDef> Description </th>
+              <td mat-cell *matCellDef="let transaction">{{transaction.ExpenseDescription}} </td>
+              <td mat-footer-cell *matFooterCellDef> </td>
+            </ng-container>
+            <ng-container matColumnDef="Expdate">
+              <th mat-header-cell *matHeaderCellDef> Date </th>
+              <td mat-cell *matCellDef="let transaction">{{transaction.Date}}</td>
+              <td mat-footer-cell *matFooterCellDef>Total </td>
+            </ng-container>
+            <ng-container matColumnDef="Amount">
+              <th mat-header-cell *matHeaderCellDef> Amount </th>
+              <td mat-cell *matCellDef="let transaction">{{transaction.TotalAmount| currency:Country2}}</td>
+              <td mat-footer-cell *matFooterCellDef> {{TotalAmt| currency:Country2}} </td>
+            </ng-container>
+            <ng-container matColumnDef="Remarks">
+              <th mat-header-cell *matHeaderCellDef> Remarks </th>
+              <td mat-cell *matCellDef="let transaction">{{transaction.Remarks}}</td>
+              <td mat-footer-cell *matFooterCellDef> </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
