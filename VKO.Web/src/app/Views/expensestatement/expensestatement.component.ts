@@ -48,13 +48,26 @@ export class ExpensestatementComponent implements OnInit {
   TO_DAte;
   Country1;
   Country2;
+  isdisable: boolean = true;
   hidestatustable: boolean = false;
+  Currentdate;
   ngOnInit() {
+    this.Currentdate = new Date();
+    this.isdisable = true;
+    this.FROM_DAte = new Date();
+    this.TO_DAte = new Date();
     this.hidestatustable = false;
     this.commonService.getListOfData('Common/GetCurrencyvalues/' + localStorage.getItem('CompanyID')).subscribe(data => {
       this.Country1 = data;
       this.Country2 = this.Country1[0].Text;
     });
+  }
+  Datevalidate() {
+    if (this.FROM_DAte != null && this.FROM_DAte != undefined) {
+      this.isdisable = false;
+    } else {
+      this.isdisable = true;
+    }
   }
   DateChange() {
     debugger;
@@ -124,15 +137,19 @@ export class ExpensestatementComponent implements OnInit {
             container: 'alert-container',
           },
         });
+        this.router.navigateByUrl('/dash', { skipLocationChange: true }).then(() => {
+          this.router.navigate(['ExpenseModule/Expstatement']);
+        });
       }
     });
   }
   ConvertPDF() {
-    let printContents, popupWin;
-    printContents = document.getElementById('section').innerHTML;
-    popupWin = window.open('', '_blank', 'top=0,left=0,height=auto,width=100%');
-    popupWin.document.open();
-    popupWin.document.write(`
+    if (this.dataSource.data.length != 0) {
+      let printContents, popupWin;
+      printContents = document.getElementById('section').innerHTML;
+      popupWin = window.open('', '_blank', 'top=0,left=0,height=auto,width=100%');
+      popupWin.document.open();
+      popupWin.document.write(`
              <html>
              <head>
               <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -143,121 +160,54 @@ export class ExpensestatementComponent implements OnInit {
           </head>
       <body onload="window.print();window.close()">${printContents}</body>
         </html>`);
-    popupWin.document.close();
-    //var companyname = localStorage.getItem("Companyname");
-    //var Stringfydfata = JSON.stringify(this.dataSource.data);
-    //var objdata = JSON.parse(Stringfydfata);
-    //var Description = jQuery.map(objdata, function (n, i) { return n.ExpenseDescription; });
-    //var Date = jQuery.map(objdata, function (n, i) { return n.Date; });
-    //var Amount = objdata.map((todo, i) => {
-    //  var testdata = objdata[i].TotalAmount;
-    //  return this.cp.transform(testdata, this.Country2, true, '1.0-0');
-    //});
-    //var Remarks = jQuery.map(objdata, function (n, i) { return n.Remarks; });
-    //var documentDefinition = {
-    //  info: {
-    //    title: 'Expense Statement',
-    //  },
-    //  pageSize: {
-    //    width: 620,
-    //    height: 1300
-    //  },
-    //  pageOrientation: 'landscape',
-    //  pageMargins: [10, 10, 10, 10],
+      popupWin.document.close();
+    } else {
+      Swal.fire({
+        type: 'warning',
+        title: 'No Expense details found to export',
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1500,
+        customClass: {
+          popup: 'alert-warp',
+          container: 'alert-container',
+        },
+      });
+    }
 
-    //  content: [
-    //    { text: 'Organization : ' + companyname, fontSize: 18, background: 'lightgray', color: 'blue', decoration: 'underline' },
-    //    {
-    //      style: 'tableExample',
-    //      table: {
-    //        headerRows: 1,
-    //        widths: [200, 100, 100, 200],
-    //        body: [
-    //          [{ text: 'Expense Description', style: 'tableHeader' },
-    //          { text: 'Date', style: 'tableHeader' },
-    //          { text: 'Amount', style: 'tableHeader' },
-    //          { text: 'Remarks', style: 'tableHeader' }],          
-    //            [Description, Date, Amount, Remarks]
-    //        ],
-           
-    //      },
-    //      layout: {
-    //        hLineWidth: function (i, node) {
-    //          return (i === 0 || i === node.table.body.length) ? 2 : 1;
-    //        },
-    //        vLineWidth: function (i, node) {
-    //          return (i === 0 || i === node.table.widths.length) ? 2 : 1;
-    //        },
-    //        hLineColor: function (i, node) {
-    //          return (i === 0 || i === node.table.body.length) ? 'black' : 'gray';
-    //        },
-    //        vLineColor: function (i, node) {
-    //          return (i === 0 || i === node.table.widths.length) ? 'black' : 'gray';
-    //        },
-    //        fillColor: function (rowIndex, node, columnIndex) {
-    //          return (rowIndex % 2 === 0) ? '#CCCCCC' : null;
-    //        }
-    //      }
-    //    }
-    //  ],
-    //  footer: function (currentPage, pageCount) {
-    //    return {
-    //      table: {
-    //        widths: ['auto', "*", "auto"],
-    //        body: [
-    //          [
-    //            { text: 'Confidential', alignment: 'left' },
-    //            { text: 'Page ' + pageCount, alignment: 'center' },
-    //            { text: 'Page ' + pageCount, alignment: 'right' }
-    //          ]
-    //        ]
-    //      },
-    //    };
-    //  },
-    //  styles: {
-    //    header: {
-    //      fontSize: 18,
-    //      bold: true,
-    //      margin: [0, 0, 0, 10]
-    //    },
-    //    subheader: {
-    //      fontSize: 16,
-    //      bold: true,
-    //      margin: [0, 10, 0, 5]
-    //    },
-    //    tableExample: {
-    //      margin: [0, 5, 0, 15]
-    //    },
-    //    tableOpacityExample: {
-    //      margin: [0, 5, 0, 15],
-    //      fillColor: 'blue',
-    //      fillOpacity: 0.3
-    //    },
-    //    tableHeader: {
-    //      bold: true,
-    //      fontSize: 13,
-    //      color: 'black'
-    //    }
-    //  },
-    //};
-    //pdfMake.createPdf(documentDefinition).download('Expense Statement.pdf');
+   
   }
 
   ConvertEXCEL() {
-    let element = document.getElementById('section');
-    var cloneTable = element.cloneNode(true);
-    jQuery(cloneTable).find('.remove-this').remove();
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(cloneTable);
-    var wscols = [
-      { wch: 10 },
-      { wch: 12 },
-      { wch: 30 },
-      { wch: 10 }
-    ];
-    ws['!cols'] = wscols;
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Expense Statement');
-    XLSX.writeFile(wb, "Expense Statement.xlsx");
+    if (this.dataSource.data.length != 0) {
+      let element = document.getElementById('section');
+      //var cloneTable = element.cloneNode(true);
+      //jQuery(cloneTable).find('.remove-this').remove();
+      const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+      var wscols = [
+        { wch: 10 },
+        { wch: 12 },
+        { wch: 30 },
+        { wch: 10 }
+      ];
+      ws['!cols'] = wscols;
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Expense Statement');
+      XLSX.writeFile(wb, "Expense Statement.xlsx");
+    } else {
+      Swal.fire({
+        type: 'warning',
+        title: 'No Expense details found to export',
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1500,
+        customClass: {
+          popup: 'alert-warp',
+          container: 'alert-container',
+        },
+      });
+    }
+
   }
 ////////////////////////////////////////////////////////////////THE END/////////////////////////////////////////////////////////
 }

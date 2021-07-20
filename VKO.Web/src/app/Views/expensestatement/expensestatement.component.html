@@ -10,7 +10,7 @@
           <mat-form-field appearance="outline">
             <mat-label>From Date</mat-label>
             <input required autocomplete="off" [max]="fromMAXop" matInput [matDatepicker]="pickerfrom"
-                   placeholder="Choose a date" [(ngModel)]="FROM_DAte" name="issuedatefrom">
+                   placeholder="Choose a date" [(ngModel)]="FROM_DAte" name="issuedatefrom" (ngModelChange)="Datevalidate()">
             <mat-datepicker-toggle matSuffix [for]="pickerfrom"></mat-datepicker-toggle>
             <mat-datepicker #pickerfrom></mat-datepicker>
           </mat-form-field>
@@ -19,7 +19,7 @@
           <mat-form-field appearance="outline">
             <mat-label>To Date</mat-label>
             <input required autocomplete="off" [max]="toMAXop" matInput [matDatepicker]="pickerto"
-                   placeholder="Choose a date" [(ngModel)]="TO_DAte" name="issuedateto" (ngModelChange)="DateChange()">
+                   placeholder="Choose a date" [disabled]="isdisable" [(ngModel)]="TO_DAte" name="issuedateto" (ngModelChange)="DateChange()">
             <mat-datepicker-toggle matSuffix [for]="pickerto"></mat-datepicker-toggle>
             <mat-datepicker #pickerto></mat-datepicker>
           </mat-form-field>
@@ -78,6 +78,11 @@
                 <div class="col-sm-8" style="text-align:center"><label><b>Expense Statement from  {{Fdate}} to {{Tdate}}</b></label></div>
                 <div class="col-sm-2"></div>
               </div>
+              <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8" style="text-align:center"><label><b>Report Date & Time - {{Currentdate | date:"dd-MMM-y HH:mm"}}</b></label></div>
+                <div class="col-sm-2"></div>
+              </div>
             </div>
             <div class="col-sm-2"></div>
           </div>
@@ -86,7 +91,7 @@
               <table mat-table [dataSource]="dataSource" class="table table-bordered">
                 <ng-container matColumnDef="Sno">
                   <th mat-header-cell *matHeaderCellDef> Sno </th>
-                  <td mat-cell *matCellDef="let transaction; let id = index" class="remove-this"> {{id+1}} </td>
+                  <td mat-cell *matCellDef="let transaction; let id = index"> {{id+1}} </td>
                   <td mat-footer-cell *matFooterCellDef> </td>
                 </ng-container>
                 <ng-container matColumnDef="Description">
@@ -123,7 +128,7 @@
           <table mat-table [dataSource]="dataSource" class="custom-table withoutbackgroung search-table table-bordered">
             <ng-container matColumnDef="Sno">
               <th mat-header-cell *matHeaderCellDef class="remove-this"> Sno </th>
-              <td mat-cell *matCellDef="let transaction; let id = index" class="remove-this"> {{id+1}} </td>
+              <td mat-cell *matCellDef="let transaction; let id = index"> {{id+1}} </td>
               <td mat-footer-cell *matFooterCellDef class="remove-this"> </td>
             </ng-container>
             <ng-container matColumnDef="Description">
