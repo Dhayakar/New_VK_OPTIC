@@ -1,0 +1,123 @@
+
+21-07-2021 12:57:26 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+21-07-2021 12:57:26 	Message : 	Successfully Logged-In
+
+21-07-2021 13:10:53 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+21-07-2021 13:10:53 	Message : 	Successfully Logged-In
+
+21-07-2021 13:21:41 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+21-07-2021 13:21:41 	Message : 	Successfully Logged-In
+21-07-2021 13:26:32 	OpticalPrescription 	{"ID":-2147482647,"UIN":"CMPS-10-CLINIC","RegistrationID":null,"Name":"Dinakar","MiddleName":null,"LastName":"Srini","DateofBirth":null,"Gender":null,"Phone":null,"PrescriptionDate":"2021-07-21T13:26:32.797091Z","CMPID":1062,"CreatedUTC":"2021-07-21T13:26:32.7971375Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null,"CustomerMasterID":12}
+21-07-2021 13:26:33 	OpticalPrescription 	{"ID":-2147482647,"COID":null,"RegistrationTranID":null,"UIN":"CMPS-10-CLINIC","PrescriptionDate":"2021-07-21T13:26:33.1764517Z","Type":134,"Ocular":"OD","DistSph":"12","NearCyl":"","PinAxis":"","Add":"21920","Remarks":"","CreatedUTC":"2021-07-21T13:26:33.1787731Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":0,"CMPID":1062,"Status":null,"PD":"","MPDOD":"","MPDOS":"","CustomerMasterID":12}
+21-07-2021 13:26:33 	OpticalPrescription 	{"ID":-2147482646,"COID":null,"RegistrationTranID":null,"UIN":"CMPS-10-CLINIC","PrescriptionDate":"2021-07-21T13:26:33.183097Z","Type":135,"Ocular":"OD","DistSph":"","NearCyl":null,"PinAxis":null,"Add":"45382","Remarks":"","CreatedUTC":"2021-07-21T13:26:33.1832201Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":0,"CMPID":1062,"Status":null,"PD":"","MPDOD":"","MPDOS":"","CustomerMasterID":12}
+21-07-2021 13:26:33 	OpticalPrescription 	{"ID":-2147482645,"COID":null,"RegistrationTranID":null,"UIN":"CMPS-10-CLINIC","PrescriptionDate":"2021-07-21T13:26:33.1839131Z","Type":134,"Ocular":"OS","DistSph":"","NearCyl":"","PinAxis":"","Add":"115","Remarks":"","CreatedUTC":"2021-07-21T13:26:33.1840223Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":0,"CMPID":1062,"Status":null,"PD":"","MPDOD":"","MPDOS":"","CustomerMasterID":12}
+21-07-2021 13:26:33 	OpticalPrescription 	{"ID":-2147482644,"COID":null,"RegistrationTranID":null,"UIN":"CMPS-10-CLINIC","PrescriptionDate":"2021-07-21T13:26:33.1843679Z","Type":135,"Ocular":"OS","DistSph":"","NearCyl":null,"PinAxis":null,"Add":"88","Remarks":"","CreatedUTC":"2021-07-21T13:26:33.1844514Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":0,"CMPID":1062,"Status":null,"PD":"","MPDOD":"","MPDOS":"","CustomerMasterID":12}
+
+21-07-2021 14:29:36 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+21-07-2021 14:29:36 	Message : 	Successfully Logged-In
+
+21-07-2021 14:41:11 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+21-07-2021 14:41:11 	Message : 	Successfully Logged-In
+
+21-07-2021 14:42:03 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+21-07-2021 14:42:03 	Message : 	Successfully Logged-In
+
+21-07-2021 14:46:45 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+21-07-2021 14:46:45 	Message : 	Successfully Logged-In
+
+21-07-2021 14:57:41 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+21-07-2021 14:57:41 	Message : 	Successfully Logged-In
+
+21-07-2021 14:59:20 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+21-07-2021 14:59:20 	Message : 	Successfully Logged-In
+
+21-07-2021 15:02:13 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+21-07-2021 15:02:13 	Message : 	Successfully Logged-In
+
+21-07-2021 15:02:49 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+21-07-2021 15:02:49 	Message : 	Successfully Logged-In
+
+21-07-2021 15:04:21 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+21-07-2021 15:04:21 	Message : 	Successfully Logged-In
+
+21-07-2021 15:05:22 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+21-07-2021 15:05:22 	Message : 	Successfully Logged-In
+
+21-07-2021 15:09:33 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+21-07-2021 15:09:33 	Message : 	Successfully Logged-In
+
+21-07-2021 15:15:45 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+21-07-2021 15:15:45 	Message : 	Successfully Logged-In
+
+21-07-2021 15:24:46 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+21-07-2021 15:24:46 	Message : 	Successfully Logged-In
+
+21-07-2021 15:32:18 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+21-07-2021 15:32:18 	Message : 	Successfully Logged-In
+21-07-2021 15:32:39 	OpticalPrescription 	{"ID":-2147482647,"UIN":"CMPS-10-CLINIC","RegistrationID":null,"Name":"Dinakar","MiddleName":null,"LastName":"Srini","DateofBirth":null,"Gender":null,"Phone":null,"PrescriptionDate":"2021-07-21T15:32:39.3130736Z","CMPID":1062,"CreatedUTC":"2021-07-21T15:32:39.3131031Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null,"CustomerMasterID":12}
+21-07-2021 15:32:39 	OpticalPrescription 	{"ID":-2147482647,"COID":null,"RegistrationTranID":null,"UIN":"CMPS-10-CLINIC","PrescriptionDate":"2021-07-21T15:32:39.3246948Z","Type":134,"Ocular":"OD","DistSph":"12","NearCyl":"","PinAxis":"","Add":"21920","Remarks":"","CreatedUTC":"2021-07-21T15:32:39.3265227Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":0,"CMPID":1062,"Status":null,"PD":"","MPDOD":"","MPDOS":"","CustomerMasterID":12}
+21-07-2021 15:32:39 	OpticalPrescription 	{"ID":-2147482646,"COID":null,"RegistrationTranID":null,"UIN":"CMPS-10-CLINIC","PrescriptionDate":"2021-07-21T15:32:39.3301302Z","Type":135,"Ocular":"OD","DistSph":"","NearCyl":null,"PinAxis":null,"Add":"45382","Remarks":"","CreatedUTC":"2021-07-21T15:32:39.3302196Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":0,"CMPID":1062,"Status":null,"PD":"","MPDOD":"","MPDOS":"","CustomerMasterID":12}
+21-07-2021 15:32:39 	OpticalPrescription 	{"ID":-2147482645,"COID":null,"RegistrationTranID":null,"UIN":"CMPS-10-CLINIC","PrescriptionDate":"2021-07-21T15:32:39.3309321Z","Type":134,"Ocular":"OS","DistSph":"","NearCyl":"","PinAxis":"","Add":"115","Remarks":"","CreatedUTC":"2021-07-21T15:32:39.3310313Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":0,"CMPID":1062,"Status":null,"PD":"","MPDOD":"","MPDOS":"","CustomerMasterID":12}
+21-07-2021 15:32:39 	OpticalPrescription 	{"ID":-2147482644,"COID":null,"RegistrationTranID":null,"UIN":"CMPS-10-CLINIC","PrescriptionDate":"2021-07-21T15:32:39.3314633Z","Type":135,"Ocular":"OS","DistSph":"","NearCyl":null,"PinAxis":null,"Add":"88","Remarks":"","CreatedUTC":"2021-07-21T15:32:39.3315317Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":0,"CMPID":1062,"Status":null,"PD":"","MPDOD":"","MPDOS":"","CustomerMasterID":12}
+
+21-07-2021 15:52:05 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+21-07-2021 15:52:05 	Message : 	Successfully Logged-In
+
+21-07-2021 16:00:34 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+21-07-2021 16:00:34 	Message : 	Successfully Logged-In
+
+21-07-2021 16:07:08 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+21-07-2021 16:07:08 	Message : 	Successfully Logged-In
+
+21-07-2021 16:19:18 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+21-07-2021 16:19:18 	Message : 	Successfully Logged-In
+
+21-07-2021 16:21:54 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+21-07-2021 16:21:54 	Message : 	Successfully Logged-In
+
+21-07-2021 16:39:08 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+21-07-2021 16:39:08 	Message : 	Successfully Logged-In
+
+21-07-2021 16:47:40 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+21-07-2021 16:47:40 	Message : 	Successfully Logged-In
+
+21-07-2021 17:18:20 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+21-07-2021 17:18:20 	Message : 	Successfully Logged-In
+
+21-07-2021 17:18:54 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+21-07-2021 17:18:54 	Message : 	Successfully Logged-In
+21-07-2021 17:19:04 	OpticalPrescription 	{"ID":-2147482647,"UIN":"CMPS-10-CLINIC","RegistrationID":null,"Name":"Dinakar","MiddleName":null,"LastName":"Srini","DateofBirth":null,"Gender":null,"Phone":null,"PrescriptionDate":"2021-07-21T17:19:04.7549392Z","CMPID":1062,"CreatedUTC":"2021-07-21T17:19:04.7549877Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null,"CustomerMasterID":12}
+21-07-2021 17:19:04 	OpticalPrescription 	{"ID":-2147482647,"COID":null,"RegistrationTranID":null,"UIN":"CMPS-10-CLINIC","PrescriptionDate":"2021-07-21T17:19:04.7672513Z","Type":134,"Ocular":"OD","DistSph":"12","NearCyl":"","PinAxis":"","Add":"21920","Remarks":"","CreatedUTC":"2021-07-21T17:19:04.7678426Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":0,"CMPID":1062,"Status":null,"PD":"","MPDOD":"","MPDOS":"","CustomerMasterID":12}
+21-07-2021 17:19:04 	OpticalPrescription 	{"ID":-2147482646,"COID":null,"RegistrationTranID":null,"UIN":"CMPS-10-CLINIC","PrescriptionDate":"2021-07-21T17:19:04.7734933Z","Type":135,"Ocular":"OD","DistSph":"","NearCyl":null,"PinAxis":null,"Add":"45382","Remarks":"","CreatedUTC":"2021-07-21T17:19:04.7735768Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":0,"CMPID":1062,"Status":null,"PD":"","MPDOD":"","MPDOS":"","CustomerMasterID":12}
+21-07-2021 17:19:04 	OpticalPrescription 	{"ID":-2147482645,"COID":null,"RegistrationTranID":null,"UIN":"CMPS-10-CLINIC","PrescriptionDate":"2021-07-21T17:19:04.7743053Z","Type":134,"Ocular":"OS","DistSph":"","NearCyl":"","PinAxis":"","Add":"115","Remarks":"","CreatedUTC":"2021-07-21T17:19:04.7744524Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":0,"CMPID":1062,"Status":null,"PD":"","MPDOD":"","MPDOS":"","CustomerMasterID":12}
+21-07-2021 17:19:04 	OpticalPrescription 	{"ID":-2147482644,"COID":null,"RegistrationTranID":null,"UIN":"CMPS-10-CLINIC","PrescriptionDate":"2021-07-21T17:19:04.7750063Z","Type":135,"Ocular":"OS","DistSph":"","NearCyl":null,"PinAxis":null,"Add":"88","Remarks":"","CreatedUTC":"2021-07-21T17:19:04.7751031Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":0,"CMPID":1062,"Status":null,"PD":"","MPDOD":"","MPDOS":"","CustomerMasterID":12}
+
+21-07-2021 17:21:57 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+21-07-2021 17:21:57 	Message : 	Successfully Logged-In
+21-07-2021 17:22:11 	OpticalPrescription 	{"ID":-2147482647,"UIN":"CMPS-10-CLINIC","RegistrationID":null,"Name":"Dinakar","MiddleName":null,"LastName":"Srini","DateofBirth":null,"Gender":null,"Phone":null,"PrescriptionDate":"2021-07-21T17:22:11.7134564Z","CMPID":1062,"CreatedUTC":"2021-07-21T17:22:11.7135064Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null,"CustomerMasterID":12}
+21-07-2021 17:22:11 	OpticalPrescription 	{"ID":-2147482647,"COID":null,"RegistrationTranID":null,"UIN":"CMPS-10-CLINIC","PrescriptionDate":"2021-07-21T17:22:11.7274104Z","Type":134,"Ocular":"OD","DistSph":"12","NearCyl":"","PinAxis":"","Add":"21920","Remarks":"","CreatedUTC":"2021-07-21T17:22:11.729661Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":0,"CMPID":1062,"Status":null,"PD":"","MPDOD":"","MPDOS":"","CustomerMasterID":12}
+21-07-2021 17:22:11 	OpticalPrescription 	{"ID":-2147482646,"COID":null,"RegistrationTranID":null,"UIN":"CMPS-10-CLINIC","PrescriptionDate":"2021-07-21T17:22:11.733913Z","Type":135,"Ocular":"OD","DistSph":"","NearCyl":null,"PinAxis":null,"Add":"45382","Remarks":"","CreatedUTC":"2021-07-21T17:22:11.734033Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":0,"CMPID":1062,"Status":null,"PD":"","MPDOD":"","MPDOS":"","CustomerMasterID":12}
+21-07-2021 17:22:11 	OpticalPrescription 	{"ID":-2147482645,"COID":null,"RegistrationTranID":null,"UIN":"CMPS-10-CLINIC","PrescriptionDate":"2021-07-21T17:22:11.7347963Z","Type":134,"Ocular":"OS","DistSph":"","NearCyl":"","PinAxis":"","Add":"115","Remarks":"","CreatedUTC":"2021-07-21T17:22:11.7349809Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":0,"CMPID":1062,"Status":null,"PD":"","MPDOD":"","MPDOS":"","CustomerMasterID":12}
+21-07-2021 17:22:11 	OpticalPrescription 	{"ID":-2147482644,"COID":null,"RegistrationTranID":null,"UIN":"CMPS-10-CLINIC","PrescriptionDate":"2021-07-21T17:22:11.7355002Z","Type":135,"Ocular":"OS","DistSph":"","NearCyl":null,"PinAxis":null,"Add":"88","Remarks":"","CreatedUTC":"2021-07-21T17:22:11.7356048Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":0,"CMPID":1062,"Status":null,"PD":"","MPDOD":"","MPDOS":"","CustomerMasterID":12}
+
+21-07-2021 17:35:07 	Centris Mobility Project Services 	CUSTOMER ORDER 	User name : 	N Steve 	User ID : 	32246 	Mode : Sumbit
+21-07-2021 17:35:07 	CustomerOrder 	{"ID":-2147482647,"RandomUniqueID":"b6513b8a-8aaa-490a-b280-f74d9158321a","CmpID":1062,"CusID":12,"TCID":1020,"OrderNo":"CUS111ORDER","OrderDate":"2021-07-21T17:35:07.6090838Z","RefNo":null,"RefDate":null,"Deliverydate":"2021-07-22T18:30:00Z","Remarks":"asas","ContraOrderID":null,"IsCancelled":false,"CancelledDate":null,"CancelledReasons":null,"OrderStatus":"Open","GrossProductValue":null,"TotalDiscountValue":null,"TotalTaxvalue":null,"TotalProductValue":null,"TotalCGSTTaxValue":null,"TotalSGSTTaxValue":null,"TotalIGSTTaxValue":null,"TotalCESSValue":null,"TotalAddCESSValue":null,"CreatedUTC":"2021-07-21T17:35:07.6291444Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null,"Fyear":"2021","OpticalPrescriptionPath":null}
+21-07-2021 17:35:25 	CustomerOrderTran 	{"ID":-2147482647,"COID":"b6513b8a-8aaa-490a-b280-f74d9158321a","LTID":3,"UOMID":3008,"OrderedQty":1,"ReceivedQty":0,"ItemRate":1100.0,"GrossValue":1100.0,"ItemValue":1100.0,"DiscountPercentage":0.0,"DiscountAmount":0.0,"GSTPercentage":null,"GSTTaxValue":null,"CGSTPercentage":null,"CGSTTaxValue":null,"SGSTPercentage":null,"SGSTTaxValue":null,"IGSTPercentage":null,"TotalIGSTTaxValue":null,"CESSPercentage":null,"CESSAmount":null,"AdditionalCESSPercentage":null,"AddCESSPerAmt":null,"IsCancelled":false,"ContraCustomerNo":null,"ContraCustomerDate":null,"CreatedUTC":"2021-07-21T17:35:23.6897961Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null}
+21-07-2021 17:35:29 	CustomerOrder 	{"ID":1035,"RandomUniqueID":"b6513b8a-8aaa-490a-b280-f74d9158321a","CmpID":1062,"CusID":12,"TCID":1020,"OrderNo":"CUS111ORDER","OrderDate":"2021-07-21T17:35:07.6090838Z","RefNo":null,"RefDate":null,"Deliverydate":"2021-07-22T18:30:00Z","Remarks":"asas","ContraOrderID":null,"IsCancelled":false,"CancelledDate":null,"CancelledReasons":null,"OrderStatus":"Open","GrossProductValue":1100.0,"TotalDiscountValue":0.0,"TotalTaxvalue":null,"TotalProductValue":1100.0,"TotalCGSTTaxValue":null,"TotalSGSTTaxValue":null,"TotalIGSTTaxValue":null,"TotalCESSValue":null,"TotalAddCESSValue":null,"CreatedUTC":"2021-07-21T17:35:07.6291444Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null,"Fyear":"2021","OpticalPrescriptionPath":null}
+21-07-2021 17:36:24 	CustomerOrderTran 	{"ID":-2147482646,"COID":"b6513b8a-8aaa-490a-b280-f74d9158321a","LTID":1,"UOMID":3008,"OrderedQty":1,"ReceivedQty":0,"ItemRate":1500.0,"GrossValue":1500.0,"ItemValue":1860.0,"DiscountPercentage":0.0,"DiscountAmount":0.0,"GSTPercentage":24.0,"GSTTaxValue":360.00,"CGSTPercentage":12.0,"CGSTTaxValue":180.0,"SGSTPercentage":12.0,"SGSTTaxValue":180.0,"IGSTPercentage":null,"TotalIGSTTaxValue":null,"CESSPercentage":20.0,"CESSAmount":300.0,"AdditionalCESSPercentage":12.0,"AddCESSPerAmt":180.0,"IsCancelled":false,"ContraCustomerNo":null,"ContraCustomerDate":null,"CreatedUTC":"2021-07-21T17:36:21.3028049Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null}
+
+21-07-2021 17:37:54 	Centris Mobility Project Services 	CUSTOMER ORDER 	User name : 	N Steve 	User ID : 	32246 	Mode : Sumbit
+21-07-2021 17:37:54 	CustomerOrder 	{"ID":-2147482647,"RandomUniqueID":"45bf1707-15da-4074-a2af-5487421fb7f4","CmpID":1062,"CusID":12,"TCID":1020,"OrderNo":"CUS111ORDER","OrderDate":"2021-07-21T17:37:54.7794814Z","RefNo":null,"RefDate":null,"Deliverydate":"2021-07-22T18:30:00Z","Remarks":"asas","ContraOrderID":null,"IsCancelled":false,"CancelledDate":null,"CancelledReasons":null,"OrderStatus":"Open","GrossProductValue":null,"TotalDiscountValue":null,"TotalTaxvalue":null,"TotalProductValue":null,"TotalCGSTTaxValue":null,"TotalSGSTTaxValue":null,"TotalIGSTTaxValue":null,"TotalCESSValue":null,"TotalAddCESSValue":null,"CreatedUTC":"2021-07-21T17:37:54.7980593Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null,"Fyear":"2021","OpticalPrescriptionPath":null}
+21-07-2021 17:37:56 	CustomerOrderTran 	{"ID":-2147482647,"COID":"45bf1707-15da-4074-a2af-5487421fb7f4","LTID":3,"UOMID":3008,"OrderedQty":1,"ReceivedQty":0,"ItemRate":1100.0,"GrossValue":1100.0,"ItemValue":1100.0,"DiscountPercentage":0.0,"DiscountAmount":0.0,"GSTPercentage":null,"GSTTaxValue":null,"CGSTPercentage":null,"CGSTTaxValue":null,"SGSTPercentage":null,"SGSTTaxValue":null,"IGSTPercentage":null,"TotalIGSTTaxValue":null,"CESSPercentage":null,"CESSAmount":null,"AdditionalCESSPercentage":null,"AddCESSPerAmt":null,"IsCancelled":false,"ContraCustomerNo":null,"ContraCustomerDate":null,"CreatedUTC":"2021-07-21T17:37:56.6502823Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null}
+21-07-2021 17:37:56 	CustomerOrder 	{"ID":1036,"RandomUniqueID":"45bf1707-15da-4074-a2af-5487421fb7f4","CmpID":1062,"CusID":12,"TCID":1020,"OrderNo":"CUS111ORDER","OrderDate":"2021-07-21T17:37:54.7794814Z","RefNo":null,"RefDate":null,"Deliverydate":"2021-07-22T18:30:00Z","Remarks":"asas","ContraOrderID":null,"IsCancelled":false,"CancelledDate":null,"CancelledReasons":null,"OrderStatus":"Open","GrossProductValue":1100.0,"TotalDiscountValue":0.0,"TotalTaxvalue":null,"TotalProductValue":1100.0,"TotalCGSTTaxValue":null,"TotalSGSTTaxValue":null,"TotalIGSTTaxValue":null,"TotalCESSValue":null,"TotalAddCESSValue":null,"CreatedUTC":"2021-07-21T17:37:54.7980593Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null,"Fyear":"2021","OpticalPrescriptionPath":null}
+21-07-2021 17:38:03 	CustomerOrderTran 	{"ID":-2147482646,"COID":"45bf1707-15da-4074-a2af-5487421fb7f4","LTID":1,"UOMID":3008,"OrderedQty":1,"ReceivedQty":0,"ItemRate":1500.0,"GrossValue":1500.0,"ItemValue":1860.0,"DiscountPercentage":0.0,"DiscountAmount":0.0,"GSTPercentage":24.0,"GSTTaxValue":360.00,"CGSTPercentage":12.0,"CGSTTaxValue":180.0,"SGSTPercentage":12.0,"SGSTTaxValue":180.0,"IGSTPercentage":null,"TotalIGSTTaxValue":null,"CESSPercentage":null,"CESSAmount":null,"AdditionalCESSPercentage":null,"AddCESSPerAmt":null,"IsCancelled":false,"ContraCustomerNo":null,"ContraCustomerDate":null,"CreatedUTC":"2021-07-21T17:38:02.3880958Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null}
+21-07-2021 17:38:24 	CustomerOrder 	{"ID":1036,"RandomUniqueID":"45bf1707-15da-4074-a2af-5487421fb7f4","CmpID":1062,"CusID":12,"TCID":1020,"OrderNo":"CUS111ORDER","OrderDate":"2021-07-21T17:37:54.7794814Z","RefNo":null,"RefDate":null,"Deliverydate":"2021-07-22T18:30:00Z","Remarks":"asas","ContraOrderID":null,"IsCancelled":false,"CancelledDate":null,"CancelledReasons":null,"OrderStatus":"Open","GrossProductValue":2600.0,"TotalDiscountValue":0.0,"TotalTaxvalue":360.00,"TotalProductValue":2960.0,"TotalCGSTTaxValue":180.0,"TotalSGSTTaxValue":180.0,"TotalIGSTTaxValue":null,"TotalCESSValue":null,"TotalAddCESSValue":null,"CreatedUTC":"2021-07-21T17:37:54.7980593Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null,"Fyear":"2021","OpticalPrescriptionPath":null}
+
+21-07-2021 17:39:02 	Centris Mobility Project Services 	CUSTOMER ORDER 	User name : 	N Steve 	User ID : 	32246 	Mode : Sumbit
+21-07-2021 17:39:02 	CustomerOrder 	{"ID":-2147482647,"RandomUniqueID":"627642ac-4b71-4a47-8c83-1c2e13cb3f1c","CmpID":1062,"CusID":12,"TCID":1020,"OrderNo":"CUS111ORDER","OrderDate":"2021-07-21T17:39:02.0546412Z","RefNo":null,"RefDate":null,"Deliverydate":"2021-07-22T18:30:00Z","Remarks":"asas","ContraOrderID":null,"IsCancelled":false,"CancelledDate":null,"CancelledReasons":null,"OrderStatus":"Open","GrossProductValue":null,"TotalDiscountValue":null,"TotalTaxvalue":null,"TotalProductValue":null,"TotalCGSTTaxValue":null,"TotalSGSTTaxValue":null,"TotalIGSTTaxValue":null,"TotalCESSValue":null,"TotalAddCESSValue":null,"CreatedUTC":"2021-07-21T17:39:02.0774345Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null,"Fyear":"2021","OpticalPrescriptionPath":null}
+21-07-2021 17:39:02 	CustomerOrderTran 	{"ID":-2147482647,"COID":"627642ac-4b71-4a47-8c83-1c2e13cb3f1c","LTID":3,"UOMID":3008,"OrderedQty":1,"ReceivedQty":0,"ItemRate":1100.0,"GrossValue":1100.0,"ItemValue":1100.0,"DiscountPercentage":0.0,"DiscountAmount":0.0,"GSTPercentage":null,"GSTTaxValue":null,"CGSTPercentage":null,"CGSTTaxValue":null,"SGSTPercentage":null,"SGSTTaxValue":null,"IGSTPercentage":null,"TotalIGSTTaxValue":null,"CESSPercentage":null,"CESSAmount":null,"AdditionalCESSPercentage":null,"AddCESSPerAmt":null,"IsCancelled":false,"ContraCustomerNo":null,"ContraCustomerDate":null,"CreatedUTC":"2021-07-21T17:39:02.1353521Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null}
+21-07-2021 17:39:02 	CustomerOrder 	{"ID":1037,"RandomUniqueID":"627642ac-4b71-4a47-8c83-1c2e13cb3f1c","CmpID":1062,"CusID":12,"TCID":1020,"OrderNo":"CUS111ORDER","OrderDate":"2021-07-21T17:39:02.0546412Z","RefNo":null,"RefDate":null,"Deliverydate":"2021-07-22T18:30:00Z","Remarks":"asas","ContraOrderID":null,"IsCancelled":false,"CancelledDate":null,"CancelledReasons":null,"OrderStatus":"Open","GrossProductValue":1100.0,"TotalDiscountValue":0.0,"TotalTaxvalue":null,"TotalProductValue":1100.0,"TotalCGSTTaxValue":null,"TotalSGSTTaxValue":null,"TotalIGSTTaxValue":null,"TotalCESSValue":null,"TotalAddCESSValue":null,"CreatedUTC":"2021-07-21T17:39:02.0774345Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null,"Fyear":"2021","OpticalPrescriptionPath":null}
+21-07-2021 17:39:02 	CustomerOrderTran 	{"ID":-2147482646,"COID":"627642ac-4b71-4a47-8c83-1c2e13cb3f1c","LTID":1,"UOMID":3008,"OrderedQty":1,"ReceivedQty":0,"ItemRate":1500.0,"GrossValue":1500.0,"ItemValue":1860.0,"DiscountPercentage":0.0,"DiscountAmount":0.0,"GSTPercentage":24.0,"GSTTaxValue":360.00,"CGSTPercentage":12.0,"CGSTTaxValue":180.0,"SGSTPercentage":12.0,"SGSTTaxValue":180.0,"IGSTPercentage":null,"TotalIGSTTaxValue":null,"CESSPercentage":null,"CESSAmount":null,"AdditionalCESSPercentage":null,"AddCESSPerAmt":null,"IsCancelled":false,"ContraCustomerNo":null,"ContraCustomerDate":null,"CreatedUTC":"2021-07-21T17:39:02.2056788Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null}
+21-07-2021 17:39:02 	CustomerOrder 	{"ID":1037,"RandomUniqueID":"627642ac-4b71-4a47-8c83-1c2e13cb3f1c","CmpID":1062,"CusID":12,"TCID":1020,"OrderNo":"CUS111ORDER","OrderDate":"2021-07-21T17:39:02.0546412Z","RefNo":null,"RefDate":null,"Deliverydate":"2021-07-22T18:30:00Z","Remarks":"asas","ContraOrderID":null,"IsCancelled":false,"CancelledDate":null,"CancelledReasons":null,"OrderStatus":"Open","GrossProductValue":2600.0,"TotalDiscountValue":0.0,"TotalTaxvalue":360.00,"TotalProductValue":2960.0,"TotalCGSTTaxValue":180.0,"TotalSGSTTaxValue":180.0,"TotalIGSTTaxValue":null,"TotalCESSValue":null,"TotalAddCESSValue":null,"CreatedUTC":"2021-07-21T17:39:02.0774345Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null,"Fyear":"2021","OpticalPrescriptionPath":null}
+21-07-2021 17:39:02 	NumberControl 	{"VCID":9049,"TransactionID":1020,"DepartmentID":0,"CmpID":1062,"Prefix":"CUS","Suffix":"ORDER","Description":"Customer Order","Autonumber":true,"RunningNumber":111,"EffectiveFrom":"2020-03-01T00:00:00","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2020-03-01T00:00:00","UpdatedUTC":null,"CreatedBy":0,"UpdatedBy":null}
+21-07-2021 17:39:02 	Information : 	Saved Successfully

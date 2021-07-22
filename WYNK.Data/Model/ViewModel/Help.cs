@@ -579,9 +579,12 @@ namespace WYNK.Data.Model.ViewModel
         public string Color { get; set; }
         public string Size { get; set; }
         public decimal Price { get; set; }
+        public decimal ActualPrice { get; set; }
         public string Model { get; set; }
 
         public decimal? GST { get; set; }
+        public decimal? CGST { get; set; }
+        public decimal? SGST { get; set; }
         public decimal? CESS { get; set; }
         public decimal? AddCess { get; set; }
 
@@ -604,7 +607,8 @@ namespace WYNK.Data.Model.ViewModel
         public string FrameTypeID { get; set; }
         public string FrameWidthID { get; set; }
 
-
+        public decimal Stockqty { get; set; }
+        public bool? Sptaxinclusive { get; set; }
     }
 
     public class GetDataArraysss

@@ -157,7 +157,9 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
   opticalPrescriptionblock;
 
   Getloctime;
+  CancelOpticalPrescription() {
 
+  }
   isNextButton = true;
   isNextupdate = true;
   isNextDelete = true;
@@ -388,10 +390,10 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
     }
   }
 
-  displayedColumns = ['SNo', 'Type', 'Brand', 'Model', 'LensOption', 'Index', 'Color', 'UOM', 'QTY', 'Price', 'Amount', 'Discount%', 'DiscountAmount', 'GrossAmount', 'GSTDesc','GST%', 'GSTValue', 'NetAmount', 'Action','Offer']
+  displayedColumns = ['Type', 'Brand', 'Description', 'UOM', 'QTY', 'Price', 'Amount', 'Discount%', 'DiscountAmount', 'GrossAmount', 'CGST', 'CGSTValue', 'SGST', 'SGSTValue', 'NetAmount', 'Action']
   dataSource = new MatTableDataSource();
 
-  displayedColumns1 = ['Action', 'Brand', 'Model','LensOptions', 'Description',  'Index', 'Color', 'Size', 'Price']
+  displayedColumns1 = ['Action','Type', 'Brand', 'Description', 'Price','Stockqty']
   dataSource1 = new MatTableDataSource();
 
   displayedColumns2 = ['Brand', 'Model', 'LensOptions', 'Description', 'Index', 'Color', 'Size','Quantity']
@@ -406,7 +408,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
   displayedColumns4: string[] = ['Action','OrderNo', 'OrderDate', 'CustomerName','OrderStatus']
   dataSource4 = new MatTableDataSource();
 
-  PrintdisplayedColumns = ['SNo', 'Type', 'Brand', 'Model', 'LensOption', 'Index', 'Color', 'UOM', 'QTY', 'Price', 'Amount', 'Discount%', 'DiscountAmount', 'GrossAmount', 'GSTDesc','GST%', 'GSTValue', 'NetAmount']
+  PrintdisplayedColumns = ['Type', 'Brand', 'Description', 'UOM', 'QTY', 'Price', 'Amount', 'Discount%', 'DiscountAmount', 'GrossAmount', 'CGST', 'CGSTValue', 'SGST', 'SGSTValue', 'NetAmount']
   PrintdataSource = new MatTableDataSource();
 
   Getformaccess() {
@@ -714,18 +716,25 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
             CustomOrder.Color = element.Color;
             CustomOrder.HSNNo = element.HSNNo;
             CustomOrder.UOM = element.UOM;
-            CustomOrder.GrossAmount = element.Price - (element.Price * data.DiscountPercent / 100);
             CustomOrder.Quantity = 1;
-            CustomOrder.UnitPrice = element.Price;
+            if (element.Sptaxinclusive) {
+              CustomOrder.UnitPrice =Math.ceil(element.Price * 100 / (100 + element.GST))
+              CustomOrder.GrossAmount = CustomOrder.UnitPrice - (element.Price * data.DiscountPercent / 100);
+            } else {
+              CustomOrder.UnitPrice = Math.ceil(element.Price);
+              CustomOrder.GrossAmount = element.Price - (element.Price * data.DiscountPercent / 100);
+            }
             CustomOrder.GivenQtyPrice = CustomOrder.Quantity * CustomOrder.UnitPrice;
             CustomOrder.Discount = data.DiscountPercent;
             CustomOrder.DiscountAmount = element.Price * data.DiscountPercent / 100;
-            CustomOrder.CGST = element.GST == null ? null : element.GST / 2;
-            CustomOrder.SGST = element.GST == null ? null : element.GST / 2;
+            CustomOrder.CGST = element.GST == null ? null : element.CGST;
+            CustomOrder.SGST = element.GST == null ? null : element.SGST;
             CustomOrder.GST = element.GST == null ? null : element.GST;
             CustomOrder.GSTValue = element.GST == null ? null : CustomOrder.GrossAmount * (CustomOrder.GST / 100);
             CustomOrder.CESSValue = element.CESS == null ? null : CustomOrder.GrossAmount * (element.CESS / 100);
             CustomOrder.AddCessValue = element.AddCess == null ? null : CustomOrder.GrossAmount * (element.AddCess / 100);
+            CustomOrder.CGSTValue = element.CGST == null ? null : (CustomOrder.GrossAmount * (element.CGST / 100));
+            CustomOrder.SGSTValue = element.SGST == null ? null : (CustomOrder.GrossAmount * (element.SGST / 100));
 
             CustomOrder.CESS = element.CESS == null ? null : element.CESS;
             CustomOrder.AddCess = element.AddCess == null ? null : element.AddCess;
@@ -733,7 +742,19 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
             CustomOrder.CESSDesc = element.CESSDesc == null ? null : element.CESSDesc;
             CustomOrder.AddCessDesc = element.AddCessDesc == null ? null : element.AddCessDesc;
 
-            CustomOrder.Amount = Math.floor(CustomOrder.GrossAmount + (CustomOrder.GrossAmount * (element.GST / 100))) + (CustomOrder.CESSValue != null ? CustomOrder.CESSValue : 0) + (CustomOrder.AddCessValue != null ? CustomOrder.AddCessValue : 0);
+
+            CustomOrder.Sph = element.Sph;
+            CustomOrder.Cyl = element.Cyl;
+            CustomOrder.Axis = element.Axis;
+            CustomOrder.Add = element.Add;
+            CustomOrder.Description = element.Description;
+
+            CustomOrder.FrameShapeID = element.FrameShapeID;
+            CustomOrder.FrameStyleID = element.FrameStyleID;
+            CustomOrder.FrameTypeID = element.FrameTypeID;
+            CustomOrder.FrameWidthID = element.FrameWidthID;
+
+            CustomOrder.Amount = Math.floor(CustomOrder.GrossAmount + (CustomOrder.GrossAmount * (element.CGST / 100)) + (CustomOrder.GrossAmount * (element.SGST / 100)));
             this.commonService.data.CustomerItemOrders.push(CustomOrder);
             this.dataSource.data = this.commonService.data.CustomerItemOrders;
             this.dataSource._updateChangeSubscription();
@@ -757,18 +778,25 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
             CustomOrder.Color = element.Color;
             CustomOrder.HSNNo = element.HSNNo;
             CustomOrder.UOM = element.UOM;
-            CustomOrder.GrossAmount = element.Price;
             CustomOrder.Quantity = 1;
-            CustomOrder.UnitPrice = element.Price;
+            if (element.Sptaxinclusive) {
+              CustomOrder.UnitPrice = Math.ceil(element.Price * 100 / (100 + element.GST));
+              CustomOrder.GrossAmount = CustomOrder.UnitPrice;
+            } else {
+              CustomOrder.UnitPrice = Math.ceil(element.Price);
+              CustomOrder.GrossAmount = element.Price;
+            }
             CustomOrder.GivenQtyPrice = CustomOrder.Quantity * CustomOrder.UnitPrice;
             CustomOrder.Discount = 0;
             CustomOrder.DiscountAmount = 0;
-            CustomOrder.CGST = element.GST == null ? null : element.GST / 2;
-            CustomOrder.SGST = element.GST == null ? null : element.GST / 2;
+            CustomOrder.CGST = element.CGST == null ? null : element.CGST;
+            CustomOrder.SGST = element.SGST == null ? null : element.SGST;
             CustomOrder.GST = element.GST == null ? null : element.GST;
             CustomOrder.GSTValue = element.GST == null ? null : CustomOrder.GrossAmount * (CustomOrder.GST / 100);
             CustomOrder.CESSValue = element.CESS == null ? null : CustomOrder.GrossAmount * (element.CESS / 100);
             CustomOrder.AddCessValue = element.AddCess == null ? null : CustomOrder.GrossAmount * (element.AddCess / 100);
+            CustomOrder.CGSTValue = element.CGST == null ? null : (CustomOrder.GrossAmount * (element.CGST / 100));
+            CustomOrder.SGSTValue = element.SGST == null ? null : (CustomOrder.GrossAmount * (element.SGST / 100));
 
             CustomOrder.CESS = element.CESS == null ? null : element.CESS;
             CustomOrder.AddCess = element.AddCess == null ? null : element.AddCess;
@@ -776,7 +804,19 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
             CustomOrder.CESSDesc = element.CESSDesc == null ? null : element.CESSDesc;
             CustomOrder.AddCessDesc = element.AddCessDesc == null ? null : element.AddCessDesc;
 
-            CustomOrder.Amount = Math.floor(CustomOrder.GrossAmount + (CustomOrder.GrossAmount * (element.GST / 100))) + (CustomOrder.CESSValue != null ? CustomOrder.CESSValue : 0) + (CustomOrder.AddCessValue != null ? CustomOrder.AddCessValue : 0);
+
+            CustomOrder.Sph = element.Sph;
+            CustomOrder.Cyl = element.Cyl;
+            CustomOrder.Axis = element.Axis;
+            CustomOrder.Add = element.Add;
+            CustomOrder.Description = element.Description;
+
+            CustomOrder.FrameShapeID = element.FrameShapeID;
+            CustomOrder.FrameStyleID = element.FrameStyleID;
+            CustomOrder.FrameTypeID = element.FrameTypeID;
+            CustomOrder.FrameWidthID = element.FrameWidthID;
+
+            CustomOrder.Amount = Math.floor(CustomOrder.GrossAmount + (CustomOrder.GrossAmount * (element.CGST / 100)) + (CustomOrder.GrossAmount * (element.SGST / 100)));
             CustomOrder.Count = 0;
             CustomOrder.ParentRowId = this.OfferCount + 1;
             this.commonService.data.CustomerItemOrders.push(CustomOrder);
@@ -809,18 +849,25 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
           CustomOrder.Color = element.Color;
           CustomOrder.HSNNo = element.HSNNo;
           CustomOrder.UOM = element.UOM;
-          CustomOrder.GrossAmount = element.Price;
           CustomOrder.Quantity = 1;
-          CustomOrder.UnitPrice = element.Price;
+          if (element.Sptaxinclusive) {
+            CustomOrder.UnitPrice = Math.ceil(element.Price * 100 / (100 + element.GST));
+            CustomOrder.GrossAmount = CustomOrder.UnitPrice;
+          } else {
+            CustomOrder.UnitPrice = Math.ceil(element.Price);
+            CustomOrder.GrossAmount = element.Price;
+          }
           CustomOrder.GivenQtyPrice = CustomOrder.Quantity * CustomOrder.UnitPrice;
           CustomOrder.Discount = 0;
           CustomOrder.DiscountAmount = 0;
-          CustomOrder.CGST = element.GST == null ? null : element.GST / 2;
-          CustomOrder.SGST = element.GST == null ? null : element.GST / 2;
+          CustomOrder.CGST = element.GST == null ? null : element.CGST;
+          CustomOrder.SGST = element.GST == null ? null : element.SGST;
           CustomOrder.GST = element.GST == null ? null : element.GST;
           CustomOrder.GSTValue = element.GST == null ? null : CustomOrder.GrossAmount * (CustomOrder.GST / 100);
           CustomOrder.CESSValue = element.CESS == null ? null : CustomOrder.GrossAmount * (element.CESS / 100);
           CustomOrder.AddCessValue = element.AddCess == null ? null : CustomOrder.GrossAmount * (element.AddCess / 100);
+          CustomOrder.CGSTValue = element.CGST == null ? null : (CustomOrder.GrossAmount * (element.CGST / 100));
+          CustomOrder.SGSTValue = element.SGST == null ? null : (CustomOrder.GrossAmount * (element.SGST / 100));
 
           CustomOrder.CESS = element.CESS == null ? null : element.CESS;
           CustomOrder.AddCess = element.AddCess == null ? null : element.AddCess;
@@ -828,7 +875,20 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
           CustomOrder.CESSDesc = element.CESSDesc == null ? null : element.CESSDesc;
           CustomOrder.AddCessDesc = element.AddCessDesc == null ? null : element.AddCessDesc;
 
-          CustomOrder.Amount = Math.floor(CustomOrder.GrossAmount + (CustomOrder.GrossAmount * (element.GST / 100))) + (CustomOrder.CESSValue != null ? CustomOrder.CESSValue : 0) + (CustomOrder.AddCessValue != null ? CustomOrder.AddCessValue : 0);
+
+          CustomOrder.Sph = element.Sph;
+          CustomOrder.Cyl = element.Cyl;
+          CustomOrder.Axis = element.Axis;
+          CustomOrder.Add = element.Add;
+          CustomOrder.Description = element.Description;
+
+
+          CustomOrder.FrameShapeID = element.FrameShapeID;
+          CustomOrder.FrameStyleID = element.FrameStyleID;
+          CustomOrder.FrameTypeID = element.FrameTypeID;
+          CustomOrder.FrameWidthID = element.FrameWidthID;
+
+          CustomOrder.Amount = Math.floor(CustomOrder.GrossAmount + (CustomOrder.GrossAmount * (element.CGST / 100)) + (CustomOrder.GrossAmount * (element.SGST / 100)));
           this.commonService.data.CustomerItemOrders.unshift(CustomOrder);
           this.dataSource.data = this.commonService.data.CustomerItemOrders;
           this.dataSource._updateChangeSubscription();
@@ -904,7 +964,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
   }
 
   RestrictNegativeValues(e): boolean {
-    if (!(e.keyCode >= 48 && e.keyCode <= 57 || e.keyCode == 46)) {
+    if (!(e.keyCode >= 48 && e.keyCode <= 57)) {
       return false;
     }
   }
@@ -1119,32 +1179,14 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
 
   changeQtyValue(id, property: string, event: any) {
     debugger
-    let result: number = Number(event.target.textContent);
-    //if (result > 100)
-    //{
-    //  Swal.fire({
-    //    type: 'warning',
-    //    title: 'warning',
-    //    text: 'Invalid Discount',
-    //    position: 'top-end',
-    //    showConfirmButton: false,
-    //    timer: 1500,
-    //    customClass: {
-    //      popup: 'alert-warp',
-    //      container: 'alert-container',
-    //    },
-    //  });
-    //  event.target.textContent = 0;
-    //  this.dataSource.filteredData[id][property] = 0;
-    //  this.dataSource._updateChangeSubscription();
-    //  return;
-    //}
+    let result: number = Number(event.target.value);
     this.dataSource.filteredData[id][property] = result;
     this.dataSource._updateChangeSubscription();
   }
 
+
   changeQtyValue1(id, property: string, event: any) {
-    let result: number = Number(event.currentTarget.value);
+    let result: number = Number(event.target.value);
     if (result > 100) {
       Swal.fire({
         type: 'warning',
@@ -1158,7 +1200,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
           container: 'alert-container',
         },
       });
-      event.currentTarget.value = 0;
+      event.target.value = 0;
       this.dataSource.filteredData[id][property] = 0;
       this.dataSource._updateChangeSubscription();
       return;
@@ -1171,6 +1213,13 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
     var num = element.Quantity * element.UnitPrice;
     num = parseFloat(num.toFixed(2));
     element.GivenQtyPrice = num;
+  }
+
+  changePrice(id, property: string, event: any) {
+    debugger
+    let result: number = Number(event.target.value);
+    this.dataSource.filteredData[id][property] = result;
+    this.dataSource._updateChangeSubscription();
   }
     
   changeValueDiscountAmount(id, element, property: string) {
@@ -1185,21 +1234,14 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
     element.GrossAmount = num;
   }
 
-  changeGstValue(id, element, property: string) {
-    var num = element.GrossAmount * (element.GST / 100);;
-    num = parseFloat(num.toFixed(2));
-    element.GSTValue = num;
+  changeGstValue(id, element) {
+    element.CGSTValue = element.GrossAmount * (element.CGST / 100);
+    element.SGSTValue = element.GrossAmount * (element.SGST / 100);
   }
 
   changeValueTotal(id, element, property: string) {
-    var Gst = element.CGST + element.SGST;
-    var res = element.GrossAmount * (Gst / 100);
-    var res1 = element.GrossAmount + res;
-    var Cess = element.GrossAmount * (element.CESS / 100);
-    element.CESSValue = parseFloat(Cess.toFixed(2));
-    var AddCess = element.GrossAmount * (element.AddCess / 100);
-    element.AddCessValue = parseFloat(AddCess.toFixed(2));
-    element.Amount = res1 + (element.CESSValue + element.AddCessValue);
+    var Tax = element.CGSTValue + element.SGSTValue;
+    element.Amount =  element.GrossAmount + Tax
   }
 
   getGrossAmount() {
@@ -1256,6 +1298,16 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
   getTotalAmount() {
       var restotalcost = this.commonService.data.CustomerItemOrders.map(t => t.Amount).reduce((acc, value) => acc + value, 0);
       return restotalcost;
+  }
+
+  GetCGSTAmount() {
+    var restotalcost = this.commonService.data.CustomerItemOrders.map(t => t.CGSTValue).reduce((acc, value) => acc + value, 0);
+    return restotalcost;
+  }
+
+  GetSGSTAmount() {
+    var restotalcost = this.commonService.data.CustomerItemOrders.map(t => t.SGSTValue).reduce((acc, value) => acc + value, 0);
+    return restotalcost;
   }
 
   CheckingAdvanceAmount(event) {
@@ -2044,6 +2096,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
     this.dataSource3._updateChangeSubscription();
     this.PrintdataSource._updateChangeSubscription();
     this.M_OrderDate = this.date.getDate() + "-" + this.date.toLocaleString('default', { month: 'long' }) + "-" + this.date.getFullYear();
+    this.displayedColumns3 = ['PaymentMode', 'BankName', 'InstrumentNumber', 'InstrumentDate', 'ExpiryDate', 'Branch', 'Amount', 'Action'];
   }
 
   printclose() {

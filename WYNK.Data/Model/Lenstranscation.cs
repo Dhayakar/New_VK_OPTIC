@@ -18,11 +18,9 @@ namespace WYNK.Data.Model
         public string Size { get; set; }
         public string Colour { get; set; }
         public int Brand { get; set; }
+        public decimal Costprice { get; set; }
         public decimal Prize { get; set; }
-        public DateTime CreatedUTC { get; set; }
-        public DateTime? UpdatedUTC { get; set; }
-        public int CreatedBy { get; set; }
-        public int? UpdatedBy { get; set; }
+        public Boolean? Sptaxinclusive { get; set; }
         public decimal? CESSAmount { get; set; }
         public decimal? ADDCESSAmount { get; set; }
         public int? UOMID { get; set; }
@@ -38,5 +36,10 @@ namespace WYNK.Data.Model
         public string Cyl { get; set; }
         public string Axis { get; set; }
         public string Add { get; set; }
+        public DateTime CreatedUTC { get; set; }
+        public DateTime? UpdatedUTC { get; set; }
+        public int CreatedBy { get; set; }
+        public int? UpdatedBy { get; set; }
+
     }
 }

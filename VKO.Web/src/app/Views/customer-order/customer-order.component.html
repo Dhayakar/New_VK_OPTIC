@@ -25,6 +25,41 @@
           <button type="button" class="btn-text f-r" (click)="Getformaccess()"><i class="fas fa-eye"></i> View Access</button>
         </div>
       </div>
+      <div class="col-sm-4 mt-0px width-32p">
+        <div class="row">
+          <div class="col-sm-7">
+            <div class="row">
+              <div class="col-sm-9">
+                <mat-label class="refcol">Customer Name:</mat-label>
+              </div>
+              <div class="col-sm-3 mt-n4p ml-n33p">
+                <button mat-icon-button (click)="RegisteredCustomer()" [disabled]="DisabledPrescriptions">
+                  <mat-icon [disabled]="DisabledPrescriptions" class="cursor" data-toggle="tooltip" title="Search Customer Details">search</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 f-r mt-n9p width-60p">
+            <mat-label class="ml-n10p">{{M_CustomerName}}</mat-label>
+          </div>
+        </div>
+        <div class="row ml-1p">
+          <div class="col-sm-3 ml-9p height-50px">
+            <mat-label class="refcol">Address:</mat-label>
+          </div>
+          <div class="col-sm-5 ml-n2p">
+            <mat-label>{{M_Address}}</mat-label>
+          </div>
+        </div>
+        <div class="row ml-5p">
+          <div class="col-sm-6">
+            <mat-label class="refcol">Contact No:</mat-label>
+          </div>
+          <div class="col-sm-6 f-r mt-n7p width-60p">
+            <mat-label class="ml-n20p">{{M_MobileNo}}</mat-label>
+          </div>
+        </div>
+      </div>
       <div class="col-sm-2 mt-1p width-22p">
         <div class="row">
           <div class="col-sm-7">
@@ -95,41 +130,6 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-4 mt-0px width-32p">
-        <div class="row">
-          <div class="col-sm-7">
-            <div class="row">
-              <div class="col-sm-9">
-                <mat-label class="refcol">Customer Name:</mat-label>
-              </div>
-              <div class="col-sm-3 mt-n4p ml-n24p">
-                <button mat-icon-button (click)="RegisteredCustomer()" [disabled]="DisabledPrescriptions">
-                  <mat-icon [disabled]="DisabledPrescriptions" class="cursor" data-toggle="tooltip" title="Search Customer Details">search</mat-icon>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 f-r mt-n9p width-60p">
-            <mat-label class="ml-n1p">{{M_CustomerName}}</mat-label>
-          </div>
-        </div>
-        <div class="row ml-1p">
-          <div class="col-sm-3 ml-9p height-50px">
-            <mat-label class="refcol">Address:</mat-label>
-          </div>
-          <div class="col-sm-5 ml-n2p">
-            <mat-label>{{M_Address}}</mat-label>
-          </div>
-        </div>
-        <div class="row ml-5p">
-          <div class="col-sm-6">
-            <mat-label class="refcol">Contact No:</mat-label>
-          </div>
-          <div class="col-sm-6 f-r mt-n7p width-60p">
-            <mat-label class="ml-n20p">{{M_MobileNo}}</mat-label>
-          </div>
-        </div>
-      </div>
     </div>
     <div class="container">
       <input id="tab-1" class="ItemDetailsTab" type="radio" name="tabs" checked="checked" />
@@ -148,15 +148,7 @@
               </h5>
               <div class="card-body">
                 <div class="row heightAuto-300px  position-sticky" *ngIf="!Prints">
-                  <table mat-table matSort [dataSource]="dataSource" class="custom-table withoutbackgroung search-table table-bordered width-110p">
-                    <ng-container matColumnDef="SNo">
-                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">SNo</th>
-                      <td mat-cell *matCellDef="let element ;let i = index;"> {{i+1}} </td>
-                      <td mat-footer-cell *matFooterCellDef> </td>
-                    </ng-container>
-                    <ng-container matColumnDef="Serials">
-                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> S.No </th>
-                    </ng-container>
+                  <table mat-table matSort [dataSource]="dataSource" class="custom-table withoutbackgroung search-table table-bordered">
 
                     <ng-container matColumnDef="Type">
                       <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Type</th>
@@ -179,61 +171,23 @@
                       <td mat-footer-cell *matFooterCellDef> </td>
                     </ng-container>
                     <ng-container matColumnDef="Brands">
-                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Brand </th>
+                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" class="width-8p"> Brand </th>
                     </ng-container>
 
 
-                    <ng-container matColumnDef="Model">
-                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Model</th>
-                      <td mat-cell *matCellDef="let element"> {{element.Model }} </td>
+
+                    <ng-container matColumnDef="Description">
+                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Description</th>
+                      <td mat-cell *matCellDef="let element ;let i = index;">
+                        {{element.Sph}}{{element.Cyl}}{{element.Axis}}{{element.Add}}
+                        {{element.FrameShapeID}}{{element.FrameStyleID}}{{element.FrameTypeID}}{{element.FrameWidthID}}
+                      </td>
                       <td mat-footer-cell *matFooterCellDef> </td>
                     </ng-container>
-
-                    <ng-container matColumnDef="Models">
-                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Model </th>
+                    <ng-container matColumnDef="Descriptions">
+                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Description </th>
                     </ng-container>
 
-
-                    <ng-container matColumnDef="LensOption">
-                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">LensOption</th>
-                      <td mat-cell *matCellDef="let element"> {{element.LensOptions }} </td>
-                      <td mat-footer-cell *matFooterCellDef> </td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="LensOptions">
-                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> LensOption </th>
-                    </ng-container>
-
-                    <ng-container matColumnDef="Index">
-                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Index</th>
-                      <td mat-cell *matCellDef="let element"> {{element.Index }} </td>
-                      <td mat-footer-cell *matFooterCellDef> </td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="Indexs">
-                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Index </th>
-                    </ng-container>
-
-
-                    <ng-container matColumnDef="Color">
-                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Color</th>
-                      <td mat-cell *matCellDef="let element"> {{element.Color }} </td>
-                      <td mat-footer-cell *matFooterCellDef> </td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="Colors">
-                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Color </th>
-                    </ng-container>
-
-                    <ng-container matColumnDef="HSN">
-                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">HSN</th>
-                      <td mat-cell *matCellDef="let element"> {{element.HSNNo }} </td>
-                      <td mat-footer-cell *matFooterCellDef> </td>
-                    </ng-container>
-
-                    <ng-container matColumnDef="HSNs">
-                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> HSN </th>
-                    </ng-container>
 
 
                     <ng-container matColumnDef="UOM">
@@ -248,7 +202,12 @@
 
                     <ng-container matColumnDef="QTY">
                       <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">QTY</th>
-                      <td mat-cell *matCellDef="let element; let id = index;" class="width-3p text-end" contenteditable="true" (keypress)="RestrictNegativeValues($event)" (keyup)="changeQtyValue(id,'Quantity',$event);changeGivenQtyValue(id,element,'GivenQtyPrice');changeValueDiscountAmount(id,element,'DiscountAmount');changeValueGrossAmount(id,element,'GrossAmount');changeGstValue(id,element,'GSTValue');changeValueTotal(id,element,'Amount')"> {{element.Quantity}} </td>
+                      <td mat-cell *matCellDef="let element; let id = index;" class="width-3p text-end">
+                        <input (keypress)="RestrictNegativeValues($event)"
+                               (keyup)="changeQtyValue(id,'Quantity',$event);changeGivenQtyValue(id,element,'GivenQtyPrice');changeValueDiscountAmount(id,element,'DiscountAmount');changeValueGrossAmount(id,element,'GrossAmount');changeGstValue(id,element);changeValueTotal(id,element,'Amount')"
+                               matInput value="{{element.Quantity}}"
+                               autocomplete="off">
+                      </td>
                       <td mat-footer-cell *matFooterCellDef> </td>
                     </ng-container>
 
@@ -258,7 +217,12 @@
 
                     <ng-container matColumnDef="Price">
                       <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Price</th>
-                      <td mat-cell *matCellDef="let element" class="text-end"> {{element.UnitPrice| number : '1.2-2'}} </td>
+                      <td mat-cell *matCellDef="let element; let id = index;" class="text-end">
+                        <input (keypress)="RestrictNegativeValues($event)"
+                             (keyup)="changePrice(id,'UnitPrice',$event);changeGivenQtyValue(id,element,'GivenQtyPrice');changeValueDiscountAmount(id,element,'DiscountAmount');changeValueGrossAmount(id,element,'GrossAmount');changeGstValue(id,element,'GSTValue');changeValueTotal(id,element,'Amount')"
+                               matInput value="{{element.UnitPrice}}"
+                               autocomplete="off">
+                      </td>
                       <td mat-footer-cell *matFooterCellDef> </td>
                     </ng-container>
 
@@ -279,11 +243,13 @@
                     </ng-container>
 
                     <ng-container matColumnDef="Discount%">
-                      <th mat-header-cell *matHeaderCellDef>%</th>
-                      <td mat-cell *matCellDef="let element; let id = index;" contenteditable="true">
-                        <div class="width-40px">
-                          <input class="width-50px height-65px border-none CM-Inputblue" type="text" value=" {{element.Discount| number : '1.2-2'}}" (keypress)="RestrictNegativeValues($event)" (keyup)="changeQtyValue1(id,'Discount',$event);changeValueDiscountAmount(id,element,'DiscountAmount');changeValueGrossAmount(id,element,'GrossAmount');changeGstValue(id,element,'GSTValue');changeValueTotal(id,element,'Amount')">
-                        </div>
+                      <th mat-header-cell *matHeaderCellDef style="width:4%">%</th>
+                      <td mat-cell *matCellDef="let element; let id = index;" class="text-end width-4p">
+                        <input (keypress)="RestrictNegativeValues($event)"
+                               (keyup)="changeQtyValue1(id,'Discount',$event);changeValueDiscountAmount(id,element,'DiscountAmount');
+                                 changeValueGrossAmount(id,element,'GrossAmount');changeGstValue(id,element,'GSTValue');changeValueTotal(id,element,'Amount')"
+                               matInput value="{{element.Discount}}"
+                               autocomplete="off">
                       </td>
                       <td mat-footer-cell *matFooterCellDef> </td>
                     </ng-container>
@@ -306,63 +272,29 @@
                     </ng-container>
 
 
-
-                    <ng-container matColumnDef="GSTDesc">
-                      <th mat-header-cell *matHeaderCellDef>Desc</th>
-                      <td mat-cell *matCellDef="let element" class="width-8p">
-                        <div class="row">
-                          <div *ngIf="element.GSTDesc != null" class="col-sm-10 mt-8p">
-                            {{element.GSTDesc}}
-                          </div>
-                          <br />
-                          <div *ngIf="element.CESSDesc != null" class="col-sm-10">
-                            {{element.CESSDesc}}
-                          </div>
-                          <br />
-                          <div *ngIf="element.AddCessDesc != null" class="col-sm-10">
-                            {{element.AddCessDesc}}
-                          </div>
-                        </div>
-                      </td>
-                      <td mat-footer-cell *matFooterCellDef> </td>
-                    </ng-container>
-                    <ng-container matColumnDef="GST%">
+                    <ng-container matColumnDef="CGST">
                       <th mat-header-cell *matHeaderCellDef>%</th>
-                      <td mat-cell *matCellDef="let element" class="width-4p text-end">
-                        <div class="row">
-                          <div *ngIf="element.GST != null" class="col-sm-10 mt-12p">
-                            {{element.GST | number : '1.2-2'}}
-                          </div>
-                          <br />
-                          <div *ngIf="element.CESS != null" class="col-sm-10">
-                            {{element.CESS | number : '1.2-2'}}
-                          </div>
-                          <br />
-                          <div *ngIf="element.AddCess != null" class="col-sm-10">
-                            {{element.AddCess | number : '1.2-2'}}
-                          </div>
-                        </div>
-                      </td>
+                      <td mat-cell *matCellDef="let element;let id = index;">{{element.CGST | number : '1.2-2'}}</td>
                       <td mat-footer-cell *matFooterCellDef> </td>
                     </ng-container>
-                    <ng-container matColumnDef="GSTValue">
-                      <th mat-header-cell *matHeaderCellDef>Amount</th>
-                      <td mat-cell *matCellDef="let element" class="width-6p text-end">
-                        <div class="row">
-                          <div *ngIf="element.GST != null" class="col-sm-10 mt-8p">
-                            {{element.GSTValue | number : '1.2-2'}}
-                          </div>
-                          <br />
-                          <div *ngIf="element.CESS != null" class="col-sm-10">
-                            {{element.CESSValue| number : '1.2-2'}}
-                          </div>
-                          <br />
-                          <div *ngIf="element.AddCess != null" class="col-sm-10">
-                            {{element.AddCessValue| number : '1.2-2'}}
-                          </div>
-                        </div>
-                      </td>
-                      <td mat-footer-cell *matFooterCellDef class="text-center"><b>{{getGstTotalAmount() | currency:Country2}}</b></td>
+
+                    <ng-container matColumnDef="CGSTValue">
+                      <th mat-header-cell *matHeaderCellDef> Amount</th>
+                      <td mat-cell *matCellDef="let element;let id = index;">{{element.CGSTValue | number : '1.2-2'}}</td>
+                      <td mat-footer-cell *matFooterCellDef><b>{{GetCGSTAmount() | currency:Country2}}</b> </td>
+                    
+                    </ng-container>
+
+                    <ng-container matColumnDef="SGST">
+                      <th mat-header-cell *matHeaderCellDef>%</th>
+                      <td mat-cell *matCellDef="let element;let id = index;">{{element.SGST | number : '1.2-2'}}</td>
+                      <td mat-footer-cell *matFooterCellDef></td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="SGSTValue">
+                      <th mat-header-cell *matHeaderCellDef> Amount</th>
+                      <td mat-cell *matCellDef="let element;let id = index;">{{element.SGSTValue | number : '1.2-2'}}</td>
+                      <td mat-footer-cell *matFooterCellDef><b>{{GetSGSTAmount() | currency:Country2}}</b></td>
                     </ng-container>
 
 
@@ -382,24 +314,6 @@
                       <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Action </th>
                     </ng-container>
 
-
-
-                    <ng-container matColumnDef="Offer">
-                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Offer</th>
-                      <td mat-cell *matCellDef="let element;let id = index;" class="text-end">
-                        <button mat-icon-button [disabled]="element.OneplusOfferValue == null">
-                          <mat-icon data-toggle="tooltip" title="Offers" class="grab" (click)="element.OneplusOfferValue != null ? Relatedoffers(element,id): null ">new_releases</mat-icon>
-                        </button>
-                      </td>
-                      <td mat-footer-cell *matFooterCellDef> </td>
-                    </ng-container>
-
-
-                    <ng-container matColumnDef="Offers">
-                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Offer </th>
-                    </ng-container>
-
-
                     <ng-container matColumnDef="NetAmount">
                       <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Net Amount</th>
                       <td mat-cell *matCellDef="let element" class="text-end">{{element.Amount| number : '1.2-2'}} </td>
@@ -415,13 +329,19 @@
                       <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> Discount </th>
                     </ng-container>
 
-                    <ng-container matColumnDef="header-row-third-group">
-                      <th mat-header-cell *matHeaderCellDef [attr.colspan]="3"> Tax </th>
+
+                    <ng-container matColumnDef="CGSTTax">
+                      <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> CGST Tax </th>
+                    </ng-container>
+
+                    <ng-container matColumnDef="SGSTTax">
+                      <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> SGST Tax </th>
                     </ng-container>
 
 
-                    <tr mat-header-row *matHeaderRowDef="['Serials','Types','Brands','Models','LensOptions','Indexs','Colors','UOMs','QTYs','Prices','Amounts',
-                    'header-row-group','GrossAmounts','header-row-third-group','NetAmounts','Actions','Offers'];sticky: true"></tr>
+
+                    <tr mat-header-row *matHeaderRowDef="['Types','Brands','Descriptions','UOMs','QTYs','Prices','Amounts',
+                    'header-row-group','GrossAmounts','CGSTTax','SGSTTax','NetAmounts','Actions'];sticky: true"></tr>
 
                     <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
                     <tr mat-row *matRowDef="let row;  let even = even;columns: displayedColumns;"></tr>
@@ -430,14 +350,6 @@
                 </div>
                 <div class="row heightAuto-300px  position-sticky" *ngIf="Prints">
                   <table mat-table matSort [dataSource]="PrintdataSource" class="custom-table withoutbackgroung search-table table-bordered">
-                    <ng-container matColumnDef="SNo">
-                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">SNo</th>
-                      <td mat-cell *matCellDef="let element ;let i = index;"> {{i+1}} </td>
-                      <td mat-footer-cell *matFooterCellDef> </td>
-                    </ng-container>
-                    <ng-container matColumnDef="Serials">
-                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> S.No </th>
-                    </ng-container>
 
                     <ng-container matColumnDef="Type">
                       <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Type</th>
@@ -461,52 +373,18 @@
                     </ng-container>
 
 
-                    <ng-container matColumnDef="Model">
-                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Model</th>
-                      <td mat-cell *matCellDef="let element"> {{element.Model }} </td>
+                    <ng-container matColumnDef="Description">
+                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Description</th>
+                      <td mat-cell *matCellDef="let element ;let i = index;">
+                        {{element.Sph}}{{element.Cyl}}{{element.Axis}}{{element.Add}}
+                        {{element.FrameShapeID}}{{element.FrameStyleID}}{{element.FrameTypeID}}{{element.FrameWidthID}}
+                      </td>
                       <td mat-footer-cell *matFooterCellDef> </td>
                     </ng-container>
-                    <ng-container matColumnDef="Models">
-                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Model </th>
+                    <ng-container matColumnDef="Descriptions">
+                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Description </th>
                     </ng-container>
 
-
-                    <ng-container matColumnDef="LensOption">
-                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">LensOption</th>
-                      <td mat-cell *matCellDef="let element"> {{element.LensOptions }} </td>
-                      <td mat-footer-cell *matFooterCellDef> </td>
-                    </ng-container>
-                    <ng-container matColumnDef="LensOptions">
-                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> LensOption </th>
-                    </ng-container>
-
-                    <ng-container matColumnDef="Index">
-                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Index</th>
-                      <td mat-cell *matCellDef="let element"> {{element.Index }} </td>
-                      <td mat-footer-cell *matFooterCellDef> </td>
-                    </ng-container>
-                    <ng-container matColumnDef="Indexs">
-                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Index </th>
-                    </ng-container>
-
-
-                    <ng-container matColumnDef="Color">
-                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Color</th>
-                      <td mat-cell *matCellDef="let element"> {{element.Color }} </td>
-                      <td mat-footer-cell *matFooterCellDef> </td>
-                    </ng-container>
-                    <ng-container matColumnDef="Colors">
-                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Color </th>
-                    </ng-container>
-
-                    <ng-container matColumnDef="HSN">
-                      <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">HSN</th>
-                      <td mat-cell *matCellDef="let element"> {{element.HSNNo }} </td>
-                      <td mat-footer-cell *matFooterCellDef> </td>
-                    </ng-container>
-                    <ng-container matColumnDef="HSNs">
-                      <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> HSN </th>
-                    </ng-container>
 
 
                     <ng-container matColumnDef="UOM">
@@ -568,64 +446,32 @@
                       <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> GrossAmount </th>
                     </ng-container>
 
-
-                    <ng-container matColumnDef="GSTDesc">
-                      <th mat-header-cell *matHeaderCellDef>Desc</th>
-                      <td mat-cell *matCellDef="let element" class="width-8p">
-                        <div class="row">
-                          <div *ngIf="element.GSTDesc != null" class="col-sm-10 mt-8p">
-                            {{element.GSTDesc}}
-                          </div>
-                          <br />
-                          <div *ngIf="element.CESSDesc != null" class="col-sm-10">
-                            {{element.CESSDesc}}
-                          </div>
-                          <br />
-                          <div *ngIf="element.AddCessDesc != null" class="col-sm-10">
-                            {{element.AddCessDesc}}
-                          </div>
-                        </div>
-                      </td>
-                      <td mat-footer-cell *matFooterCellDef> </td>
-                    </ng-container>
-                    <ng-container matColumnDef="GST%">
+                    <ng-container matColumnDef="CGST">
                       <th mat-header-cell *matHeaderCellDef>%</th>
-                      <td mat-cell *matCellDef="let element" class="width-5p text-end">
-                        <div class="row">
-                          <div *ngIf="element.GST != null" class="col-sm-10 mt-12p">
-                            {{element.GST | number : '1.2-2'}}
-                          </div>
-                          <br />
-                          <div *ngIf="element.CESS != null" class="col-sm-10">
-                            {{element.CESS | number : '1.2-2'}}
-                          </div>
-                          <br />
-                          <div *ngIf="element.AddCess != null" class="col-sm-10">
-                            {{element.AddCess | number : '1.2-2'}}
-                          </div>
-                        </div>
-                      </td>
+                      <td mat-cell *matCellDef="let element;let id = index;">{{element.CGST | number : '1.2-2'}}</td>
                       <td mat-footer-cell *matFooterCellDef> </td>
                     </ng-container>
-                    <ng-container matColumnDef="GSTValue">
-                      <th mat-header-cell *matHeaderCellDef>Amount</th>
-                      <td mat-cell *matCellDef="let element" class="width-6p text-end">
-                        <div class="row">
-                          <div *ngIf="element.GST != null" class="col-sm-10 mt-8p">
-                            {{element.GSTValue | number : '1.2-2'}}
-                          </div>
-                          <br />
-                          <div *ngIf="element.CESS != null" class="col-sm-10">
-                            {{element.CESSValue| number : '1.2-2'}}
-                          </div>
-                          <br />
-                          <div *ngIf="element.AddCess != null" class="col-sm-10">
-                            {{element.AddCessValue| number : '1.2-2'}}
-                          </div>
-                        </div>
-                      </td>
-                      <td mat-footer-cell *matFooterCellDef class="text-center"><b>{{getGstTotalAmount() | currency:Country2}}</b></td>
+
+                    <ng-container matColumnDef="CGSTValue">
+                      <th mat-header-cell *matHeaderCellDef> Amount</th>
+                      <td mat-cell *matCellDef="let element;let id = index;">{{element.CGSTValue | number : '1.2-2'}}</td>
+                      <td mat-footer-cell *matFooterCellDef><b>{{GetCGSTAmount() | currency:Country2}}</b> </td>
+
                     </ng-container>
+
+                    <ng-container matColumnDef="SGST">
+                      <th mat-header-cell *matHeaderCellDef>%</th>
+                      <td mat-cell *matCellDef="let element;let id = index;">{{element.SGST | number : '1.2-2'}}</td>
+                      <td mat-footer-cell *matFooterCellDef></td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="SGSTValue">
+                      <th mat-header-cell *matHeaderCellDef> Amount</th>
+                      <td mat-cell *matCellDef="let element;let id = index;">{{element.SGSTValue | number : '1.2-2'}}</td>
+                      <td mat-footer-cell *matFooterCellDef><b>{{GetSGSTAmount() | currency:Country2}}</b></td>
+                    </ng-container>
+
+
                     <ng-container matColumnDef="NetAmount">
                       <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Net Amount</th>
                       <td mat-cell *matCellDef="let element" class="text-end">{{element.Amount| number : '1.2-2'}} </td>
@@ -639,13 +485,16 @@
                     <ng-container matColumnDef="header-row-group">
                       <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> Discount </th>
                     </ng-container>
-
-                    <ng-container matColumnDef="header-row-third-group">
-                      <th mat-header-cell *matHeaderCellDef [attr.colspan]="3"> Tax </th>
+                    <ng-container matColumnDef="CGSTTax">
+                      <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> CGST Tax </th>
+                    </ng-container>
+                    <ng-container matColumnDef="SGSTTax">
+                      <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> SGST Tax </th>
                     </ng-container>
 
-                    <tr mat-header-row *matHeaderRowDef="['Serials','Types','Brands','Models','LensOptions','Indexs','Colors','UOMs','QTYs','Prices','Amounts',
-              'header-row-group','GrossAmounts','header-row-third-group','NetAmounts'];sticky: true"></tr>
+
+                    <tr mat-header-row *matHeaderRowDef="['Types','Brands','Descriptions','UOMs','QTYs','Prices','Amounts',
+              'header-row-group','GrossAmounts','CGSTTax','SGSTTax','NetAmounts'];sticky: true"></tr>
 
                     <tr mat-header-row *matHeaderRowDef="PrintdisplayedColumns;sticky:true"></tr>
                     <tr mat-row *matRowDef="let row;  let even = even;columns: PrintdisplayedColumns;"></tr>
@@ -706,7 +555,7 @@
           </div>
           <div class="col-sm-12 mt-1p" *ngIf="!Prints">
             <div class="mb-12">
-              <h5 class="card-header bg-success text-white">
+              <h5 class="card-header">
                 Payment details
                 <button (click)="AddPaymentDetailsNewgrid();" class="btnuserdefined btn-dark"><i matTooltip="Add Payment Details" class="fa fa-plus"></i></button>
               </h5>
@@ -897,40 +746,31 @@
                 <mat-checkbox [(ngModel)]="element.checked" (click)="selecttype(element)"></mat-checkbox>
               </td>
             </ng-container>
+            <ng-container matColumnDef="Type">
+              <th mat-header-cell *matHeaderCellDef>Type</th>
+              <td mat-cell *matCellDef="let element">{{element.Type}}</td>
+            </ng-container>
             <ng-container matColumnDef="Brand">
               <th mat-header-cell *matHeaderCellDef>Brand</th>
-              <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Brand}}</td>
-            </ng-container>
-            <ng-container matColumnDef="LensOptions">
-              <th mat-header-cell *matHeaderCellDef>LensOptions</th>
-              <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.LensOptions}} </td>
+              <td mat-cell *matCellDef="let element ;let i = index;">{{element.Brand}}</td>
             </ng-container>
             <ng-container matColumnDef="Description">
               <th mat-header-cell *matHeaderCellDef>Description</th>
-              <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Description}} </td>
-            </ng-container>
-            <ng-container matColumnDef="Model">
-              <th mat-header-cell *matHeaderCellDef>Model</th>
-              <td mat-cell *matCellDef="let element"> {{element.Model}} </td>
-            </ng-container>
-            <ng-container matColumnDef="Index">
-              <th mat-header-cell *matHeaderCellDef>Index</th>
-              <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Index}} </td>
-            </ng-container>
-            <ng-container matColumnDef="Color">
-              <th mat-header-cell *matHeaderCellDef>Color</th>
-              <td mat-cell *matCellDef="let element"> {{element.Color}} </td>
-            </ng-container>
-            <ng-container matColumnDef="Size">
-              <th mat-header-cell *matHeaderCellDef>Size</th>
-              <td mat-cell *matCellDef="let element"> {{element.Size}} </td>
+              <td mat-cell *matCellDef="let element ;let i = index;">
+                {{element.Sph}}{{element.Cyl}}{{element.Axis}}{{element.Add}}
+                {{element.FrameShapeID}}{{element.FrameStyleID}}{{element.FrameTypeID}}{{element.FrameWidthID}}
+              </td>
             </ng-container>
             <ng-container matColumnDef="Price">
               <th mat-header-cell *matHeaderCellDef>Price</th>
-              <td mat-cell *matCellDef="let element"> {{element.Price}} </td>
+              <td mat-cell *matCellDef="let element"> {{element.ActualPrice | number:'1.2-2'}} </td>
+            </ng-container>
+            <ng-container matColumnDef="Stockqty">
+              <th mat-header-cell *matHeaderCellDef>Stock qty</th>
+              <td mat-cell *matCellDef="let element"> {{element.Stockqty | number:'1.2-2'}} </td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns1;sticky:true"></tr>
-            <tr mat-row *matRowDef="let row;  let even = even;columns: displayedColumns1;" [ngClass]="{gray: even}"></tr>
+            <tr mat-row *matRowDef="let row;  let even = even;columns: displayedColumns1;"></tr>
           </table>
         </div>
       </div>
@@ -1067,9 +907,6 @@
 
 <!--Print-->
 <div id="section" style="display:none">
-
-
-
   <div class="col-sm-12">
     <div class="row">
       <div class="col-sm-3"></div>
@@ -1082,48 +919,8 @@
       <div class="col-sm-3"></div>
     </div>
   </div>
-
-
-
-
-
-  <!--<div class="col-sm-12">
-    <div class="row">
-      <div class="col-sm-3"></div>
-      <div class="col-sm-6">
-        <label style="font-size:16px"><strong>{{CompanyName}}</strong> </label>
-      </div>
-      <div class="col-sm-3"></div>
-    </div>
-  </div>
-  <div class="col-sm-12">
-    <div class="row">
-      <div class="col-sm-2"></div>
-      <div class="col-sm-7"> <label style="text-align:center;margin-left:28%"><strong>{{CompanyAddress1 + ' '+ CompanyAddress2 + ' '+ CompanyAddress3}}</strong></label></div>
-      <div class="col-sm-3"></div>
-    </div>
-  </div>
-  <div class="col-sm-12">
-    <div class="row">
-      <div class="col-sm-3"></div>
-      <div class="col-sm-7"> <label style="text-align:center;margin-left:1%"><strong>{{'Phone No:'+' '+ CompanyPhone1 + ',' + ' ' + 'Website:' + ' ' + CompanyWebsite}}</strong></label></div>
-      <div class="col-sm-1"></div>
-    </div>
-  </div>
-  <div class="col-sm-12">
-    <div class="row">
-      <div class="col-sm-5"></div>
-      <div class="col-sm-3" style="margin-left:-3%"><label style="text-align:center;margin-left:-5%"><strong>Customer Order</strong></label></div>
-      <div class="col-sm-4"></div>
-    </div>
-  </div>-->
-
   <div class="col-sm-12 row">
-
-
-
     <div class="col-sm-4">
-
       <div class="row">
         <div class="col-sm-5">
           <div class="row">
@@ -1219,71 +1016,6 @@
       </div>
 
     </div>
-    <!--<div class="col-sm-3" style="margin-top: 14px;">
-      <div class="row">
-        <div class="col-sm-6">
-          <mat-label><strong>Order No</strong></mat-label> &nbsp;&nbsp;:
-        </div>
-        <div class="col-sm-6" style="margin-left:-8%">
-          <mat-label>{{M_OrderNo}}</mat-label>
-        </div>
-      </div>
-      <div class="row" style="margin-top: 7px;">
-        <div class="col-sm-6" style="margin-top: 5%;">
-          <mat-label> <strong>Order Date</strong></mat-label>&nbsp;:
-        </div>
-        <div class="col-sm-6" style="margin-top: 5%;margin-left:-8%">
-          <mat-label style="margin-top:12%">{{M_OrderDate | date:'dd-MMM-y, HH:mm'}}</mat-label> &nbsp; Hrs
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-3" style="margin-top: 10px;">
-      <div class="row">
-        <div class="col-sm-6">
-          <mat-label><strong>Ref No</strong></mat-label> &nbsp;&nbsp;&nbsp;:
-        </div>
-        <div class="col-sm-6" style="margin-left:-14%">
-          <mat-label>{{M_RefNo}}</mat-label>
-        </div>
-      </div>
-      <div class="row" style="margin-top: 17px;">
-        <div class="col-sm-6">
-          <mat-label><strong>Ref Date</strong></mat-label>&nbsp;:
-        </div>
-        <div class="col-sm-6" style="margin-left:-6%;margin-left:-14%">
-          <mat-label style="margin-top:12%;">{{M_Refdate | date:'dd-MMM-y'}}</mat-label>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-sm-6" style="margin-top: 6px;">
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="row">
-            <mat-label class="col-sm-9"><strong>Customer Name</strong> &nbsp;:</mat-label>&nbsp;
-          </div>
-        </div>
-        <div class="col-sm-5" style="margin-left: -23%;">
-          <mat-label>{{M_CustomerName}}</mat-label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-3" style="height: 50px;">
-          <mat-label><strong>Address</strong></mat-label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;
-        </div>
-        <div class="col-sm-5" style="margin-left: 2%;">
-          <mat-label>{{M_Address}}</mat-label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-5" style="margin-top: 1%;">
-          <mat-label><strong>Contact No</strong></mat-label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;
-        </div>
-        <div class="col-sm-5" style="margin-left: -13%;margin-top: 1%;">
-          <mat-label>{{M_MobileNo}}</mat-label>
-        </div>
-      </div>
-    </div>-->
   </div>
 
 
@@ -1300,16 +1032,6 @@
     </div>
     <div class="row">
       <table mat-table matSort [dataSource]="PrintdataSource" class="custom-table withoutbackgroung search-table table-bordered" style="width: 100%;">
-        <ng-container matColumnDef="SNo">
-          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">SNo</th>
-          <td mat-cell *matCellDef="let element ;let i = index;"> {{i+1}} </td>
-          <td mat-footer-cell *matFooterCellDef> </td>
-        </ng-container>
-
-        <ng-container matColumnDef="Serials">
-          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="width:4%;"> S.No </th>
-        </ng-container>
-
         <ng-container matColumnDef="Type">
           <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Type</th>
           <td mat-cell *matCellDef="let element ;let i = index;">{{element.Type}}  </td>
@@ -1334,58 +1056,19 @@
           <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="width: 2%;"> Brand </th>
         </ng-container>
 
-
-        <ng-container matColumnDef="Model">
-          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}" style="width: 7%;">Model</th>
-          <td mat-cell *matCellDef="let element"> {{element.Model }} </td>
+        <ng-container matColumnDef="Description">
+          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Description</th>
+          <td mat-cell *matCellDef="let element ;let i = index;">
+            {{element.Sph}}{{element.Cyl}}{{element.Axis}}{{element.Add}}
+            {{element.FrameShapeID}}{{element.FrameStyleID}}{{element.FrameTypeID}}{{element.FrameWidthID}}
+          </td>
           <td mat-footer-cell *matFooterCellDef> </td>
         </ng-container>
-
-        <ng-container matColumnDef="Models">
-          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="width: 7%;"> Model </th>
+        <ng-container matColumnDef="Descriptions">
+          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Description </th>
         </ng-container>
 
 
-        <ng-container matColumnDef="LensOption">
-          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">LensOption</th>
-          <td mat-cell *matCellDef="let element"> {{element.LensOptions }} </td>
-          <td mat-footer-cell *matFooterCellDef> </td>
-        </ng-container>
-
-        <ng-container matColumnDef="LensOptions">
-          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="width: 7%;"> LensOption </th>
-        </ng-container>
-
-        <ng-container matColumnDef="Index">
-          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Index</th>
-          <td mat-cell *matCellDef="let element"> {{element.Index}} </td>
-          <td mat-footer-cell *matFooterCellDef> </td>
-        </ng-container>
-
-        <ng-container matColumnDef="Indexs">
-          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="width: 4%;"> Index </th>
-        </ng-container>
-
-
-        <ng-container matColumnDef="Color">
-          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Color</th>
-          <td mat-cell *matCellDef="let element"> {{element.Color }} </td>
-          <td mat-footer-cell *matFooterCellDef> </td>
-        </ng-container>
-
-        <ng-container matColumnDef="Colors">
-          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="width: 5%;"> Color </th>
-        </ng-container>
-
-        <ng-container matColumnDef="HSN">
-          <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">HSN</th>
-          <td mat-cell *matCellDef="let element"> {{element.HSNNo }} </td>
-          <td mat-footer-cell *matFooterCellDef> </td>
-        </ng-container>
-
-        <ng-container matColumnDef="HSNs">
-          <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" style="width: 7%;"> HSN </th>
-        </ng-container>
 
 
         <ng-container matColumnDef="UOM">
@@ -1461,32 +1144,30 @@
           </th>
         </ng-container>
 
-        <ng-container matColumnDef="GSTDesc">
-          <th mat-header-cell *matHeaderCellDef style="width: 8%;">Desc</th>
-          <td mat-cell *matCellDef="let element" style="width:8%;text-align:center">
-            <ng-container style="height: 4px;text-align: center;"> {{element.GSTDesc}}</ng-container> <br />
-            <ng-container style="font-size:12px;text-align: center;height:4px"> {{element.CESSDesc}}</ng-container> <br />
-            <ng-container style="font-size:12px;text-align: center;height:4px"> {{element.AddCessDesc}}</ng-container>
-          </td>
+
+        <ng-container matColumnDef="CGST">
+          <th mat-header-cell *matHeaderCellDef>%</th>
+          <td mat-cell *matCellDef="let element;let id = index;">{{element.CGST | number : '1.2-2'}}</td>
           <td mat-footer-cell *matFooterCellDef> </td>
         </ng-container>
-        <ng-container matColumnDef="GST%">
-          <th mat-header-cell *matHeaderCellDef style="width: 4%;">%</th>
-          <td mat-cell *matCellDef="let element" style="width: 5%; text-align: end">
-            <ng-container *ngIf="element.GST != null" style="font-size:12px;height:4px"> {{element.GST}} </ng-container> <br />
-            <ng-container *ngIf="element.CESS != null" style="font-size:12px;height:4px"> {{element.CESS}}</ng-container> <br />
-            <ng-container *ngIf="element.AddCess != null" style="font-size:12px;height:4px"> {{element.AddCess}}</ng-container>
-          </td>
-          <td mat-footer-cell *matFooterCellDef> </td>
+
+        <ng-container matColumnDef="CGSTValue">
+          <th mat-header-cell *matHeaderCellDef> Amount</th>
+          <td mat-cell *matCellDef="let element;let id = index;">{{element.CGSTValue | number : '1.2-2'}}</td>
+          <td mat-footer-cell *matFooterCellDef><b>{{GetCGSTAmount() | currency:Country2}}</b> </td>
+
         </ng-container>
-        <ng-container matColumnDef="GSTValue">
-          <th mat-header-cell *matHeaderCellDef style="width: 5%;">Amount</th>
-          <td mat-cell *matCellDef="let element" style="width: 6%;  text-align: end">
-            <ng-container style="height: 4px;text-align: center;">{{element.GSTValue | number : '1.2-2'}}</ng-container> <br />
-            <ng-container *ngIf="element.CESS != null" style="font-size:12px;text-align: center;height:4px"> {{element.CESSValue| number : '1.2-2'}}</ng-container> <br />
-            <ng-container *ngIf="element.AddCess != null" style="font-size:12px;text-align: center;height:4px"> {{element.AddCessValue| number : '1.2-2'}}</ng-container>
-          </td>
-          <td mat-footer-cell *matFooterCellDef style="text-align:end"><b>{{getGstTotalAmount() | currency:Country2}}</b></td>
+
+        <ng-container matColumnDef="SGST">
+          <th mat-header-cell *matHeaderCellDef>%</th>
+          <td mat-cell *matCellDef="let element;let id = index;">{{element.SGST | number : '1.2-2'}}</td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <ng-container matColumnDef="SGSTValue">
+          <th mat-header-cell *matHeaderCellDef> Amount</th>
+          <td mat-cell *matCellDef="let element;let id = index;">{{element.SGSTValue | number : '1.2-2'}}</td>
+          <td mat-footer-cell *matFooterCellDef><b>{{GetSGSTAmount() | currency:Country2}}</b></td>
         </ng-container>
 
         <ng-container matColumnDef="NetAmount">
@@ -1506,17 +1187,19 @@
           <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> Discount </th>
         </ng-container>
 
-        <ng-container matColumnDef="header-row-third-group">
-          <th mat-header-cell *matHeaderCellDef [attr.colspan]="3"> Tax </th>
+        <ng-container matColumnDef="CGSTTax">
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> CGST Tax </th>
+        </ng-container>
+        <ng-container matColumnDef="SGSTTax">
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> SGST Tax </th>
         </ng-container>
 
 
-        <tr mat-header-row *matHeaderRowDef="['Serials','Types','Brands','Models','LensOptions','Indexs','Colors','UOMs','QTYs','Prices','Amounts',
-              'header-row-group','GrossAmounts','header-row-third-group','NetAmounts']"></tr>
 
-
+        <tr mat-header-row *matHeaderRowDef="['Types','Brands','Descriptions','UOMs','QTYs','Prices','Amounts',
+              'header-row-group','GrossAmounts','CGSTTax','SGSTTax','NetAmounts']"></tr>
         <tr mat-header-row *matHeaderRowDef="PrintdisplayedColumns;sticky:true"></tr>
-        <tr mat-row *matRowDef="let row;  let even = even;columns: PrintdisplayedColumns;" [ngClass]="{gray: even}"></tr>
+        <tr mat-row *matRowDef="let row;  let even = even;columns: PrintdisplayedColumns;"></tr>
         <tr mat-footer-row *matFooterRowDef="PrintdisplayedColumns;sticky: true"></tr>
       </table>
     </div>
@@ -1967,27 +1650,27 @@
                         <tr *ngFor="let FINAL of FINALPRESCRIPTION;index as i">
 
                           <td>
-                            <input #DistSphFINAL matInput maxlength="10" value="{{FINAL.DistSph}}" type="text" class="form-control tableinputheight" (keyup.enter)="DescriptionDistSphFINAL(i)" (keyup)="changeValueDistSphFINAL(i,'DistSph',$event);"  autocomplete="off" >
+                            <input #DistSphFINAL matInput maxlength="10" value="{{FINAL.DistSph}}" type="text" class="form-control tableinputheight" (keyup.enter)="DescriptionDistSphFINAL(i)" (keyup)="changeValueDistSphFINAL(i,'DistSph',$event);" autocomplete="off">
                           </td>
                           <td>
-                            <input #NearCylFINAL matInput maxlength="10" value="{{FINAL.NearCyl}}" type="text" class="form-control tableinputheight" (keyup)="changeValueNearCylFINAL(i,'NearCyl',$event);" (keyup.enter)="DescriptionNearCylFINAL(i)"  autocomplete="off" >
+                            <input #NearCylFINAL matInput maxlength="10" value="{{FINAL.NearCyl}}" type="text" class="form-control tableinputheight" (keyup)="changeValueNearCylFINAL(i,'NearCyl',$event);" (keyup.enter)="DescriptionNearCylFINAL(i)" autocomplete="off">
                           </td>
                           <td>
-                            <input #PinAxisFINAL matInput maxlength="10" value="{{FINAL.PinAxis}}" type="text" class="form-control tableinputheight" (keyup)="changeValuePinAxisFINAL(i,'PinAxis',$event);" (keyup.enter)="DescriptionPinAxisFINAL(i)"  autocomplete="off" >
+                            <input #PinAxisFINAL matInput maxlength="10" value="{{FINAL.PinAxis}}" type="text" class="form-control tableinputheight" (keyup)="changeValuePinAxisFINAL(i,'PinAxis',$event);" (keyup.enter)="DescriptionPinAxisFINAL(i)" autocomplete="off">
                           </td>
                           <td id="tablepress" (keypress)="DistanceODtablepress($event)">
-                            <mat-select   (keyup.enter)="saveDistanceODfinal(i)"  (selectionChange)="ChangeDistancefinal(i,$event);DistanceODDfinal.close()" value="{{FINAL.Add}}" >
-                              <input matInput  class="search"   autocomplete="off">
+                            <mat-select (keyup.enter)="saveDistanceODfinal(i)" (selectionChange)="ChangeDistancefinal(i,$event);DistanceODDfinal.close()" value="{{FINAL.Add}}">
+                              <input matInput class="search" autocomplete="off">
                               <mat-option>None</mat-option>
                               <mat-option *ngFor="let VAs of VAname" [value]="VAs.Value">{{VAs.Text}}</mat-option>
                             </mat-select>
                           </td>
                           <td>
-                            <input #DistSphNVODFINAL maxlength="10" matInput value="{{FINAL.DistSphNVOD}}" type="text" class="form-control tableinputheight" (keyup)="changeValueDistSphNVODFINAL(i,'DistSphNVOD',$event);" (keyup.enter)="DescriptionDistSphNVODFINAL(i)"   autocomplete="off" [disabled]="FINAL.OD">
+                            <input #DistSphNVODFINAL maxlength="10" matInput value="{{FINAL.DistSphNVOD}}" type="text" class="form-control tableinputheight" (keyup)="changeValueDistSphNVODFINAL(i,'DistSphNVOD',$event);" (keyup.enter)="DescriptionDistSphNVODFINAL(i)" autocomplete="off" [disabled]="FINAL.OD">
                           </td>
-                          <td style="border-right:2px solid gray" id="tablepress" (keypress)="DistanceODtablepress($event)" (keyup.enter)="DescriptionAddNVODFINAL(i)"   [attr.contenteditable]="FINAL.AddNVOD == '' || FINAL.AddNVOD != ''" #AddNVODFINAL>
-                            <mat-select #DistanceODDfinalp  (keyup.enter)="saveDistanceODfinalp(i)"  (selectionChange)="ChangeDistancefinalp(i,$event);DistanceODDfinalp.close()" value="{{FINAL.AddNVOD}}" [disabled]="FINAL.OD">
-                              <input matInput class="search"    autocomplete="off">
+                          <td style="border-right:2px solid gray" id="tablepress" (keypress)="DistanceODtablepress($event)" (keyup.enter)="DescriptionAddNVODFINAL(i)" [attr.contenteditable]="FINAL.AddNVOD == '' || FINAL.AddNVOD != ''" #AddNVODFINAL>
+                            <mat-select #DistanceODDfinalp (keyup.enter)="saveDistanceODfinalp(i)" (selectionChange)="ChangeDistancefinalp(i,$event);DistanceODDfinalp.close()" value="{{FINAL.AddNVOD}}" [disabled]="FINAL.OD">
+                              <input matInput class="search" autocomplete="off">
                               <mat-option>None</mat-option>
                               <mat-option *ngFor="let VAsnear1 of VAnamenear1" [value]="VAsnear1.Value">{{VAsnear1.Text}}</mat-option>
                             </mat-select>
@@ -2001,38 +1684,38 @@
                           <td>
                             <input #PinAxisOSFINAL maxlength="10" matInput value="{{FINAL.PinAxisOS}}" type="text" class="form-control tableinputheight" (keyup)="changeValuePinAxisOSFINAL(i,'PinAxisOS',$event);" (keyup.enter)="DescriptionPinAxisOSFINAL(i)" autocomplete="off" [disabled]="FINAL.OS">
                           </td>
-                          <td id="tablepress" (keypress)="DistanceODtablepress($event)" (keyup.enter)="DescriptionAddOSFINAL(i)"   [attr.contenteditable]="FINAL.AddOS == '' || FINAL.AddOS != ''" #AddOSFINAL>
-                            <mat-select #DistanceODDfinalos  (keyup.enter)="saveDistanceODfinalos(i)"  (selectionChange)="ChangeDistancefinalos(i,$event);DistanceODDfinalos.close()" value="{{FINAL.AddOS}}" [disabled]="FINAL.OS">
-                              <input matInput #Accepinputdistancefinalos class="search"   autocomplete="off">
+                          <td id="tablepress" (keypress)="DistanceODtablepress($event)" (keyup.enter)="DescriptionAddOSFINAL(i)" [attr.contenteditable]="FINAL.AddOS == '' || FINAL.AddOS != ''" #AddOSFINAL>
+                            <mat-select #DistanceODDfinalos (keyup.enter)="saveDistanceODfinalos(i)" (selectionChange)="ChangeDistancefinalos(i,$event);DistanceODDfinalos.close()" value="{{FINAL.AddOS}}" [disabled]="FINAL.OS">
+                              <input matInput #Accepinputdistancefinalos class="search" autocomplete="off">
                               <mat-option>None</mat-option>
                               <mat-option *ngFor="let VAs of VAname" [value]="VAs.Value">{{VAs.Text}}</mat-option>
                             </mat-select>
                           </td>
                           <td>
-                            <input #DistSphNVOSFINAL maxlength="10" matInput value="{{FINAL.DistSphNVOS}}" type="text" class="form-control tableinputheight" (keyup)="changeValuesDistSphNVOSFINAL(i,'DistSphNVOS',$event);" (keyup.enter)="DescriptionDistSphNVOSFINAL(i)"   autocomplete="off" [disabled]="FINAL.OS">
+                            <input #DistSphNVOSFINAL maxlength="10" matInput value="{{FINAL.DistSphNVOS}}" type="text" class="form-control tableinputheight" (keyup)="changeValuesDistSphNVOSFINAL(i,'DistSphNVOS',$event);" (keyup.enter)="DescriptionDistSphNVOSFINAL(i)" autocomplete="off" [disabled]="FINAL.OS">
                           </td>
-                          <td id="tablepress" (keypress)="DistanceODtablepress($event)" (keyup.enter)="DescriptionAddNVOSFINAL(i)"   [attr.contenteditable]="FINAL.AddNVOS == '' || FINAL.AddNVOS != ''" #AddNVOSFINAL>
-                            <mat-select #DistanceODDfinalpos  (keyup.enter)="saveDistanceODfinalpos(i)"  (selectionChange)="ChangeDistancefinalpos(i,$event);DistanceODDfinalpos.close()" value="{{FINAL.AddNVOS}}" [disabled]="FINAL.OS">
-                              <input matInput #Accepinputdistancefinalpos class="search" (input)="FIlterdataNearODacc($event.target.value)"   autocomplete="off">
+                          <td id="tablepress" (keypress)="DistanceODtablepress($event)" (keyup.enter)="DescriptionAddNVOSFINAL(i)" [attr.contenteditable]="FINAL.AddNVOS == '' || FINAL.AddNVOS != ''" #AddNVOSFINAL>
+                            <mat-select #DistanceODDfinalpos (keyup.enter)="saveDistanceODfinalpos(i)" (selectionChange)="ChangeDistancefinalpos(i,$event);DistanceODDfinalpos.close()" value="{{FINAL.AddNVOS}}" [disabled]="FINAL.OS">
+                              <input matInput #Accepinputdistancefinalpos class="search" (input)="FIlterdataNearODacc($event.target.value)" autocomplete="off">
                               <mat-option>None</mat-option>
                               <mat-option *ngFor="let VAsnear1 of VAnamenear1" [value]="VAsnear1.Value">{{VAsnear1.Text}}</mat-option>
                             </mat-select>
                           </td>
 
                           <td>
-                            <input  maxlength="5" matInput value="{{FINAL.PD}}" type="text" class="form-control tableinputheight" (keypress)="numberOnlypdno($event)" (keyup)="numberOnlypd(i,'PD',$event);changeValuesPDcommon(i,'PD',$event)" (keyup.enter)="DescriptionPDFINAL(i)"   autocomplete="off">
+                            <input maxlength="5" matInput value="{{FINAL.PD}}" type="text" class="form-control tableinputheight" (keypress)="numberOnlypdno($event)" (keyup)="numberOnlypd(i,'PD',$event);changeValuesPDcommon(i,'PD',$event)" (keyup.enter)="DescriptionPDFINAL(i)" autocomplete="off">
                           </td>
 
                           <td>
-                            <input  maxlength="5" matInput value="{{FINAL.MPDOD}}" type="text" class="form-control tableinputheight" (keyup)="changeValuesMPDODcommon(i,'MPDOD',$event);MPDOD(i,$event);" (keyup.enter)="DescriptionMPDODFINAL(i)"     autocomplete="off">
+                            <input maxlength="5" matInput value="{{FINAL.MPDOD}}" type="text" class="form-control tableinputheight" (keyup)="changeValuesMPDODcommon(i,'MPDOD',$event);MPDOD(i,$event);" (keyup.enter)="DescriptionMPDODFINAL(i)" autocomplete="off">
                           </td>
 
                           <td>
-                            <input  maxlength="5" matInput value="{{FINAL.MPDOS}}" type="text" class="form-control tableinputheight" (keyup)="changeValuesMPDOScommon(i,'MPDOS',$event);MPDOS(i,$event);" (keyup.enter)="DescriptionMPDOSFINAL(i)"     autocomplete="off">
+                            <input maxlength="5" matInput value="{{FINAL.MPDOS}}" type="text" class="form-control tableinputheight" (keyup)="changeValuesMPDOScommon(i,'MPDOS',$event);MPDOS(i,$event);" (keyup.enter)="DescriptionMPDOSFINAL(i)" autocomplete="off">
                           </td>
 
                           <td>
-                            <input  matInput value="{{FINAL.Remarks}}" type="text" class="form-control tableinputheight" (keyup)="changeValuesRemarksFINAL(i,'Remarks',$event);" (keyup.enter)="DescriptionRemarksFINAL(i)"  autocomplete="off">
+                            <input matInput value="{{FINAL.Remarks}}" type="text" class="form-control tableinputheight" (keyup)="changeValuesRemarksFINAL(i,'Remarks',$event);" (keyup.enter)="DescriptionRemarksFINAL(i)" autocomplete="off">
                           </td>
 
                         </tr>
@@ -2054,6 +1737,7 @@
             <button class="btn btn-warning-default" (click)="CancelOpticalPrescription()">Cancel</button>
             <button class="success btn btn-primary" (click)="onsubmitOpticalPrescription()">Submit</button>
           </div>
+        </div>
       </div>
     </div>
   </div>

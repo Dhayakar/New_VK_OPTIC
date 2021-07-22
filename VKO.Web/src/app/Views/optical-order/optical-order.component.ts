@@ -548,6 +548,7 @@ export class OpticalOrderComponent implements OnInit {
     let lensTranID = element.LTID;
     this.commonService.getListOfData('OpticalOrder/GetOpticalDetails/' + lensTranID + '/' + parseInt(localStorage.getItem("CompanyID")))
       .subscribe(data => {
+        debugger
         //this.dataSource.data.splice(id, 1);
         this.dataSource.data.splice(this.Index, 1);
         this.dataSource._updateChangeSubscription();
