@@ -1,8 +1,8 @@
-import { Component, OnInit, ElementRef, ChangeDetectorRef, ViewChild, HostListener } from '@angular/core';
+import { Component, OnInit, ElementRef, ChangeDetectorRef, ViewChild, QueryList, ViewChildren, HostListener } from '@angular/core';
 import { CommonService } from 'src/app/shared/common.service';
 import { OpticalgrnViewModel, GetOpticalGrntrnsgrn } from 'src/app/Models/ViewModels/opticalgrn-view-model';
 import { DatePipe } from '@angular/common';
-import { MatDialog, MatTableDataSource, MatSort, DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS, MatExpansionPanel } from '@angular/material';
+import { MatDialog, MatTableDataSource, MatSort, DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS, MatExpansionPanel, MatInput } from '@angular/material';
 import { AppComponent } from 'src/app/app.component';
 import { NgForm, FormControl } from '@angular/forms';
 import Swal from 'sweetalert2';
@@ -297,7 +297,7 @@ export class OpticalGrnComponent implements OnInit {
     this.commonService.getListOfData('Common/GetstoreDropdownvaluesdesc/' + this.CompanyID + '/' + "Stock Department").subscribe(data => { this.StoreName = data; })
   }
 
-  displayedColumnss: string[] = ['DrugName', 'Type', 'Brand', 'Model', 'Color', 'PurchaseUOM', 'Quantity', 'ReceivedQuantity', 'ActualQuantity', 'Rate', 'Value', 'Discount(%)', 'DiscountValue', 'Totalamount', 'Delete'];
+  displayedColumnss: string[] = ['Type', 'Brand', 'DrugName', 'PurchaseUOM', 'Quantity', 'ReceivedQuantity', 'ActualQuantity', 'Rate', 'Value', 'Discount(%)', 'DiscountValue', 'Totalamount', 'Delete'];
   dataSources = new MatTableDataSource();
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('OpticalGrn') Form: NgForm
@@ -308,7 +308,7 @@ export class OpticalGrnComponent implements OnInit {
     debugger;
     this.commonService.getListOfData('OpticalGrn/GetGrn/' + this.CompanyID + '/' + this.Getloctime).subscribe(data => {
       if (data.GetOpticalGrn.length > 0) {
-        this.dataSourcesq = _.orderBy(data.GetOpticalGrn, ['OrderDate'], ['desc']);
+        this.dataSourcesq = _.orderBy(data.GetOpticalGrn, ['Order'], ['desc']);
         this.modalpreview = 'block';
         this.backdrop = 'block';
       }
@@ -342,7 +342,7 @@ export class OpticalGrnComponent implements OnInit {
     this.commonService.getListOfData('OpticalGrn/GetGrndetails/' + this.CompanyID + '/' + this.Getloctime).subscribe(data => {
       debugger;
       if (data.GetOpticalGrndetails.length > 0) {
-        this.item = _.orderBy(data.GetOpticalGrndetails, ['GrnDate'], ['desc']);
+        this.item = _.orderBy(data.GetOpticalGrndetails, ['Grn'], ['desc']);
         this.modalpreviewgrn = 'block';
         this.backdrop = 'block';
       }
@@ -386,6 +386,7 @@ export class OpticalGrnComponent implements OnInit {
   State;
   Id;
   VID;
+  @ViewChild('ActualQuantity') ActualQuantityfocus;
   selecttypes(item) {
     debugger;
     this.resetfrom();
@@ -419,7 +420,9 @@ export class OpticalGrnComponent implements OnInit {
           this.commonService.data.GetOpticalGrntrns = data.GetOpticalGrntrns;
           this.dataSources.data = this.commonService.data.GetOpticalGrntrns;
           this.dataSources.sort = this.sort;
-
+          setTimeout(() => {
+            this.ActualQuantityfocus.nativeElement.focus()
+          }, 50)
         }
       });
     });
@@ -448,10 +451,10 @@ export class OpticalGrnComponent implements OnInit {
   oprd;
   opg;
   opgd;
-  displayedColumnssgrn: string[] = ['DrugNamegrn', 'Typegrn', 'Brandgrn', 'Modelgrn', 'Colorgrn', 'PurchaseUOMgrn', 'Quantity', 'ReceivedQuantitygrn', 'PendingQty', 'Rategrn', 'Valuegrn', 'Discountgrn(%)', 'DiscountValuegrn', 'Totalamountgrn'];
+  displayedColumnssgrn: string[] = ['Typegrn', 'Brandgrn', 'DrugNamegrn', 'PurchaseUOMgrn', 'Quantity', 'ReceivedQuantitygrn', 'PendingQty', 'Rategrn', 'Valuegrn', 'Discountgrn(%)', 'DiscountValuegrn', 'Totalamountgrn'];
   dataSourcesgrn = new MatTableDataSource();
 
-  displayedColumnssgrnprint: string[] = ['DrugNamegrnprint', 'Typegrnprint', 'Brandgrnprint', 'Modelgrnprint', 'Colorgrnprint', 'PurchaseUOMgrnprint', 'ReceivedQuantitygrnprint', 'Rategrnprint', 'Valuegrnprint', 'Discountgrnprint(%)', 'DiscountValuegrnprint', 'Totalamountgrnprint'];
+  displayedColumnssgrnprint: string[] = ['Typegrnprint', 'Brandgrnprint', 'DrugNamegrnprint', 'PurchaseUOMgrnprint', 'ReceivedQuantitygrnprint', 'Rategrnprint', 'Valuegrnprint', 'Discountgrnprint(%)', 'DiscountValuegrnprint', 'Totalamountgrnprint'];
   dataSourcesgrnprint = new MatTableDataSource();
 
   Grnno;
@@ -694,7 +697,6 @@ export class OpticalGrnComponent implements OnInit {
   }
 
 
-
   removeopt(i) {
     debugger;
     Swal.fire({
@@ -715,7 +717,6 @@ export class OpticalGrnComponent implements OnInit {
         if (i !== -1) {
           this.dataSources.data.splice(i, 1);
           this.dataSources._updateChangeSubscription();
-
         }
         Swal.fire({
           type: 'success',
@@ -1111,7 +1112,25 @@ export class OpticalGrnComponent implements OnInit {
 
 
 
+  @ViewChildren('ActualQuantity') ActualQuantitydown: QueryList<ElementRef>;
+  arrowdown(i, event, element) {
+    debugger;
+    setTimeout(() => {
+      let id = i + 1;
+      this.ActualQuantitydown.toArray()[id].nativeElement.focus();
+    });
+  }
 
+  @ViewChildren('ActualQuantity') ActualQuantityUp: QueryList<ElementRef>;
+  arrowup(i, event, element) {
+    debugger;
+    setTimeout(() => {
+      let id = i - 1;
+      this.ActualQuantityUp.toArray()[id].nativeElement.focus();
+    });
+
+
+  }
 
 
 

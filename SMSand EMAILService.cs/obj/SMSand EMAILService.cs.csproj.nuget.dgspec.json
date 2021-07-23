@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+
     "D:\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj": {}
   },
   "projects": {
@@ -18,6 +19,27 @@
         ],
         "configFilePaths": [
           "C:\\Users\\SYSTEM1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+
+    "E:\\Git_desktop\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj": {}
+  },
+
+  "projects": {
+    "Q:\\Backup\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "Q:\\Backup\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj",
+        "projectName": "SMSand EMAILService.cs",
+        "projectPath": "Q:\\Backup\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj",
+        "packagesPath": "C:\\Users\\mjbha\\.nuget\\packages\\",
+        "outputPath": "Q:\\Backup\\VK_Optic_Point\\SMSand EMAILService.cs\\obj\\",
+
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\mjbha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -64,8 +86,11 @@
             "net461"
           ],
           "assetTargetFallback": true,
-          "warn": true
-        }
+
+          "warn": true,
+
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+
       }
     }
   }

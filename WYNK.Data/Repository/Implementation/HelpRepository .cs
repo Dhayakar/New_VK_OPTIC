@@ -2490,6 +2490,10 @@ namespace WYNK.Data.Repository.Implementation
             var BrandMas = WYNKContext.Brand.ToList();
             var UOM = CMPSContext.uommaster.ToList();
             var Onelinemaster = CMPSContext.OneLineMaster.ToList();
+            var OpticalBalance = WYNKContext.OpticalBalance.Where(x=>x.CmpID == CMPID).ToList();
+
+           // var Datee = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
+            var Fyear = WYNKContext.FinancialYear.Where(x => x.FYFrom.Date <= DateTime.Now.Date && x.FYTo.Date >= DateTime.Now.Date && x.CMPID == CMPID && x.IsActive == true).Select(x => x.ID).FirstOrDefault();
 
             CustomerOrder.OfferDetails = (from LM in LensMas.Where(x => x.CMPID == CMPID)
                                           join LT in LensTarn.Where(x => x.IsActive == true) on LM.RandomUniqueID equals LT.LMID
@@ -2499,15 +2503,16 @@ namespace WYNK.Data.Repository.Implementation
                                               LTID = LT.ID,
                                               LMID = LM.ID,
                                               Brand = BM.Description,
-                                              //LensOptions = LT.LensOption,
                                               Description = LT.Description,
-                                              //Index = Onelinemaster.Where(x => x.OLMID == Convert.ToInt32(LT.Index)).Select(x => x.ParentDescription).FirstOrDefault(),
                                               Index = LT.Index != "" ? Onelinemaster.Where(x => x.OLMID == Convert.ToInt32(LT.Index)).Select(x => x.ParentDescription).FirstOrDefault() : string.Empty,
                                               Color = LT.Colour,
                                               Size = LT.Size,
                                               Price = LT.Prize,
+                                              ActualPrice = Math.Round(LT.Sptaxinclusive ==false ? LT.Prize : (LT.Prize  * 100) / (100 + Convert.ToDecimal(TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.GSTPercentage).FirstOrDefault()))),
                                               Model = LT.Model,
                                               GST = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.GSTPercentage).FirstOrDefault(),
+                                              CGST = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.CGSTPercentage).FirstOrDefault(),
+                                              SGST = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.SGSTPercentage).FirstOrDefault(),
                                               CESS = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.CESSPercentage).FirstOrDefault(),
                                               AddCess = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.AdditionalCESSPercentage).FirstOrDefault(),
                                               GSTDesc = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.TaxDescription).FirstOrDefault(),
@@ -2518,22 +2523,23 @@ namespace WYNK.Data.Repository.Implementation
                                               HSNNo = LT.HSNNo,
                                               UOM = UOM.Where(x => x.id == LT.UOMID).Select(x => x.Description).FirstOrDefault(),
                                               uomid = LT.UOMID,
-                                              //Sph = LT.Sph,
-                                              //Cyl = LT.Cyl,
-                                              //Axis = LT.Axis,
-                                              //Add = LT.Add,
                                               Sph = LT.Sph != null ? "Sph : " + LT.Sph + "; " : null,
                                               Cyl = LT.Cyl != null ? "Cyl : " + LT.Cyl + "; " : null,
                                               Axis = LT.Axis != null ? "Axis : " + LT.Axis + "; " : null,
                                               Add = LT.Add != null ? "Add : " + LT.Add : null,
-                                              FrameShapeID = LT.FrameShapeID != null ? "Shape : " + LT.FrameShapeID + "; " : null,
-                                              FrameStyleID = LT.FrameStyleID != null ? "Style : " + LT.FrameStyleID + "; " : null,
-                                              FrameTypeID = LT.FrameTypeID != null ? "Type : " + LT.FrameTypeID + "; " : null,
-                                              FrameWidthID = LT.FrameWidthID != null ? "Width : " + LT.FrameWidthID : null,
-                                            
+                                              FrameShapeID = Onelinemaster.Where(x => x.OLMID == LT.FrameShapeID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Shape : " + Onelinemaster.Where(x => x.OLMID == LT.FrameShapeID).Select(c => c.ParentDescription).FirstOrDefault() + "; " : null,
+                                              FrameStyleID = Onelinemaster.Where(x => x.OLMID == LT.FrameStyleID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Style : " + Onelinemaster.Where(x => x.OLMID == LT.FrameStyleID).Select(c => c.ParentDescription).FirstOrDefault() + "; " : null,
+                                              FrameTypeID = Onelinemaster.Where(x => x.OLMID == LT.FrameTypeID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Type : " + Onelinemaster.Where(x => x.OLMID == LT.FrameTypeID).Select(c => c.ParentDescription).FirstOrDefault() + "; " : null,
+                                              FrameWidthID = Onelinemaster.Where(x => x.OLMID == LT.FrameWidthID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Width : " + Onelinemaster.Where(x => x.OLMID == LT.FrameWidthID).Select(c => c.ParentDescription).FirstOrDefault() : null,
 
 
-        }).ToList();
+
+
+
+                                              Stockqty = OpticalBalance.Where(x => x.LTID == LT.ID && x.FYID == Fyear).Select(x => x.ClosingBalance).FirstOrDefault(),
+                                              Sptaxinclusive =LT.Sptaxinclusive,
+
+                                          }).ToList();
             return CustomerOrder;
         }
 

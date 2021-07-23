@@ -6,6 +6,7 @@ namespace WYNK.Data.Model.ViewModel
 {
     public class CustomerOrderViewModel
     {
+        
         public int Cmpid { get; set; }
         public int Tc { get; set; }
         public string OrderDate { get; set; }
@@ -18,10 +19,8 @@ namespace WYNK.Data.Model.ViewModel
         public string Remarks { get; set; }
 
         public string RunningNo { get; set; }
-
         public ICollection<opticprescription1> opticprescription1 { get; set; }
         public ICollection<OpticalPRESCRIPTION> FINALPRESCRIPTION { get; set; }
-
         public ICollection<Payment_Master> paymenttran { get; set; }
 
         public ICollection<CustomerItemOrder> CustomerItemOrders { get; set; }
@@ -36,6 +35,7 @@ namespace WYNK.Data.Model.ViewModel
         public int? RegTranId { get; set; }
         
     }
+
 
     public class opticprescription1
     {
@@ -85,6 +85,7 @@ namespace WYNK.Data.Model.ViewModel
         public Boolean OD { get; set; }
         public Boolean OS { get; set; }
     }
+
     public class CustomerOrderedList
     {
         public string RefNo { get; set; }
@@ -138,6 +139,8 @@ namespace WYNK.Data.Model.ViewModel
 
 
         public decimal? GSTValue { get; set; }
+        public decimal? CGSTValue { get; set; }
+        public decimal? SGSTValue { get; set; }
         public decimal? CESSValue { get; set; }
         public decimal? AddCessValue { get; set; }
 
@@ -146,6 +149,18 @@ namespace WYNK.Data.Model.ViewModel
         public decimal Amount { get; set; }
         public int LMID { get; set; }
         public int LTID { get; set; }
+
+
+        public string Sph { get; set; }
+        public string Cyl { get; set; }
+        public string Axis { get; set; }
+        public string Add { get; set; }
+        public string Description { get; set; }
+
+        public string FrameShapeID { get; set; }
+        public string FrameStyleID { get; set; }
+        public string FrameTypeID { get; set; }
+        public string FrameWidthID { get; set; }
     }
 
 
@@ -154,7 +169,7 @@ namespace WYNK.Data.Model.ViewModel
 
         public CustomerData CustomerDatas { get; set; }
     }
-
+   
     public class CustomerData 
     {
         public string UIN { get; set; }

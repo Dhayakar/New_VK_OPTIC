@@ -37,29 +37,33 @@ namespace WYNK.Data.Repository.Implementation
             var final = new OpticalPrescriptionview();
             final.opfinalprescri = new List<opfinalprescri>();
 
-            var opticalpreadm =  (from REF in WYNKContext.OpticalPrescriptionmaster.Where(u => u.UIN.StartsWith(Convert.ToString(Search), StringComparison.OrdinalIgnoreCase)
-                                     || u.Phone.StartsWith(Convert.ToString(Search))
-                                     || u.Name.StartsWith(Convert.ToString(Search), StringComparison.OrdinalIgnoreCase) || u.LastName.StartsWith(Convert.ToString(Search), StringComparison.OrdinalIgnoreCase) && u.CMPID == id)
+
+
+            var opticalpreadm =  (from REF in WYNKContext.OpticalPrescriptionmaster
+                                  where REF.UIN.ToLower().Contains(Search) || REF.Phone.ToLower().Contains(Search)
+                                  || REF.Name.ToLower().Contains(Search) || REF.LastName.ToLower().Contains(Search) && REF.CMPID == id
+  
                                       join us in user.Where(x => x.CMPID == id) on
+
                                       REF.CreatedBy equals us.Userid
                                       join usr in userrole.Where(x => x.CMPID == id) on
                                       us.Username equals usr.UserName
                                       select new 
                                      {
-                                        RegistrationTranID = REF.RegistrationID,
+                                        RegistrationTranID = REF.RegistrationID != null ? REF.RegistrationID : REF.CustomerMasterID,
                                         PrescriptionDate = REF.PrescriptionDate,
                                         Doctorname = us.Username,
                                         Role = usr.RoleDescription,
-                                        UIN = REF.UIN,
+                                        UIN = REF.UIN != null ? REF.UIN : string.Empty,
                                         Name = REF.MiddleName == null ? REF.Name + " " + REF.LastName : REF.Name + " " + REF.MiddleName + " " + REF.LastName,
-                                        Gender = REF.Gender,
-                                        DateofBirth = PasswordEncodeandDecode.ToAgeString(Convert.ToDateTime(REF.DateofBirth)),
-                                    }).ToList();
+                                        Gender = REF.Gender != null ? REF.Gender : string.Empty,
+                                        DateofBirth = REF.DateofBirth != null ? PasswordEncodeandDecode.ToAgeString(Convert.ToDateTime(REF.DateofBirth)) : string.Empty,
+                                      }).ToList();
 
-            var opfinalprescri = (from REF in WYNKContext.OpticalPrescriptionmaster.Where(u => u.UIN.StartsWith(Convert.ToString(Search), StringComparison.OrdinalIgnoreCase)
-                                     || u.Phone.StartsWith(Convert.ToString(Search))
-                                     || u.Name.StartsWith(Convert.ToString(Search), StringComparison.OrdinalIgnoreCase) || u.LastName.StartsWith(Convert.ToString(Search), StringComparison.OrdinalIgnoreCase) && u.CMPID == id)
-                                    join us in user.Where(x => x.CMPID == id) on
+            var opfinalprescri = (from REF in WYNKContext.OpticalPrescriptionmaster
+                                  where REF.UIN.ToLower().Contains(Search)|| REF.Phone.ToLower().Contains(Search)
+                                  || REF.Name.ToLower().Contains(Search) || REF.LastName.ToLower().Contains(Search) && REF.CMPID == id
+                                  join us in user.Where(x => x.CMPID == id) on
                                     REF.CreatedBy equals us.Userid
                                     join doc in docmas.Where(x => x.CMPID == id) on
                                     us.Username equals doc.EmailID
@@ -67,14 +71,14 @@ namespace WYNK.Data.Repository.Implementation
                                     us.Username equals usr.UserName
                                     select new 
                                     {
-                                        RegistrationTranID = REF.RegistrationID,
+                                        RegistrationTranID = REF.RegistrationID != null ? REF.RegistrationID : REF.CustomerMasterID,
                                         PrescriptionDate = REF.PrescriptionDate,
                                         Doctorname = doc.Firstname + " " + doc.MiddleName + " " + doc.LastName,
                                         Role = usr.RoleDescription,
-                                        UIN = REF.UIN,
+                                        UIN = REF.UIN != null ? REF.UIN : string.Empty,
                                         Name = REF.MiddleName == null ? REF.Name + " " + REF.LastName : REF.Name + " " + REF.MiddleName + " " + REF.LastName,
-                                        Gender = REF.Gender,
-                                        DateofBirth = PasswordEncodeandDecode.ToAgeString(Convert.ToDateTime(REF.DateofBirth)),
+                                        Gender = REF.Gender != null ? REF.Gender : string.Empty,
+                                        DateofBirth = REF.DateofBirth!= null ? PasswordEncodeandDecode.ToAgeString(Convert.ToDateTime(REF.DateofBirth)) : string.Empty,
                                     }).ToList();
 
             var grpres = opfinalprescri.Count() > 0 ? opfinalprescri.ToList() : opticalpreadm.ToList();
@@ -130,21 +134,26 @@ namespace WYNK.Data.Repository.Implementation
 
             return OPDetails;
         }
-        public dynamic Getfinopprint(int rid, int CMPID)
+        public dynamic Getfinopprint(int rid, int CMPID, string Time)
 
         {
+
+            TimeSpan ts = TimeSpan.Parse(Time);
+
             var registration = WYNKContext.Registration.ToList();
             var opticalprescriptionDetailsprint = new OpticalPrescriptionview();
             var doc = CMPSContext.Users.ToList();
             var re = WYNKContext.OpticalPrescription.ToList();
+            var Employee = CMPSContext.Employee.ToList();
             var onelinemaster = CMPSContext.OneLineMaster.ToList();
             opticalprescriptionDetailsprint.opticprescriptionprint = new List<opticprescriptionprint>();
 
             var TID = WYNKContext.OpticalPrescription.Where(u => u.RegistrationTranID == rid).Select(x => x.UIN).LastOrDefault();
+            var CID = WYNKContext.OpticalPrescription.Where(u => u.CustomerMasterID == rid).Select(x => x.CustomerMasterID).LastOrDefault();
 
             opticalprescriptionDetailsprint.UIN = WYNKContext.OpticalPrescription.Where(x => x.UIN == TID).Select(x => x.UIN).FirstOrDefault();
-            opticalprescriptionDetailsprint.Date = WYNKContext.OpticalPrescription.Where(x => x.UIN == TID).Select(x => x.CreatedUTC).FirstOrDefault();
-            opticalprescriptionDetailsprint.Name = registration.Where(x => x.UIN == TID).Select(x => x.Name + " " + x.MiddleName + " " + x.LastName).FirstOrDefault();
+            opticalprescriptionDetailsprint.Date = WYNKContext.OpticalPrescription.Where(x => x.UIN == TID).Select(x => x.CreatedUTC.Add(ts)).FirstOrDefault() != null ? WYNKContext.OpticalPrescription.Where(x => x.UIN == TID).Select(x => x.CreatedUTC.Add(ts)).FirstOrDefault() : WYNKContext.OpticalPrescriptionmaster.Where(x => x.CustomerMasterID == CID).Select(x => x.CreatedUTC.Add(ts)).FirstOrDefault();
+            opticalprescriptionDetailsprint.Name = registration.Where(x => x.UIN == TID).Select(x => x.Name + " " + x.MiddleName + " " + x.LastName).FirstOrDefault() != null ? registration.Where(x => x.UIN == TID).Select(x => x.Name + " " + x.MiddleName + " " + x.LastName).FirstOrDefault() : WYNKContext.OpticalPrescriptionmaster.Where(x => x.CustomerMasterID == CID).Select(x => x.Name + " " + x.MiddleName + " " + x.LastName).FirstOrDefault();
             opticalprescriptionDetailsprint.Age = PasswordEncodeandDecode.ToAgeString(WYNKContext.Registration.Where(x => x.UIN == TID).Select(x => x.DateofBirth).FirstOrDefault());
             opticalprescriptionDetailsprint.Gender = WYNKContext.Registration.Where(x => x.UIN == TID).Select(x => x.Gender).FirstOrDefault();
             opticalprescriptionDetailsprint.Description = WYNKContext.PatientGeneral.Where(x => x.UIN == TID).Select(x => x.Allergy).FirstOrDefault();
@@ -168,14 +177,21 @@ namespace WYNK.Data.Repository.Implementation
             }
             else
             {
-                opticalprescriptionDetailsprint.docname = CMPSContext.DoctorMaster.Where(x => x.DoctorID == f).Select(x => x.Firstname + " " + x.MiddleName + " " + x.LastName).FirstOrDefault();
-                opticalprescriptionDetailsprint.docreg = CMPSContext.DoctorMaster.Where(x => x.DoctorID == f).Select(x => x.RegistrationNumber).FirstOrDefault();
+                if (f != 0)
+                {
+                    opticalprescriptionDetailsprint.docname = CMPSContext.DoctorMaster.Where(x => x.DoctorID == f).Select(x => x.Firstname + " " + x.MiddleName + " " + x.LastName).FirstOrDefault();
+                    opticalprescriptionDetailsprint.docreg = CMPSContext.DoctorMaster.Where(x => x.DoctorID == f).Select(x => x.RegistrationNumber).FirstOrDefault();
+                }
+                else {
+                    opticalprescriptionDetailsprint.docname = Employee.Where(r => r.CreatedBy == re.Where(x => x.CustomerMasterID == CID).Select(x => x.CreatedBy).FirstOrDefault()).Select(x => x.FirstName + " " + x.LastName).FirstOrDefault();
+                }
+
             }
 
 
 
 
-            opticalprescriptionDetailsprint.opticprescriptionprint = (from op in WYNKContext.OpticalPrescription.Where(x => x.RegistrationTranID == rid)
+            opticalprescriptionDetailsprint.opticprescriptionprint = (from op in WYNKContext.OpticalPrescription.Where(x => x.RegistrationTranID == rid || x.CustomerMasterID == rid)
 
                                                                       select new opticprescriptionprint
                                                                       {
@@ -226,7 +242,6 @@ namespace WYNK.Data.Repository.Implementation
             return new
             {
                 Success = false,
-                Message = "Some data are Missing"
             };
 
         }
