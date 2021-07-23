@@ -71,7 +71,7 @@ namespace WYNK.Services.Controllers
 
 
         [HttpPost("UpdateInvestigation/{UIN}/{ipid}")]
-        public dynamic UpdateInvestigation([FromBody] InvestigationImage Investigation, string UIN, int ipid)
+        public dynamic UpdateInvestigation([FromBody] InvestigationImage Investigation, string UIN, string ipid)
         {
             return _repoWrapper.Investigation.UpdateInvestigation(Investigation, UIN, ipid);
         }
@@ -81,6 +81,13 @@ namespace WYNK.Services.Controllers
         public dynamic UpdateInv([FromBody] InvestigationImage Investigation, string UIN, int IID)
         {
             return _repoWrapper.Investigation.UpdateInv(Investigation, UIN, IID);
+        }
+
+
+        [HttpGet("Getnotificationalerts/{Docid}/{cmpid}")]
+        public dynamic Getnotificationalerts(int Docid, int cmpid)
+        {
+            return _repoWrapper.Investigation.Getnotificationalerts(Docid, cmpid);
         }
 
     }

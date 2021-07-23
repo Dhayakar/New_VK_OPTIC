@@ -253,6 +253,7 @@ namespace WYNK.Data.Model
         public DbSet<ExpenseMaster> ExpenseMaster { get; set; }
         public DbSet<ExpenseTran> ExpenseTran { get; set; }
         public DbSet<OpticalSummary> OpticalSummary { get; set; }
+        public DbSet<InvestigationExtn> InvestigationExtn { get; set; }
         public DbSet<ExpenseTracking> ExpenseTracking { get; set; }
         public DbSet<ExpensePaymentMaster> ExpensePaymentMaster { get; set; }
 
