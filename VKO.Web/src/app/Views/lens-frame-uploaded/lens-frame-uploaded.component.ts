@@ -22,11 +22,9 @@ import * as _ from 'lodash';
 })
 export class LensFrameUploadedComponent implements OnInit {
 
-  displayedColumnssq = ['Type', 'Brand', 'lensoption', 'Model', 'Index', 'Color', 'Size', 'Description', 'Price', 'UOM', 'TaxDescription', 'GST', 'Status'];
+  displayedColumnssq = ['Type', 'Brand', 'Description', 'Price', 'UOM', 'TaxDescription', 'GST', 'Status'];
   dataSourcesq = new MatTableDataSource();
 
-  displayedColumnssqq = ['Type', 'Brand', 'lensoption', 'FrameShape', 'FrameType', 'FrameWidth', 'FrameStyle', 'Model', 'Color', 'Size', 'Description', 'Price', 'UOM', 'TaxDescription', 'GST', 'Status'];
-  dataSourcesqq = new MatTableDataSource();
 
   constructor(public commonService: CommonService<ExcelModel>, private router: Router) { }
   isNextButton = true;
@@ -131,8 +129,9 @@ export class LensFrameUploadedComponent implements OnInit {
     }
   }
 
-  Convertexcellensmaster() {
-    let element = document.getElementById('LensmasterTemplate-table');
+  Convertexcellensframemaster() {
+    debugger;
+    let element = document.getElementById('LensFramemasterTemplate-table');
     var cloneTable = element.cloneNode(true);
     const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(cloneTable);
     var wscols = [
@@ -143,29 +142,10 @@ export class LensFrameUploadedComponent implements OnInit {
     ];
     ws['!cols'] = wscols;
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Lens Upload Format');
-    XLSX.writeFile(wb, "Lens Upload Format.xlsx");
+    XLSX.utils.book_append_sheet(wb, ws, 'Lens Frame Upload Format');
+    XLSX.writeFile(wb, "Lens Frame Upload Format.xlsx");
   }
 
-  Convertexcelframemaster() {
-    let element = document.getElementById('FramemasterTemplate-table');
-    var cloneTable = element.cloneNode(true);
-    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(cloneTable);
-    var wscols = [
-      { wch: 50 },
-      { wch: 12 },
-      { wch: 30 },
-      { wch: 10 }
-    ];
-    ws['!cols'] = wscols;
-    const wb: XLSX.WorkBook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Frame Upload Format');
-    XLSX.writeFile(wb, "Frame Upload Format.xlsx");
-  }
-
-
-  orginaltable = true;
-  bindingtable = false;
   TotoalItems = 0;
   Uploadeditems = 0;
   UnUplodeditems = 0;
@@ -174,6 +154,7 @@ export class LensFrameUploadedComponent implements OnInit {
 
   onChangelens(evt) {
     debugger;
+
     let data;
     let target: DataTransfer = <DataTransfer>(evt.target);
     this.isExcelFile = !!target.files[0].name.match(/(.xls|.xlsx)/);
@@ -190,8 +171,8 @@ export class LensFrameUploadedComponent implements OnInit {
         const ws: XLSX.WorkSheet = wb.Sheets[wsname];
         debugger;
         data = XLSX.utils.sheet_to_json(ws);
-        this.lensdata(data);
         this.inputFilelens.nativeElement.value = '';
+        this.lensdata(data);
       };
       reader.readAsBinaryString(target.files[0]);
     }
@@ -214,48 +195,82 @@ export class LensFrameUploadedComponent implements OnInit {
   Lensarray = [];
   lensdata(data) {
     debugger;
-    const str = "LENS";
-    const str1 = data[0].Type.replace(/\s+/g, '');
-    const result = str.toLowerCase() === str1.toLowerCase();
+    const str = "lens";
+    const strcontactlens = "Contactlens";
+    const strFrame = "Frame";
+
+    let filterlens = data.filter((x) => x.Type.replace(/\s+/g, '').toLowerCase() == str.replace(/\s+/g, '').toLowerCase());
+    let filterContactlens = data.filter((x) => x.Type.replace(/\s+/g, '').toLowerCase() == strcontactlens.replace(/\s+/g, '').toLowerCase());
+    let filterFrame = data.filter((x) => x.Type.replace(/\s+/g, '').toLowerCase() == strFrame.replace(/\s+/g, '').toLowerCase());
 
     if (this.Lensarray.length > 0) {
-      const str1 = data[0].Type.replace(/\s+/g, '');
-      const res = this.Lensarray.some(x => x.Type.toLowerCase() === str1.toLowerCase());
 
-      if (res == false) {
-
-        Swal.fire({
-          type: 'warning',
-          title: 'warning',
-          text: 'Choose same type',
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 1500,
-          customClass: {
-            popup: 'alert-warp',
-            container: 'alert-container',
-          },
-        });
-        return false;
-      }
+      var Lensresult = filterlens.filter(o1 => !this.Lensarray.filter((x) => x.Type.replace(/\s+/g, '').toLowerCase() == str.replace(/\s+/g, '').toLowerCase()).some(o2 => o1.Brand.replace(/\s+/g, '').toLowerCase() === o2.Brand.replace(/\s+/g, '').toLowerCase() && o1.Type.replace(/\s+/g, '').toLowerCase() === o2.Type.replace(/\s+/g, '').toLowerCase() && o1.Sph === parseFloat(o2.Sphh) && o1.Cyl === parseFloat(o2.Cyll) && o1.Axis === parseFloat(o2.Axiss) && o1.Add === parseFloat(o2.Addd) && o1.Price === o2.Prize));
+      var Contactlensresult = filterContactlens.filter(o1 => !this.Lensarray.filter((x) => x.Type.replace(/\s+/g, '').toLowerCase() == strcontactlens.replace(/\s+/g, '').toLowerCase()).some(o2 => o1.Brand.replace(/\s+/g, '').toLowerCase() === o2.Brand.replace(/\s+/g, '').toLowerCase() && o1.Type.replace(/\s+/g, '').toLowerCase() === o2.Type.replace(/\s+/g, '').toLowerCase() && o1.Sph === parseFloat(o2.Sphh) && o1.Cyl === parseFloat(o2.Cyll) && o1.Axis === parseFloat(o2.Axiss) && parseFloat(o2.Addd) === o2.Addd && o1.Price === o2.Prize));
+      var Frameresult = filterFrame.filter(o1 => !this.Lensarray.filter((x) => x.Type.replace(/\s+/g, '').toLowerCase() == strFrame.replace(/\s+/g, '').toLowerCase()).some(o2 => o1.Brand.replace(/\s+/g, '').toLowerCase() === o2.Brand.replace(/\s+/g, '').toLowerCase() && o1.Type.replace(/\s+/g, '').toLowerCase() === o2.Type.replace(/\s+/g, '').toLowerCase() && o1.Price === o2.Prize && o1.FrameShape === o2.FrameShapee && o1.FrameStyle === o2.FrameStylee && o1.FrameType === o2.FrameTypee && o1.FrameWidth === o2.FrameWidthh));
     }
 
-    let result3 = data.filter(o1 => !this.Lensarray.some(o2 => o1.Brand.replace(/\s+/g, '').toLowerCase() === o2.Brand.replace(/\s+/g, '').toLowerCase()
-      && o1.Color.replace(/\s+/g, '').toLowerCase() === o2.Colour.replace(/\s+/g, '').toLowerCase() && o1.Size === o2.Size
-      && o1.Price === o2.Prize));
+    if (this.Lensarray.length > 0) {
+      var result3 = Lensresult.concat(Contactlensresult, Frameresult);
+    }
+    else {
+      var result3 = filterlens.concat(filterContactlens, filterFrame);
+    }
 
-    if (result == true) {
-      if (result3.length > 0) {
-        for (var i = 0; i < result3.length; i++) {
+    if (result3.length > 0)
+    {
+      for (var i = 0; i < result3.length; i++)
+      {
+        if (result3[i].Type.replace(/\s+/g, '').toLowerCase() == str.replace(/\s+/g, '').toLowerCase())
+        {
           var la = new Lensarray();
           la.Type = result3[i].Type,
-            la.Brand = result3[i].Brand,
-            la.LensOption = result3[i].LensOption;
+          la.Brand = result3[i].Brand,
+          la.Sph = result3[i].Sph != '' ? "Sph :" + " " + result3[i].Sph + ";" : null,
+          la.Cyl = result3[i].Cyl != '' ? "Cyl :" + " " + result3[i].Cyl + ";" : null,
+          la.Axis = result3[i].Axis != '' ? "Axis :" + " " + result3[i].Axis + ";" : null,
+          la.Add = result3[i].Add != '' ? "Add :" + " " + result3[i].Add + ";" : null,
+          la.Sphh = result3[i].Sph,
+          la.Cyll = result3[i].Cyl,
+          la.Axiss = result3[i].Axis,
+          la.Addd = result3[i].Add,
           la.Model = result3[i].Model;
           la.Index = result3[i].Index;
           la.Colour = result3[i].Color;
           la.Size = result3[i].Size;
-          la.Description = result3[i].Description;
+          la.Prize = result3[i].Price;
+          la.UOM = "Pieces";
+          la.Status = "Open"
+          la.TaxDescription = result3[i].TaxDescription;
+          la.CessDescription = result3[i].Add1Tax1Desc1;
+          la.AddtionalDescription = result3[i].Add1Tax2Desc2;
+          la.GSTPercentage = result3[i].Tax;
+          la.CESSPercentage = result3[i].Add1Tax1;
+          la.ADDCESSPercentage = result3[i].Add1Tax2;
+          this.Lensarray.push(la);
+          this.commonService.data.Lensarray = this.Lensarray;
+          this.dataSourcesq.data = this.commonService.data.Lensarray;
+          this.dataSourcesq._updateChangeSubscription();
+          this.TotoalItems = this.TotoalItems + 1;
+
+        }
+        else if (result3[i].Type.replace(/\s+/g, '').toLowerCase() == strcontactlens.replace(/\s+/g, '').toLowerCase()) {
+
+          var la = new Lensarray();
+          la.Type = result3[i].Type,
+          la.Brand = result3[i].Brand,
+          la.Sph = result3[i].Sph != '' ? "Sph :" + " " + result3[i].Sph + ";" : null,
+          la.Cyl = result3[i].Cyl != '' ? "Cyl :" + " " + result3[i].Cyl + ";" : null,
+          la.Axis = result3[i].Axis != '' ? "Axis :" + " " + result3[i].Axis + ";" : null,
+          la.Add = result3[i].Add != '' ? "Add :" + " " + result3[i].Add + ";" : null,
+          la.Sphh = result3[i].Sph,
+          la.Cyll = result3[i].Cyl,
+          la.Axiss = result3[i].Axis,
+          la.Addd = result3[i].Add,
+          la.Model = result3[i].Model;
+          la.Index = result3[i].Index;
+          la.Colour = result3[i].Color;
+          la.Size = result3[i].Size;
           la.Prize = result3[i].Price;
           la.UOM = "Pieces";
           la.Status = "Open"
@@ -271,51 +286,22 @@ export class LensFrameUploadedComponent implements OnInit {
           this.dataSourcesq._updateChangeSubscription();
           this.TotoalItems = this.TotoalItems + 1;
         }
-      }
-      this.orginaltable = true;
-      this.bindingtable = false;
-    }
-    else {
-
-      if (this.Lensarray.length > 0) {
-        const str1 = data[0].Type.replace(/\s+/g, '');
-        const res = this.Lensarray.some(x => x.Type.toLowerCase() === str1.toLowerCase());
-
-        if (res == false) {
-
-          Swal.fire({
-            type: 'warning',
-            title: 'warning',
-            text: 'Choose same type',
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 1500,
-            customClass: {
-              popup: 'alert-warp',
-              container: 'alert-container',
-            },
-          });
-          return false;
-        }
-      }
-
-      let result3 = data.filter(o1 => !this.Lensarray.some(o2 => o1.Brand.replace(/\s+/g, '').toLowerCase() === o2.Brand.replace(/\s+/g, '').toLowerCase()
-        && o1.Color.replace(/\s+/g, '').toLowerCase() === o2.Colour.replace(/\s+/g, '').toLowerCase() && o1.Size === o2.Size
-        && o1.Price === o2.Prize));
-      if (result3.length > 0) {
-        for (var i = 0; i < result3.length; i++) {
+        else
+        {
           var la = new Lensarray();
           la.Type = result3[i].Type;
           la.Brand = result3[i].Brand;
-          la.LensOption = result3[i].FrameOption;
-          la.FrameShape = result3[i].FrameShape;
-          la.FrameStyle = result3[i].FrameStyle;
-          la.FrameType = result3[i].FrameType;
-          la.FrameWidth = result3[i].FrameWidth;
+          la.FrameShape = result3[i].FrameShape != '' ? "Shape :" + " " + result3[i].FrameShape + ";" : null,
+          la.FrameStyle = result3[i].FrameStyle != '' ? "Style :" + " " + result3[i].FrameStyle + ";" : null,
+          la.FrameType = result3[i].FrameType != '' ? "Type :" + " " + result3[i].FrameType + ";" : null,
+          la.FrameWidth = result3[i].FrameWidth != '' ? "Width :" + " " + result3[i].FrameWidth + ";" : null,
+          la.FrameShapee = result3[i].FrameShape,
+          la.FrameStylee = result3[i].FrameStyle,
+          la.FrameTypee = result3[i].FrameType,
+          la.FrameWidthh = result3[i].FrameWidth,
           la.Model = result3[i].Model;
           la.Colour = result3[i].Color;
           la.Size = result3[i].Size;
-          la.Description = result3[i].Description;
           la.Prize = result3[i].Price;
           la.UOM = "Pieces";
           la.Status = "Open"
@@ -326,17 +312,18 @@ export class LensFrameUploadedComponent implements OnInit {
           la.CESSPercentage = data[i].Add1Tax1;
           la.ADDCESSPercentage = data[i].Add1Tax2;
           this.Lensarray.push(la);
-          this.commonService.data.Lensarray = this.Lensarray
-          this.dataSourcesqq.data = this.commonService.data.Lensarray;
-          this.dataSourcesqq._updateChangeSubscription();
+          this.commonService.data.Lensarray = this.Lensarray;
+          this.dataSourcesq.data = this.commonService.data.Lensarray;
+          this.dataSourcesq._updateChangeSubscription();
           this.TotoalItems = this.TotoalItems + 1;
-        }
-      }
-      this.orginaltable = false;
-      this.bindingtable = true;
-    }
 
-  }
+        }
+
+
+      }
+    }
+ 
+}
 
 
   onSubmit() {
@@ -349,17 +336,8 @@ export class LensFrameUploadedComponent implements OnInit {
           debugger
           this.Lensarray = data.lensframemaster;
           this.commonService.data.Lensarray = this.Lensarray;
-          const str = "LENS";
-          const str1 = this.Lensarray[0].Type.replace(/\s+/g, '');
-          const result = str.toLowerCase() === str1.toLowerCase();
-          if (result == true) {
-            this.dataSourcesq.data = this.commonService.data.Lensarray;
-            this.dataSourcesq._updateChangeSubscription();
-          }
-          else {
-            this.dataSourcesqq.data = this.commonService.data.Lensarray;
-            this.dataSourcesqq._updateChangeSubscription();
-          }
+          this.dataSourcesq.data = this.commonService.data.Lensarray;
+          this.dataSourcesq._updateChangeSubscription();
           this.Uploadeditems = data.Uploaded;
           this.UnUplodeditems = data.Duplicate + data.Error;
           if (this.Uploadeditems != 0) {
@@ -454,8 +432,6 @@ export class LensFrameUploadedComponent implements OnInit {
     this.commonService.data.Lensarray = [];
     this.dataSourcesq.data = [];
     this.dataSourcesq._updateChangeSubscription();
-    this.orginaltable = true;
-    this.bindingtable = false;
 
   }
   CancelClk() {
@@ -478,9 +454,6 @@ export class LensFrameUploadedComponent implements OnInit {
     }
   }
 
-  fileClicked(e) {
-    debugger;
-  }
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

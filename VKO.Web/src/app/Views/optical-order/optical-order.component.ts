@@ -455,11 +455,11 @@ export class OpticalOrderComponent implements OnInit {
 
 
   dataSourceReprint = new MatTableDataSource();
-  displayedColumnsprint: string[] = ['TypeP', 'BrandP', 'Descriptionp', 'Sphp', 'Cylp', 'Axisp', 'Addp', 'UOMP', 'QuantityP', 'PriceP', 'AmountP', 'DiscountP', 'DiscountAmountP', 'GrossAmountP', 'TaxDescriptionP', 'GSTP', 'GSTValue1P', 'TotalAmountP'];
+  displayedColumnsprint: string[] = ['BrandP', 'TypeP', 'LensPowerP', 'UOMP', 'QuantityP', 'PriceP', 'AmountP', 'DiscountP', 'DiscountAmountP', 'GrossAmountP', 'TaxDescriptionP', 'GSTP', 'GSTValue1P', 'TotalAmountP'];
   dataSourceprint = new MatTableDataSource();
 
   //displayedColumns1 = ['Action', 'Brand', 'Model', 'LensOptions', 'Description', 'Index', 'Color', 'Size', 'Price']
-  displayedColumns1 = ['Action', 'Brand', 'Description','LensPowers', 'Price']
+  displayedColumns1 = ['Action', 'Brand', 'Description', 'LensPowers', 'Price']
   dataSource1 = new MatTableDataSource();
 
 
@@ -561,6 +561,14 @@ export class OpticalOrderComponent implements OnInit {
           OPDetails.Cyl = element.Cyl;
           OPDetails.Axis = element.Axis;
           OPDetails.Add = element.Add;
+
+          OPDetails.FrameTypeID = element.FrameTypeID;
+          OPDetails.FrameWidthID = element.FrameWidthID;
+          OPDetails.FrameStyleID = element.FrameStyleID;
+          OPDetails.FrameShapeID = element.FrameShapeID;
+
+
+
 
           OPDetails.Brand = element.Brand;
           OPDetails.Model = element.Model;
@@ -721,7 +729,7 @@ export class OpticalOrderComponent implements OnInit {
     this.dataSource.filteredData[id][property] = result;
     this.dataSource._updateChangeSubscription();
   }
-  
+
   changeValueAmount(id, element, property: string) {
     element.Amount = element.Quantity * element.Prize;
   }
@@ -1348,8 +1356,7 @@ export class OpticalOrderComponent implements OnInit {
   backdrop;
   dataSourceUpdate
   OOID;
-  Clicksch()
-  {
+  Clicksch() {
     debugger;
     this.commonService.getListOfData('OpticalOrder/OpticalUpdateDetails/' + parseInt(localStorage.getItem("CompanyID")))
       .subscribe(data => {
@@ -1948,8 +1955,7 @@ export class OpticalOrderComponent implements OnInit {
   OLMhidden1: boolean = true;
   MasterName = "Payment";
   dataas;
-  Help()
-  {
+  Help() {
     debugger;
     this.dataSourceinvdep.filter = null;
     this.OLMhidden1 = false;

@@ -2526,14 +2526,14 @@ namespace WYNK.Data.Repository.Implementation
                                               Cyl = LT.Cyl != null ? "Cyl : " + LT.Cyl + "; " : null,
                                               Axis = LT.Axis != null ? "Axis : " + LT.Axis + "; " : null,
                                               Add = LT.Add != null ? "Add : " + LT.Add : null,
-                                              FrameShapeID = LT.FrameShapeID != null ? "Shape : " + LT.FrameShapeID + "; " : null,
-                                              FrameStyleID = LT.FrameStyleID != null ? "Style : " + LT.FrameStyleID + "; " : null,
-                                              FrameTypeID = LT.FrameTypeID != null ? "Type : " + LT.FrameTypeID + "; " : null,
-                                              FrameWidthID = LT.FrameWidthID != null ? "Width : " + LT.FrameWidthID : null,
-                                            
+                                              FrameShapeID = Onelinemaster.Where(x => x.OLMID == LT.FrameShapeID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Shape : " + Onelinemaster.Where(x => x.OLMID == LT.FrameShapeID).Select(c => c.ParentDescription).FirstOrDefault() + "; " : null,
+                                              FrameStyleID = Onelinemaster.Where(x => x.OLMID == LT.FrameStyleID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Style : " + Onelinemaster.Where(x => x.OLMID == LT.FrameStyleID).Select(c => c.ParentDescription).FirstOrDefault() + "; " : null,
+                                              FrameTypeID = Onelinemaster.Where(x => x.OLMID == LT.FrameTypeID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Type : " + Onelinemaster.Where(x => x.OLMID == LT.FrameTypeID).Select(c => c.ParentDescription).FirstOrDefault() + "; " : null,
+                                              FrameWidthID = Onelinemaster.Where(x => x.OLMID == LT.FrameWidthID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Width : " + Onelinemaster.Where(x => x.OLMID == LT.FrameWidthID).Select(c => c.ParentDescription).FirstOrDefault() : null,
 
 
-        }).ToList();
+
+                                          }).ToList();
             return CustomerOrder;
         }
 
@@ -3838,6 +3838,17 @@ namespace WYNK.Data.Repository.Implementation
 
             return consum;
 
+        }
+        public dynamic getopticalMaterialdetails()
+        {
+            return (from lt in WYNKContext.Lenstrans
+                    join b in WYNKContext.Brand on lt.Brand equals b.ID
+                    join ob in WYNKContext.OpticalBalance.Where(x => x.ClosingBalance > 0) on lt.ID equals ob.LTID
+                    select new serviceDropdown
+                    {
+                        Text = b.Description,
+                        Value = b.ID.ToString(),
+                    }).OrderBy(x => x.Text).ToList();
         }
     }
 }

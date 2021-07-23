@@ -1,5 +1,3 @@
-
-
 export class Brand {
 
   ID: number;

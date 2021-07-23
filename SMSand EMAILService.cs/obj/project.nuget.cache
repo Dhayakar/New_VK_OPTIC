@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "eiWNHcVH0TaJPG0IkjLppfPry15qgPvso3IOkwIJL/b/ykPcQ4ShTV5iPFyU96Pu4ksEPIXy5gQkxMhsLqMBEw==",
+  "dgSpecHash": "emFcGcQEW8JH2gY+JIGftLl75yPVC3F1lgVRhW90XYhOV8oIDRbBXwYRCOpZfW2Bajf+7Vq//Iu9M/WzGGMOYA==",
   "success": true,
-  "projectFilePath": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj",
+  "projectFilePath": "E:\\Git_desktop\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\admin\\.nuget\\packages\\elasticsearch.net\\7.8.0\\elasticsearch.net.7.8.0.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\microsoft.csharp\\4.6.0\\microsoft.csharp.4.6.0.nupkg.sha512",

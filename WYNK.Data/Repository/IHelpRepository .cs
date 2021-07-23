@@ -95,7 +95,7 @@ namespace WYNK.Data.Repository
         //Help GetGrn(int val);
         dynamic getIOProcedureTempDetails(int ICDSpecialityCode);
         Help GetRoomTransferDetails();
-
+        dynamic getopticalMaterialdetails();
         dynamic GetAppointmentDetails(int CMPID,string Searchvalue);
         Help getPatientInsurance(DateTime FromDate, DateTime ToDate, string Insurancetype, int CMPID);
         Help getMedicalRegisters(DateTime FromDate, DateTime ToDate, int CMPID);

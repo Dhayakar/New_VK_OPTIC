@@ -5,7 +5,6 @@
 export class LensTranModel {
   ID: number;
   LMID: number;
-  LensOption: string;
   Index: string;
   Indexname: string;
   Model: string;
@@ -38,4 +37,11 @@ export class LensTranModel {
   CessDescription: string;
   AddtionalDescription: string;
   IsActive: boolean;
+  Sph: string;
+  Cyl: string;
+  Axis: string;
+  Add: string;
+  Type: string;
+  Costprice: number;
+  Sptaxinclusive: boolean;
 }

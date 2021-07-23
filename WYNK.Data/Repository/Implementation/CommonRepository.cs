@@ -1521,6 +1521,12 @@ namespace WYNK.Data.Repository.Implementation
 
         }
 
+        public IEnumerable<Dropdown> GetBrandContactLens(int cmpid)
+        {
+            return WYNKContext.Brand.Where(x => x.BrandType == "Contactlens" && x.IsActive == true && x.IsDeleted == false && x.cmpID == cmpid).Select(x => new Dropdown { Text = x.Description.ToString(), Value = x.ID.ToString() }).OrderBy(x => x.Text).ToList();
+
+        }
+
         public IEnumerable<Dropdown> GetBrandFrame(int cmpid)
         {
             return WYNKContext.Brand.Where(x => x.BrandType == "Frame" && x.IsActive == true && x.IsDeleted == false && x.cmpID == cmpid).Select(x => new Dropdown { Text = x.Description.ToString(), Value = x.ID.ToString() }).OrderBy(x => x.Text).ToList();

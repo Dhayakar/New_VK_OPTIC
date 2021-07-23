@@ -10,7 +10,7 @@ namespace WYNK.Data.Repository
 
         dynamic GetfinalopDetails(string UIN, int id);
         dynamic GetopticalDetails(int RegID);
-        dynamic Getfinopprint(int rid, int CMPID);
+        dynamic Getfinopprint(int rid, int CMPID, string Time);
         dynamic GetUINDetails(int cid);
         dynamic GetHistoryDetails(string UIN, int rid);
     }

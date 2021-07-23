@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JuZ4ulchxLVBOUMcximgNGhN3eILjQ3mVnsnIq43R1Ve08L5Wee/Jo/SULTr1f0QejYG2RJmupIN5i2GfGbrJQ==",
+  "dgSpecHash": "84UAyeu5izQpqfDHsvZK9dO0V3ZRMQRcEfvELFafSoSh8/VFUSxz+3SgQ6KoykEuU4qA8ALeKyKNP5mMS7RfCQ==",
   "success": true,
-  "projectFilePath": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj",
+  "projectFilePath": "E:\\Git_desktop\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\admin\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",

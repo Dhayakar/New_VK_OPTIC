@@ -204,6 +204,7 @@ namespace WYNK.Data.Repository
         IEnumerable<Dropdown> AddCessSearch(int ID);
         IEnumerable<Dropdown> GSTperSearch(int ID);
         IEnumerable<Dropdown> GetBrandLens(int cmpid);
+        IEnumerable<Dropdown> GetBrandContactLens(int cmpid);
         //IEnumerable<Dropdown> GetBrandFrame();
 
         IEnumerable<Dropdown> UOMSearch();

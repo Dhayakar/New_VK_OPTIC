@@ -554,7 +554,12 @@ namespace WebApiCore.Controllers
         }
 
 
-        
+        [HttpGet("getopticalMaterialdetails")]
+        public dynamic getopticalMaterialdetails()
+        {
+            return _repoWrapper.Help.getopticalMaterialdetails();
+        }
+
 
 
 
