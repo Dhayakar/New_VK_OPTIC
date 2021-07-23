@@ -13,6 +13,9 @@ import { HttpClient, HttpResponse, HttpEventType } from '@angular/common/http';
 import { Idle, DEFAULT_INTERRUPTSOURCES } from '@ng-idle/core';
 import { Keepalive } from '@ng-idle/keepalive';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Http } from '@angular/http';
+import 'rxjs/Rx';
+import { Observable } from 'rxjs/Rx';
 
 declare var $: any;
 
@@ -33,12 +36,19 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
       color: black;
     }
   `],
+  //template: `
+	 // <b>Angular 2 HTTP requests using RxJs Observables!</b>
+	 // <ul>
+	 //   <li *ngFor="let doctor of doctors">{{doctor.name}}</li>
+	 // </ul>	  
+	 // `
 })
 export class AppComponent {
   idleState = 'Not started.';
   timedOut = false;
   lastPing?: Date = null;
   @ViewChild('childModal', { read: false }) childModal: ModalDirective;
+  private doctors = [];
   constructor
     (public commonService: CommonService<RegistrationMaster>,
     public datepipe: DatePipe, public el: ElementRef,
@@ -49,8 +59,14 @@ export class AppComponent {
     private idle: Idle, private keepalive: Keepalive,
     private change: ChangeDetectorRef,
     private _sanitizer: DomSanitizer,
-    // private idle: Idle, private keepalive: Keepalive
+    http: Http
   ) {
+    //Observable.interval(1000)
+    //  .switchMap(() => http.get('http://jsonplaceholder.typicode.com/users/')).map((data) => data.json())
+    //  .subscribe((data) => {
+    //    this.doctors = data;
+    //    console.log(data);
+    //  });
 
     this.myForm = this.formBuilder.group({
       password: ['', [Validators.required]],
@@ -58,52 +74,6 @@ export class AppComponent {
       confirmPassword: ['']
     }, { validator: this.checkPasswords });
 
-
-    //2000000
-    idle.setIdle(2000000);
-    idle.setTimeout(5);
-    idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
-    idle.onIdleEnd.subscribe(() => {
-      this.idleState = 'No longer idle.'
-      console.log(this.idleState);
-      this.reset();
-    });
-
-
-    idle.onTimeout.subscribe(() => {
-      if (this.router.url != '/' && this.router.url != '/login') {
-        this.idleState = 'Timed out!';
-        this.timedOut = true;
-
-        console.log(this.idleState);
-        this.idle.stop();
-        this.loginYes();
-      }
-    });
-
-
-    idle.onIdleStart.subscribe(() => {
-
-      if (this.router.url != '/' && this.router.url != '/login') {
-        this.idleState = 'You\'ve gone idle!'
-        console.log(this.idleState);
-
-        this.backdrop = 'block';
-        this.idlechildModal = 'block';
-      }
-    });
-
-
-    idle.onTimeoutWarning.subscribe((countdown) => {
-
-      if (this.router.url != '/' && this.router.url != '/login') {
-        this.idleState = 'You will time out in ' + countdown + ' seconds!'
-        console.log(this.idleState);
-      }
-    });
-    //keepalive.interval(15);
-    //keepalive.onPing.subscribe(() => this.lastPing = new Date());
-    this.reset();
   }
   reset() {
     this.idle.watch();

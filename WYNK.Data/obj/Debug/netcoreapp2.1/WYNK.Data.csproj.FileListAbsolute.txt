@@ -82,3 +82,31 @@ E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.csp
 E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.csproj.CopyComplete
 E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.dll
 E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.pdb
+D:\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Data.deps.json
+D:\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Data.dll
+D:\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Data.pdb
+D:\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\SMSand EMAILService.cs.dll
+D:\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Helpers.dll
+D:\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\SMSand EMAILService.cs.pdb
+D:\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Helpers.pdb
+D:\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.csprojAssemblyReference.cache
+D:\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.csproj.CoreCompileInputs.cache
+D:\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.AssemblyInfoInputs.cache
+D:\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.AssemblyInfo.cs
+D:\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.csproj.CopyComplete
+D:\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.dll
+D:\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.pdb
+Q:\Backup\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Data.deps.json
+Q:\Backup\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Data.dll
+Q:\Backup\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Data.pdb
+Q:\Backup\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\SMSand EMAILService.cs.dll
+Q:\Backup\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Helpers.dll
+Q:\Backup\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\SMSand EMAILService.cs.pdb
+Q:\Backup\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Helpers.pdb
+Q:\Backup\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.csproj.AssemblyReference.cache
+Q:\Backup\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.AssemblyInfoInputs.cache
+Q:\Backup\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.AssemblyInfo.cs
+Q:\Backup\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.csproj.CoreCompileInputs.cache
+Q:\Backup\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.csproj.CopyComplete
+Q:\Backup\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.dll
+Q:\Backup\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.pdb
