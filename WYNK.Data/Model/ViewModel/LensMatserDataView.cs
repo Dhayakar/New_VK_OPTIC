@@ -29,6 +29,8 @@ namespace WYNK.Data.Model.ViewModel
         public ICollection<Lensframestock> Lensframestock { get; set; }
     }
 
+
+
     public class FrameType
     {
         public string Description { get; set; }
@@ -69,7 +71,12 @@ namespace WYNK.Data.Model.ViewModel
     public class Taxnamelensmastertrans
     {
         public int ID { get; set; }
-        public string LensOption { get; set; }
+        public string Sph { get; set; }
+        public string Cyl { get; set; }
+        public string Type { get; set; }
+
+        public string Axis { get; set; }
+        public string Add { get; set; }
         public string Indexname { get; set; }
         public string Model { get; set; }
         public string Size { get; set; }
@@ -78,6 +85,7 @@ namespace WYNK.Data.Model.ViewModel
         public int Brand { get; set; }
         public string UOMname { get; set; }
         public int? UOMID { get; set; }
+        public decimal Costprice { get; set; }
         public decimal Prize { get; set; }
         public decimal? CESSAmount { get; set; }
         public decimal? ADDCESSAmount { get; set; }
@@ -98,6 +106,7 @@ namespace WYNK.Data.Model.ViewModel
         public int? FrameStyleID { get; set; }
         public string Index { get; set; }
         public Boolean IsActive { get; set; }
+        public Boolean Sptaxinclusive { get; set; }
 
     }
     public class FrameShapehis
@@ -135,13 +144,12 @@ namespace WYNK.Data.Model.ViewModel
     public class Lensarray
     {
         public string Type { get; set; }
-        public string LensOption { get; set; }
         public string Index { get; set; }
         public string Model { get; set; }
         public string Size { get; set; }
         public string Colour { get; set; }
         public string Brand { get; set; }
-        public int Prize { get; set; }
+        public decimal Prize { get; set; }
         public string UOM { get; set; }
         public string HSNNo { get; set; }
         public string FrameShape { get; set; }
@@ -156,6 +164,18 @@ namespace WYNK.Data.Model.ViewModel
         public decimal? ADDCESSPercentage { get; set; }
         public short? GSTPercentage { get; set; }
         public string Status { get; set; }
+        public string Sph { get; set; }
+        public string Cyl { get; set; }
+        public string Axis { get; set; }
+        public string Add { get; set; }
+        public string Sphh { get; set; }
+        public string Cyll { get; set; }
+        public string Axiss { get; set; }
+        public string Addd { get; set; }
+        public string FrameShapee { get; set; }
+        public string FrameTypee { get; set; }
+        public string FrameWidthh { get; set; }
+        public string FrameStylee { get; set; }
     }
 
     public class Lensframestock

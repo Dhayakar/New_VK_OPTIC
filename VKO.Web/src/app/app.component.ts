@@ -13,6 +13,14 @@ import { HttpClient, HttpResponse, HttpEventType } from '@angular/common/http';
 import { Idle, DEFAULT_INTERRUPTSOURCES } from '@ng-idle/core';
 import { Keepalive } from '@ng-idle/keepalive';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Http } from '@angular/http';
+import 'rxjs/Rx';
+import { Observable } from 'rxjs/Rx';
+import { map } from 'rxjs/operators';
+import { ajax } from 'rxjs/ajax';
+import { ToastrService } from 'ngx-toastr';
+//import polling from 'rx-polling';
+//import { ToastrService } from 'ngx-toastr';
 
 declare var $: any;
 
@@ -33,12 +41,19 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
       color: black;
     }
   `],
+  //template: `
+  // <b>Angular 2 HTTP requests using RxJs Observables!</b>
+  // <ul>
+  //   <li *ngFor="let doctor of doctors">{{doctor.name}}</li>
+  // </ul>	  
+  // `
 })
 export class AppComponent {
   idleState = 'Not started.';
   timedOut = false;
   lastPing?: Date = null;
   @ViewChild('childModal', { read: false }) childModal: ModalDirective;
+  private doctors = [];
   constructor
     (public commonService: CommonService<RegistrationMaster>,
     public datepipe: DatePipe, public el: ElementRef,
@@ -49,61 +64,14 @@ export class AppComponent {
     private idle: Idle, private keepalive: Keepalive,
     private change: ChangeDetectorRef,
     private _sanitizer: DomSanitizer,
-    // private idle: Idle, private keepalive: Keepalive
-  ) {
-
+    private http: Http, private toastr: ToastrService
+    ) {
     this.myForm = this.formBuilder.group({
       password: ['', [Validators.required]],
       passwordOLD: ['', [Validators.required]],
       confirmPassword: ['']
     }, { validator: this.checkPasswords });
 
-
-    //2000000
-    idle.setIdle(2000000);
-    idle.setTimeout(5);
-    idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
-    idle.onIdleEnd.subscribe(() => {
-      this.idleState = 'No longer idle.'
-      console.log(this.idleState);
-      this.reset();
-    });
-
-
-    idle.onTimeout.subscribe(() => {
-      if (this.router.url != '/' && this.router.url != '/login') {
-        this.idleState = 'Timed out!';
-        this.timedOut = true;
-
-        console.log(this.idleState);
-        this.idle.stop();
-        this.loginYes();
-      }
-    });
-
-
-    idle.onIdleStart.subscribe(() => {
-
-      if (this.router.url != '/' && this.router.url != '/login') {
-        this.idleState = 'You\'ve gone idle!'
-        console.log(this.idleState);
-
-        this.backdrop = 'block';
-        this.idlechildModal = 'block';
-      }
-    });
-
-
-    idle.onTimeoutWarning.subscribe((countdown) => {
-
-      if (this.router.url != '/' && this.router.url != '/login') {
-        this.idleState = 'You will time out in ' + countdown + ' seconds!'
-        console.log(this.idleState);
-      }
-    });
-    //keepalive.interval(15);
-    //keepalive.onPing.subscribe(() => this.lastPing = new Date());
-    this.reset();
   }
   reset() {
     this.idle.watch();
@@ -287,7 +255,8 @@ export class AppComponent {
     this.loginYes();
   }
   ngOnInit() {
-
+    //this.subscription.unsubscribe();
+    //this.toastr.clear(this.toastRef.ToastId);
     this.commonService.getListOfData('Common/getallroles/').subscribe(data => {
       this.router.navigate(['/login']);
     });
@@ -298,10 +267,6 @@ export class AppComponent {
     });
 
 
-
-    //this.firstFormGroup = this._formBuilder.group({
-    //  firstCtrl: ['', Validators.required]
-    //});
     this.todaydate = this.datepipe.transform(new Date(), 'DD-MMM-YYYY');
     $('.btn-group, .dropdown').hover(
       function () {
@@ -440,9 +405,12 @@ export class AppComponent {
 
   }
   companylogo;
+  toastRef;
+  subscription;
   docrole;
-  public setLoggedIn() {
 
+  Messagedata;
+  public setLoggedIn() {
     try {
       const CID = localStorage.getItem('CompanyID');
       this.commonService.getListOfData('RegistrationMaster/Getusersaccess/' + localStorage.getItem('userDoctorID') + '/' + localStorage.getItem('RoleDescription') + '/' + CID).subscribe(data => {
@@ -468,8 +436,6 @@ export class AppComponent {
         const concatjsondata = data.FgformsModule.concat(data.Workflowaccerss);
         localStorage.setItem('AllCollectionData', JSON.stringify(concatjsondata));
       });
-
-
       this.docrole = localStorage.getItem("RoleDescription");
       this.doctorname = localStorage.getItem('Doctorname');
       this.docotorid = localStorage.getItem('userroleID');
@@ -480,11 +446,19 @@ export class AppComponent {
       this.Menudoctor = localStorage.getItem('Menudoctorname');
       this.Menulogindateandtime = localStorage.getItem('Menulogintime');
       this.menubranch = localStorage.getItem('MenuBranch');
-
       this.commonService.getListOfData('Common/ErrorList/' + 'Successfully Logged-In' + '/' + 'Login Component' + '/' + CID + '/' + localStorage.getItem('userroleID') + '/')
         .subscribe(data => {
 
         });
+
+      //this.subscription = Observable.interval(5000)
+      //  .switchMap(() => this.http.get('https://apps1api.wynkemr.com/Investigation/Getnotificationalerts/' + localStorage.getItem('userroleID')+'/1062')).map((data) => data.json())
+      //  .subscribe((data) => {
+      //    debugger;
+      //    if (data.NotificationMessage != undefined) {
+      //      this.toastRef = this.toastr.success(data.NotificationMessage, "Dear " + localStorage.getItem('Doctorname'));
+      //    } 
+      //  });
     } catch (Error) {
       const CID = localStorage.getItem('CompanyID');
       alert(Error.message);
@@ -641,6 +615,7 @@ export class AppComponent {
     this.loginYesblock = 'none';
   }
   loginYes() {
+    debugger;
     this.backdrop = 'none';
     this.loginYesblock = 'none';
     this.idle.stop();
@@ -649,6 +624,10 @@ export class AppComponent {
     this.loggedoutIn = false;
     localStorage.clear();
     this.router.navigate(['/login']);
+    //window.setTimeout(() => {
+    //  this.subscription.unsubscribe();
+    //  this.toastr.clear(this.toastRef.ToastId);
+    //}, 5000);
     //this.commonService.getListOfData('RegistrationMaster/DeleteToken/' + localStorage.getItem('userroleID')).subscribe(data => {
     //  if (data.Success == true) {
     //    this.backdrop = 'none';

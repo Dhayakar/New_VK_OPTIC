@@ -34,10 +34,10 @@ namespace WYNK.Services.Controllers
             return _repoWrapper.OpticalPrescription.GetopticalDetails(RegID);
         }
 
-        [HttpGet("Getfinopprint/{rid}/{CMPID}")]
-        public dynamic Getfinopprint(int rid, int CMPID)
+        [HttpGet("Getfinopprint/{rid}/{CMPID}/{Time}")]
+        public dynamic Getfinopprint(int rid, int CMPID, string Time)
         {
-            return _repoWrapper.OpticalPrescription.Getfinopprint(rid, CMPID);
+            return _repoWrapper.OpticalPrescription.Getfinopprint(rid, CMPID, Time);
         }
 
 

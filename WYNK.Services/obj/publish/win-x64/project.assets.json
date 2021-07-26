@@ -17566,11 +17566,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\WYNK_GIT_DESKTOP\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
+      "projectUniqueName": "D:\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
       "projectName": "WYNK.Services",
-      "projectPath": "D:\\WYNK_GIT_DESKTOP\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
+      "projectPath": "D:\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
       "packagesPath": "C:\\Users\\SYSTEM1\\.nuget\\packages\\",
-      "outputPath": "D:\\WYNK_GIT_DESKTOP\\VK_Optic_Point\\WYNK.Services\\obj\\publish\\win-x64\\",
+      "outputPath": "D:\\VK_Optic_Point\\WYNK.Services\\obj\\publish\\win-x64\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -17589,8 +17589,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "D:\\WYNK_GIT_DESKTOP\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj": {
-              "projectPath": "D:\\WYNK_GIT_DESKTOP\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj"
+            "D:\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj": {
+              "projectPath": "D:\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj"
             }
           }
         }

@@ -2488,6 +2488,10 @@ namespace WYNK.Data.Repository.Implementation
             var BrandMas = WYNKContext.Brand.ToList();
             var UOM = CMPSContext.uommaster.ToList();
             var Onelinemaster = CMPSContext.OneLineMaster.ToList();
+            var OpticalBalance = WYNKContext.OpticalBalance.Where(x=>x.CmpID == CMPID).ToList();
+
+           // var Datee = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
+            var Fyear = WYNKContext.FinancialYear.Where(x => x.FYFrom.Date <= DateTime.Now.Date && x.FYTo.Date >= DateTime.Now.Date && x.CMPID == CMPID && x.IsActive == true).Select(x => x.ID).FirstOrDefault();
 
             CustomerOrder.OfferDetails = (from LM in LensMas.Where(x => x.CMPID == CMPID)
                                           join LT in LensTarn.Where(x => x.IsActive == true) on LM.RandomUniqueID equals LT.LMID
@@ -2497,15 +2501,16 @@ namespace WYNK.Data.Repository.Implementation
                                               LTID = LT.ID,
                                               LMID = LM.ID,
                                               Brand = BM.Description,
-                                              //LensOptions = LT.LensOption,
                                               Description = LT.Description,
-                                              //Index = Onelinemaster.Where(x => x.OLMID == Convert.ToInt32(LT.Index)).Select(x => x.ParentDescription).FirstOrDefault(),
                                               Index = LT.Index != "" ? Onelinemaster.Where(x => x.OLMID == Convert.ToInt32(LT.Index)).Select(x => x.ParentDescription).FirstOrDefault() : string.Empty,
                                               Color = LT.Colour,
                                               Size = LT.Size,
                                               Price = LT.Prize,
+                                              ActualPrice = Math.Round(LT.Sptaxinclusive ==false ? LT.Prize : (LT.Prize  * 100) / (100 + Convert.ToDecimal(TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.GSTPercentage).FirstOrDefault()))),
                                               Model = LT.Model,
                                               GST = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.GSTPercentage).FirstOrDefault(),
+                                              CGST = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.CGSTPercentage).FirstOrDefault(),
+                                              SGST = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.SGSTPercentage).FirstOrDefault(),
                                               IGST = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.IGSTPercentage).FirstOrDefault(),
                                               CESS = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.CESSPercentage).FirstOrDefault(),
                                               AddCess = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.AdditionalCESSPercentage).FirstOrDefault(),
@@ -2521,12 +2526,16 @@ namespace WYNK.Data.Repository.Implementation
                                               Cyl = LT.Cyl != null ? "Cyl : " + LT.Cyl + "; " : null,
                                               Axis = LT.Axis != null ? "Axis : " + LT.Axis + "; " : null,
                                               Add = LT.Add != null ? "Add : " + LT.Add : null,
-                                              FrameShapeID = Onelinemaster.Where(x=>x.OLMID == LT.FrameShapeID).Select(c=>c.ParentDescription).FirstOrDefault()      != null ? "Shape : " + Onelinemaster.Where(x=>x.OLMID == LT.FrameShapeID).Select(c=>c.ParentDescription).FirstOrDefault() + "; " : null,
+                                              FrameShapeID = Onelinemaster.Where(x => x.OLMID == LT.FrameShapeID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Shape : " + Onelinemaster.Where(x => x.OLMID == LT.FrameShapeID).Select(c => c.ParentDescription).FirstOrDefault() + "; " : null,
                                               FrameStyleID = Onelinemaster.Where(x => x.OLMID == LT.FrameStyleID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Style : " + Onelinemaster.Where(x => x.OLMID == LT.FrameStyleID).Select(c => c.ParentDescription).FirstOrDefault() + "; " : null,
-                                              FrameTypeID =    Onelinemaster.Where(x => x.OLMID == LT.FrameTypeID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Type : " +    Onelinemaster.Where(x => x.OLMID == LT.FrameTypeID).Select(c => c.ParentDescription).FirstOrDefault() + "; " : null,
+                                              FrameTypeID = Onelinemaster.Where(x => x.OLMID == LT.FrameTypeID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Type : " + Onelinemaster.Where(x => x.OLMID == LT.FrameTypeID).Select(c => c.ParentDescription).FirstOrDefault() + "; " : null,
                                               FrameWidthID = Onelinemaster.Where(x => x.OLMID == LT.FrameWidthID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Width : " + Onelinemaster.Where(x => x.OLMID == LT.FrameWidthID).Select(c => c.ParentDescription).FirstOrDefault() : null,
+
+                                              Stockqty = OpticalBalance.Where(x => x.LTID == LT.ID && x.FYID == Fyear).Select(x => x.ClosingBalance).FirstOrDefault(),
+                                              Sptaxinclusive =LT.Sptaxinclusive,
+
                                           }).ToList();
-                                          return CustomerOrder;
+            return CustomerOrder;
         }
 
 
@@ -3830,6 +3839,18 @@ namespace WYNK.Data.Repository.Implementation
 
             return consum;
 
+        }
+
+        public dynamic getopticalMaterialdetails()
+        {
+            return (from lt in WYNKContext.Lenstrans
+                    join b in WYNKContext.Brand on lt.Brand equals b.ID
+                    join ob in WYNKContext.OpticalBalance.Where(x => x.ClosingBalance > 0) on lt.ID equals ob.LTID
+                    select new serviceDropdown
+                    {
+                        Text = b.Description,
+                        Value = b.ID.ToString(),
+                    }).OrderBy(x => x.Text).ToList();
         }
     }
 }

@@ -20,7 +20,6 @@ export class CustomerOrderViewModel {
   CustomerItemOrders: Array<CustomerItemOrder> = [];
   paymenttran: Array<paymenttran> = [];
 
-
   OrderNo: string;
   CancelledReasons: string;
   CustomerDatas: CustomerData = new CustomerData();
@@ -137,6 +136,8 @@ export class CustomerItemOrder {
   AddCessDesc: string
 
   GSTValue: number
+  CGSTValue: number
+  SGSTValue: number
   CESSValue: number
   AddCessValue: number
 
@@ -151,6 +152,17 @@ export class CustomerItemOrder {
   ChildRowId: number
 
   Count: number
+
+  Sph: string
+  Cyl: string
+  Axis: string
+  Add: string
+  Description: string
+
+  FrameShapeID: string
+  FrameStyleID: string
+  FrameTypeID: string
+  FrameWidthID: string
 
   Offer: Array<OnePlusOfferDetails> = [];
 }

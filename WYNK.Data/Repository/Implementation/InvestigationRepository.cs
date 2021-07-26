@@ -19,7 +19,7 @@ namespace WYNK.Data.Repository.Implementation
     {
         private readonly WYNKContext _Wynkcontext;
         private readonly CMPSContext _Cmpscontext;
-        
+
         public InvestigationRepository(WYNKContext context, CMPSContext Cmpscontext) : base(context, Cmpscontext)
         {
             _Wynkcontext = context;
@@ -40,6 +40,7 @@ namespace WYNK.Data.Repository.Implementation
             invv.InvDet = new List<InvDet>();
             invv.PaymentMaster = new List<Payment_Master>();
             invv.PatDetails = new List<PatDetails>();
+            invv.InvestigationExtn = new InvestigationExtn();
 
             var doct = CMPSContext.DoctorMaster.ToList();
             var invpre = WYNKContext.InvestigationPrescription.ToList();
@@ -49,9 +50,9 @@ namespace WYNK.Data.Repository.Implementation
 
             //TimeSpan ts = TimeSpan.Parse(GMT);
 
-            
 
-            var doctor = (from IP in invpre.Where(x => x.Status == "Open" && x.isbilled == false && x.UIN == uin && x.CMPID == cmpid).OrderByDescending(x =>x.CreatedUTC)
+
+            var doctor = (from IP in invpre.Where(x => x.Status == "Open" && x.isbilled == false && x.UIN == uin && x.CMPID == cmpid).OrderByDescending(x => x.CreatedUTC)
                           join US in use on IP.CreatedBy equals US.Userid
                           join DOC in doct on US.Username equals DOC.EmailID
 
@@ -122,6 +123,8 @@ namespace WYNK.Data.Repository.Implementation
             invv.InvDet = new List<InvDet>();
             invv.PaymentMaster = new List<Payment_Master>();
             invv.PatDetails = new List<PatDetails>();
+            invv.InvestigationExtn = new InvestigationExtn();
+
 
             var reg = WYNKContext.Registration.ToList();
             var regtr = WYNKContext.RegistrationTran.ToList();
@@ -179,6 +182,8 @@ namespace WYNK.Data.Repository.Implementation
             invim.InvImg = new List<InvImg>();
             invim.InvDet = new List<InvDet>();
             invim.PatDetails = new List<PatDetails>();
+            invim.InvestigationExtn = new InvestigationExtn();
+
 
             invim.PastDetails = (from INN in WYNKContext.InvestigationImages.Where(x => x.CmpID == cmpid && x.UIN == uin).GroupBy(x => x.RegistrationTranID)
 
@@ -215,6 +220,8 @@ namespace WYNK.Data.Repository.Implementation
             invv.InvDet = new List<InvDet>();
             invv.PaymentMaster = new List<Payment_Master>();
             invv.PatDetails = new List<PatDetails>();
+            invv.InvestigationExtn = new InvestigationExtn();
+
 
             var invpre = WYNKContext.InvestigationPrescription.ToList();
             var invtr = WYNKContext.InvestigationPrescriptionTran.ToList();
@@ -259,11 +266,12 @@ namespace WYNK.Data.Repository.Implementation
             inn.InvImg = new List<InvImg>();
             inn.InvDet = new List<InvDet>();
             inn.PatDetails = new List<PatDetails>();
+            inn.InvestigationExtn = new InvestigationExtn();
             var invpr = WYNKContext.InvestigationPrescription.ToList();
             var invtr = WYNKContext.InvestigationPrescriptionTran.ToList();
             var one = CMPSContext.Services.ToList();
 
-            inn.InvDetails = (from IP in invpr.Where(x => x.UIN == ID && x.RandomUniqueID == Convert.ToString( NO))
+            inn.InvDetails = (from IP in invpr.Where(x => x.UIN == ID && x.RandomUniqueID == Convert.ToString(NO))
                               join IPT in invtr on
                               IP.RandomUniqueID equals IPT.IPID
                               join OLM in one on
@@ -331,7 +339,7 @@ namespace WYNK.Data.Repository.Implementation
                     invesimgs.CreatedUTC = DateTime.Now;
                     invesimgs.CreatedBy = Investigation.uid;
                     WYNKContext.InvestigationTran.AddRange(invesimgs);
-                    
+
                     WYNKContext.SaveChanges();
                 }
             }
@@ -380,7 +388,7 @@ namespace WYNK.Data.Repository.Implementation
                 var fullname = Patientfirstname + ' ' + Patientlastname;
                 var Uploadedby = "";
                 var sumcount = Investigation.INV.Count();
-                var Invdescription = Investigation.INV.Select(x =>x.InvestigationDescription).FirstOrDefault();
+                var Invdescription = Investigation.INV.Select(x => x.InvestigationDescription).FirstOrDefault();
                 var Invremarks = Investigation.INV.Select(x => x.Remarks).FirstOrDefault();
                 var Createdid = CMPSContext.Users.Where(x => x.Userid == Investigation.uid).Select(x => x.Username).FirstOrDefault();
                 var Createdtag = CMPSContext.Users.Where(x => x.Userid == Investigation.uid).Select(x => x.ReferenceTag).FirstOrDefault();
@@ -406,13 +414,13 @@ namespace WYNK.Data.Repository.Implementation
                     Uploadedby = fname + ' ' + mname + ' ' + lname;
                 }
 
-                if(phonenumber != null)
+                if (phonenumber != null)
                 {
 
                     string usersid = "cmpsadmin";
                     string apikey = "UMrCTzVADqibrFY4PAto";
                     object mobile = phonenumber;
-                    string msgtext = Investigation.Investigation.UIN + " - "+ fullname + "\n"+ Uploadeddatetime + "\n" + "Under "+ Invdescription+' '+ sumcount + " Images uploaded by "+'-'+ Uploadedby + "\n" +"Remarks - "+ Invremarks + "\n" + companyname;
+                    string msgtext = Investigation.Investigation.UIN + " - " + fullname + "\n" + Uploadeddatetime + "\n" + "Under " + Invdescription + ' ' + sumcount + " Images uploaded by " + '-' + Uploadedby + "\n" + "Remarks - " + Invremarks + "\n" + companyname;
                     var client = new WebClient();
                     var baseurl = "http://smshorizon.co.in/api/sendsms.php?user=" + usersid + "&apikey=" + apikey + "&number=" + mobile + "&message=" + msgtext + "&senderid=CMPSIN&type=txt";
                     var data = client.OpenRead(baseurl);
@@ -441,12 +449,12 @@ namespace WYNK.Data.Repository.Implementation
                     oErrorLog.WriteErrorLog("Information :", "Saved Successfully");
                 }
                 return new
-                    {
-                        Uin = Investigation.Investigation.UIN,
+                {
+                    Uin = Investigation.Investigation.UIN,
 
-                        Success = true,
-                        Message = CommonMessage.saved,
-                    };
+                    Success = true,
+                    Message = CommonMessage.saved,
+                };
             }
             catch (Exception ex)
             {
@@ -473,7 +481,7 @@ namespace WYNK.Data.Repository.Implementation
             return S;
         }
 
-        public dynamic UpdateInvestigation(InvestigationImage Investigation, string UIN, int ipid)
+        public dynamic UpdateInvestigation(InvestigationImage Investigation, string UIN, string ipid)
         {
 
             var inv = new InvestigationImages();
@@ -495,7 +503,9 @@ namespace WYNK.Data.Repository.Implementation
 
             var regid = WYNKContext.InvestigationPrescription.Where(x => x.UIN == Investigation.Investigation.UIN).Select(x => x.RegistrationTranID).LastOrDefault();
 
-            var master = WYNKContext.InvestigationPrescription.Where(x => x.RandomUniqueID == Convert.ToString(ipid)).ToList();
+            var master = WYNKContext.InvestigationPrescription.Where(x => x.RandomUniqueID == ipid).ToList();
+            var uid = WYNKContext.InvestigationPrescription.Where(x => x.RandomUniqueID == ipid).Select(x => x.CreatedBy).LastOrDefault();
+
             if (master != null)
             {
 
@@ -503,8 +513,17 @@ namespace WYNK.Data.Repository.Implementation
                 WYNKContext.InvestigationPrescription.UpdateRange(master);
             }
 
-
-
+            var invext = new InvestigationExtn();
+            invext.CmpID = Investigation.InvestigationExtn.CmpID;
+            invext.UIN = Investigation.InvestigationExtn.UIN;
+            invext.Name = Investigation.InvestigationExtn.Name;
+            invext.Date = DateTime.UtcNow;
+            invext.IPID = ipid;
+            invext.DoctorID = uid;
+            invext.Tag = false;
+            invext.CreatedUTC = DateTime.UtcNow;
+            invext.CreatedBy = Investigation.InvestigationExtn.CreatedBy;
+            WYNKContext.InvestigationExtn.AddRange(invext);
             try
             {
                 if (WYNKContext.SaveChanges() >= 0)
@@ -549,11 +568,11 @@ namespace WYNK.Data.Repository.Implementation
                     if (opbio.Count() > 0)
                     {
 
-  
+
 
 
                         foreach (var item1 in opbio.ToList())
-                        {                            
+                        {
                             item1.ImageLocation = pathh;
                             WYNKContext.Entry(item1).State = EntityState.Modified;
                             WYNKContext.SaveChanges();
@@ -585,7 +604,7 @@ namespace WYNK.Data.Repository.Implementation
             inv.InvImg = new List<InvImg>();
             var regs = WYNKContext.InvestigationImages.Where(x => x.UIN == UIN).Select(x => x.ImageLocation).ToList();
             var res = WYNKContext.InvestigationImages.Where(x => x.UIN == UIN).Select(x => x.InvestigationDescription).ToList();
-            
+
             inv.Registration = WYNKContext.Registration.Where(x => x.UIN == UIN).FirstOrDefault();
             var groups = WYNKContext.InvestigationImages.Where(x => x.UIN == UIN).OrderByDescending(x => x.CreatedUTC).GroupBy(x => x.ImageLocation);//ImageLocation
             inv.Imagedata = (from IN in groups
@@ -683,10 +702,19 @@ namespace WYNK.Data.Repository.Implementation
         }
 
 
-
-
-
-
+        public dynamic Getnotificationalerts(int Docid, int cmpid)
+        {
+            var data = new InvestigationImage();
+            var inv = WYNKContext.InvestigationExtn.Where(x => x.CmpID == cmpid && x.DoctorID == Docid && x.Tag == false).FirstOrDefault();
+            if (inv != null)
+            {
+                data.NotificationMessage = "Investigation images uploaded against " + inv.UIN + " - " + inv.Name + ".";
+                inv.Tag = true;
+                WYNKContext.InvestigationExtn.UpdateRange(inv);
+                WYNKContext.SaveChanges();             
+            }            
+            return data;
+        }
 
     }
 }

@@ -364,7 +364,7 @@ export class CustomerOrderCancellationComponent implements OnInit {
  
 
 
-  PrintdisplayedColumns = ['SNo', 'Type', 'Brand', 'Model', 'LensOption', 'Index', 'Color', 'UOM', 'QTY', 'Price', 'Amount', 'Discount%', 'DiscountAmount', 'GrossAmount','GSTDesc', 'GST%', 'GSTValue', 'NetAmount']
+  PrintdisplayedColumns = ['Type', 'Brand', 'Description', 'UOM', 'QTY', 'Price', 'Amount', 'Discount%', 'DiscountAmount', 'GrossAmount', 'CGST', 'CGSTValue', 'SGST', 'SGSTValue', 'NetAmount']
   PrintdataSource = new MatTableDataSource();
 
   displayedColumns3: string[] = ['PaymentMode', 'InstrumentNumber', 'InstrumentDate', 'BankName', 'Branch', 'ExpiryDate', 'Amount'];
@@ -577,6 +577,16 @@ export class CustomerOrderCancellationComponent implements OnInit {
       var restotalcost = this.commonService.data.CustomerItemOrders.map(t => t.Amount).reduce((acc, value) => acc + value, 0);
       return restotalcost;
     }
+  }
+
+  GetCGSTAmount() {
+    var restotalcost = this.commonService.data.CustomerItemOrders.map(t => t.CGSTValue).reduce((acc, value) => acc + value, 0);
+    return restotalcost;
+  }
+
+  GetSGSTAmount() {
+    var restotalcost = this.commonService.data.CustomerItemOrders.map(t => t.SGSTValue).reduce((acc, value) => acc + value, 0);
+    return restotalcost;
   }
 
   applyFilter2(event: Event) {

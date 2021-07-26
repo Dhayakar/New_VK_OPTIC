@@ -22,9 +22,9 @@ namespace WYNK.Services.Controllers
         }
 
         [HttpGet("GetOfferDetail/{CMPID}/{LMID}/{LTID}")]
-        public dynamic GetOfferDetail(int CMPID, int LMID, int LTID)
+        public dynamic GetOfferDetail(int CMPID,int LMID,int LTID)
         {
-            return _repoWrapper.Customerorder.GetOfferDetail(CMPID, LMID, LTID);
+            return _repoWrapper.Customerorder.GetOfferDetail(CMPID,LMID,LTID);
         }
 
         [HttpPost("SubmitCustomerOrder")]
@@ -73,7 +73,7 @@ namespace WYNK.Services.Controllers
 
 
         [HttpGet("GetCustomerOrderedList/{CMPID}/{TC}")]
-        public dynamic GetCustomerOrderedList(int CMPID, int TC)
+        public dynamic GetCustomerOrderedList(int CMPID,int TC)
         {
             return _repoWrapper.Customerorder.GetCustomerOrderedList(CMPID, TC);
         }
@@ -87,7 +87,7 @@ namespace WYNK.Services.Controllers
 
 
         [HttpPost("SubmitCustomerOrderCancel/{CancelDate}")]
-        public dynamic SubmitCustomerOrderCancel([FromBody] CustomerOrderViewModel CustomerOrderCancelDetails, DateTime CancelDate)
+        public dynamic SubmitCustomerOrderCancel([FromBody] CustomerOrderViewModel CustomerOrderCancelDetails,DateTime CancelDate)
         {
 
             int? RecContraID = _repoWrapper.Common.GettingReceiptTcID(CustomerOrderCancelDetails.Tc, CustomerOrderCancelDetails.Cmpid);
@@ -177,7 +177,7 @@ namespace WYNK.Services.Controllers
         }
 
         [HttpPost("InsertOpticalPrescription/{CustomerID}/{cmpID}/{userid}")]
-        public dynamic InsertOpticalPrescription([FromBody] CustomerOrderViewModel AddOpticalPrescription, int CustomerID, int cmpID, int userid)
+        public dynamic InsertOpticalPrescription([FromBody] CustomerOrderViewModel AddOpticalPrescription, int CustomerID ,int cmpID ,int userid)
         {
             return _repoWrapper.Customerorder.InsertOpticalPrescription(AddOpticalPrescription, CustomerID, cmpID, userid);
         }

@@ -40,6 +40,9 @@ export const MY_FORMATS = {
 })
 export class LensMasterComponent implements OnInit {
 
+
+
+
   M_SelectedType;
   getBranddata;
   getGSTdata;
@@ -49,7 +52,6 @@ export class LensMasterComponent implements OnInit {
   getFrameStyle;
   getFrameWidth;
   M_HSNNo;
-  FrameModel = false;
   LensType = true;
   M_Branddisable = true;
   M_Indexdisable = true;
@@ -65,10 +67,10 @@ export class LensMasterComponent implements OnInit {
   bindingtablefilter = false;
   getIndexsdata;
 
-  displayedColumnssq = ['Brand', 'lensoption', 'Model', 'Index', 'Color', 'Size', 'Description', 'Price', 'UOM', 'TaxDescription', 'GST', 'Delete'];
+  displayedColumnssq = ['Description', 'Type', 'Brand', 'Sph', 'Cyl', 'Axis', 'Add', 'Color', 'CostPrice', 'Price', 'UOM', 'TaxDescription', 'GST', 'Delete'];
   dataSourcesq = new MatTableDataSource();
 
-  displayedColumnssqq = ['Brand', 'lensoption', 'FrameShape', 'FrameType', 'FrameWidth', 'FrameStyle', 'Model', 'Color', 'Size', 'Description', 'Price', 'UOM', 'TaxDescription', 'GST', 'Delete'];
+  displayedColumnssqq = ['Description', 'Type', 'Brand', 'FrameShape', 'FrameType', 'FrameWidth', 'FrameStyle', 'Color', 'CostPrice', 'Price', 'UOM', 'TaxDescription', 'GST', 'Delete'];
   dataSourcesqq = new MatTableDataSource();
 
   displayedColumnssqd = ['Action', 'Description', 'IsActive'];
@@ -189,6 +191,8 @@ export class LensMasterComponent implements OnInit {
 
   M_UOM;
   LTD;
+  M_Cost;
+  M_checked = false;
   OptionSelect() {
     debugger;
     if (this.M_SelectedType == "Frame") {
@@ -200,7 +204,6 @@ export class LensMasterComponent implements OnInit {
       this.commonService.getListOfData('Common/GetBrandFrame/' + this.cmpid + '/').subscribe((data: any) => {
         this.getBranddata = data;
         this.LensType = false;
-        this.FrameModel = true;
         this.M_Branddisable = false;
         this.Framechoose = true;
       });
@@ -251,18 +254,30 @@ export class LensMasterComponent implements OnInit {
             this.orginaltablefilter = false;
             this.commonService.data.LensTranModel = [];
             this.selectedarray = [];
+            this.dataSourcesqq.data = [];
+            Swal.fire({
+              type: 'warning',
+              title: 'warning',
+              text: 'Data not found',
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 1500,
+              customClass: {
+                popup: 'alert-warp',
+                container: 'alert-container',
+              },
+            });
           }
         });
     }
-    else {
+    else if (this.M_SelectedType == "Contactlens") {
       this.bindingtable = false;
       this.bindingtablefilter = false;
       this.orginaltable = true;
       this.orginaltablefilter = true;
-      this.commonService.getListOfData('Common/GetBrandLens/' + this.cmpid + '/').subscribe((data: any) => {
+      this.commonService.getListOfData('Common/GetBrandContactLens/' + this.cmpid + '/').subscribe((data: any) => {
         this.getBranddata = data;
         this.LensType = true;
-        this.FrameModel = false;
         this.M_Branddisable = false;
         this.Framechoose = false;
       });
@@ -306,6 +321,87 @@ export class LensMasterComponent implements OnInit {
             this.orginaltablefilter = true;
             this.commonService.data.LensTranModel = [];
             this.selectedarray = [];
+            this.dataSourcesq.data = [];
+            Swal.fire({
+              type: 'warning',
+              title: 'warning',
+              text: 'Data not found',
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 1500,
+              customClass: {
+                popup: 'alert-warp',
+                container: 'alert-container',
+              },
+            });
+          }
+        });
+    }
+
+    else {
+      this.bindingtable = false;
+      this.bindingtablefilter = false;
+      this.orginaltable = true;
+      this.orginaltablefilter = true;
+      this.commonService.getListOfData('Common/GetBrandLens/' + this.cmpid + '/').subscribe((data: any) => {
+        this.getBranddata = data;
+        this.LensType = true;
+        this.M_Branddisable = false;
+        this.Framechoose = false;
+      });
+      this.commonService.getListOfData('Common/UOMSearch/').subscribe((data: any) => {
+        this.getUOMdata = data;
+        this.M_UOM = this.getUOMdata[0];
+      });
+      this.commonService.getListOfData('Common/Getindex/').subscribe((data: any) => {
+        this.getIndexsdata = data;
+        this.M_Indexdisable = false;
+      });
+      this.commonService.getListOfData('LensMaster/Getframe/' + this.M_SelectedType + '/' + this.cmpid)
+        .subscribe((data: any) => {
+          debugger;
+          if (data.ResData != null) {
+            debugger;
+            this.disupdate = true;
+            this.hiddenUpdate = true;
+            this.hiddenSubmit = false;
+            this.bindingtable = false;
+            this.bindingtablefilter = false;
+            this.orginaltable = true;
+            this.orginaltablefilter = true;
+            this.LTD = data.ResData;
+            debugger;
+            this.commonService.getListOfData('LensMaster/Getlensfull/' + this.LTD + '/' + this.cmpid + '/' + this.M_SelectedType)
+              .subscribe((data: any) => {
+                debugger;
+                this.selectedarray = data.Taxnamelensmastertrans;
+                this.commonService.data.LensTranModel = this.selectedarray;
+                this.dataSourcesq.data = this.commonService.data.LensTranModel;
+              });
+          }
+          else {
+            this.disupdate = false;
+            this.hiddenUpdate = false;
+            this.hiddenSubmit = true;
+            this.bindingtable = false;
+            this.bindingtablefilter = false;
+            this.orginaltable = true;
+            this.orginaltablefilter = true;
+            this.commonService.data.LensTranModel = [];
+            this.selectedarray = [];
+            this.dataSourcesq.data = [];
+            Swal.fire({
+              type: 'warning',
+              title: 'warning',
+              text: 'Data not found',
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 1500,
+              customClass: {
+                popup: 'alert-warp',
+                container: 'alert-container',
+              },
+            });
           }
         });
     }
@@ -344,8 +440,10 @@ export class LensMasterComponent implements OnInit {
 
   M_Brand;
   M_Description;
-  M_FrameModel;
   M_LensType;
+  M_Cyl;
+  M_Axis;
+  M_Add;
   M_Index;
   M_Price;
   M_Color;
@@ -356,6 +454,8 @@ export class LensMasterComponent implements OnInit {
   M_FrameStyle;
   M_FrameWidth;
   selectedarray = [];
+  @ViewChild('SellingPrice') SellingPrice;
+
 
   AddRows() {
     debugger;
@@ -428,12 +528,44 @@ export class LensMasterComponent implements OnInit {
     else {
     }
 
+    if (this.M_Cost == undefined) {
+      Swal.fire({
+        type: 'warning',
+        title: 'warning',
+        text: 'Enter Cost Price',
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1500,
+        customClass: {
+          popup: 'alert-warp',
+          container: 'alert-container',
+        },
+      });
+      return;
+    }
+    else if (this.M_Cost == "") {
+      Swal.fire({
+        type: 'warning',
+        title: 'warning',
+        text: 'Enter Cost Price',
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1500,
+        customClass: {
+          popup: 'alert-warp',
+          container: 'alert-container',
+        },
+      });
+      return;
+    }
+    else { }
+
 
     if (this.M_Price == undefined) {
       Swal.fire({
         type: 'warning',
         title: 'warning',
-        text: 'Enter price',
+        text: 'Enter Selling Price',
         position: 'top-end',
         showConfirmButton: false,
         timer: 1500,
@@ -448,7 +580,7 @@ export class LensMasterComponent implements OnInit {
       Swal.fire({
         type: 'warning',
         title: 'warning',
-        text: 'Enter price',
+        text: 'Enter Selling Price',
         position: 'top-end',
         showConfirmButton: false,
         timer: 1500,
@@ -461,12 +593,13 @@ export class LensMasterComponent implements OnInit {
     }
     else { }
 
-    if (this.M_SelectedType == "Frame") {
-      if (this.M_FrameModel == undefined) {
+
+    if (this.M_Cyl != undefined && this.M_Cyl != "") {
+      if (this.M_Axis == undefined || this.M_Axis == "") {
         Swal.fire({
           type: 'warning',
           title: 'warning',
-          text: 'Enter frameoption',
+          text: 'Enter Axis',
           position: 'top-end',
           showConfirmButton: false,
           timer: 1500,
@@ -476,32 +609,15 @@ export class LensMasterComponent implements OnInit {
           },
         });
         return;
-      }
-      else if (this.M_FrameModel == "") {
-        Swal.fire({
-          type: 'warning',
-          title: 'warning',
-          text: 'Enter frameoption',
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 1500,
-          customClass: {
-            popup: 'alert-warp',
-            container: 'alert-container',
-          },
-        });
-        return;
-      }
-      else {
       }
     }
 
-    if (this.M_SelectedType == "Lens") {
-      if (this.M_LensType == undefined) {
+    if (this.M_checked == true) {
+      if (this.M_GSTPER == undefined || this.M_GSTPER == "") {
         Swal.fire({
           type: 'warning',
           title: 'warning',
-          text: 'Enter lensoption',
+          text: 'Choose Tax',
           position: 'top-end',
           showConfirmButton: false,
           timer: 1500,
@@ -512,24 +628,10 @@ export class LensMasterComponent implements OnInit {
         });
         return;
       }
-      else if (this.M_LensType == "") {
-        Swal.fire({
-          type: 'warning',
-          title: 'warning',
-          text: 'Enter lensoption',
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 1500,
-          customClass: {
-            popup: 'alert-warp',
-            container: 'alert-container',
-          },
-        })
-        return;
-      }
-      else {
-      }
     }
+
+    
+
 
     var LTM = new LensTranModel();
 
@@ -540,12 +642,21 @@ export class LensMasterComponent implements OnInit {
       LTM.Index = this.M_Index.Value;
       LTM.Indexname = this.M_Index.Text;
     }
+    LTM.Type = this.M_SelectedType;
     LTM.Colour = this.M_Color;
     LTM.UOMID = this.M_UOM.Value;
     LTM.UOMname = this.M_UOM.Text;
     LTM.HSNNo = this.M_HSNNo;
     LTM.Size = this.M_Size;
     LTM.Prize = this.M_Price;
+    LTM.Costprice = this.M_Cost;
+    if (this.M_checked == true) {
+      LTM.Sptaxinclusive = this.M_checked;
+    }
+    else {
+      LTM.Sptaxinclusive = false;
+    }
+
     LTM.Model = this.M_Model;
     LTM.CESSAmount = this.M_CESSPER;
     LTM.ADDCESSAmount = this.M_ADDCESSPER;
@@ -572,6 +683,7 @@ export class LensMasterComponent implements OnInit {
         LTM.FrameStyleID = this.M_FrameStyle.Value;
       }
     }
+
     if (this.lensTID != undefined) {
       LTM.ID = this.lensTID;
       this.disupdate = false;
@@ -583,45 +695,126 @@ export class LensMasterComponent implements OnInit {
     LTM.AddtionalDescription = this.Addltax1;
     LTM.Description = this.M_Description;
 
-    if (this.M_SelectedType == "Frame") {
-      LTM.LensOption = this.M_FrameModel;
-    } else {
-      LTM.LensOption = this.M_LensType;
+    if (this.M_SelectedType == "Lens" || this.M_SelectedType == "Contactlens") {
+      LTM.Sph = this.M_LensType;
+      LTM.Cyl = this.M_Cyl;
+      LTM.Axis = this.M_Axis;
+      LTM.Add = this.M_Add;
     }
-    this.commonService.data.LensTranModel.unshift(LTM);
-    if (this.M_SelectedType == "Lens") {
-      this.dataSourcesq.data = this.commonService.data.LensTranModel;
+
+    if (parseInt(this.M_Cost) > parseInt(this.M_Price)) {
+
+      Swal.fire({
+        title: 'Selling price is less than Cost price?',
+        text: "Do you want continue",
+        type: 'warning',
+        showCancelButton: true,
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'No',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Yes',
+        allowOutsideClick: false,
+        reverseButtons: true,
+        focusCancel: true,
+      }).then((result) => {
+        if (result.value) {
+          debugger;
+          this.commonService.data.LensTranModel.unshift(LTM);
+          if (this.M_SelectedType == "Lens" || this.M_SelectedType == "Contactlens") {
+            this.dataSourcesq.data = this.commonService.data.LensTranModel;
+          }
+          else {
+            this.dataSourcesqq.data = this.commonService.data.LensTranModel;
+          }
+          this.M_Index = undefined;
+          this.M_Color = undefined;
+          this.M_Size = undefined;
+          this.M_Price = undefined;
+          this.M_Cost = undefined;
+          this.M_checked = false;
+          this.M_LensType = undefined;
+          this.M_Cyl = undefined;
+          this.M_Axis = undefined;
+          this.M_Add = undefined;
+          this.M_Model = undefined;
+          this.M_Brand = undefined;
+          this.M_HSNNo = undefined;
+          this.M_BGST = undefined;
+          this.M_CESSPER = undefined;
+          this.M_ADDCESSPER = undefined;
+          this.M_GSTPER = undefined;
+          this.M_Description = undefined;
+          this.Addltax = undefined;
+          this.Addltax1 = undefined;
+          this.lensTID = undefined;
+          if (this.M_SelectedType == "Frame") {
+            this.M_FrameShape = undefined;
+            this.M_FrameType = undefined;
+            this.M_FrameWidth = undefined;
+            this.M_FrameStyle = undefined;
+          }
+          this.selectdisable = true;
+          this.hiddenDeleted = false;
+        }
+        else {
+          debugger;
+          setTimeout(() => {
+            this.SellingPrice.nativeElement.focus();
+          }, 50)
+        }
+      })
     }
-    else {
-      this.dataSourcesqq.data = this.commonService.data.LensTranModel;
+
+
+
+    if (parseInt(this.M_Price) >= parseInt(this.M_Cost)) {
+      this.commonService.data.LensTranModel.unshift(LTM);
+      if (this.M_SelectedType == "Lens" || this.M_SelectedType == "Contactlens") {
+        this.dataSourcesq.data = this.commonService.data.LensTranModel;
+      }
+      else {
+        this.dataSourcesqq.data = this.commonService.data.LensTranModel;
+      }
     }
-    this.M_Index = undefined;
-    this.M_Color = undefined;
-    this.M_Size = undefined;
-    this.M_Price = undefined;
-    this.M_LensType = undefined;
-    this.M_FrameModel = undefined;
-    this.M_Model = undefined;
-    this.M_Brand = undefined;
-    this.M_HSNNo = undefined;
-    this.M_BGST = undefined;
-    this.M_CESSPER = undefined;
-    this.M_ADDCESSPER = undefined;
-    this.M_GSTPER = undefined;
-    this.M_Description = undefined;
-    this.Addltax = undefined;
-    this.Addltax1 = undefined;
-    this.lensTID = undefined;
-    if (this.M_SelectedType == "Frame") {
-      this.M_FrameShape = undefined;
-      this.M_FrameType = undefined;
-      this.M_FrameWidth = undefined;
-      this.M_FrameStyle = undefined;
+    if (parseInt(this.M_Price) >= parseInt(this.M_Cost)) {
+      this.M_Index = undefined;
+      this.M_Color = undefined;
+      this.M_Size = undefined;
+      this.M_Price = undefined;
+      this.M_Cost = undefined;
+      this.M_checked = false;
+      this.M_LensType = undefined;
+      this.M_Cyl = undefined;
+      this.M_Axis = undefined;
+      this.M_Add = undefined;
+      this.M_Model = undefined;
+      this.M_Brand = undefined;
+      this.M_HSNNo = undefined;
+      this.M_BGST = undefined;
+      this.M_CESSPER = undefined;
+      this.M_ADDCESSPER = undefined;
+      this.M_GSTPER = undefined;
+      this.M_Description = undefined;
+      this.Addltax = undefined;
+      this.Addltax1 = undefined;
+      this.lensTID = undefined;
+      if (this.M_SelectedType == "Frame") {
+        this.M_FrameShape = undefined;
+        this.M_FrameType = undefined;
+        this.M_FrameWidth = undefined;
+        this.M_FrameStyle = undefined;
+      }
+      this.selectdisable = true;
+      this.hiddenDeleted = false;
     }
-    this.selectdisable = true;
-    this.hiddenDeleted = false;
+
+
   }
-  remove(i, element) {
+
+
+
+
+  remove(i) {
     debugger;
     this.commonService.data.LensTranModel = this.selectedarray;
     Swal.fire({
@@ -677,7 +870,7 @@ export class LensMasterComponent implements OnInit {
 
 
   }
-  removeframe(i, element) {
+  removeframe(i) {
     debugger;
     this.commonService.data.LensTranModel = this.selectedarray;
     Swal.fire({
@@ -840,8 +1033,12 @@ export class LensMasterComponent implements OnInit {
           this.M_Color = undefined;
           this.M_Size = undefined;
           this.M_Price = undefined;
+          this.M_Cost = undefined;
+          this.M_checked = false;
           this.M_LensType = undefined;
-          this.M_FrameModel = undefined;
+          this.M_Cyl = undefined;
+          this.M_Axis = undefined;
+          this.M_Add = undefined;
           this.M_Model = undefined;
           this.M_Brand = undefined;
           this.M_UOM = undefined;
@@ -878,15 +1075,19 @@ export class LensMasterComponent implements OnInit {
       this.disupdate = true;
     }
 
-    if (this.M_SelectedType == "Frame") {
-      this.M_FrameModel = element.LensOption;
-    } else {
-      this.M_LensType = element.LensOption;
+    if (this.M_SelectedType == "Lens" || this.M_SelectedType == "Contactlens") {
+      this.M_LensType = element.Sph;
+      this.M_Cyl = element.Cyl;
+      this.M_Axis = element.Axis;
+      this.M_Add = element.Add;
+
     }
     this.M_Model = element.Model;
     this.M_Color = element.Colour;
     this.M_Size = element.Size;
     this.M_Price = element.Prize;
+    this.M_Cost = element.Costprice;
+    this.M_checked = element.Sptaxinclusive; 
     this.M_Description = element.Description;
     this.M_HSNNo = element.HSNNo;
     if (element.Brand != null) {
@@ -945,7 +1146,7 @@ export class LensMasterComponent implements OnInit {
     else {
       this.M_GSTPER = undefined;
     }
-    if (this.M_SelectedType == "Lens") {
+    if (this.M_SelectedType == "Lens" || this.M_SelectedType == "Contactlens") {
       this.dataSourcesq.data.splice(i, 1);
       this.dataSourcesq._updateChangeSubscription();
     }
@@ -995,8 +1196,6 @@ export class LensMasterComponent implements OnInit {
     else {
     }
 
-
-
     if (this.commonService.data.LensTranModel.length < 1) {
       Swal.fire({
         type: 'warning',
@@ -1012,6 +1211,11 @@ export class LensMasterComponent implements OnInit {
       });
       return;
     }
+
+    this.commonService.data.Lensmaster = new Lensmaster();
+    this.commonService.data.Lensmaster.LensType = this.M_SelectedType;
+    this.commonService.data.Lensmaster.CMPID = this.cmpid;
+
 
     console.log(this.commonService.data);
     this.commonService.postData('LensMaster/Updatelensmaster/' + this.LTD + '/' + this.docotorid, this.commonService.data)
@@ -1043,8 +1247,12 @@ export class LensMasterComponent implements OnInit {
           this.M_Color = undefined;
           this.M_Size = undefined;
           this.M_Price = undefined;
+          this.M_Cost = undefined;
+          this.M_checked = false;
           this.M_LensType = undefined;
-          this.M_FrameModel = undefined;
+          this.M_Cyl = undefined;
+          this.M_Axis = undefined;
+          this.M_Add = undefined;
           this.M_Model = undefined;
           this.Addltax = undefined;
           this.Addltax1 = undefined;
@@ -1101,8 +1309,12 @@ export class LensMasterComponent implements OnInit {
     this.M_Color = undefined;
     this.M_Size = undefined;
     this.M_Price = undefined;
+    this.M_Cost = undefined;
+    this.M_checked = false;
     this.M_LensType = undefined;
-    this.M_FrameModel = undefined;
+    this.M_Cyl = undefined;
+    this.M_Axis = undefined;
+    this.M_Add = undefined;
     this.M_Model = undefined;
     this.M_Brand = undefined;
     this.M_UOM = undefined;
@@ -1131,7 +1343,7 @@ export class LensMasterComponent implements OnInit {
   CancelClk() {
     debugger;
 
-    if (this.M_SelectedType != null || this.M_Description != null || this.M_Price != null || this.M_Index != null || this.M_Color != null) {
+    if (this.M_SelectedType != null || this.M_Description != null || this.M_Price != null || this.M_Index != null || this.M_Color != null || this.M_Cost != null) {
       this.backdrop = 'block';
       this.cancelblock = 'block';
     }
@@ -2389,8 +2601,12 @@ export class LensMasterComponent implements OnInit {
           this.M_Color = undefined;
           this.M_Size = undefined;
           this.M_Price = undefined;
+          this.M_Cost = undefined;
+          this.M_checked = false;
           this.M_LensType = undefined;
-          this.M_FrameModel = undefined;
+          this.M_Cyl = undefined;
+          this.M_Axis = undefined;
+          this.M_Add = undefined;
           this.M_Model = undefined;
           this.M_Brand = undefined;
           this.M_UOM = undefined;

@@ -603,6 +603,7 @@ export class OpticalOrderComponent implements OnInit {
     let lensTranID = element.LTID;
     this.commonService.getListOfData('OpticalOrder/GetOpticalDetails/' + lensTranID + '/' + parseInt(localStorage.getItem("CompanyID")))
       .subscribe(data => {
+        debugger
         //this.dataSource.data.splice(id, 1);
         this.dataSource.data.splice(this.Index, 1);
         this.dataSource._updateChangeSubscription();
@@ -789,7 +790,7 @@ export class OpticalOrderComponent implements OnInit {
     this.dataSource.filteredData[id][property] = result;
     this.dataSource._updateChangeSubscription();
   }
-  
+
   changeValueAmount(id, element, property: string) {
     element.Amount = element.Quantity * element.Prize;
   }
@@ -1450,8 +1451,7 @@ export class OpticalOrderComponent implements OnInit {
   backdrop;
   dataSourceUpdate
   OOID;
-  Clicksch()
-  {
+  Clicksch() {
     debugger;
     this.commonService.getListOfData('OpticalOrder/OpticalUpdateDetails/' + parseInt(localStorage.getItem("CompanyID")))
       .subscribe(data => {
@@ -2053,8 +2053,7 @@ export class OpticalOrderComponent implements OnInit {
   OLMhidden1: boolean = true;
   MasterName = "Payment";
   dataas;
-  Help()
-  {
+  Help() {
     debugger;
     this.dataSourceinvdep.filter = null;
     this.OLMhidden1 = false;

@@ -228,7 +228,7 @@
       <div class="col-sm-4">
         <mat-label><strong>Age&nbsp; /&nbsp; Gender&nbsp;</strong></mat-label>
         <mat-label><strong>:&nbsp;</strong></mat-label>
-        <mat-label>{{patientagee}}&nbsp;/&nbsp;{{patientgenderr}}</mat-label>
+        <mat-label *ngIf="patientagee != '' && patientgenderr != null">{{patientagee}}&nbsp;/&nbsp;{{patientgenderr}}</mat-label>
       </div>
 
     </div>
@@ -251,25 +251,13 @@
     <table class="table table-bordered" border="1" style="white-space: nowrap;border-collapse:collapse;width:100%">
       <thead>
         <tr>
-          <th rowspan="2" colspan="3">OD withRX</th>
-          <th>DV</th>
-          <th>NV</th>
-
-          <th rowspan="2" colspan="2">OS withRX</th>
-          <th>DV</th>
-          <th>NV</th>
-        </tr>
-        <tr>
-
-          <td style="text-align:center">{{vaod}}</td>
-          <td style="text-align:center"> {{vaodd}}</td>
-          <td style="text-align:center"> {{vaos}}</td>
-          <td style="text-align:center"> {{vaoss}}</td>
+          <th rowspan="2" colspan="4" style="text-align:center">OD withRX</th>
+          <th rowspan="2" colspan="4" style="text-align:center">OS withRX</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <th rowspan="2">DV</th>
+         
           <th>SPH</th>
           <th>CYL</th>
           <th>AXIS</th>
@@ -280,7 +268,7 @@
           <th>V/A</th>
         </tr>
         <tr>
-          <td scope="row" style="text-align:center">{{sphod}}</td>
+          <td style="text-align:center">{{sphod}}</td>
           <td style="text-align:center"> {{cylod}}</td>
           <td style="text-align:center"> {{axisod}}</td>
           <td style="text-align:center"> {{vaod}}</td>
@@ -290,7 +278,7 @@
           <td style="text-align:center"> {{vaos}}</td>
         </tr>
         <tr>
-          <th scope="row">NV</th>
+
           <td style="text-align:center"> {{sphodd}}</td>
           <td></td>
           <td></td>
@@ -312,36 +300,31 @@
 
         <div class="row">
           <div class="col-sm-12">
-            <div class="row">
               <mat-label><strong>Remarks&nbsp;: &nbsp;</strong></mat-label>
-            </div>
-            <div class="row">
               <mat-label>{{remarks}}</mat-label>
-            </div>
           </div>
         </div>
 
         <div class="row">
           <div class="col-sm-6">
             <div class="row">
-              <mat-label><strong>Binocular PD&nbsp;: &nbsp;</strong></mat-label>
+              <mat-label *ngIf="pd != ''"><strong>Binocular PD&nbsp;: &nbsp;</strong></mat-label>
             </div>
             <div class="row">
-              <mat-label>{{pd}}&nbsp;MM</mat-label>
+              <mat-label *ngIf="pd != ''">{{pd}}&nbsp;MM</mat-label>
             </div>
           </div>
 
           <div class="col-sm-6">
             <div class="row">
-              <mat-label><strong>Monocular PD&nbsp;: &nbsp;</strong></mat-label>
+              <mat-label *ngIf="PMPD != '' && PMPD1 != ''"><strong>Monocular PD&nbsp;: &nbsp;</strong></mat-label>
             </div>
             <div class="row">
-              <mat-label>OD&nbsp;{{PMPD}}&nbsp;MM&nbsp; OS&nbsp;{{PMPD1}}&nbsp;MM</mat-label>
+              <mat-label *ngIf="PMPD != '' && PMPD1 != ''">OD&nbsp;{{PMPD}}&nbsp;MM&nbsp; OS&nbsp;{{PMPD1}}&nbsp;MM</mat-label>
             </div>
           </div>
 
         </div>
-
 
       </div>
 
@@ -352,29 +335,17 @@
       <div class="col-sm-3">
 
         <div class="row">
-          <div class="col-sm-6">
-            <div class="row">
-              <mat-label>
-                <strong>Prescribed by</strong>
-              </mat-label>
-            </div>
-          </div>
-          <div class="col-sm-6">
+          <div class="col-sm-12">
+            <mat-label><strong>Prescribed by</strong></mat-label>
             <mat-label><b>: &nbsp;</b>{{doname}}</mat-label>
           </div>
         </div>
 
 
         <div class="row">
-          <div class="col-sm-6">
-            <div class="row">
-              <mat-label>
-                <strong>Registration No</strong>
-              </mat-label>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <mat-label><b>: &nbsp;</b>{{doregno}}</mat-label>
+          <div class="col-sm-12">
+            <mat-label><strong *ngIf="doregno != null">Registration No</strong></mat-label>
+            <mat-label *ngIf="doregno != null"><b>: &nbsp;</b>{{doregno}}</mat-label>
           </div>
         </div>
 
