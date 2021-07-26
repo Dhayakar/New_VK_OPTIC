@@ -471,11 +471,13 @@ export class OpticalOrderComponent implements OnInit {
   displayedColumnsReprint: string[] = ['BrandRP', 'TypeRP','LensPowerRP', 'UOMRP', 'QuantityRP', 'PriceRP', 'AmountRP', 'DiscountRP', 'DiscountAmountRP', 'GrossAmountRP', 'TaxDescriptionRP', 'GSTRP', 'GSTValue1RP', 'TotalAmountRP'];
 
   dataSourceReprint = new MatTableDataSource();
-  displayedColumnsprint: string[] = ['BrandP','TypeP','LensPowerP', 'UOMP', 'QuantityP', 'PriceP', 'AmountP', 'DiscountP', 'DiscountAmountP', 'GrossAmountP', 'TaxDescriptionP', 'GSTP', 'GSTValue1P', 'TotalAmountP'];
+
+  displayedColumnsprint: string[] = ['BrandP', 'TypeP', 'LensPowerP', 'UOMP', 'QuantityP', 'PriceP', 'AmountP', 'DiscountP', 'DiscountAmountP', 'GrossAmountP', 'TaxDescriptionP', 'GSTP', 'GSTValue1P', 'TotalAmountP'];
   dataSourceprint = new MatTableDataSource();
 
   //displayedColumns1 = ['Action', 'Brand', 'Model', 'LensOptions', 'Description', 'Index', 'Color', 'Size', 'Price']
-  displayedColumns1 = ['Action', 'Brand','Type', 'Description','LensPowers', 'Price']
+  displayedColumns1 = ['Action', 'Brand', 'Description', 'LensPowers', 'Price']
+
   dataSource1 = new MatTableDataSource();
 
 
@@ -622,7 +624,7 @@ export class OpticalOrderComponent implements OnInit {
           OPDetails.FrameWidthID = element.FrameWidthID;
           OPDetails.FrameStyleID = element.FrameStyleID;
           OPDetails.FrameShapeID = element.FrameShapeID;
- 
+
 
 
 
