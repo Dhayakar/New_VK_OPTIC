@@ -46,8 +46,9 @@ namespace WYNK.Data.Repository.Implementation
                     Countrysetup.Pediatric = con.age;
                     Countrysetup.UTCTime = con.roomtime;
                     Countrysetup.Language = con.Language;
-                    Countrysetup.Registrationfeeapplicable =Convert.ToBoolean(con.rfa);
+                    Countrysetup.Registrationfeeapplicable = Convert.ToBoolean(con.rfa);
                     Countrysetup.Insuranceapplicable = Convert.ToBoolean(con.cfa);
+                    Countrysetup.IsNotification = Convert.ToBoolean(con.nfa);
                     Countrysetup.GapInterval = con.GAPINTERVAL;
                     Countrysetup.FSFromTime = Convert.ToDateTime(con.FROM).TimeOfDay;
                     Countrysetup.FSToTime = Convert.ToDateTime(con.TO).TimeOfDay;
@@ -184,6 +185,7 @@ namespace WYNK.Data.Repository.Implementation
                                                  sstotime = cc.SSToTime,
                                                  time = cc.GapInterval,
                                                  cfa = cc.Insuranceapplicable,
+                                                 nfa = cc.IsNotification,
                                                  rfa = cc.Registrationfeeapplicable,
                                              }).ToList();
             foreach (var item in SetupMasterFulldetailsSss)
@@ -192,11 +194,12 @@ namespace WYNK.Data.Repository.Implementation
                 datas.age = item.age;
                 datas.cmp = CMPSContext.Company.Where(x => x.CmpID == item.cmp).Select(x => x.CompanyName).FirstOrDefault();
                 datas.country = CMPSContext.Country.Where(x => x.ID == Convert.ToInt32(item.country)).Select(x => x.CountryName).FirstOrDefault();
-                datas.cfa = Convert.ToString( item.cfa).ToLower();
+                datas.cfa = Convert.ToString(item.cfa).ToLower();
+                datas.nfa = Convert.ToString(item.nfa).ToLower();
                 datas.rfa = Convert.ToString(item.rfa).ToLower();
                 datas.Roomtime = item.roomtime;
                 datas.symbol = item.symbol;
-                datas.fsfrom =new DateTime(item.fsfromtime.Ticks).ToString("HH");
+                datas.fsfrom = new DateTime(item.fsfromtime.Ticks).ToString("HH");
                 datas.fsto = new DateTime(item.fstotime.Ticks).ToString("HH");
                 datas.ssfrom = new DateTime(item.ssfromtime.Ticks).ToString("HH");
                 datas.ssto = new DateTime(item.sstotime.Ticks).ToString("HH");
@@ -255,6 +258,7 @@ namespace WYNK.Data.Repository.Implementation
                 cmpid.Language = con.Language;
                 cmpid.Registrationfeeapplicable = Convert.ToBoolean(con.rfa);
                 cmpid.Insuranceapplicable = Convert.ToBoolean(con.cfa);
+                cmpid.IsNotification = Convert.ToBoolean(con.nfa);
                 cmpid.GapInterval = con.GAPINTERVAL;
                 cmpid.FSFromTime = Convert.ToDateTime(con.FROM).TimeOfDay;
                 cmpid.FSToTime = Convert.ToDateTime(con.TO).TimeOfDay;

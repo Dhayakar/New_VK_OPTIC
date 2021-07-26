@@ -1,0 +1,468 @@
+<div class="col-sm-12" style="border:2px solid gray;border-radius:6px;margin-top:1%;padding-bottom:10px">
+  <!--------------------------------------------------------------------------------------------------->
+  <form #NumberControlMasterForm="ngForm">
+    <input #VCID [(ngModel)]="M_VCID" name="VCID" matInput placeholder="" [hidden]="hiddenVCID">
+    <div *ngIf="hiddenNumberControl">
+      <div class="col-sm-12 mt10">
+        <div class="row">
+          <h5 class="col-sm-5 card-header bg-success text-white" align="center">Number Control</h5>
+        </div>
+      </div>
+      <div class="col-sm-12 mt10">
+        <button *ngIf="!hiddenGridHelp" [disabled]="Disableonsearch" (click)="Clicksch()" class="btn-text "><i class="fas fa-info-circle"> </i> Help</button>
+        <button class="btn-text grab f-r" (click)="Getformaccess()"><i class="fas fa-eye"></i>View Access</button>
+        <button *ngIf="!hiddenGridHelp" class="btn-text " (click)="preview()"><i class="fas fa-eye"></i>View Running Number</button>
+        <button *ngIf="!hiddenGridHelp" (click)="Clickschgrid()" class="btn-text "><i class="fas fa-info-circle"> </i> GridHelp</button>
+      </div>
+      <div class="col-sm-12 borderline">
+
+
+        <div class="col-sm-12" *ngIf="!hiddenGridHelp">
+
+          <div class="row">
+            <div class="col-sm-4">
+              <mat-form-field appearance="outline">
+                <mat-label>Select Description</mat-label>
+                <mat-select [disabled]="DisableNEffectiveFrom1" [(ngModel)]="M_Description" name="Description" required (ngModelChange)="SelectDescription()">
+                  <mat-option *ngFor="let Trantype of Trantypes" [value]="Trantype">{{Trantype.Text}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="col-sm-4">
+              <mat-form-field appearance="outline">
+                <mat-label>Autonumber</mat-label>
+                <mat-select [disabled]="DisableNEffectiveFrom1" required [(ngModel)]="M_Autonumber" name="Autonumber">
+                  <mat-option value="Yes">Yes</mat-option>
+                  <mat-option value="No">No</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <mat-form-field appearance="outline">
+                <mat-label>Prefix</mat-label>
+                <input [disabled]="DisableNEffectiveFrom1" maxlength="10" [(ngModel)]="M_Prefix" name="Prefix" matInput placeholder="">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+              <mat-form-field appearance="outline">
+                <mat-label>Running Number</mat-label>
+                <input maxlength="8" #RNO [disabled]="DisableNEffectiveFrom1" (keypress)="numberOnly($event)" required [(ngModel)]="M_RunningNumber" name="RunningNumber" matInput placeholder="">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-4">
+              <mat-form-field appearance="outline">
+                <mat-label>Suffix</mat-label>
+                <input [disabled]="DisableNEffectiveFrom1" maxlength="10" [(ngModel)]="M_Suffix" name="Suffix" matInput placeholder="">
+              </mat-form-field>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4" *ngIf="hiddenEffectiveFrom">
+              <mat-form-field appearance="outline">
+                <mat-label>Effective From</mat-label>
+                <input [disabled]="DisableNEffectiveFrom1" required matInput [(ngModel)]="M_EffectiveFrom" name="EffectiveFrom" [matDatepicker]="picker1" [min]="minDate2" placeholder="Choose a date">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-4" *ngIf="hiddenEffectivTo">
+              <mat-form-field appearance="outline">
+                <mat-label>Effective To</mat-label>
+                <input required matInput (dateChange)="EffectiveToEvent()" [disabled]="DisEffectiveTo" [(ngModel)]="M_EffectiveTo" name="EffectiveTo" [matDatepicker]="picker2" [min]="minDate2" [max]="maxDate2" placeholder="Choose a date">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-4" *ngIf="hiddenIsActive">
+              <mat-form-field appearance="outline">
+                <mat-label>IsActive</mat-label>
+                <mat-select required [(ngModel)]="M_IsActive" name="IsActive">
+                  <mat-option value="Yes">Yes</mat-option>
+                  <mat-option value="No">No</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12" *ngIf="hiddenGridHelp">
+          <h5 class="card-header bg-success text-white">
+            Number Control details
+            <button type="button" class="close" data-dismiss="modal" (click)="CloseGridHelp()">&times;</button>
+          </h5>
+          <div class="col-sm-12 row Management_dashboard_TableheightsinsidepopupNC" >
+
+            <table mat-table [dataSource]="dataSourcepay" class="custom-table withoutbackgroung search-table table-bordered">
+
+
+              <ng-container matColumnDef="Description">
+                <th mat-header-cell *matHeaderCellDef>Description</th>
+                <td mat-cell *matCellDef="let element">
+                  {{element.Description}}
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Autonumber">
+                <th mat-header-cell *matHeaderCellDef>Autonumber</th>
+                <td mat-cell *matCellDef="let element;let i = index">
+                  <mat-form-field appearance="outline">
+                    <mat-label></mat-label>
+                    <mat-select (selectionChange)="ChangeAutonumber(i,'EffectiveFrom',$event)" value="{{element.Autonumber}}">
+                      <mat-option>Select</mat-option>
+                      <mat-option value="Yes">Yes</mat-option>
+                      <mat-option value="No">No</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </td>
+
+              </ng-container>
+              <ng-container matColumnDef="Prefix">
+                <th mat-header-cell *matHeaderCellDef>Prefix</th>
+                <td mat-cell *matCellDef="let element;let i = index">
+                  <input (keyup)="ChangePrefix(i,'Prefix',$event)" matInput type="text" value="{{element.Prefix}}" class="form-control">
+                </td>
+
+              </ng-container>
+              <ng-container matColumnDef="RunningNumber">
+                <th mat-header-cell *matHeaderCellDef>Running Number</th>
+                <td mat-cell *matCellDef="let element;let i = index" contenteditable="true" (keyup)="ChangeRunningNumber(i,'RunningNumber',$event)">
+                  {{element.RunningNumber}}
+                </td>
+
+              </ng-container>
+              <ng-container matColumnDef="Suffix">
+                <th mat-header-cell *matHeaderCellDef>Suffix</th>
+                <td mat-cell *matCellDef="let element;let i = index">
+                  <input (keyup)="ChangeSuffix(i,'Suffix',$event)" matInput type="text" value="{{element.Suffix}}" class="form-control">
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="EffectiveFrom">
+                <th mat-header-cell *matHeaderCellDef>Effective From</th>
+                <td mat-cell *matCellDef="let element;let id = index">
+                  <input (change)="changeEffectiveFrom(id,'EffectiveFrom',$event)" matInput type="date" value="{{element.EffectiveFrom | date:'yyyy-MM-dd'}}" class="form-control">
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="IsActive">
+                <th mat-header-cell *matHeaderCellDef>IsActive</th>
+                <td mat-cell *matCellDef="let element;let i = index">
+                  <mat-form-field appearance="outline">
+                    <mat-label></mat-label>
+                    <mat-select (selectionChange)="ChangeIsActive(i,'EffectiveFrom',$event)" value="{{element.IsActive}}">
+                      <mat-option>Select</mat-option>
+                      <mat-option value="Yes">Yes</mat-option>
+                      <mat-option value="No">No</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumnspay;sticky: true"></tr>
+              <tr mat-row *matRowDef="let element;  let even = even; columns: displayedColumnspay"></tr>
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </div>
+      </div>
+    <!--////////////////////////Next From Date//////////////////////////////-->
+    <div *ngIf="!hiddenGridHelp">
+      <div *ngIf="hiddenNextFromDate">
+
+        <div class="col-sm-12 mt10">
+          <div class="row">
+            <h5 class="col-sm-5 card-header bg-success text-white" align="center">New Number Control Record </h5>
+          </div>
+        </div>
+
+        <div class="col-sm-12 borderline">
+
+          <div class="col-sm-12 mt10">
+            <div class="row">
+              <div class="col-sm-4">
+                <mat-form-field appearance="outline">
+                  <mat-label>Description</mat-label>
+                  <mat-select [disabled]="DisableNEffectiveFrom1" [(ngModel)]="M_Description1" name="Description1">
+                    <mat-option *ngFor="let Trantype of Trantypes" [value]="Trantype">{{Trantype.Text}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-sm-4">
+                <mat-form-field appearance="outline">
+                  <mat-label> Autonumber </mat-label>
+                  <mat-select required [(ngModel)]="M_Autonumber1" name="Autonumber1">
+                    <mat-option value="Yes">Yes</mat-option>
+                    <mat-option value="No">No</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <button class="btn-text" (click)="preview1()"><i class="fas fa-eye"></i>View Running Number</button>
+            </div>
+
+            <div class="col-sm-12">
+              <div class="row">
+
+                <div class="col-sm-4">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Prefix</mat-label>
+                    <input maxlength="10" [(ngModel)]="M_Prefix1" name="Prefix1" matInput placeholder="">
+                  </mat-form-field>
+                </div>
+
+                <div class="col-sm-4">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Running Number</mat-label>
+                    <input maxlength="10" (keypress)="numberOnly($event)" required [(ngModel)]="M_RunningNumber1" name="RunningNumber1" matInput placeholder="">
+                  </mat-form-field>
+                </div>
+
+                <div class="col-sm-4">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Suffix</mat-label>
+                    <input maxlength="10" [(ngModel)]="M_Suffix1" name="Suffix1" matInput placeholder="">
+                  </mat-form-field>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-12">
+              <div class="row">
+                <div class="col-sm-4">
+                  <mat-form-field appearance="outline">
+                    <mat-label><strong>Effective From</strong></mat-label>
+                    <strong>
+                      <input required matInput [(ngModel)]="M_EffectiveFrom1" name="EffectiveFrom1" [matDatepicker]="picker3" [min]="minDate3" [max]="maxDate3" placeholder="Choose a date">
+                    </strong>
+                    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                    <mat-datepicker #picker3></mat-datepicker>
+                  </mat-form-field>
+                </div>
+                <!--<div class="col-sm-4">
+              <mat-form-field appearance="outline">
+                <mat-label>
+                  IsActive
+                </mat-label>
+                <mat-select required [(ngModel)]="M_IsActive1" name="IsActive1">
+                  <mat-option value="Yes">Yes</mat-option>
+                  <mat-option value="No">No</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--////////////////////////Submit//////////////////////////////-->
+
+    <div class="col-sm-12 pb25 mt10">
+      <div class="content-right sub-section btn-wrap">
+
+        <button type="button" class="btn btn-warning-default" (click)="Cancel()"><strong>Cancel</strong></button>
+        <button *ngIf="hiddenUpdateclk" [disabled]="DisableUpdate" class="success btn btn-primary" (click)="Updateclk(NumberControlMasterForm,VCID.value,M_RunningNumber)">Submit</button>
+
+        <button *ngIf="hiddenSubmit" [disabled]="DisableonSubmit" class="success btn btn-primary" (click)="onSubmit(NumberControlMasterForm)" >Submit</button>
+
+
+        <button *ngIf="hiddenDelete" [disabled]="DisableDelete" class="danger btn-danger-default" (click)="Deleteclk()" mat-raised-button>Delete</button>
+
+
+      </div>
+    </div>
+
+
+    <!--<div class="col-sm-12" style="margin:12px">
+    <div class="col-sm-12 sub-section buttons" style="padding-bottom:20px">
+      <div class="row">
+        <div class="col-sm-5"></div>
+        <div class="col-sm-1" style="margin-left:-82px;" *ngIf="hiddenUpdateclk">
+          <button [disabled]="DisableUpdate" class="success" (click)="Updateclk(NumberControlMasterForm,VCID.value,M_RunningNumber)" mat-raised-button>Submit</button>
+        </div>
+
+        <div class="col-sm-1" style="margin-left:-82px;" *ngIf="hiddenSubmit">
+          <button [disabled]="DisableonSubmit" class="success" (click)="onSubmit(NumberControlMasterForm)" mat-raised-button>Submit</button>
+        </div>
+
+        <div class="col-sm-1">
+          <button type="button" class="btn btn-warning" style="font-size:15px;color:orange;background-color:white;" (click)="Cancel()"><strong>Cancel</strong></button>
+        </div>
+
+        <div class="col-sm-1" *ngIf="hiddenDelete">
+          <button [disabled]="DisableDelete" class="danger" (click)="Deleteclk()" mat-raised-button>Delete</button>
+        </div>
+        <div class="col-sm-5"></div>
+      </div>
+    </div>
+  </div>-->
+    <!----*Cancel Popup*---->
+    <div class="modal" role="dialog" [ngStyle]="{'display':cancelblock}">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Number Control</h4>
+            <button type="button" class="close" data-dismiss="modal" (click)="modalSuccessClosessss()">&times;</button>
+          </div>
+          <div class="modal-body">
+            <h5 class="modal-title center">Do You Want to Cancel ?</h5>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-danger" data-dismiss="modal" autofocus (click)="modalcloseOk()">No</button>
+            <button type="reset" class="btn btn-success" data-dismiss="modal" (click)="modalSuccesssOk()">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!----*Delete Popup*---->
+    <div class="modal" role="dialog" [ngStyle]="{'display':Deleteblock}">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" (click)="modalDeleteClose()">&times;</button>
+            <h5 class="modal-title center">Do You Want to Delete</h5>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-danger" data-dismiss="modal" autofocus (click)="modalDeleteNo()">No</button>
+            <button type="button" class="btn btn-success" data-dismiss="modal" (click)="modalDeleteOk(NumberControlMasterForm,VCID.value)">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!----*preview Popup*---->
+    <div class="modal" role="dialog" [ngStyle]="{'display':previewblock}">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" (click)="modalSuccessClosessss()">&times;</button>
+            <h5 class="modal-title center">Preview Details</h5>
+          </div>
+          <h5 align="center">
+            {{M_Prefix}}{{M_RunningNumber}}{{M_Suffix}}
+          </h5>
+          <div class="modal-footer">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!----*preview Popup*---->
+    <div class="modal" role="dialog" [ngStyle]="{'display':previewblock1}">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" (click)="modalSuccessClosessss1()">&times;</button>
+            <h5 class="modal-title center">Preview Details</h5>
+          </div>
+          <h5 align="center">
+            {{M_Prefix1}}{{M_RunningNumber1}}{{M_Suffix1}}
+          </h5>
+          <div class="modal-footer">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </form>
+  <!--------------------------------------------------------------------------------------------------->
+  <!----*Update Popup*---->
+  <!--<div class="modal" role="dialog" [ngStyle]="{'display':updatePopup}">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" (click)="modalSuccessClosessss()">&times;</button>
+          <h5>Number Control Already Exists</h5>
+        </div>
+        <div class="modal-body">
+          <h5 class="modal-title center">Do You Want to Update</h5>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger" data-dismiss="modal" autofocus (click)="modalcloseOk()">No</button>
+          <button type="reset" class="btn btn-success" data-dismiss="modal" (click)="modalSuccesssOk()">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>-->
+
+
+
+
+
+
+
+  <!--////////////////////////////////////////view asses//////////////////////////////////////////-->
+  <div class="modal cust-model" role="dialog" [ngStyle]="{'display':accesspopup}">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" (click)="modalcloseAccessOk()">&times;</button>
+          <h4 class="modal-title text-left">Number Control - View Access</h4>
+        </div>
+        <div class="modal-body">
+          <table align="center" class="table custom-table">
+            <thead>
+              <tr>
+                <th>Add</th>
+                <th>Edit</th>
+                <th>Delete</th>
+                <th>Export</th>
+                <th>Print</th>
+
+              </tr>
+            </thead>
+            <tbody>
+
+
+              <tr *ngFor="let x of accessdata; index as i">
+                <td>
+                  <mat-checkbox [(checked)]="x.Add" disabled></mat-checkbox>
+                </td>
+                <td>
+                  <mat-checkbox [(checked)]="x.Edit" disabled></mat-checkbox>
+                </td>
+                <td>
+                  <mat-checkbox [(checked)]="x.Delete" disabled></mat-checkbox>
+                </td>
+                <td>
+                  <mat-checkbox [(checked)]="x.Export" disabled></mat-checkbox>
+                </td>
+                <td>
+                  <mat-checkbox [(checked)]="x.Print" disabled></mat-checkbox>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-success" data-dismiss="modal" autofocus (click)="modalcloseAccessOk()">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+

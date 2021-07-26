@@ -29,6 +29,6 @@ namespace WYNK.Data.Model
         public TimeSpan SSToTime { get; set; }
         public bool? Registrationfeeapplicable { get; set; }
         public bool? Insuranceapplicable { get; set; }
-
+        public bool? IsNotification { get; set; }
     }
 }

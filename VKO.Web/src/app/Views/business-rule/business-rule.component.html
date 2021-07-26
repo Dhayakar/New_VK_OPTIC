@@ -1,0 +1,454 @@
+<div>
+  <!--karthik-->
+  <!--------------------------------------------------------------------------------------------------->
+  <form #BusinessRule="ngForm">
+    <div class="col-sm-12">
+      <h5 class="col-sm-5 card-header bg-success text-white">
+        Business Rule
+      </h5>
+    </div>
+
+    <div class="col-sm-12 borderline">
+
+      <div class="col-sm-12">
+        <div class="col-sm-10">
+        </div>
+        <div class="col-sm-2 mph-0 f-r pb20">
+          <button class="btn-text" (click)="Getformaccess()"><i class="fas fa-eye"></i> View Access</button>
+        </div>
+      </div>
+
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline">
+              <mat-label>WEF Date</mat-label>
+              <input [(ngModel)]="M_WEFDate" name="WEFDate" required [min]="MinWEFDate" matInput [matDatepicker]="picker" placeholder="WEF Date">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline">
+              <mat-label>Module Description</mat-label>
+              <mat-select required [(ngModel)]="M_ModuleDescription" [disabled]="disableMdate" name="ModuleDescription" (ngModelChange)="MDescription()" matInput placeholder="">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let Description of ModuleDescription" [value]="Description">{{Description.Text}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+          </div>
+
+
+
+          <div class="col-sm-3" *ngIf="hiddenMDescription">
+            <mat-form-field appearance="outline">
+              <mat-label>Business Rule Based On</mat-label>
+              <mat-select required [(ngModel)]="M_BRbasedon" name="BRbasedon" [disabled]="disableBRbasedon" (ngModelChange)="BRBASEDON()">
+                <mat-option>--Select--</mat-option>
+                <mat-option value="Visit">Visit</mat-option>
+                <!--<mat-option value="Days">Days</mat-option>-->
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <button [disabled]="disableSearch" (click)="Clicksch()" class="btn-text grab ">
+            <i class="fas fa-info-circle"> </i> Help
+          </button>
+        </div>
+      </div>
+
+      <div class="col-sm-12">
+        <div class="row">
+          <div class="col-sm-3" *ngIf="hiddenicdspy">
+            <mat-form-field appearance="outline">
+              <mat-label>ICD Speciality</mat-label>
+              <mat-select [(ngModel)]="M_ICDSpeciality" multiple name="ICDSpeciality" (ngModelChange)="IcdSpyDescription()" matInput placeholder="">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let ICDDescription of ICDSpeciality" [value]="ICDDescription">{{ICDDescription.Text}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="col-sm-12" *ngIf="Hiddentable">
+        <div class="col-sm-4">
+        </div>
+        <div class="col-sm-4">
+          <h5 class="modal-title">
+            <strong>{{moduleD}} Business Rule {{moduleDS}} Details</strong>
+          </h5>
+        </div>
+        <div class="col-sm-4">
+        </div>
+      </div>
+      <div class="col-sm-12" *ngIf="Hiddentable">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+
+          <table mat-table matSort [dataSource]="dataSourceBR" class="custom-table withoutbackgroung search-table table-bordered">
+
+            <ng-container matColumnDef="SLNO">
+              <th [ngStyle]="{'display': 'none'}" mat-header-cell *matHeaderCellDef>SL.NO</th>
+              <td mat-cell *matCellDef="let element; let i = index;"> {{i+1}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="SLNOsymbol">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> SL.NO </th>
+            </ng-container>
+
+            <ng-container matColumnDef="From">
+              <th mat-header-cell *matHeaderCellDef> From</th>
+              <td mat-cell *matCellDef="let element"> {{element.From}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="To">
+              <th mat-header-cell *matHeaderCellDef> To</th>
+              <td mat-cell *matCellDef="let element;let id = index;let disabledelete = last">
+                <input matInput value="{{element.TO}}" maxlength="3" type="text" class="form-control" (keypress)="RestrictNegativeValues($event)" (keyup)="changeValue(id,'TO',$event)" autocomplete="off" [disabled]="!disabledelete">
+              </td>
+
+
+
+            </ng-container>
+
+            <ng-container matColumnDef="Amount">
+              <th [ngStyle]="{'display': 'none'}" mat-header-cell *matHeaderCellDef>Amount</th>
+              <td mat-cell *matCellDef="let element;let id = index;let disabledelete = last">
+                <input matInput value="{{element.Amount}}" maxlength="10" type="text" class="form-control" (keypress)="RestrictNegativeValues($event)" (keyup)="changeValue(id,'Amount',$event)" autocomplete="off">
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Amountsymbol">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Amount </th>
+            </ng-container>
+
+            <ng-container matColumnDef="NODays">
+              <th [ngStyle]="{'display': 'none'}" mat-header-cell *matHeaderCellDef>No of valid Days</th>
+              <td mat-cell *matCellDef="let element;let id = index;let disabledelete = last">
+                <input matInput value="{{element.NODays}}" maxlength="3" type="text" class="form-control"  (keypress)="RestrictNegativeValues($event)" (keyup)="changeValue(id,'NODays',$event)" autocomplete="off">
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="NODayssymbol">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> No of valid Days </th>
+            </ng-container>
+
+            <ng-container matColumnDef="Delete">
+              <th [ngStyle]="{'display': 'none'}" mat-header-cell *matHeaderCellDef> Action  </th>
+              <td mat-cell *matCellDef="let element; let i = index;let disabledelete = last">
+                <button mat-icon-button [disabled]="!disabledelete" (click)="DeleteBR(element,i)">
+                  <mat-icon class="grab" data-toggle="tooltip" title="Delete">delete</mat-icon>
+                </button>
+                <button mat-icon-button [disabled]="!disabledelete" (click)="AddBR(element,i)">
+                  <mat-icon class="grab" data-toggle="tooltip" title="Add">add</mat-icon>
+                </button>
+                <!--<mat-icon [disabled]="!disabledelete" class="grab" (click)="AddBR(element,i)" data-toggle="tooltip" title="Add">add</mat-icon>-->
+                <!--<button [disabled]="!disabledelete" (click)="AddBR(element,i);" class="btnuserdefined btn-dark"><i matTooltip="Add" class="fa fa-plus"></i></button>-->
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Deletesymbol">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">Action</th>
+            </ng-container>
+
+            <ng-container matColumnDef="header-Noofvisits-group">
+              <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> No of visits </th>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="['SLNOsymbol','header-Noofvisits-group','Amountsymbol','NODayssymbol','Deletesymbol']"></tr>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsBR;sticky:true"></tr>
+            <tr mat-row *matRowDef="let element;let even = even; columns:displayedColumnsBR" [ngClass]="{gray: even}"></tr>
+          </table>
+
+        </div>
+        <div class="col-sm-2"></div>
+      </div>
+
+
+      <div class="col-sm-12 pb25">
+        <div class="content-right sub-section btn-wrap">
+          <button class="btn btn-warning-default" (click)="Cancel()"><strong>Cancel</strong></button>
+
+          <button [disabled]="disableSubmit" class="success btn btn-primary" (click)="Submit(BusinessRule)">Submit</button>
+
+        </div>
+      </div>
+    </div>
+
+
+
+    <!--Update pop_up-->
+
+    <div class="modal" role="dialog" [ngStyle]="{'display':Updateblock}">
+      <div class="modal-dialog ">
+        <div class="modal-content" style="margin-top:40%">
+          <div class="modal-header">
+            <button style="float:right" type="button" class="close" data-dismiss="modal" (click)="BRClose()">&times;</button>
+            <h4 class="modal-title">Business Rule</h4>
+          </div>
+          <div class="modal-body">
+            <h5 style="text-align:center;background-color:white;color:black">Business rule already exists <br /> want to add new business rule ?</h5>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-danger" data-dismiss="modal" autofocus (click)="BRNo()">No</button>
+            <button class="btn btn-success" data-dismiss="modal" (click)="BRYes()">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--///////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+
+
+
+
+    <div *ngIf="HiddenBRDetails" class="col-sm-11" style="background-color:white;border:2px solid #51b8f2;border-radius:8px;margin-top:30px;margin-left: 53px;">
+      <mat-header>
+        <mat-panel-title style="color:#51b8f2;font-size:15px;margin-top:10px;text-align:center">
+          Business Rule Details
+        </mat-panel-title>
+        <mat-icon (click)="closeBRDetails()" class="mat-iconss" style="background-color: white !important;float:right;" matTooltip="close">close</mat-icon>
+      </mat-header>
+      <div class="row" style="height:200px;overflow:auto;position:sticky">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+          <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4">
+              <h5 style="text-align:center"> Business Rule For {{MoDescription}}({{EFDate|date:'dd-MMM-y'}})</h5>
+            </div>
+            <div class="col-sm-2">
+              <button class="btn btn-primary" (click)="Editrule()" mat-raised-button>Edit</button>
+            </div>
+          </div>
+
+
+          <table #table align="center" class="table table-bordered">
+            <thead>
+              <tr>
+                <th class="col-sm-1" style="background-color:#F0F3F5;color:#8FA3B0;font-family: 'proxima-nova', sans-serif;font-size:14px">SL.No</th>
+                <th class="col-sm-1" style="background-color:#F0F3F5;color:#8FA3B0;font-family: 'proxima-nova', sans-serif;font-size:14px">No of visits from</th>
+                <th class="col-sm-1" style="background-color:#F0F3F5;color:#8FA3B0;font-family: 'proxima-nova', sans-serif;font-size:14px">No of visits to</th>
+                <th class="col-sm-1" style="background-color:#F0F3F5;color:#8FA3B0;font-family: 'proxima-nova', sans-serif;font-size:14px">Amount</th>
+                <th class="col-sm-1" style="background-color:#F0F3F5;color:#8FA3B0;font-family: 'proxima-nova', sans-serif;font-size:14px">No of valid Days</th>
+              </tr>
+            </thead>
+            <tbody id="myTable">
+              <tr *ngFor="let sp1 of commonService.data.BusinessRT1;index as i">
+                <td style="text-align:center">{{i+1}}</td>
+                <td style="text-align:center">{{sp1.From}}</td>
+                <td style="text-align:center">{{sp1.TO}}</td>
+                <td style="text-align:center">{{sp1.Amount}}</td>
+                <td style="text-align:center">{{sp1.NODays}}</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+        <div class="col-sm-2"></div>
+
+      </div>
+    </div>
+
+
+  </form>
+
+
+
+
+
+
+
+
+
+  <!--------------------------------------------------------------------------------------------------->
+</div>
+<!--cancelpop_up-->
+
+<div class="modal" role="dialog" [ngStyle]="{'display':cancelblock}">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content" style="width: 400px;">
+      <div class="modal-header">
+        <h4 class="modal-title">Business Rule</h4>
+        <button type="button" class="close" data-dismiss="modal" (click)="BRCancelClose()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h5 style="text-align:center;background-color:white;color:black">Do You Want to Cancel ?</h5>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" data-dismiss="modal" autofocus (click)="BRCancelCloseNo()">No</button>
+        <button type="reset" class="btn btn-success" data-dismiss="modal" (click)="BRCancelCloseYes()">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--edit rule pop_up-->
+<div class="modal" role="dialog" [ngStyle]="{'display':Editruleblock}">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content" style="width: 400px;">
+      <div class="modal-header">
+        <h4 class="modal-title">Business Rule</h4>
+        <button type="button" class="close" data-dismiss="modal" (click)="BREditClose()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h5 style="text-align:center;background-color:white;color:black">Do you want to edit Business Rule ?</h5>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" data-dismiss="modal" autofocus (click)="BREditCloseNo()">No</button>
+        <button type="reset" class="btn btn-success" data-dismiss="modal" (click)="BREditCloseYes()">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal cust-model" role="dialog" [ngStyle]="{'display':accesspopup}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="modalcloseAccessOk()">&times;</button>
+        <h4 class="modal-title text-left">Business Rule - View Access</h4>
+      </div>
+      <div class="modal-body">
+        <table align="center" class="table custom-table">
+          <thead>
+            <tr>
+              <th>Add</th>
+              <th>Edit</th>
+              <th>Delete</th>
+              <th>Export</th>
+              <th>Print</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let x of accessdata ; index as i">
+              <td>
+                <mat-checkbox [(checked)]="x.Add" disabled></mat-checkbox>
+              </td>
+              <td>
+                <mat-checkbox [(checked)]="x.Edit" disabled></mat-checkbox>
+              </td>
+              <td>
+                <mat-checkbox [(checked)]="x.Delete" disabled></mat-checkbox>
+              </td>
+              <td>
+                <mat-checkbox [(checked)]="x.Export" disabled></mat-checkbox>
+              </td>
+              <td>
+                <mat-checkbox [(checked)]="x.Print" disabled></mat-checkbox>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" data-dismiss="modal" autofocus (click)="modalcloseAccessOk()">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!--////////////////pop grid BusinessRule Details-up//////////-->
+<div class="modal" role="dialog" [ngStyle]="{'display':BusinessRuleDetailsPopUp}">
+  <div class="modal-dialog modal-lg" style="width:78%;padding-top:10px">
+    <div class="modal-content" style="height:450px">
+      <div class="modal-header">
+        <button class="close" (click)="BusinessRulePopUpClose()">&times;</button>
+        <h5 class="modal-title">
+          <strong>Business Rule Details</strong>
+        </h5>
+      </div>
+      <div class="modal-body">
+        <div class="col-sm-12">
+          <div class="col-sm-6">
+          </div>
+          <div class="col-sm-6" *ngIf="hiddenEffectivedatedetails">
+            <h5 class="modal-title">
+              <strong>{{moduleD}}{{moduleDS}} Details</strong>
+            </h5>
+          </div>
+        </div>
+
+        <div class="col-sm-12" style="height:350px;overflow:auto;position:sticky">
+          <div class="col-sm-6">
+            <div class="row">
+
+              <table mat-table [dataSource]="dataSourcebussR" class="custom-table withoutbackgroung search-table table-bordered">
+
+                <ng-container matColumnDef="ModuleDescription">
+                  <th mat-header-cell *matHeaderCellDef>Module Description</th>
+                  <td mat-cell *matCellDef="let element;let id = index;">
+                    {{element.ModuleDescription}}
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="SpecialityDescription">
+                  <th mat-header-cell *matHeaderCellDef>Speciality Description</th>
+                  <td mat-cell *matCellDef="let element;let id = index;">
+                    {{element.icdspy}}
+                  </td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="EffectiveDate">
+                  <th mat-header-cell *matHeaderCellDef>Effective Date</th>
+                  <td mat-cell *matCellDef="let element;let id = index;">
+                    {{element.EffectiveDate| date:'dd-MMM-y'}}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="Action">
+                  <th mat-header-cell *matHeaderCellDef>Action</th>
+                  <td mat-cell *matCellDef="let element;let id = index;">
+                    <button mat-icon-button (click)="bussinessdata(element)">
+                      <mat-icon data-toggle="tooltip" title="View" style="color:black;cursor: grab;">visibility</mat-icon>
+                    </button>
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumnbussR;sticky: true"></tr>
+                <tr mat-row *matRowDef="let element;  let even = even; columns: displayedColumnbussR"></tr>
+
+              </table>
+
+
+
+            </div>
+          </div>
+          <div class="col-sm-6" *ngIf="hiddenEffectivedatedetails">
+            <div class="row">
+              <table align="center" class="custom-table withoutbackgroung search-table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Effective Date</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let x of bussinessRdata1">
+                    <td>{{x.EffectiveDate| date:'dd-MMM-y'}}</td>
+                    <td>
+                      <button mat-button (click)="selectDrop(x)">
+                        <mat-icon data-toggle="tooltip" title="Select New Patient" class="grab">touch_app</mat-icon>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
