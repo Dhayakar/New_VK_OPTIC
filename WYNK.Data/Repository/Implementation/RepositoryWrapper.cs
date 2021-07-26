@@ -145,13 +145,25 @@ namespace WYNK.Data.Repository.Implementation
         public IMedicineMappingRepository _MedicineMapping;
         public IServiceMasterRepository _service;
         public IExpenseRepository _Expense;
-
+        public IOpticalDashboardRepository _OpticalDashboard;
 
         public RepositoryWrapper(WYNKContext context, CMPSContext Cmpscontext)
         {
             _Wynkcontext = context;
             _Cmpscontext = Cmpscontext;
             
+        }
+        public IOpticalDashboardRepository OpticalDashboard
+        {
+            get
+            {
+                if (_OpticalDashboard == null)
+                {
+                    _OpticalDashboard = new OpticalDashboardRepository(_Wynkcontext, _Cmpscontext);
+
+                }
+                return _OpticalDashboard;
+            }
         }
         public IExpenseRepository Expense
         {

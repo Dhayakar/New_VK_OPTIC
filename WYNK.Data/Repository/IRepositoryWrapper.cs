@@ -143,6 +143,7 @@ namespace WYNK.Data.Repository
         IMedicineMappingRepository MedicineMapping { get; }
         IServiceMasterRepository service { get; }
         IExpenseRepository Expense { get; }
+        IOpticalDashboardRepository OpticalDashboard { get; }
     }
 
 }

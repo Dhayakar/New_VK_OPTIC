@@ -28,6 +28,11 @@ const appRoutes: Routes = [
     path: 'ExpenseModule',
     loadChildren: './Expense.module#ExpenseLazyModule'
   },
+  {
+    path: 'Managementlazy',
+    loadChildren: './Management.module#ManagementLazyModule'
+  },
+
 ]
 
 @NgModule({
