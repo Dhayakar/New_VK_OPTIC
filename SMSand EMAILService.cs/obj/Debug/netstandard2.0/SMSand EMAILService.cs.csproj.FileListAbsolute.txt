@@ -61,6 +61,7 @@ Q:\Backup\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand 
 Q:\Backup\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.csproj.CoreCompileInputs.cache
 Q:\Backup\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.dll
 Q:\Backup\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
+<<<<<<< HEAD
 E:\Git_desktop\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.deps.json
 E:\Git_desktop\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.dll
 E:\Git_desktop\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
@@ -70,3 +71,13 @@ E:\Git_desktop\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SM
 E:\Git_desktop\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.csproj.CoreCompileInputs.cache
 E:\Git_desktop\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.dll
 E:\Git_desktop\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
+=======
+F:\VK_Optics\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.deps.json
+F:\VK_Optics\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.dll
+F:\VK_Optics\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
+F:\VK_Optics\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.csprojAssemblyReference.cache
+F:\VK_Optics\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.AssemblyInfoInputs.cache
+F:\VK_Optics\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.AssemblyInfo.cs
+F:\VK_Optics\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.dll
+F:\VK_Optics\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
+>>>>>>> a82c466e29b651fc77ee6b9ac3499f2eba166ca1

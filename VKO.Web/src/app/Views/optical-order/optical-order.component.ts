@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatTableDataSource, DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material';
 import { FormControl, NgForm } from '@angular/forms';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
@@ -45,6 +45,8 @@ export const MY_FORMATS = {
 export class OpticalOrderComponent implements OnInit {
 
   @ViewChild('OpticalOrder') Form: NgForm
+  @ViewChild('Qtyfocus') Qtyfocus: QueryList<ElementRef>;
+  @ViewChild('Qtyfocus') Qtyfocuss;
   maxToDate = new Date();
   date = new FormControl(new Date());
   serializedDate = new FormControl((new Date()).toISOString());
@@ -178,6 +180,7 @@ export class OpticalOrderComponent implements OnInit {
   hiddenSubmit = true;
   OpticaltrnID;
   cancelblock;
+  DisableAddpaymentmode = true;
 
 
   public person =
@@ -208,7 +211,22 @@ export class OpticalOrderComponent implements OnInit {
   CompanyID;
   docotorid;
   Tc;
+
+  //ngAfterViewInit(i) {
+  //  debugger;
+  //  setTimeout(() => {
+  //    this.Qtyfocus.toArray()[i].nativeElement.focus();
+  //  }, 50);
+
+  //}
+  MinDateD;
+  checkedItemDetails = true;
   ngOnInit() {
+
+    //this.MaxDateD = this.date.value;
+    let newDate2 = new Date(this.date.value);
+    newDate2.setMonth(newDate2.getMonth() - 3);
+    this.MinDateD = newDate2;
 
     this.commonService.data = new OpticalOrderView();
     this.CompanyID = localStorage.getItem("CompanyID");
@@ -450,16 +468,16 @@ export class OpticalOrderComponent implements OnInit {
   //dataSource = new MatTableDataSource();
   displayedColumns: string[] = ['Brand', 'Type', 'LensPower', 'UOM', 'Quantity', 'Price', 'Amount', 'Discount', 'DiscountAmount', 'GrossAmount', 'TaxDescription', 'GST', 'GSTValue1', 'TotalAmount', 'Delete',];
   dataSource = new MatTableDataSource();
-
-  displayedColumnsReprint: string[] = ['TypeRP', 'BrandRP', 'ModelRP', 'LensNameRP', 'IndexRP', 'ColorRP', 'UOMRP', 'QuantityRP', 'PriceRP', 'AmountRP', 'DiscountRP', 'DiscountAmountRP', 'GrossAmountRP', 'TaxDescriptionRP', 'GSTRP', 'GSTValue1RP', 'TotalAmountRP'];
-
+  displayedColumnsReprint: string[] = ['BrandRP', 'TypeRP','LensPowerRP', 'UOMRP', 'QuantityRP', 'PriceRP', 'AmountRP', 'DiscountRP', 'DiscountAmountRP', 'GrossAmountRP', 'TaxDescriptionRP', 'GSTRP', 'GSTValue1RP', 'TotalAmountRP'];
 
   dataSourceReprint = new MatTableDataSource();
+
   displayedColumnsprint: string[] = ['BrandP', 'TypeP', 'LensPowerP', 'UOMP', 'QuantityP', 'PriceP', 'AmountP', 'DiscountP', 'DiscountAmountP', 'GrossAmountP', 'TaxDescriptionP', 'GSTP', 'GSTValue1P', 'TotalAmountP'];
   dataSourceprint = new MatTableDataSource();
 
   //displayedColumns1 = ['Action', 'Brand', 'Model', 'LensOptions', 'Description', 'Index', 'Color', 'Size', 'Price']
   displayedColumns1 = ['Action', 'Brand', 'Description', 'LensPowers', 'Price']
+
   dataSource1 = new MatTableDataSource();
 
 
@@ -482,13 +500,16 @@ export class OpticalOrderComponent implements OnInit {
     this.commonService.getListOfData('OpticalOrder/GetlocationDetails/' + this.M_DCity + '/')
       .subscribe((data: any) => {
         debugger;
-        this.M_DState = data.ParentDescriptionstate;
+        this.M_DState = data.ParentDescriptionstate
         this.M_DCountry = data.ParentDescriptioncountry;
+        this.DStateCountry = this.M_DState + " " + "/" + " " + this.M_DCountry;
       });
     this.commonService.getListOfData('Common/Getlocationvalues/' + this.M_DCity).subscribe(data => {
       debugger;
       this.DLocationname = data;
     });
+
+
   }
 
 
@@ -543,8 +564,44 @@ export class OpticalOrderComponent implements OnInit {
 
   //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   //lensView(event, id) {
+
+  beforeEdit(i) {
+    debugger;
+    setTimeout(() => {
+      this.Qtyfocus.toArray()[i].nativeElement.focus();
+    });
+  }
+
   selecttype(element) {
     debugger;
+
+    this.beforeEdit(this.Index);
+
+    var arraydata = this.commonService.data.OPticalDetails.filter(t => t.LTID == element.LTID).length;
+    if (arraydata == 1) {
+
+      Swal.fire({
+        type: 'warning',
+        title: 'warning',
+        text: 'Brand already exists',
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1500,
+        customClass: {
+          popup: 'alert-warp',
+          container: 'alert-container',
+        },
+      });
+      this.dataSource.data.splice(this.Index, 1);
+      this.dataSource._updateChangeSubscription();
+      this.FrameModel = 'none';
+      this.backdrop = 'none';
+      this.DisableAddoptical = false;
+      return
+    }
+
+
+
     let lensTranID = element.LTID;
     this.commonService.getListOfData('OpticalOrder/GetOpticalDetails/' + lensTranID + '/' + parseInt(localStorage.getItem("CompanyID")))
       .subscribe(data => {
@@ -616,14 +673,19 @@ export class OpticalOrderComponent implements OnInit {
           this.commonService.data.OPticalDetails.unshift(OPDetails);// = this.OpticalOrder;
           this.dataSource.data = this.commonService.data.OPticalDetails;
           this.dataSource._updateChangeSubscription();
+
+
+         
+
+
           this.FrameModel = 'none';
           this.backdrop = 'none';
         }
-
         this.commonService.data.OPticalOrderdetails = [];
+        
       });
     this.DisableAddoptical = false;
-
+    
   }
 
   //Add table rows
@@ -862,10 +924,11 @@ export class OpticalOrderComponent implements OnInit {
       type: 'warning',
       showCancelButton: true,
       cancelButtonColor: '#d33',
-      cancelButtonText: 'No, cancel!',
+      cancelButtonText: 'No',
       confirmButtonColor: '#3085d6',
-      confirmButtonText: 'Yes, delete it!',
-      reverseButtons: true
+      confirmButtonText: 'Yes',
+      reverseButtons: true,
+         focusCancel: true,
     }).then((result) => {
       if (result.value) {
         if (i !== -1) {
@@ -877,12 +940,18 @@ export class OpticalOrderComponent implements OnInit {
               if (data.Success == true) {
                 this.dataSource.data.splice(i, 1);
                 this.dataSource._updateChangeSubscription();
-                Swal.fire(
-                  'Deleted!',
-                  'Deleted Successfully.',
-                  'success'
-                )
-
+                Swal.fire({
+                  type: 'success',
+                  title: 'success',
+                  text: 'Deleted Successfully',
+                  position: 'top-end',
+                  showConfirmButton: false,
+                  timer: 1500,
+                  customClass: {
+                    popup: 'alert-warp',
+                    container: 'alert-container'
+                  },
+                });
               }
               else {
                 Swal.fire({
@@ -984,6 +1053,24 @@ export class OpticalOrderComponent implements OnInit {
             container: 'alert-container'
           },
         });
+        return;
+      }
+      if (this.commonService.data.paymenttran.some(t => t.PaymentMode == "")) {
+        Swal.fire({
+
+
+          type: 'warning',
+          title: 'warning',
+          text: 'Please check the Payment Mode',
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 1500,
+          customClass: {
+            popup: 'alert-warp',
+            container: 'alert-container'
+          },
+
+        })
         return;
       }
       if (this.commonService.data.paymenttran.length < 1) {
@@ -1153,12 +1240,21 @@ export class OpticalOrderComponent implements OnInit {
         });
     }
   }
-
-
+  checkedPayment = false;
+  PaymentTab()
+  {
+    debugger;
+    this.checkedPayment = false;
+    this.checkedItemDetails = true ;
+  }
 
   OpticalOrderPClose() {
     this.backdrop = 'none';
     this.OpticalOrderpaymentA = 'none';
+
+    this.checkedPayment = true;
+    this.checkedItemDetails = false;
+
   }
   OpticalOrderPYes(form: NgForm) {
     try {
@@ -1748,6 +1844,7 @@ export class OpticalOrderComponent implements OnInit {
         debugger
         this.dataSource1.data = data.OfferDetails;
         this.dataSource1._updateChangeSubscription();
+      
       }
       else {
         Swal.fire({
@@ -1832,15 +1929,17 @@ export class OpticalOrderComponent implements OnInit {
       return
     }
 
-
-
+    if (this.M_AdvanceAmount == 0 || this.M_AdvanceAmount == null) {
+      this.DisableAddpaymentmode = true;
+    }
+    else { this.DisableAddpaymentmode = false; }
     if (this.M_AdvanceAmount > this.GetTotalAmount1 - this.Totalpaidadv) {
       event.target.value = 0;
       //this.M_AdvanceAmount = 0;
       Swal.fire({
         type: 'warning',
         title: 'warning',
-        text: 'Cannot Enter more than Product Value',
+        text: "Can't be more than Product Value",
         position: 'top-end',
         showConfirmButton: false,
         timer: 1500,
@@ -1851,7 +1950,7 @@ export class OpticalOrderComponent implements OnInit {
       });
       return
     }
-
+    
   }
 
 
@@ -2220,7 +2319,7 @@ export class OpticalOrderComponent implements OnInit {
       paydetails.BankBranch = "";
       paydetails.Expirydate = null;
       paydetails.Amount = this.M_AdvanceAmount;
-      this.commonService.data.paymenttran.push(paydetails);
+      this.commonService.data.paymenttran.unshift(paydetails);
       this.dataSource3.data = this.commonService.data.paymenttran;
       this.dataSource3._updateChangeSubscription();
       return;
@@ -2265,7 +2364,7 @@ export class OpticalOrderComponent implements OnInit {
 
       for (var j = 0; j < paydel.length; j++) {
         if (paydel[j].PaymentMode === 'Cheque' || paydel[j].PaymentMode === 'Demand Draft') {
-          this.paydel1.push(paydel[j]);
+          this.paydel1.unshift(paydel[j]);
         }
       }
 
@@ -2294,7 +2393,7 @@ export class OpticalOrderComponent implements OnInit {
 
       for (var j = 0; j < paydel.length; j++) {
         if (paydel[j].PaymentMode === 'Debit card' || paydel[j].PaymentMode === 'Credit Card') {
-          this.paydel2.push(paydel[j]);
+          this.paydel2.unshift(paydel[j]);
         }
       }
 
@@ -2331,7 +2430,7 @@ export class OpticalOrderComponent implements OnInit {
       paydetails.BankBranch = "";
       paydetails.Expirydate = null;
       paydetails.Amount = this.M_AdvanceAmount - this.PTotalAmount;
-      this.commonService.data.paymenttran.push(paydetails);
+      this.commonService.data.paymenttran.unshift(paydetails);
       this.dataSource3.data = this.commonService.data.paymenttran;
       this.dataSource3._updateChangeSubscription();
       this.PTotalAmount += paydetails.Amount;

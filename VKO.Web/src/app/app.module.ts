@@ -75,7 +75,8 @@ import { LoginComponent } from './Views/login/login.component';
 import { AccessprivilegesComponent } from './Views/accessprivileges/accessprivileges.component';
 import { MaterialreturntovendorComponent } from './Views/materialreturntovendor/materialreturntovendor.component';
 import { DashboardComponent } from './Views/dashboard/dashboard.component';
-
+import { ToastrModule } from 'ngx-toastr';
+import { takeLast } from 'rxjs-compat/operator/takeLast';
 
 const shortcutConfig: NgShortcutConfig[] = [
   {
@@ -96,6 +97,15 @@ const shortcutConfig: NgShortcutConfig[] = [
     SearchComponent,
   ],
   imports: [
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: false,
+      timeOut: 10000,
+      newestOnTop: true,
+      autoDismiss: false,
+      progressBar: false,
+      closeButton: true,
+    }),
     NgShortcutModule.forRoot(shortcutConfig),
     NgxPaginationModule,
     SelectAutocompleteModule,

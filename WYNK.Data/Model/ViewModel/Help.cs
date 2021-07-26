@@ -581,27 +581,23 @@ namespace WYNK.Data.Model.ViewModel
         public decimal Price { get; set; }
         public decimal ActualPrice { get; set; }
         public string Model { get; set; }
-
         public decimal? GST { get; set; }
         public decimal? CGST { get; set; }
         public decimal? SGST { get; set; }
+        public decimal? IGST { get; set; }
         public decimal? CESS { get; set; }
         public decimal? AddCess { get; set; }
-
         public string GSTDesc { get; set; }
         public string CESSDesc { get; set; }
         public string AddCessDesc { get; set; }
         public int? TaxIDD { get; set; }
         public string UOM { get; set; }
         public int? uomid { get; set; }
-
-        
         public string HSNNo { get; set; }
         public string Sph { get; set; }
         public string Cyl { get; set; }
         public string Axis { get; set; }
         public string Add { get; set; }
- 
         public string FrameShapeID { get; set; }
         public string FrameStyleID { get; set; }
         public string FrameTypeID { get; set; }
@@ -643,7 +639,6 @@ namespace WYNK.Data.Model.ViewModel
         public int? UpdatedBy { get; set; }
         public bool IsActive { get; set; }
         public string icdspy { get; set; }
-        
         public DateTime? EffectiveDate { get; set; }
         public string ModuleDescription { get; set; }
         public DateTime? DrugID { get; set; }
@@ -662,7 +657,6 @@ namespace WYNK.Data.Model.ViewModel
         public bool IsActive { get; set; }
         public DateTime? EffectiveDate { get; set; }
         public DateTime CreatedUTC { get; set; }
-        
         public string ModuleDescription { get; set; }
         public DateTime? DrugID { get; set; }
         public int ModuleID { get; set; }
@@ -675,7 +669,6 @@ namespace WYNK.Data.Model.ViewModel
         public string Description { get; set; }
         public int? DrugFormID { get; set; }
         public Boolean IsStepDown { get; set; }
-
         public string DrugFormName { get; set; }
         public string SideEffects { get; set; }
         public string Precautions { get; set; }

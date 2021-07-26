@@ -1,14 +1,20 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "E:\\Git_desktop\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj": {}
+=======
+
+    "D:\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj": {}
+>>>>>>> a82c466e29b651fc77ee6b9ac3499f2eba166ca1
   },
   "projects": {
-    "E:\\Git_desktop\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj": {
+    "D:\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Git_desktop\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj",
+        "projectUniqueName": "D:\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj",
         "projectName": "SMSand EMAILService.cs",
+<<<<<<< HEAD
         "projectPath": "E:\\Git_desktop\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
         "outputPath": "E:\\Git_desktop\\VK_Optic_Point\\SMSand EMAILService.cs\\obj\\",
@@ -164,11 +170,44 @@
             "net48"
           ],
           "assetTargetFallback": true,
+=======
+        "projectPath": "D:\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj",
+        "packagesPath": "C:\\Users\\SYSTEM1\\.nuget\\packages\\",
+        "outputPath": "D:\\VK_Optic_Point\\SMSand EMAILService.cs\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\SYSTEM1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+
+
+  },
+  
+  "projects": {
+
+ "D:\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj",
+        "projectName": "WYNK.Data",
+        "projectPath": "D:\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj",
+        "packagesPath": "C:\\Users\\SYSTEM1\\.nuget\\packages\\",
+        "outputPath": "D:\\VK_Optic_Point\\WYNK.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\SYSTEM1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+
+>>>>>>> a82c466e29b651fc77ee6b9ac3499f2eba166ca1
           "warn": true,
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
         }
       }
     },
+<<<<<<< HEAD
     "E:\\Git_desktop\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -319,3 +358,7 @@
     }
   }
 }
+=======
+
+  },
+>>>>>>> a82c466e29b651fc77ee6b9ac3499f2eba166ca1

@@ -10,7 +10,7 @@ namespace WYNK.Data.Repository
     public interface IInvestigationRepository : IRepositoryBase<InvestigationImage>
     {
 
-        dynamic UpdateInvestigation(InvestigationImage Investigation, string UIN, int ipid);
+        dynamic UpdateInvestigation(InvestigationImage Investigation, string UIN, string ipid);
         dynamic UpdateInv(InvestigationImage Investigation, string UIN, int IID);//UpdateInv
         bool uploadImag(IFormFile file, string desc, string uin, string id);
         dynamic Getimage(string uin);//Getimage
@@ -19,5 +19,6 @@ namespace WYNK.Data.Repository
         InvestigationImage GetPatDetails(string UIN, int cmpid, string GMT);
         InvestigationImage GetInvpresTranDetails(string ID, int NO);
         InvestigationImage GetUINDetails(int cid);//Getinvestigationvalues
+        dynamic Getnotificationalerts(int Docid, int cmpid);
     }
 }

@@ -31,7 +31,8 @@
               "src/styles.less",
               "node_modules/flag-icon-css/css/flag-icon.min.css",
               "node_modules/devextreme/dist/css/dx.common.css",
-              "node_modules/devextreme/dist/css/dx.light.css"
+              "node_modules/devextreme/dist/css/dx.light.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [],
             "es5BrowserSupport": true

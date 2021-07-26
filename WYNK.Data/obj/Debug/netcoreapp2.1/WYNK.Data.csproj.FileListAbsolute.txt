@@ -96,6 +96,7 @@ Q:\Backup\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.csproj.Core
 Q:\Backup\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.csproj.CopyComplete
 Q:\Backup\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.dll
 Q:\Backup\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.pdb
+<<<<<<< HEAD
 E:\Git_desktop\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Data.deps.json
 E:\Git_desktop\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Data.dll
 E:\Git_desktop\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Data.pdb
@@ -110,3 +111,18 @@ E:\Git_desktop\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.csproj
 E:\Git_desktop\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.csproj.CopyComplete
 E:\Git_desktop\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.dll
 E:\Git_desktop\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.pdb
+=======
+F:\VK_Optics\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Data.deps.json
+F:\VK_Optics\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Data.dll
+F:\VK_Optics\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Data.pdb
+F:\VK_Optics\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\SMSand EMAILService.cs.dll
+F:\VK_Optics\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Helpers.dll
+F:\VK_Optics\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\SMSand EMAILService.cs.pdb
+F:\VK_Optics\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Helpers.pdb
+F:\VK_Optics\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.csprojAssemblyReference.cache
+F:\VK_Optics\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.AssemblyInfoInputs.cache
+F:\VK_Optics\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.AssemblyInfo.cs
+F:\VK_Optics\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.csproj.CopyComplete
+F:\VK_Optics\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.dll
+F:\VK_Optics\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.pdb
+>>>>>>> a82c466e29b651fc77ee6b9ac3499f2eba166ca1

@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { SearchComponent } from '../search/search.component';
 import { CommonService } from 'src/app/shared/common.service';
-import { CustomerOrderViewModel, CustomerItemOrder, OnePlusOfferDetails } from 'src/app/Models/ViewModels/CustomerOrderViewModel';
+import { CustomerOrderViewModel, CustomerItemOrder, OnePlusOfferDetails, OPTICALPRESCRIPTION1 } from 'src/app/Models/ViewModels/CustomerOrderViewModel';
 import Swal from 'sweetalert2';
 import { toNumber } from '@amcharts/amcharts4/.internal/core/utils/Type';
 import { Payment_Master } from 'src/app/Models/PaymentWebModel ';
@@ -119,7 +119,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
   NoPayment: boolean = false;
   hiddenuploadedImage: boolean = false;
   uploadedImages = [];
-  PrescriptionColumns: string[] = ['UIN', 'PrescriptionDate', 'CustomerName', 'Doctorname']
+  PrescriptionColumns: string[] = ['PrescriptionDate', 'CustomerName', 'MobileNo']
   PrescriptionSource = new MatTableDataSource();
   isDisabled = true;
 
@@ -460,99 +460,9 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
         debugger;
         let item = result.data;
         this.M_CustomerID = item.ID
-
-        this.commonService.getListOfData('CustomerOrder/GetOpticalPrescription/' + this.M_CustomerID + '/' + parseInt(localStorage.getItem('CompanyID')))
-          .subscribe(data =>
-          {
-            if (data.opticprescription1.length > 0)
-            {
-
-           
-
-              this.opticalprescription = [];
-              var final = new FINALPRESCRIPTION();
-              final.Description = 'Final Prescription';
-              final.Ocular = 'OD';
-              final.DistSph = '';
-              final.NearCyl = '';
-              final.PinAxis = '';
-              final.Add = '';
-              final.DistSphNVOD = '';
-              final.AddNVOD = '';
-              final.OcularOS = 'OS';
-              final.DistSphOS = '';
-              final.NearCylOS = '';
-              final.PinAxisOS = '';
-              final.AddOS = '';
-              final.DistSphNVOS = '';
-              final.AddNVOS = '';
-              final.Remarks = '';
-              final.CreatedBy = Number(localStorage.getItem('userroleID'));
-              final.PD = '',
-                final.MPDOD = '',
-                final.MPDOS = '',
-                final.OD = false,
-                final.OS = false,
-                this.opticalprescription.push(final);
-
-              this.FINALPRESCRIPTION = data.opticprescription1;
-              this.FINALPRESCRIPTION.forEach((x: any) => {
-                debugger;
-                if (x.Ocular === "OD" && x.Type === 134) {
-                  this.opticalprescription[0].DistSph = x.DistSph;
-                  this.opticalprescription[0].NearCyl = x.NearCyl;
-                  this.opticalprescription[0].PinAxis = x.PinAxis;
-                  this.opticalprescription[0].Add = x.Add;
-                  this.opticalprescription[0].Remarks = x.Remarks;
-                  this.opticalprescription[0].PD = x.PD;
-                  this.opticalprescription[0].MPDOD = x.MPDOD;
-                  this.opticalprescription[0].MPDOS = x.MPDOS;
-
-                }
-                else if (x.Ocular === "OS" && x.Type === 134) {
-                  this.opticalprescription[0].DistSphOS = x.DistSph;
-                  this.opticalprescription[0].NearCylOS = x.NearCyl;
-                  this.opticalprescription[0].PinAxisOS= x.PinAxis;
-                  this.opticalprescription[0].AddOS = x.Add;
-                  this.opticalprescription[0].Remarks = x.Remarks;
-                  this.opticalprescription[0].PD = x.PD;
-                  this.opticalprescription[0].MPDOD = x.MPDOD;
-                  this.opticalprescription[0].MPDOS = x.MPDOS;
-                }
-                else if (x.Ocular === "OD" && x.Type === 135) {
-                  this.opticalprescription[0].DistSphNVOD   = x.DistSph;
-                  this.opticalprescription[0].AddNVOD  = x.Add;
-                  this.opticalprescription[0].Remarks = x.Remarks;
-                  this.opticalprescription[0].PD = x.PD;
-                  this.opticalprescription[0].MPDOD = x.MPDOD;
-                  this.opticalprescription[0].MPDOS = x.MPDOS;
-                } 
-                else if (x.Ocular === "OS" && x.Type === 135) {
-                  this.opticalprescription[0].DistSphNVOS= x.DistSph;
-                  this.opticalprescription[0].AddNVOS= x.Add;
-                  this.opticalprescription[0].Remarks = x.Remarks;
-                  this.opticalprescription[0].PD = x.PD;
-                  this.opticalprescription[0].MPDOD = x.MPDOD;
-                  this.opticalprescription[0].MPDOS = x.MPDOS;
-                } 
-                else
-                {
-
-                }
-              });
-              this.FINALPRESCRIPTION = [];
-              this.FINALPRESCRIPTION = this.opticalprescription;
-              this.commonService.data.FINALPRESCRIPTION = this.FINALPRESCRIPTION;
-              this.opticalPrescriptionblock = 'block';
-              this.backdrop = 'block';
-            }
-            else
-            {
-              this.opticalPrescriptionpopup = 'block';
-              this.backdrop = 'block';
-            }
-
-          });
+        this.opticalPrescriptionpopup = 'block';
+        this.backdrop = 'block';
+       
 
         this.DisabledPrescriptions = false;
         this.M_CustomerName = item.Name.concat(' ', item.MidleName != null ? item.MidleName : '', item.LastName != null ? item.LastName : '')
@@ -2198,13 +2108,21 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
     this.backdrop = 'none';
     this.PrescriptionlistModel = 'none';
   }
-
+  FINALPRESCRIPTION1 = [];
+  //UPPdate;
+  //CUMID;
   selectPrescription(element)
   {
+    debugger;
     try
     {
+      this.Addfinalprescription();
       this.regTranId = element.RegistrationTranID;
       this.UIN = element.UIN;
+      this.M_CustomerID = element.UIN;
+      this.M_CustomerName = element.Name;
+      this.M_Address = element.Address1;
+      this.M_MobileNo = element.MobileNo;
 
       this.backdrop = 'none';
       this.PrescriptionlistModel = 'none';
@@ -2216,10 +2134,51 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
 
       this.M_PrescribedDoctor = element.Doctorname;
       this.M_PrescriptionDate = element.PrescriptionDate;
-
-      this.commonService.getListOfData('OpticalPrescription/GetopticalDetails/' + this.regTranId + '/')
+      
+      this.commonService.getListOfData('CustomerOrder/GetOpticalPrescription/' + this.regTranId + '/' + this.M_PrescriptionDate + '/' + parseInt(localStorage.getItem('CompanyID')))
         .subscribe((data: any) => {
-          this.optical = data.opticprescription;
+
+          this.FINALPRESCRIPTION1 = [];
+
+          this.optical = data.opticprescription1;
+          
+          //var pres = new OPTICALPRESCRIPTION1();
+
+          //this.optical.forEach((x: any) => {
+          //  if (x.Ocular === "OD" && x.Type === 134) {
+              
+          //    pres.DistSph = x.DistSph;
+          //    pres.NearCyl = x.NearCyl;
+          //    pres.PinAxis = x.PinAxis;
+          //    pres.Add = x.Add;
+          //  }
+          //  else if (x.Ocular === "OS" && x.Type === 134) {
+           
+          //    pres.DistSphOS = x.DistSph;
+          //    pres.NearCylOS = x.NearCyl;
+          //    pres.PinAxisOS = x.PinAxis;
+          //    pres.AddOS = x.Add;
+          //  }
+          //  else if (x.Ocular === "OD" && x.Type === 135) {
+        
+          //    pres.DistSphNVOD = x.DistSph;
+          //    pres.AddNVOD = x.Add;
+          //  }
+          //  else if (x.Ocular === "OS" && x.Type === 135) {
+          //    pres.DistSphNVOS = x.DistSph;
+          //    pres.AddNVOS = x.Add;  
+          //  }
+          //   else {
+          //    this.Remarksacc = x.Remarks;
+          //    this.PDD = x.PD;
+          //    this.MPD = x.MPDOD;
+          //    this.MPD1 = x.MPDOS;
+          //  }
+          //});
+          //this.commonService.data.FINALPRESCRIPTION1.push(pres);
+
+          //this.FINALPRESCRIPTION1 = this.commonService.data.FINALPRESCRIPTION1;
+          //this.optical = data.opticprescription;
           this.optical.forEach((x: any) => {
             if (x.Ocular === "OD" && x.Type === 134) {
               this.SPHACC1 = x.DistSph;
@@ -2247,78 +2206,181 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
               this.PDD = x.PD;
               this.MPD = x.MPDOD;
               this.MPD1 = x.MPDOS;
+              //this.UPPdate = x.PrescriptionDate;
+              //this.CUMID = x.CustomerMasterID;
             }
           });
           this.isDisabled = false;
         });
+    
 
+      //this.commonService.getListOfData('CustomerOrder/IsCustomerFound/' + localStorage.getItem("CompanyID") + '/' + element.UIN)
+      //  .subscribe(data => {
+      //    debugger;
+      //    if (data.Success == true) {
+      //      debugger
+      //      this.M_CustomerID = data.CusID;
+      //      this.M_CustomerName = data.Name;
+      //      this.M_Address = data.Address;
+      //      this.M_MobileNo = data.MobileNo;
+      //    }
+      //    else {
+      //      debugger
+      //      Swal.fire({
+      //        type: 'success',
+      //        title: 'Customer Details will be added in Customer Master',
+      //        position: 'top-end',
+      //        showConfirmButton: false,
+      //        timer: 1500,
+      //        customClass: {
+      //          popup: 'alert-warp',
+      //          container: 'alert-container',
+      //        },
+      //      });
+      //      let CustomerData = {
+      //        UIN: element.UIN,
+      //        FirstName: element.FirstName,
+      //        Middlename: element.Middlename,
+      //        Lastname: element.Lastname,
+      //        Address1: element.Address1,
+      //        Address2: element.Address2,
+      //        Address3: element.Address3,
+      //        MobileNo: element.MobileNo,
+      //      }
+      //      this.commonService.data.CustomerDatas = CustomerData;
 
-      this.commonService.getListOfData('CustomerOrder/IsCustomerFound/' + localStorage.getItem("CompanyID") + '/' + element.UIN)
-        .subscribe(data => {
-          debugger;
-          if (data.Success == true) {
-            debugger
-            this.M_CustomerID = data.CusID;
-            this.M_CustomerName = data.Name;
-            this.M_Address = data.Address;
-            this.M_MobileNo = data.MobileNo;
-          }
-          else {
-            debugger
-            Swal.fire({
-              type: 'success',
-              title: 'Customer Details will be added in Customer Master',
-              position: 'top-end',
-              showConfirmButton: false,
-              timer: 1500,
-              customClass: {
-                popup: 'alert-warp',
-                container: 'alert-container',
-              },
-            });
-            let CustomerData = {
-              UIN: element.UIN,
-              FirstName: element.FirstName,
-              Middlename: element.Middlename,
-              Lastname: element.Lastname,
-              Address1: element.Address1,
-              Address2: element.Address2,
-              Address3: element.Address3,
-              MobileNo: element.MobileNo,
-            }
-            this.commonService.data.CustomerDatas = CustomerData;
-
-            this.commonService.postData('CustomerOrder/CustomerDetailsSubmit/' + localStorage.getItem("CompanyID") + '/' + parseInt(localStorage.getItem("userroleID")), this.commonService.data)
-              .subscribe(data => {
-                if (data.Success == true) {
-                  debugger
-                  this.M_CustomerID = data.CusID;
-                  this.M_CustomerName = data.Name;
-                  this.M_Address = data.Address;
-                  this.M_MobileNo = data.MobileNo;
-                }
-                else {
-                  Swal.fire({
-                    type: 'warning',
-                    title: 'Invalid Input,Please Contact Administrator',
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 1500,
-                    customClass: {
-                      popup: 'alert-warp',
-                      container: 'alert-container',
-                    },
-                  });
-                }
-              });
-          }
-        });
+      //      this.commonService.postData('CustomerOrder/CustomerDetailsSubmit/' + localStorage.getItem("CompanyID") + '/' + parseInt(localStorage.getItem("userroleID")), this.commonService.data)
+      //        .subscribe(data => {
+      //          if (data.Success == true) {
+      //            debugger
+      //            this.M_CustomerID = data.CusID;
+      //            this.M_CustomerName = data.Name;
+      //            this.M_Address = data.Address;
+      //            this.M_MobileNo = data.MobileNo;
+      //          }
+      //          else {
+      //            Swal.fire({
+      //              type: 'warning',
+      //              title: 'Invalid Input,Please Contact Administrator',
+      //              position: 'top-end',
+      //              showConfirmButton: false,
+      //              timer: 1500,
+      //              customClass: {
+      //                popup: 'alert-warp',
+      //                container: 'alert-container',
+      //              },
+      //            });
+      //          }
+      //        });
+      //    }
+      //  });
     }
     catch (Error) {
       this.commonService.getListOfData('Common/ErrorList/' + Error.message + '/' + "Customer Order" + '/' + localStorage.getItem("CompanyID") + '/' + localStorage.getItem('userroleID') + '/')
         .subscribe(data => { });
     }
   }
+
+
+
+  EditOP()
+  {
+   // this.UPPdate;
+    //this.CUMID;
+    this.backdrop = 'none';
+    this.PrescriptionModel = 'none';
+
+    this.commonService.getListOfData('CustomerOrder/GetOpticalPrescription/' + this.regTranId + '/' + this.M_PrescriptionDate + '/' + parseInt(localStorage.getItem('CompanyID')))
+          .subscribe(data =>
+          {
+            if (data.opticprescription1.length > 0)
+            {
+              this.opticalprescription = [];
+              var final = new FINALPRESCRIPTION();
+              final.Description = 'Final Prescription';
+              final.Ocular = 'OD';
+              final.DistSph = '';
+              final.NearCyl = '';
+              final.PinAxis = '';
+              final.Add = '';
+              final.DistSphNVOD = '';
+              final.AddNVOD = '';
+              final.OcularOS = 'OS';
+              final.DistSphOS = '';
+              final.NearCylOS = '';
+              final.PinAxisOS = '';
+              final.AddOS = '';
+              final.DistSphNVOS = '';
+              final.AddNVOS = '';
+              final.Remarks = '';
+              final.CreatedBy = Number(localStorage.getItem('userroleID'));
+              final.PD = '',
+                final.MPDOD = '',
+                final.MPDOS = '',
+                final.OD = false,
+                final.OS = false,
+                this.opticalprescription.push(final);
+
+              this.FINALPRESCRIPTION = data.opticprescription1;
+              this.FINALPRESCRIPTION.forEach((x: any) => {
+                debugger;
+                if (x.Ocular === "OD" && x.Type === 134) {
+                  this.opticalprescription[0].DistSph = x.DistSph;
+                  this.opticalprescription[0].NearCyl = x.NearCyl;
+                  this.opticalprescription[0].PinAxis = x.PinAxis;
+                  this.opticalprescription[0].Add = x.Add;
+                  this.opticalprescription[0].Remarks = x.Remarks;
+                  this.opticalprescription[0].PD = x.PD;
+                  this.opticalprescription[0].MPDOD = x.MPDOD;
+                  this.opticalprescription[0].MPDOS = x.MPDOS;
+
+                }
+                else if (x.Ocular === "OS" && x.Type === 134) {
+                  this.opticalprescription[0].DistSphOS = x.DistSph;
+                  this.opticalprescription[0].NearCylOS = x.NearCyl;
+                  this.opticalprescription[0].PinAxisOS= x.PinAxis;
+                  this.opticalprescription[0].AddOS = x.Add;
+                  this.opticalprescription[0].Remarks = x.Remarks;
+                  this.opticalprescription[0].PD = x.PD;
+                  this.opticalprescription[0].MPDOD = x.MPDOD;
+                  this.opticalprescription[0].MPDOS = x.MPDOS;
+                }
+                else if (x.Ocular === "OD" && x.Type === 135) {
+                  this.opticalprescription[0].DistSphNVOD   = x.DistSph;
+                  this.opticalprescription[0].AddNVOD  = x.Add;
+                  this.opticalprescription[0].Remarks = x.Remarks;
+                  this.opticalprescription[0].PD = x.PD;
+                  this.opticalprescription[0].MPDOD = x.MPDOD;
+                  this.opticalprescription[0].MPDOS = x.MPDOS;
+                } 
+                else if (x.Ocular === "OS" && x.Type === 135) {
+                  this.opticalprescription[0].DistSphNVOS= x.DistSph;
+                  this.opticalprescription[0].AddNVOS= x.Add;
+                  this.opticalprescription[0].Remarks = x.Remarks;
+                  this.opticalprescription[0].PD = x.PD;
+                  this.opticalprescription[0].MPDOD = x.MPDOD;
+                  this.opticalprescription[0].MPDOS = x.MPDOS;
+                } 
+                else
+                {
+
+                }
+              });
+              this.FINALPRESCRIPTION = [];
+              this.FINALPRESCRIPTION = this.opticalprescription;
+              this.commonService.data.FINALPRESCRIPTION = this.FINALPRESCRIPTION;
+              this.opticalPrescriptionblock = 'block';
+              this.backdrop = 'block';
+            }
+            else
+            {
+
+            }
+
+          });
+
+  }
+
 
   ViewPrescriptionDetail() {
 
@@ -2797,6 +2859,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
   arrop = [];
   opticalprescriptionlength = [];
   opticalprescription = [];
+ // opticalprescription1 = [];
   VAname;
   VAnamenear1;
   Addfinalprescription() {

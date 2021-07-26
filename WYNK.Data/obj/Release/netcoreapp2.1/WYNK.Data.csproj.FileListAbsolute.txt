@@ -12,6 +12,7 @@ D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Data\obj\Release\netcoreapp2.1\WYNK.Data
 D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Data\obj\Release\netcoreapp2.1\WYNK.Data.csproj.CopyComplete
 D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Data\obj\Release\netcoreapp2.1\WYNK.Data.dll
 D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Data\obj\Release\netcoreapp2.1\WYNK.Data.pdb
+<<<<<<< HEAD
 E:\Git_desktop\VK_Optic_Point\WYNK.Data\obj\Release\netcoreapp2.1\WYNK.Data.csprojAssemblyReference.cache
 E:\Git_desktop\VK_Optic_Point\WYNK.Data\obj\Release\netcoreapp2.1\WYNK.Data.AssemblyInfoInputs.cache
 E:\Git_desktop\VK_Optic_Point\WYNK.Data\obj\Release\netcoreapp2.1\WYNK.Data.AssemblyInfo.cs
@@ -26,3 +27,19 @@ E:\Git_desktop\VK_Optic_Point\WYNK.Data\bin\Release\netcoreapp2.1\WYNK.Helpers.d
 E:\Git_desktop\VK_Optic_Point\WYNK.Data\bin\Release\netcoreapp2.1\SMSand EMAILService.cs.pdb
 E:\Git_desktop\VK_Optic_Point\WYNK.Data\bin\Release\netcoreapp2.1\WYNK.Helpers.pdb
 E:\Git_desktop\VK_Optic_Point\WYNK.Data\obj\Release\netcoreapp2.1\WYNK.Data.csproj.CopyComplete
+=======
+D:\VK_Optic_Point\WYNK.Data\bin\Release\netcoreapp2.1\WYNK.Data.deps.json
+D:\VK_Optic_Point\WYNK.Data\bin\Release\netcoreapp2.1\WYNK.Data.dll
+D:\VK_Optic_Point\WYNK.Data\bin\Release\netcoreapp2.1\WYNK.Data.pdb
+D:\VK_Optic_Point\WYNK.Data\bin\Release\netcoreapp2.1\SMSand EMAILService.cs.dll
+D:\VK_Optic_Point\WYNK.Data\bin\Release\netcoreapp2.1\WYNK.Helpers.dll
+D:\VK_Optic_Point\WYNK.Data\bin\Release\netcoreapp2.1\SMSand EMAILService.cs.pdb
+D:\VK_Optic_Point\WYNK.Data\bin\Release\netcoreapp2.1\WYNK.Helpers.pdb
+D:\VK_Optic_Point\WYNK.Data\obj\Release\netcoreapp2.1\WYNK.Data.csprojAssemblyReference.cache
+D:\VK_Optic_Point\WYNK.Data\obj\Release\netcoreapp2.1\WYNK.Data.csproj.CoreCompileInputs.cache
+D:\VK_Optic_Point\WYNK.Data\obj\Release\netcoreapp2.1\WYNK.Data.AssemblyInfoInputs.cache
+D:\VK_Optic_Point\WYNK.Data\obj\Release\netcoreapp2.1\WYNK.Data.AssemblyInfo.cs
+D:\VK_Optic_Point\WYNK.Data\obj\Release\netcoreapp2.1\WYNK.Data.csproj.CopyComplete
+D:\VK_Optic_Point\WYNK.Data\obj\Release\netcoreapp2.1\WYNK.Data.dll
+D:\VK_Optic_Point\WYNK.Data\obj\Release\netcoreapp2.1\WYNK.Data.pdb
+>>>>>>> a82c466e29b651fc77ee6b9ac3499f2eba166ca1

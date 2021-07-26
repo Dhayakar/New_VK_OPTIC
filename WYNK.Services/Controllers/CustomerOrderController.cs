@@ -150,23 +150,23 @@ namespace WYNK.Services.Controllers
 
 
 
-        [HttpGet("IsCustomerFound/{CMPID}/{UIN}")]
-        public dynamic IsCustomerFound(int CMPID,string UIN)
+        //[HttpGet("IsCustomerFound/{CMPID}/{UIN}")]
+        //public dynamic IsCustomerFound(int CMPID, string UIN)
+        //{
+        //    return _repoWrapper.Customerorder.IsCustomerFound(CMPID, UIN);
+        //}
+
+        [HttpGet("GetOpticalPrescription/{CusMasID}/{Pdate}/{CMPID}")]
+        public dynamic GetOpticalPrescription(int CusMasID , DateTime Pdate , int CMPID)
         {
-            return _repoWrapper.Customerorder.IsCustomerFound(CMPID, UIN);
+            return _repoWrapper.Customerorder.GetOpticalPrescription(CusMasID, Pdate, CMPID);
         }
 
-        [HttpGet("GetOpticalPrescription/{CusMasID}/{CMPID}")]
-        public dynamic GetOpticalPrescription(int CusMasID, int CMPID)
-        {
-            return _repoWrapper.Customerorder.GetOpticalPrescription(CusMasID, CMPID);
-        }
-
-        [HttpPost("CustomerDetailsSubmit/{CMPID}/{UserId}")]
-        public dynamic CustomerDetailsSubmit([FromBody] CustomerSubmit CustomerSubmitDetails, int CMPID,int UserId)
-        {
-            return _repoWrapper.Customerorder.CustomerDetailsSubmit(CustomerSubmitDetails, CMPID, UserId);
-        }
+        //[HttpPost("CustomerDetailsSubmit/{CMPID}/{UserId}")]
+        //public dynamic CustomerDetailsSubmit([FromBody] CustomerSubmit CustomerSubmitDetails, int CMPID, int UserId)
+        //{
+        //    return _repoWrapper.Customerorder.CustomerDetailsSubmit(CustomerSubmitDetails, CMPID, UserId);
+        //}
 
 
         [HttpPost("UploadImage/{CustomerOrderNo}")]

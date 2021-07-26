@@ -2479,8 +2479,6 @@ namespace WYNK.Data.Repository.Implementation
             return Donor;
         }
 
-
-
         public Help CustomerOrder(int CMPID)
         {
             var CustomerOrder = new Help();
@@ -2513,6 +2511,7 @@ namespace WYNK.Data.Repository.Implementation
                                               GST = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.GSTPercentage).FirstOrDefault(),
                                               CGST = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.CGSTPercentage).FirstOrDefault(),
                                               SGST = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.SGSTPercentage).FirstOrDefault(),
+                                              IGST = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.IGSTPercentage).FirstOrDefault(),
                                               CESS = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.CESSPercentage).FirstOrDefault(),
                                               AddCess = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.AdditionalCESSPercentage).FirstOrDefault(),
                                               GSTDesc = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.TaxDescription).FirstOrDefault(),
@@ -2531,10 +2530,6 @@ namespace WYNK.Data.Repository.Implementation
                                               FrameStyleID = Onelinemaster.Where(x => x.OLMID == LT.FrameStyleID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Style : " + Onelinemaster.Where(x => x.OLMID == LT.FrameStyleID).Select(c => c.ParentDescription).FirstOrDefault() + "; " : null,
                                               FrameTypeID = Onelinemaster.Where(x => x.OLMID == LT.FrameTypeID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Type : " + Onelinemaster.Where(x => x.OLMID == LT.FrameTypeID).Select(c => c.ParentDescription).FirstOrDefault() + "; " : null,
                                               FrameWidthID = Onelinemaster.Where(x => x.OLMID == LT.FrameWidthID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Width : " + Onelinemaster.Where(x => x.OLMID == LT.FrameWidthID).Select(c => c.ParentDescription).FirstOrDefault() : null,
-
-
-
-
 
                                               Stockqty = OpticalBalance.Where(x => x.LTID == LT.ID && x.FYID == Fyear).Select(x => x.ClosingBalance).FirstOrDefault(),
                                               Sptaxinclusive =LT.Sptaxinclusive,

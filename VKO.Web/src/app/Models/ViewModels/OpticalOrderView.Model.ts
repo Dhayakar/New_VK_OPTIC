@@ -74,9 +74,9 @@ export class OPticalDetails {
    Axis:string;
    Add: string;
   FrameShapeID: string;
-  FrameStyleID: string;
-  FrameTypeID: string;
-  FrameWidthID: string;
+  FrameStyleID:string;
+  FrameTypeID :string;
+  FrameWidthID:string;
 
   LensName: string;
   LMID: string;
