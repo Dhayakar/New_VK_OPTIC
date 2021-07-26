@@ -106,7 +106,7 @@ namespace WYNK.Data.Model.ViewModel
         public int? FrameStyleID { get; set; }
         public string Index { get; set; }
         public Boolean IsActive { get; set; }
-        public Boolean Sptaxinclusive { get; set; }
+        public Boolean? Sptaxinclusive { get; set; }
 
     }
     public class FrameShapehis

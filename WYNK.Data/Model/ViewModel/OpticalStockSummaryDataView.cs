@@ -49,9 +49,7 @@ namespace WYNK.Data.Model.ViewModel
         public string Fwidth { get; set; }
         public string Fstyle { get; set; }
         public string Color { get; set; }
-
         public decimal Openingstock { get; set; }
-        //public decimal Closingstock { get; set; }
         public int ID { get; set; }
         public int REC01 { get; set; }
         public int REC02 { get; set; }
@@ -77,7 +75,8 @@ namespace WYNK.Data.Model.ViewModel
         public int ISS10 { get; set; }
         public int ISS11 { get; set; }
         public int ISS12 { get; set; }
-
+        public int LTID { get; set; }
+        public int StoreID { get; set; }
     }
     public class OpticalStocksummaryarray
     {
@@ -101,6 +100,8 @@ namespace WYNK.Data.Model.ViewModel
         public string Fwidth { get; set; }
         public string Fstyle { get; set; }
         public int ID { get; set; }
+        public int LTID { get; set; }
+        public int StoreID { get; set; }
     }
 
 }

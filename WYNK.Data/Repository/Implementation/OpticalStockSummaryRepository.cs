@@ -82,7 +82,11 @@ namespace WYNK.Data.Repository.Implementation
 
 
 
+
             var concatarray = StoreArray.Count() >= BrandArray.Count() ? StoreArray.ToList() : BrandArray.ToList();
+
+            var FinancialYearId = WYNKContext.FinancialYear.Where(x => x.FYFrom <= fdate && x.FYTo >= tdate && x.CMPID == CompanyID && x.IsActive == true).Select(x => x.ID).FirstOrDefault();
+
 
             if (concatarray.Count() == StoreArray.Count())
             {
@@ -94,7 +98,7 @@ namespace WYNK.Data.Repository.Implementation
                         foreach (var sa in StoreArray.ToList())
                         {
 
-                            Opticalstksummary.Stocksummaryarray = (from OB in OpticalBalance.Where(x => x.StoreID == Convert.ToInt32(sa.ID) && x.CreatedUTC.Date >= fdate && x.CreatedUTC.Date <= tdate && x.CmpID == CompanyID)
+                            Opticalstksummary.Stocksummaryarray = (from OB in OpticalBalance.Where(x => x.StoreID == Convert.ToInt32(sa.ID) && x.CmpID == CompanyID && x.FYID == FinancialYearId)
                                                                    join LT in Lenstrans on OB.LTID equals LT.ID
                                                                    join BR in Brand.Where(x => x.ID == Convert.ToInt32(ba.ID)) on LT.Brand equals BR.ID
                                                                    join UM in uommaster on LT.UOMID equals UM.id
@@ -147,13 +151,461 @@ namespace WYNK.Data.Repository.Implementation
                                                                        ISS11 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS11).FirstOrDefault(),
                                                                        ISS12 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS12).FirstOrDefault(),
                                                                        ID = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ID).FirstOrDefault(),
+                                                                       LTID = OB.LTID,
+                                                                       StoreID = OB.StoreID,
                                                                    }).ToList();
+
+                            if (Opticalstksummary.Stocksummaryarray.Count() > 0)
+                            {
+                                foreach (var item in Opticalstksummary.Stocksummaryarray.ToList())
+                                {
+                                    var osl = new OpticalStocksummaryarray();
+
+
+
+                                    for (var dt = fdate.Month; dt <= tdate.Month; dt++)
+                                    {
+                                        var ItemBalance = Opticalstksummary.OpticalStocksummaryarray.Where(x => x.LTID == item.LTID && x.StoreID == item.StoreID).FirstOrDefault();
+                                        if (dt == 1)
+                                        {
+                                            if (ItemBalance == null)
+                                            {
+                                                osl.CmpName = item.CmpName;
+                                                osl.Type = item.Type;
+                                                osl.Store = item.Store;
+                                                osl.Brand = item.Brand;
+                                                osl.UOM = item.UOM;
+                                                osl.Color = item.Color;
+                                                osl.Sph = item.Sph;
+                                                osl.Axis = item.Axis;
+                                                osl.Add = item.Add;
+                                                osl.Fshpae = item.Fshpae;
+                                                osl.Ftype = item.Ftype;
+                                                osl.Fstyle = item.Fstyle;
+                                                osl.Fwidth = item.Fwidth;
+                                                osl.Receipt += item.REC01;
+                                                osl.Issue += item.ISS01;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07 + item.REC08 + item.REC09 + item.REC10 + item.REC11 + item.REC12) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07 + item.ISS08 + item.ISS09 + item.ISS10 + item.ISS11 + item.ISS12);
+                                                osl.Closingstock += item.Openingstock + (item.REC01 - item.ISS01);
+                                                osl.ID = item.ID;
+                                                osl.LTID = item.LTID;
+                                                osl.StoreID = item.StoreID;
+                                                Opticalstksummary.OpticalStocksummaryarray.Add(osl);
+                                            }
+                                            else
+                                            {
+                                                osl.Receipt += item.REC01;
+                                                osl.Issue += item.ISS01;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07 + item.REC08 + item.REC09 + item.REC10 + item.REC11 + item.REC12) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07 + item.ISS08 + item.ISS09 + item.ISS10 + item.ISS11 + item.ISS12);
+                                                osl.Closingstock += item.Openingstock + (item.REC01 - item.ISS01);
+                                            }
+                                        }
+
+                                        if (dt == 2)
+                                        {
+                                            if (ItemBalance == null)
+                                            {
+                                                osl.CmpName = item.CmpName;
+                                                osl.Type = item.Type;
+                                                osl.Store = item.Store;
+                                                osl.Brand = item.Brand;
+                                                osl.UOM = item.UOM;
+                                                osl.Color = item.Color;
+                                                osl.Sph = item.Sph;
+                                                osl.Axis = item.Axis;
+                                                osl.Add = item.Add;
+                                                osl.Fshpae = item.Fshpae;
+                                                osl.Ftype = item.Ftype;
+                                                osl.Fstyle = item.Fstyle;
+                                                osl.Fwidth = item.Fwidth;
+                                                osl.Receipt += item.REC02;
+                                                osl.Issue += item.ISS02;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07 + item.REC08 + item.REC09 + item.REC10 + item.REC11 + item.REC12 + item.REC01) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07 + item.ISS08 + item.ISS09 + item.ISS10 + item.ISS11 + item.ISS12 + item.ISS01);
+                                                osl.Closingstock += item.Openingstock + (item.REC02 - item.ISS02);
+                                                osl.ID = item.ID;
+                                                osl.LTID = item.LTID;
+                                                osl.StoreID = item.StoreID;
+                                                Opticalstksummary.OpticalStocksummaryarray.Add(osl);
+                                            }
+                                            else
+                                            {
+                                                osl.Receipt += item.REC02;
+                                                osl.Issue += item.ISS02;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07 + item.REC08 + item.REC09 + item.REC10 + item.REC11 + item.REC12 + item.REC01) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07 + item.ISS08 + item.ISS09 + item.ISS10 + item.ISS11 + item.ISS12 + item.ISS01);
+                                                osl.Closingstock += item.Openingstock + (item.REC02 - item.ISS02);
+                                            }
+
+                                        }
+
+                                        if (dt == 3)
+                                        {
+                                            if (ItemBalance == null)
+                                            {
+
+                                                osl.CmpName = item.CmpName;
+                                                osl.Type = item.Type;
+                                                osl.Store = item.Store;
+                                                osl.Brand = item.Brand;
+                                                osl.UOM = item.UOM;
+                                                osl.Color = item.Color;
+                                                osl.Sph = item.Sph;
+                                                osl.Axis = item.Axis;
+                                                osl.Add = item.Add;
+                                                osl.Fshpae = item.Fshpae;
+                                                osl.Ftype = item.Ftype;
+                                                osl.Fstyle = item.Fstyle;
+                                                osl.Fwidth = item.Fwidth;
+                                                osl.Receipt += item.REC03;
+                                                osl.Issue += item.ISS03;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07 + item.REC08 + item.REC09 + item.REC10 + item.REC11 + item.REC12 + item.REC01 + item.REC02) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07 + item.ISS08 + item.ISS09 + item.ISS10 + item.ISS11 + item.ISS12 + item.ISS01 + item.ISS02);
+                                                osl.Closingstock += item.Openingstock + (item.REC03 - item.ISS03);
+                                                osl.ID = item.ID;
+                                                osl.LTID = item.LTID;
+                                                osl.StoreID = item.StoreID;
+                                                Opticalstksummary.OpticalStocksummaryarray.Add(osl);
+                                            }
+                                            else
+                                            {
+                                                osl.Receipt += item.REC03;
+                                                osl.Issue += item.ISS03;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07 + item.REC08 + item.REC09 + item.REC10 + item.REC11 + item.REC12 + item.REC01 + item.REC02) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07 + item.ISS08 + item.ISS09 + item.ISS10 + item.ISS11 + item.ISS12 + item.ISS01 + item.ISS02);
+                                                osl.Closingstock += item.Openingstock + (item.REC03 - item.ISS03);
+                                            }
+                                        }
+
+                                        if (dt == 4)
+                                        {
+                                            if (ItemBalance == null)
+                                            {
+
+                                                osl.CmpName = item.CmpName;
+                                                osl.Type = item.Type;
+                                                osl.Store = item.Store;
+                                                osl.Brand = item.Brand;
+                                                osl.UOM = item.UOM;
+                                                osl.Color = item.Color;
+                                                osl.Sph = item.Sph;
+                                                osl.Axis = item.Axis;
+                                                osl.Add = item.Add;
+                                                osl.Fshpae = item.Fshpae;
+                                                osl.Ftype = item.Ftype;
+                                                osl.Fstyle = item.Fstyle;
+                                                osl.Fwidth = item.Fwidth;
+                                                osl.Receipt += item.REC04;
+                                                osl.Issue += item.ISS04;
+                                                osl.Openingstock = item.Openingstock;
+                                                osl.Closingstock += item.Openingstock + (item.REC04 - item.ISS04);
+                                                osl.ID = item.ID;
+                                                osl.LTID = item.LTID;
+                                                osl.StoreID = item.StoreID;
+                                                Opticalstksummary.OpticalStocksummaryarray.Add(osl);
+                                            }
+                                            else
+                                            {
+                                                osl.Receipt += item.REC04;
+                                                osl.Issue += item.ISS04;
+                                                osl.Openingstock = item.Openingstock;
+                                                osl.Closingstock += item.Openingstock + (item.REC04 - item.ISS04);
+                                            }
+                                        }
+
+                                        if (dt == 5)
+                                        {
+                                            if (ItemBalance == null)
+                                            {
+
+                                                osl.CmpName = item.CmpName;
+                                                osl.Type = item.Type;
+                                                osl.Store = item.Store;
+                                                osl.Brand = item.Brand;
+                                                osl.UOM = item.UOM;
+                                                osl.Color = item.Color;
+                                                osl.Sph = item.Sph;
+                                                osl.Axis = item.Axis;
+                                                osl.Add = item.Add;
+                                                osl.Fshpae = item.Fshpae;
+                                                osl.Ftype = item.Ftype;
+                                                osl.Fstyle = item.Fstyle;
+                                                osl.Fwidth = item.Fwidth;
+                                                osl.Receipt += item.REC05;
+                                                osl.Issue += item.ISS05;
+                                                osl.Openingstock += item.Openingstock + (item.REC04) - (item.ISS04);
+                                                osl.Closingstock += item.Openingstock + (item.REC05 - item.ISS05);
+                                                osl.ID = item.ID;
+                                                osl.LTID = item.LTID;
+                                                osl.StoreID = item.StoreID;
+                                                Opticalstksummary.OpticalStocksummaryarray.Add(osl);
+                                            }
+                                            else
+                                            {
+                                                osl.Receipt += item.REC05;
+                                                osl.Issue += item.ISS05;
+                                                osl.Openingstock += item.Openingstock + (item.REC04) - (item.ISS04);
+                                                osl.Closingstock += item.Openingstock + (item.REC05 - item.ISS05);
+                                            }
+                                        }
+
+                                        if (dt == 6)
+                                        {
+                                            if (ItemBalance == null)
+                                            {
+
+                                                osl.CmpName = item.CmpName;
+                                                osl.Type = item.Type;
+                                                osl.Store = item.Store;
+                                                osl.Brand = item.Brand;
+                                                osl.UOM = item.UOM;
+                                                osl.Color = item.Color;
+                                                osl.Sph = item.Sph;
+                                                osl.Axis = item.Axis;
+                                                osl.Add = item.Add;
+                                                osl.Fshpae = item.Fshpae;
+                                                osl.Ftype = item.Ftype;
+                                                osl.Fstyle = item.Fstyle;
+                                                osl.Fwidth = item.Fwidth;
+                                                osl.Receipt += item.REC06;
+                                                osl.Issue += item.ISS06;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05) - (item.ISS04 + item.ISS05);
+                                                osl.Closingstock += item.Openingstock + (item.REC06 - item.ISS06);
+                                                osl.ID = item.ID;
+                                                osl.LTID = item.LTID;
+                                                osl.StoreID = item.StoreID;
+                                                Opticalstksummary.OpticalStocksummaryarray.Add(osl);
+                                            }
+                                            else
+                                            {
+                                                osl.Receipt += item.REC06;
+                                                osl.Issue += item.ISS06;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05) - (item.ISS04 + item.ISS05);
+                                                osl.Closingstock += item.Openingstock + (item.REC06 - item.ISS06);
+                                            }
+                                        }
+
+                                        if (dt == 7)
+                                        {
+                                            if (ItemBalance == null)
+                                            {
+                                                osl.CmpName = item.CmpName;
+                                                osl.Type = item.Type;
+                                                osl.Store = item.Store;
+                                                osl.Brand = item.Brand;
+                                                osl.UOM = item.UOM;
+                                                osl.Color = item.Color;
+                                                osl.Sph = item.Sph;
+                                                osl.Axis = item.Axis;
+                                                osl.Add = item.Add;
+                                                osl.Fshpae = item.Fshpae;
+                                                osl.Ftype = item.Ftype;
+                                                osl.Fstyle = item.Fstyle;
+                                                osl.Fwidth = item.Fwidth;
+                                                osl.Receipt = item.REC07;
+                                                osl.Issue = item.ISS07;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06) - (item.ISS04 + item.ISS05 + item.ISS06);
+                                                osl.Closingstock = item.Openingstock + (item.REC07 - item.ISS07);
+                                                osl.ID = item.ID;
+                                                osl.LTID = item.LTID;
+                                                osl.StoreID = item.StoreID;
+                                                Opticalstksummary.OpticalStocksummaryarray.Add(osl);
+                                            }
+                                            else
+                                            {
+                                                osl.Receipt = item.REC07;
+                                                osl.Issue = item.ISS07;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06) - (item.ISS04 + item.ISS05 + item.ISS06);
+                                                osl.Closingstock = item.Openingstock + (item.REC07 - item.ISS07);
+                                            }
+                                        }
+
+                                        if (dt == 8)
+                                        {
+                                            if (ItemBalance == null)
+                                            {
+                                                osl.CmpName = item.CmpName;
+                                                osl.Type = item.Type;
+                                                osl.Store = item.Store;
+                                                osl.Brand = item.Brand;
+                                                osl.UOM = item.UOM;
+                                                osl.Color = item.Color;
+                                                osl.Sph = item.Sph;
+                                                osl.Axis = item.Axis;
+                                                osl.Add = item.Add;
+                                                osl.Fshpae = item.Fshpae;
+                                                osl.Ftype = item.Ftype;
+                                                osl.Fstyle = item.Fstyle;
+                                                osl.Fwidth = item.Fwidth;
+                                                osl.Receipt += item.REC08;
+                                                osl.Issue += item.ISS08;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07);
+                                                osl.Closingstock += item.Openingstock + (item.REC08 - item.ISS08);
+                                                osl.ID = item.ID;
+                                                osl.LTID = item.LTID;
+                                                osl.StoreID = item.StoreID;
+                                                Opticalstksummary.OpticalStocksummaryarray.Add(osl);
+                                            }
+                                            else
+                                            {
+                                                osl.Receipt += item.REC08;
+                                                osl.Issue += item.ISS08;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07);
+                                                osl.Closingstock += item.Openingstock + (item.REC08 - item.ISS08);
+                                            }
+
+                                        }
+
+                                        if (dt == 9)
+                                        {
+                                            if (ItemBalance == null)
+                                            {
+
+                                                osl.CmpName = item.CmpName;
+                                                osl.Type = item.Type;
+                                                osl.Store = item.Store;
+                                                osl.Brand = item.Brand;
+                                                osl.UOM = item.UOM;
+                                                osl.Color = item.Color;
+                                                osl.Sph = item.Sph;
+                                                osl.Axis = item.Axis;
+                                                osl.Add = item.Add;
+                                                osl.Fshpae = item.Fshpae;
+                                                osl.Ftype = item.Ftype;
+                                                osl.Fstyle = item.Fstyle;
+                                                osl.Fwidth = item.Fwidth;
+                                                osl.Receipt += item.REC09;
+                                                osl.Issue += item.ISS09;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07 + item.REC08) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07 + item.ISS08);
+                                                osl.Closingstock += item.Openingstock + (item.REC09 - item.ISS09);
+                                                osl.ID = item.ID;
+                                                osl.LTID = item.LTID;
+                                                osl.StoreID = item.StoreID;
+                                                Opticalstksummary.OpticalStocksummaryarray.Add(osl);
+                                            }
+                                            else
+                                            {
+                                                osl.Receipt += item.REC09;
+                                                osl.Issue += item.ISS09;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07 + item.REC08) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07 + item.ISS08);
+                                                osl.Closingstock += item.Openingstock + (item.REC09 - item.ISS09);
+                                            }
+                                        }
+
+                                        if (dt == 10)
+                                        {
+                                            if (ItemBalance == null)
+                                            {
+
+                                                osl.CmpName = item.CmpName;
+                                                osl.Type = item.Type;
+                                                osl.Store = item.Store;
+                                                osl.Brand = item.Brand;
+                                                osl.UOM = item.UOM;
+                                                osl.Color = item.Color;
+                                                osl.Sph = item.Sph;
+                                                osl.Axis = item.Axis;
+                                                osl.Add = item.Add;
+                                                osl.Fshpae = item.Fshpae;
+                                                osl.Ftype = item.Ftype;
+                                                osl.Fstyle = item.Fstyle;
+                                                osl.Fwidth = item.Fwidth;
+                                                osl.Receipt += item.REC10;
+                                                osl.Issue += item.ISS10;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07 + item.REC08 + item.REC09) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07 + item.ISS08 + item.ISS09);
+                                                osl.Closingstock += item.Openingstock + (item.REC10 - item.ISS10);
+                                                osl.ID = item.ID;
+                                                osl.LTID = item.LTID;
+                                                osl.StoreID = item.StoreID;
+                                                Opticalstksummary.OpticalStocksummaryarray.Add(osl);
+                                            }
+                                            else
+                                            {
+                                                osl.Receipt += item.REC10;
+                                                osl.Issue += item.ISS10;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07 + item.REC08 + item.REC09) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07 + item.ISS08 + item.ISS09);
+                                                osl.Closingstock += item.Openingstock + (item.REC10 - item.ISS10);
+                                            }
+                                        }
+
+                                        if (dt == 11)
+                                        {
+                                            if (ItemBalance == null)
+                                            {
+
+                                                osl.CmpName = item.CmpName;
+                                                osl.Type = item.Type;
+                                                osl.Store = item.Store;
+                                                osl.Brand = item.Brand;
+                                                osl.UOM = item.UOM;
+                                                osl.Color = item.Color;
+                                                osl.Sph = item.Sph;
+                                                osl.Axis = item.Axis;
+                                                osl.Add = item.Add;
+                                                osl.Fshpae = item.Fshpae;
+                                                osl.Ftype = item.Ftype;
+                                                osl.Fstyle = item.Fstyle;
+                                                osl.Fwidth = item.Fwidth;
+                                                osl.Receipt += item.REC11;
+                                                osl.Issue += item.ISS11;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07 + item.REC08 + item.REC09 + item.REC10) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07 + item.ISS08 + item.ISS09 + item.ISS10);
+                                                osl.Closingstock += item.Openingstock + (item.REC11 - item.ISS11);
+                                                osl.ID = item.ID;
+                                                osl.LTID = item.LTID;
+                                                osl.StoreID = item.StoreID;
+                                                Opticalstksummary.OpticalStocksummaryarray.Add(osl);
+                                            }
+                                            else
+                                            {
+                                                osl.Receipt += item.REC11;
+                                                osl.Issue += item.ISS11;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07 + item.REC08 + item.REC09 + item.REC10) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07 + item.ISS08 + item.ISS09 + item.ISS10);
+                                                osl.Closingstock += item.Openingstock + (item.REC11 - item.ISS11);
+                                            }
+                                        }
+
+                                        if (dt == 12)
+                                        {
+                                            if (ItemBalance == null)
+                                            {
+
+                                                osl.CmpName = item.CmpName;
+                                                osl.Type = item.Type;
+                                                osl.Store = item.Store;
+                                                osl.Brand = item.Brand;
+                                                osl.UOM = item.UOM;
+                                                osl.Color = item.Color;
+                                                osl.Sph = item.Sph;
+                                                osl.Axis = item.Axis;
+                                                osl.Add = item.Add;
+                                                osl.Fshpae = item.Fshpae;
+                                                osl.Ftype = item.Ftype;
+                                                osl.Fstyle = item.Fstyle;
+                                                osl.Fwidth = item.Fwidth;
+                                                osl.Receipt += item.REC12;
+                                                osl.Issue += item.ISS12;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07 + item.REC08 + item.REC09 + item.REC10 + item.REC11) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07 + item.ISS08 + item.ISS09 + item.ISS10 + item.ISS11);
+                                                osl.Closingstock += item.Openingstock + (item.REC12 - item.ISS12);
+                                                osl.ID = item.ID;
+                                                osl.LTID = item.LTID;
+                                                osl.StoreID = item.StoreID;
+                                                Opticalstksummary.OpticalStocksummaryarray.Add(osl);
+                                            }
+                                            else
+                                            {
+                                                osl.Receipt += item.REC12;
+                                                osl.Issue += item.ISS12;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07 + item.REC08 + item.REC09 + item.REC10 + item.REC11) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07 + item.ISS08 + item.ISS09 + item.ISS10 + item.ISS11);
+                                                osl.Closingstock += item.Openingstock + (item.REC12 - item.ISS12);
+                                            }
+                                        }
+
+                                    }
+
+
+                                }
+
+                            }
+
+
                         }
-
                     }
-
-
-
                 }
             }
             else
@@ -165,7 +617,7 @@ namespace WYNK.Data.Repository.Implementation
                     {
                         foreach (var ba in BrandArray.ToList())
                         {
-                            Opticalstksummary.Stocksummaryarray = (from OB in OpticalBalance.Where(x => x.StoreID == Convert.ToInt32(sa.ID) && x.CreatedUTC.Date >= fdate && x.CreatedUTC.Date <= tdate && x.CmpID == CompanyID)
+                            Opticalstksummary.Stocksummaryarray = (from OB in OpticalBalance.Where(x => x.StoreID == Convert.ToInt32(sa.ID) && x.CmpID == CompanyID && x.FYID == FinancialYearId)
                                                                    join LT in Lenstrans on OB.LTID equals LT.ID
                                                                    join BR in Brand.Where(x => x.ID == Convert.ToInt32(ba.ID)) on LT.Brand equals BR.ID
                                                                    join UM in uommaster on LT.UOMID equals UM.id
@@ -215,6 +667,8 @@ namespace WYNK.Data.Repository.Implementation
                                                                        ISS11 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS11).FirstOrDefault(),
                                                                        ISS12 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS12).FirstOrDefault(),
                                                                        Openingstock = OB.OpeningBalance,
+                                                                       LTID = OB.LTID,
+                                                                       StoreID = OB.StoreID,
                                                                        ID = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ID).FirstOrDefault(),
                                 
                                                                    }).ToList();
@@ -224,151 +678,441 @@ namespace WYNK.Data.Repository.Implementation
                             {
                                 foreach (var item in Opticalstksummary.Stocksummaryarray.ToList())
                                 {
-                                    for (var dt = fdate.Month; dt <= tdate.Month; dt = dt++)
+                                    var osl = new OpticalStocksummaryarray();
+
+                                  
+
+                                    for (var dt = fdate.Month; dt <= tdate.Month; dt++)
                                     {
-
-                                        if (dt == 1 && Opticalstksummary.Stocksummaryarray.Count() > 0)
+                                        var ItemBalance = Opticalstksummary.OpticalStocksummaryarray.Where(x => x.LTID == item.LTID && x.StoreID == item.StoreID).FirstOrDefault();
+                                        if (dt == 1)
                                         {
-                                            var osl = new OpticalStocksummaryarray();
-                                            osl.CmpName = item.CmpName;
-                                            osl.Type = item.Type;
-                                            osl.Store = item.Store;
-                                            osl.Brand = item.Brand;
-                                            osl.UOM = item.UOM;
-                                            osl.Color = item.Color;
-                                            osl.Sph = item.Sph;
-                                            osl.Axis = item.Axis;
-                                            osl.Add = item.Add;
-                                            osl.Fshpae = item.Fshpae;
-                                            osl.Ftype = item.Ftype;
-                                            osl.Fstyle = item.Fstyle;
-                                            osl.Fwidth = item.Fwidth;
-                                            osl.Receipt = item.REC01;
-                                            osl.Issue = item.ISS01;
-                                            osl.Openingstock = item.Openingstock;
-                                            osl.Closingstock = item.Openingstock + item.REC01 - item.ISS01;
-                                            osl.ID = item.ID;
-                                            Opticalstksummary.OpticalStocksummaryarray.Add(osl);
+                                            if (ItemBalance == null)
+                                            {
+                                                osl.CmpName = item.CmpName;
+                                                osl.Type = item.Type;
+                                                osl.Store = item.Store;
+                                                osl.Brand = item.Brand;
+                                                osl.UOM = item.UOM;
+                                                osl.Color = item.Color;
+                                                osl.Sph = item.Sph;
+                                                osl.Axis = item.Axis;
+                                                osl.Add = item.Add;
+                                                osl.Fshpae = item.Fshpae;
+                                                osl.Ftype = item.Ftype;
+                                                osl.Fstyle = item.Fstyle;
+                                                osl.Fwidth = item.Fwidth;
+                                                osl.Receipt += item.REC01;
+                                                osl.Issue += item.ISS01;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07 + item.REC08 + item.REC09 + item.REC10 + item.REC11 + item.REC12) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07 + item.ISS08 + item.ISS09 + item.ISS10 + item.ISS11 + item.ISS12);
+                                                osl.Closingstock += item.Openingstock + (item.REC01 - item.ISS01);
+                                                osl.ID = item.ID;
+                                                osl.LTID = item.LTID;
+                                                osl.StoreID = item.StoreID;
+                                                Opticalstksummary.OpticalStocksummaryarray.Add(osl);
+                                            }
+                                            else
+                                            {
+                                                osl.Receipt += item.REC01;
+                                                osl.Issue += item.ISS01;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07 + item.REC08 + item.REC09 + item.REC10 + item.REC11 + item.REC12) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07 + item.ISS08 + item.ISS09 + item.ISS10 + item.ISS11 + item.ISS12);
+                                                osl.Closingstock += item.Openingstock + (item.REC01 - item.ISS01);
+                                            }
                                         }
 
-                                        else {
-                                            var osl = new OpticalStocksummaryarray();
-                                            osl.CmpName = item.CmpName;
-                                            osl.Type = item.Type;
-                                            osl.Store = item.Store;
-                                            osl.Brand = item.Brand;
-                                            osl.UOM = item.UOM;
-                                            osl.Color = item.Color;
-                                            osl.Sph = item.Sph;
-                                            osl.Axis = item.Axis;
-                                            osl.Add = item.Add;
-                                            osl.Fshpae = item.Fshpae;
-                                            osl.Ftype = item.Ftype;
-                                            osl.Fstyle = item.Fstyle;
-                                            osl.Fwidth = item.Fwidth;
-                                            osl.Receipt = item.REC01;
-                                            osl.Issue = item.ISS01;
-                                            osl.Openingstock = item.Openingstock;
-                                            osl.Closingstock = item.Openingstock + item.REC01 - item.ISS01;
-                                            osl.ID = item.ID;
-
-                                        }
-
-
-                                        if (dt == 2 && Opticalstksummary.Stocksummaryarray.Count() > 0)
+                                        if (dt == 2)
                                         {
-                                            var osl = new OpticalStocksummaryarray();
-                                            osl.CmpName = item.CmpName;
-                                            osl.Type = item.Type;
-                                            osl.Store = item.Store;
-                                            osl.Brand = item.Brand;
-                                            osl.UOM = item.UOM;
-                                            osl.Color = item.Color;
-                                            osl.Sph = item.Sph;
-                                            osl.Axis = item.Axis;
-                                            osl.Add = item.Add;
-                                            osl.Fshpae = item.Fshpae;
-                                            osl.Ftype = item.Ftype;
-                                            osl.Fstyle = item.Fstyle;
-                                            osl.Fwidth = item.Fwidth;
-                                            osl.Receipt += item.REC01 + item.REC02;
-                                            osl.Issue += item.ISS01 + item.ISS02;
-                                            osl.Openingstock = item.Openingstock;
-                                            osl.Closingstock += item.Openingstock + item.REC01 + item.REC02 - (item.ISS01 + item.ISS02);
-                                            osl.ID = item.ID;
-                                            Opticalstksummary.OpticalStocksummaryarray.Add(osl);
-                                        }
-
-                                        else
-                                        {
-                                            var osl = new OpticalStocksummaryarray();
-                                            osl.CmpName = item.CmpName;
-                                            osl.Type = item.Type;
-                                            osl.Store = item.Store;
-                                            osl.Brand = item.Brand;
-                                            osl.UOM = item.UOM;
-                                            osl.Color = item.Color;
-                                            osl.Sph = item.Sph;
-                                            osl.Axis = item.Axis;
-                                            osl.Add = item.Add;
-                                            osl.Fshpae = item.Fshpae;
-                                            osl.Ftype = item.Ftype;
-                                            osl.Fstyle = item.Fstyle;
-                                            osl.Fwidth = item.Fwidth;
-                                            osl.Receipt += item.REC01 + item.REC02;
-                                            osl.Issue += item.ISS01 + item.ISS02;
-                                            osl.Openingstock = item.Openingstock;
-                                            osl.Closingstock += item.Openingstock + item.REC01 + item.REC02 - (item.ISS01 + item.ISS02);
-                                            osl.ID = item.ID;
+                                            if (ItemBalance == null)
+                                            {
+                                                osl.CmpName = item.CmpName;
+                                                osl.Type = item.Type;
+                                                osl.Store = item.Store;
+                                                osl.Brand = item.Brand;
+                                                osl.UOM = item.UOM;
+                                                osl.Color = item.Color;
+                                                osl.Sph = item.Sph;
+                                                osl.Axis = item.Axis;
+                                                osl.Add = item.Add;
+                                                osl.Fshpae = item.Fshpae;
+                                                osl.Ftype = item.Ftype;
+                                                osl.Fstyle = item.Fstyle;
+                                                osl.Fwidth = item.Fwidth;
+                                                osl.Receipt += item.REC02;
+                                                osl.Issue += item.ISS02;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07 + item.REC08 + item.REC09 + item.REC10 + item.REC11 + item.REC12 + item.REC01) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07 + item.ISS08 + item.ISS09 + item.ISS10 + item.ISS11 + item.ISS12 + item.ISS01);
+                                                osl.Closingstock += item.Openingstock + (item.REC02 - item.ISS02);
+                                                osl.ID = item.ID;
+                                                osl.LTID = item.LTID;
+                                                osl.StoreID = item.StoreID;
+                                                Opticalstksummary.OpticalStocksummaryarray.Add(osl);
+                                            }
+                                            else
+                                            {
+                                                osl.Receipt += item.REC02;
+                                                osl.Issue += item.ISS02;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07 + item.REC08 + item.REC09 + item.REC10 + item.REC11 + item.REC12 + item.REC01) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07 + item.ISS08 + item.ISS09 + item.ISS10 + item.ISS11 + item.ISS12 + item.ISS01);
+                                                osl.Closingstock += item.Openingstock + (item.REC02 - item.ISS02);
+                                            }
 
                                         }
 
-                                        if (dt == 3 && Opticalstksummary.Stocksummaryarray.Count() > 0)
+                                        if (dt == 3)
                                         {
-                                            var osl = new OpticalStocksummaryarray();
-                                            osl.CmpName = item.CmpName;
-                                            osl.Type = item.Type;
-                                            osl.Store = item.Store;
-                                            osl.Brand = item.Brand;
-                                            osl.UOM = item.UOM;
-                                            osl.Color = item.Color;
-                                            osl.Sph = item.Sph;
-                                            osl.Axis = item.Axis;
-                                            osl.Add = item.Add;
-                                            osl.Fshpae = item.Fshpae;
-                                            osl.Ftype = item.Ftype;
-                                            osl.Fstyle = item.Fstyle;
-                                            osl.Fwidth = item.Fwidth;
-                                            osl.Receipt += item.REC01 + item.REC02 + item.REC03;
-                                            osl.Issue += item.ISS01 + item.ISS02 + item.ISS03;
-                                            osl.Openingstock = item.Openingstock;
-                                            osl.Closingstock += item.Openingstock + item.REC01 + item.REC02 + item.REC03 - (item.ISS01 + item.ISS02 + item.ISS03);
-                                            osl.ID = item.ID;
-                                            Opticalstksummary.OpticalStocksummaryarray.Add(osl);
+                                            if (ItemBalance == null)
+                                            {
+
+                                                osl.CmpName = item.CmpName;
+                                                osl.Type = item.Type;
+                                                osl.Store = item.Store;
+                                                osl.Brand = item.Brand;
+                                                osl.UOM = item.UOM;
+                                                osl.Color = item.Color;
+                                                osl.Sph = item.Sph;
+                                                osl.Axis = item.Axis;
+                                                osl.Add = item.Add;
+                                                osl.Fshpae = item.Fshpae;
+                                                osl.Ftype = item.Ftype;
+                                                osl.Fstyle = item.Fstyle;
+                                                osl.Fwidth = item.Fwidth;
+                                                osl.Receipt += item.REC03;
+                                                osl.Issue += item.ISS03;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07 + item.REC08 + item.REC09 + item.REC10 + item.REC11 + item.REC12 + item.REC01 + item.REC02) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07 + item.ISS08 + item.ISS09 + item.ISS10 + item.ISS11 + item.ISS12 + item.ISS01 + item.ISS02);
+                                                osl.Closingstock += item.Openingstock + (item.REC03 - item.ISS03);
+                                                osl.ID = item.ID;
+                                                osl.LTID = item.LTID;
+                                                osl.StoreID = item.StoreID;
+                                                Opticalstksummary.OpticalStocksummaryarray.Add(osl);
+                                            }
+                                            else
+                                            {
+                                                osl.Receipt += item.REC03;
+                                                osl.Issue += item.ISS03;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07 + item.REC08 + item.REC09 + item.REC10 + item.REC11 + item.REC12 + item.REC01 + item.REC02) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07 + item.ISS08 + item.ISS09 + item.ISS10 + item.ISS11 + item.ISS12 + item.ISS01 + item.ISS02);
+                                                osl.Closingstock += item.Openingstock + (item.REC03 - item.ISS03);
+                                            }
                                         }
 
-                                        else
+                                        if (dt == 4)
                                         {
-                                            var osl = new OpticalStocksummaryarray();
-                                            osl.CmpName = item.CmpName;
-                                            osl.Type = item.Type;
-                                            osl.Store = item.Store;
-                                            osl.Brand = item.Brand;
-                                            osl.UOM = item.UOM;
-                                            osl.Color = item.Color;
-                                            osl.Sph = item.Sph;
-                                            osl.Axis = item.Axis;
-                                            osl.Add = item.Add;
-                                            osl.Fshpae = item.Fshpae;
-                                            osl.Ftype = item.Ftype;
-                                            osl.Fstyle = item.Fstyle;
-                                            osl.Fwidth = item.Fwidth;
-                                            osl.Receipt += item.REC01 + item.REC02 + item.REC03;
-                                            osl.Issue += item.ISS01 + item.ISS02 + item.ISS03;
-                                            osl.Openingstock = item.Openingstock;
-                                            osl.Closingstock += item.Openingstock + item.REC01 + item.REC02 + item.REC03 - (item.ISS01 + item.ISS02 + item.ISS03);
-                                            osl.ID = item.ID;
+                                            if (ItemBalance == null)
+                                            {
 
+                                                osl.CmpName = item.CmpName;
+                                                osl.Type = item.Type;
+                                                osl.Store = item.Store;
+                                                osl.Brand = item.Brand;
+                                                osl.UOM = item.UOM;
+                                                osl.Color = item.Color;
+                                                osl.Sph = item.Sph;
+                                                osl.Axis = item.Axis;
+                                                osl.Add = item.Add;
+                                                osl.Fshpae = item.Fshpae;
+                                                osl.Ftype = item.Ftype;
+                                                osl.Fstyle = item.Fstyle;
+                                                osl.Fwidth = item.Fwidth;
+                                                osl.Receipt += item.REC04;
+                                                osl.Issue += item.ISS04;
+                                                osl.Openingstock = item.Openingstock;
+                                                osl.Closingstock += item.Openingstock + (item.REC04 - item.ISS04);
+                                                osl.ID = item.ID;
+                                                osl.LTID = item.LTID;
+                                                osl.StoreID = item.StoreID;
+                                                Opticalstksummary.OpticalStocksummaryarray.Add(osl);
+                                            }
+                                            else
+                                            {
+                                                osl.Receipt += item.REC04;
+                                                osl.Issue += item.ISS04;
+                                                osl.Openingstock = item.Openingstock;
+                                                osl.Closingstock += item.Openingstock + (item.REC04 - item.ISS04);
+                                            }
+                                        }
+
+                                        if (dt == 5)
+                                        {
+                                            if (ItemBalance == null)
+                                            {
+
+                                                osl.CmpName = item.CmpName;
+                                                osl.Type = item.Type;
+                                                osl.Store = item.Store;
+                                                osl.Brand = item.Brand;
+                                                osl.UOM = item.UOM;
+                                                osl.Color = item.Color;
+                                                osl.Sph = item.Sph;
+                                                osl.Axis = item.Axis;
+                                                osl.Add = item.Add;
+                                                osl.Fshpae = item.Fshpae;
+                                                osl.Ftype = item.Ftype;
+                                                osl.Fstyle = item.Fstyle;
+                                                osl.Fwidth = item.Fwidth;
+                                                osl.Receipt += item.REC05;
+                                                osl.Issue += item.ISS05;
+                                                osl.Openingstock += item.Openingstock + (item.REC04) - (item.ISS04);
+                                                osl.Closingstock += item.Openingstock + (item.REC05 - item.ISS05);
+                                                osl.ID = item.ID;
+                                                osl.LTID = item.LTID;
+                                                osl.StoreID = item.StoreID;
+                                                Opticalstksummary.OpticalStocksummaryarray.Add(osl);
+                                            }
+                                            else
+                                            {
+                                                osl.Receipt += item.REC05;
+                                                osl.Issue += item.ISS05;
+                                                osl.Openingstock += item.Openingstock + (item.REC04) - (item.ISS04);
+                                                osl.Closingstock += item.Openingstock + (item.REC05 - item.ISS05);
+                                            }
+                                        }
+
+                                        if (dt == 6)
+                                        {
+                                            if (ItemBalance == null)
+                                            {
+
+                                                osl.CmpName = item.CmpName;
+                                                osl.Type = item.Type;
+                                                osl.Store = item.Store;
+                                                osl.Brand = item.Brand;
+                                                osl.UOM = item.UOM;
+                                                osl.Color = item.Color;
+                                                osl.Sph = item.Sph;
+                                                osl.Axis = item.Axis;
+                                                osl.Add = item.Add;
+                                                osl.Fshpae = item.Fshpae;
+                                                osl.Ftype = item.Ftype;
+                                                osl.Fstyle = item.Fstyle;
+                                                osl.Fwidth = item.Fwidth;
+                                                osl.Receipt += item.REC06;
+                                                osl.Issue += item.ISS06;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05) - (item.ISS04 + item.ISS05);
+                                                osl.Closingstock += item.Openingstock + (item.REC06 - item.ISS06);
+                                                osl.ID = item.ID;
+                                                osl.LTID = item.LTID;
+                                                osl.StoreID = item.StoreID;
+                                                Opticalstksummary.OpticalStocksummaryarray.Add(osl);
+                                            }
+                                            else
+                                            {
+                                                osl.Receipt += item.REC06;
+                                                osl.Issue += item.ISS06;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05) - (item.ISS04 + item.ISS05);
+                                                osl.Closingstock += item.Openingstock + (item.REC06 - item.ISS06);
+                                            }
+                                        }
+
+                                        if (dt == 7)
+                                        {
+                                            if (ItemBalance == null)
+                                            {
+                                                osl.CmpName = item.CmpName;
+                                                osl.Type = item.Type;
+                                                osl.Store = item.Store;
+                                                osl.Brand = item.Brand;
+                                                osl.UOM = item.UOM;
+                                                osl.Color = item.Color;
+                                                osl.Sph = item.Sph;
+                                                osl.Axis = item.Axis;
+                                                osl.Add = item.Add;
+                                                osl.Fshpae = item.Fshpae;
+                                                osl.Ftype = item.Ftype;
+                                                osl.Fstyle = item.Fstyle;
+                                                osl.Fwidth = item.Fwidth;
+                                                osl.Receipt = item.REC07;
+                                                osl.Issue = item.ISS07;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06) - (item.ISS04 + item.ISS05 + item.ISS06);
+                                                osl.Closingstock = item.Openingstock + (item.REC07 - item.ISS07);
+                                                osl.ID = item.ID;
+                                                osl.LTID = item.LTID;
+                                                osl.StoreID = item.StoreID;
+                                                Opticalstksummary.OpticalStocksummaryarray.Add(osl);
+                                            }
+                                            else
+                                            {
+                                                osl.Receipt = item.REC07;
+                                                osl.Issue = item.ISS07;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06) - (item.ISS04 + item.ISS05 + item.ISS06);
+                                                osl.Closingstock = item.Openingstock + (item.REC07 - item.ISS07);
+                                            }
+                                        }
+
+                                        if (dt == 8)
+                                        {
+                                            if (ItemBalance == null)
+                                            {
+                                                osl.CmpName = item.CmpName;
+                                                osl.Type = item.Type;
+                                                osl.Store = item.Store;
+                                                osl.Brand = item.Brand;
+                                                osl.UOM = item.UOM;
+                                                osl.Color = item.Color;
+                                                osl.Sph = item.Sph;
+                                                osl.Axis = item.Axis;
+                                                osl.Add = item.Add;
+                                                osl.Fshpae = item.Fshpae;
+                                                osl.Ftype = item.Ftype;
+                                                osl.Fstyle = item.Fstyle;
+                                                osl.Fwidth = item.Fwidth;
+                                                osl.Receipt += item.REC08;
+                                                osl.Issue += item.ISS08;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07);
+                                                osl.Closingstock += item.Openingstock + (item.REC08 - item.ISS08);
+                                                osl.ID = item.ID;
+                                                osl.LTID = item.LTID;
+                                                osl.StoreID = item.StoreID;
+                                                Opticalstksummary.OpticalStocksummaryarray.Add(osl);
+                                            }
+                                            else
+                                            {
+                                                osl.Receipt += item.REC08;
+                                                osl.Issue += item.ISS08;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07);
+                                                osl.Closingstock += item.Openingstock + (item.REC08 - item.ISS08);
+                                            }
+
+                                        }
+
+                                        if (dt == 9)
+                                        {
+                                            if (ItemBalance == null)
+                                            {
+
+                                                osl.CmpName = item.CmpName;
+                                                osl.Type = item.Type;
+                                                osl.Store = item.Store;
+                                                osl.Brand = item.Brand;
+                                                osl.UOM = item.UOM;
+                                                osl.Color = item.Color;
+                                                osl.Sph = item.Sph;
+                                                osl.Axis = item.Axis;
+                                                osl.Add = item.Add;
+                                                osl.Fshpae = item.Fshpae;
+                                                osl.Ftype = item.Ftype;
+                                                osl.Fstyle = item.Fstyle;
+                                                osl.Fwidth = item.Fwidth;
+                                                osl.Receipt += item.REC09;
+                                                osl.Issue += item.ISS09;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07 + item.REC08) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07 + item.ISS08);
+                                                osl.Closingstock += item.Openingstock + (item.REC09 - item.ISS09);
+                                                osl.ID = item.ID;
+                                                osl.LTID = item.LTID;
+                                                osl.StoreID = item.StoreID;
+                                                Opticalstksummary.OpticalStocksummaryarray.Add(osl);
+                                            }
+                                            else
+                                            {
+                                                osl.Receipt += item.REC09;
+                                                osl.Issue += item.ISS09;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07 + item.REC08) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07 + item.ISS08);
+                                                osl.Closingstock += item.Openingstock + (item.REC09 - item.ISS09);
+                                            }
+                                        }
+
+                                        if (dt == 10)
+                                        {
+                                            if (ItemBalance == null)
+                                            {
+
+                                                osl.CmpName = item.CmpName;
+                                                osl.Type = item.Type;
+                                                osl.Store = item.Store;
+                                                osl.Brand = item.Brand;
+                                                osl.UOM = item.UOM;
+                                                osl.Color = item.Color;
+                                                osl.Sph = item.Sph;
+                                                osl.Axis = item.Axis;
+                                                osl.Add = item.Add;
+                                                osl.Fshpae = item.Fshpae;
+                                                osl.Ftype = item.Ftype;
+                                                osl.Fstyle = item.Fstyle;
+                                                osl.Fwidth = item.Fwidth;
+                                                osl.Receipt += item.REC10;
+                                                osl.Issue += item.ISS10;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07 + item.REC08 + item.REC09) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07 + item.ISS08 + item.ISS09);
+                                                osl.Closingstock += item.Openingstock + (item.REC10 - item.ISS10);
+                                                osl.ID = item.ID;
+                                                osl.LTID = item.LTID;
+                                                osl.StoreID = item.StoreID;
+                                                Opticalstksummary.OpticalStocksummaryarray.Add(osl);
+                                            }
+                                            else
+                                            {
+                                                osl.Receipt += item.REC10;
+                                                osl.Issue += item.ISS10;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07 + item.REC08 + item.REC09) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07 + item.ISS08 + item.ISS09);
+                                                osl.Closingstock += item.Openingstock + (item.REC10 - item.ISS10);
+                                            }
+                                        }
+
+                                        if (dt == 11)
+                                        {
+                                            if (ItemBalance == null)
+                                            {
+
+                                                osl.CmpName = item.CmpName;
+                                                osl.Type = item.Type;
+                                                osl.Store = item.Store;
+                                                osl.Brand = item.Brand;
+                                                osl.UOM = item.UOM;
+                                                osl.Color = item.Color;
+                                                osl.Sph = item.Sph;
+                                                osl.Axis = item.Axis;
+                                                osl.Add = item.Add;
+                                                osl.Fshpae = item.Fshpae;
+                                                osl.Ftype = item.Ftype;
+                                                osl.Fstyle = item.Fstyle;
+                                                osl.Fwidth = item.Fwidth;
+                                                osl.Receipt += item.REC11;
+                                                osl.Issue += item.ISS11;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07 + item.REC08 + item.REC09 + item.REC10) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07 + item.ISS08 + item.ISS09 + item.ISS10);
+                                                osl.Closingstock += item.Openingstock + (item.REC11 - item.ISS11);
+                                                osl.ID = item.ID;
+                                                osl.LTID = item.LTID;
+                                                osl.StoreID = item.StoreID;
+                                                Opticalstksummary.OpticalStocksummaryarray.Add(osl);
+                                            }
+                                            else
+                                            {
+                                                osl.Receipt += item.REC11;
+                                                osl.Issue += item.ISS11;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07 + item.REC08 + item.REC09 + item.REC10) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07 + item.ISS08 + item.ISS09 + item.ISS10);
+                                                osl.Closingstock += item.Openingstock + (item.REC11 - item.ISS11);
+                                            }
+                                        }
+
+                                        if (dt == 12)
+                                        {
+                                            if (ItemBalance == null)
+                                            {
+
+                                                osl.CmpName = item.CmpName;
+                                                osl.Type = item.Type;
+                                                osl.Store = item.Store;
+                                                osl.Brand = item.Brand;
+                                                osl.UOM = item.UOM;
+                                                osl.Color = item.Color;
+                                                osl.Sph = item.Sph;
+                                                osl.Axis = item.Axis;
+                                                osl.Add = item.Add;
+                                                osl.Fshpae = item.Fshpae;
+                                                osl.Ftype = item.Ftype;
+                                                osl.Fstyle = item.Fstyle;
+                                                osl.Fwidth = item.Fwidth;
+                                                osl.Receipt += item.REC12;
+                                                osl.Issue += item.ISS12;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07 + item.REC08 + item.REC09 + item.REC10 + item.REC11) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07 + item.ISS08 + item.ISS09 + item.ISS10 + item.ISS11);
+                                                osl.Closingstock += item.Openingstock + (item.REC12 - item.ISS12);
+                                                osl.ID = item.ID;
+                                                osl.LTID = item.LTID;
+                                                osl.StoreID = item.StoreID;
+                                                Opticalstksummary.OpticalStocksummaryarray.Add(osl);
+                                            }
+                                            else
+                                            {
+                                                osl.Receipt += item.REC12;
+                                                osl.Issue += item.ISS12;
+                                                osl.Openingstock += item.Openingstock + (item.REC04 + item.REC05 + item.REC06 + item.REC07 + item.REC08 + item.REC09 + item.REC10 + item.REC11) - (item.ISS04 + item.ISS05 + item.ISS06 + item.ISS07 + item.ISS08 + item.ISS09 + item.ISS10 + item.ISS11);
+                                                osl.Closingstock += item.Openingstock + (item.REC12 - item.ISS12);
+                                            }
                                         }
 
                                     }
@@ -378,13 +1122,11 @@ namespace WYNK.Data.Repository.Implementation
 
                             }
 
-
-
-
-                           
                         }
                     }
                 }
+
+                
             }
 
             Opticalstksummary.Companycommu = (from c in Company.Where(u => u.CmpID == CompanyID)
