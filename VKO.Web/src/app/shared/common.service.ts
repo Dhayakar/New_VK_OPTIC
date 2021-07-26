@@ -16,7 +16,7 @@ declare var $: any;
 
 // iis express
 
-var apiurl = 'https://apps1api.wynkemr.com/';
+//var apiurl = 'https://apps1api.wynkemr.com/';
 
 //Local server
 
@@ -24,7 +24,7 @@ var apiurl = 'https://apps1api.wynkemr.com/';
 
 //apps.cmps.in
 
-//var apiurl = 'https://vkoapi.cmps.in/';
+var apiurl = 'https://vkoapi.cmps.in/';
 
 //apps.wynkemr.com
 
