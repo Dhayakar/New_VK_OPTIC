@@ -21,6 +21,8 @@ import { OpticalBillingRegisterComponent } from './Views/optical-billing-registe
 import { LensFrameUploadedComponent } from './Views/lens-frame-uploaded/lens-frame-uploaded.component';
 import { LensframestockuploadComponent } from './Views/lensframestockupload/lensframestockupload.component';
 import { MaterialreturntovendorComponent } from './Views/materialreturntovendor/materialreturntovendor.component';
+import { InterdepartmentComponent } from './Views/interdepartment/interdepartment.component';
+
 
 const routes: Routes = [
   { path: 'CustomerMaster', component: CustomerMasterComponent },
@@ -38,6 +40,8 @@ const routes: Routes = [
   { path: 'LensFrameUploaded', component: LensFrameUploadedComponent },
   { path: 'Lensframestockupload', component: LensframestockuploadComponent },
   { path: 'OpticalMaterialReturn', component: MaterialreturntovendorComponent },
+  { path: 'OpticalInterdepartmentTransfer', component: InterdepartmentComponent },
+
 ];
 
 @NgModule({
@@ -67,7 +71,8 @@ const routes: Routes = [
     OpticalBillingRegisterComponent,
     LensFrameUploadedComponent,
     LensframestockuploadComponent,
-    MaterialreturntovendorComponent
+    MaterialreturntovendorComponent,
+    InterdepartmentComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

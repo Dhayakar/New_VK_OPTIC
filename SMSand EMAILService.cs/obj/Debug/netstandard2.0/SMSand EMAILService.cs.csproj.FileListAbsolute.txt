@@ -70,3 +70,11 @@ Q:\Backup\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand 
 Q:\Backup\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.csproj.CoreCompileInputs.cache
 Q:\Backup\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.dll
 Q:\Backup\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
+F:\VK_Optics\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.deps.json
+F:\VK_Optics\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.dll
+F:\VK_Optics\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
+F:\VK_Optics\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.csprojAssemblyReference.cache
+F:\VK_Optics\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.AssemblyInfoInputs.cache
+F:\VK_Optics\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.AssemblyInfo.cs
+F:\VK_Optics\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.dll
+F:\VK_Optics\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.pdb

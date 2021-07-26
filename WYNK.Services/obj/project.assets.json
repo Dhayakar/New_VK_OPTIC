@@ -12624,24 +12624,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mjbha\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Rajkumar\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "Q:\\Backup\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
+      "projectUniqueName": "F:\\VK_Optics\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
       "projectName": "WYNK.Services",
-      "projectPath": "Q:\\Backup\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
-      "packagesPath": "C:\\Users\\mjbha\\.nuget\\packages\\",
-      "outputPath": "Q:\\Backup\\VK_Optic_Point\\WYNK.Services\\obj\\",
+      "projectPath": "F:\\VK_Optics\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
+      "packagesPath": "C:\\Users\\Rajkumar\\.nuget\\packages\\",
+      "outputPath": "F:\\VK_Optics\\VK_Optic_Point\\WYNK.Services\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\mjbha\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Rajkumar\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -12653,10 +12652,9 @@
       },
       "frameworks": {
         "netcoreapp2.1": {
-          "targetAlias": "netcoreapp2.1",
           "projectReferences": {
-            "Q:\\Backup\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj": {
-              "projectPath": "Q:\\Backup\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj"
+            "F:\\VK_Optics\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj": {
+              "projectPath": "F:\\VK_Optics\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj"
             }
           }
         }
@@ -12669,7 +12667,6 @@
     },
     "frameworks": {
       "netcoreapp2.1": {
-        "targetAlias": "netcoreapp2.1",
         "dependencies": {
           "Microsoft.AspNetCore.App": {
             "suppressParent": "All",
@@ -12710,7 +12707,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.117\\RuntimeIdentifierGraph.json"
       }
     }
   },

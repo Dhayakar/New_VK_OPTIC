@@ -1206,24 +1206,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mjbha\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Rajkumar\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "Q:\\Backup\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj",
+      "projectUniqueName": "F:\\VK_Optics\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj",
       "projectName": "SMSand EMAILService.cs",
-      "projectPath": "Q:\\Backup\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj",
-      "packagesPath": "C:\\Users\\mjbha\\.nuget\\packages\\",
-      "outputPath": "Q:\\Backup\\VK_Optic_Point\\SMSand EMAILService.cs\\obj\\",
+      "projectPath": "F:\\VK_Optics\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj",
+      "packagesPath": "C:\\Users\\Rajkumar\\.nuget\\packages\\",
+      "outputPath": "F:\\VK_Optics\\VK_Optic_Point\\SMSand EMAILService.cs\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\mjbha\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Rajkumar\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1235,7 +1234,6 @@
       },
       "frameworks": {
         "netstandard2.0": {
-          "targetAlias": "netstandard2.0",
           "projectReferences": {}
         }
       },
@@ -1247,7 +1245,6 @@
     },
     "frameworks": {
       "netstandard2.0": {
-        "targetAlias": "netstandard2.0",
         "dependencies": {
           "NEST": {
             "target": "Package",
@@ -1278,7 +1275,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.117\\RuntimeIdentifierGraph.json"
       }
     }
   },

@@ -1,0 +1,76 @@
+
+<form #IBT="ngForm">
+
+  <div class="col-sm-12 dividebar">
+    <div class="row">
+
+      <div class="col-sm-12">
+
+        <div class="card-header center">
+          <h5>Inter Department Transfer</h5>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-2">
+          </div>
+          <div class="col-sm-2">
+
+          </div>
+          <div class="col-sm-2">
+
+          </div>
+          <div class="col-sm-2">
+
+          </div>
+          <div class="col-sm-2">
+          </div>
+          <div class="col-sm-2">
+            <button class="btn-text" (click)="Getformaccess()"><i class="fas fa-eye"></i> View Access</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-sm-12 pgtop20-0">
+        <div class="row">
+          <div class="col-sm-2">
+            <mat-label class="refcol">Branch</mat-label>
+          </div>
+          <div class="col-sm-3">
+            <mat-label>{{orgname}}</mat-label>
+          </div>
+          <div class="col-sm-2">
+          </div>
+          <div class="col-sm-2">
+            <mat-label class="refcol">Store</mat-label>
+          </div>
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline">
+              <mat-label>Store</mat-label>
+              <mat-select required [(ngModel)]="storename" name="storename">
+                <mat-option *ngFor="let Store of StoreName" [value]="Store.Value">{{Store.Text}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+
+        <div class="col-sm-12 m-3">
+          <div class="col-sm-12 pb25">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4  sub-section btn-wrap f-r">
+              <button type="button" class="btn btn-warning-default" (click)="CancelClk()"> Cancel </button>
+              <button type="submit" class="success btn btn-primary  ml-2p" [disabled]="submitibt" id="submit" (click)="onSubmit(IBT)">Submit</button>
+
+            </div>
+            <div class="col-sm-4"></div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+
+</form>
