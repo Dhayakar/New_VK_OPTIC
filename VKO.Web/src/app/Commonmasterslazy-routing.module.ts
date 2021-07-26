@@ -8,10 +8,12 @@ import { MaterialModule } from './material.module';
 import { WebcamModule } from 'ngx-webcam';
 import { EmployeeformComponent } from './Views/employeeform/employeeform.component';
 import { LocationmasterComponent } from './Views/locationmaster/locationmaster.component';
+import { InvestigationRegisterComponent } from './Views/investigation-register/investigation-register.component';
 
 const routes: Routes = [
   { path: 'Employeemaster', component: EmployeeformComponent },
   { path: 'Locationmaster', component: LocationmasterComponent },
+  { path: 'InvestigationRegister', component: InvestigationRegisterComponent },
 ];
 
 @NgModule({
@@ -29,6 +31,7 @@ const routes: Routes = [
   declarations: [   
     EmployeeformComponent,
     LocationmasterComponent,
+    InvestigationRegisterComponent,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
