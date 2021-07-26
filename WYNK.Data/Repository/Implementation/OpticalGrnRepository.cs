@@ -12,6 +12,7 @@ using WYNK.Data.Model;
 using WYNK.Data.Model.ViewModel;
 using WYNK.Data.Repository.Operation;
 using WYNK.Helpers;
+using System.Text.RegularExpressions;
 namespace WYNK.Data.Repository.Implementation
 {
     class OpticalGrnRepository : RepositoryBase<OpticalGrnDataView>, IOpticalGrnRepository
@@ -43,6 +44,7 @@ namespace WYNK.Data.Repository.Implementation
 
                                     select new GetOpticalGrn
                                     {
+                                        Order = int.Parse(Regex.Match(OO.OrderNumber, @"\d+").Value),
                                         CreateUtc = OO.CreatedUTC,
                                         ID = OO.RandomUniqueID,
                                         OrderNumber = OO.OrderNumber,
@@ -101,6 +103,7 @@ namespace WYNK.Data.Repository.Implementation
             var lens = WYNKContext.Lensmaster.ToList();
             var lenstrns = WYNKContext.Lenstrans.ToList();
             var brand = WYNKContext.Brand.ToList();
+            var one = CMPSContext.OneLineMaster.ToList();
 
             optrns.GetOpticalGrntrns = new List<GetOpticalGrntrns>();
 
@@ -111,7 +114,6 @@ namespace WYNK.Data.Repository.Implementation
                                         {
                                             RandomUniqueID = Optrs.RandomUniqueID,
                                             LTID = Optrs.LTID,
-                                           // LTname = opt.Where(X => X.ID == Optrs.LTID).Select(x => x.LensOption).FirstOrDefault(),
                                             UOMID = Optrs.UOMID,
                                             UOMname = uom.Where(X => X.id == Optrs.UOMID).Select(x => x.Description).FirstOrDefault(),
                                             OrderedQty = Optrs.OrderedQty,
@@ -126,6 +128,14 @@ namespace WYNK.Data.Repository.Implementation
                                             Brand = brand.Where(x => x.ID == lenstrns.Where(s => s.ID == Optrs.LTID).Select(a => a.Brand).FirstOrDefault()).Select(f => f.Description).FirstOrDefault(),
                                             Color = lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.Colour).FirstOrDefault(),
                                             Model = lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.Model).FirstOrDefault(),
+                                            Sph = lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.Sph).FirstOrDefault() != null ? "Sph :" + " " + lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.Sph).FirstOrDefault() + ";" : null,
+                                            Cyl = lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.Cyl).FirstOrDefault() != null ? "Cyl :" + " " + lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.Cyl).FirstOrDefault() + ";" : null,
+                                            Axis = lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.Axis).FirstOrDefault() != null ? "Axis :" + " " + lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.Axis).FirstOrDefault() + ";" : null,
+                                            Add = lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.Add).FirstOrDefault() != null ? "Add :" + " " + lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.Add).FirstOrDefault() + ";" : null,
+                                            Fshpae = one.Where(f => f.OLMID == lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.FrameShapeID).FirstOrDefault()).Select(g => g.ParentDescription).FirstOrDefault() != null ? "Shape :" + " " + one.Where(f => f.OLMID == lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.FrameShapeID).FirstOrDefault()).Select(g => g.ParentDescription).FirstOrDefault() + ";" : null,
+                                            Ftype = one.Where(f => f.OLMID == lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.FrameTypeID).FirstOrDefault()).Select(g => g.ParentDescription).FirstOrDefault() != null ? "Type :" + " " + one.Where(f => f.OLMID == lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.FrameTypeID).FirstOrDefault()).Select(g => g.ParentDescription).FirstOrDefault() + ";" : null,
+                                            Fstyle = one.Where(f => f.OLMID == lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.FrameStyleID).FirstOrDefault()).Select(g => g.ParentDescription).FirstOrDefault() != null ? "Style :" + " " + one.Where(f => f.OLMID == lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.FrameStyleID).FirstOrDefault()).Select(g => g.ParentDescription).FirstOrDefault() + ";" : null,
+                                            Fwidth = one.Where(f => f.OLMID == lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.FrameWidthID).FirstOrDefault()).Select(g => g.ParentDescription).FirstOrDefault() != null ? "Width :" + " " + one.Where(f => f.OLMID == lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.FrameWidthID).FirstOrDefault()).Select(g => g.ParentDescription).FirstOrDefault() + ";" : null,
                                         }).ToList();
 
 
@@ -185,6 +195,7 @@ namespace WYNK.Data.Repository.Implementation
                             opticaltrans.RandomUniqueID = RandomUniqueID;
                             opticaltrans.LMIDID = item.LTID;
                             opticaltrans.ItemQty = item.ActualQuantity;
+                            opticaltrans.PendingQty = item.OrderedQty - (item.ReceivedQty + item.ActualQuantity);
                             opticaltrans.UOMID = item.UOMID;
                             opticaltrans.ItemRate = item.Price;
                             opticaltrans.ItemValue = item.Value;
@@ -613,6 +624,7 @@ namespace WYNK.Data.Repository.Implementation
 
                                            select new GetOpticalGrndetails
                                            {
+                                               Grn = int.Parse(Regex.Match(OS.DocumentNumber, @"\d+").Value),
                                                CreateUtc = OO.CreatedUTC,
                                                RandomUniqueID = OS.RandomUniqueID,
                                                GrnNumber = OS.DocumentNumber,
@@ -676,22 +688,23 @@ namespace WYNK.Data.Repository.Implementation
             var lens = WYNKContext.Lensmaster.ToList();
             var lenstrns = WYNKContext.Lenstrans.ToList();
             var brand = WYNKContext.Brand.ToList();
+            var one = CMPSContext.OneLineMaster.ToList();
 
             optrns.GetOpticalGrntrnsstock = new List<GetOpticalGrntrnsstock>();
 
             optrns.TotalPOValue = OpticalStockMaster.Where(x => x.RandomUniqueID == RandomUniqueID).Select(x => x.TotalPOValue).FirstOrDefault();
 
+
             optrns.GetOpticalGrntrnsstock = (from Optrs in Opticalstocktrns.Where(x => x.RandomUniqueID == RandomUniqueID)
 
                                              select new GetOpticalGrntrnsstock
                                              {
-                                                // LTname = opt.Where(X => X.ID == Optrs.LMIDID).Select(x => x.LensOption).FirstOrDefault(),
                                                  UOMname = uom.Where(X => X.id == Optrs.UOMID).Select(x => x.Description).FirstOrDefault(),
                                                  ItemQty = Optrs.ItemQty,
                                                  Itemrate = Optrs.ItemRate,
                                                  Itemvalue = Optrs.ItemValue,
-                                                 OrderedQty = Opticalordertran.Where(q => q.RandomUniqueID == Opticalorder.Where(x => x.RandomUniqueID == OpticalStockMaster.Where(s => s.RandomUniqueID == RandomUniqueID).Select(s => s.OpticalOrderID).FirstOrDefault()).Select(x => x.RandomUniqueID).FirstOrDefault()).Select(q => q.OrderedQty).FirstOrDefault(),
-                                                 PendingQty = (Opticalordertran.Where(q => q.RandomUniqueID == Opticalorder.Where(x => x.RandomUniqueID == OpticalStockMaster.Where(s => s.RandomUniqueID == RandomUniqueID).Select(s => s.OpticalOrderID).FirstOrDefault()).Select(x => x.RandomUniqueID).FirstOrDefault()).Select(q => q.OrderedQty).FirstOrDefault() - Optrs.ItemQty),
+                                                 OrderedQty = Opticalordertran.Where(q => q.RandomUniqueID == Opticalorder.Where(x => x.RandomUniqueID == OpticalStockMaster.Where(s => s.RandomUniqueID == RandomUniqueID).Select(s => s.OpticalOrderID).FirstOrDefault()).Select(x => x.RandomUniqueID).FirstOrDefault()).Where(d => d.LTID == Optrs.LMIDID).Select(q => q.OrderedQty).FirstOrDefault(),
+                                                 PendingQty = Optrs.PendingQty,
                                                  DiscountAmount = Optrs.DiscountAmount,
                                                  DiscountPercentage = Optrs.DiscountPercentage,
                                                  TotalCost = Optrs.ItemValue - Optrs.DiscountAmount,
@@ -699,11 +712,23 @@ namespace WYNK.Data.Repository.Implementation
                                                  Brand = brand.Where(x => x.ID == lenstrns.Where(s => s.ID == Optrs.LMIDID).Select(a => a.Brand).FirstOrDefault()).Select(f => f.Description).FirstOrDefault(),
                                                  Color = lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.Colour).FirstOrDefault(),
                                                  Model = lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.Model).FirstOrDefault(),
+                                                 Sph = lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.Sph).FirstOrDefault() != null ? "Sph :" + " " + lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.Sph).FirstOrDefault() + ";" : null,
+                                                 Cyl = lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.Cyl).FirstOrDefault() != null ? "Cyl :" + " " + lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.Cyl).FirstOrDefault() + ";" : null,
+                                                 Axis = lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.Axis).FirstOrDefault() != null ? "Axis :" + " " + lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.Axis).FirstOrDefault() + ";" : null,
+                                                 Add = lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.Add).FirstOrDefault() != null ? "Add :" + " " + lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.Add).FirstOrDefault() + ";" : null,
+                                                 Fshpae = one.Where(f => f.OLMID == lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.FrameShapeID).FirstOrDefault()).Select(g => g.ParentDescription).FirstOrDefault() != null ? "Shape :" + " " + one.Where(f => f.OLMID == lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.FrameShapeID).FirstOrDefault()).Select(g => g.ParentDescription).FirstOrDefault() + ";" : null,
+                                                 Ftype = one.Where(f => f.OLMID == lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.FrameTypeID).FirstOrDefault()).Select(g => g.ParentDescription).FirstOrDefault() != null ? "Type :" + " " + one.Where(f => f.OLMID == lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.FrameTypeID).FirstOrDefault()).Select(g => g.ParentDescription).FirstOrDefault() + ";" : null,
+                                                 Fstyle = one.Where(f => f.OLMID == lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.FrameStyleID).FirstOrDefault()).Select(g => g.ParentDescription).FirstOrDefault() != null ? "Style :" + " " + one.Where(f => f.OLMID == lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.FrameStyleID).FirstOrDefault()).Select(g => g.ParentDescription).FirstOrDefault() + ";" : null,
+                                                 Fwidth = one.Where(f => f.OLMID == lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.FrameWidthID).FirstOrDefault()).Select(g => g.ParentDescription).FirstOrDefault() != null ? "Width :" + " " + one.Where(f => f.OLMID == lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.FrameWidthID).FirstOrDefault()).Select(g => g.ParentDescription).FirstOrDefault() + ";" : null,
                                              }).ToList();
 
 
             return optrns;
         }
+
+      
+
+
         public dynamic Opticalgrnprint(string RandomUniqueID, int CMPID, string Time)
         {
             var company = CMPSContext.Company.ToList();
@@ -718,6 +743,7 @@ namespace WYNK.Data.Repository.Implementation
             var lenstrns = WYNKContext.Lenstrans.ToList();
             var brand = WYNKContext.Brand.ToList();
             var Opticalstocktrns = WYNKContext.OpticalStockTran.ToList();
+            var one = CMPSContext.OneLineMaster.ToList();
 
             var GetGrn = new OpticalGrnDataView();
             TimeSpan ts = TimeSpan.Parse(Time);
@@ -771,7 +797,6 @@ namespace WYNK.Data.Repository.Implementation
 
                                                   select new GetOpticalGrntrnsstockprint
                                                   {
-                                                     // LTname = opt.Where(X => X.ID == Optrs.LMIDID).Select(x => x.LensOption).FirstOrDefault(),
                                                       UOMname = uom.Where(X => X.id == Optrs.UOMID).Select(x => x.Description).FirstOrDefault(),
                                                       ItemQty = Optrs.ItemQty,
                                                       Itemrate = Optrs.ItemRate,
@@ -783,6 +808,14 @@ namespace WYNK.Data.Repository.Implementation
                                                       Brand = brand.Where(x => x.ID == lenstrns.Where(s => s.ID == Optrs.LMIDID).Select(a => a.Brand).FirstOrDefault()).Select(f => f.Description).FirstOrDefault(),
                                                       Color = lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.Colour).FirstOrDefault(),
                                                       Model = lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.Model).FirstOrDefault(),
+                                                      Sph = lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.Sph).FirstOrDefault() != null ? "Sph :" + " " + lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.Sph).FirstOrDefault() + ";" : null,
+                                                      Cyl = lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.Cyl).FirstOrDefault() != null ? "Cyl :" + " " + lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.Cyl).FirstOrDefault() + ";" : null,
+                                                      Axis = lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.Axis).FirstOrDefault() != null ? "Axis :" + " " + lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.Axis).FirstOrDefault() + ";" : null,
+                                                      Add = lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.Add).FirstOrDefault() != null ? "Add :" + " " + lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.Add).FirstOrDefault() + ";" : null,
+                                                      Fshpae = one.Where(f => f.OLMID == lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.FrameShapeID).FirstOrDefault()).Select(g => g.ParentDescription).FirstOrDefault() != null ? "Shape :" + " " + one.Where(f => f.OLMID == lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.FrameShapeID).FirstOrDefault()).Select(g => g.ParentDescription).FirstOrDefault() + ";" : null,
+                                                      Ftype = one.Where(f => f.OLMID == lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.FrameTypeID).FirstOrDefault()).Select(g => g.ParentDescription).FirstOrDefault() != null ? "Type :" + " " + one.Where(f => f.OLMID == lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.FrameTypeID).FirstOrDefault()).Select(g => g.ParentDescription).FirstOrDefault() + ";" : null,
+                                                      Fstyle = one.Where(f => f.OLMID == lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.FrameStyleID).FirstOrDefault()).Select(g => g.ParentDescription).FirstOrDefault() != null ? "Style :" + " " + one.Where(f => f.OLMID == lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.FrameStyleID).FirstOrDefault()).Select(g => g.ParentDescription).FirstOrDefault() + ";" : null,
+                                                      Fwidth = one.Where(f => f.OLMID == lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.FrameWidthID).FirstOrDefault()).Select(g => g.ParentDescription).FirstOrDefault() != null ? "Width :" + " " + one.Where(f => f.OLMID == lenstrns.Where(X => X.ID == Optrs.LMIDID).Select(x => x.FrameWidthID).FirstOrDefault()).Select(g => g.ParentDescription).FirstOrDefault() + ";" : null,
                                                   }).ToList();
 
 

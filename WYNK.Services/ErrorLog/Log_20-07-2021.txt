@@ -1,15 +1,41 @@
 
-20-07-2021 10:47:21 	Centris Mobility Project Services 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
-20-07-2021 10:47:21 	Message : 	Successfully Logged-In
+20-07-2021 10:39:04 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+20-07-2021 10:39:04 	Message : 	Successfully Logged-In
 
-20-07-2021 11:39:10 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
-20-07-2021 11:39:10 	Message : 	Successfully Logged-In
+20-07-2021 10:41:10 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+20-07-2021 10:41:10 	Message : 	Successfully Logged-In
 
-20-07-2021 11:48:14 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
-20-07-2021 11:48:14 	Message : 	Successfully Logged-In
+20-07-2021 10:42:41 	 	OpticalOrder 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Add
+20-07-2021 10:42:41 	OpticalOrder 	{"ID":-2147482647,"CmpID":1062,"OrderNumber":"OP71NO","OrderDate":"2021-07-20T10:41:18.619Z","RefNo":null,"RefDate":null,"TransactionID":1019,"VendorID":2048,"DeliveryName":"V K OPTIC POINT","DeliveryDate":"2021-07-20T10:41:18.619Z","Instructions":null,"DeliveryAddress1":"19, CROSSING PLAZA, CROSSING REPUBLIK GHAZIABAD","DeliveryAddress2":"","DeliveryAddress3":"","DeliveryLocationID":21,"GrossProductValue":20160.0,"TotalProductValue":0.0,"TotalDiscountAmount":0.0,"TotalGSTTaxValue":0.0,"TotalCGSTTaxValue":0.0,"TotalSGSTTaxValue":0.0,"TotalIGSTTaxValue":0.0,"CESSAmount":0.0,"AddCESSPerAmt":0.0,"IsCancelled":false,"TermsAndConditions":null,"Validity":20,"IsOrderExecuted":0,"CreatedUTC":"2021-07-20T10:42:41.7291831Z","UpdatedUTC":null,"CreatedBy":29163,"UpdatedBy":null,"Fyear":"2021","RandomUniqueID":"90dff83a-9288-4ec8-8c88-147a2ba6baae"}
+20-07-2021 10:42:41 	OpticalOrderTran 	{"ID":-2147482647,"RandomUniqueID":"90dff83a-9288-4ec8-8c88-147a2ba6baae","LTID":1,"UOMID":3008,"OrderedQty":10.0,"ReceivedQty":0.0,"Price":2000.0,"DiscountPercentage":10.0,"DiscountAmount":2000.0,"GSTPercentage":12.0,"GSTTaxValue":2160.0,"CGSTPercentage":6.0,"CGSTTaxValue":1080.0,"SGSTPercentage":6.0,"SGSTTaxValue":1080.0,"IGSTPercentage":0.0,"IGSTTaxValue":0.0,"CESSPercentage":0.0,"CESSAmount":0.0,"AdditionalCESSPercentage":0.0,"AddCESSPerAmt":0.0,"IsCancelled":false,"ContraOOID":null,"CreatedUTC":"2021-07-20T10:42:41.8262181Z","UpdatedUTC":null,"CreatedBy":29163,"UpdatedBy":null}
+20-07-2021 10:42:42 	NumberControl 	{"VCID":9046,"TransactionID":1019,"DepartmentID":0,"CmpID":1062,"Prefix":"OP","Suffix":"NO","Description":"OpticalOrder","Autonumber":true,"RunningNumber":71,"EffectiveFrom":"2020-03-06T18:30:00","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2020-03-06T12:59:39.567","UpdatedUTC":null,"CreatedBy":0,"UpdatedBy":null}
+20-07-2021 10:42:42 	Information : 	Saved Successfully
 
-20-07-2021 13:26:30 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
-20-07-2021 13:26:30 	Message : 	Successfully Logged-In
+20-07-2021 10:48:21 	V K OPTIC POINT 	OpticalOrder 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Add
+20-07-2021 10:48:21 	OpticalOrder 	{"ID":-2147482646,"CmpID":1062,"OrderNumber":"OP72NO","OrderDate":"2021-07-20T10:43:34.936Z","RefNo":null,"RefDate":null,"TransactionID":1019,"VendorID":2048,"DeliveryName":"V K OPTIC POINT","DeliveryDate":"2021-07-20T10:43:34.936Z","Instructions":null,"DeliveryAddress1":"19, CROSSING PLAZA, CROSSING REPUBLIK GHAZIABAD","DeliveryAddress2":"","DeliveryAddress3":"","DeliveryLocationID":21,"GrossProductValue":30240.0,"TotalProductValue":0.0,"TotalDiscountAmount":0.0,"TotalGSTTaxValue":0.0,"TotalCGSTTaxValue":0.0,"TotalSGSTTaxValue":0.0,"TotalIGSTTaxValue":0.0,"CESSAmount":0.0,"AddCESSPerAmt":0.0,"IsCancelled":false,"TermsAndConditions":null,"Validity":10,"IsOrderExecuted":0,"CreatedUTC":"2021-07-20T10:48:21.6981255Z","UpdatedUTC":null,"CreatedBy":29163,"UpdatedBy":null,"Fyear":"2021","RandomUniqueID":"6b9c2be9-2845-4ff6-afb6-f89cf30de8f9"}
+20-07-2021 10:48:21 	OpticalOrderTran 	{"ID":-2147482646,"RandomUniqueID":"6b9c2be9-2845-4ff6-afb6-f89cf30de8f9","LTID":2,"UOMID":3008,"OrderedQty":10.0,"ReceivedQty":0.0,"Price":3000.0,"DiscountPercentage":10.0,"DiscountAmount":3000.0,"GSTPercentage":12.0,"GSTTaxValue":3240.0,"CGSTPercentage":6.0,"CGSTTaxValue":1620.0,"SGSTPercentage":6.0,"SGSTTaxValue":1620.0,"IGSTPercentage":0.0,"IGSTTaxValue":0.0,"CESSPercentage":0.0,"CESSAmount":0.0,"AdditionalCESSPercentage":0.0,"AddCESSPerAmt":0.0,"IsCancelled":false,"ContraOOID":null,"CreatedUTC":"2021-07-20T10:48:21.7137402Z","UpdatedUTC":null,"CreatedBy":29163,"UpdatedBy":null}
+20-07-2021 10:48:21 	PaymentMaster 	{"ID":-2147482647,"UIN":"OP72NO","PaymentMode":"Cash","PaymentType":"A","InstrumentNumber":"","Instrumentdate":null,"Expirydate":null,"BankName":"","BankBranch":"","ReceiptNumber":"Rec141pt","Amount":1000.0,"ReceiptDate":"2021-07-20T10:48:21.7376183Z","OLMID":45,"IsBilled":false,"IsCancelled":null,"InVoiceNumber":"OP72NO","InVoiceDate":"2021-07-20T10:48:21.7373366Z","Paid":null,"CmpID":1062,"CreatedBy":29163,"UpdatedBy":null,"CreatedUTC":"2021-07-20T10:48:21.7818786Z","UpdatedUTC":null,"TransactionID":1019,"PaymentReferenceID":null,"Fyear":"2021"}
+20-07-2021 10:48:21 	NumberControl 	{"VCID":9046,"TransactionID":1019,"DepartmentID":0,"CmpID":1062,"Prefix":"OP","Suffix":"NO","Description":"OpticalOrder","Autonumber":true,"RunningNumber":72,"EffectiveFrom":"2020-03-06T18:30:00","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2020-03-06T12:59:39.567","UpdatedUTC":null,"CreatedBy":0,"UpdatedBy":null}
+20-07-2021 10:48:21 	NumberControl 	{"VCID":9485,"TransactionID":1035,"DepartmentID":0,"CmpID":1062,"Prefix":"Rec","Suffix":"pt","Description":"Receipt","Autonumber":true,"RunningNumber":141,"EffectiveFrom":"2020-09-14T18:30:00","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2020-09-14T10:06:40.063","UpdatedUTC":null,"CreatedBy":24,"UpdatedBy":null}
+20-07-2021 10:48:21 	Information : 	Saved Successfully
 
-20-07-2021 13:29:43 	V K OPTIC POINT 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
-20-07-2021 13:29:43 	Message : 	Successfully Logged-In
+20-07-2021 10:51:15 	 	OpticalOrder 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Add
+20-07-2021 10:51:15 	OpticalOrder 	{"ID":-2147482645,"CmpID":1062,"OrderNumber":"OP73NO","OrderDate":"2021-07-20T10:48:25.814Z","RefNo":null,"RefDate":null,"TransactionID":1019,"VendorID":2048,"DeliveryName":"V K OPTIC POINT","DeliveryDate":"2021-07-20T10:48:25.814Z","Instructions":null,"DeliveryAddress1":"19, CROSSING PLAZA, CROSSING REPUBLIK GHAZIABAD","DeliveryAddress2":"","DeliveryAddress3":"","DeliveryLocationID":21,"GrossProductValue":23654.0,"TotalProductValue":0.0,"TotalDiscountAmount":0.0,"TotalGSTTaxValue":0.0,"TotalCGSTTaxValue":0.0,"TotalSGSTTaxValue":0.0,"TotalIGSTTaxValue":0.0,"CESSAmount":0.0,"AddCESSPerAmt":0.0,"IsCancelled":false,"TermsAndConditions":null,"Validity":20,"IsOrderExecuted":0,"CreatedUTC":"2021-07-20T10:51:15.6176613Z","UpdatedUTC":null,"CreatedBy":29163,"UpdatedBy":null,"Fyear":"2021","RandomUniqueID":"860abb65-ed69-4b4a-a88d-6085edc90fd0"}
+20-07-2021 10:51:15 	OpticalOrderTran 	{"ID":-2147482645,"RandomUniqueID":"860abb65-ed69-4b4a-a88d-6085edc90fd0","LTID":1,"UOMID":3008,"OrderedQty":12.0,"ReceivedQty":0.0,"Price":2000.0,"DiscountPercentage":12.0,"DiscountAmount":2880.0,"GSTPercentage":12.0,"GSTTaxValue":2534.4,"CGSTPercentage":6.0,"CGSTTaxValue":1267.2,"SGSTPercentage":6.0,"SGSTTaxValue":1267.2,"IGSTPercentage":0.0,"IGSTTaxValue":0.0,"CESSPercentage":0.0,"CESSAmount":0.0,"AdditionalCESSPercentage":0.0,"AddCESSPerAmt":0.0,"IsCancelled":false,"ContraOOID":null,"CreatedUTC":"2021-07-20T10:51:15.6395585Z","UpdatedUTC":null,"CreatedBy":29163,"UpdatedBy":null}
+20-07-2021 10:51:15 	NumberControl 	{"VCID":9046,"TransactionID":1019,"DepartmentID":0,"CmpID":1062,"Prefix":"OP","Suffix":"NO","Description":"OpticalOrder","Autonumber":true,"RunningNumber":73,"EffectiveFrom":"2020-03-06T18:30:00","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2020-03-06T12:59:39.567","UpdatedUTC":null,"CreatedBy":0,"UpdatedBy":null}
+20-07-2021 10:51:15 	Information : 	Saved Successfully
+
+20-07-2021 10:59:14 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+20-07-2021 10:59:14 	Message : 	Successfully Logged-In
+
+20-07-2021 12:55:03 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+20-07-2021 12:55:03 	Message : 	Successfully Logged-In
+
+20-07-2021 12:56:26 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+20-07-2021 12:56:26 	Message : 	Successfully Logged-In
+
+20-07-2021 12:58:18 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+20-07-2021 12:58:18 	Message : 	Successfully Logged-In
+
+20-07-2021 13:00:04 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+20-07-2021 13:00:04 	Message : 	Successfully Logged-In

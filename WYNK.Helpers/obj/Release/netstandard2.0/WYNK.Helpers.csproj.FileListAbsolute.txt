@@ -7,3 +7,24 @@ D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Helpers\obj\Release\netstandard2.0\WYNK.
 D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Helpers\obj\Release\netstandard2.0\WYNK.Helpers.AssemblyInfo.cs
 D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Helpers\obj\Release\netstandard2.0\WYNK.Helpers.dll
 D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Helpers\obj\Release\netstandard2.0\WYNK.Helpers.pdb
+<<<<<<< HEAD
+E:\Git_desktop\VK_Optic_Point\WYNK.Helpers\bin\Release\netstandard2.0\WYNK.Helpers.deps.json
+E:\Git_desktop\VK_Optic_Point\WYNK.Helpers\bin\Release\netstandard2.0\WYNK.Helpers.dll
+E:\Git_desktop\VK_Optic_Point\WYNK.Helpers\bin\Release\netstandard2.0\WYNK.Helpers.pdb
+E:\Git_desktop\VK_Optic_Point\WYNK.Helpers\obj\Release\netstandard2.0\WYNK.Helpers.csprojAssemblyReference.cache
+E:\Git_desktop\VK_Optic_Point\WYNK.Helpers\obj\Release\netstandard2.0\WYNK.Helpers.AssemblyInfoInputs.cache
+E:\Git_desktop\VK_Optic_Point\WYNK.Helpers\obj\Release\netstandard2.0\WYNK.Helpers.AssemblyInfo.cs
+E:\Git_desktop\VK_Optic_Point\WYNK.Helpers\obj\Release\netstandard2.0\WYNK.Helpers.csproj.CoreCompileInputs.cache
+E:\Git_desktop\VK_Optic_Point\WYNK.Helpers\obj\Release\netstandard2.0\WYNK.Helpers.dll
+E:\Git_desktop\VK_Optic_Point\WYNK.Helpers\obj\Release\netstandard2.0\WYNK.Helpers.pdb
+=======
+D:\VK_Optic_Point\WYNK.Helpers\bin\Release\netstandard2.0\WYNK.Helpers.deps.json
+D:\VK_Optic_Point\WYNK.Helpers\bin\Release\netstandard2.0\WYNK.Helpers.dll
+D:\VK_Optic_Point\WYNK.Helpers\bin\Release\netstandard2.0\WYNK.Helpers.pdb
+D:\VK_Optic_Point\WYNK.Helpers\obj\Release\netstandard2.0\WYNK.Helpers.csprojAssemblyReference.cache
+D:\VK_Optic_Point\WYNK.Helpers\obj\Release\netstandard2.0\WYNK.Helpers.csproj.CoreCompileInputs.cache
+D:\VK_Optic_Point\WYNK.Helpers\obj\Release\netstandard2.0\WYNK.Helpers.AssemblyInfoInputs.cache
+D:\VK_Optic_Point\WYNK.Helpers\obj\Release\netstandard2.0\WYNK.Helpers.AssemblyInfo.cs
+D:\VK_Optic_Point\WYNK.Helpers\obj\Release\netstandard2.0\WYNK.Helpers.dll
+D:\VK_Optic_Point\WYNK.Helpers\obj\Release\netstandard2.0\WYNK.Helpers.pdb
+>>>>>>> a82c466e29b651fc77ee6b9ac3499f2eba166ca1

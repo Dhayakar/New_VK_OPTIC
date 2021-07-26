@@ -26,7 +26,10 @@ export class Lensframestock {
 
 export class Lensarray {
   Type: string;
-  LensOption: string;
+  Sph: string;
+  Cyl: string;
+  Axis: string;
+  Add: string;
   Index: string;
   Model: string;
   Size: string;
@@ -39,7 +42,6 @@ export class Lensarray {
   FrameType: string;
   FrameWidth: string;
   FrameStyle: string;
-  Description: string;
   TaxDescription: string;
   CessDescription: string;
   AddtionalDescription: string;
@@ -47,6 +49,14 @@ export class Lensarray {
   ADDCESSPercentage: number;
   GSTPercentage: number;
   Status: string;
+  Sphh: string;
+  Cyll: string;
+  Axiss: string;
+  Addd: string;
+  FrameShapee: string;
+  FrameTypee: string;
+  FrameWidthh: string;
+  FrameStylee: string;
 }
 
 export class RegistrationExcel {

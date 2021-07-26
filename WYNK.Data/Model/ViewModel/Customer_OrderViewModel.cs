@@ -49,7 +49,9 @@ namespace WYNK.Data.Model.ViewModel
         public string PD { get; set; }
         public string MPDOD { get; set; }
         public string MPDOS { get; set; }
-
+        public DateTime PrescriptionDate { get; set; }
+        public int? CustomerMasterID { get; set; }
+        
     }
 
 

@@ -103,7 +103,7 @@
 
     <div class="col-sm-12" *ngIf="TableData">
       <div class="row">
-        <h5 class="card-header  center"><label><b>Stock Summary </b>  &nbsp;&nbsp;<b>for the period&nbsp;&nbsp;{{M_FromDate | date :'dd-MMM-y'}} &nbsp;&nbsp;to&nbsp;&nbsp; {{M_ToDate| date :'dd-MMM-y'}}</b></label></h5>
+        <h5 class="card-header  center"><label><b>Stock Summary </b> &nbsp;<b>for the period&nbsp;{{M_FromDate | date :'dd-MMM-y'}} &nbsp;to &nbsp; {{M_ToDate| date :'dd-MMM-y'}}</b></label></h5>
       </div>
 
       <div class="col-sm-6 pgtop20-0 mt-1p">
@@ -119,7 +119,7 @@
       </div>
 
       <div class="col-sm-1 mt-1p">
-        <button mat-icon-button matTooltip="Export to Excel" [disabled]="disprint" (click)="fireEvent()"><img style="height:35px;width:45px;" src="assets/excel.svg" /></button>
+        <button (click)="fireEvent()" [disabled]="disprint" matTooltip="Export to Excel" class="btn btn-primary-default btn-Excel"><i class="far fa-file-excel"></i> Export to Spreadsheet</button>
       </div>
 
       <div class="col-sm-12">
@@ -127,66 +127,114 @@
         <div class="row heightAuto-300px">
 
 
-          <table mat-table matSort [dataSource]="dataSource" class="custom-table withoutbackgroung search-table table-bordered" id="contentToConvert">
+          <table mat-table [dataSource]="dataSource" class="custom-table withoutbackgroung search-table table-bordered" id="contentToConvert">
+
+
+            <ng-container matColumnDef="Description">
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Description</th>
+              <td mat-cell *matCellDef="let element ;let i = index;">{{element.Sph}} {{element.Cyl}} {{element.Fshpae}} {{element.Ftype}}<br />{{element.Axis}} {{element.Add}} {{element.Fstyle}} {{element.Fwidth}}</td>
+              <td mat-footer-cell *matFooterCellDef></td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Descriptions">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Description </th>
+            </ng-container>
+
 
 
             <ng-container matColumnDef="Type">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Type</th>
               <td mat-cell *matCellDef="let element; let i = index" [attr.rowspan]="getRowSpan('ID',i)" [style.display]="getRowSpan('ID', i) ? '' : 'none'">{{element.Type}}</td>
               <td mat-footer-cell *matFooterCellDef></td>
             </ng-container>
 
-            <ng-container matColumnDef="Store">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Store </th>
-              <td mat-cell *matCellDef="let element; let i = index" [attr.rowspan]="getRowSpan('ID',i)" [style.display]="getRowSpan('ID', i) ? '' : 'none'">{{element.Store}}</td>
-              <td mat-footer-cell *matFooterCellDef></td>
+
+            <ng-container matColumnDef="Types">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Type </th>
             </ng-container>
 
+
             <ng-container matColumnDef="Brand">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Brand </th>
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Brand</th>
               <td mat-cell *matCellDef="let element; let i = index" [attr.rowspan]="getRowSpan('ID',i)" [style.display]="getRowSpan('ID', i) ? '' : 'none'">{{element.Brand}}</td>
               <td mat-footer-cell *matFooterCellDef></td>
             </ng-container>
 
-            <ng-container matColumnDef="Color">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Color</th>
-              <td mat-cell *matCellDef="let element;let i = index">{{element.Color}}</td>
-              <td mat-footer-cell *matFooterCellDef></td>
+
+            <ng-container matColumnDef="Brands">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Brand </th>
             </ng-container>
 
+
+
             <ng-container matColumnDef="UOM">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> UOM </th>
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> UOM </th>
               <td mat-cell *matCellDef="let element; let i = index">{{element.UOM}}</td>
               <td mat-footer-cell *matFooterCellDef></td>
             </ng-container>
 
-            <ng-container matColumnDef="OpeningBalance">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Opening Balance </th>
-              <td mat-cell *matCellDef="let element; let i = index" [attr.rowspan]="getRowSpan('ID',i)" [style.display]="getRowSpan('ID', i) ? '' : 'none'">{{element.Openingstock | number : '1.2-2'}}</td>
+            <ng-container matColumnDef="UOMs">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> UOM </th>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Store">
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Store </th>
+              <td mat-cell *matCellDef="let element; let i = index" [attr.rowspan]="getRowSpan('ID',i)" [style.display]="getRowSpan('ID', i) ? '' : 'none'">{{element.Store}}</td>
               <td mat-footer-cell *matFooterCellDef></td>
             </ng-container>
 
-            <ng-container matColumnDef="ClosingBalance">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Closing Balance</th>
-              <td mat-cell *matCellDef="let element;let i = index" [attr.rowspan]="getRowSpan('ID',i)" [style.display]="getRowSpan('ID', i) ? '' : 'none'">{{element.Closingstock | number : '1.2-2'}}</td>
+            <ng-container matColumnDef="Stores">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Store </th>
+            </ng-container>
+
+            <ng-container matColumnDef="OpeningBalance">
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Opening Balance </th>
+              <td mat-cell *matCellDef="let element; let i = index" [attr.rowspan]="getRowSpan('ID',i)" [style.display]="getRowSpan('ID', i) ? '' : 'none'">{{element.Openingstock | number : '1.2-2'}}</td>
               <td mat-footer-cell *matFooterCellDef><b>Total</b></td>
             </ng-container>
 
+            <ng-container matColumnDef="OpeningBalances">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Opening Balance </th>
+            </ng-container>
+
+
+
             <ng-container matColumnDef="Receipt">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Receipt </th>
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Receipt </th>
               <td mat-cell *matCellDef="let element; let i = index">{{element.Receipt}}</td>
               <td mat-footer-cell *matFooterCellDef><b>{{getTotalCost() | number : '1.2-2'}}</b></td>
             </ng-container>
 
+            <ng-container matColumnDef="Receipts">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Receipt </th>
+            </ng-container>
+
             <ng-container matColumnDef="Issue">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>Issue</th>
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Issue</th>
               <td mat-cell *matCellDef="let element;let i = index">{{element.Issue}}</td>
               <td mat-footer-cell *matFooterCellDef><b>{{getTotalCostissue() | number : '1.2-2'}}</b></td>
             </ng-container>
 
+            <ng-container matColumnDef="Issues">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Issue </th>
+            </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            <ng-container matColumnDef="ClosingBalance">
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Closing Balance</th>
+              <td mat-cell *matCellDef="let element;let i = index" [attr.rowspan]="getRowSpan('ID',i)" [style.display]="getRowSpan('ID', i) ? '' : 'none'">{{element.Closingstock | number : '1.2-2'}}</td>
+              <td mat-footer-cell *matFooterCellDef></td>
+            </ng-container>
+
+            <ng-container matColumnDef="ClosingBalances">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Closing Balance </th>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="['Types','Brands','Descriptions','UOMs','Stores','OpeningBalances','Receipts','Issues','ClosingBalances'];sticky:true"></tr>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
+            <tr mat-row *matRowDef="let row;  let even = even;columns: displayedColumns;" [ngClass]="{gray: even}"></tr>
             <tr mat-footer-row *matFooterRowDef="displayedColumns;sticky:true"></tr>
           </table>
 
@@ -287,10 +335,8 @@
 
 
         <div class="modal-footer">
-
           <button (click)="prints()" class="btn btn-primary">Yes</button>
           <button type="button" id="theButton" class="btn btn-success" data-dismiss="modal" (click)="printclose()" cdkFocusInitial>No</button>
-
         </div>
 
 
@@ -327,63 +373,109 @@
     <table #table mat-table [dataSource]="dataSource" class="custom-table withoutbackgroung search-table table-bordered" id="contentToConvert" #contentToConvert style="width:100%">
 
 
+      <ng-container matColumnDef="Description">
+        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Description</th>
+        <td mat-cell *matCellDef="let element ;let i = index;" style="text-align:left">{{element.Sph}} {{element.Cyl}} {{element.Fshpae}} {{element.Ftype}}<br />{{element.Axis}} {{element.Add}} {{element.Fstyle}} {{element.Fwidth}}</td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="Descriptions">
+        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Description </th>
+      </ng-container>
+
+
+
       <ng-container matColumnDef="Type">
-        <th mat-header-cell *matHeaderCellDef> Type </th>
+        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Type</th>
         <td mat-cell *matCellDef="let element; let i = index" [attr.rowspan]="getRowSpan('ID',i)" [style.display]="getRowSpan('ID', i) ? '' : 'none'" style="text-align:left">{{element.Type}}</td>
         <td mat-footer-cell *matFooterCellDef></td>
       </ng-container>
 
-      <ng-container matColumnDef="Store">
-        <th mat-header-cell *matHeaderCellDef> Store </th>
-        <td mat-cell *matCellDef="let element; let i = index" [attr.rowspan]="getRowSpan('ID',i)" [style.display]="getRowSpan('ID', i) ? '' : 'none'" style="text-align:left">{{element.Store}}</td>
-        <td mat-footer-cell *matFooterCellDef></td>
+
+      <ng-container matColumnDef="Types">
+        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Type </th>
       </ng-container>
 
+
       <ng-container matColumnDef="Brand">
-        <th mat-header-cell *matHeaderCellDef> Brand </th>
+        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Brand</th>
         <td mat-cell *matCellDef="let element; let i = index" [attr.rowspan]="getRowSpan('ID',i)" [style.display]="getRowSpan('ID', i) ? '' : 'none'" style="text-align:left">{{element.Brand}}</td>
         <td mat-footer-cell *matFooterCellDef></td>
       </ng-container>
 
-      <ng-container matColumnDef="Color">
-        <th mat-header-cell *matHeaderCellDef>Color</th>
-        <td mat-cell *matCellDef="let element;let i = index" style="text-align:left">{{element.Color}}</td>
-        <td mat-footer-cell *matFooterCellDef></td>
+
+      <ng-container matColumnDef="Brands">
+        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Brand </th>
       </ng-container>
 
+
       <ng-container matColumnDef="UOM">
-        <th mat-header-cell *matHeaderCellDef> UOM </th>
+        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> UOM </th>
         <td mat-cell *matCellDef="let element; let i = index" style="text-align:left">{{element.UOM}}</td>
         <td mat-footer-cell *matFooterCellDef></td>
       </ng-container>
 
+      <ng-container matColumnDef="UOMs">
+        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> UOM </th>
+      </ng-container>
+
+
+      <ng-container matColumnDef="Store">
+        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Store </th>
+        <td mat-cell *matCellDef="let element; let i = index" [attr.rowspan]="getRowSpan('ID',i)" [style.display]="getRowSpan('ID', i) ? '' : 'none'" style="text-align:left">{{element.Store}}</td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <ng-container matColumnDef="Stores">
+        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Store </th>
+      </ng-container>
+
       <ng-container matColumnDef="OpeningBalance">
-        <th mat-header-cell *matHeaderCellDef> Opening Balance </th>
+        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Opening Balance </th>
         <td mat-cell *matCellDef="let element; let i = index" [attr.rowspan]="getRowSpan('ID',i)" [style.display]="getRowSpan('ID', i) ? '' : 'none'" style="text-align:right">{{element.Openingstock | number : '1.2-2'}}</td>
         <td mat-footer-cell *matFooterCellDef></td>
       </ng-container>
 
-      <ng-container matColumnDef="ClosingBalance">
-        <th mat-header-cell *matHeaderCellDef>Closing Balance</th>
-        <td mat-cell *matCellDef="let element;let i = index" [attr.rowspan]="getRowSpan('ID',i)" [style.display]="getRowSpan('ID', i) ? '' : 'none'" style="text-align:right">{{element.Closingstock | number : '1.2-2'}}</td>
-        <td mat-footer-cell *matFooterCellDef></td>
+      <ng-container matColumnDef="OpeningBalances">
+        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Opening Balance </th>
       </ng-container>
 
+
+
       <ng-container matColumnDef="Receipt">
-        <th mat-header-cell *matHeaderCellDef> Receipt </th>
+        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Receipt </th>
         <td mat-cell *matCellDef="let element; let i = index" style="text-align:right">{{element.Receipt}}</td>
         <td mat-footer-cell *matFooterCellDef style="text-align:right"><b>{{getTotalCost() | number : '1.2-2'}}</b></td>
       </ng-container>
 
+      <ng-container matColumnDef="Receipts">
+        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Receipt </th>
+      </ng-container>
+
       <ng-container matColumnDef="Issue">
-        <th mat-header-cell *matHeaderCellDef>Issue</th>
+        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Issue</th>
         <td mat-cell *matCellDef="let element;let i = index" style="text-align:right">{{element.Issue}}</td>
         <td mat-footer-cell *matFooterCellDef style="text-align:right"><b>{{getTotalCostissue() | number : '1.2-2'}}</b></td>
       </ng-container>
 
+      <ng-container matColumnDef="Issues">
+        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Issue </th>
+      </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      <ng-container matColumnDef="ClosingBalance">
+        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Closing Balance</th>
+        <td mat-cell *matCellDef="let element;let i = index" [attr.rowspan]="getRowSpan('ID',i)" [style.display]="getRowSpan('ID', i) ? '' : 'none'" style="text-align:right">{{element.Closingstock | number : '1.2-2'}}</td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <ng-container matColumnDef="ClosingBalances">
+        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Closing Balance </th>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="['Types','Brands','Descriptions','UOMs','Stores','OpeningBalances','Receipts','Issues','ClosingBalances'];sticky:true"></tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></tr>
+      <tr mat-row *matRowDef="let row;  let even = even;columns: displayedColumns;" [ngClass]="{gray: even}"></tr>
       <tr mat-footer-row *matFooterRowDef="displayedColumns;sticky:true"></tr>
     </table>
 

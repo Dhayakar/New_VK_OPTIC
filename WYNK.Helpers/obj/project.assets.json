@@ -273,24 +273,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mjbha\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "Q:\\Backup\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj",
+      "projectUniqueName": "E:\\Git_desktop\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj",
       "projectName": "WYNK.Helpers",
-      "projectPath": "Q:\\Backup\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj",
-      "packagesPath": "C:\\Users\\mjbha\\.nuget\\packages\\",
-      "outputPath": "Q:\\Backup\\VK_Optic_Point\\WYNK.Helpers\\obj\\",
+      "projectPath": "E:\\Git_desktop\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj",
+      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+      "outputPath": "E:\\Git_desktop\\VK_Optic_Point\\WYNK.Helpers\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\mjbha\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -302,7 +297,6 @@
       },
       "frameworks": {
         "netstandard2.0": {
-          "targetAlias": "netstandard2.0",
           "projectReferences": {}
         }
       },
@@ -314,7 +308,6 @@
     },
     "frameworks": {
       "netstandard2.0": {
-        "targetAlias": "netstandard2.0",
         "dependencies": {
           "NETStandard.Library": {
             "suppressParent": "All",
@@ -345,7 +338,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
       }
     }
   },

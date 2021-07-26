@@ -21,7 +21,7 @@ import { OpticalBillingRegisterComponent } from './Views/optical-billing-registe
 import { LensFrameUploadedComponent } from './Views/lens-frame-uploaded/lens-frame-uploaded.component';
 import { LensframestockuploadComponent } from './Views/lensframestockupload/lensframestockupload.component';
 import { MaterialreturntovendorComponent } from './Views/materialreturntovendor/materialreturntovendor.component';
-//import { OpticalDashboardComponent } from './Views/optical-dashboard/optical-dashboard.component';
+
 
 const routes: Routes = [
   { path: 'CustomerMaster', component: CustomerMasterComponent },

@@ -73,7 +73,10 @@ export class OPticalDetails {
    Cyl :string;
    Axis:string;
    Add: string;
-
+  FrameShapeID: string;
+  FrameStyleID:string;
+  FrameTypeID :string;
+  FrameWidthID:string;
 
   LensName: string;
   LMID: string;

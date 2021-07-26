@@ -7,3 +7,24 @@ D:\WYNK_GIT_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Release\netstandar
 D:\WYNK_GIT_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Release\netstandard2.0\SMSand EMAILService.cs.AssemblyInfo.cs
 D:\WYNK_GIT_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Release\netstandard2.0\SMSand EMAILService.cs.dll
 D:\WYNK_GIT_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Release\netstandard2.0\SMSand EMAILService.cs.pdb
+<<<<<<< HEAD
+E:\Git_desktop\VK_Optic_Point\SMSand EMAILService.cs\bin\Release\netstandard2.0\SMSand EMAILService.cs.deps.json
+E:\Git_desktop\VK_Optic_Point\SMSand EMAILService.cs\bin\Release\netstandard2.0\SMSand EMAILService.cs.dll
+E:\Git_desktop\VK_Optic_Point\SMSand EMAILService.cs\bin\Release\netstandard2.0\SMSand EMAILService.cs.pdb
+E:\Git_desktop\VK_Optic_Point\SMSand EMAILService.cs\obj\Release\netstandard2.0\SMSand EMAILService.cs.csprojAssemblyReference.cache
+E:\Git_desktop\VK_Optic_Point\SMSand EMAILService.cs\obj\Release\netstandard2.0\SMSand EMAILService.cs.AssemblyInfoInputs.cache
+E:\Git_desktop\VK_Optic_Point\SMSand EMAILService.cs\obj\Release\netstandard2.0\SMSand EMAILService.cs.AssemblyInfo.cs
+E:\Git_desktop\VK_Optic_Point\SMSand EMAILService.cs\obj\Release\netstandard2.0\SMSand EMAILService.cs.csproj.CoreCompileInputs.cache
+E:\Git_desktop\VK_Optic_Point\SMSand EMAILService.cs\obj\Release\netstandard2.0\SMSand EMAILService.cs.dll
+E:\Git_desktop\VK_Optic_Point\SMSand EMAILService.cs\obj\Release\netstandard2.0\SMSand EMAILService.cs.pdb
+=======
+D:\VK_Optic_Point\SMSand EMAILService.cs\bin\Release\netstandard2.0\SMSand EMAILService.cs.deps.json
+D:\VK_Optic_Point\SMSand EMAILService.cs\bin\Release\netstandard2.0\SMSand EMAILService.cs.dll
+D:\VK_Optic_Point\SMSand EMAILService.cs\bin\Release\netstandard2.0\SMSand EMAILService.cs.pdb
+D:\VK_Optic_Point\SMSand EMAILService.cs\obj\Release\netstandard2.0\SMSand EMAILService.cs.csprojAssemblyReference.cache
+D:\VK_Optic_Point\SMSand EMAILService.cs\obj\Release\netstandard2.0\SMSand EMAILService.cs.csproj.CoreCompileInputs.cache
+D:\VK_Optic_Point\SMSand EMAILService.cs\obj\Release\netstandard2.0\SMSand EMAILService.cs.AssemblyInfoInputs.cache
+D:\VK_Optic_Point\SMSand EMAILService.cs\obj\Release\netstandard2.0\SMSand EMAILService.cs.AssemblyInfo.cs
+D:\VK_Optic_Point\SMSand EMAILService.cs\obj\Release\netstandard2.0\SMSand EMAILService.cs.dll
+D:\VK_Optic_Point\SMSand EMAILService.cs\obj\Release\netstandard2.0\SMSand EMAILService.cs.pdb
+>>>>>>> a82c466e29b651fc77ee6b9ac3499f2eba166ca1
