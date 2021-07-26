@@ -15,6 +15,8 @@ export class CustomerOrderViewModel {
   RefNo: number;
   Refracion: Array<Refraction> = [];
   FINALPRESCRIPTION: Array<FINALPRESCRIPTION> = [];
+  FINALPRESCRIPTION1: Array<FINALPRESCRIPTION1> = [];
+  OPTICALPRESCRIPTION1: Array<OPTICALPRESCRIPTION1> = [];
   CustomerItemOrders: Array<CustomerItemOrder> = [];
   paymenttran: Array<paymenttran> = [];
 
@@ -30,7 +32,71 @@ export class CustomerOrderViewModel {
 }
 
 
+export class FINALPRESCRIPTION1 {
 
+  ID: number;
+  RegistrationTranID: number;
+  Description: string;
+  DV: number;
+  NV: number;
+  Ocular: string;
+  OcularOS: string;
+  DistSph: string;
+  DistSphOS: string;
+  NearCyl: string;
+  NearCylOS: string;
+  PinAxis: string;
+  PinAxisOS: string;
+  Add: string;
+  AddOS: string;
+  DistSphNVOD: string;
+  AddNVOD: string;
+  DistSphNVOS: string;
+  AddNVOS: string;
+  Remarks: string;
+  CreatedUTC: Date;
+  UpdatedUTC: Date;
+  CreatedBy: number;
+  UpdatedBy: number;
+  PD: string;
+  MPDOD: string;
+  MPDOS: string;
+  OD: false;
+  OS: false;
+}
+
+export class OPTICALPRESCRIPTION1 {
+
+  ID: number;
+  RegistrationTranID: number;
+  Description: string;
+  DV: number;
+  NV: number;
+  Ocular: string;
+  OcularOS: string;
+  DistSph: string;
+  DistSphOS: string;
+  NearCyl: string;
+  NearCylOS: string;
+  PinAxis: string;
+  PinAxisOS: string;
+  Add: string;
+  AddOS: string;
+  DistSphNVOD: string;
+  AddNVOD: string;
+  DistSphNVOS: string;
+  AddNVOS: string;
+  Remarks: string;
+  CreatedUTC: Date;
+  UpdatedUTC: Date;
+  CreatedBy: number;
+  UpdatedBy: number;
+  PD: string;
+  MPDOD: string;
+  MPDOS: string;
+  OD: false;
+  OS: false;
+}
 
 export class CustomerData {
   UIN: string

@@ -83,7 +83,7 @@
             <mat-label class="refcol  ml-n12p">Prescription Date:</mat-label>
           </div>
           <div class="col-sm-5 f-r mt-n8p width-60p">
-            <mat-label class="ml-9p">{{M_PrescriptionDate| date:'dd-MMM-y'}}</mat-label>
+            <mat-label class="ml-9p">{{M_PrescriptionDate| date:'dd-MMM-y, HH:mm'}}</mat-label>
           </div>
         </div>
         <div class="row mt-14p">
@@ -1747,21 +1747,21 @@
         </div>
         <div class="row heightAuto-300px">
           <table mat-table matSort [dataSource]="PrescriptionSource" class="custom-table withoutbackgroung search-table table-bordered">
-            <ng-container matColumnDef="UIN">
-              <th mat-header-cell *matHeaderCellDef>UIN</th>
-              <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.UIN}}</td>
-            </ng-container>
+            <!--<ng-container matColumnDef="UIN">
+    <th mat-header-cell *matHeaderCellDef>UIN</th>
+    <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.UIN}}</td>
+  </ng-container>-->
             <ng-container matColumnDef="PrescriptionDate">
               <th mat-header-cell *matHeaderCellDef>Prescription Date</th>
-              <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.PrescriptionDate | date:'dd-MMM-y'}} </td>
+              <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.PrescriptionDate | date:'dd-MMM-y, HH:mm'}} </td>
             </ng-container>
             <ng-container matColumnDef="CustomerName">
               <th mat-header-cell *matHeaderCellDef>Customer Name</th>
               <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Name}} </td>
             </ng-container>
-            <ng-container matColumnDef="Doctorname">
-              <th mat-header-cell *matHeaderCellDef>Presc. Doctor</th>
-              <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.Doctorname}} </td>
+            <ng-container matColumnDef="MobileNo">
+            <th mat-header-cell *matHeaderCellDef>Phone</th>
+            <td mat-cell *matCellDef="let element" data-toggle="tooltip" title="Select">{{element.MobileNo}} </td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="PrescriptionColumns;sticky:true"></tr>
             <tr mat-row *matRowDef="let row; let element;  let even = even;columns: PrescriptionColumns;" class="cursor" (click)="selectPrescription(element)"></tr>
@@ -1790,6 +1790,7 @@
                 <th rowspan="3">BPD</th>
                 <th colspan="2">MPD</th>
                 <th rowspan="3">Remarks</th>
+                <th rowspan="3">Action</th>
               </tr>
               <tr>
                 <th colspan="4">Distance Vision</th>
@@ -1816,7 +1817,23 @@
                 <th colspan="1"></th>
               </tr>
               <tbody>
-                <tr>
+                <tr >
+                  <!--<td>{{x.DistSph}}</td>
+  <td>{{x.NearCyl}}</td>
+  <td>{{x.PinAxis}}</td>
+  <td>{{x.Add}}</td>
+  <td>{{x.DistSphNVOD}}</td>
+  <td>{{x.AddNVOD}}</td>
+  <td>{{x.DistSphOS}}</td>
+  <td>{{x.NearCylOS}}</td>
+  <td>{{x.PinAxisOS}}</td>
+  <td>{{x.AddOS}}</td>
+  <td>{{x.DistSphNVOS}}</td>
+  <td>{{x.AddNVOS}}</td>
+  <td>{{x.PD}}</td>
+  <td>{{x.MPDOD}}</td>
+  <td>{{x.MPDOS}}</td>
+  <td>{{x.Remarks}}</td>-->
                   <td>{{SPHACC1}}</td>
                   <td>{{CYLACC1}}</td>
                   <td>{{AXISACC1}}</td>
@@ -1833,6 +1850,25 @@
                   <td>{{MPD}}</td>
                   <td>{{MPD1}}</td>
                   <td>{{Remarksacc}}</td>
+                  <td style="text-align:center">
+                    <button mat-icon-button (click)="EditOP()">
+                      <mat-icon class="grab" data-toggle="Edit">edit</mat-icon>
+                    </button>
+                  </td>
+
+
+                  <!--<tr *ngFor="let x of paymentPrint; index as i">
+    <td style="text-align:center">{{i+1}}</td>
+    <td style="text-align:center">{{x.PaymentMode}}</td>
+    <td style="text-align:center">{{x.InstrumentNumber}}</td>
+    <td style="text-align:center">{{x.Instrumentdate| date:"dd-MMM-y"}}</td>
+    <td style="text-align:center">{{x.BankName}}</td>
+    <td style="text-align:center">{{x.BankBranch}}</td>
+    <td style="text-align:center">{{x.Amount|currency:Country2}}</td>
+  </tr>-->
+
+
+
                 </tr>
               </tbody>
             </table>

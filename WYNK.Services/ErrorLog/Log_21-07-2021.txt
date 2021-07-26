@@ -1,0 +1,109 @@
+
+21-07-2021 05:09:41 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 05:09:41 	Message : 	Successfully Logged-In
+
+21-07-2021 08:02:58 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 08:02:58 	Message : 	Successfully Logged-In
+
+21-07-2021 08:07:29 	 	OpticalOrder 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Add
+21-07-2021 08:07:29 	OpticalOrder 	{"ID":-2147482647,"CmpID":1062,"OrderNumber":"OP74NO","OrderDate":"2021-07-21T08:03:06.222Z","RefNo":null,"RefDate":null,"TransactionID":1019,"VendorID":2073,"DeliveryName":"V K OPTIC POINT","DeliveryDate":"2021-07-21T08:03:06.222Z","Instructions":null,"DeliveryAddress1":"19, CROSSING PLAZA, CROSSING REPUBLIK GHAZIABAD","DeliveryAddress2":"","DeliveryAddress3":"","DeliveryLocationID":21,"GrossProductValue":0.0,"TotalProductValue":0.0,"TotalDiscountAmount":0.0,"TotalGSTTaxValue":0.0,"TotalCGSTTaxValue":0.0,"TotalSGSTTaxValue":0.0,"TotalIGSTTaxValue":0.0,"CESSAmount":0.0,"AddCESSPerAmt":0.0,"IsCancelled":false,"TermsAndConditions":null,"Validity":30,"IsOrderExecuted":0,"CreatedUTC":"2021-07-21T08:07:29.9297215Z","UpdatedUTC":null,"CreatedBy":29163,"UpdatedBy":null,"Fyear":"2021","RandomUniqueID":"b1ef0a91-72bf-45e7-b8f4-b15720c2bba1"}
+21-07-2021 08:07:30 	OpticalOrderTran 	{"ID":-2147482647,"RandomUniqueID":"b1ef0a91-72bf-45e7-b8f4-b15720c2bba1","LTID":2,"UOMID":3008,"OrderedQty":99999.0,"ReceivedQty":0.0,"Price":3000.0,"DiscountPercentage":100.0,"DiscountAmount":299997000.0,"GSTPercentage":12.0,"GSTTaxValue":0.0,"CGSTPercentage":6.0,"CGSTTaxValue":0.0,"SGSTPercentage":6.0,"SGSTTaxValue":0.0,"IGSTPercentage":0.0,"IGSTTaxValue":0.0,"CESSPercentage":0.0,"CESSAmount":0.0,"AdditionalCESSPercentage":0.0,"AddCESSPerAmt":0.0,"IsCancelled":false,"ContraOOID":null,"CreatedUTC":"2021-07-21T08:07:30.0221617Z","UpdatedUTC":null,"CreatedBy":29163,"UpdatedBy":null}
+21-07-2021 08:07:30 	NumberControl 	{"VCID":9046,"TransactionID":1019,"DepartmentID":0,"CmpID":1062,"Prefix":"OP","Suffix":"NO","Description":"OpticalOrder","Autonumber":true,"RunningNumber":74,"EffectiveFrom":"2020-03-06T18:30:00","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2020-03-06T12:59:39.567","UpdatedUTC":null,"CreatedBy":0,"UpdatedBy":null}
+21-07-2021 08:07:30 	Information : 	Saved Successfully
+
+21-07-2021 08:22:52 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 08:22:52 	Message : 	Successfully Logged-In
+
+21-07-2021 08:25:06 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 08:25:06 	Message : 	Successfully Logged-In
+
+21-07-2021 08:29:59 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 08:29:59 	Message : 	Successfully Logged-In
+
+21-07-2021 08:32:05 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 08:32:05 	Message : 	Successfully Logged-In
+
+21-07-2021 08:33:23 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 08:33:23 	Message : 	Successfully Logged-In
+
+21-07-2021 09:55:42 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 09:55:42 	Message : 	Successfully Logged-In
+
+21-07-2021 10:02:01 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 10:02:01 	Message : 	Successfully Logged-In
+
+21-07-2021 10:05:50 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 10:05:50 	Message : 	Successfully Logged-In
+
+21-07-2021 10:10:22 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 10:10:22 	Message : 	Successfully Logged-In
+
+21-07-2021 10:24:29 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 10:24:29 	Message : 	Successfully Logged-In
+
+21-07-2021 10:41:26 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 10:41:26 	Message : 	Successfully Logged-In
+
+21-07-2021 10:43:33 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 10:43:33 	Message : 	Successfully Logged-In
+
+21-07-2021 10:45:58 	V K OPTIC POINT 	CUSTOMER ORDER 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Sumbit
+21-07-2021 10:45:58 	CustomerOrder 	{"ID":-2147482647,"RandomUniqueID":"d81dd295-0e44-4ab2-aec1-534b779bb23a","CmpID":1062,"CusID":1,"TCID":1020,"OrderNo":"CUS90ORDER","OrderDate":"2021-07-21T10:45:58.22431Z","RefNo":null,"RefDate":null,"Deliverydate":null,"Remarks":null,"ContraOrderID":null,"IsCancelled":false,"CancelledDate":null,"CancelledReasons":null,"OrderStatus":"Open","GrossProductValue":null,"TotalDiscountValue":null,"TotalTaxvalue":null,"TotalProductValue":null,"TotalCGSTTaxValue":null,"TotalSGSTTaxValue":null,"TotalIGSTTaxValue":null,"TotalCESSValue":null,"TotalAddCESSValue":null,"CreatedUTC":"2021-07-21T10:45:58.2636782Z","UpdatedUTC":null,"CreatedBy":29163,"UpdatedBy":null,"Fyear":"2021","OpticalPrescriptionPath":null}
+21-07-2021 10:45:58 	CustomerOrderTran 	{"ID":-2147482647,"COID":"d81dd295-0e44-4ab2-aec1-534b779bb23a","LTID":2,"UOMID":3008,"OrderedQty":1,"ReceivedQty":0,"ItemRate":3000.0,"GrossValue":3000.0,"ItemValue":3360.0,"DiscountPercentage":0.0,"DiscountAmount":0.0,"GSTPercentage":12.0,"GSTTaxValue":360.00,"CGSTPercentage":6.0,"CGSTTaxValue":180.00,"SGSTPercentage":6.0,"SGSTTaxValue":180.00,"IGSTPercentage":null,"TotalIGSTTaxValue":null,"CESSPercentage":null,"CESSAmount":null,"AdditionalCESSPercentage":null,"AddCESSPerAmt":null,"IsCancelled":false,"ContraCustomerNo":null,"ContraCustomerDate":null,"CreatedUTC":"2021-07-21T10:45:58.3079304Z","UpdatedUTC":null,"CreatedBy":29163,"UpdatedBy":null}
+21-07-2021 10:45:58 	CustomerOrder 	{"ID":18,"RandomUniqueID":"d81dd295-0e44-4ab2-aec1-534b779bb23a","CmpID":1062,"CusID":1,"TCID":1020,"OrderNo":"CUS90ORDER","OrderDate":"2021-07-21T10:45:58.22431Z","RefNo":null,"RefDate":null,"Deliverydate":null,"Remarks":null,"ContraOrderID":null,"IsCancelled":false,"CancelledDate":null,"CancelledReasons":null,"OrderStatus":"Open","GrossProductValue":3000.0,"TotalDiscountValue":0.0,"TotalTaxvalue":360.00,"TotalProductValue":3360.0,"TotalCGSTTaxValue":180.00,"TotalSGSTTaxValue":180.00,"TotalIGSTTaxValue":null,"TotalCESSValue":null,"TotalAddCESSValue":null,"CreatedUTC":"2021-07-21T10:45:58.2636782Z","UpdatedUTC":null,"CreatedBy":29163,"UpdatedBy":null,"Fyear":"2021","OpticalPrescriptionPath":null}
+21-07-2021 10:45:58 	NumberControl 	{"VCID":9049,"TransactionID":1020,"DepartmentID":0,"CmpID":1062,"Prefix":"CUS","Suffix":"ORDER","Description":"Customer Order","Autonumber":true,"RunningNumber":90,"EffectiveFrom":"2020-03-01T00:00:00","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2020-03-01T00:00:00","UpdatedUTC":null,"CreatedBy":0,"UpdatedBy":null}
+21-07-2021 10:45:58 	Information : 	Saved Successfully
+
+21-07-2021 10:52:05 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 10:52:05 	Message : 	Successfully Logged-In
+
+21-07-2021 10:55:55 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 10:55:55 	Message : 	Successfully Logged-In
+
+21-07-2021 10:59:44 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 10:59:44 	Message : 	Successfully Logged-In
+
+21-07-2021 11:07:19 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 11:07:19 	Message : 	Successfully Logged-In
+
+21-07-2021 11:11:10 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 11:11:10 	Message : 	Successfully Logged-In
+
+21-07-2021 11:34:50 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 11:34:50 	Message : 	Successfully Logged-In
+
+21-07-2021 11:51:09 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 11:51:09 	Message : 	Successfully Logged-In
+
+21-07-2021 11:54:26 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 11:54:26 	Message : 	Successfully Logged-In
+
+21-07-2021 11:58:31 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 11:58:31 	Message : 	Successfully Logged-In
+
+21-07-2021 12:02:36 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 12:02:36 	Message : 	Successfully Logged-In
+
+21-07-2021 12:11:39 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 12:11:39 	Message : 	Successfully Logged-In
+
+21-07-2021 12:44:34 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 12:44:34 	Message : 	Successfully Logged-In
+
+21-07-2021 12:46:47 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 12:46:47 	Message : 	Successfully Logged-In
+
+21-07-2021 12:51:42 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 12:51:42 	Message : 	Successfully Logged-In
+
+21-07-2021 12:56:29 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 12:56:29 	Message : 	Successfully Logged-In
+
+21-07-2021 13:04:58 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 13:04:58 	Message : 	Successfully Logged-In
+
+21-07-2021 13:26:07 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 13:26:07 	Message : 	Successfully Logged-In
+
+21-07-2021 13:33:57 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+21-07-2021 13:33:57 	Message : 	Successfully Logged-In

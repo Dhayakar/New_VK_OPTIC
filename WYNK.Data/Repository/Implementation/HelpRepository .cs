@@ -2479,8 +2479,6 @@ namespace WYNK.Data.Repository.Implementation
             return Donor;
         }
 
-
-
         public Help CustomerOrder(int CMPID)
         {
             var CustomerOrder = new Help();
@@ -2508,6 +2506,7 @@ namespace WYNK.Data.Repository.Implementation
                                               Price = LT.Prize,
                                               Model = LT.Model,
                                               GST = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.GSTPercentage).FirstOrDefault(),
+                                              IGST = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.IGSTPercentage).FirstOrDefault(),
                                               CESS = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.CESSPercentage).FirstOrDefault(),
                                               AddCess = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.AdditionalCESSPercentage).FirstOrDefault(),
                                               GSTDesc = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.TaxDescription).FirstOrDefault(),
@@ -2518,23 +2517,16 @@ namespace WYNK.Data.Repository.Implementation
                                               HSNNo = LT.HSNNo,
                                               UOM = UOM.Where(x => x.id == LT.UOMID).Select(x => x.Description).FirstOrDefault(),
                                               uomid = LT.UOMID,
-                                              //Sph = LT.Sph,
-                                              //Cyl = LT.Cyl,
-                                              //Axis = LT.Axis,
-                                              //Add = LT.Add,
                                               Sph = LT.Sph != null ? "Sph : " + LT.Sph + "; " : null,
                                               Cyl = LT.Cyl != null ? "Cyl : " + LT.Cyl + "; " : null,
                                               Axis = LT.Axis != null ? "Axis : " + LT.Axis + "; " : null,
                                               Add = LT.Add != null ? "Add : " + LT.Add : null,
-                                              FrameShapeID = LT.FrameShapeID != null ? "Shape : " + LT.FrameShapeID + "; " : null,
-                                              FrameStyleID = LT.FrameStyleID != null ? "Style : " + LT.FrameStyleID + "; " : null,
-                                              FrameTypeID = LT.FrameTypeID != null ? "Type : " + LT.FrameTypeID + "; " : null,
-                                              FrameWidthID = LT.FrameWidthID != null ? "Width : " + LT.FrameWidthID : null,
-                                            
-
-
-        }).ToList();
-            return CustomerOrder;
+                                              FrameShapeID = Onelinemaster.Where(x=>x.OLMID == LT.FrameShapeID).Select(c=>c.ParentDescription).FirstOrDefault()      != null ? "Shape : " + Onelinemaster.Where(x=>x.OLMID == LT.FrameShapeID).Select(c=>c.ParentDescription).FirstOrDefault() + "; " : null,
+                                              FrameStyleID = Onelinemaster.Where(x => x.OLMID == LT.FrameStyleID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Style : " + Onelinemaster.Where(x => x.OLMID == LT.FrameStyleID).Select(c => c.ParentDescription).FirstOrDefault() + "; " : null,
+                                              FrameTypeID =    Onelinemaster.Where(x => x.OLMID == LT.FrameTypeID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Type : " +    Onelinemaster.Where(x => x.OLMID == LT.FrameTypeID).Select(c => c.ParentDescription).FirstOrDefault() + "; " : null,
+                                              FrameWidthID = Onelinemaster.Where(x => x.OLMID == LT.FrameWidthID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Width : " + Onelinemaster.Where(x => x.OLMID == LT.FrameWidthID).Select(c => c.ParentDescription).FirstOrDefault() : null,
+                                          }).ToList();
+                                          return CustomerOrder;
         }
 
 

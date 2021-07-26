@@ -933,58 +933,66 @@ namespace WYNK.Data.Repository.Implementation
 
         public dynamic GetfinalopDetails(int CMPID)
         {
-            var registration = WYNKContext.Registration.ToList();
+            var CustomerMaster = WYNKContext.CustomerMaster.Where(x=>x.IsDeleted == false && x.CmpID == CMPID).ToList();
             var user = CMPSContext.Users.ToList();
             var docmas = CMPSContext.DoctorMaster.ToList();
             var userrole = CMPSContext.UserVsRole.ToList();
             var final = new OpticalPrescriptionview();
             final.opfinalprescri = new List<opfinalprescri>();
 
-            var groups = (from REF in WYNKContext.OpticalPrescription.Where(u => u.CMPID == CMPID && u.COID == null)
-                          join us in user on REF.CreatedBy equals us.Userid
-
-
-                          join doc in docmas on
-                          us.Username equals doc.EmailID
-                          join usr in userrole on
-                          us.Username equals usr.UserName
-
-
+            var groups = (from REF in WYNKContext.OpticalPrescription.Where(u => u.CMPID == CMPID && u.CustomerMasterID != null)
+                          //join us in user on REF.CreatedBy equals us.Userid
+                          //join doc in docmas on us.Username equals doc.EmailID
+                          //join usr in userrole on us.Username equals usr.UserName
                           select new
                           {
-                              RID = REF.RegistrationTranID,
-                              Pdate = REF.CreatedUTC,
-                              DName = doc.Firstname + " " + doc.MiddleName + " " + doc.LastName,
-                              Role = usr.RoleDescription,
+                              RID = REF.CustomerMasterID,
+                              Pdate = REF.PrescriptionDate,
+                             // DName = doc.Firstname + " " + doc.MiddleName + " " + doc.LastName,
+                            //  Role = usr.RoleDescription,
                               uin = REF.UIN,
-                              name = registration.Where(x => x.UIN == REF.UIN).Select(x => x.Name + " " + x.MiddleName + " " + x.LastName).FirstOrDefault(),
-                              FirstName = registration.Where(x => x.UIN == REF.UIN).Select(x => x.Name).FirstOrDefault(),
-                              Middlename = registration.Where(x => x.UIN == REF.UIN).Select(x => x.MiddleName).FirstOrDefault(),
-                              Lastname = registration.Where(x => x.UIN == REF.UIN).Select(x => x.LastName).FirstOrDefault(),
-                              Gender = registration.Where(x => x.UIN == REF.UIN).Select(x => x.Gender).FirstOrDefault(),
+                              name = CustomerMaster.Where(x => x.ID == REF.CustomerMasterID).Select(x => x.Name + " " + x.MiddleName + " " + x.LastName).FirstOrDefault(),
+                              FirstName = CustomerMaster.Where(x => x.ID == REF.CustomerMasterID).Select(x => x.Name).FirstOrDefault(),
+                              Middlename = CustomerMaster.Where(x => x.ID == REF.CustomerMasterID).Select(x => x.MiddleName).FirstOrDefault(),
+                              Lastname = CustomerMaster.Where(x => x.ID == REF.CustomerMasterID).Select(x => x.LastName).FirstOrDefault(),
+                             // Gender = registration.Where(x => x.ID == REF.CustomerMasterID).Select(x => x.).FirstOrDefault(),
                           }).AsNoTracking().ToList().OrderByDescending(x => x.Pdate);
 
-
-
-            var Final = (from REF in groups.GroupBy(x => x.RID)
+            var Final = (from REF in groups.GroupBy(x => x.Pdate)
                          select new
                          {
 
-                             UIN = REF.Select(x => x.uin).FirstOrDefault(),
+                             UIN = REF.Select(x => x.RID).FirstOrDefault(),
                              Name = REF.Select(x => x.name).FirstOrDefault(),
                              FirstName = REF.Select(x => x.FirstName).FirstOrDefault(),
                              Middlename = REF.Select(x => x.Middlename).FirstOrDefault(),
                              Lastname = REF.Select(x => x.Lastname).FirstOrDefault(),
-                             Doctorname = REF.Select(x => x.DName).FirstOrDefault(),
+                            // Doctorname = REF.Select(x => x.DName).FirstOrDefault(),
                              PrescriptionDate = REF.Select(x => x.Pdate).FirstOrDefault(),
                              RegistrationTranID = REF.Select(x => x.RID).FirstOrDefault(),
-                             Address1 = registration.Where(z => z.UIN == REF.Select(y => y.uin).FirstOrDefault()).Select(x => x.Address1).FirstOrDefault(),
-                             Address2 = registration.Where(z => z.UIN == REF.Select(y => y.uin).FirstOrDefault()).Select(x => x.Address2).FirstOrDefault(),
-                             Address3 = registration.Where(z => z.UIN == REF.Select(y => y.uin).FirstOrDefault()).Select(x => x.Address3).FirstOrDefault(),
-                             MobileNo = registration.Where(z => z.UIN == REF.Select(y => y.uin).FirstOrDefault()).Select(x => x.Phone).FirstOrDefault(),
+                             Address1 = CustomerMaster.Where(z => z.ID == REF.Select(y => y.RID).FirstOrDefault()).Select(x => x.Address1).FirstOrDefault(),
+                             Address2 = CustomerMaster.Where(z => z.ID == REF.Select(y => y.RID).FirstOrDefault()).Select(x => x.Address2).FirstOrDefault(),
+                             Address3 = CustomerMaster.Where(z => z.ID == REF.Select(y => y.RID).FirstOrDefault()).Select(x => x.Address3).FirstOrDefault(),
+                             MobileNo = CustomerMaster.Where(z => z.ID == REF.Select(y => y.RID).FirstOrDefault()).Select(x => x.PhoneNo).FirstOrDefault(),
                          }).ToList();
 
+            //var Final1 = (from REF in Final.GroupBy(x => x.PrescriptionDate)
+            //             select new
+            //             {
 
+            //                 UIN = REF.Select(x => x.UIN).FirstOrDefault(),
+            //                 Name = REF.Select(x => x.Name).FirstOrDefault(),
+            //                 FirstName = REF.Select(x => x.FirstName).FirstOrDefault(),
+            //                 Middlename = REF.Select(x => x.Middlename).FirstOrDefault(),
+            //                 Lastname = REF.Select(x => x.Lastname).FirstOrDefault(),
+            //                 // Doctorname = REF.Select(x => x.DName).FirstOrDefault(),
+            //                 PrescriptionDate = REF.Select(x => x.PrescriptionDate).FirstOrDefault(),
+            //                 RegistrationTranID = REF.Select(x => x.RegistrationTranID).FirstOrDefault(),
+            //                 Address1 = CustomerMaster.Where(z => z.ID == REF.Select(y => y.RegistrationTranID).FirstOrDefault()).Select(x => x.Address1).FirstOrDefault(),
+            //                 Address2 = CustomerMaster.Where(z => z.ID == REF.Select(y => y.RegistrationTranID).FirstOrDefault()).Select(x => x.Address2).FirstOrDefault(),
+            //                 Address3 = CustomerMaster.Where(z => z.ID == REF.Select(y => y.RegistrationTranID).FirstOrDefault()).Select(x => x.Address3).FirstOrDefault(),
+            //                 MobileNo = CustomerMaster.Where(z => z.ID == REF.Select(y => y.RegistrationTranID).FirstOrDefault()).Select(x => x.PhoneNo).FirstOrDefault(),
+            //             }).ToList();
 
             return new
             {
@@ -994,74 +1002,74 @@ namespace WYNK.Data.Repository.Implementation
             };
         }
 
-        public dynamic IsCustomerFound(int CMPID, string UIN)
-        {
-            var IsFound = WYNKContext.CustomerMaster.Where(x => x.CmpID == CMPID && x.UIN == UIN && x.IsDeleted == false).FirstOrDefault();
-            if (IsFound != null)
-            {
-                return new
-                {
-                    Success = true,
-                    Message = "Found",
-                    CusID = IsFound.ID,
-                    Name = IsFound.Name + " " + IsFound.MiddleName + " " + IsFound.LastName,
-                    Address = IsFound.Address1 + " " + IsFound.Address2 + " " + IsFound.Address3,
-                    MobileNo = IsFound.MobileNo,
-                };
+        //public dynamic IsCustomerFound(int CMPID, string UIN)
+        //{
+        //    var IsFound = WYNKContext.CustomerMaster.Where(x => x.CmpID == CMPID  && x.IsDeleted == false).FirstOrDefault();
+        //    if (IsFound != null)
+        //    {
+        //        return new
+        //        {
+        //            Success = true,
+        //            Message = "Found",
+        //            CusID = IsFound.ID,
+        //            Name = IsFound.Name + " " + IsFound.MiddleName + " " + IsFound.LastName,
+        //            Address = IsFound.Address1 + " " + IsFound.Address2 + " " + IsFound.Address3,
+        //            MobileNo = IsFound.MobileNo,
+        //        };
 
-            }
-            else
-            {
+        //    }
+        //    else
+        //    {
 
-                return new
-                {
-                    Success = false,
-                    Message = "Not Found",
-                };
-            }
-        }
+        //        return new
+        //        {
+        //            Success = false,
+        //            Message = "Not Found",
+        //        };
+        //    }
+        //}
 
-        public dynamic CustomerDetailsSubmit(CustomerSubmit CustomerSubmitDetails, int CMPID, int UserId)
-        {
-            try
-            {
-                var CusMaster = new CustomerMaster();
-                CusMaster.UIN = CustomerSubmitDetails.CustomerDatas.UIN;
-                CusMaster.Name = CustomerSubmitDetails.CustomerDatas.FirstName;
-                CusMaster.MiddleName = CustomerSubmitDetails.CustomerDatas.Middlename;
-                CusMaster.LastName = CustomerSubmitDetails.CustomerDatas.Lastname;
-                CusMaster.Address1 = CustomerSubmitDetails.CustomerDatas.Address1;
-                CusMaster.Address2 = CustomerSubmitDetails.CustomerDatas.Address2;
-                CusMaster.Address3 = CustomerSubmitDetails.CustomerDatas.Address3;
-                CusMaster.MobileNo = CustomerSubmitDetails.CustomerDatas.MobileNo;
-                CusMaster.IsDeleted = false;
-                CusMaster.CreatedUTC = DateTime.UtcNow;
-                CusMaster.CreatedBy = UserId;
-                CusMaster.CmpID = CMPID;
+        //public dynamic CustomerDetailsSubmit(CustomerSubmit CustomerSubmitDetails, int CMPID, int UserId)
+        //{
+        //    try
+        //    {
+        //        var CusMaster = new CustomerMaster();
+        //        CusMaster.UIN = CustomerSubmitDetails.CustomerDatas.UIN;
+        //        CusMaster.Name = CustomerSubmitDetails.CustomerDatas.FirstName;
+        //        CusMaster.MiddleName = CustomerSubmitDetails.CustomerDatas.Middlename;
+        //        CusMaster.LastName = CustomerSubmitDetails.CustomerDatas.Lastname;
+        //        CusMaster.Address1 = CustomerSubmitDetails.CustomerDatas.Address1;
+        //        CusMaster.Address2 = CustomerSubmitDetails.CustomerDatas.Address2;
+        //        CusMaster.Address3 = CustomerSubmitDetails.CustomerDatas.Address3;
+        //        CusMaster.MobileNo = CustomerSubmitDetails.CustomerDatas.MobileNo;
+        //        CusMaster.IsDeleted = false;
+        //        CusMaster.CreatedUTC = DateTime.UtcNow;
+        //        CusMaster.CreatedBy = UserId;
+        //        CusMaster.CmpID = CMPID;
 
-                WYNKContext.CustomerMaster.Add(CusMaster);
-                WYNKContext.SaveChanges();
+        //        WYNKContext.CustomerMaster.Add(CusMaster);
+        //        WYNKContext.SaveChanges();
 
-                var IsFound = WYNKContext.CustomerMaster.Where(x => x.CmpID == CMPID && x.UIN == CustomerSubmitDetails.CustomerDatas.UIN && x.IsDeleted == false).FirstOrDefault();
+        //        var IsFound = WYNKContext.CustomerMaster.Where(x => x.CmpID == CMPID && x.UIN == CustomerSubmitDetails.CustomerDatas.UIN && x.IsDeleted == false).FirstOrDefault();
 
-                return new
-                {
-                    Success = true,
-                    Message = "Save Successfully",
-                    CusID = IsFound.ID,
-                    Name = IsFound.Name + " " + IsFound.MiddleName + " " + IsFound.LastName,
-                    Address = IsFound.Address1 + " " + IsFound.Address2 + " " + IsFound.Address3,
-                    MobileNo = IsFound.MobileNo,
-                };
-            }
-            catch (Exception)
-            {
-                return new
-                {
-                    Success = false,
-                };
-            }
-        }
+        //        return new
+        //        {
+        //            Success = true,
+        //            Message = "Save Successfully",
+        //            CusID = IsFound.ID,
+        //            Name = IsFound.Name + " " + IsFound.MiddleName + " " + IsFound.LastName,
+        //            Address = IsFound.Address1 + " " + IsFound.Address2 + " " + IsFound.Address3,
+        //            MobileNo = IsFound.MobileNo,
+        //        };
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return new
+        //        {
+        //            Success = false,
+        //        };
+        //    }
+        //}
 
         public dynamic UploadImage(IFormFile file, string CustomerOrderNo)
         {
@@ -1105,14 +1113,17 @@ namespace WYNK.Data.Repository.Implementation
                 {
                     var OPMcount = WYNKContext.OpticalPrescriptionmaster.Where(x => x.CustomerMasterID == CustomerID && x.CMPID == cmpID).Count();
 
-                    if (OPMcount != 0)
-                    {
-                        var opm = WYNKContext.OpticalPrescriptionmaster.Where(x => x.CustomerMasterID == CustomerID && x.CMPID == cmpID).ToList();
-                        var op = WYNKContext.OpticalPrescription.Where(x => x.CustomerMasterID == CustomerID && x.CMPID == cmpID).ToList();
-                        WYNKContext.OpticalPrescriptionmaster.RemoveRange(opm);
-                        WYNKContext.OpticalPrescription.RemoveRange(op);
-                        WYNKContext.SaveChanges();
-                    }
+                    //if (OPMcount != 0)
+                    //{
+                    //    var opm = WYNKContext.OpticalPrescriptionmaster.Where(x => x.CustomerMasterID == CustomerID && x.CMPID == cmpID).ToList();
+                    //    var op = WYNKContext.OpticalPrescription.Where(x => x.CustomerMasterID == CustomerID && x.CMPID == cmpID).ToList();
+                    //    WYNKContext.OpticalPrescriptionmaster.RemoveRange(opm);
+                    //    WYNKContext.OpticalPrescription.RemoveRange(op);
+                    //    WYNKContext.SaveChanges();
+                    //}
+                    var utctime = CMPSContext.Setup.Where(x => x.CMPID == cmpID).Select(x => x.UTCTime).FirstOrDefault();
+                    TimeSpan ts = TimeSpan.Parse(utctime);
+                    var PrescriptionDate = DateTime.UtcNow + ts;
 
                     if (AddOpticalPrescription.FINALPRESCRIPTION != null)
                     {
@@ -1123,7 +1134,8 @@ namespace WYNK.Data.Repository.Implementation
                             var finos = AddOpticalPrescription.FINALPRESCRIPTION.Where(x => x.Description == "Final Prescription").ToList();
                             var one = CMPSContext.OneLineMaster.ToList();
                             var masteroptical = WYNKContext.CustomerMaster.Where(x => x.ID == CustomerID && x.CmpID == cmpID && x.IsDeleted == false).FirstOrDefault();
-
+                            if (OPMcount == 0)
+                            {
                             var RefOP = new OpticalPrescriptionmaster();
                             RefOP.UIN = masteroptical.UIN;
                             RefOP.CustomerMasterID = CustomerID;
@@ -1131,7 +1143,7 @@ namespace WYNK.Data.Repository.Implementation
                             RefOP.MiddleName = masteroptical.MiddleName;
                             RefOP.LastName = masteroptical.LastName;
                             RefOP.Phone = masteroptical.PhoneNo;
-                            RefOP.PrescriptionDate = DateTime.UtcNow;
+                            RefOP.PrescriptionDate = PrescriptionDate;
                             RefOP.CMPID = cmpID;
                             RefOP.CreatedUTC = DateTime.UtcNow;
                             RefOP.CreatedBy = userid;
@@ -1139,7 +1151,7 @@ namespace WYNK.Data.Repository.Implementation
                             ErrorLog oErrorLogstran2 = new ErrorLog();
                             object namestr2 = RefOP;
                             oErrorLogstran2.WriteErrorLogArray("OpticalPrescription", namestr2);
-
+                        }
                             if (finod.Count() > 0)
                             {
                                 foreach (var item in finod.ToList())
@@ -1152,7 +1164,7 @@ namespace WYNK.Data.Repository.Implementation
                                         //Ref.RegistrationTranID = refid;
                                         Ref1.UIN = masteroptical.UIN;
                                         Ref1.CustomerMasterID = CustomerID;
-                                        Ref1.PrescriptionDate = DateTime.UtcNow;
+                                        Ref1.PrescriptionDate = PrescriptionDate;
                                         Ref1.Ocular = item.Ocular;
                                         Ref1.DistSph = item.DistSph;
                                         Ref1.NearCyl = item.NearCyl;
@@ -1188,7 +1200,7 @@ namespace WYNK.Data.Repository.Implementation
                                         //Ref.RegistrationTranID = refid;
                                         Ref.UIN = masteroptical.UIN;
                                         Ref.CustomerMasterID = CustomerID;
-                                        Ref.PrescriptionDate = DateTime.UtcNow;
+                                        Ref.PrescriptionDate = PrescriptionDate;
                                         Ref.Ocular = item.Ocular;
                                         Ref.DistSph = item.DistSphNVOD;
                                         Ref.Add = item.AddNVOD;
@@ -1223,7 +1235,7 @@ namespace WYNK.Data.Repository.Implementation
                                         //Ref.RegistrationTranID = refid;
                                         Ref.UIN = masteroptical.UIN;
                                         Ref.CustomerMasterID = CustomerID;
-                                        Ref.PrescriptionDate = DateTime.UtcNow;
+                                        Ref.PrescriptionDate = PrescriptionDate;
                                         Ref.Ocular = item.OcularOS;
                                         Ref.DistSph = item.DistSphOS;
                                         Ref.NearCyl = item.NearCylOS;
@@ -1260,7 +1272,7 @@ namespace WYNK.Data.Repository.Implementation
                                         //Ref.RegistrationTranID = refid;
                                         Ref.UIN = masteroptical.UIN;
                                         Ref.CustomerMasterID = CustomerID;
-                                        Ref.PrescriptionDate = DateTime.UtcNow;
+                                        Ref.PrescriptionDate = PrescriptionDate;
                                         Ref.Ocular = item.OcularOS;
                                         Ref.DistSph = item.DistSphNVOS;
                                         Ref.Add = item.AddNVOS;
@@ -1318,7 +1330,7 @@ namespace WYNK.Data.Repository.Implementation
 
 
 
-        public dynamic GetOpticalPrescription(int CusMasID, int CMPID)
+        public dynamic GetOpticalPrescription(int CusMasID, DateTime Pdate, int CMPID)
         {
             var GetOpticalPrescription = new CustomerOrderViewModel();
 
@@ -1328,11 +1340,12 @@ namespace WYNK.Data.Repository.Implementation
 
             var one = CMPSContext.OneLineMaster.ToList();
 
-            GetOpticalPrescription.opticprescription1 = (from op in OpticalPrescription.Where(x => x.CustomerMasterID == CusMasID)
-                                                             // join OP in OpticalPrescription on OPM.CustomerMasterID equals OP.CustomerMasterID
-
+            GetOpticalPrescription.opticprescription1 = (from op in OpticalPrescription.Where(x => x.CustomerMasterID == CusMasID && x.PrescriptionDate == Pdate)
+                                                         //join OP in OpticalPrescription on OPM.CustomerMasterID equals OP.CustomerMasterID
                                                          select new opticprescription1
                                                          {
+                                                             PrescriptionDate = op.PrescriptionDate,
+                                                             CustomerMasterID = op.CustomerMasterID,
                                                              Type = op.Type,
                                                              Ocular = op.Ocular,
                                                              DistSph = op.DistSph,
@@ -1343,16 +1356,9 @@ namespace WYNK.Data.Repository.Implementation
                                                              PD = op.PD,
                                                              MPDOD = op.MPDOD,
                                                              MPDOS = op.MPDOS,
-
                                                          }).ToList();
-
             return GetOpticalPrescription;
-
-
-
         }
-
-
     }
 }
 

@@ -18,9 +18,9 @@ namespace WYNK.Data.Repository
         dynamic GetCustomerCancelOrderedList(int CMPID, int TC);
         dynamic GetCancelOrderNoDetails(int CMPID, string CancelOrderNo);
         dynamic GetfinalopDetails(int CMPID);
-        dynamic IsCustomerFound(int CMPID, string UIN);
-        dynamic GetOpticalPrescription(int CusMasID, int CMPID);
-        dynamic CustomerDetailsSubmit(CustomerSubmit CustomerSubmitDetails, int CMPID,int UserId);
+        //dynamic IsCustomerFound(int CMPID, string UIN);
+        dynamic GetOpticalPrescription(int CusMasID, DateTime Pdate, int CMPID);
+       // dynamic CustomerDetailsSubmit(CustomerSubmit CustomerSubmitDetails, int CMPID,int UserId);
         dynamic InsertOpticalPrescription(CustomerOrderViewModel AddOpticalPrescription, int CustomerID, int cmpID, int userid);
         dynamic UploadImage(IFormFile file, string CustomerOrderNo);
     }
