@@ -1,73 +1,33 @@
 
-23-07-2021 05:44:09 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
-23-07-2021 05:44:09 	Message : 	Successfully Logged-In
+23-07-2021 06:47:04 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+23-07-2021 06:47:04 	Message : 	Successfully Logged-In
 
-23-07-2021 05:49:18 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
-23-07-2021 05:49:18 	Message : 	Successfully Logged-In
+23-07-2021 07:37:12 	Centris Mobility Project Services 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+23-07-2021 07:37:12 	Message : 	Successfully Logged-In
 
-23-07-2021 05:54:27 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
-23-07-2021 05:54:27 	Message : 	Successfully Logged-In
+23-07-2021 09:26:45 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+23-07-2021 09:26:46 	Message : 	Successfully Logged-In
 
-23-07-2021 06:26:36 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
-23-07-2021 06:26:36 	Message : 	Successfully Logged-In
+23-07-2021 09:28:08 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+23-07-2021 09:28:08 	Message : 	Successfully Logged-In
 
-23-07-2021 06:38:40 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
-23-07-2021 06:38:40 	Message : 	Successfully Logged-In
+23-07-2021 09:31:35 	Centris Mobility Project Services 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+23-07-2021 09:31:35 	Message : 	Successfully Logged-In
 
-23-07-2021 06:42:44 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
-23-07-2021 06:42:44 	Message : 	Successfully Logged-In
+23-07-2021 09:33:53 	Centris Mobility Project Services 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+23-07-2021 09:33:53 	Message : 	Successfully Logged-In
 
-23-07-2021 07:25:57 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
-23-07-2021 07:25:57 	Message : 	Successfully Logged-In
+23-07-2021 09:37:19 	Centris Mobility Project Services 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+23-07-2021 09:37:19 	Message : 	Successfully Logged-In
 
-23-07-2021 07:31:29 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
-23-07-2021 07:31:29 	Message : 	Successfully Logged-In
+23-07-2021 09:38:25 	Centris Mobility Project Services 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+23-07-2021 09:38:25 	Message : 	Successfully Logged-In
 
-23-07-2021 08:04:57 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
-23-07-2021 08:04:57 	Message : 	Successfully Logged-In
-23-07-2021 08:13:19 	OpticalPrescription 	{"ID":-2147482647,"UIN":null,"RegistrationID":null,"Name":"rahul","MiddleName":null,"LastName":"j","DateofBirth":null,"Gender":null,"Phone":"8875599652","PrescriptionDate":"2021-07-23T08:13:19.2410843Z","CMPID":1062,"CreatedUTC":"2021-07-23T08:13:19.2982828Z","UpdatedUTC":null,"CreatedBy":29163,"UpdatedBy":null,"CustomerMasterID":2}
-23-07-2021 08:13:19 	OpticalPrescription 	{"ID":-2147482647,"COID":null,"RegistrationTranID":null,"UIN":null,"PrescriptionDate":"2021-07-23T08:13:19.2410843Z","Type":134,"Ocular":"OD","DistSph":"12","NearCyl":"12","PinAxis":"12","Add":"21920","Remarks":"12","CreatedUTC":"2021-07-23T08:13:19.3525971Z","UpdatedUTC":null,"CreatedBy":29163,"UpdatedBy":0,"CMPID":1062,"Status":null,"PD":"12","MPDOD":"12","MPDOS":"12","CustomerMasterID":2}
-23-07-2021 08:13:19 	OpticalPrescription 	{"ID":-2147482646,"COID":null,"RegistrationTranID":null,"UIN":null,"PrescriptionDate":"2021-07-23T08:13:19.2410843Z","Type":135,"Ocular":"OD","DistSph":"12","NearCyl":null,"PinAxis":null,"Add":"88","Remarks":"12","CreatedUTC":"2021-07-23T08:13:19.3712961Z","UpdatedUTC":null,"CreatedBy":29163,"UpdatedBy":0,"CMPID":1062,"Status":null,"PD":"12","MPDOD":"12","MPDOS":"12","CustomerMasterID":2}
-23-07-2021 08:13:19 	OpticalPrescription 	{"ID":-2147482645,"COID":null,"RegistrationTranID":null,"UIN":null,"PrescriptionDate":"2021-07-23T08:13:19.2410843Z","Type":134,"Ocular":"OS","DistSph":"12","NearCyl":"12","PinAxis":"12","Add":"115","Remarks":"12","CreatedUTC":"2021-07-23T08:13:19.3743984Z","UpdatedUTC":null,"CreatedBy":29163,"UpdatedBy":0,"CMPID":1062,"Status":null,"PD":"12","MPDOD":"12","MPDOS":"12","CustomerMasterID":2}
-23-07-2021 08:13:19 	OpticalPrescription 	{"ID":-2147482644,"COID":null,"RegistrationTranID":null,"UIN":null,"PrescriptionDate":"2021-07-23T08:13:19.2410843Z","Type":135,"Ocular":"OS","DistSph":"12","NearCyl":null,"PinAxis":null,"Add":"88","Remarks":"12","CreatedUTC":"2021-07-23T08:13:19.3765594Z","UpdatedUTC":null,"CreatedBy":29163,"UpdatedBy":0,"CMPID":1062,"Status":null,"PD":"12","MPDOD":"12","MPDOS":"12","CustomerMasterID":2}
-23-07-2021 08:14:32 	OpticalPrescription 	{"ID":-2147482643,"COID":null,"RegistrationTranID":null,"UIN":null,"PrescriptionDate":"2021-07-23T08:14:32.8590853Z","Type":134,"Ocular":"OD","DistSph":"16","NearCyl":"16","PinAxis":"16","Add":"21920","Remarks":"16","CreatedUTC":"2021-07-23T08:14:32.8827659Z","UpdatedUTC":null,"CreatedBy":29163,"UpdatedBy":0,"CMPID":1062,"Status":null,"PD":"16","MPDOD":"16","MPDOS":"16","CustomerMasterID":2}
-23-07-2021 08:14:32 	OpticalPrescription 	{"ID":-2147482642,"COID":null,"RegistrationTranID":null,"UIN":null,"PrescriptionDate":"2021-07-23T08:14:32.8590853Z","Type":135,"Ocular":"OD","DistSph":"16","NearCyl":null,"PinAxis":null,"Add":"88","Remarks":"16","CreatedUTC":"2021-07-23T08:14:32.8842545Z","UpdatedUTC":null,"CreatedBy":29163,"UpdatedBy":0,"CMPID":1062,"Status":null,"PD":"16","MPDOD":"16","MPDOS":"16","CustomerMasterID":2}
-23-07-2021 08:14:32 	OpticalPrescription 	{"ID":-2147482641,"COID":null,"RegistrationTranID":null,"UIN":null,"PrescriptionDate":"2021-07-23T08:14:32.8590853Z","Type":134,"Ocular":"OS","DistSph":"16","NearCyl":"16","PinAxis":"16","Add":"115","Remarks":"16","CreatedUTC":"2021-07-23T08:14:32.885446Z","UpdatedUTC":null,"CreatedBy":29163,"UpdatedBy":0,"CMPID":1062,"Status":null,"PD":"16","MPDOD":"16","MPDOS":"16","CustomerMasterID":2}
-23-07-2021 08:14:32 	OpticalPrescription 	{"ID":-2147482640,"COID":null,"RegistrationTranID":null,"UIN":null,"PrescriptionDate":"2021-07-23T08:14:32.8590853Z","Type":135,"Ocular":"OS","DistSph":"16","NearCyl":null,"PinAxis":null,"Add":"88","Remarks":"16","CreatedUTC":"2021-07-23T08:14:32.8938881Z","UpdatedUTC":null,"CreatedBy":29163,"UpdatedBy":0,"CMPID":1062,"Status":null,"PD":"16","MPDOD":"16","MPDOS":"16","CustomerMasterID":2}
+23-07-2021 09:50:34 	Centris Mobility Project Services 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+23-07-2021 09:50:34 	Message : 	Successfully Logged-In
 
-23-07-2021 08:22:12 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
-23-07-2021 08:22:12 	Message : 	Successfully Logged-In
+23-07-2021 09:55:15 	Centris Mobility Project Services 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+23-07-2021 09:55:15 	Message : 	Successfully Logged-In
 
-23-07-2021 08:58:18 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
-23-07-2021 08:58:18 	Message : 	Successfully Logged-In
-
-23-07-2021 09:07:26 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
-23-07-2021 09:07:26 	Message : 	Successfully Logged-In
-
-23-07-2021 09:22:31 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
-23-07-2021 09:22:31 	Message : 	Successfully Logged-In
-
-23-07-2021 09:36:11 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
-23-07-2021 09:36:11 	Message : 	Successfully Logged-In
-
-23-07-2021 10:02:16 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
-23-07-2021 10:02:16 	Message : 	Successfully Logged-In
-
-23-07-2021 10:08:53 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
-23-07-2021 10:08:53 	Message : 	Successfully Logged-In
-
-23-07-2021 10:12:11 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
-23-07-2021 10:12:11 	Message : 	Successfully Logged-In
-
-23-07-2021 10:30:05 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
-23-07-2021 10:30:05 	Message : 	Successfully Logged-In
-23-07-2021 10:33:53 	OpticalPrescription 	{"ID":-2147482647,"COID":null,"RegistrationTranID":null,"UIN":null,"PrescriptionDate":"2021-07-23T16:03:53.4059148Z","Type":134,"Ocular":"OD","DistSph":"10","NearCyl":"10","PinAxis":"10","Add":"103","Remarks":"10","CreatedUTC":"2021-07-23T10:33:53.440571Z","UpdatedUTC":null,"CreatedBy":29163,"UpdatedBy":0,"CMPID":1062,"Status":null,"PD":"10","MPDOD":"10","MPDOS":"10","CustomerMasterID":2}
-23-07-2021 10:33:53 	OpticalPrescription 	{"ID":-2147482646,"COID":null,"RegistrationTranID":null,"UIN":null,"PrescriptionDate":"2021-07-23T16:03:53.4059148Z","Type":135,"Ocular":"OD","DistSph":"10","NearCyl":null,"PinAxis":null,"Add":"89","Remarks":"10","CreatedUTC":"2021-07-23T10:33:53.4870051Z","UpdatedUTC":null,"CreatedBy":29163,"UpdatedBy":0,"CMPID":1062,"Status":null,"PD":"10","MPDOD":"10","MPDOS":"10","CustomerMasterID":2}
-23-07-2021 10:33:53 	OpticalPrescription 	{"ID":-2147482645,"COID":null,"RegistrationTranID":null,"UIN":null,"PrescriptionDate":"2021-07-23T16:03:53.4059148Z","Type":134,"Ocular":"OS","DistSph":"10","NearCyl":"10","PinAxis":"10","Add":"103","Remarks":"10","CreatedUTC":"2021-07-23T10:33:53.4913655Z","UpdatedUTC":null,"CreatedBy":29163,"UpdatedBy":0,"CMPID":1062,"Status":null,"PD":"10","MPDOD":"10","MPDOS":"10","CustomerMasterID":2}
-23-07-2021 10:33:53 	OpticalPrescription 	{"ID":-2147482644,"COID":null,"RegistrationTranID":null,"UIN":null,"PrescriptionDate":"2021-07-23T16:03:53.4059148Z","Type":135,"Ocular":"OS","DistSph":"10","NearCyl":null,"PinAxis":null,"Add":"89","Remarks":"10","CreatedUTC":"2021-07-23T10:33:53.4932602Z","UpdatedUTC":null,"CreatedBy":29163,"UpdatedBy":0,"CMPID":1062,"Status":null,"PD":"10","MPDOD":"10","MPDOS":"10","CustomerMasterID":2}
-
-23-07-2021 10:53:04 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
-23-07-2021 10:53:04 	Message : 	Successfully Logged-In
-
-23-07-2021 12:24:31 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
-23-07-2021 12:24:31 	Message : 	Successfully Logged-In
+23-07-2021 11:22:03 	Centris Mobility Project Services 	Login Component 	User name : 	 	User ID : 	29163 	Mode : Submit
+23-07-2021 11:22:03 	Message : 	Successfully Logged-In
