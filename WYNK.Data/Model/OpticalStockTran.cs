@@ -17,6 +17,7 @@ namespace WYNK.Data.Model
         public Decimal ItemQty { get; set; }
         public int? UOMID { get; set; }
         public Decimal? ItemRate { get; set; }
+        public Decimal PendingQty { get; set; }  
         public Decimal? ItemValue { get; set; }
         public int? ContraSMID { get; set; }
         public int? ContraSTID { get; set; }

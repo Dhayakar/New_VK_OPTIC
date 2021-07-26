@@ -7,8 +7,7 @@ namespace WYNK.Data.Model.ViewModel
 {
     public class BrandView
     {
-        public Brand Brand { get; set; }
-
+        public ICollection<Brand> Brand { get; set; }
         public ICollection<Brandfull> Brandfull { get; set; }
 
     }

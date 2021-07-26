@@ -12,6 +12,7 @@ namespace WYNK.Data.Model.ViewModel
         public ICollection<InvestigationImages> INV { get; set; }
         public ICollection<InvestigationTran> InvTran { get; set; }
         public InvestigationImages Investigation { get; set; }
+        public InvestigationExtn InvestigationExtn { get; set; }
         public ICollection<PatDetails> PatDetails { get; set; }
         public ICollection<Imagedata> Imagedata { get; set; }
         public string ProductImage { get; set; }
@@ -41,12 +42,21 @@ namespace WYNK.Data.Model.ViewModel
         public ICollection<Payment_Master> PaymentMaster { get; set; }//UinDet
         public ICollection<PatientBillDetailsim> PatientBillDetailsim { get; set; }
         public ICollection<UinDett> UinDett { get; set; }
+       // public ICollection<Notifydata> Notifydata { get; set; }
+        public string NotificationMessage { get; set; }
 
     }
 
 
 
 }
+
+//public class Notifydata
+//{
+//    public string UIN { get; set; }
+//    public string age { get; set; }
+//    public string date { get; set; }
+//}
 
 public class UinDett
 {

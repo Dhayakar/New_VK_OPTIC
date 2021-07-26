@@ -51,7 +51,7 @@ export const MY_FORMATS = {
 })
 export class OpticalStockLedgerComponent implements OnInit {
 
-  displayedColumns: string[] = ['Document', 'DocumentNumber', 'Type', 'Store', 'Brand', 'Color', 'UOM', 'OpeningBalance', 'ClosingBalance', 'Receipt', 'Issue'];
+  displayedColumns: string[] = ['Document', 'DocumentNumber', 'Type', 'Brand', 'UOM', 'Store', 'OpeningBalance', 'Receipt', 'Issue', 'ClosingBalance'];
   dataSource = new MatTableDataSource();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

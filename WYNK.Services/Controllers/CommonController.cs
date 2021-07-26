@@ -983,6 +983,12 @@ namespace WYNK.Services.Controllers
             return _repoWrapper.Common.GetBrandLens(cmpid);
         }
 
+        [HttpGet("GetBrandContactLens/{cmpid}")]
+        public IEnumerable<Dropdown> GetBrandContactLens(int cmpid)
+        {
+            return _repoWrapper.Common.GetBrandContactLens(cmpid);
+        }
+
         [HttpGet("GetBrandFrame/{cmpid}")]
         public IEnumerable<Dropdown> GetBrandFrame(int cmpid)
         {

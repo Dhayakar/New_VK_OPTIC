@@ -70,7 +70,7 @@ namespace WYNK.Data.Model.ViewModel
         public string Supplierlocation { get; set; }
         public string Deliverylocation { get; set; }
         public DateTime CreateUtc { get; set; }
-
+        public int Order { get; set; }
 
     }
 
@@ -78,7 +78,6 @@ namespace WYNK.Data.Model.ViewModel
     {
         public string RandomUniqueID { get; set; }
         public int LTID { get; set; }
-        public string LTname { get; set; }
         public int UOMID { get; set; }
         public string UOMname { get; set; }
         public Decimal OrderedQty { get; set; }
@@ -89,6 +88,14 @@ namespace WYNK.Data.Model.ViewModel
         public Decimal? TotalCost { get; set; }
         public string Type { get; set; }
         public string Brand { get; set; }
+        public string Sph { get; set; }
+        public string Cyl { get; set; }
+        public string Axis { get; set; }
+        public string Add { get; set; }
+        public string Fshpae { get; set; }
+        public string Ftype { get; set; }
+        public string Fwidth { get; set; }
+        public string Fstyle { get; set; }
         public string Model { get; set; }
         public string Color { get; set; }
         public Decimal? DiscountPercentage { get; set; }
@@ -119,17 +126,15 @@ namespace WYNK.Data.Model.ViewModel
         public string store { get; set; }
         public string Termcondition { get; set; }
         public DateTime CreateUtc { get; set; }
-
+        public int Grn { get; set; }
     }
 
     public class GetOpticalGrntrnsstock
     {
-
-        public string LTname { get; set; }
         public string UOMname { get; set; }
         public Decimal? ItemQty { get; set; }
         public Decimal OrderedQty { get; set; }
-        public Decimal PendingQty { get; set; }
+        public decimal PendingQty { get; set; }
         public Decimal? Itemrate { get; set; }
         public Decimal? Itemvalue { get; set; }
         public Decimal TotalPOValue { get; set; }
@@ -140,14 +145,18 @@ namespace WYNK.Data.Model.ViewModel
         public Decimal? DiscountPercentage { get; set; }
         public Decimal? DiscountAmount { get; set; }
         public Decimal? TotalCost { get; set; }
-
-
+        public string Sph { get; set; }
+        public string Cyl { get; set; }
+        public string Axis { get; set; }
+        public string Add { get; set; }
+        public string Fshpae { get; set; }
+        public string Ftype { get; set; }
+        public string Fwidth { get; set; }
+        public string Fstyle { get; set; }
     }
 
     public class GetOpticalGrntrnsstockprint
     {
-
-        public string LTname { get; set; }
         public string UOMname { get; set; }
         public Decimal? ItemQty { get; set; }
         public Decimal? Itemrate { get; set; }
@@ -160,7 +169,14 @@ namespace WYNK.Data.Model.ViewModel
         public Decimal? DiscountPercentage { get; set; }
         public Decimal? DiscountAmount { get; set; }
         public Decimal? TotalCost { get; set; }
-
+        public string Sph { get; set; }
+        public string Cyl { get; set; }
+        public string Axis { get; set; }
+        public string Add { get; set; }
+        public string Fshpae { get; set; }
+        public string Ftype { get; set; }
+        public string Fwidth { get; set; }
+        public string Fstyle { get; set; }
 
     }
 

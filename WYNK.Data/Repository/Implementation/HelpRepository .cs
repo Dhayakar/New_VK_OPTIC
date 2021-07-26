@@ -2531,8 +2531,14 @@ namespace WYNK.Data.Repository.Implementation
                                               FrameStyleID = Onelinemaster.Where(x => x.OLMID == LT.FrameStyleID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Style : " + Onelinemaster.Where(x => x.OLMID == LT.FrameStyleID).Select(c => c.ParentDescription).FirstOrDefault() + "; " : null,
                                               FrameTypeID = Onelinemaster.Where(x => x.OLMID == LT.FrameTypeID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Type : " + Onelinemaster.Where(x => x.OLMID == LT.FrameTypeID).Select(c => c.ParentDescription).FirstOrDefault() + "; " : null,
                                               FrameWidthID = Onelinemaster.Where(x => x.OLMID == LT.FrameWidthID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Width : " + Onelinemaster.Where(x => x.OLMID == LT.FrameWidthID).Select(c => c.ParentDescription).FirstOrDefault() : null,
+
+
+
+
+
                                               Stockqty = OpticalBalance.Where(x => x.LTID == LT.ID && x.FYID == Fyear).Select(x => x.ClosingBalance).FirstOrDefault(),
                                               Sptaxinclusive =LT.Sptaxinclusive,
+
                                           }).ToList();
             return CustomerOrder;
         }

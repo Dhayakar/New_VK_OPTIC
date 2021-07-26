@@ -16,6 +16,11 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Http } from '@angular/http';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Rx';
+import { map } from 'rxjs/operators';
+import { ajax } from 'rxjs/ajax';
+import { ToastrService } from 'ngx-toastr';
+//import polling from 'rx-polling';
+//import { ToastrService } from 'ngx-toastr';
 
 declare var $: any;
 
@@ -37,11 +42,11 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     }
   `],
   //template: `
-	 // <b>Angular 2 HTTP requests using RxJs Observables!</b>
-	 // <ul>
-	 //   <li *ngFor="let doctor of doctors">{{doctor.name}}</li>
-	 // </ul>	  
-	 // `
+  // <b>Angular 2 HTTP requests using RxJs Observables!</b>
+  // <ul>
+  //   <li *ngFor="let doctor of doctors">{{doctor.name}}</li>
+  // </ul>	  
+  // `
 })
 export class AppComponent {
   idleState = 'Not started.';
@@ -59,15 +64,8 @@ export class AppComponent {
     private idle: Idle, private keepalive: Keepalive,
     private change: ChangeDetectorRef,
     private _sanitizer: DomSanitizer,
-    http: Http
-  ) {
-    //Observable.interval(1000)
-    //  .switchMap(() => http.get('http://jsonplaceholder.typicode.com/users/')).map((data) => data.json())
-    //  .subscribe((data) => {
-    //    this.doctors = data;
-    //    console.log(data);
-    //  });
-
+    private http: Http, private toastr: ToastrService
+    ) {
     this.myForm = this.formBuilder.group({
       password: ['', [Validators.required]],
       passwordOLD: ['', [Validators.required]],
@@ -257,7 +255,8 @@ export class AppComponent {
     this.loginYes();
   }
   ngOnInit() {
-
+    //this.subscription.unsubscribe();
+    //this.toastr.clear(this.toastRef.ToastId);
     this.commonService.getListOfData('Common/getallroles/').subscribe(data => {
       this.router.navigate(['/login']);
     });
@@ -268,10 +267,6 @@ export class AppComponent {
     });
 
 
-
-    //this.firstFormGroup = this._formBuilder.group({
-    //  firstCtrl: ['', Validators.required]
-    //});
     this.todaydate = this.datepipe.transform(new Date(), 'DD-MMM-YYYY');
     $('.btn-group, .dropdown').hover(
       function () {
@@ -410,9 +405,12 @@ export class AppComponent {
 
   }
   companylogo;
+  toastRef;
+  subscription;
   docrole;
-  public setLoggedIn() {
 
+  Messagedata;
+  public setLoggedIn() {
     try {
       const CID = localStorage.getItem('CompanyID');
       this.commonService.getListOfData('RegistrationMaster/Getusersaccess/' + localStorage.getItem('userDoctorID') + '/' + localStorage.getItem('RoleDescription') + '/' + CID).subscribe(data => {
@@ -438,8 +436,6 @@ export class AppComponent {
         const concatjsondata = data.FgformsModule.concat(data.Workflowaccerss);
         localStorage.setItem('AllCollectionData', JSON.stringify(concatjsondata));
       });
-
-
       this.docrole = localStorage.getItem("RoleDescription");
       this.doctorname = localStorage.getItem('Doctorname');
       this.docotorid = localStorage.getItem('userroleID');
@@ -450,11 +446,19 @@ export class AppComponent {
       this.Menudoctor = localStorage.getItem('Menudoctorname');
       this.Menulogindateandtime = localStorage.getItem('Menulogintime');
       this.menubranch = localStorage.getItem('MenuBranch');
-
       this.commonService.getListOfData('Common/ErrorList/' + 'Successfully Logged-In' + '/' + 'Login Component' + '/' + CID + '/' + localStorage.getItem('userroleID') + '/')
         .subscribe(data => {
 
         });
+
+      //this.subscription = Observable.interval(5000)
+      //  .switchMap(() => this.http.get('https://apps1api.wynkemr.com/Investigation/Getnotificationalerts/' + localStorage.getItem('userroleID')+'/1062')).map((data) => data.json())
+      //  .subscribe((data) => {
+      //    debugger;
+      //    if (data.NotificationMessage != undefined) {
+      //      this.toastRef = this.toastr.success(data.NotificationMessage, "Dear " + localStorage.getItem('Doctorname'));
+      //    } 
+      //  });
     } catch (Error) {
       const CID = localStorage.getItem('CompanyID');
       alert(Error.message);
@@ -611,6 +615,7 @@ export class AppComponent {
     this.loginYesblock = 'none';
   }
   loginYes() {
+    debugger;
     this.backdrop = 'none';
     this.loginYesblock = 'none';
     this.idle.stop();
@@ -619,6 +624,10 @@ export class AppComponent {
     this.loggedoutIn = false;
     localStorage.clear();
     this.router.navigate(['/login']);
+    //window.setTimeout(() => {
+    //  this.subscription.unsubscribe();
+    //  this.toastr.clear(this.toastRef.ToastId);
+    //}, 5000);
     //this.commonService.getListOfData('RegistrationMaster/DeleteToken/' + localStorage.getItem('userroleID')).subscribe(data => {
     //  if (data.Success == true) {
     //    this.backdrop = 'none';

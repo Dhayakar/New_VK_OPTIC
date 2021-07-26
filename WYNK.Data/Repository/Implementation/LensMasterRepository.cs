@@ -49,8 +49,6 @@ namespace WYNK.Data.Repository.Implementation
         {
             using (var dbContextTransaction = WYNKContext.Database.BeginTransaction())
             {
-
-
                 try
                 {
 
@@ -67,40 +65,128 @@ namespace WYNK.Data.Repository.Implementation
 
                     if (Addlens.LensTranModel.Count() > 0)
                     {
-
                         foreach (var item in Addlens.LensTranModel.ToList())
-
                         {
+                            var match = false;
 
-                            var lenstrans = new LensTranModel();
+                            var LT = (from a in WYNKContext.Lenstrans.Where(e => e.LMID == WYNKContext.Lensmaster.Where(x => x.LensType == Addlens.Lensmaster.LensType && x.CMPID == Addlens.Lensmaster.CMPID).Select(x => x.RandomUniqueID).FirstOrDefault())
 
-                            lenstrans.LMID = RandomUniqueID;
-                            // lenstrans.LensOption = item.LensOption;
-                            lenstrans.Index = item.Index;
-                            lenstrans.Model = item.Model;
-                            lenstrans.Size = item.Size;
-                            lenstrans.Colour = item.Colour;
-                            lenstrans.Brand = item.Brand;
-                            lenstrans.Prize = item.Prize;
-                            lenstrans.CESSAmount = item.CESSAmount;
-                            lenstrans.ADDCESSAmount = item.ADDCESSAmount;
-                            lenstrans.UOMID = item.UOMID;
-                            lenstrans.GST = item.GST;
-                            lenstrans.HSNNo = item.HSNNo;
-                            lenstrans.TaxID = item.TaxID;
-                            lenstrans.Description = item.Description;
-                            lenstrans.FrameShapeID = item.FrameShapeID;
-                            lenstrans.FrameStyleID = item.FrameStyleID;
-                            lenstrans.FrameTypeID = item.FrameTypeID;
-                            lenstrans.FrameWidthID = item.FrameWidthID;
-                            lenstrans.CreatedUTC = DateTime.UtcNow;
-                            lenstrans.CreatedBy = lensmaster.CreatedBy;
-                            lenstrans.IsActive = true;
-                            WYNKContext.Lenstrans.AddRange(lenstrans);
+                                      select new
+                                      {
+                                          Brand = a.Brand,
+                                          Sph = a.Sph,
+                                          Cyl = a.Cyl,
+                                          Axis = a.Axis,
+                                          Add = a.Add,
+
+                                      }).ToList();
+
+                            var UPLT = (from a in Addlens.LensTranModel
+                                        select new
+                                        {
+                                            Brand = a.Brand,
+                                            Sph = a.Sph,
+                                            Cyl = a.Cyl,
+                                            Axis = a.Axis,
+                                            Add = a.Add,
+
+                                        }).ToList();
+
+                            var Frame = (from a in WYNKContext.Lenstrans.Where(e => e.LMID == WYNKContext.Lensmaster.Where(x => x.LensType == Addlens.Lensmaster.LensType && x.CMPID == Addlens.Lensmaster.CMPID).Select(x => x.RandomUniqueID).FirstOrDefault())
+                                         select new
+                                         {
+                                             Brand = a.Brand,
+                                             FrameShapeID = a.FrameShapeID,
+                                             FrameStyleID = a.FrameStyleID,
+                                             FrameTypeID = a.FrameTypeID,
+                                             FrameWidthID = a.FrameWidthID,
+                                         }).ToList();
+
+                            var UPFRAME = (from a in Addlens.LensTranModel
+                                           select new
+                                           {
+                                               Brand = a.Brand,
+                                               FrameShapeID = a.FrameShapeID,
+                                               FrameStyleID = a.FrameStyleID,
+                                               FrameTypeID = a.FrameTypeID,
+                                               FrameWidthID = a.FrameWidthID,
+
+                                           }).ToList();
+
+
+
+                            if (Addlens.Lensmaster.LensType == "Frame")
+                            {
+                                if (Frame.SequenceEqual(UPFRAME))
+                                {
+                                    match = true;
+                                }
+                                else
+                                {
+                                    match = false;
+                                }
+                            }
+                            else
+                            {
+                                if (LT.SequenceEqual(UPLT))
+                                {
+                                    match = true;
+                                }
+                                else
+                                {
+                                    match = false;
+                                }
+
+                            }
+
+
+
+                            if (match == true)
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                var lenstrans = new LensTranModel();
+
+                                lenstrans.LMID = RandomUniqueID;
+                                lenstrans.Index = item.Index;
+                                lenstrans.Costprice = item.Costprice;
+                                lenstrans.Sptaxinclusive = item.Sptaxinclusive;
+                                lenstrans.Model = item.Model;
+                                lenstrans.Size = item.Size;
+                                lenstrans.Colour = item.Colour;
+                                lenstrans.Sph = item.Sph;
+                                lenstrans.Cyl = item.Cyl;
+                                lenstrans.Axis = item.Axis;
+                                lenstrans.Add = item.Add;
+                                lenstrans.Brand = item.Brand;
+                                lenstrans.Prize = item.Prize;
+                                lenstrans.CESSAmount = item.CESSAmount;
+                                lenstrans.ADDCESSAmount = item.ADDCESSAmount;
+                                lenstrans.UOMID = item.UOMID;
+                                lenstrans.GST = item.GST;
+                                lenstrans.HSNNo = item.HSNNo;
+                                lenstrans.TaxID = item.TaxID;
+                                lenstrans.Description = item.Description;
+                                lenstrans.FrameShapeID = item.FrameShapeID;
+                                lenstrans.FrameStyleID = item.FrameStyleID;
+                                lenstrans.FrameTypeID = item.FrameTypeID;
+                                lenstrans.FrameWidthID = item.FrameWidthID;
+                                lenstrans.CreatedUTC = DateTime.UtcNow;
+                                lenstrans.CreatedBy = lensmaster.CreatedBy;
+                                lenstrans.IsActive = true;
+                                WYNKContext.Lenstrans.AddRange(lenstrans);
+                                WYNKContext.SaveChanges();
+                            }
+
+
+
+
                         }
                     }
 
-                    WYNKContext.SaveChanges();
+
                     dbContextTransaction.Commit();
 
                     return new
@@ -133,34 +219,41 @@ namespace WYNK.Data.Repository.Implementation
                                                  select new Taxnamelensmastertrans
                                                  {
                                                      ID = REF.ID,
-                                                     //LensOption = REF.LensOption,
+
+                                                     Type = name,
+                                                     Sph = REF.Sph != null ? REF.Sph : null,
+                                                     Cyl = REF.Cyl != null ? REF.Cyl : null,
+                                                     Axis = REF.Axis != null ? REF.Axis : null,
+                                                     Add = REF.Add != null ? REF.Add : null,
                                                      Indexname = REF.Index != null ? one.Where(x => x.OLMID == Convert.ToInt32(REF.Index)).Select(x => x.ParentDescription).FirstOrDefault() : string.Empty,
-                                                     Index = REF.Index != null ? REF.Index : string.Empty,
-                                                     Model = REF.Model != null ? REF.Model : string.Empty,
+                                                     Index = REF.Index != null ? REF.Index : null,
+                                                     Model = REF.Model != null ? REF.Model : null,
                                                      Size = REF.Size,
                                                      Colour = REF.Colour,
                                                      Brandname = Brand.Where(x => x.ID == REF.Brand).Select(x => x.Description).FirstOrDefault(),
                                                      Brand = REF.Brand,
                                                      Prize = REF.Prize,
-                                                     CESSAmount = REF.CESSAmount != null ? REF.CESSAmount : 0.0M,
-                                                     ADDCESSAmount = REF.ADDCESSAmount != null ? REF.ADDCESSAmount : 0.0M,
+                                                     Costprice = REF.Costprice,
+                                                     Sptaxinclusive = REF.Sptaxinclusive,
+                                                     CESSAmount = REF.CESSAmount != null ? REF.CESSAmount : null,
+                                                     ADDCESSAmount = REF.ADDCESSAmount != null ? REF.ADDCESSAmount : null,
                                                      UOMname = uom.Where(x => x.id == REF.UOMID).Select(x => x.Description).FirstOrDefault(),
                                                      UOMID = REF.UOMID,
-                                                     GST = REF.GST != null ? REF.GST : 0.0M,
-                                                     HSNNo = REF.HSNNo != null ? REF.HSNNo : string.Empty,
-                                                     TaxID = REF.TaxID != null ? REF.TaxID : 0,
+                                                     GST = REF.GST != null ? REF.GST : null,
+                                                     HSNNo = REF.HSNNo != null ? REF.HSNNo : null,
+                                                     TaxID = REF.TaxID != null ? REF.TaxID : null,
                                                      TaxDescription = REF.TaxID != null ? Tax.Where(x => x.ID == REF.TaxID).Select(x => x.TaxDescription).FirstOrDefault() : string.Empty,
                                                      CessDescription = REF.TaxID != null ? Tax.Where(x => x.ID == REF.TaxID).Select(x => x.CESSDescription).FirstOrDefault() : string.Empty,
                                                      AddtionalDescription = REF.TaxID != null ? Tax.Where(x => x.ID == REF.TaxID).Select(x => x.AdditionalCESSDescription).FirstOrDefault() : string.Empty,
-                                                     Description = REF.Description != null ? REF.Description : string.Empty,
+                                                     Description = REF.Description != null ? REF.Description : null,
                                                      FrameShape = REF.FrameShapeID != null ? one.Where(x => x.OLMID == REF.FrameShapeID).Select(x => x.ParentDescription).FirstOrDefault() : string.Empty,
                                                      FrameStyle = REF.FrameStyleID != null ? one.Where(x => x.OLMID == REF.FrameStyleID).Select(x => x.ParentDescription).FirstOrDefault() : string.Empty,
                                                      FrameType = REF.FrameTypeID != null ? one.Where(x => x.OLMID == REF.FrameTypeID).Select(x => x.ParentDescription).FirstOrDefault() : string.Empty,
                                                      FrameWidth = REF.FrameWidthID != null ? one.Where(x => x.OLMID == REF.FrameWidthID).Select(x => x.ParentDescription).FirstOrDefault() : string.Empty,
-                                                     FrameShapeID = REF.FrameShapeID != null ? REF.FrameShapeID : 0,
-                                                     FrameStyleID = REF.FrameStyleID != null ? REF.FrameStyleID : 0,
-                                                     FrameTypeID = REF.FrameTypeID != null ? REF.FrameTypeID : 0,
-                                                     FrameWidthID = REF.FrameWidthID != null ? REF.FrameWidthID : 0,
+                                                     FrameShapeID = REF.FrameShapeID != null ? REF.FrameShapeID : null,
+                                                     FrameStyleID = REF.FrameStyleID != null ? REF.FrameStyleID : null,
+                                                     FrameTypeID = REF.FrameTypeID != null ? REF.FrameTypeID : null,
+                                                     FrameWidthID = REF.FrameWidthID != null ? REF.FrameWidthID : null,
                                                      IsActive = REF.IsActive,
                                                  }).ToList();
 
@@ -177,62 +270,285 @@ namespace WYNK.Data.Repository.Implementation
                     {
                         foreach (var item in uplens.LensTranModel.ToList())
                         {
-                            var lenstrans = new LensTranModel();
-                            var LTID = item.ID;
-                            if (LTID != 0)
+                            var match = false;
+
+                            if (item.ID != 0 && uplens.Lensmaster.LensType == "Lens" || uplens.Lensmaster.LensType == "Contactlens")
                             {
-                                lenstrans = WYNKContext.Lenstrans.Where(x => x.ID == item.ID).FirstOrDefault();
-                                lenstrans.LMID = ID;
-                                //lenstrans.LensOption = item.LensOption;
-                                lenstrans.Index = item.Index;
-                                lenstrans.Model = item.Model;
-                                lenstrans.Size = item.Size;
-                                lenstrans.Colour = item.Colour;
-                                lenstrans.Brand = item.Brand;
-                                lenstrans.Prize = item.Prize;
-                                lenstrans.CESSAmount = item.CESSAmount;
-                                lenstrans.ADDCESSAmount = item.ADDCESSAmount;
-                                lenstrans.UOMID = item.UOMID;
-                                lenstrans.GST = item.GST;
-                                lenstrans.HSNNo = item.HSNNo;
-                                lenstrans.TaxID = item.TaxID;
-                                lenstrans.Description = item.Description;
-                                lenstrans.FrameShapeID = item.FrameShapeID;
-                                lenstrans.FrameStyleID = item.FrameStyleID;
-                                lenstrans.FrameTypeID = item.FrameTypeID;
-                                lenstrans.FrameWidthID = item.FrameWidthID;
-                                lenstrans.UpdatedUTC = DateTime.UtcNow;
-                                lenstrans.UpdatedBy = doctorID;
-                                WYNKContext.Lenstrans.UpdateRange(lenstrans);
+
+
+                                var LT = (from a in WYNKContext.Lenstrans.Where(e => e.LMID == WYNKContext.Lensmaster.Where(x => x.LensType == uplens.Lensmaster.LensType && x.CMPID == uplens.Lensmaster.CMPID).Select(x => x.RandomUniqueID).FirstOrDefault()).OrderByDescending(x => x.ID)
+
+                                          select new
+                                          {
+                                              ID = a.ID,
+                                              Brand = a.Brand,
+                                              Sph = a.Sph,
+                                              Cyl = a.Cyl,
+                                              Axis = a.Axis,
+                                              Add = a.Add,
+                                              Description = a.Description,
+                                              Colour = a.Colour,
+                                              Prize = a.Prize,
+                                              TaxID = a.TaxID,
+                                              Index = a.Index,
+                                              Model = a.Model,
+                                              HSNNO = a.HSNNo,
+
+                                          }).ToList();
+
+                                var UPLT = (from a in uplens.LensTranModel.OrderByDescending(x => x.ID)
+                                            select new
+                                            {
+                                                ID = a.ID,
+                                                Brand = a.Brand,
+                                                Sph = a.Sph,
+                                                Cyl = a.Cyl,
+                                                Axis = a.Axis,
+                                                Add = a.Add,
+                                                Description = a.Description,
+                                                Colour = a.Colour,
+                                                Prize = a.Prize + 0.00m,
+                                                TaxID = a.TaxID,
+                                                Index = a.Index,
+                                                Model = a.Model,
+                                                HSNNO = a.HSNNo,
+
+                                            }).ToList();
+
+                                if (LT.SequenceEqual(UPLT))
+                                {
+                                    match = true;
+                                }
+                                else
+                                {
+                                    match = false;
+                                }
+
+
+                            }
+
+                            if (item.ID == 0 && uplens.Lensmaster.LensType == "Lens" || uplens.Lensmaster.LensType == "Contactlens")
+                            {
+
+
+                                var LT = (from a in WYNKContext.Lenstrans.Where(e => e.LMID == WYNKContext.Lensmaster.Where(x => x.LensType == uplens.Lensmaster.LensType && x.CMPID == uplens.Lensmaster.CMPID).Select(x => x.RandomUniqueID).FirstOrDefault())
+
+                                          select new
+                                          {
+                                              Brand = a.Brand,
+                                              Sph = a.Sph,
+                                              Cyl = a.Cyl,
+                                              Axis = a.Axis,
+                                              Add = a.Add,
+                                              Description = a.Description,
+                                              Colour = a.Colour,
+                                              Prize = a.Prize,
+                                              TaxID = a.TaxID,
+                                              Index = a.Index,
+                                              Model = a.Model,
+                                              HSNNO = a.HSNNo,
+
+                                          }).ToList();
+
+                                var UPLT = (from a in uplens.LensTranModel
+                                            select new
+                                            {
+                                                Brand = a.Brand,
+                                                Sph = a.Sph,
+                                                Cyl = a.Cyl,
+                                                Axis = a.Axis,
+                                                Add = a.Add,
+                                                Description = a.Description,
+                                                Colour = a.Colour,
+                                                Prize = a.Prize + 0.00m,
+                                                TaxID = a.TaxID,
+                                                Index = a.Index,
+                                                Model = a.Model,
+                                                HSNNO = a.HSNNo,
+                                            }).ToList();
+
+                                if (LT.SequenceEqual(UPLT))
+                                {
+                                    match = true;
+                                }
+                                else
+                                {
+                                    match = false;
+                                }
+
+                            }
+
+                            if (item.ID != 0 && uplens.Lensmaster.LensType == "Frame")
+                            {
+
+                                var Frame = (from a in WYNKContext.Lenstrans.Where(e => e.LMID == WYNKContext.Lensmaster.Where(x => x.LensType == uplens.Lensmaster.LensType && x.CMPID == uplens.Lensmaster.CMPID).Select(x => x.RandomUniqueID).FirstOrDefault())
+                                             select new
+                                             {
+                                                 Brand = a.Brand,
+                                                 FrameShapeID = a.FrameShapeID,
+                                                 FrameStyleID = a.FrameStyleID,
+                                                 FrameTypeID = a.FrameTypeID,
+                                                 FrameWidthID = a.FrameWidthID,
+                                                 Description = a.Description,
+                                                 Colour = a.Colour,
+                                                 Prize = a.Prize + 0.00m,
+                                                 TaxID = a.TaxID,
+                                                 Index = a.Index,
+                                                 Model = a.Model,
+                                                 HSNNO = a.HSNNo,
+                                             }).ToList();
+
+                                var UPFRAME = (from a in uplens.LensTranModel
+                                               select new
+                                               {
+                                                   Brand = a.Brand,
+                                                   FrameShapeID = a.FrameShapeID,
+                                                   FrameStyleID = a.FrameStyleID,
+                                                   FrameTypeID = a.FrameTypeID,
+                                                   FrameWidthID = a.FrameWidthID,
+                                                   Description = a.Description,
+                                                   Colour = a.Colour,
+                                                   Prize = a.Prize + 0.00m,
+                                                   TaxID = a.TaxID,
+                                                   Index = a.Index,
+                                                   Model = a.Model,
+                                                   HSNNO = a.HSNNo,
+
+                                               }).ToList();
+
+                                if (uplens.Lensmaster.LensType == "Frame")
+                                {
+                                    if (Frame.SequenceEqual(UPFRAME))
+                                    {
+                                        match = true;
+                                    }
+                                    else
+                                    {
+                                        match = false;
+                                    }
+                                }
+                            }
+
+                            if (item.ID == 0 && uplens.Lensmaster.LensType == "Frame")
+                            {
+
+                                var Frame = (from a in WYNKContext.Lenstrans.Where(e => e.LMID == WYNKContext.Lensmaster.Where(x => x.LensType == uplens.Lensmaster.LensType && x.CMPID == uplens.Lensmaster.CMPID).Select(x => x.RandomUniqueID).FirstOrDefault())
+                                             select new
+                                             {
+                                                 Brand = a.Brand,
+                                                 FrameShapeID = a.FrameShapeID,
+                                                 FrameStyleID = a.FrameStyleID,
+                                                 FrameTypeID = a.FrameTypeID,
+                                                 FrameWidthID = a.FrameWidthID,
+                                                 Description = a.Description,
+                                                 Colour = a.Colour,
+                                                 Prize = a.Prize,
+                                                 TaxID = a.TaxID,
+                                                 Model = a.Model,
+                                             }).ToList();
+
+                                var UPFRAME = (from a in uplens.LensTranModel
+                                               select new
+                                               {
+                                                   Brand = a.Brand,
+                                                   FrameShapeID = a.FrameShapeID,
+                                                   FrameStyleID = a.FrameStyleID,
+                                                   FrameTypeID = a.FrameTypeID,
+                                                   FrameWidthID = a.FrameWidthID,
+                                                   Description = a.Description,
+                                                   Colour = a.Colour,
+                                                   Prize = a.Prize,
+                                                   TaxID = a.TaxID,
+                                                   Model = a.Model,
+
+                                               }).ToList();
+                                if (uplens.Lensmaster.LensType == "Frame")
+                                {
+                                    if (Frame.SequenceEqual(UPFRAME))
+                                    {
+                                        match = true;
+                                    }
+                                    else
+                                    {
+                                        match = false;
+                                    }
+                                }
+                            }
+
+
+                            if (match == true)
+                            {
+                                continue;
                             }
                             else
                             {
-                                lenstrans.LMID = ID;
-                                //lenstrans.LensOption = item.LensOption;
-                                lenstrans.Index = item.Index;
-                                lenstrans.Model = item.Model;
-                                lenstrans.Size = item.Size;
-                                lenstrans.Colour = item.Colour;
-                                lenstrans.Brand = item.Brand;
-                                lenstrans.Prize = item.Prize;
-                                lenstrans.CESSAmount = item.CESSAmount;
-                                lenstrans.ADDCESSAmount = item.ADDCESSAmount;
-                                lenstrans.UOMID = item.UOMID;
-                                lenstrans.GST = item.GST;
-                                lenstrans.HSNNo = item.HSNNo;
-                                lenstrans.TaxID = item.TaxID;
-                                lenstrans.IsActive = item.IsActive;
-                                lenstrans.Description = item.Description;
-                                lenstrans.FrameShapeID = item.FrameShapeID;
-                                lenstrans.FrameStyleID = item.FrameStyleID;
-                                lenstrans.FrameTypeID = item.FrameTypeID;
-                                lenstrans.FrameWidthID = item.FrameWidthID;
-                                lenstrans.CreatedUTC = DateTime.UtcNow;
-                                lenstrans.CreatedBy = doctorID;
-                                lenstrans.IsActive = true;
-                                WYNKContext.Lenstrans.AddRange(lenstrans);
-                            }
+                                var lenstrans = new LensTranModel();
+                                var LTID = item.ID;
 
+                                if (LTID != 0)
+                                {
+                                    lenstrans = WYNKContext.Lenstrans.Where(x => x.ID == item.ID).FirstOrDefault();
+                                    lenstrans.LMID = ID;
+                                    lenstrans.Sph = item.Sph;
+                                    lenstrans.Cyl = item.Cyl;
+                                    lenstrans.Axis = item.Axis;
+                                    lenstrans.Add = item.Add;
+                                    lenstrans.Index = item.Index;
+                                    lenstrans.Model = item.Model;
+                                    lenstrans.Size = item.Size;
+                                    lenstrans.Colour = item.Colour;
+                                    lenstrans.Brand = item.Brand;
+                                    lenstrans.Prize = item.Prize;
+                                    lenstrans.Sptaxinclusive = item.Sptaxinclusive;
+                                    lenstrans.Costprice = item.Costprice;
+                                    lenstrans.CESSAmount = item.CESSAmount;
+                                    lenstrans.ADDCESSAmount = item.ADDCESSAmount;
+                                    lenstrans.UOMID = item.UOMID;
+                                    lenstrans.GST = item.GST;
+                                    lenstrans.HSNNo = item.HSNNo;
+                                    lenstrans.TaxID = item.TaxID;
+                                    lenstrans.Description = item.Description;
+                                    lenstrans.FrameShapeID = item.FrameShapeID;
+                                    lenstrans.FrameStyleID = item.FrameStyleID;
+                                    lenstrans.FrameTypeID = item.FrameTypeID;
+                                    lenstrans.FrameWidthID = item.FrameWidthID;
+                                    lenstrans.UpdatedUTC = DateTime.UtcNow;
+                                    lenstrans.UpdatedBy = doctorID;
+                                    WYNKContext.Lenstrans.UpdateRange(lenstrans);
+                                }
+                                else
+                                {
+                                    lenstrans.LMID = ID;
+                                    lenstrans.Sph = item.Sph;
+                                    lenstrans.Cyl = item.Cyl;
+                                    lenstrans.Axis = item.Axis;
+                                    lenstrans.Add = item.Add;
+                                    lenstrans.Index = item.Index;
+                                    lenstrans.Model = item.Model;
+                                    lenstrans.Size = item.Size;
+                                    lenstrans.Colour = item.Colour;
+                                    lenstrans.Brand = item.Brand;
+                                    lenstrans.Sptaxinclusive = item.Sptaxinclusive;
+                                    lenstrans.Costprice = item.Costprice;
+                                    lenstrans.Prize = item.Prize;
+                                    lenstrans.CESSAmount = item.CESSAmount;
+                                    lenstrans.ADDCESSAmount = item.ADDCESSAmount;
+                                    lenstrans.UOMID = item.UOMID;
+                                    lenstrans.GST = item.GST;
+                                    lenstrans.HSNNo = item.HSNNo;
+                                    lenstrans.TaxID = item.TaxID;
+                                    lenstrans.IsActive = item.IsActive;
+                                    lenstrans.Description = item.Description;
+                                    lenstrans.FrameShapeID = item.FrameShapeID;
+                                    lenstrans.FrameStyleID = item.FrameStyleID;
+                                    lenstrans.FrameTypeID = item.FrameTypeID;
+                                    lenstrans.FrameWidthID = item.FrameWidthID;
+                                    lenstrans.CreatedUTC = DateTime.UtcNow;
+                                    lenstrans.CreatedBy = doctorID;
+                                    lenstrans.IsActive = true;
+                                    WYNKContext.Lenstrans.AddRange(lenstrans);
+                                }
+                            }
                         }
                     }
 
@@ -752,6 +1068,7 @@ namespace WYNK.Data.Repository.Implementation
             using (var dbContextTransaction = WYNKContext.Database.BeginTransaction())
             {
                 var getData = new LensMatserDataView();
+                var one = CMPSContext.OneLineMaster.ToList();
                 IList<Lensarray> Lensframearray = new List<Lensarray>();
 
                 if (UpdateExceldatas.Lensarray.Count > 0)
@@ -813,38 +1130,46 @@ namespace WYNK.Data.Repository.Implementation
                                 Index = onelinemaster.OLMID;
                             }
 
+
+
                             var taxdesc = lensframe.TaxDescription != null ? lensframe.TaxDescription.Replace(" ", string.Empty) : string.Empty;
                             var cessdesc = lensframe.CessDescription != null ? lensframe.CessDescription.Replace(" ", string.Empty) : string.Empty;
                             var addcessdesc = lensframe.AddtionalDescription != null ? lensframe.AddtionalDescription.Replace(" ", string.Empty) : string.Empty;
 
-                            int? TaxID = CMPSContext.TaxMaster.Where(x => x.TaxDescription.Replace(" ", string.Empty).ToLower().Contains(taxdesc) && x.GSTPercentage == lensframe.GSTPercentage && x.CESSDescription.Replace(" ", string.Empty).ToLower().Contains(cessdesc) && x.CESSPercentage == lensframe.CESSPercentage && x.AdditionalCESSDescription.Replace(" ", string.Empty).ToLower().Contains(addcessdesc) && x.AdditionalCESSPercentage == lensframe.ADDCESSPercentage && x.IsActive == true).Select(x => (int?)x.ID).FirstOrDefault();
-
+                            int? TaxID = CMPSContext.TaxMaster.Where(x => x.TaxDescription.Replace(" ", string.Empty).ToLower().Contains(taxdesc) && x.GSTPercentage == lensframe.GSTPercentage && x.IsActive == true).Select(x => (int?)x.ID).FirstOrDefault();
+                            int? CessID = CMPSContext.TaxMaster.Where(x => x.CESSDescription.Replace(" ", string.Empty).ToLower().Contains(cessdesc) && x.CESSPercentage == lensframe.CESSPercentage && x.IsActive == true).Select(x => (int?)x.ID).FirstOrDefault();
+                            int? AddID = CMPSContext.TaxMaster.Where(x => x.AdditionalCESSDescription.Replace(" ", string.Empty).ToLower().Contains(addcessdesc) && x.AdditionalCESSPercentage == lensframe.ADDCESSPercentage && x.IsActive == true).Select(x => (int?)x.ID).FirstOrDefault();
 
                             /*TaxDescription Insertion and assign to IsTaxDescription*/
-                            if (TaxID == null)
+                            if (lensframe.TaxDescription != null)
                             {
-                                var taxmaster = new TaxMaster();
-                                taxmaster.TaxDescription = lensframe.TaxDescription;
-                                taxmaster.GSTPercentage = Convert.ToInt16(lensframe.GSTPercentage);
-                                taxmaster.CESSDescription = lensframe.CessDescription;
-                                taxmaster.CESSPercentage = Convert.ToInt16(lensframe.CESSPercentage);
-                                taxmaster.AdditionalCESSDescription = lensframe.AddtionalDescription;
-                                taxmaster.AdditionalCESSPercentage = Convert.ToInt16(lensframe.ADDCESSPercentage);
-                                taxmaster.IsActive = true;
-                                taxmaster.CreatedUTC = DateTime.UtcNow;
-                                taxmaster.CreatedBy = Createdby;
-                                CMPSContext.TaxMaster.Add(taxmaster);
-                                CMPSContext.SaveChanges();
+                                if (TaxID == null || CessID == null || AddID == null)
+                                {
+                                    var taxmaster = new TaxMaster();
+                                    taxmaster.TaxDescription = lensframe.TaxDescription;
+                                    taxmaster.GSTPercentage = lensframe.GSTPercentage;
+                                    taxmaster.CESSDescription = lensframe.CessDescription;
+                                    taxmaster.CESSPercentage = lensframe.CESSPercentage;
+                                    taxmaster.AdditionalCESSDescription = lensframe.AddtionalDescription;
+                                    taxmaster.AdditionalCESSPercentage = lensframe.ADDCESSPercentage;
+                                    taxmaster.IsActive = true;
+                                    taxmaster.CreatedUTC = DateTime.UtcNow;
+                                    taxmaster.CreatedBy = Createdby;
+                                    CMPSContext.TaxMaster.Add(taxmaster);
+                                    CMPSContext.SaveChanges();
 
-                                TaxID = taxmaster.ID;
+                                    TaxID = taxmaster.ID;
+                                }
                             }
+
+
 
                             if (lensframe.Type.Equals("Frame", StringComparison.OrdinalIgnoreCase))
                             {
-                                var FrameShape = lensframe.FrameShape != null ? lensframe.FrameShape.Replace(" ", string.Empty) : string.Empty;
-                                var FrameType = lensframe.FrameType != null ? lensframe.FrameType.Replace(" ", string.Empty) : string.Empty;
-                                var FrameStyle = lensframe.FrameStyle != null ? lensframe.FrameStyle.Replace(" ", string.Empty) : string.Empty;
-                                var FrameWidth = lensframe.FrameWidth != null ? lensframe.FrameWidth.Replace(" ", string.Empty) : string.Empty;
+                                var FrameShape = lensframe.FrameShapee != null ? lensframe.FrameShapee.Replace(" ", string.Empty) : string.Empty;
+                                var FrameType = lensframe.FrameTypee != null ? lensframe.FrameTypee.Replace(" ", string.Empty) : string.Empty;
+                                var FrameStyle = lensframe.FrameStylee != null ? lensframe.FrameStylee.Replace(" ", string.Empty) : string.Empty;
+                                var FrameWidth = lensframe.FrameWidthh != null ? lensframe.FrameWidthh.Replace(" ", string.Empty) : string.Empty;
 
                                 getData.FrameShap = CMPSContext.OneLineMaster.Where(x => x.ParentDescription.Replace(" ", string.Empty).ToLower().Contains(FrameShape) && x.ParentTag == "FrameShape" && x.IsActive == true && x.IsDeleted == false).Select(x => (int?)x.OLMID).FirstOrDefault();
 
@@ -852,7 +1177,7 @@ namespace WYNK.Data.Repository.Implementation
                                 if (getData.FrameShap == null)
                                 {
                                     var onelinemaster = new OneLine_Masters();
-                                    onelinemaster.ParentDescription = lensframe.FrameShape;
+                                    onelinemaster.ParentDescription = lensframe.FrameShapee;
                                     onelinemaster.ParentID = CMPSContext.OneLineMaster.Where(x => x.ParentDescription == "FrameShape").Select(x => x.OLMID).FirstOrDefault();
                                     onelinemaster.ParentTag = "FrameShape";
                                     onelinemaster.IsDeleted = false;
@@ -871,7 +1196,7 @@ namespace WYNK.Data.Repository.Implementation
                                 if (getData.FrameTyp == null)
                                 {
                                     var onelinemaster = new OneLine_Masters();
-                                    onelinemaster.ParentDescription = lensframe.FrameType;
+                                    onelinemaster.ParentDescription = lensframe.FrameTypee;
                                     onelinemaster.ParentID = CMPSContext.OneLineMaster.Where(x => x.ParentDescription == "FrameType").Select(x => x.OLMID).FirstOrDefault();
                                     onelinemaster.ParentTag = "FrameType";
                                     onelinemaster.IsDeleted = false;
@@ -890,7 +1215,7 @@ namespace WYNK.Data.Repository.Implementation
                                 if (getData.FrameStyl == null)
                                 {
                                     var onelinemaster = new OneLine_Masters();
-                                    onelinemaster.ParentDescription = lensframe.FrameStyle;
+                                    onelinemaster.ParentDescription = lensframe.FrameStylee;
                                     onelinemaster.ParentID = CMPSContext.OneLineMaster.Where(x => x.ParentDescription == "FrameStyle").Select(x => x.OLMID).FirstOrDefault();
                                     onelinemaster.ParentTag = "FrameStyle";
                                     onelinemaster.IsDeleted = false;
@@ -909,7 +1234,7 @@ namespace WYNK.Data.Repository.Implementation
                                 if (getData.FrameWidt == null)
                                 {
                                     var onelinemaster = new OneLine_Masters();
-                                    onelinemaster.ParentDescription = lensframe.FrameWidth;
+                                    onelinemaster.ParentDescription = lensframe.FrameWidthh;
                                     onelinemaster.ParentID = CMPSContext.OneLineMaster.Where(x => x.ParentDescription == "FrameWidth").Select(x => x.OLMID).FirstOrDefault();
                                     onelinemaster.ParentTag = "FrameWidth";
                                     onelinemaster.IsDeleted = false;
@@ -961,18 +1286,23 @@ namespace WYNK.Data.Repository.Implementation
 
                             if (lensframe.Type.Equals("Lens".Replace(" ", string.Empty), StringComparison.OrdinalIgnoreCase))
                             {
+                                var sph = lensframe.Sphh;
+                                var Cyl = lensframe.Cyll;
+                                var Axis = lensframe.Axiss;
+                                var Add = lensframe.Addd;
 
-
-                                var color = lensframe.Colour != null ? lensframe.Colour.Replace(" ", string.Empty) : string.Empty;
-
-                                int? Lensframetran = WYNKContext.Lenstrans.Where(x => x.Brand == Brand && x.Colour.Replace(" ", string.Empty).ToLower().Contains(color) && x.Size == lensframe.Size && x.Prize == lensframe.Prize && x.IsActive == true).Select(x => (int?)x.ID).FirstOrDefault();
+                                int? Lensframetran = WYNKContext.Lenstrans.Where(x => x.Brand == Brand && x.Sph.Replace(" ", string.Empty).ToLower().Contains(sph) && x.Cyl.Replace(" ", string.Empty).ToLower().Contains(Cyl) && x.Axis.Replace(" ", string.Empty).ToLower().Contains(Axis) && x.Add.Replace(" ", string.Empty).ToLower().Contains(Add) && x.Prize == lensframe.Prize && x.IsActive == true).Select(x => (int?)x.ID).FirstOrDefault();
 
                                 /*Lensframetran Insertion and assign to IsLensframetran*/
                                 if (Lensframetran == null)
                                 {
                                     var LensTranModel = new LensTranModel();
                                     LensTranModel.LMID = Lensframemaster;
-                                    //LensTranModel.LensOption = lensframe.LensOption;
+
+                                    LensTranModel.Sph = sph;
+                                    LensTranModel.Cyl = Cyl;
+                                    LensTranModel.Axis = Axis;
+                                    LensTranModel.Add = Add;
                                     LensTranModel.Index = Convert.ToString(Index);
                                     LensTranModel.Model = lensframe.Model;
                                     LensTranModel.Size = lensframe.Size;
@@ -1004,17 +1334,64 @@ namespace WYNK.Data.Repository.Implementation
                                 }
                             }
 
-                            else
+                            else if (lensframe.Type.Equals("Contactlens".Replace(" ", string.Empty), StringComparison.OrdinalIgnoreCase))
                             {
-                                var color = lensframe.Colour != null ? lensframe.Colour.Replace(" ", string.Empty) : string.Empty;
+                                var sph = lensframe.Sphh;
+                                var Cyl = lensframe.Cyll;
+                                var Axis = lensframe.Axiss;
+                                var Add = lensframe.Addd;
 
-                                int? Lensframetran = WYNKContext.Lenstrans.Where(x => x.Brand == Brand && x.Colour.Replace(" ", string.Empty).ToLower().Contains(color) && x.Size == lensframe.Size && x.Prize == lensframe.Prize && x.IsActive == true).Select(x => (int?)x.ID).FirstOrDefault();
+                                int? Lensframetran = WYNKContext.Lenstrans.Where(x => x.Brand == Brand && x.Sph.Replace(" ", string.Empty).ToLower().Contains(sph) && x.Cyl.Replace(" ", string.Empty).ToLower().Contains(Cyl) && x.Axis.Replace(" ", string.Empty).ToLower().Contains(Axis) && x.Add.Replace(" ", string.Empty).ToLower().Contains(Add) && x.Prize == lensframe.Prize && x.IsActive == true).Select(x => (int?)x.ID).FirstOrDefault();
 
                                 if (Lensframetran == null)
                                 {
                                     var LensTranModel = new LensTranModel();
                                     LensTranModel.LMID = Lensframemaster;
-                                    // LensTranModel.LensOption = lensframe.LensOption;
+                                    LensTranModel.Sph = sph;
+                                    LensTranModel.Cyl = Cyl;
+                                    LensTranModel.Axis = Axis;
+                                    LensTranModel.Add = Add;
+                                    LensTranModel.Model = lensframe.Model;
+                                    LensTranModel.Size = lensframe.Size;
+                                    LensTranModel.Colour = lensframe.Colour;
+                                    LensTranModel.Brand = Convert.ToInt32(Brand);
+                                    LensTranModel.Prize = lensframe.Prize;
+                                    LensTranModel.GST = lensframe.GSTPercentage;
+                                    LensTranModel.CESSAmount = lensframe.CESSPercentage;
+                                    LensTranModel.ADDCESSAmount = lensframe.ADDCESSPercentage;
+                                    LensTranModel.UOMID = IsUOM;
+                                    LensTranModel.HSNNo = lensframe.HSNNo;
+                                    LensTranModel.Description = lensframe.Description;
+                                    LensTranModel.TaxID = TaxID;
+                                    LensTranModel.IsActive = true;
+                                    LensTranModel.CreatedUTC = DateTime.UtcNow;
+                                    LensTranModel.CreatedBy = Createdby;
+                                    WYNKContext.Lenstrans.Add(LensTranModel);
+                                    WYNKContext.SaveChanges();
+                                    lensframe.Status = "Uploaded";
+                                    Uploaded = Uploaded + 1;
+
+                                }
+
+                                /*Lensframetran Already in Lensframetran and Logging in Loggers as Duplicate*/
+                                else
+                                {
+                                    object names = lensframe;
+                                    oErrorLogs.WriteErrorLogArray("Duplicate Lensframetran Record", names);
+                                    lensframe.Status = "Duplicate";
+                                    Duplicate = Duplicate + 1;
+                                }
+                            }
+
+                            else
+                            {
+
+                                int? Lensframetran = WYNKContext.Lenstrans.Where(x => x.Brand == Brand && x.FrameShapeID == getData.FrameShap && x.FrameTypeID == getData.FrameTyp && x.FrameStyleID == getData.FrameStyl && x.FrameWidthID == getData.FrameWidt && x.Prize == lensframe.Prize && x.IsActive == true).Select(x => (int?)x.ID).FirstOrDefault();
+
+                                if (Lensframetran == null)
+                                {
+                                    var LensTranModel = new LensTranModel();
+                                    LensTranModel.LMID = Lensframemaster;
                                     LensTranModel.Model = lensframe.Model;
                                     LensTranModel.Size = lensframe.Size;
                                     LensTranModel.Colour = lensframe.Colour;
@@ -1122,13 +1499,16 @@ namespace WYNK.Data.Repository.Implementation
                     opticalmaster.VendorID = M_Vendor;
                     opticalmaster.DepartmentID = 0;
                     opticalmaster.TotalPOValue = 0;
+
                     foreach (var item in UpdatestockExceldatas.Lensframestock.ToList())
                     {
                         var LTID = lenstrns.Where(s => s.Brand == WYNKContext.Brand.Where(x => x.Description.Equals(Convert.ToString(item.Brand.Replace(" ", string.Empty)), StringComparison.OrdinalIgnoreCase) && x.BrandType.Equals(Convert.ToString(item.Type.Replace(" ", string.Empty)), StringComparison.OrdinalIgnoreCase) && x.cmpID == cmpid).Select(x => x.ID).FirstOrDefault()).ToList();
-
-                        foreach (var items in LTID.ToList())
+                        if (LTID.Count() > 0)
                         {
-                            opticalmaster.TotalPOValue += item.Quantity * items.Prize;
+                            foreach (var items in LTID.ToList())
+                            {
+                                opticalmaster.TotalPOValue += item.Quantity * items.Prize;
+                            }
                         }
                     }
                     opticalmaster.TotalDiscountValue = 0.0M;
@@ -1137,6 +1517,7 @@ namespace WYNK.Data.Repository.Implementation
                     opticalmaster.CreatedUTC = DateTime.UtcNow;
                     opticalmaster.CreatedBy = Createdby;
                     WYNKContext.OpticalStockMaster.AddRange(opticalmaster);
+                    WYNKContext.SaveChanges();
                     object names = opticalmaster;
                     oErrorLogs.WriteErrorLogArray("OpticalStockMaster", names);
 
@@ -1146,8 +1527,6 @@ namespace WYNK.Data.Repository.Implementation
                         foreach (var item in UpdatestockExceldatas.Lensframestock.ToList())
                         {
                             var LTID = lenstrns.Where(s => s.Brand == WYNKContext.Brand.Where(x => x.Description.Equals(Convert.ToString(item.Brand.Replace(" ", string.Empty)), StringComparison.OrdinalIgnoreCase) && x.BrandType.Equals(Convert.ToString(item.Type.Replace(" ", string.Empty)), StringComparison.OrdinalIgnoreCase) && x.cmpID == cmpid).Select(x => x.ID).FirstOrDefault()).ToList();
-
-                            Uploaded = Uploaded + 1;
 
                             if (LTID.Count() > 0)
                             {
@@ -1167,11 +1546,12 @@ namespace WYNK.Data.Repository.Implementation
                                     opticaltrans.CreatedUTC = DateTime.UtcNow;
                                     opticaltrans.CreatedBy = opticalmaster.CreatedBy;
                                     WYNKContext.OpticalStockTran.AddRange(opticaltrans);
+                                    WYNKContext.SaveChanges();
                                     ErrorLog oErrorLogstran = new ErrorLog();
                                     object namestr = opticaltrans;
                                     oErrorLogstran.WriteErrorLogArray("OpticalStockTran", namestr);
                                     item.Status = "Uploaded";
-
+                                    Uploaded = Uploaded + 1;
                                 }
                             }
                             else
@@ -1206,292 +1586,302 @@ namespace WYNK.Data.Repository.Implementation
                             {
                                 var LTID = lenstrns.Where(s => s.Brand == WYNKContext.Brand.Where(x => x.Description.Equals(Convert.ToString(item.Brand.Replace(" ", string.Empty)), StringComparison.OrdinalIgnoreCase) && x.BrandType.Equals(Convert.ToString(item.Type.Replace(" ", string.Empty)), StringComparison.OrdinalIgnoreCase) && x.cmpID == cmpid).Select(x => x.ID).FirstOrDefault()).ToList();
 
-                                foreach (var items in LTID.ToList())
+                                if (LTID.Count() > 0)
                                 {
-                                    var ItemBalance = WYNKContext.OpticalBalance.Where(x => x.FYID == FinancialYearId && x.LTID == items.ID && x.StoreID == StoreID && x.CmpID == cmpid).FirstOrDefault();
-
-                                    if (ItemBalance != null)
+                                    foreach (var items in LTID.ToList())
                                     {
-                                        switch (CurrentMonth)
+                                        var ItemBalance = WYNKContext.OpticalBalance.Where(x => x.FYID == FinancialYearId && x.LTID == items.ID && x.StoreID == StoreID && x.CmpID == cmpid).FirstOrDefault();
+
+                                        if (ItemBalance != null)
                                         {
-                                            case 1:
-                                                ItemBalance.REC01 = ItemBalance.REC01 + Convert.ToInt32(item.Quantity);
-                                                break;
-                                            case 2:
-                                                ItemBalance.REC02 = ItemBalance.REC02 + Convert.ToInt32(item.Quantity);
-                                                break;
-                                            case 3:
-                                                ItemBalance.REC03 = ItemBalance.REC03 + Convert.ToInt32(item.Quantity);
-                                                break;
-                                            case 4:
-                                                ItemBalance.REC04 = ItemBalance.REC04 + Convert.ToInt32(item.Quantity);
-                                                break;
-                                            case 5:
-                                                ItemBalance.REC05 = ItemBalance.REC05 + Convert.ToInt32(item.Quantity);
-                                                break;
-                                            case 6:
-                                                ItemBalance.REC06 = ItemBalance.REC06 + Convert.ToInt32(item.Quantity);
-                                                break;
-                                            case 7:
-                                                ItemBalance.REC07 = ItemBalance.REC07 + Convert.ToInt32(item.Quantity);
-                                                break;
-                                            case 8:
-                                                ItemBalance.REC08 = ItemBalance.REC08 + Convert.ToInt32(item.Quantity);
-                                                break;
-                                            case 9:
-                                                ItemBalance.REC09 = ItemBalance.REC09 + Convert.ToInt32(item.Quantity);
-                                                break;
-                                            case 10:
-                                                ItemBalance.REC10 = ItemBalance.REC10 + Convert.ToInt32(item.Quantity);
-                                                break;
-                                            case 11:
-                                                ItemBalance.REC11 = ItemBalance.REC11 + Convert.ToInt32(item.Quantity);
-                                                break;
-                                            case 12:
-                                                ItemBalance.REC12 = ItemBalance.REC12 + Convert.ToInt32(item.Quantity);
-                                                break;
-                                        }
-
-                                        ItemBalance.ClosingBalance = ItemBalance.ClosingBalance + Convert.ToInt32(item.Quantity);
-                                        ItemBalance.StoreID = StoreID;
-                                        ItemBalance.UpdatedBy = Createdby;
-                                        ItemBalance.UpdatedUTC = DateTime.UtcNow;
-                                        WYNKContext.OpticalBalance.UpdateRange(ItemBalance);
-                                        object IB = ItemBalance;
-                                        oErrorLogs.WriteErrorLogArray("OpticalBalance", names);
-                                    }
-                                    else
-                                    {
-                                        var closebal = WYNKContext.OpticalBalance.Where(x => x.LTID == items.ID && x.CmpID == cmpid).Sum(x => x.ClosingBalance);
-                                        if (closebal != 0)
-                                        {
-                                            var storeid = WYNKContext.OpticalBalance.Where(x => x.LTID == items.ID && x.StoreID != StoreID && x.FYID == FinancialYearId).Select(x => x.StoreID).FirstOrDefault();
-                                            if (storeid != 0)
-                                            {
-                                                var ItemBalance1 = new OpticalBalance();
-
-                                                switch (CurrentMonth)
-                                                {
-
-                                                    case 1:
-                                                        ItemBalance1.REC01 = Convert.ToInt32(item.Quantity);
-                                                        break;
-                                                    case 2:
-                                                        ItemBalance1.REC02 = Convert.ToInt32(item.Quantity);
-                                                        break;
-                                                    case 3:
-                                                        ItemBalance1.REC03 = Convert.ToInt32(item.Quantity);
-                                                        break;
-                                                    case 4:
-                                                        ItemBalance1.REC04 = Convert.ToInt32(item.Quantity);
-                                                        break;
-                                                    case 5:
-                                                        ItemBalance1.REC05 = Convert.ToInt32(item.Quantity);
-                                                        break;
-                                                    case 6:
-                                                        ItemBalance1.REC06 = Convert.ToInt32(item.Quantity);
-                                                        break;
-                                                    case 7:
-                                                        ItemBalance1.REC07 = Convert.ToInt32(item.Quantity);
-                                                        break;
-                                                    case 8:
-                                                        ItemBalance1.REC08 = Convert.ToInt32(item.Quantity);
-                                                        break;
-                                                    case 9:
-                                                        ItemBalance1.REC09 = Convert.ToInt32(item.Quantity);
-                                                        break;
-                                                    case 10:
-                                                        ItemBalance1.REC10 = Convert.ToInt32(item.Quantity);
-                                                        break;
-                                                    case 11:
-                                                        ItemBalance1.REC11 = Convert.ToInt32(item.Quantity);
-                                                        break;
-                                                    case 12:
-                                                        ItemBalance1.REC12 = Convert.ToInt32(item.Quantity);
-                                                        break;
-                                                }
-
-                                                ItemBalance1.ISS01 = 0;
-                                                ItemBalance1.ISS02 = 0;
-                                                ItemBalance1.ISS03 = 0;
-                                                ItemBalance1.ISS04 = 0;
-                                                ItemBalance1.ISS05 = 0;
-                                                ItemBalance1.ISS06 = 0;
-                                                ItemBalance1.ISS07 = 0;
-                                                ItemBalance1.ISS08 = 0;
-                                                ItemBalance1.ISS09 = 0;
-                                                ItemBalance1.ISS10 = 0;
-                                                ItemBalance1.ISS11 = 0;
-                                                ItemBalance1.ISS12 = 0;
-                                                ItemBalance1.LTID = items.ID;
-                                                ItemBalance1.UOMID = Convert.ToInt32(items.UOMID);
-                                                ItemBalance1.FYID = FinancialYearId;
-                                                ItemBalance1.OpeningBalance = 0;
-                                                ItemBalance1.StoreID = StoreID;
-                                                ItemBalance1.ClosingBalance = Convert.ToInt32(item.Quantity);
-                                                ItemBalance1.CreatedBy = Createdby;
-                                                ItemBalance1.CreatedUTC = DateTime.UtcNow;
-                                                ItemBalance1.CmpID = cmpid;
-                                                WYNKContext.OpticalBalance.AddRange(ItemBalance1);
-                                                object IB1 = ItemBalance1;
-                                                oErrorLogs.WriteErrorLogArray("OpticalBalance", IB1);
-
-
-                                            }
-                                            else
-                                            {
-
-                                                var ItemBalance1 = new OpticalBalance();
-
-                                                switch (CurrentMonth)
-                                                {
-                                                    case 1:
-                                                        ItemBalance1.REC01 = Convert.ToInt32(item.Quantity);
-                                                        break;
-                                                    case 2:
-                                                        ItemBalance1.REC02 = Convert.ToInt32(item.Quantity);
-                                                        break;
-                                                    case 3:
-                                                        ItemBalance1.REC03 = Convert.ToInt32(item.Quantity);
-                                                        break;
-                                                    case 4:
-                                                        ItemBalance1.REC04 = Convert.ToInt32(item.Quantity);
-                                                        break;
-                                                    case 5:
-                                                        ItemBalance1.REC05 = Convert.ToInt32(item.Quantity);
-                                                        break;
-                                                    case 6:
-                                                        ItemBalance1.REC06 = Convert.ToInt32(item.Quantity);
-                                                        break;
-                                                    case 7:
-                                                        ItemBalance1.REC07 = Convert.ToInt32(item.Quantity);
-                                                        break;
-                                                    case 8:
-                                                        ItemBalance1.REC08 = Convert.ToInt32(item.Quantity);
-                                                        break;
-                                                    case 9:
-                                                        ItemBalance1.REC09 = Convert.ToInt32(item.Quantity);
-                                                        break;
-                                                    case 10:
-                                                        ItemBalance1.REC10 = Convert.ToInt32(item.Quantity);
-                                                        break;
-                                                    case 11:
-                                                        ItemBalance1.REC11 = Convert.ToInt32(item.Quantity);
-                                                        break;
-                                                    case 12:
-                                                        ItemBalance1.REC12 = Convert.ToInt32(item.Quantity);
-                                                        break;
-
-                                                }
-
-                                                ItemBalance1.ISS01 = 0;
-                                                ItemBalance1.ISS02 = 0;
-                                                ItemBalance1.ISS03 = 0;
-                                                ItemBalance1.ISS04 = 0;
-                                                ItemBalance1.ISS05 = 0;
-                                                ItemBalance1.ISS06 = 0;
-                                                ItemBalance1.ISS07 = 0;
-                                                ItemBalance1.ISS08 = 0;
-                                                ItemBalance1.ISS09 = 0;
-                                                ItemBalance1.ISS10 = 0;
-                                                ItemBalance1.ISS11 = 0;
-                                                ItemBalance1.ISS12 = 0;
-                                                ItemBalance1.LTID = 0;
-                                                ItemBalance1.LTID = items.ID;
-                                                ItemBalance1.UOMID = Convert.ToInt32(items.UOMID);
-                                                ItemBalance1.FYID = FinancialYearId;
-                                                ItemBalance1.OpeningBalance = 0;
-                                                ItemBalance1.StoreID = StoreID;
-                                                ItemBalance1.ClosingBalance = Convert.ToInt32(item.Quantity);
-                                                ItemBalance1.CreatedBy = Createdby;
-                                                ItemBalance1.CreatedUTC = DateTime.UtcNow;
-                                                ItemBalance1.CmpID = cmpid;
-                                                WYNKContext.OpticalBalance.AddRange(ItemBalance1);
-                                                object IB2 = ItemBalance1;
-                                                oErrorLogs.WriteErrorLogArray("OpticalBalance", IB2);
-
-                                            }
-                                        }
-                                        else
-                                        {
-                                            var ItemBalance1 = new OpticalBalance();
                                             switch (CurrentMonth)
                                             {
                                                 case 1:
-                                                    ItemBalance1.REC01 = Convert.ToInt32(item.Quantity);
+                                                    ItemBalance.REC01 = ItemBalance.REC01 + Convert.ToInt32(item.Quantity);
                                                     break;
                                                 case 2:
-                                                    ItemBalance1.REC02 = Convert.ToInt32(item.Quantity);
+                                                    ItemBalance.REC02 = ItemBalance.REC02 + Convert.ToInt32(item.Quantity);
                                                     break;
                                                 case 3:
-                                                    ItemBalance1.REC03 = Convert.ToInt32(item.Quantity);
+                                                    ItemBalance.REC03 = ItemBalance.REC03 + Convert.ToInt32(item.Quantity);
                                                     break;
                                                 case 4:
-                                                    ItemBalance1.REC04 = Convert.ToInt32(item.Quantity);
+                                                    ItemBalance.REC04 = ItemBalance.REC04 + Convert.ToInt32(item.Quantity);
                                                     break;
                                                 case 5:
-                                                    ItemBalance1.REC05 = Convert.ToInt32(item.Quantity);
+                                                    ItemBalance.REC05 = ItemBalance.REC05 + Convert.ToInt32(item.Quantity);
                                                     break;
                                                 case 6:
-                                                    ItemBalance1.REC06 = Convert.ToInt32(item.Quantity);
+                                                    ItemBalance.REC06 = ItemBalance.REC06 + Convert.ToInt32(item.Quantity);
                                                     break;
                                                 case 7:
-                                                    ItemBalance1.REC07 = Convert.ToInt32(item.Quantity);
+                                                    ItemBalance.REC07 = ItemBalance.REC07 + Convert.ToInt32(item.Quantity);
                                                     break;
                                                 case 8:
-                                                    ItemBalance1.REC08 = Convert.ToInt32(item.Quantity);
+                                                    ItemBalance.REC08 = ItemBalance.REC08 + Convert.ToInt32(item.Quantity);
                                                     break;
                                                 case 9:
-                                                    ItemBalance1.REC09 = Convert.ToInt32(item.Quantity);
+                                                    ItemBalance.REC09 = ItemBalance.REC09 + Convert.ToInt32(item.Quantity);
                                                     break;
                                                 case 10:
-                                                    ItemBalance1.REC10 = Convert.ToInt32(item.Quantity);
+                                                    ItemBalance.REC10 = ItemBalance.REC10 + Convert.ToInt32(item.Quantity);
                                                     break;
                                                 case 11:
-                                                    ItemBalance1.REC11 = Convert.ToInt32(item.Quantity);
+                                                    ItemBalance.REC11 = ItemBalance.REC11 + Convert.ToInt32(item.Quantity);
                                                     break;
                                                 case 12:
-                                                    ItemBalance1.REC12 = Convert.ToInt32(item.Quantity);
+                                                    ItemBalance.REC12 = ItemBalance.REC12 + Convert.ToInt32(item.Quantity);
                                                     break;
-
                                             }
 
-                                            ItemBalance1.ISS01 = 0;
-                                            ItemBalance1.ISS02 = 0;
-                                            ItemBalance1.ISS03 = 0;
-                                            ItemBalance1.ISS04 = 0;
-                                            ItemBalance1.ISS05 = 0;
-                                            ItemBalance1.ISS06 = 0;
-                                            ItemBalance1.ISS07 = 0;
-                                            ItemBalance1.ISS08 = 0;
-                                            ItemBalance1.ISS09 = 0;
-                                            ItemBalance1.ISS10 = 0;
-                                            ItemBalance1.ISS11 = 0;
-                                            ItemBalance1.ISS12 = 0;
-                                            ItemBalance1.LTID = items.ID;
-                                            ItemBalance1.UOMID = Convert.ToInt32(items.UOMID);
-                                            ItemBalance1.FYID = FinancialYearId;
-                                            ItemBalance1.OpeningBalance = 0;
-                                            ItemBalance1.StoreID = StoreID;
-                                            ItemBalance1.ClosingBalance = Convert.ToInt32(item.Quantity);
-                                            ItemBalance1.CreatedBy = Createdby;
-                                            ItemBalance1.CreatedUTC = DateTime.UtcNow;
-                                            ItemBalance1.CmpID = cmpid;
-                                            WYNKContext.OpticalBalance.AddRange(ItemBalance1);
-                                            object IB3 = ItemBalance1;
-                                            oErrorLogs.WriteErrorLogArray("OpticalBalance", IB3);
-
+                                            ItemBalance.ClosingBalance = ItemBalance.ClosingBalance + Convert.ToInt32(item.Quantity);
+                                            ItemBalance.StoreID = StoreID;
+                                            ItemBalance.UpdatedBy = Createdby;
+                                            ItemBalance.UpdatedUTC = DateTime.UtcNow;
+                                            WYNKContext.OpticalBalance.UpdateRange(ItemBalance);
+                                            WYNKContext.SaveChanges();
+                                            object IB = ItemBalance;
+                                            oErrorLogs.WriteErrorLogArray("OpticalBalance", names);
                                         }
+                                        else
+                                        {
+                                            var closebal = WYNKContext.OpticalBalance.Where(x => x.LTID == items.ID && x.CmpID == cmpid).Sum(x => x.ClosingBalance);
+                                            if (closebal != 0)
+                                            {
+                                                var storeid = WYNKContext.OpticalBalance.Where(x => x.LTID == items.ID && x.StoreID != StoreID && x.FYID == FinancialYearId).Select(x => x.StoreID).FirstOrDefault();
+                                                if (storeid != 0)
+                                                {
+                                                    var ItemBalance1 = new OpticalBalance();
+
+                                                    switch (CurrentMonth)
+                                                    {
+
+                                                        case 1:
+                                                            ItemBalance1.REC01 = Convert.ToInt32(item.Quantity);
+                                                            break;
+                                                        case 2:
+                                                            ItemBalance1.REC02 = Convert.ToInt32(item.Quantity);
+                                                            break;
+                                                        case 3:
+                                                            ItemBalance1.REC03 = Convert.ToInt32(item.Quantity);
+                                                            break;
+                                                        case 4:
+                                                            ItemBalance1.REC04 = Convert.ToInt32(item.Quantity);
+                                                            break;
+                                                        case 5:
+                                                            ItemBalance1.REC05 = Convert.ToInt32(item.Quantity);
+                                                            break;
+                                                        case 6:
+                                                            ItemBalance1.REC06 = Convert.ToInt32(item.Quantity);
+                                                            break;
+                                                        case 7:
+                                                            ItemBalance1.REC07 = Convert.ToInt32(item.Quantity);
+                                                            break;
+                                                        case 8:
+                                                            ItemBalance1.REC08 = Convert.ToInt32(item.Quantity);
+                                                            break;
+                                                        case 9:
+                                                            ItemBalance1.REC09 = Convert.ToInt32(item.Quantity);
+                                                            break;
+                                                        case 10:
+                                                            ItemBalance1.REC10 = Convert.ToInt32(item.Quantity);
+                                                            break;
+                                                        case 11:
+                                                            ItemBalance1.REC11 = Convert.ToInt32(item.Quantity);
+                                                            break;
+                                                        case 12:
+                                                            ItemBalance1.REC12 = Convert.ToInt32(item.Quantity);
+                                                            break;
+                                                    }
+
+                                                    ItemBalance1.ISS01 = 0;
+                                                    ItemBalance1.ISS02 = 0;
+                                                    ItemBalance1.ISS03 = 0;
+                                                    ItemBalance1.ISS04 = 0;
+                                                    ItemBalance1.ISS05 = 0;
+                                                    ItemBalance1.ISS06 = 0;
+                                                    ItemBalance1.ISS07 = 0;
+                                                    ItemBalance1.ISS08 = 0;
+                                                    ItemBalance1.ISS09 = 0;
+                                                    ItemBalance1.ISS10 = 0;
+                                                    ItemBalance1.ISS11 = 0;
+                                                    ItemBalance1.ISS12 = 0;
+                                                    ItemBalance1.LTID = items.ID;
+                                                    ItemBalance1.UOMID = Convert.ToInt32(items.UOMID);
+                                                    ItemBalance1.FYID = FinancialYearId;
+                                                    ItemBalance1.OpeningBalance = 0;
+                                                    ItemBalance1.StoreID = StoreID;
+                                                    ItemBalance1.ClosingBalance = Convert.ToInt32(item.Quantity);
+                                                    ItemBalance1.CreatedBy = Createdby;
+                                                    ItemBalance1.CreatedUTC = DateTime.UtcNow;
+                                                    ItemBalance1.CmpID = cmpid;
+                                                    WYNKContext.OpticalBalance.AddRange(ItemBalance1);
+                                                    WYNKContext.SaveChanges();
+                                                    object IB1 = ItemBalance1;
+                                                    oErrorLogs.WriteErrorLogArray("OpticalBalance", IB1);
+
+
+                                                }
+                                                else
+                                                {
+
+                                                    var ItemBalance1 = new OpticalBalance();
+
+                                                    switch (CurrentMonth)
+                                                    {
+                                                        case 1:
+                                                            ItemBalance1.REC01 = Convert.ToInt32(item.Quantity);
+                                                            break;
+                                                        case 2:
+                                                            ItemBalance1.REC02 = Convert.ToInt32(item.Quantity);
+                                                            break;
+                                                        case 3:
+                                                            ItemBalance1.REC03 = Convert.ToInt32(item.Quantity);
+                                                            break;
+                                                        case 4:
+                                                            ItemBalance1.REC04 = Convert.ToInt32(item.Quantity);
+                                                            break;
+                                                        case 5:
+                                                            ItemBalance1.REC05 = Convert.ToInt32(item.Quantity);
+                                                            break;
+                                                        case 6:
+                                                            ItemBalance1.REC06 = Convert.ToInt32(item.Quantity);
+                                                            break;
+                                                        case 7:
+                                                            ItemBalance1.REC07 = Convert.ToInt32(item.Quantity);
+                                                            break;
+                                                        case 8:
+                                                            ItemBalance1.REC08 = Convert.ToInt32(item.Quantity);
+                                                            break;
+                                                        case 9:
+                                                            ItemBalance1.REC09 = Convert.ToInt32(item.Quantity);
+                                                            break;
+                                                        case 10:
+                                                            ItemBalance1.REC10 = Convert.ToInt32(item.Quantity);
+                                                            break;
+                                                        case 11:
+                                                            ItemBalance1.REC11 = Convert.ToInt32(item.Quantity);
+                                                            break;
+                                                        case 12:
+                                                            ItemBalance1.REC12 = Convert.ToInt32(item.Quantity);
+                                                            break;
+
+                                                    }
+
+                                                    ItemBalance1.ISS01 = 0;
+                                                    ItemBalance1.ISS02 = 0;
+                                                    ItemBalance1.ISS03 = 0;
+                                                    ItemBalance1.ISS04 = 0;
+                                                    ItemBalance1.ISS05 = 0;
+                                                    ItemBalance1.ISS06 = 0;
+                                                    ItemBalance1.ISS07 = 0;
+                                                    ItemBalance1.ISS08 = 0;
+                                                    ItemBalance1.ISS09 = 0;
+                                                    ItemBalance1.ISS10 = 0;
+                                                    ItemBalance1.ISS11 = 0;
+                                                    ItemBalance1.ISS12 = 0;
+                                                    ItemBalance1.LTID = 0;
+                                                    ItemBalance1.LTID = items.ID;
+                                                    ItemBalance1.UOMID = Convert.ToInt32(items.UOMID);
+                                                    ItemBalance1.FYID = FinancialYearId;
+                                                    ItemBalance1.OpeningBalance = 0;
+                                                    ItemBalance1.StoreID = StoreID;
+                                                    ItemBalance1.ClosingBalance = Convert.ToInt32(item.Quantity);
+                                                    ItemBalance1.CreatedBy = Createdby;
+                                                    ItemBalance1.CreatedUTC = DateTime.UtcNow;
+                                                    ItemBalance1.CmpID = cmpid;
+                                                    WYNKContext.OpticalBalance.AddRange(ItemBalance1);
+                                                    WYNKContext.SaveChanges();
+                                                    object IB2 = ItemBalance1;
+                                                    oErrorLogs.WriteErrorLogArray("OpticalBalance", IB2);
+
+                                                }
+                                            }
+                                            else
+                                            {
+                                                var ItemBalance1 = new OpticalBalance();
+                                                switch (CurrentMonth)
+                                                {
+                                                    case 1:
+                                                        ItemBalance1.REC01 = Convert.ToInt32(item.Quantity);
+                                                        break;
+                                                    case 2:
+                                                        ItemBalance1.REC02 = Convert.ToInt32(item.Quantity);
+                                                        break;
+                                                    case 3:
+                                                        ItemBalance1.REC03 = Convert.ToInt32(item.Quantity);
+                                                        break;
+                                                    case 4:
+                                                        ItemBalance1.REC04 = Convert.ToInt32(item.Quantity);
+                                                        break;
+                                                    case 5:
+                                                        ItemBalance1.REC05 = Convert.ToInt32(item.Quantity);
+                                                        break;
+                                                    case 6:
+                                                        ItemBalance1.REC06 = Convert.ToInt32(item.Quantity);
+                                                        break;
+                                                    case 7:
+                                                        ItemBalance1.REC07 = Convert.ToInt32(item.Quantity);
+                                                        break;
+                                                    case 8:
+                                                        ItemBalance1.REC08 = Convert.ToInt32(item.Quantity);
+                                                        break;
+                                                    case 9:
+                                                        ItemBalance1.REC09 = Convert.ToInt32(item.Quantity);
+                                                        break;
+                                                    case 10:
+                                                        ItemBalance1.REC10 = Convert.ToInt32(item.Quantity);
+                                                        break;
+                                                    case 11:
+                                                        ItemBalance1.REC11 = Convert.ToInt32(item.Quantity);
+                                                        break;
+                                                    case 12:
+                                                        ItemBalance1.REC12 = Convert.ToInt32(item.Quantity);
+                                                        break;
+
+                                                }
+
+                                                ItemBalance1.ISS01 = 0;
+                                                ItemBalance1.ISS02 = 0;
+                                                ItemBalance1.ISS03 = 0;
+                                                ItemBalance1.ISS04 = 0;
+                                                ItemBalance1.ISS05 = 0;
+                                                ItemBalance1.ISS06 = 0;
+                                                ItemBalance1.ISS07 = 0;
+                                                ItemBalance1.ISS08 = 0;
+                                                ItemBalance1.ISS09 = 0;
+                                                ItemBalance1.ISS10 = 0;
+                                                ItemBalance1.ISS11 = 0;
+                                                ItemBalance1.ISS12 = 0;
+                                                ItemBalance1.LTID = items.ID;
+                                                ItemBalance1.UOMID = Convert.ToInt32(items.UOMID);
+                                                ItemBalance1.FYID = FinancialYearId;
+                                                ItemBalance1.OpeningBalance = 0;
+                                                ItemBalance1.StoreID = StoreID;
+                                                ItemBalance1.ClosingBalance = Convert.ToInt32(item.Quantity);
+                                                ItemBalance1.CreatedBy = Createdby;
+                                                ItemBalance1.CreatedUTC = DateTime.UtcNow;
+                                                ItemBalance1.CmpID = cmpid;
+                                                WYNKContext.OpticalBalance.AddRange(ItemBalance1);
+                                                WYNKContext.SaveChanges();
+                                                object IB3 = ItemBalance1;
+                                                oErrorLogs.WriteErrorLogArray("OpticalBalance", IB3);
+
+                                            }
+                                        }
+
                                     }
 
                                 }
+
+
 
                             }
                         }
                     }
 
 
-                    WYNKContext.SaveChanges();
+
                     dbContextTransaction.Commit();
 
                     var commonRepos = new CommonRepository(_Wynkcontext, _Cmpscontext);

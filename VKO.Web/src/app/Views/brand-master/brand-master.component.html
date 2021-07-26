@@ -36,9 +36,13 @@
           <div class="col-sm-2 vamph-0">
             <mat-form-field appearance="outline" class="mat-width">
               <mat-label> Type </mat-label>
-              <mat-select [(ngModel)]="M_SelectedType" name="Type" required>
-                <mat-option value="Frame">Frame</mat-option>
-                <mat-option value="Lens">Lens</mat-option>
+              <mat-select [(ngModel)]="M_SelectedType" name="Type" #select multiple required>
+                <div class="select-all">
+                  <mat-checkbox [(ngModel)]="allSelected" [ngModelOptions]="{standalone: true}" (change)="selectdstore()">Select All</mat-checkbox>
+                </div>
+                <mat-option (click)="optionClick()" value="Frame">Frame</mat-option>
+                <mat-option (click)="optionClick()" value="Lens">Lens</mat-option>
+                <mat-option (click)="optionClick()" value="Contactlens">Contact Lens</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
@@ -51,15 +55,15 @@
 
           <div class="col-sm-4">
             <mat-form-field appearance="outline">
-              <mat-label>Description</mat-label>
-              <input [(ngModel)]="M_Description" name="Description" matInput placeholder="Description" autocomplete="off" required>
+              <mat-label>Brand</mat-label>
+              <input [(ngModel)]="M_Description" name="Description" matInput placeholder="Brand"  autocomplete="off" (keyup)="changeValue($event);" required>
             </mat-form-field>
           </div>
 
           <div class="col-sm-2 vamph-0" *ngIf="Activeis">
             <mat-form-field appearance="outline" class="mat-width">
               <mat-label> IsActive </mat-label>
-              <mat-select [(ngModel)]="IsActive" name="Active">
+              <mat-select [(ngModel)]="IsActive" name="Active" (ngModelChange)="IsActivevalue($event)">
                 <mat-option>Select</mat-option>
                 <mat-option value="true">Active</mat-option>
                 <mat-option value="false">InActive</mat-option>
@@ -74,7 +78,7 @@
           <div class="col-sm-5" *ngIf="tablebrand">
 
             <mat-form-field>
-              <mat-label>Filter</mat-label>
+              <mat-label>Search</mat-label>
               <input matInput (keyup)="applyFilter($event)" #input>
             </mat-form-field>
 
@@ -88,14 +92,14 @@
                   </td>
                 </ng-container>
 
-                <ng-container matColumnDef="Description">
-                  <th mat-header-cell *matHeaderCellDef>  Description </th>
-                  <td mat-cell *matCellDef="let element">{{element.Description}}</td>
-                </ng-container>
-
                 <ng-container matColumnDef="LensType">
                   <th mat-header-cell *matHeaderCellDef> Type </th>
                   <td mat-cell *matCellDef="let element">{{element.BrandType}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Description">
+                  <th mat-header-cell *matHeaderCellDef>  Brand </th>
+                  <td mat-cell *matCellDef="let element">{{element.Description}}</td>
                 </ng-container>
 
                 <ng-container matColumnDef="IsActive">

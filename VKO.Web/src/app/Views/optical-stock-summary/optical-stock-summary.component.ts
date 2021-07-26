@@ -59,13 +59,10 @@ export class OpticalStockSummaryComponent implements OnInit {
   @ViewChild('OpticalStockSummary') Form: NgForm
 
 
-
-
-
   constructor(public commonService: CommonService<OptiaclStockSummaryView>, public datepipe: DatePipe,
     public appComponent: AppComponent, public el: ElementRef, private changeDatectorrefs: ChangeDetectorRef, private router: Router, public datePipe: DatePipe,) { }
 
-  displayedColumns: string[] = ['Type', 'Store', 'Brand', 'Color', 'UOM', 'OpeningBalance', 'ClosingBalance', 'Receipt', 'Issue'];
+  displayedColumns: string[] = ['Type', 'Brand', 'Description', 'UOM', 'Store', 'OpeningBalance', 'Receipt', 'Issue', 'ClosingBalance'];
   dataSource = new MatTableDataSource();
 
 

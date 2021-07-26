@@ -9,14 +9,13 @@ const moment = _rollupMoment || _moment;
 import { Refraction } from 'src/app/Models/Refractionmaster.model';
 import { FormControl } from '@angular/forms';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import * as _l from 'lodash';
 import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
-import { MatSort, MatTableDataSource, MatPaginator, MatDialogConfig, MatCheckbox } from '@angular/material'
-import { BrandViewmodel } from '../../Models/ViewModels/BrandViewmodel';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatTableDataSource, MatPaginator, MatSelect } from '@angular/material';
+import { BrandViewmodel} from '../../Models/ViewModels/BrandViewmodel';
 import { Brand } from '../../Models/Brand.model';
-
+import { MatOption } from '@angular/material/core';
 
 @Component({
   selector: 'app-brand-master',
@@ -36,7 +35,7 @@ export class BrandMasterComponent implements OnInit {
   M_Description;
   IsActive;
 
-  displayedColumnssq = ['Action', 'Description', 'LensType', 'IsActive'];
+  displayedColumnssq = ['Action', 'LensType', 'Description','IsActive'];
   dataSourcesq = new MatTableDataSource();
 
   @ViewChild('BrandMaster') Form: NgForm
@@ -144,8 +143,89 @@ export class BrandMasterComponent implements OnInit {
   }
 
 
+  @ViewChild('select') select: MatSelect;
+  allSelected = false;
+  BrandArray = [];
 
 
+
+
+  selectdstore() {
+    debugger;
+
+    this.BrandArray = [];
+    this.commonService.data.Brand = [];
+    if (this.allSelected) {
+      this.select.options.forEach((item: MatOption) => item.select());
+    }
+    else {
+      this.select.options.forEach((item: MatOption) => item.deselect());
+    }
+
+    if (this.M_SelectedType.length > 0) {
+      this.M_SelectedType.forEach(id => {
+        debugger;
+        var sa = new Brand();
+        sa.BrandType = id;
+        sa.CreatedBy = this.docotorid;
+        sa.Description = this.M_Description;
+        sa.cmpID = this.cmpid;
+        this.BrandArray.push(sa);
+        this.commonService.data.Brand = this.BrandArray;
+      });
+    } else {
+      this.BrandArray = this.M_SelectedType;
+      this.commonService.data.Brand = this.BrandArray;
+    }
+
+  }
+  optionClick() {
+    debugger;
+
+    this.BrandArray = [];
+    this.commonService.data.Brand = [];
+    let newStatus = true;
+    this.select.options.forEach((item: MatOption) => {
+      if (!item.selected) {
+        newStatus = false;
+      }
+    });
+    this.allSelected = newStatus;
+    if (this.M_SelectedType.length > 0) {
+      this.M_SelectedType.forEach(id => {
+        debugger;
+        var sa = new Brand();
+        sa.BrandType = id;
+        sa.CreatedBy = this.docotorid;
+        sa.Description = this.M_Description;
+        sa.cmpID = this.cmpid;
+        this.BrandArray.push(sa);
+        this.commonService.data.Brand = this.BrandArray;
+      });
+    }
+  }
+
+
+
+  changeValue(event) {
+    debugger;
+    this.M_Description = event.target.value;
+    this.BrandArray.forEach((z: any) => {
+      z.Description = this.M_Description;
+    });
+    this.commonService.data.Brand = this.BrandArray;
+  }
+
+  IsActivevalue(event) {
+    debugger;
+    if (event != null) {
+      this.IsActive = event;
+      this.BrandArray.forEach((z: any) => {
+        z.IsActive = this.IsActive;
+      });
+      this.commonService.data.Brand = this.BrandArray;
+    }
+  }
 
   onSubmit(form: NgForm) {
 
@@ -154,11 +234,7 @@ export class BrandMasterComponent implements OnInit {
     if (form.valid) {
       this.isInvalid = false;
 
-      this.commonService.data.Brand = new Brand();
-      this.commonService.data.Brand.Description = this.M_Description;
-      this.commonService.data.Brand.BrandType = this.M_SelectedType;
-      this.commonService.data.Brand.CreatedBy = this.docotorid;
-      this.commonService.data.Brand.cmpID = this.cmpid;
+      console.log(this.commonService.data);
 
       this.commonService.postData('BrandMaster/Insertbrand', this.commonService.data)
 
@@ -180,7 +256,26 @@ export class BrandMasterComponent implements OnInit {
 
             this.hiddenUpdate = false;
             this.hiddenSubmit = true;
+            this.BrandArray = [];
+            this.commonService.data.Brand = [];
             this.Form.onReset();
+            this.allSelected = undefined;
+          }
+
+          else if (data.Success == false && data.Message == "Already Exists") {
+            debugger
+
+            Swal.fire({
+              type: 'warning',
+              title: `Type : ${(data.Type)} \n Brand : ${(data.Brand)} \n Already Exists`,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 1500,
+              customClass: {
+                popup: 'alert-warp',
+                container: 'alert-container',
+              },
+            });
           }
 
           else {
@@ -209,7 +304,10 @@ export class BrandMasterComponent implements OnInit {
     this.tablebrand = false;
     this.hiddenDeleted = false;
     this.Activeis = false;
+    this.allSelected = undefined;
     this.Form.onReset();
+    this.BrandArray = [];
+    this.commonService.data.Brand = [];
     this.backdrop = 'none';
     this.cancelblock = 'none';
   }
@@ -225,7 +323,7 @@ export class BrandMasterComponent implements OnInit {
     }
     else {
       this.Form.onReset();
-
+      this.allSelected = undefined;
     }
   }
 
@@ -246,13 +344,35 @@ export class BrandMasterComponent implements OnInit {
     this.dataSourcesq.filter = filterValue.trim().toLowerCase();
   }
 
+
+
+
   ID;
-  selecttype(item) {
+  selecttype(i) {
     debugger;
-    this.M_SelectedType = item.BrandType;
-    this.M_Description = item.Description;
-    this.IsActive = item.IsActive.toString();
-    this.ID = item.ID;
+
+    this.BrandArray = [];
+    this.commonService.data.Brand = [];
+    this.select.options.forEach((item: MatOption) => {
+      if (item.value == i.BrandType) {
+        return item.select();
+      }
+    });
+    this.M_SelectedType = i.BrandType;
+    this.M_Description = i.Description;
+    this.IsActive = i.IsActive.toString();
+    this.ID = i.ID;
+
+
+    var sa = new Brand();
+    sa.BrandType = this.M_SelectedType;
+    sa.CreatedBy = this.docotorid;
+    sa.Description = this.M_Description;
+    sa.cmpID = this.cmpid;
+    sa.IsActive = this.IsActive;
+    this.BrandArray.push(sa);
+    this.commonService.data.Brand = this.BrandArray;
+
     this.Activeis = true;
     this.tablebrand = false;
     this.hiddenSubmit = false;
@@ -267,12 +387,7 @@ export class BrandMasterComponent implements OnInit {
     if (form.valid) {
       this.isInvalid = false;
 
-      this.commonService.data.Brand = new Brand();
-
-      this.commonService.data.Brand.Description = this.M_Description;
-      this.commonService.data.Brand.BrandType = this.M_SelectedType;
-      this.commonService.data.Brand.UpdatedBy = this.docotorid;
-      this.commonService.data.Brand.IsActive = this.IsActive;
+      console.log(this.commonService.data);
 
       this.commonService.postData("BrandMaster/updatebrand/" + this.ID, this.commonService.data)
         .subscribe(data => {
@@ -290,11 +405,28 @@ export class BrandMasterComponent implements OnInit {
                 container: 'alert-container',
               },
             });
+            this.allSelected = undefined;
+            this.BrandArray = [];
+            this.commonService.data.Brand = [];
             this.hiddenUpdate = false;
             this.hiddenDeleted = false;
             this.hiddenSubmit = true;
             this.Activeis = false;
             this.Form.onReset();
+          }
+          else if (data.Success == false && data.Message == "Already Exists") {
+            debugger
+            Swal.fire({
+              type: 'warning',
+              title: `Type : ${(data.Type)} \n Brand : ${(data.Brand)} \n Already Exists`,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 1500,
+              customClass: {
+                popup: 'alert-warp',
+                container: 'alert-container',
+              },
+            });
           }
           else {
 
@@ -303,8 +435,6 @@ export class BrandMasterComponent implements OnInit {
         });
     }
   }
-
-
 
   accesspopup;
   accessdata;

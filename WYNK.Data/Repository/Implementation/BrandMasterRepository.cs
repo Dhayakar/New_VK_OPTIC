@@ -28,17 +28,39 @@ namespace WYNK.Data.Repository.Implementation
 
 
         public dynamic Insertbrand(BrandView Addbrand)
-
         {
-            var brand = new Brand();
+         
+            if (Addbrand.Brand.Count() > 0)
+            {
 
-            brand.Description = Addbrand.Brand.Description;
-            brand.BrandType = Addbrand.Brand.BrandType;
-            brand.CreatedUTC = DateTime.UtcNow;
-            brand.CreatedBy = Addbrand.Brand.CreatedBy;
-            brand.IsActive = true;
-            brand.cmpID = Addbrand.Brand.cmpID;
-            WYNKContext.Brand.AddRange(brand);
+                foreach (var item in Addbrand.Brand.ToList())
+                {
+
+                        var c = WYNKContext.Brand.Where(x => x.Description.Replace(" ", string.Empty).Equals(item.Description.Replace(" ", string.Empty), StringComparison.OrdinalIgnoreCase) && x.BrandType.Replace(" ", string.Empty).Equals(item.BrandType.Replace(" ", string.Empty), StringComparison.OrdinalIgnoreCase)).Select(y => y.ID).FirstOrDefault();
+
+                        if (c != 0)
+                        {
+                            return new
+                            {
+                                Success = false,
+                                Message = "Already Exists",
+                                Brand = item.Description,
+                                Type = item.BrandType,
+                            };
+
+                        }
+
+                    var brand = new Brand();
+
+                    brand.BrandType = item.BrandType;
+                    brand.Description = item.Description;
+                    brand.CreatedBy = item.CreatedBy;
+                    brand.CreatedUTC = DateTime.UtcNow;
+                    brand.IsActive = true;
+                    brand.cmpID = item.cmpID;
+                    WYNKContext.Brand.AddRange(brand);
+                }
+            }
 
             try
             {
@@ -83,16 +105,40 @@ namespace WYNK.Data.Repository.Implementation
         public dynamic updatebrand(BrandView Upbrand, int ID)
         {
 
-            var brand = new Brand();
 
-            brand = WYNKContext.Brand.Where(x => x.ID == ID).FirstOrDefault();
+            if (Upbrand.Brand.Count() > 0)
+            {
 
-            brand.Description = Upbrand.Brand.Description;
-            brand.BrandType = Upbrand.Brand.BrandType;
-            brand.IsActive = Upbrand.Brand.IsActive;
-            brand.UpdatedUTC = DateTime.UtcNow;
-            brand.UpdatedBy = Upbrand.Brand.UpdatedBy;
-            WYNKContext.Brand.UpdateRange(brand);
+                foreach (var item in Upbrand.Brand.ToList())
+                {
+                        var c = WYNKContext.Brand.Where(x => x.Description.Replace(" ", string.Empty).Equals(item.Description.Replace(" ", string.Empty), StringComparison.OrdinalIgnoreCase) && x.BrandType.Replace(" ", string.Empty).Equals(item.BrandType.Replace(" ", string.Empty), StringComparison.OrdinalIgnoreCase) && x.IsActive == item.IsActive).Select(y => y.ID).FirstOrDefault();
+
+                        if (c != 0)
+                        {
+                            return new
+                            {
+                                Success = false,
+                                Message = "Already Exists",
+                                Brand = item.Description,
+                                Type = item.BrandType,
+                            };
+
+                        }
+
+                    var brand = new Brand();
+
+                    brand = WYNKContext.Brand.Where(x => x.ID == ID).FirstOrDefault();
+
+                    brand.BrandType = item.BrandType;
+                    brand.Description = item.Description;
+                    brand.UpdatedBy = item.CreatedBy;
+                    brand.UpdatedUTC = DateTime.UtcNow;
+                    brand.IsActive = item.IsActive;
+                    brand.cmpID = item.cmpID;
+                    WYNKContext.Brand.UpdateRange(brand);
+                }
+            }
+
 
 
             try
