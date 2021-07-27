@@ -16,11 +16,11 @@ declare var $: any;
 
 // iis express
 
-var apiurl = 'https://apps1api.wynkemr.com/';
+//var apiurl = 'https://apps1api.wynkemr.com/';
 
 //Local server
 
-//const apiurl = 'http://localhost:54669/';
+const apiurl = 'http://localhost:54669/';
 
 //apps.cmps.in
 

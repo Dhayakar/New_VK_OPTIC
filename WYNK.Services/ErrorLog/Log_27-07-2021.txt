@@ -1,0 +1,78 @@
+
+27-07-2021 05:56:57 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+27-07-2021 05:56:57 	Message : 	Successfully Logged-In
+
+27-07-2021 07:07:56 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+27-07-2021 07:07:56 	Message : 	Successfully Logged-In
+
+27-07-2021 07:29:57 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+27-07-2021 07:29:57 	Message : 	Successfully Logged-In
+
+27-07-2021 08:29:22 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+27-07-2021 08:29:22 	Message : 	Successfully Logged-In
+
+27-07-2021 08:32:09 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+27-07-2021 08:32:09 	Message : 	Successfully Logged-In
+
+27-07-2021 08:35:22 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+27-07-2021 08:35:22 	Message : 	Successfully Logged-In
+
+27-07-2021 09:59:37 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+27-07-2021 09:59:37 	Message : 	Successfully Logged-In
+
+27-07-2021 10:11:54 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+27-07-2021 10:11:54 	Message : 	Successfully Logged-In
+
+27-07-2021 10:29:49 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+27-07-2021 10:29:49 	Message : 	Successfully Logged-In
+
+27-07-2021 10:34:39 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+27-07-2021 10:34:39 	Message : 	Successfully Logged-In
+
+27-07-2021 10:43:00 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+27-07-2021 10:43:00 	Message : 	Successfully Logged-In
+
+27-07-2021 10:45:37 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+27-07-2021 10:45:37 	Message : 	Successfully Logged-In
+
+27-07-2021 10:48:15 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+27-07-2021 10:48:15 	Message : 	Successfully Logged-In
+
+27-07-2021 11:00:09 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+27-07-2021 11:00:09 	Message : 	Successfully Logged-In
+
+27-07-2021 11:25:46 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+27-07-2021 11:25:46 	Message : 	Successfully Logged-In
+
+27-07-2021 11:27:55 	Centris Mobility Project Services 	CUSTOMER ORDER 	User name : 	N Steve 	User ID : 	32246 	Mode : Sumbit
+27-07-2021 11:27:55 	CustomerOrder 	{"ID":-2147482647,"RandomUniqueID":"6f81a61e-24f3-475e-aa76-8f17d8588dc1","CmpID":1062,"CusID":1074,"TCID":1020,"OrderNo":"CUS113ORDER","OrderDate":"2021-07-27T11:27:55.553778Z","RefNo":null,"RefDate":null,"Deliverydate":"2021-07-28T18:30:00Z","Remarks":"asasa","ContraOrderID":null,"IsCancelled":false,"CancelledDate":null,"CancelledReasons":null,"OrderStatus":"Open","GrossProductValue":null,"TotalDiscountValue":null,"TotalTaxvalue":null,"TotalProductValue":null,"TotalCGSTTaxValue":null,"TotalSGSTTaxValue":null,"TotalIGSTTaxValue":null,"TotalCESSValue":null,"TotalAddCESSValue":null,"CreatedUTC":"2021-07-27T11:27:55.5701064Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null,"Fyear":"2021","OpticalPrescriptionPath":null}
+27-07-2021 11:27:55 	CustomerOrderTran 	{"ID":-2147482647,"COID":"6f81a61e-24f3-475e-aa76-8f17d8588dc1","LTID":6,"UOMID":3008,"OrderedQty":1,"ReceivedQty":0,"ItemRate":1000.0,"GrossValue":1000.0,"ItemValue":1050.0,"DiscountPercentage":0.0,"DiscountAmount":0.0,"GSTPercentage":null,"GSTTaxValue":null,"CGSTPercentage":null,"CGSTTaxValue":null,"SGSTPercentage":null,"SGSTTaxValue":null,"IGSTPercentage":5.0,"IGSTTaxValue":50.0,"CESSPercentage":null,"CESSAmount":null,"AdditionalCESSPercentage":null,"AddCESSPerAmt":null,"IsCancelled":false,"ContraCustomerNo":null,"ContraCustomerDate":null,"CreatedUTC":"2021-07-27T11:27:55.60686Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null}
+27-07-2021 11:28:26 	CustomerOrder 	{"ID":1040,"RandomUniqueID":"6f81a61e-24f3-475e-aa76-8f17d8588dc1","CmpID":1062,"CusID":1074,"TCID":1020,"OrderNo":"CUS113ORDER","OrderDate":"2021-07-27T11:27:55.553778Z","RefNo":null,"RefDate":null,"Deliverydate":"2021-07-28T18:30:00Z","Remarks":"asasa","ContraOrderID":null,"IsCancelled":false,"CancelledDate":null,"CancelledReasons":null,"OrderStatus":"Open","GrossProductValue":1000.0,"TotalDiscountValue":0.0,"TotalTaxvalue":50.0,"TotalProductValue":1050.0,"TotalCGSTTaxValue":null,"TotalSGSTTaxValue":null,"TotalIGSTTaxValue":50.0,"TotalCESSValue":null,"TotalAddCESSValue":null,"CreatedUTC":"2021-07-27T11:27:55.5701064Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null,"Fyear":"2021","OpticalPrescriptionPath":null}
+27-07-2021 11:28:30 	CustomerOrderTran 	{"ID":-2147482646,"COID":"6f81a61e-24f3-475e-aa76-8f17d8588dc1","LTID":3,"UOMID":3008,"OrderedQty":1,"ReceivedQty":0,"ItemRate":1429.0,"GrossValue":1429.0,"ItemValue":1500.0,"DiscountPercentage":0.0,"DiscountAmount":0.0,"GSTPercentage":null,"GSTTaxValue":null,"CGSTPercentage":null,"CGSTTaxValue":null,"SGSTPercentage":null,"SGSTTaxValue":null,"IGSTPercentage":5.0,"IGSTTaxValue":71.0,"CESSPercentage":null,"CESSAmount":null,"AdditionalCESSPercentage":null,"AddCESSPerAmt":null,"IsCancelled":false,"ContraCustomerNo":null,"ContraCustomerDate":null,"CreatedUTC":"2021-07-27T11:28:30.9968441Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null}
+27-07-2021 11:29:05 	CustomerOrder 	{"ID":1040,"RandomUniqueID":"6f81a61e-24f3-475e-aa76-8f17d8588dc1","CmpID":1062,"CusID":1074,"TCID":1020,"OrderNo":"CUS113ORDER","OrderDate":"2021-07-27T11:27:55.553778Z","RefNo":null,"RefDate":null,"Deliverydate":"2021-07-28T18:30:00Z","Remarks":"asasa","ContraOrderID":null,"IsCancelled":false,"CancelledDate":null,"CancelledReasons":null,"OrderStatus":"Open","GrossProductValue":2429.0,"TotalDiscountValue":0.0,"TotalTaxvalue":121.0,"TotalProductValue":2550.0,"TotalCGSTTaxValue":null,"TotalSGSTTaxValue":null,"TotalIGSTTaxValue":121.0,"TotalCESSValue":null,"TotalAddCESSValue":null,"CreatedUTC":"2021-07-27T11:27:55.5701064Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null,"Fyear":"2021","OpticalPrescriptionPath":null}
+27-07-2021 11:29:06 	NumberControl 	{"VCID":9049,"TransactionID":1020,"DepartmentID":0,"CmpID":1062,"Prefix":"CUS","Suffix":"ORDER","Description":"Customer Order","Autonumber":true,"RunningNumber":113,"EffectiveFrom":"2020-03-01T00:00:00","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2020-03-01T00:00:00","UpdatedUTC":null,"CreatedBy":0,"UpdatedBy":null}
+27-07-2021 11:29:06 	Information : 	Saved Successfully
+
+27-07-2021 11:38:59 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+27-07-2021 11:38:59 	Message : 	Successfully Logged-In
+
+27-07-2021 11:39:47 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+27-07-2021 11:39:47 	Message : 	Successfully Logged-In
+
+27-07-2021 11:46:39 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+27-07-2021 11:46:39 	Message : 	Successfully Logged-In
+
+27-07-2021 11:52:27 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+27-07-2021 11:52:27 	Message : 	Successfully Logged-In
+
+27-07-2021 11:53:25 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+27-07-2021 11:53:25 	Message : 	Successfully Logged-In
+
+27-07-2021 11:58:55 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+27-07-2021 11:58:55 	Message : 	Successfully Logged-In
+
+27-07-2021 12:06:57 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+27-07-2021 12:06:57 	Message : 	Successfully Logged-In
+
+27-07-2021 12:25:50 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+27-07-2021 12:25:50 	Message : 	Successfully Logged-In

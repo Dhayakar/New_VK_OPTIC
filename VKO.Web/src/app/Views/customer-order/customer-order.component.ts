@@ -141,8 +141,13 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
   paymentChequeDd: boolean = true;
   paymentDebitCredit: boolean = false;
 
+  LoginLocationId;
+  M_LocationID
+
   GivenAdvanceTotal;
   Tc;
+
+  TaxGroup;
 
   Submitprint;
 
@@ -264,6 +269,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
         }, 1000)
         this.M_OrderDate = this.date.getDate() + "-" + this.date.toLocaleString('default', { month: 'long' }) + "-" + this.date.getFullYear();
         this.commonService.getListOfData('Common/Getpaymentvalues').subscribe(data => { this.Paymentsmodes = data; });
+        this.commonService.getListOfData('Common/GetLoginLocationId/' + localStorage.getItem("CompanyID")).subscribe(data => { this.LoginLocationId = data.data; });
         this.displayedColumns3 = ['PaymentMode', 'InstrumentNumber', 'InstrumentDate', 'BankName', 'Branch', 'ExpiryDate', 'Amount', 'Action'];
       }
       else {
@@ -369,6 +375,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
         }, 1000)
         this.M_OrderDate = this.date.getDate() + "-" + this.date.toLocaleString('default', { month: 'long' }) + "-" + this.date.getFullYear();
         this.commonService.getListOfData('Common/Getpaymentvalues').subscribe(data => { this.Paymentsmodes = data; });
+        this.commonService.getListOfData('Common/GetLoginLocationId/' + localStorage.getItem("CompanyID")).subscribe(data => {this.LoginLocationId = data.data;});
         this.displayedColumns3 = ['PaymentMode', 'InstrumentNumber', 'InstrumentDate', 'BankName', 'Branch', 'ExpiryDate', 'Amount', 'Action'];
       }
       else {
@@ -393,6 +400,16 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
   displayedColumns = ['Type', 'Brand', 'Description', 'UOM', 'QTY', 'Price', 'Amount', 'Discount%', 'DiscountAmount', 'GrossAmount', 'CGST', 'CGSTValue', 'SGST', 'SGSTValue', 'NetAmount', 'Action']
   dataSource = new MatTableDataSource();
 
+  displayedColumnsCombined = ['Types', 'Brands', 'Descriptions', 'UOMs', 'QTYs', 'Prices', 'Amounts','header-row-group', 'GrossAmounts', 'CGSTTax', 'SGSTTax', 'NetAmounts', 'Actions']
+
+
+  displayedColumnsGst = ['Type', 'Brand', 'Description', 'UOM', 'QTY', 'Price', 'Amount', 'Discount%', 'DiscountAmount', 'GrossAmount', 'CGST', 'CGSTValue', 'SGST', 'SGSTValue', 'NetAmount', 'Action']
+  displayedColumnsGsts = ['Types', 'Brands', 'Descriptions', 'UOMs', 'QTYs', 'Prices', 'Amounts', 'header-row-group', 'GrossAmounts', 'CGSTTax', 'SGSTTax', 'NetAmounts', 'Actions']
+
+  displayedColumnsIGst = ['Type', 'Brand', 'Description', 'UOM', 'QTY', 'Price', 'Amount', 'Discount%', 'DiscountAmount', 'GrossAmount', 'IGST', 'IGSTValue', 'NetAmount', 'Action']
+  displayedColumnsIGsts = ['Types', 'Brands', 'Descriptions', 'UOMs', 'QTYs', 'Prices', 'Amounts', 'header-row-group', 'GrossAmounts', 'IGSTTax', 'NetAmounts', 'Actions']
+
+
   displayedColumns1 = ['Action','Type', 'Brand', 'Description', 'Price','Stockqty']
   dataSource1 = new MatTableDataSource();
 
@@ -410,6 +427,16 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
 
   PrintdisplayedColumns = ['Type', 'Brand', 'Description', 'UOM', 'QTY', 'Price', 'Amount', 'Discount%', 'DiscountAmount', 'GrossAmount', 'CGST', 'CGSTValue', 'SGST', 'SGSTValue', 'NetAmount']
   PrintdataSource = new MatTableDataSource();
+
+  PrintdisplayedColumnsCombined = ['Types', 'Brands', 'Descriptions', 'UOMs', 'QTYs', 'Prices', 'Amounts', 'header-row-group', 'GrossAmounts', 'CGSTTax', 'SGSTTax', 'NetAmounts']
+
+  PrintdisplayedColumnsGst = ['Type', 'Brand', 'Description', 'UOM', 'QTY', 'Price', 'Amount', 'Discount%', 'DiscountAmount', 'GrossAmount', 'CGST', 'CGSTValue', 'SGST', 'SGSTValue', 'NetAmount']
+  PrintdisplayedColumnsGsts = ['Types', 'Brands', 'Descriptions', 'UOMs', 'QTYs', 'Prices', 'Amounts', 'header-row-group', 'GrossAmounts', 'CGSTTax', 'SGSTTax', 'NetAmounts']
+
+  PrintdisplayedColumnsIGst = ['Type', 'Brand', 'Description', 'UOM', 'QTY', 'Price', 'Amount', 'Discount%', 'DiscountAmount', 'GrossAmount', 'IGST', 'IGSTValue', 'NetAmount']
+  PrintdisplayedColumnsIGsts = ['Types', 'Brands', 'Descriptions', 'UOMs', 'QTYs', 'Prices', 'Amounts', 'header-row-group', 'GrossAmounts', 'IGSTTax', 'NetAmounts']
+
+
 
   Getformaccess() {
     var Pathname = "Opticalslazy/CustomerOrder";
@@ -448,11 +475,9 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
       disableClose: true
     });
     this.commonService.getListOfData('Common/GetDVvalues').subscribe(data => {
-      debugger;
       this.VAname = data;
     });
     this.commonService.getListOfData('Common/GetNVvalues').subscribe(data => {
-      debugger;
       this.VAnamenear1 = data;
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -469,6 +494,71 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
         this.M_Address = item.Address1.concat(' ', item.Address2 != null ? item.Address2 : '', ' ', item.Address3 != null ? item.Address3 : '')
         this.M_MobileNo = item.MobileNo
         this.M_Location = item.LocationName
+        this.M_LocationID = item.LocationID
+
+        if (this.M_LocationID == this.LoginLocationId) {
+          this.dataSource.data = [];
+          this.commonService.data.CustomerItemOrders = [];
+          this.TaxGroup = "withinState";
+          this.displayedColumns = this.displayedColumnsGst;
+          this.displayedColumnsCombined = this.displayedColumnsGsts;
+
+          this.commonService.getListOfData('Help/CustomerOrder/' + parseInt(localStorage.getItem("CompanyID")) + '/' + this.TaxGroup).subscribe(data => {
+            if (data.OfferDetails.length >= 1) {
+              this.dataSource1.data = data.OfferDetails;
+              this.dataSource1._updateChangeSubscription();
+            }
+            else {
+              Swal.fire({
+                type: 'warning',
+                title: 'No Data Found',
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1500,
+                customClass: {
+                  popup: 'alert-warp',
+                  container: 'alert-container',
+                },
+              });
+              this.dataSource1.data = [];
+              this.dataSource1._updateChangeSubscription();
+            }
+          });
+        }
+        else {
+          this.dataSource.data = [];
+          this.commonService.data.CustomerItemOrders = [];
+          this.TaxGroup = "interstate";
+          this.displayedColumns = this.displayedColumnsIGst;
+          this.displayedColumnsCombined = this.displayedColumnsIGsts;
+
+          this.commonService.getListOfData('Help/CustomerOrder/' + parseInt(localStorage.getItem("CompanyID")) + '/' + this.TaxGroup).subscribe(data => {
+            if (data.OfferDetails.length >= 1) {
+              this.dataSource1.data = data.OfferDetails;
+              this.dataSource1._updateChangeSubscription();
+            }
+            else {
+              Swal.fire({
+                type: 'warning',
+                title: 'No Data Found',
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1500,
+                customClass: {
+                  popup: 'alert-warp',
+                  container: 'alert-container',
+                },
+              });
+              this.dataSource1.data = [];
+              this.dataSource1._updateChangeSubscription();
+            }
+          });
+
+        }
+
+
+
+
       }
     });
   }
@@ -523,6 +613,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
     CustomOrder.DiscountAmount = 0;
     CustomOrder.CGST = 0;
     CustomOrder.SGST = 0;
+    CustomOrder.IGST = 0;
     CustomOrder.GSTValue = 0;
     CustomOrder.Amount = 0;
     CustomOrder.Count = 0;
@@ -540,15 +631,17 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
     debugger
     try
     {
+      if (this.TaxGroup == undefined || this.TaxGroup == null) {
+        return
+      }
+
+
       this.FrameModel = 'block';
       this.backdrop = 'block';
 
       this.Index = index;
-
-      this.commonService.getListOfData('Help/CustomerOrder/' + parseInt(localStorage.getItem("CompanyID"))).subscribe(data => {
-        debugger
+      this.commonService.getListOfData('Help/CustomerOrder/' + parseInt(localStorage.getItem("CompanyID")) + '/' + this.TaxGroup).subscribe(data => {
         if (data.OfferDetails.length >= 1) {
-          debugger
           this.dataSource1.data = data.OfferDetails;
           this.dataSource1._updateChangeSubscription();
         }
@@ -761,23 +854,34 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
           CustomOrder.UOM = element.UOM;
           CustomOrder.Quantity = 1;
           if (element.Sptaxinclusive) {
-            CustomOrder.UnitPrice = Math.ceil(element.Price * 100 / (100 + element.GST));
-            CustomOrder.GrossAmount = CustomOrder.UnitPrice;
+            if (this.TaxGroup == "withinState") {
+              CustomOrder.UnitPrice = Math.ceil(element.Price * 100 / (100 + element.GST));
+              CustomOrder.GrossAmount = CustomOrder.UnitPrice;
+              CustomOrder.CGSTValue = element.CGST == null ? null : (element.Price - CustomOrder.GrossAmount) / 2;
+              CustomOrder.SGSTValue = element.SGST == null ? null : (element.Price - CustomOrder.GrossAmount) / 2;
+            } else {
+              CustomOrder.UnitPrice = Math.ceil(element.Price * 100 / (100 + element.IGST));
+              CustomOrder.GrossAmount = CustomOrder.UnitPrice;
+              CustomOrder.IGSTValue = element.IGST == null ? null : element.Price - CustomOrder.GrossAmount;
+            }
           } else {
             CustomOrder.UnitPrice = Math.ceil(element.Price);
             CustomOrder.GrossAmount = element.Price;
+            CustomOrder.CGSTValue = element.CGST == null ? null : (CustomOrder.GrossAmount * (element.CGST / 100));
+            CustomOrder.SGSTValue = element.SGST == null ? null : (CustomOrder.GrossAmount * (element.SGST / 100));
+            CustomOrder.IGSTValue = element.IGST == null ? null : (CustomOrder.GrossAmount * (element.IGST / 100));
           }
           CustomOrder.GivenQtyPrice = CustomOrder.Quantity * CustomOrder.UnitPrice;
           CustomOrder.Discount = 0;
           CustomOrder.DiscountAmount = 0;
           CustomOrder.CGST = element.GST == null ? null : element.CGST;
           CustomOrder.SGST = element.GST == null ? null : element.SGST;
+          CustomOrder.IGST = element.IGST == null ? null : element.IGST;
           CustomOrder.GST = element.GST == null ? null : element.GST;
           CustomOrder.GSTValue = element.GST == null ? null : CustomOrder.GrossAmount * (CustomOrder.GST / 100);
           CustomOrder.CESSValue = element.CESS == null ? null : CustomOrder.GrossAmount * (element.CESS / 100);
           CustomOrder.AddCessValue = element.AddCess == null ? null : CustomOrder.GrossAmount * (element.AddCess / 100);
-          CustomOrder.CGSTValue = element.CGST == null ? null : (CustomOrder.GrossAmount * (element.CGST / 100));
-          CustomOrder.SGSTValue = element.SGST == null ? null : (CustomOrder.GrossAmount * (element.SGST / 100));
+ 
 
           CustomOrder.CESS = element.CESS == null ? null : element.CESS;
           CustomOrder.AddCess = element.AddCess == null ? null : element.AddCess;
@@ -798,7 +902,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
           CustomOrder.FrameTypeID = element.FrameTypeID;
           CustomOrder.FrameWidthID = element.FrameWidthID;
 
-          CustomOrder.Amount = Math.floor(CustomOrder.GrossAmount + (CustomOrder.GrossAmount * (element.CGST / 100)) + (CustomOrder.GrossAmount * (element.SGST / 100)));
+          CustomOrder.Amount = this.TaxGroup == "withinState" ? Math.floor(CustomOrder.GrossAmount + (CustomOrder.GrossAmount * (element.CGST / 100)) + (CustomOrder.GrossAmount * (element.SGST / 100))) :  Math.floor(CustomOrder.GrossAmount + (CustomOrder.GrossAmount * (element.IGST / 100)));
           this.commonService.data.CustomerItemOrders.unshift(CustomOrder);
           this.dataSource.data = this.commonService.data.CustomerItemOrders;
           this.dataSource._updateChangeSubscription();
@@ -1145,13 +1249,22 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
   }
 
   changeGstValue(id, element) {
-    element.CGSTValue = element.GrossAmount * (element.CGST / 100);
-    element.SGSTValue = element.GrossAmount * (element.SGST / 100);
+    debugger
+    if (this.TaxGroup == "withinState") {
+      element.CGSTValue = element.GrossAmount * (element.CGST / 100);
+      element.SGSTValue = element.GrossAmount * (element.SGST / 100);
+    } else {
+      element.IGSTValue = element.GrossAmount * (element.IGST / 100);
+    }
   }
 
   changeValueTotal(id, element, property: string) {
-    var Tax = element.CGSTValue + element.SGSTValue;
-    element.Amount =  element.GrossAmount + Tax
+    if (this.TaxGroup == "withinState") {
+      var Tax = element.CGSTValue + element.SGSTValue;
+      element.Amount = element.GrossAmount + Tax
+    } else {
+      element.Amount = element.GrossAmount + element.IGSTValue
+    }
   }
 
   getGrossAmount() {
@@ -1217,6 +1330,11 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
 
   GetSGSTAmount() {
     var restotalcost = this.commonService.data.CustomerItemOrders.map(t => t.SGSTValue).reduce((acc, value) => acc + value, 0);
+    return restotalcost;
+  }
+
+  GetIGSTAmount() {
+    var restotalcost = this.commonService.data.CustomerItemOrders.map(t => t.IGSTValue).reduce((acc, value) => acc + value, 0);
     return restotalcost;
   }
 
@@ -1599,6 +1717,16 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
           this.Prints = true;
 
           this.commonService.data.CustomerItemOrders = data.CustomerOrderedList.CustomerItemOrders;
+
+          if (this.commonService.data.CustomerItemOrders.some(x => x.IGST == null)) {
+            this.PrintdisplayedColumns = this.PrintdisplayedColumnsGst;
+            this.PrintdisplayedColumnsCombined = this.PrintdisplayedColumnsGsts;
+          } else {
+            this.PrintdisplayedColumns = this.PrintdisplayedColumnsIGst;
+            this.PrintdisplayedColumnsCombined = this.PrintdisplayedColumnsIGsts;
+          }
+
+
 
           if (data.CustomerOrderedList.OpticalPrescription.length > 0) {
             this.hiddenuploadedImage = true;
@@ -2007,6 +2135,8 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
     this.PrintdataSource._updateChangeSubscription();
     this.M_OrderDate = this.date.getDate() + "-" + this.date.toLocaleString('default', { month: 'long' }) + "-" + this.date.getFullYear();
     this.displayedColumns3 = ['PaymentMode', 'BankName', 'InstrumentNumber', 'InstrumentDate', 'ExpiryDate', 'Branch', 'Amount', 'Action'];
+    this.displayedColumns = this.displayedColumnsGst;
+    this.displayedColumnsCombined = this.displayedColumnsGsts;
   }
 
   printclose() {

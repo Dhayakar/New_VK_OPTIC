@@ -45,7 +45,7 @@ namespace WYNK.Data.Repository
       //  Help getSpeciality(string name);
       //  Help getCode(string name);
       //  Help getGroup(string name);
-        Help CustomerOrder(int CMPID);
+        Help CustomerOrder(int CMPID, string TaxGroup);
         Help getCode1(int ICDGROUPCODE,int CMPID);
         Help getUserDoc();
         Help getUserEmp();

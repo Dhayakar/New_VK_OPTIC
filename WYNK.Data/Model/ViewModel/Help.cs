@@ -538,7 +538,7 @@ namespace WYNK.Data.Model.ViewModel
         public string ContactPerson { get; set; }
 
         public string City { get; set; }
-        //  public string LocationID { get; set; }
+        public int LocationID { get; set; }
     }
     public class DonorDetails
     {

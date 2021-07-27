@@ -2347,6 +2347,17 @@ namespace WYNK.Data.Repository.Implementation
             return CMPSContext.OneLineMaster.Where(X => X.ParentTag == "TBUT" && X.IsActive == true && X.IsDeleted == false).OrderByDescending(x => x.OLMID).Select(x => new Dropdown { Text = x.ParentDescription, Value = x.OLMID.ToString() }).ToList();
         }
 
+        public dynamic GetLoginLocationId(int CMPID)
+        {
+            var ComplocId = CMPSContext.Company.Where(x => x.CmpID == CMPID).Select(x => x.LocationID).FirstOrDefault();
+            var locID = CMPSContext.LocationMaster.Where(x => x.ID == ComplocId && x.ParentTag == "loc").Select(x => x.ParentID).FirstOrDefault();
+            var CityID = CMPSContext.LocationMaster.Where(x => x.ID == locID && x.ParentTag == "City").Select(x => x.ParentID).FirstOrDefault();
+            return new
+            {
+                data = CityID,
+            };
+        }
+
 
         public dynamic GetCMID(string URL)
         {

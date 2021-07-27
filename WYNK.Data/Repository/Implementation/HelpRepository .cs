@@ -2425,9 +2425,6 @@ namespace WYNK.Data.Repository.Implementation
                                         select new CustomerDetails
                                         {
                                             ID = Cust.ID,
-                                            //  Address1 = PasswordEncodeandDecode.GetConcatSName(Cust.Address1),
-                                            //   Address2 = PasswordEncodeandDecode.GetConcatSName(Cust.Address2),
-                                            //   Address3 = PasswordEncodeandDecode.GetConcatSName(Cust.Address3),
                                             UIN = Cust.UIN,
                                             Name = Cust.Name,
                                             Address1 = Cust.Address1,
@@ -2441,6 +2438,7 @@ namespace WYNK.Data.Repository.Implementation
                                             ContactPerson = Cust.ContactPerson,
                                             LocationName = Location.Where(x => x.ID == Cust.Location).Select(x => x.ParentDescription).FirstOrDefault(),
                                             City = Convert.ToString(Location.Where(x => x.ID == Cust.Location).Select(x => x.ParentID).FirstOrDefault()),
+                                            LocationID =Convert.ToInt32(Location.Where(x => x.ID == Location.Where(c => c.ID == Cust.Location && c.ParentTag == "loc").Select(c => c.ParentID).FirstOrDefault() && x.ParentTag == "City").Select(x => x.ParentID).FirstOrDefault()),
                                         }).ToList();
 
 
@@ -2479,12 +2477,20 @@ namespace WYNK.Data.Repository.Implementation
             return Donor;
         }
 
-        public Help CustomerOrder(int CMPID)
+        public Help CustomerOrder(int CMPID, string TaxGroup)
         {
             var CustomerOrder = new Help();
             var LensMas = WYNKContext.Lensmaster.ToList();
             var LensTarn = WYNKContext.Lenstrans.ToList();
             var TaxMas = CMPSContext.TaxMaster.ToList();
+            if (TaxGroup == "withinState")
+            {
+                TaxMas = TaxMas.Where(x => x.TaxGroupId == 1).ToList();
+            }
+            else
+            {
+                TaxMas = TaxMas.Where(x => x.TaxGroupId == 2).ToList();
+            }
             var BrandMas = WYNKContext.Brand.ToList();
             var UOM = CMPSContext.uommaster.ToList();
             var Onelinemaster = CMPSContext.OneLineMaster.ToList();
@@ -2495,6 +2501,7 @@ namespace WYNK.Data.Repository.Implementation
 
             CustomerOrder.OfferDetails = (from LM in LensMas.Where(x => x.CMPID == CMPID)
                                           join LT in LensTarn.Where(x => x.IsActive == true) on LM.RandomUniqueID equals LT.LMID
+                                          join TM in TaxMas on LT.TaxID equals TM.ID
                                           join BM in BrandMas on LT.Brand equals BM.ID
                                           select new OfferDetail
                                           {
@@ -2506,7 +2513,7 @@ namespace WYNK.Data.Repository.Implementation
                                               Color = LT.Colour,
                                               Size = LT.Size,
                                               Price = LT.Prize,
-                                              ActualPrice = Math.Round(LT.Sptaxinclusive ==false ? LT.Prize : (LT.Prize  * 100) / (100 + Convert.ToDecimal(TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.GSTPercentage).FirstOrDefault()))),
+                                              ActualPrice = Math.Round(LT.Sptaxinclusive == false ? LT.Prize : TaxGroup == "withinState" ? (LT.Prize  * 100) / (100 + Convert.ToDecimal(TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.GSTPercentage).FirstOrDefault())) : (LT.Prize * 100) / (100 + Convert.ToDecimal(TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.IGSTPercentage).FirstOrDefault()))),
                                               Model = LT.Model,
                                               GST = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.GSTPercentage).FirstOrDefault(),
                                               CGST = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.CGSTPercentage).FirstOrDefault(),
