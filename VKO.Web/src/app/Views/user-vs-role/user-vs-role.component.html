@@ -1,0 +1,168 @@
+
+<form #UserVsRole="ngForm">
+  <div class="col-sm-12 formborder">
+    <div class="row">
+      <h6>User vs Role</h6>
+    </div>
+    <div class="col-sm-12 mph-0">
+      <div class="row mph-0">
+        <div class="col-sm-12 mph-0">
+          <div class="col-sm-2 mph-0 pb20">
+          </div>
+          <div class="col-sm-2 mph-0 pb20">
+          </div>
+          <div class="col-sm-8 mph-0 f-r content-right pb20">
+            <button class="btn-text" (click)="Getformaccess()"><i class="fas fa-eye"></i> View Access</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-sm-12">
+      <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-3">
+          <mat-form-field appearance="outline">
+            <mat-label>Role Description</mat-label>
+            <mat-select required [(ngModel)]="M_RoleDescription" name="RoleDescription" (ngModelChange)="RoleDescriptionEvent()">
+              <mat-option *ngFor="let Engage of RoleDescription" [value]="Engage">{{Engage.Text}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-5"></div>
+
+      </div>
+    </div>
+
+    <div class="col-sm-12">
+      <div class="row">
+        <div class="col-sm-2"></div>
+
+        <div class="col-sm-8 formborder">
+          <div class="row">
+            <h6>User Details</h6>
+          </div>
+          <mat-radio-group aria-label="Select an option">
+            <mat-radio-button style="margin-right:2%" (click)="DoctorDetails()" value="seasonDoctor">Medical staff details</mat-radio-button>
+            <mat-radio-button (click)="EmployeeDetails()" value="seasonEmployee">Employees details</mat-radio-button>
+          </mat-radio-group>
+          <table mat-table matSort [dataSource]="dataSource" id="tableee" class="custom-table withoutbackgroung search-table table-bordered">
+
+            <ng-container matColumnDef="SNo">
+              <th mat-header-cell *matHeaderCellDef>S.No</th>
+              <td mat-cell *matCellDef="let element; index as i">{{i + 1}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="UserName">
+              <th mat-header-cell *matHeaderCellDef>User Name</th>
+              <td mat-cell *matCellDef="let element">{{element.Title}}.{{element.Firstname}} {{element.MiddleName}} {{element.LastName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="PhoneNO">
+              <th mat-header-cell *matHeaderCellDef>Phone NO</th>
+              <td mat-cell *matCellDef="let element">{{element.Phone1}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="EmailID">
+              <th mat-header-cell *matHeaderCellDef>Email ID</th>
+              <td mat-cell *matCellDef="let element">{{element.EmailID}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="select">
+              <th mat-header-cell *matHeaderCellDef>select</th>
+              <td mat-cell *matCellDef="let element;let id = index">
+                <mat-checkbox [(checked)]="element.Status" (click)="SelectUserVsRoleValue(element)"></mat-checkbox>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row;  columns: displayedColumns;"></tr>
+          </table>
+        </div>
+
+        <div class="col-sm-2"></div>
+      </div>
+    </div>
+
+    <div class="col-sm-12 pb25">
+      <div class="content-right sub-section btn-wrap">
+        <button type="button" class="btn btn-warning-default" (click)="CancelClk()"> Cancel </button>
+        <button id="submit" (click)="onSubmit(UserVsRole)" [disabled]="disableSubmit" class="success btn btn-primary"> Submit </button>        
+      </div>
+    </div>
+  </div>
+</form>
+
+
+
+
+<!-----------------------------------cancel Popup----------------------------------------->
+<div class="modal" role="dialog" [ngStyle]="{'display':cancelblock}">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">User Vs Role</h4>
+        <button type="button" class="close" data-dismiss="modal" (click)="cancelClose()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h5>Do You Want to Cancel ?</h5>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" data-dismiss="modal" autofocus (click)="CloseNo()">No</button>
+        <button type="reset" class="btn btn-success" data-dismiss="modal" (click)="CloseYes()">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal cust-model" role="dialog" [ngStyle]="{'display':accesspopup}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-left">User vs Role - View Access</h4>
+      </div>
+      <div class="modal-body">
+        <table align="center" class="table custom-table">
+          <thead>
+            <tr>
+              <th>Add</th>
+              <th>Update</th>
+              <th>Delete</th>
+              <!--<th>Export</th>
+              <th>Print</th>-->
+
+            </tr>
+          </thead>
+          <tbody>
+
+
+            <tr *ngFor="let x of accessdata; index as i">
+              <td>
+                <mat-checkbox [(checked)]="x.Add" disabled></mat-checkbox>
+              </td>
+              <td>
+                <mat-checkbox [(checked)]="x.Edit" disabled></mat-checkbox>
+              </td>
+              <td>
+                <mat-checkbox [(checked)]="x.Delete" disabled></mat-checkbox>
+              </td>
+              <!--<td>
+                <mat-checkbox [(checked)]="x.Export" disabled></mat-checkbox>
+              </td>
+              <td>
+                <mat-checkbox [(checked)]="x.Print" disabled></mat-checkbox>
+              </td>-->
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" data-dismiss="modal" autofocus (click)="modalcloseAccessOk()">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>

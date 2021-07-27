@@ -4,7 +4,7 @@
 
 export class SetupMaster {
   cmpid: string;
-  
+
   roomtime: string;
   country: string;
   currency: string;
@@ -19,6 +19,7 @@ export class SetupMaster {
 
   rfa: string;
   cfa: string;
+  nfa: string;
 
 }
 

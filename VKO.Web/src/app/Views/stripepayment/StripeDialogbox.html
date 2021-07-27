@@ -1,0 +1,17 @@
+
+
+
+<div class="col-sm-12">
+  <div class="row">
+    <h3 align="center" style="background-color:deepskyblue;margin-bottom:2px;text-align:center;border:2px solid gray;font-family:'proxima nova semibold'">Patient Video</h3>
+  </div>
+  <div class="row">
+    <video style="width:100%;height:80%" controls preload="none">
+      <source [src]="transformvideo()" type="video/mp4">
+    </video>
+  </div>
+  <div class="row">
+    <!--<button class="btn btn-primary" autofocus (click)="Loadvideo()">Load Video</button>-->
+    <button class="btn btn-danger" autofocus (click)="VideoClipclipClose()">Close</button>
+  </div>
+</div>

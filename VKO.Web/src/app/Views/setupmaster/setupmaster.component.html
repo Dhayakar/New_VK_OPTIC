@@ -1,0 +1,519 @@
+<form #setupMasterForm="ngForm">
+  <div class="col-sm-12 dividebar">
+    <div class="row">
+      <h6>Setup Details</h6>
+    </div>
+    <div class="col-sm-12 mph-0">
+      <div class="row mph-0">
+        <div class="col-sm-12 mph-0">
+          <div class="col-sm-6 mph-0 pb20">
+          </div>
+          <div class="col-sm-2 mph-0 pb20">
+          </div>
+          <div class="col-sm-4 mph-0 f-r content-right pb20">
+            <button class="btn-text" (click)="Getformaccess()"><i class="fas fa-eye"></i> View Access</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-sm-3">
+        <mat-form-field appearance="outline">
+          <mat-label>Organization</mat-label>
+          <input required [(ngModel)]="orgname" disabled name="ognames" matInput placeholder="Organization">
+        </mat-form-field>
+      </div>
+
+      <div class="col-sm-1">
+        <mat-icon (click)="Clicksetupdetails()" class="grab" data-toggle="tooltip" title="Search">search</mat-icon>
+      </div>
+      <div class="col-sm-2">
+
+        <mat-form-field class="mat-width" appearance="outline">
+          <mat-label>Country</mat-label>
+          <mat-select required [(ngModel)]="Country_M" (ngModelChange)="countrychoose()" name="Countries" placeholder="Select">
+            <mat-option *ngFor="let VAs of VAname" [value]="VAs.Value">{{ VAs.Text}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-2">
+        <mat-form-field appearance="outline">
+          <mat-label>Currency</mat-label>
+          <input [(ngModel)]="code" name="PG" matInput placeholder="Enter Values" disabled>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-3">
+        <mat-label><b>Flag : </b><span style="font-size:30px" class="{{flagcode}}"></span></mat-label>
+      </div>
+
+
+
+    </div>
+
+
+    <div class="row">
+
+
+      <div class="col-sm-4">
+        <div class="row">
+          <div class="col-sm-4">
+            <mat-label>UTC Time (HH:MM): </mat-label>
+          </div>
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline">
+              <input required [(ngModel)]="HH" name="HH" (keypress)="RestrictNegativeValues1($event)" (keyup)="Restrict($event);" matInput placeholder="HH">
+            </mat-form-field>
+          </div>
+          <div class="col-sm-1">
+            <p style="margin-top: 10px"><strong>:</strong></p>
+          </div>
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline">
+              <input required [(ngModel)]="MM" name="MM" (keypress)="RestrictNegativeValues1m($event)" (keyup)="Restrictm($event);" matInput placeholder="mm">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-sm-1">
+        <mat-form-field appearance="outline">
+          <mat-label>Paediatric Age</mat-label>
+          <input required [(ngModel)]="APG" name="AAPG" matInput placeholder="Age" id="txthour" (keypress)="karthick($event)">
+        </mat-form-field>
+
+      </div>
+      <div class="col-sm-6">
+
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="row labelalign">
+              <mat-label><strong>First Session</strong></mat-label>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-3">
+                <mat-label><strong>From</strong></mat-label>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline" style="width: 150%;">
+                    <mat-label><strong>Hr</strong></mat-label>
+                    <mat-select required [(ngModel)]="FHH" name="HH">
+                      <mat-option value="00">00</mat-option>
+                      <mat-option value="01">01</mat-option>
+                      <mat-option value="02">02</mat-option>
+                      <mat-option value="03">03</mat-option>
+                      <mat-option value="04">04</mat-option>
+                      <mat-option value="05">05</mat-option>
+                      <mat-option value="06">06</mat-option>
+                      <mat-option value="07">07</mat-option>
+                      <mat-option value="08">08</mat-option>
+                      <mat-option value="09">09</mat-option>
+                      <mat-option value="10">10</mat-option>
+                      <mat-option value="11">11</mat-option>
+                      <mat-option value="12">12</mat-option>
+                      <mat-option value="13">13</mat-option>
+                      <mat-option value="14">14</mat-option>
+                      <mat-option value="15">15</mat-option>
+                      <mat-option value="16">16</mat-option>
+                      <mat-option value="17">17</mat-option>
+                      <mat-option value="18">18</mat-option>
+                      <mat-option value="19">19</mat-option>
+                      <mat-option value="20">20</mat-option>
+                      <mat-option value="21">21</mat-option>
+                      <mat-option value="22">22</mat-option>
+                      <mat-option value="23">23</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-1" style="margin-top:4%">
+                  <p><strong>:</strong></p>
+                </div>
+                <form #NodefromsetupMasterForm="ngForm">
+                  <div class="col-sm-3">
+                    <mat-form-field appearance="outline" style="width: 150%;">
+                      <mat-label><strong>Min</strong></mat-label>
+                      <mat-select required [(ngModel)]="FMM" name="MM" (ngModelChange)="Checkfromvalidationzeronegation(NodefromsetupMasterForm)">
+                        <mat-option>select</mat-option>
+                        <mat-option value="00">00</mat-option>
+                        <mat-option value="30">30</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-3">
+                <mat-label><strong>To</strong></mat-label>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline" style="width: 150%;">
+                    <mat-label><strong>Hr</strong></mat-label>
+                    <mat-select required [(ngModel)]="TOHH" name="THH" (ngModelChange)="Checkfromvalidation()">
+                      <mat-option value="00">00</mat-option>
+                      <mat-option value="01">01</mat-option>
+                      <mat-option value="02">02</mat-option>
+                      <mat-option value="03">03</mat-option>
+                      <mat-option value="04">04</mat-option>
+                      <mat-option value="05">05</mat-option>
+                      <mat-option value="06">06</mat-option>
+                      <mat-option value="07">07</mat-option>
+                      <mat-option value="08">08</mat-option>
+                      <mat-option value="09">09</mat-option>
+                      <mat-option value="10">10</mat-option>
+                      <mat-option value="11">11</mat-option>
+                      <mat-option value="12">12</mat-option>
+                      <mat-option value="13">13</mat-option>
+                      <mat-option value="14">14</mat-option>
+                      <mat-option value="15">15</mat-option>
+                      <mat-option value="16">16</mat-option>
+                      <mat-option value="17">17</mat-option>
+                      <mat-option value="18">18</mat-option>
+                      <mat-option value="19">19</mat-option>
+                      <mat-option value="20">20</mat-option>
+                      <mat-option value="21">21</mat-option>
+                      <mat-option value="22">22</mat-option>
+                      <mat-option value="23">23</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-1" style="margin-top:4%">
+                  <p><strong>:</strong></p>
+                </div>
+                <form #NodetosetupMasterForm="ngForm">
+                  <div class="col-sm-3">
+                    <mat-form-field appearance="outline" style="width: 150%;">
+                      <mat-label><strong>Min</strong></mat-label>
+                      <mat-select required [(ngModel)]="TOMM" name="toMM" (ngModelChange)="Restrictmss($event);">
+
+                        <mat-option value="00">00</mat-option>
+                        <mat-option value="30">30</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-sm-6">
+            <div class="row labelalign">
+              <mat-label><strong>Second Session</strong></mat-label>
+            </div>
+            <div class="row">
+              <div class="col-sm-3">
+                <mat-label><strong>From</strong></mat-label>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline" style="width: 150%;">
+                    <mat-label><strong>Hr</strong></mat-label>
+                    <mat-select required [(ngModel)]="eveningFromHH" name="eveningFromHHs" (ngModelChange)="Checksecondfromvalidation()">
+                      <mat-option value="00">00</mat-option>
+                      <mat-option value="01">01</mat-option>
+                      <mat-option value="02">02</mat-option>
+                      <mat-option value="03">03</mat-option>
+                      <mat-option value="04">04</mat-option>
+                      <mat-option value="05">05</mat-option>
+                      <mat-option value="06">06</mat-option>
+                      <mat-option value="07">07</mat-option>
+                      <mat-option value="08">08</mat-option>
+                      <mat-option value="09">09</mat-option>
+                      <mat-option value="10">10</mat-option>
+                      <mat-option value="11">11</mat-option>
+                      <mat-option value="12">12</mat-option>
+                      <mat-option value="13">13</mat-option>
+                      <mat-option value="14">14</mat-option>
+                      <mat-option value="15">15</mat-option>
+                      <mat-option value="16">16</mat-option>
+                      <mat-option value="17">17</mat-option>
+                      <mat-option value="18">18</mat-option>
+                      <mat-option value="19">19</mat-option>
+                      <mat-option value="20">20</mat-option>
+                      <mat-option value="21">21</mat-option>
+                      <mat-option value="22">22</mat-option>
+                      <mat-option value="23">23</mat-option>
+
+                    </mat-select>
+                  </mat-form-field>
+
+                </div>
+                <div class="col-sm-1" style="margin-top:4%">
+                  <p><strong>:</strong></p>
+                </div>
+                <form #NodesecfromsetupMasterForm="ngForm">
+                  <div class="col-sm-3">
+                    <mat-form-field appearance="outline" style="width: 150%;">
+                      <mat-label><strong>Min</strong></mat-label>
+                      <mat-select required [(ngModel)]="eveningToMM" name="eveningToMMss" (ngModelChange)="Checkfromvalidation();">
+                        <mat-option value="00">00</mat-option>
+                        <mat-option value="30">30</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </form>
+              </div>
+
+
+            </div>
+            <div class="row">
+              <div class="col-sm-3">
+                <mat-label><strong>To</strong></mat-label>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline" style="width: 150%;">
+                    <mat-label><strong>Hr</strong></mat-label>
+                    <mat-select required [(ngModel)]="eveinisecondTOEHH" name="eveinisecondTOEHHss" (ngModelChange)="Checksecondtovalidation()">
+                      <mat-option value="00">00</mat-option>
+                      <mat-option value="01">01</mat-option>
+                      <mat-option value="02">02</mat-option>
+                      <mat-option value="03">03</mat-option>
+                      <mat-option value="04">04</mat-option>
+                      <mat-option value="05">05</mat-option>
+                      <mat-option value="06">06</mat-option>
+                      <mat-option value="07">07</mat-option>
+                      <mat-option value="08">08</mat-option>
+                      <mat-option value="09">09</mat-option>
+                      <mat-option value="10">10</mat-option>
+                      <mat-option value="11">11</mat-option>
+                      <mat-option value="12">12</mat-option>
+                      <mat-option value="13">13</mat-option>
+                      <mat-option value="14">14</mat-option>
+                      <mat-option value="15">15</mat-option>
+                      <mat-option value="16">16</mat-option>
+                      <mat-option value="17">17</mat-option>
+                      <mat-option value="18">18</mat-option>
+                      <mat-option value="19">19</mat-option>
+                      <mat-option value="20">20</mat-option>
+                      <mat-option value="21">21</mat-option>
+                      <mat-option value="22">22</mat-option>
+                      <mat-option value="23">23</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                </div>
+                <div class="col-sm-1" style="margin-top:4%">
+                  <p><strong>:</strong></p>
+                </div>
+                <form #NodesectosetupMasterForm="ngForm">
+                  <div class="col-sm-3">
+                    <mat-form-field appearance="outline" style="width: 150%;">
+                      <mat-label><strong>Min</strong></mat-label>
+                      <mat-select required [(ngModel)]="eveingsecondTOMM" name="eveingsecondTOMMs" (ngModelChange)="Restrictmsss($event);">
+                        <mat-option value="00">00</mat-option>
+                        <mat-option value="30">30</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="row" style="margin:1%">
+      <div class="col-sm-2">
+        <mat-form-field appearance="outline">
+          <mat-label>Time Interval</mat-label>
+          <input required [(ngModel)]="GAP_M" name="Gapinterval" matInput placeholder="Time" id="txthours" (keypress)="karthicks($event)">
+        </mat-form-field>
+      </div>
+      <div class="col-sm-2">
+        <mat-form-field appearance="outline">
+          <mat-label><strong>Registration fee applicable</strong></mat-label>
+          <mat-select required [(ngModel)]="rfa" name="rfas">
+            <mat-option value="true">Yes</mat-option>
+            <mat-option value="false">No</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-2">
+        <mat-form-field appearance="outline">
+          <mat-label><strong>Insurance applicable</strong></mat-label>
+          <mat-select required [(ngModel)]="csa" name="csas">
+            <mat-option value="true">Yes</mat-option>
+            <mat-option value="false">No</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-2">
+        <mat-form-field appearance="outline">
+          <mat-label><strong>Notification applicable</strong></mat-label>
+          <mat-select required [(ngModel)]="nfa" name="nfas">
+            <mat-option value="true">Yes</mat-option>
+            <mat-option value="false">No</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <h6><b>Logo Path</b></h6>
+    </div>
+    <div class="row" style="margin:2%;padding-bottom:18px;border-radius:8px">
+      <div class="col-sm-5" style="height: 90px;" *ngIf="hiddenimageurlss">
+        <img id="odslitimg" *ngFor='let urlssl of urls' [src]="urlssl" height="95" width="95" style="margin:6px" #odslitimg> <br />
+        <span><mat-icon *ngFor='let urlssl of urls; index as i' data-toggle="tooltip" title="Select" (click)="removeOpticalsl(i)"> cancel </mat-icon></span>
+        <input type='file' #file (change)="onSelectFile($event)">
+      </div>
+
+      <div class="col-sm-3" *ngIf="hiddenimageurl">
+        <img [src]="transform()" style="height:30%;width:30%;border-radius:8px;border:2px solid gray">
+      </div>
+
+
+    </div>
+
+    <div class="col-sm-12 pb25">
+      <div class="content-right sub-section btn-wrap">
+        <button type="button" class="btn btn-warning-default" (click)="Cancel()"> Cancel </button>
+        <button class="success btn btn-primary" *ngIf="hidesubmit" [disabled]="disSubmit" (click)="submit(setupMasterForm)">Submit</button>
+        <button class="success btn btn-primary" *ngIf="hideupdate" [disabled]="disprint" (click)="Update(setupMasterForm)">Submit</button>
+      </div>
+    </div>
+
+  </div>
+</form>
+
+
+
+<div class="modal cust-model" role="dialog" [ngStyle]="{'display':ModalDatecheckundefined}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="ModalDatecheckundefinedClosesss()">&times;</button>
+        <h4 class="modal-title text-left">Information</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+          Data Saved Successfully
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button autofocus class="btn btn-success" data-dismiss="modal" (click)="ModalDatecheckundefinedClosesss()">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal cust-model" role="dialog" [ngStyle]="{'display':ErrorModalDatecheckundefined}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="ErrorModalDatecheckundefinedClosesss()">&times;</button>
+        <h4 class="modal-title text-left">Information</h4>
+      </div>
+      <div class="modal-body">
+        <p>
+          Invalid Data
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button autofocus class="btn btn-success" data-dismiss="modal" (click)="ErrorModalDatecheckundefinedClosesss()">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal cust-model" role="dialog" [ngStyle]="{'display':Setupblock}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="SetupblockClosesss()">&times;</button>
+        <h4 class="modal-title text-left">Information</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row heightAuto-250px">
+          <table class="custom-table withoutbackgroung search-table table-bordered">
+            <thead>
+              <tr>
+                <th>Action</th>
+                <th>Sno</th>
+                <th>Company Name</th>
+                <th>Pediatric Age</th>
+                <th>Country</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let i = index;let data of setupdata">
+                <td><mat-checkbox (click)="getdata(data)"></mat-checkbox></td>
+                <td>{{i+1}}</td>
+                <td>{{data.cmp}}</td>
+                <td>{{data.age}}</td>
+                <td>{{data.country}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button autofocus class="btn btn-danger" data-dismiss="modal" (click)="SetupblockClosesss()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal cust-model" role="dialog" [ngStyle]="{'display':accesspopup}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="modalcloseAccessOk()">&times;</button>
+        <h4 class="modal-title text-left">Setup - View Access</h4>
+      </div>
+      <div class="modal-body">
+        <table align="center" class="table custom-table">
+          <thead>
+            <tr>
+              <th>Add</th>
+              <th>Edit</th>
+              <th>Delete</th>
+              <th>Export</th>
+              <th>Print</th>
+
+            </tr>
+          </thead>
+          <tbody>
+
+
+            <tr *ngFor="let x of accessdata; index as i">
+              <td>
+                <mat-checkbox [(checked)]="x.Add" disabled></mat-checkbox>
+              </td>
+              <td>
+                <mat-checkbox [(checked)]="x.Edit" disabled></mat-checkbox>
+              </td>
+              <td>
+                <mat-checkbox [(checked)]="x.Delete" disabled></mat-checkbox>
+              </td>
+              <td>
+                <mat-checkbox [(checked)]="x.Export" disabled></mat-checkbox>
+              </td>
+              <td>
+                <mat-checkbox [(checked)]="x.Print" disabled></mat-checkbox>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" data-dismiss="modal" autofocus (click)="modalcloseAccessOk()">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>

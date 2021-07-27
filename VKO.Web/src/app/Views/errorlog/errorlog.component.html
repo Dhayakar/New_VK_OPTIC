@@ -1,0 +1,114 @@
+
+
+<form #Errorlog="ngForm">
+
+
+  <div class="col-sm-12 tono">
+
+    <div class="row tonotop">
+      <h6> Error Log</h6>
+    </div>
+
+
+    <div class="col-sm-12">
+      <div class="row">
+
+        <div class="col-sm-3">
+
+          <mat-form-field appearance="outline">
+            <mat-label>From Date</mat-label>
+            <input [(ngModel)]="M_FromDate" name="FromDate" matInput [matDatepicker]="picker" [max]="FromDate" (input)="currentPeriodClicked()" (dateChange)="FromDateclick()" placeholder="From Date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker (opened)="toggleopen()" #picker></mat-datepicker>
+          </mat-form-field>
+
+
+        </div>
+
+        <div class="col-sm-3">
+          <mat-form-field appearance="outline">
+            <mat-label>To Date</mat-label>
+            <input [(ngModel)]="M_ToDate" name="ToDate" matInput [matDatepicker]="picker2" [min]="mintoDate" [max]="ToDate" placeholder="To Date" [disabled]="todatedisabled">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+
+        <div class="col-sm-3">
+          <button class="btn btn-success" (click)="Search()">Search</button>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-sm-12">
+
+      <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" #input>
+      </mat-form-field>
+
+      <div class="row heightAuto-300px">
+        <table mat-table matSort [dataSource]="dataSourcesq" class="custom-table withoutbackgroung search-table table-bordered">
+
+          <ng-container matColumnDef="SNo">
+            <th mat-header-cell *matHeaderCellDef class="text-left">S.No</th>
+            <td mat-cell *matCellDef="let id = index" class="text-left">{{id+1}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="Description">
+            <th mat-header-cell *matHeaderCellDef class="text-left">  Description </th>
+            <td mat-cell *matCellDef="let element" class="text-left">{{element.totallines}}</td>
+          </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnssq"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnssq;"></tr>
+        </table>
+
+      </div>
+
+
+
+    </div>
+
+
+
+
+
+  </div>
+
+
+
+
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

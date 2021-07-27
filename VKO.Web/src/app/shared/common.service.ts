@@ -24,7 +24,7 @@ const apiurl = 'http://localhost:54669/';
 
 //apps.cmps.in
 
-//var apiurl = 'https://vkoapi.cmps.in/';
+var apiurl = 'https://vkoapi.cmps.in/';
 
 //apps.wynkemr.com
 
