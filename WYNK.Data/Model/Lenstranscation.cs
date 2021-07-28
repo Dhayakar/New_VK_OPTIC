@@ -26,7 +26,7 @@ namespace WYNK.Data.Model
         public int? UOMID { get; set; }
         public string HSNNo { get; set; }
         public decimal? GST { get; set; }
-      //  public decimal? IGST { get; set; }
+        public string BarcodeID { get; set; }
         public int? TaxID { get; set; }
         public int? FrameShapeID { get; set; }
         public int? FrameTypeID { get; set; }

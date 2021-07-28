@@ -347,7 +347,6 @@ namespace WYNK.Data.Repository.Implementation
                                         if (storeid != 0)
                                         {
                                             var ItemBalance1 = new OpticalBalance();
-
                                             switch (CurrentMonth)
                                             {
 

@@ -150,6 +150,7 @@ namespace WYNK.Data.Repository.Implementation
                                 var lenstrans = new LensTranModel();
 
                                 lenstrans.LMID = RandomUniqueID;
+                                lenstrans.BarcodeID = PasswordEncodeandDecode.GetRandomnumberwithlength();
                                 lenstrans.Index = item.Index;
                                 lenstrans.Costprice = item.Costprice;
                                 lenstrans.Sptaxinclusive = item.Sptaxinclusive;
@@ -519,6 +520,7 @@ namespace WYNK.Data.Repository.Implementation
                                 else
                                 {
                                     lenstrans.LMID = ID;
+                                    lenstrans.BarcodeID = PasswordEncodeandDecode.GetRandomnumberwithlength();
                                     lenstrans.Sph = item.Sph;
                                     lenstrans.Cyl = item.Cyl;
                                     lenstrans.Axis = item.Axis;

@@ -37,6 +37,7 @@ namespace WYNK.Data.Repository.Implementation
             var OpticalStockTran = WYNKContext.OpticalStockTran.ToList();
             var TransactionType = CMPSContext.TransactionType.ToList();
             var Company = CMPSContext.Company.ToList();
+            var one = CMPSContext.OneLineMaster.ToList();
             TimeSpan ts = TimeSpan.Parse(Time);
 
 
@@ -54,13 +55,21 @@ namespace WYNK.Data.Repository.Implementation
             }
             var tdate = DT1;
 
+            string format = "MM-yyyy";
+            DateTime SFdate = DateTime.ParseExact(fdate.ToString("MM-yyyy"), format, CultureInfo.InvariantCulture);
+            DateTime STdate = DateTime.ParseExact(tdate.ToString("MM-yyyy"), format, CultureInfo.InvariantCulture);
+            var FinancialYearId = WYNKContext.FinancialYear.Where(x => x.FYFrom <= fdate && x.FYTo >= tdate && x.CMPID == CompanyID && x.IsActive == true).Select(x => x.ID).FirstOrDefault();
+            var Fmonth = WYNKContext.FinancialYear.Where(x => x.FYFrom <= fdate && x.FYTo >= tdate && x.CMPID == CompanyID && x.IsActive == true).Select(x => x.FYFrom).FirstOrDefault();
+            DateTime STFdate = DateTime.ParseExact(Fmonth.ToString("MM-yyyy"), format, CultureInfo.InvariantCulture);
+
+
             var Opticalstkledger = new OpticalStockLedgerDataView();
             Opticalstkledger.StoreArray = new List<StoreArray>();
             Opticalstkledger.BrandArray = new List<BrandArray>();
             Opticalstkledger.Opticalstockledger = new List<Opticalstockledger>();
             Opticalstkledger.OpticalstockledgerI = new List<OpticalstockledgerI>();
-            Opticalstkledger.Receipt = new List<Receipt>();
-            Opticalstkledger.Issue = new List<Issue>();
+            List<Receipt> Receipt = new List<Receipt>();
+            List<Issue> Issue = new List<Issue>();
             Opticalstkledger.Companycomm = new List<Companycomm>();
 
             var StoreArray = (from s in stockledger.StoreArray
@@ -85,6 +94,7 @@ namespace WYNK.Data.Repository.Implementation
 
             var concatarray = StoreArray.Count() >= BrandArray.Count() ? StoreArray.ToList() : BrandArray.ToList();
 
+
             if (concatarray.Count() == StoreArray.Count())
             {
 
@@ -97,7 +107,7 @@ namespace WYNK.Data.Repository.Implementation
                         {
 
 
-                            Opticalstkledger.Receipt = (from OB in OpticalBalance.Where(x => x.StoreID == Convert.ToInt32(sa.ID) && x.CreatedUTC.Date >= fdate && x.CreatedUTC.Date <= tdate && x.CmpID == CompanyID)
+                            Receipt.AddRange((from OB in OpticalBalance.Where(x => x.StoreID == Convert.ToInt32(sa.ID) && x.FYID == FinancialYearId && x.CmpID == CompanyID)
                                                         join LT in Lenstrans on OB.LTID equals LT.ID
                                                         join BR in Brand.Where(x => x.ID == Convert.ToInt32(ba.ID)) on LT.Brand equals BR.ID
                                                         join UM in uommaster on LT.UOMID equals UM.id
@@ -121,43 +131,118 @@ namespace WYNK.Data.Repository.Implementation
                                                             Brand = BR.Description,
                                                             BrandID = BR.ID,
                                                             UOM = UM.Description,
-                                                            Model = LT.Model,
                                                             Color = LT.Colour,
                                                             Recept = STR.ItemQty,
                                                             Issue = 0.0M,
-                                                            Openingstock = OB.OpeningBalance,
-                                                            Closingstock = OB.ClosingBalance,
+                                                            REC01 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC01).FirstOrDefault(),
+                                                            REC02 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC02).FirstOrDefault(),
+                                                            REC03 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC03).FirstOrDefault(),
+                                                            REC04 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC04).FirstOrDefault(),
+                                                            REC05 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC05).FirstOrDefault(),
+                                                            REC06 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC06).FirstOrDefault(),
+                                                            REC07 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC07).FirstOrDefault(),
+                                                            REC08 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC08).FirstOrDefault(),
+                                                            REC09 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC09).FirstOrDefault(),
+                                                            REC10 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC10).FirstOrDefault(),
+                                                            REC11 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC11).FirstOrDefault(),
+                                                            REC12 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC12).FirstOrDefault(),
+                                                            ISS01 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS01).FirstOrDefault(),
+                                                            ISS02 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS02).FirstOrDefault(),
+                                                            ISS03 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS03).FirstOrDefault(),
+                                                            ISS04 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS04).FirstOrDefault(),
+                                                            ISS05 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS05).FirstOrDefault(),
+                                                            ISS06 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS06).FirstOrDefault(),
+                                                            ISS07 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS07).FirstOrDefault(),
+                                                            ISS08 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS08).FirstOrDefault(),
+                                                            ISS09 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS09).FirstOrDefault(),
+                                                            ISS10 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS10).FirstOrDefault(),
+                                                            ISS11 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS11).FirstOrDefault(),
+                                                            ISS12 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS12).FirstOrDefault(),
                                                             ID = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ID).FirstOrDefault(),
-                                                        }).OrderByDescending(x => x.ID).ToList();
+                                                            LTID = OB.LTID,
 
-                            if (Opticalstkledger.Receipt.Count() > 0)
+                                                        }).OrderByDescending(x => x.ID).ToList());
+                        }
+                    }
+
+                    if (Receipt.Count() > 0)
+                    {
+                        foreach (var item in Receipt.ToList())
+                        {
+                            var osl = new Opticalstockledger();
+
+                            for (var dt = STFdate; dt <= STdate;)
                             {
-                                foreach (var itm in Opticalstkledger.Receipt.ToList())
+                                var ItemBalance = Opticalstkledger.Opticalstockledger.Where(x => x.LTID == item.LTID && x.StoreID == item.StoreID).FirstOrDefault();
+
+                                if (ItemBalance == null)
                                 {
-                                    var osl = new Opticalstockledger();
-                                    osl.CmpName = itm.CmpName;
-                                    osl.DocumentNo = itm.DocumentNo;
-                                    osl.DocumentDate = itm.DocumentDate;
-                                    osl.DocumentType = itm.DocumentType;
-                                    osl.Type = itm.Type;
-                                    osl.TypeID = itm.TypeID;
-                                    osl.Store = itm.Store;
-                                    osl.StoreID = itm.StoreID;
-                                    osl.Brand = itm.Brand;
-                                    osl.BrandID = itm.BrandID;
-                                    osl.UOM = itm.UOM;
-                                    osl.Model = itm.Model;
-                                    osl.Color = itm.Color;
-                                    osl.Receipt = itm.Recept;
-                                    osl.Issue = itm.Issue;
-                                    osl.Openingstock = itm.Openingstock;
-                                    osl.Closingstock = itm.Closingstock;
-                                    osl.ID = itm.ID;
+
+                                    int a = 0;
+                                    int b = dt.Month;
+                                    string c = a.ToString() + b.ToString();
+                                    string newNumber = (9 >= dt.Month) ? c : dt.ToString();
+                                    string issue = "ISS" + newNumber;
+                                    string receipt = "REC" + newNumber;
+                                    int Iss = Receipt.Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
+                                    int Rec = Receipt.Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
+                                    osl.CmpName = item.CmpName;
+                                    osl.DocumentDate = item.DocumentDate;
+                                    osl.DocumentNo = item.DocumentNo;
+                                    osl.Type = item.Type;
+                                    osl.Store = item.Store;
+                                    osl.Brand = item.Brand;
+                                    osl.UOM = item.UOM;
+                                    osl.Color = item.Color;
+                                    osl.ID = item.ID;
+                                    osl.LTID = item.LTID;
+                                    osl.StoreID = item.StoreID;
+                                    osl.Receipt += Rec;
+                                    osl.Issue += Iss;
+                                    osl.Closingstock += item.Openingstock + (Rec - Iss);
                                     Opticalstkledger.Opticalstockledger.Add(osl);
+                                    STFdate = STFdate.AddMonths(1);
+                                    dt = STFdate;
+                                }
+                                else
+                                {
+                                    int a = 0;
+                                    int b = dt.Month;
+                                    string c = a.ToString() + b.ToString();
+                                    string newNumber = (9 >= dt.Month) ? c : dt.ToString();
+                                    string issue = "ISS" + newNumber;
+                                    string receipt = "REC" + newNumber;
+                                    int Iss = Receipt.Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
+                                    int Rec = Receipt.Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
+                                    osl.Receipt += Rec;
+                                    osl.Issue += Iss;
+                                    osl.Closingstock += item.Openingstock + (Rec - Iss);
+                                    STFdate = STFdate.AddMonths(1);
+                                    dt = STFdate;
                                 }
                             }
-                        }
 
+                            STFdate = DateTime.ParseExact(Fmonth.ToString("MM-yyyy"), format, CultureInfo.InvariantCulture);
+
+                            var tdatemonth = SFdate.AddMonths(-1);
+
+                            for (var dt = STFdate; dt <= tdatemonth;)
+                            {
+                                int a = 0;
+                                int b = dt.Month;
+                                string c = a.ToString() + b.ToString();
+                                string newNumber = (9 >= dt.Month) ? c : dt.ToString();
+                                string issue = "ISS" + newNumber;
+                                string receipt = "REC" + newNumber;
+                                int Iss = Receipt.Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
+                                int Rec = Receipt.Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
+                                osl.Openingstock += item.Openingstock + (Rec - Iss);
+                                STFdate = STFdate.AddMonths(1);
+                                dt = STFdate;
+                            }
+
+                            STFdate = DateTime.ParseExact(Fmonth.ToString("MM-yyyy"), format, CultureInfo.InvariantCulture);
+                        }
                     }
 
                     foreach (var ba in BrandArray.ToList())
@@ -165,7 +250,7 @@ namespace WYNK.Data.Repository.Implementation
                         foreach (var sa in StoreArray.ToList())
                         {
 
-                            Opticalstkledger.Issue = (from OB in OpticalBalance.Where(x => x.StoreID == Convert.ToInt32(sa.ID) && x.CreatedUTC.Date >= fdate && x.CreatedUTC.Date <= tdate && x.CmpID == CompanyID)
+                            Issue.AddRange((from OB in OpticalBalance.Where(x => x.StoreID == Convert.ToInt32(sa.ID) && x.FYID == FinancialYearId && x.CmpID == CompanyID)
                                                       join LT in Lenstrans on OB.LTID equals LT.ID
                                                       join BR in Brand.Where(x => x.ID == Convert.ToInt32(ba.ID)) on LT.Brand equals BR.ID
                                                       join UM in uommaster on LT.UOMID equals UM.id
@@ -189,44 +274,117 @@ namespace WYNK.Data.Repository.Implementation
                                                           Brand = BR.Description,
                                                           BrandID = BR.ID,
                                                           UOM = UM.Description,
-                                                          Model = LT.Model,
                                                           Color = LT.Colour,
                                                           Receipt = 0.0M,
                                                           Isue = STR.ItemQty,
-                                                          Openingstock = 0.0M,
-                                                          Closingstock = 0.0M,
+                                                          REC01 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC01).FirstOrDefault(),
+                                                          REC02 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC02).FirstOrDefault(),
+                                                          REC03 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC03).FirstOrDefault(),
+                                                          REC04 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC04).FirstOrDefault(),
+                                                          REC05 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC05).FirstOrDefault(),
+                                                          REC06 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC06).FirstOrDefault(),
+                                                          REC07 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC07).FirstOrDefault(),
+                                                          REC08 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC08).FirstOrDefault(),
+                                                          REC09 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC09).FirstOrDefault(),
+                                                          REC10 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC10).FirstOrDefault(),
+                                                          REC11 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC11).FirstOrDefault(),
+                                                          REC12 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC12).FirstOrDefault(),
+                                                          ISS01 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS01).FirstOrDefault(),
+                                                          ISS02 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS02).FirstOrDefault(),
+                                                          ISS03 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS03).FirstOrDefault(),
+                                                          ISS04 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS04).FirstOrDefault(),
+                                                          ISS05 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS05).FirstOrDefault(),
+                                                          ISS06 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS06).FirstOrDefault(),
+                                                          ISS07 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS07).FirstOrDefault(),
+                                                          ISS08 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS08).FirstOrDefault(),
+                                                          ISS09 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS09).FirstOrDefault(),
+                                                          ISS10 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS10).FirstOrDefault(),
+                                                          ISS11 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS11).FirstOrDefault(),
+                                                          ISS12 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS12).FirstOrDefault(),
                                                           ID = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ID).FirstOrDefault(),
-                                                      }).OrderByDescending(x => x.ID).ToList();
+                                                          LTID = OB.LTID,
+                                                      }).OrderByDescending(x => x.ID).ToList());
+                        }
+                    }
 
-                            if (Opticalstkledger.Issue.Count() > 0)
+                    if (Issue.Count() > 0)
+                    {
+                        foreach (var item in Issue.ToList())
+                        {
+                            var osl = new OpticalstockledgerI();
+
+                            for (var dt = STFdate; dt <= STdate;)
                             {
-                                foreach (var itm in Opticalstkledger.Issue.ToList())
-                                {
-                                    var osl = new OpticalstockledgerI();
-                                    osl.CmpName = itm.CmpName;
-                                    osl.DocumentNo = itm.DocumentNo;
-                                    osl.DocumentDate = itm.DocumentDate;
-                                    osl.DocumentType = itm.DocumentType;
-                                    osl.Type = itm.Type;
-                                    osl.TypeID = itm.TypeID;
-                                    osl.Store = itm.Store;
-                                    osl.StoreID = itm.StoreID;
-                                    osl.Brand = itm.Brand;
-                                    osl.BrandID = itm.BrandID;
-                                    osl.UOM = itm.UOM;
-                                    osl.Model = itm.Model;
-                                    osl.Color = itm.Color;
-                                    osl.Receipt = itm.Receipt;
-                                    osl.Issue = itm.Isue;
-                                    osl.Openingstock = itm.Openingstock;
-                                    osl.Closingstock = itm.Closingstock;
-                                    osl.ID = itm.ID;
+                                var ItemBalance = Opticalstkledger.OpticalstockledgerI.Where(x => x.LTID == item.LTID && x.StoreID == item.StoreID).FirstOrDefault();
 
+                                if (ItemBalance == null)
+                                {
+
+                                    int a = 0;
+                                    int b = dt.Month;
+                                    string c = a.ToString() + b.ToString();
+                                    string newNumber = (9 >= dt.Month) ? c : dt.ToString();
+                                    string issue = "ISS" + newNumber;
+                                    string receipt = "REC" + newNumber;
+                                    int Iss = Issue.Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
+                                    int Rec = Issue.Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
+                                    osl.CmpName = item.CmpName;
+                                    osl.DocumentDate = item.DocumentDate;
+                                    osl.DocumentNo = item.DocumentNo;
+                                    osl.Type = item.Type;
+                                    osl.Store = item.Store;
+                                    osl.Brand = item.Brand;
+                                    osl.UOM = item.UOM;
+                                    osl.Color = item.Color;
+                                    osl.ID = item.ID;
+                                    osl.LTID = item.LTID;
+                                    osl.StoreID = item.StoreID;
+                                    osl.Receipt += Rec;
+                                    osl.Issue += Iss;
+                                    osl.Closingstock += item.Openingstock + (Rec - Iss);
                                     Opticalstkledger.OpticalstockledgerI.Add(osl);
+                                    STFdate = STFdate.AddMonths(1);
+                                    dt = STFdate;
+                                }
+                                else
+                                {
+                                    int a = 0;
+                                    int b = dt.Month;
+                                    string c = a.ToString() + b.ToString();
+                                    string newNumber = (9 >= dt.Month) ? c : dt.ToString();
+                                    string issue = "ISS" + newNumber;
+                                    string receipt = "REC" + newNumber;
+                                    int Iss = Issue.Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
+                                    int Rec = Issue.Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
+                                    osl.Receipt += Rec;
+                                    osl.Issue += Iss;
+                                    osl.Closingstock += item.Openingstock + (Rec - Iss);
+                                    STFdate = STFdate.AddMonths(1);
+                                    dt = STFdate;
                                 }
                             }
-                        }
 
+                            STFdate = DateTime.ParseExact(Fmonth.ToString("MM-yyyy"), format, CultureInfo.InvariantCulture);
+
+                            var tdatemonth = SFdate.AddMonths(-1);
+
+                            for (var dt = STFdate; dt <= tdatemonth;)
+                            {
+                                int a = 0;
+                                int b = dt.Month;
+                                string c = a.ToString() + b.ToString();
+                                string newNumber = (9 >= dt.Month) ? c : dt.ToString();
+                                string issue = "ISS" + newNumber;
+                                string receipt = "REC" + newNumber;
+                                int Iss = Issue.Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
+                                int Rec = Issue.Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
+                                osl.Openingstock += item.Openingstock + (Rec - Iss);
+                                STFdate = STFdate.AddMonths(1);
+                                dt = STFdate;
+                            }
+
+                            STFdate = DateTime.ParseExact(Fmonth.ToString("MM-yyyy"), format, CultureInfo.InvariantCulture);
+                        }
                     }
 
                 }
@@ -243,7 +401,7 @@ namespace WYNK.Data.Repository.Implementation
                         {
 
 
-                            Opticalstkledger.Issue = (from OB in OpticalBalance.Where(x => x.StoreID == Convert.ToInt32(sa.ID) && x.CreatedUTC.Date >= fdate && x.CreatedUTC.Date <= tdate && x.CmpID == CompanyID)
+                            Issue.AddRange((from OB in OpticalBalance.Where(x => x.StoreID == Convert.ToInt32(sa.ID) && x.FYID == FinancialYearId && x.CmpID == CompanyID)
                                                       join LT in Lenstrans on OB.LTID equals LT.ID
                                                       join BR in Brand.Where(x => x.ID == Convert.ToInt32(ba.ID)) on LT.Brand equals BR.ID
                                                       join UM in uommaster on LT.UOMID equals UM.id
@@ -267,45 +425,117 @@ namespace WYNK.Data.Repository.Implementation
                                                           Brand = BR.Description,
                                                           BrandID = BR.ID,
                                                           UOM = UM.Description,
-                                                          Model = LT.Model,
                                                           Color = LT.Colour,
                                                           Receipt = 0.0M,
                                                           Isue = STR.ItemQty,
-                                                          Openingstock = 0.0M,
-                                                          Closingstock = 0.0M,
-
+                                                          REC01 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC01).FirstOrDefault(),
+                                                          REC02 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC02).FirstOrDefault(),
+                                                          REC03 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC03).FirstOrDefault(),
+                                                          REC04 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC04).FirstOrDefault(),
+                                                          REC05 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC05).FirstOrDefault(),
+                                                          REC06 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC06).FirstOrDefault(),
+                                                          REC07 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC07).FirstOrDefault(),
+                                                          REC08 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC08).FirstOrDefault(),
+                                                          REC09 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC09).FirstOrDefault(),
+                                                          REC10 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC10).FirstOrDefault(),
+                                                          REC11 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC11).FirstOrDefault(),
+                                                          REC12 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC12).FirstOrDefault(),
+                                                          ISS01 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS01).FirstOrDefault(),
+                                                          ISS02 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS02).FirstOrDefault(),
+                                                          ISS03 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS03).FirstOrDefault(),
+                                                          ISS04 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS04).FirstOrDefault(),
+                                                          ISS05 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS05).FirstOrDefault(),
+                                                          ISS06 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS06).FirstOrDefault(),
+                                                          ISS07 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS07).FirstOrDefault(),
+                                                          ISS08 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS08).FirstOrDefault(),
+                                                          ISS09 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS09).FirstOrDefault(),
+                                                          ISS10 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS10).FirstOrDefault(),
+                                                          ISS11 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS11).FirstOrDefault(),
+                                                          ISS12 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS12).FirstOrDefault(),
                                                           ID = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ID).FirstOrDefault(),
-                                                      }).OrderByDescending(x => x.ID).ToList();
+                                                          LTID = OB.LTID,
+                                                      }).OrderByDescending(x => x.ID).ToList());
+                        }
+                    }
 
-                            if (Opticalstkledger.Issue.Count() > 0)
+                    if (Issue.Count() > 0)
+                    {
+                        foreach (var item in Issue.ToList())
+                        {
+                            var osl = new OpticalstockledgerI();
+
+                            for (var dt = STFdate; dt <= STdate;)
                             {
-                                foreach (var itm in Opticalstkledger.Issue.ToList())
+                                var ItemBalance = Opticalstkledger.OpticalstockledgerI.Where(x => x.LTID == item.LTID && x.StoreID == item.StoreID).FirstOrDefault();
+
+                                if (ItemBalance == null)
                                 {
-                                    var osl = new OpticalstockledgerI();
-                                    osl.CmpName = itm.CmpName;
-                                    osl.DocumentNo = itm.DocumentNo;
-                                    osl.DocumentDate = itm.DocumentDate;
-                                    osl.DocumentType = itm.DocumentType;
-                                    osl.Type = itm.Type;
-                                    osl.TypeID = itm.TypeID;
-                                    osl.Store = itm.Store;
-                                    osl.StoreID = itm.StoreID;
-                                    osl.Brand = itm.Brand;
-                                    osl.BrandID = itm.BrandID;
-                                    osl.UOM = itm.UOM;
-                                    osl.Model = itm.Model;
-                                    osl.Color = itm.Color;
-                                    osl.Receipt = itm.Receipt;
-                                    osl.Issue = itm.Isue;
-                                    osl.Openingstock = itm.Openingstock;
-                                    osl.Closingstock = itm.Closingstock;
-                                    osl.ID = itm.ID;
+
+                                    int a = 0;
+                                    int b = dt.Month;
+                                    string c = a.ToString() + b.ToString();
+                                    string newNumber = (9 >= dt.Month) ? c : dt.ToString();
+                                    string issue = "ISS" + newNumber;
+                                    string receipt = "REC" + newNumber;
+                                    int Iss = Issue.Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
+                                    int Rec = Issue.Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
+                                    osl.CmpName = item.CmpName;
+                                    osl.DocumentDate = item.DocumentDate;
+                                    osl.DocumentNo = item.DocumentNo;
+                                    osl.Type = item.Type;
+                                    osl.Store = item.Store;
+                                    osl.Brand = item.Brand;
+                                    osl.UOM = item.UOM;
+                                    osl.Color = item.Color;
+                                    osl.ID = item.ID;
+                                    osl.LTID = item.LTID;
+                                    osl.StoreID = item.StoreID;
+                                    osl.Receipt += Rec;
+                                    osl.Issue += Iss;
+                                    osl.Closingstock += item.Openingstock + (Rec - Iss);
                                     Opticalstkledger.OpticalstockledgerI.Add(osl);
+                                    STFdate = STFdate.AddMonths(1);
+                                    dt = STFdate;
+                                }
+                                else
+                                {
+                                    int a = 0;
+                                    int b = dt.Month;
+                                    string c = a.ToString() + b.ToString();
+                                    string newNumber = (9 >= dt.Month) ? c : dt.ToString();
+                                    string issue = "ISS" + newNumber;
+                                    string receipt = "REC" + newNumber;
+                                    int Iss = Issue.Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
+                                    int Rec = Issue.Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
+                                    osl.Receipt += Rec;
+                                    osl.Issue += Iss;
+                                    osl.Closingstock += item.Openingstock + (Rec - Iss);
+                                    STFdate = STFdate.AddMonths(1);
+                                    dt = STFdate;
                                 }
                             }
 
-                        }
+                            STFdate = DateTime.ParseExact(Fmonth.ToString("MM-yyyy"), format, CultureInfo.InvariantCulture);
 
+                            var tdatemonth = SFdate.AddMonths(-1);
+
+                            for (var dt = STFdate; dt <= tdatemonth;)
+                            {
+                                int a = 0;
+                                int b = dt.Month;
+                                string c = a.ToString() + b.ToString();
+                                string newNumber = (9 >= dt.Month) ? c : dt.ToString();
+                                string issue = "ISS" + newNumber;
+                                string receipt = "REC" + newNumber;
+                                int Iss = Issue.Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
+                                int Rec = Issue.Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
+                                osl.Openingstock += item.Openingstock + (Rec - Iss);
+                                STFdate = STFdate.AddMonths(1);
+                                dt = STFdate;
+                            }
+
+                            STFdate = DateTime.ParseExact(Fmonth.ToString("MM-yyyy"), format, CultureInfo.InvariantCulture);
+                        }
                     }
 
                     foreach (var sa in StoreArray.ToList())
@@ -314,7 +544,7 @@ namespace WYNK.Data.Repository.Implementation
                         {
 
 
-                            Opticalstkledger.Receipt = (from OB in OpticalBalance.Where(x => x.StoreID == Convert.ToInt32(sa.ID) && x.CreatedUTC.Date >= fdate && x.CreatedUTC.Date <= tdate && x.CmpID == CompanyID)
+                            Receipt.AddRange((from OB in OpticalBalance.Where(x => x.StoreID == Convert.ToInt32(sa.ID) && x.FYID == FinancialYearId && x.CmpID == CompanyID)
                                                         join LT in Lenstrans on OB.LTID equals LT.ID
                                                         join BR in Brand.Where(x => x.ID == Convert.ToInt32(ba.ID)) on LT.Brand equals BR.ID
                                                         join UM in uommaster on LT.UOMID equals UM.id
@@ -338,45 +568,121 @@ namespace WYNK.Data.Repository.Implementation
                                                             Brand = BR.Description,
                                                             BrandID = BR.ID,
                                                             UOM = UM.Description,
-                                                            Model = LT.Model,
                                                             Color = LT.Colour,
                                                             Recept = STR.ItemQty,
                                                             Issue = 0.0M,
-                                                            Openingstock = OB.OpeningBalance,
-                                                            Closingstock = OB.ClosingBalance,
+                                                            REC01 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC01).FirstOrDefault(),
+                                                            REC02 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC02).FirstOrDefault(),
+                                                            REC03 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC03).FirstOrDefault(),
+                                                            REC04 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC04).FirstOrDefault(),
+                                                            REC05 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC05).FirstOrDefault(),
+                                                            REC06 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC06).FirstOrDefault(),
+                                                            REC07 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC07).FirstOrDefault(),
+                                                            REC08 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC08).FirstOrDefault(),
+                                                            REC09 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC09).FirstOrDefault(),
+                                                            REC10 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC10).FirstOrDefault(),
+                                                            REC11 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC11).FirstOrDefault(),
+                                                            REC12 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.REC12).FirstOrDefault(),
+                                                            ISS01 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS01).FirstOrDefault(),
+                                                            ISS02 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS02).FirstOrDefault(),
+                                                            ISS03 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS03).FirstOrDefault(),
+                                                            ISS04 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS04).FirstOrDefault(),
+                                                            ISS05 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS05).FirstOrDefault(),
+                                                            ISS06 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS06).FirstOrDefault(),
+                                                            ISS07 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS07).FirstOrDefault(),
+                                                            ISS08 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS08).FirstOrDefault(),
+                                                            ISS09 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS09).FirstOrDefault(),
+                                                            ISS10 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS10).FirstOrDefault(),
+                                                            ISS11 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS11).FirstOrDefault(),
+                                                            ISS12 = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ISS12).FirstOrDefault(),
                                                             ID = OpticalBalance.Where(s => s.LTID == Lenstrans.Where(x => x.Brand == Convert.ToInt32(ba.ID)).Select(x => x.ID).FirstOrDefault()).Where(d => d.StoreID == Convert.ToInt32(sa.ID)).Select(f => f.ID).FirstOrDefault(),
-                                                        }).OrderByDescending(x => x.ID).ToList();
-
-                            if (Opticalstkledger.Receipt.Count() > 0)
-                            {
-                                foreach (var itm in Opticalstkledger.Receipt.ToList())
-                                {
-                                    var osl = new Opticalstockledger();
-                                    osl.CmpName = itm.CmpName;
-                                    osl.DocumentNo = itm.DocumentNo;
-                                    osl.DocumentDate = itm.DocumentDate;
-                                    osl.DocumentType = itm.DocumentType;
-                                    osl.Type = itm.Type;
-                                    osl.TypeID = itm.TypeID;
-                                    osl.Store = itm.Store;
-                                    osl.StoreID = itm.StoreID;
-                                    osl.Brand = itm.Brand;
-                                    osl.BrandID = itm.BrandID;
-                                    osl.UOM = itm.UOM;
-                                    osl.Model = itm.Model;
-                                    osl.Color = itm.Color;
-                                    osl.Receipt = itm.Recept;
-                                    osl.Issue = itm.Issue;
-                                    osl.Openingstock = itm.Openingstock;
-                                    osl.Closingstock = itm.Closingstock;
-                                    osl.ID = itm.ID;
-                                    Opticalstkledger.Opticalstockledger.Add(osl);
-                                }
-                            }
+                                                            LTID = OB.LTID,
+                                                        }).OrderByDescending(x => x.ID).ToList());
 
                         }
 
                     }
+
+                    if (Receipt.Count() > 0)
+                    {
+                        foreach (var item in Receipt.ToList())
+                        {
+                            var osl = new Opticalstockledger();
+
+                            for (var dt = STFdate; dt <= STdate;)
+                            {
+                                var ItemBalance = Opticalstkledger.Opticalstockledger.Where(x => x.LTID == item.LTID && x.StoreID == item.StoreID).FirstOrDefault();
+
+                                if (ItemBalance == null)
+                                {
+
+                                    int a = 0;
+                                    int b = dt.Month;
+                                    string c = a.ToString() + b.ToString();
+                                    string newNumber = (9 >= dt.Month) ? c : dt.ToString();
+                                    string issue = "ISS" + newNumber;
+                                    string receipt = "REC" + newNumber;
+                                    int Iss = Receipt.Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
+                                    int Rec = Receipt.Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
+                                    osl.CmpName = item.CmpName;
+                                    osl.DocumentDate = item.DocumentDate;
+                                    osl.DocumentNo = item.DocumentNo;
+                                    osl.Type = item.Type;
+                                    osl.Store = item.Store;
+                                    osl.Brand = item.Brand;
+                                    osl.UOM = item.UOM;
+                                    osl.Color = item.Color;
+                                    osl.ID = item.ID;
+                                    osl.LTID = item.LTID;
+                                    osl.StoreID = item.StoreID;
+                                    osl.Receipt += Rec;
+                                    osl.Issue += Iss;
+                                    osl.Closingstock += item.Openingstock + (Rec - Iss);
+                                    Opticalstkledger.Opticalstockledger.Add(osl);
+                                    STFdate = STFdate.AddMonths(1);
+                                    dt = STFdate;
+                                }
+                                else
+                                {
+                                    int a = 0;
+                                    int b = dt.Month;
+                                    string c = a.ToString() + b.ToString();
+                                    string newNumber = (9 >= dt.Month) ? c : dt.ToString();
+                                    string issue = "ISS" + newNumber;
+                                    string receipt = "REC" + newNumber;
+                                    int Iss = Receipt.Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
+                                    int Rec = Receipt.Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
+                                    osl.Receipt += Rec;
+                                    osl.Issue += Iss;
+                                    osl.Closingstock += item.Openingstock + (Rec - Iss);
+                                    STFdate = STFdate.AddMonths(1);
+                                    dt = STFdate;
+                                }
+                            }
+
+                            STFdate = DateTime.ParseExact(Fmonth.ToString("MM-yyyy"), format, CultureInfo.InvariantCulture);
+
+                            var tdatemonth = SFdate.AddMonths(-1);
+
+                            for (var dt = STFdate; dt <= tdatemonth;)
+                            {
+                                int a = 0;
+                                int b = dt.Month;
+                                string c = a.ToString() + b.ToString();
+                                string newNumber = (9 >= dt.Month) ? c : dt.ToString();
+                                string issue = "ISS" + newNumber;
+                                string receipt = "REC" + newNumber;
+                                int Iss = Receipt.Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
+                                int Rec = Receipt.Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
+                                osl.Openingstock += item.Openingstock + (Rec - Iss);
+                                STFdate = STFdate.AddMonths(1);
+                                dt = STFdate;
+                            }
+
+                            STFdate = DateTime.ParseExact(Fmonth.ToString("MM-yyyy"), format, CultureInfo.InvariantCulture);
+                        }
+                    }
+
                 }
 
             }
