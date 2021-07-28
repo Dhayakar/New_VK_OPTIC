@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 28-07-2021 06:01:35 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
 28-07-2021 06:01:35 	Message : 	Successfully Logged-In
 
@@ -118,3 +119,37 @@
 28-07-2021 09:23:36 	V K OPTIC POINT 	CUSTOMER MASTER 	User name : 	N Steve 	User ID : 	32246 	Mode : Update
 28-07-2021 09:23:36 	CustomerMaster 	{"ID":5078,"CmpID":1062,"UIN":null,"Name":"Rajkumar","MiddleName":"","LastName":"J","Address1":"Chennai","Address2":"","Address3":"","Location":15,"GSTNo":null,"MobileNo":"9840012346","PhoneNo":null,"ContactPerson":null,"IsDeleted":false,"CreatedUTC":"2021-07-21T06:18:39.277","UpdatedUTC":"2021-07-28T09:23:36.8583182Z","CreatedBy":32246,"UpdatedBy":32246}
 28-07-2021 09:23:36 	Information : 	Update Successfully
+=======
+28-07-2021 04:54:01 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+28-07-2021 04:54:01 	Message : 	Successfully Logged-In
+
+28-07-2021 04:57:48 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+28-07-2021 04:57:48 	Message : 	Successfully Logged-In
+
+28-07-2021 05:25:14 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+28-07-2021 05:25:14 	Message : 	Successfully Logged-In
+
+28-07-2021 06:08:45 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+28-07-2021 06:08:45 	Message : 	Successfully Logged-In
+
+28-07-2021 06:14:46 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+28-07-2021 06:14:46 	Message : 	Successfully Logged-In
+
+28-07-2021 06:18:38 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+28-07-2021 06:18:38 	Message : 	Successfully Logged-In
+
+28-07-2021 06:25:46 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+28-07-2021 06:25:46 	Message : 	Successfully Logged-In
+
+28-07-2021 06:30:07 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+28-07-2021 06:30:07 	Message : 	Successfully Logged-In
+
+28-07-2021 06:31:00 	V K OPTIC POINT 	OpticalOrder 	User name : 	 	User ID : 	0 	Mode : Update
+28-07-2021 06:31:00 	OpticalOrder 	{"ID":28,"CmpID":1062,"OrderNumber":"OP82NO","OrderDate":"2021-07-28T06:30:14.622Z","RefNo":null,"RefDate":null,"TransactionID":1019,"VendorID":0,"DeliveryName":"V K OPTIC POINT","DeliveryDate":"2021-12-30T18:30:00Z","Instructions":null,"DeliveryAddress1":"19, CROSSING PLAZA, CROSSING REPUBLIK GHAZIABAD","DeliveryAddress2":"","DeliveryAddress3":"","DeliveryLocationID":5,"GrossProductValue":12256.0,"TotalProductValue":0.0,"TotalDiscountAmount":0.0,"TotalGSTTaxValue":0.0,"TotalCGSTTaxValue":0.0,"TotalSGSTTaxValue":0.0,"TotalIGSTTaxValue":0.0,"CESSAmount":0.0,"AddCESSPerAmt":0.0,"IsCancelled":false,"TermsAndConditions":null,"Validity":30,"IsOrderExecuted":0,"CreatedUTC":"2021-07-27T13:28:41.043","UpdatedUTC":"2021-07-28T06:31:00.2049256Z","CreatedBy":29163,"UpdatedBy":0,"Fyear":"2021","RandomUniqueID":"2d654249-98fe-4f67-9f99-9abb2814ce1f"}
+28-07-2021 06:31:00 	OpticalOrderTran 	{"ID":-2147482647,"RandomUniqueID":"2d654249-98fe-4f67-9f99-9abb2814ce1f","LTID":2,"UOMID":3008,"OrderedQty":5.0,"ReceivedQty":0.0,"Price":800.0,"ItemValue":null,"DiscountPercentage":0.0,"DiscountAmount":0.0,"GSTPercentage":12.0,"GSTTaxValue":480.0,"CGSTPercentage":6.0,"CGSTTaxValue":240.0,"SGSTPercentage":6.0,"SGSTTaxValue":240.0,"IGSTPercentage":0.0,"IGSTTaxValue":0.0,"CESSPercentage":0.0,"CESSAmount":0.0,"AdditionalCESSPercentage":0.0,"AddCESSPerAmt":0.0,"IsCancelled":false,"ContraOOID":null,"CreatedUTC":"2021-07-28T06:31:00.3216664Z","UpdatedUTC":null,"CreatedBy":0,"UpdatedBy":null}
+28-07-2021 06:31:00 	OpticalOrderTran 	{"ID":35,"RandomUniqueID":"2d654249-98fe-4f67-9f99-9abb2814ce1f","LTID":3,"UOMID":3008,"OrderedQty":10.0,"ReceivedQty":0.0,"Price":800.0,"ItemValue":8000.00,"DiscountPercentage":10.0,"DiscountAmount":800.0,"GSTPercentage":8.0,"GSTTaxValue":576.0,"CGSTPercentage":4.0,"CGSTTaxValue":288.0,"SGSTPercentage":4.0,"SGSTTaxValue":288.0,"IGSTPercentage":0.0,"IGSTTaxValue":0.0,"CESSPercentage":0.0,"CESSAmount":0.0,"AdditionalCESSPercentage":0.0,"AddCESSPerAmt":0.0,"IsCancelled":false,"ContraOOID":null,"CreatedUTC":"2021-07-27T13:28:41.13","UpdatedUTC":"2021-07-28T06:31:00.3790208Z","CreatedBy":29163,"UpdatedBy":0}
+28-07-2021 06:31:00 	Information : 	Saved Successfully
+
+28-07-2021 06:38:02 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+28-07-2021 06:38:02 	Message : 	Successfully Logged-In
+>>>>>>> b98a585c0e89f3879f3c612341193c2b098f2a64

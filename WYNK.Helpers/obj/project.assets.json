@@ -273,11 +273,16 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\SYSTEM2\\.nuget\\packages\\": {}
+=======
+    "C:\\Users\\admin\\.nuget\\packages\\": {}
+>>>>>>> b98a585c0e89f3879f3c612341193c2b098f2a64
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "E:\\Vk Optics\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj",
       "projectName": "WYNK.Helpers",
       "projectPath": "E:\\Vk Optics\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj",
@@ -286,6 +291,16 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\SYSTEM2\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+      "projectUniqueName": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj",
+      "projectName": "WYNK.Helpers",
+      "projectPath": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj",
+      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+      "outputPath": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Helpers\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> b98a585c0e89f3879f3c612341193c2b098f2a64
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -340,11 +355,21 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+<<<<<<< HEAD
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+>>>>>>> b98a585c0e89f3879f3c612341193c2b098f2a64
       }
     }
   },
   "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Helpers\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    },
     {
       "code": "NU1701",
       "level": "Warning",

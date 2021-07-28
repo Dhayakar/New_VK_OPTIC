@@ -1,5 +1,6 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "mD6LVf2v3ZMhQs/2FkH62XSlmcs1bfbv9hPlePQhdGbaq+3vM9mKbaHOHGvVHTcrG0SwB8i/zvOWGn1WaViCJg==",
   "success": true,
   "projectFilePath": "E:\\Vk Optics\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj",
@@ -9,8 +10,25 @@
     "C:\\Users\\SYSTEM2\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\SYSTEM2\\.nuget\\packages\\razorpay\\3.0.0\\razorpay.3.0.0.nupkg.sha512",
     "C:\\Users\\SYSTEM2\\.nuget\\packages\\restsharp\\106.11.4\\restsharp.106.11.4.nupkg.sha512"
+=======
+  "dgSpecHash": "JuZ4ulchxLVBOUMcximgNGhN3eILjQ3mVnsnIq43R1Ve08L5Wee/Jo/SULTr1f0QejYG2RJmupIN5i2GfGbrJQ==",
+  "success": true,
+  "projectFilePath": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\admin\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\razorpay\\3.0.0\\razorpay.3.0.0.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\restsharp\\106.11.4\\restsharp.106.11.4.nupkg.sha512"
+>>>>>>> b98a585c0e89f3879f3c612341193c2b098f2a64
   ],
   "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Helpers\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    },
     {
       "code": "NU1701",
       "level": "Warning",
