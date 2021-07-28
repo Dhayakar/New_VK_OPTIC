@@ -1326,6 +1326,10 @@ namespace WYNK.Services.Controllers
             return _repoWrapper.Common.Gettbutvalues();
         }
 
-
+        [HttpGet("GetLoginLocationId/{CMPID}")]
+        public dynamic GetLoginLocationId(int CMPID)
+        {
+            return _repoWrapper.Common.GetLoginLocationId(CMPID);
+        }
     }
 }

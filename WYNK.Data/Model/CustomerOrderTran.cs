@@ -28,7 +28,7 @@ namespace WYNK.Data.Model
         public decimal? SGSTPercentage { get; set; }
         public decimal? SGSTTaxValue { get; set; }
         public decimal? IGSTPercentage { get; set; }
-        public decimal? TotalIGSTTaxValue { get; set; }
+        public decimal? IGSTTaxValue { get; set; }
         public decimal? CESSPercentage { get; set; }
         public decimal? CESSAmount { get; set; }
         public decimal? AdditionalCESSPercentage { get; set; }

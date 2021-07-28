@@ -16,7 +16,7 @@
           <div class="col-sm-3">
             <mat-form-field appearance="outline">
               <mat-label>Vendor Code</mat-label>
-              <input autocomplete="off" maxlength="25" required [(ngModel)]="M_VendorCode" name="VendorCode" matInput placeholder="">
+              <input autocomplete="off" (keypress)="numberOnly($event)" maxlength="25" required [(ngModel)]="M_VendorCode" name="VendorCode" matInput placeholder="">
             </mat-form-field>
           </div>
           <div class="col-sm-3" *ngIf="hiddenisActive">

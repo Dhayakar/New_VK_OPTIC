@@ -19,7 +19,7 @@ namespace WYNK.Data.Model
         public string Address1 { get; set; }
         public string Address2 { get; set; }
         public string Address3 { get; set; }
-        public int? Location { get; set; }
+        public int Location { get; set; }
         public string GSTNo { get; set; }
         public string MobileNo { get; set; }
         public string PhoneNo { get; set; }

@@ -222,10 +222,8 @@ namespace WYNK.Data.Repository.Implementation
                         CustomerOrderTran.CGSTTaxValue = item.CGSTValue;
                         CustomerOrderTran.SGSTPercentage = item.SGST;
                         CustomerOrderTran.SGSTTaxValue = item.SGSTValue;
-                        //CustomerOrderTran.CESSPercentage = item.CESS;
-                        //CustomerOrderTran.CESSAmount = item.CESS != null ? item.CESSValue : null;
-                        //CustomerOrderTran.AdditionalCESSPercentage = item.AddCess;
-                        //CustomerOrderTran.AddCESSPerAmt = item.AddCess != null ? item.AddCessValue : null;
+                        CustomerOrderTran.IGSTPercentage = item.IGST;
+                        CustomerOrderTran.IGSTTaxValue = item.IGSTValue;
                         CustomerOrderTran.IsCancelled = false;
                         CustomerOrderTran.ReceivedQty = 0;
                         CustomerOrderTran.CreatedUTC = DateTime.UtcNow;
@@ -241,13 +239,24 @@ namespace WYNK.Data.Repository.Implementation
                         var CustomerOrderUpdate = WYNKContext.CustomerOrder.Where(x => x.RandomUniqueID == CustomerOrder.RandomUniqueID).FirstOrDefault();
                         CustomerOrderUpdate.GrossProductValue = CustomerOrderUpdate.GrossProductValue != null ? (CustomerOrderUpdate.GrossProductValue + item.GrossAmount) : 0 + item.GrossAmount;
                         CustomerOrderUpdate.TotalDiscountValue = CustomerOrderUpdate.TotalDiscountValue != null ? (CustomerOrderUpdate.TotalDiscountValue + item.DiscountAmount) : 0 + item.DiscountAmount;
-                        CustomerOrderUpdate.TotalTaxvalue = CustomerOrderUpdate.TotalTaxvalue != null ? (CustomerOrderUpdate.TotalTaxvalue + CustomerOrderTran.GSTTaxValue) : 0 + CustomerOrderTran.GSTTaxValue;
+                        if (CustomerOrderTran.IGSTPercentage == null)
+                        {
+                            CustomerOrderUpdate.TotalTaxvalue = CustomerOrderUpdate.TotalTaxvalue != null ? (CustomerOrderUpdate.TotalTaxvalue + CustomerOrderTran.GSTTaxValue) : 0 + CustomerOrderTran.GSTTaxValue;
+                        }
+                        else {
+                            CustomerOrderUpdate.TotalTaxvalue = CustomerOrderUpdate.TotalTaxvalue != null ? (CustomerOrderUpdate.TotalTaxvalue + CustomerOrderTran.IGSTTaxValue) : 0 + CustomerOrderTran.IGSTTaxValue;
+                        }
+                        CustomerOrderUpdate.TotalIGSTTaxValue = CustomerOrderUpdate.TotalIGSTTaxValue != null ? (CustomerOrderUpdate.TotalIGSTTaxValue + CustomerOrderTran.IGSTTaxValue) : 0 + CustomerOrderTran.IGSTTaxValue;
                         CustomerOrderUpdate.TotalCGSTTaxValue = CustomerOrderUpdate.TotalCGSTTaxValue != null ? (CustomerOrderUpdate.TotalCGSTTaxValue + CustomerOrderTran.CGSTTaxValue) : 0 + CustomerOrderTran.CGSTTaxValue;
                         CustomerOrderUpdate.TotalSGSTTaxValue = CustomerOrderUpdate.TotalSGSTTaxValue != null ? (CustomerOrderUpdate.TotalSGSTTaxValue + CustomerOrderTran.SGSTTaxValue) : 0 + CustomerOrderTran.SGSTTaxValue;
-                        //CustomerOrderUpdate.TotalCESSValue = CustomerOrderUpdate.TotalCESSValue != null ? (CustomerOrderUpdate.TotalCESSValue + item.CESSValue) : 0 + item.CESSValue;
-                       //CustomerOrderUpdate.TotalAddCESSValue = CustomerOrderUpdate.TotalAddCESSValue != null ? (CustomerOrderUpdate.TotalAddCESSValue + item.AddCessValue) : 0 + item.AddCessValue;
-                        CustomerOrderUpdate.TotalProductValue = CustomerOrderUpdate.TotalProductValue != null ? (CustomerOrderUpdate.TotalProductValue + item.Amount) : 0 + item.Amount;
-                        WYNKContext.CustomerOrder.UpdateRange(CustomerOrderUpdate);
+                        if (CustomerOrderTran.IGSTPercentage == null)
+                        {
+                            CustomerOrderUpdate.TotalProductValue = CustomerOrderUpdate.TotalProductValue != null ? (CustomerOrderUpdate.TotalProductValue + item.Amount) : 0 + item.Amount;
+                        }
+                        else {
+                            CustomerOrderUpdate.TotalProductValue = CustomerOrderUpdate.TotalProductValue != null ? (CustomerOrderUpdate.TotalProductValue + item.Amount) : 0 + item.Amount;
+                        }
+                         WYNKContext.CustomerOrder.UpdateRange(CustomerOrderUpdate);
 
 
                         object namestr = CustomerOrderUpdate;
@@ -525,11 +534,13 @@ namespace WYNK.Data.Repository.Implementation
                                                               GrossAmount = Convert.ToDecimal(res.GrossValue),
                                                               CGST = Convert.ToDecimal(res.CGSTPercentage),
                                                               SGST = Convert.ToDecimal(res.SGSTPercentage),
+                                                              IGST = res.IGSTPercentage,
                                                               Amount = Convert.ToDecimal(res.ItemValue),
                                                               GST = res.GSTPercentage,
                                                               GSTValue = res.GSTTaxValue,
                                                               CGSTValue = res.CGSTTaxValue,
                                                               SGSTValue = res.SGSTTaxValue,
+                                                              IGSTValue = res.IGSTTaxValue,
                                                               Sph = LT.Sph != null ? "Sph : " + LT.Sph + "; " : null,
                                                               Cyl = LT.Cyl != null ? "Cyl : " + LT.Cyl + "; " : null,
                                                               Axis = LT.Axis != null ? "Axis : " + LT.Axis + "; " : null,

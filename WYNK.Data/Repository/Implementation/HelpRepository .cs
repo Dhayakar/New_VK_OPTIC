@@ -2425,9 +2425,6 @@ namespace WYNK.Data.Repository.Implementation
                                         select new CustomerDetails
                                         {
                                             ID = Cust.ID,
-                                            //  Address1 = PasswordEncodeandDecode.GetConcatSName(Cust.Address1),
-                                            //   Address2 = PasswordEncodeandDecode.GetConcatSName(Cust.Address2),
-                                            //   Address3 = PasswordEncodeandDecode.GetConcatSName(Cust.Address3),
                                             UIN = Cust.UIN,
                                             Name = Cust.Name,
                                             Address1 = Cust.Address1,
@@ -2441,6 +2438,7 @@ namespace WYNK.Data.Repository.Implementation
                                             ContactPerson = Cust.ContactPerson,
                                             LocationName = Location.Where(x => x.ID == Cust.Location).Select(x => x.ParentDescription).FirstOrDefault(),
                                             City = Convert.ToString(Location.Where(x => x.ID == Cust.Location).Select(x => x.ParentID).FirstOrDefault()),
+                                            LocationID =Convert.ToInt32(Location.Where(x => x.ID == Location.Where(c => c.ID == Cust.Location && c.ParentTag == "loc").Select(c => c.ParentID).FirstOrDefault() && x.ParentTag == "City").Select(x => x.ParentID).FirstOrDefault()),
                                         }).ToList();
 
 
@@ -2479,22 +2477,31 @@ namespace WYNK.Data.Repository.Implementation
             return Donor;
         }
 
-        public Help CustomerOrder(int CMPID)
+        public Help CustomerOrder(int CMPID,string TaxGroup)
         {
             var CustomerOrder = new Help();
             var LensMas = WYNKContext.Lensmaster.ToList();
             var LensTarn = WYNKContext.Lenstrans.ToList();
-            var TaxMas = CMPSContext.TaxMaster.ToList();
+            var TaxMas= CMPSContext.TaxMaster.ToList();
+            if (TaxGroup == "withinState")
+            {
+                 TaxMas = TaxMas.Where(x => x.TaxGroupId == 1).ToList();
+            }
+            else
+            {
+                 TaxMas = TaxMas.Where(x => x.TaxGroupId == 2).ToList();
+            }
             var BrandMas = WYNKContext.Brand.ToList();
             var UOM = CMPSContext.uommaster.ToList();
             var Onelinemaster = CMPSContext.OneLineMaster.ToList();
             var OpticalBalance = WYNKContext.OpticalBalance.Where(x=>x.CmpID == CMPID).ToList();
 
-           // var Datee = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
+            //var Datee = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
             var Fyear = WYNKContext.FinancialYear.Where(x => x.FYFrom.Date <= DateTime.Now.Date && x.FYTo.Date >= DateTime.Now.Date && x.CMPID == CMPID && x.IsActive == true).Select(x => x.ID).FirstOrDefault();
 
             CustomerOrder.OfferDetails = (from LM in LensMas.Where(x => x.CMPID == CMPID)
                                           join LT in LensTarn.Where(x => x.IsActive == true) on LM.RandomUniqueID equals LT.LMID
+                                          join TM in TaxMas on LT.TaxID equals TM.ID
                                           join BM in BrandMas on LT.Brand equals BM.ID
                                           select new OfferDetail
                                           {
@@ -2506,7 +2513,7 @@ namespace WYNK.Data.Repository.Implementation
                                               Color = LT.Colour,
                                               Size = LT.Size,
                                               Price = LT.Prize,
-                                              ActualPrice = Math.Round(LT.Sptaxinclusive ==false ? LT.Prize : (LT.Prize  * 100) / (100 + Convert.ToDecimal(TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.GSTPercentage).FirstOrDefault()))),
+                                              ActualPrice = Math.Round(LT.Sptaxinclusive == false ? LT.Prize : TaxGroup == "withinState" ? (LT.Prize  * 100) / (100 + Convert.ToDecimal(TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.GSTPercentage).FirstOrDefault())) : (LT.Prize * 100) / (100 + Convert.ToDecimal(TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.IGSTPercentage).FirstOrDefault()))),
                                               Model = LT.Model,
                                               GST = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.GSTPercentage).FirstOrDefault(),
                                               CGST = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.CGSTPercentage).FirstOrDefault(),
@@ -2530,9 +2537,50 @@ namespace WYNK.Data.Repository.Implementation
                                               FrameStyleID = Onelinemaster.Where(x => x.OLMID == LT.FrameStyleID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Style : " + Onelinemaster.Where(x => x.OLMID == LT.FrameStyleID).Select(c => c.ParentDescription).FirstOrDefault() + "; " : null,
                                               FrameTypeID = Onelinemaster.Where(x => x.OLMID == LT.FrameTypeID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Type : " + Onelinemaster.Where(x => x.OLMID == LT.FrameTypeID).Select(c => c.ParentDescription).FirstOrDefault() + "; " : null,
                                               FrameWidthID = Onelinemaster.Where(x => x.OLMID == LT.FrameWidthID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Width : " + Onelinemaster.Where(x => x.OLMID == LT.FrameWidthID).Select(c => c.ParentDescription).FirstOrDefault() : null,
-
                                               Stockqty = OpticalBalance.Where(x => x.LTID == LT.ID && x.FYID == Fyear).Select(x => x.ClosingBalance).FirstOrDefault(),
                                               Sptaxinclusive =LT.Sptaxinclusive,
+
+                                          }).ToList();
+            CustomerOrder.OfferDetails1 = (from LM in LensMas.Where(x => x.CMPID == CMPID)
+                                          join LT in LensTarn.Where(x => x.IsActive == true && x.Sptaxinclusive==false) on LM.RandomUniqueID equals LT.LMID
+                                          join TM in TaxMas on LT.TaxID equals TM.ID
+                                          join BM in BrandMas on LT.Brand equals BM.ID
+                                          select new OfferDetail
+                                          {
+                                              LTID = LT.ID,
+                                              LMID = LM.ID,
+                                              Brand = BM.Description,
+                                              Description = LT.Description,
+                                              Index = LT.Index != "" ? Onelinemaster.Where(x => x.OLMID == Convert.ToInt32(LT.Index)).Select(x => x.ParentDescription).FirstOrDefault() : string.Empty,
+                                              Color = LT.Colour,
+                                              Size = LT.Size,
+                                              Price = LT.Costprice,
+                                              ActualPrice = Math.Round(LT.Sptaxinclusive == false ? LT.Prize : (LT.Prize * 100) / (100 + Convert.ToDecimal(TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.GSTPercentage).FirstOrDefault()))),
+                                              Model = LT.Model,
+                                              GST = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.GSTPercentage).FirstOrDefault(),
+                                              CGST = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.CGSTPercentage).FirstOrDefault(),
+                                              SGST = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.SGSTPercentage).FirstOrDefault(),
+                                              IGST = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.IGSTPercentage).FirstOrDefault(),
+                                              CESS = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.CESSPercentage).FirstOrDefault(),
+                                              AddCess = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.AdditionalCESSPercentage).FirstOrDefault(),
+                                              GSTDesc = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.TaxDescription).FirstOrDefault(),
+                                              CESSDesc = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.CESSDescription).FirstOrDefault(),
+                                              AddCessDesc = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.AdditionalCESSDescription).FirstOrDefault(),
+                                              TaxIDD = LT.TaxID,
+                                              Type = LM.LensType,
+                                              HSNNo = LT.HSNNo,
+                                              UOM = UOM.Where(x => x.id == LT.UOMID).Select(x => x.Description).FirstOrDefault(),
+                                              uomid = LT.UOMID,
+                                              Sph = LT.Sph != null ? "Sph : " + LT.Sph + "; " : null,
+                                              Cyl = LT.Cyl != null ? "Cyl : " + LT.Cyl + "; " : null,
+                                              Axis = LT.Axis != null ? "Axis : " + LT.Axis + "; " : null,
+                                              Add = LT.Add != null ? "Add : " + LT.Add : null,
+                                              FrameShapeID = Onelinemaster.Where(x => x.OLMID == LT.FrameShapeID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Shape : " + Onelinemaster.Where(x => x.OLMID == LT.FrameShapeID).Select(c => c.ParentDescription).FirstOrDefault() + "; " : null,
+                                              FrameStyleID = Onelinemaster.Where(x => x.OLMID == LT.FrameStyleID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Style : " + Onelinemaster.Where(x => x.OLMID == LT.FrameStyleID).Select(c => c.ParentDescription).FirstOrDefault() + "; " : null,
+                                              FrameTypeID = Onelinemaster.Where(x => x.OLMID == LT.FrameTypeID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Type : " + Onelinemaster.Where(x => x.OLMID == LT.FrameTypeID).Select(c => c.ParentDescription).FirstOrDefault() + "; " : null,
+                                              FrameWidthID = Onelinemaster.Where(x => x.OLMID == LT.FrameWidthID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Width : " + Onelinemaster.Where(x => x.OLMID == LT.FrameWidthID).Select(c => c.ParentDescription).FirstOrDefault() : null,
+                                              Stockqty = OpticalBalance.Where(x => x.LTID == LT.ID && x.FYID == Fyear).Select(x => x.ClosingBalance).FirstOrDefault(),
+                                              Sptaxinclusive = LT.Sptaxinclusive,
 
                                           }).ToList();
             return CustomerOrder;
