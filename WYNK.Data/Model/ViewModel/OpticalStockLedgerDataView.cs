@@ -50,12 +50,20 @@ namespace WYNK.Data.Model.ViewModel
         public string Brand { get; set; }
         public int BrandID { get; set; }
         public string UOM { get; set; }
-        public string Model { get; set; }
         public string Color { get; set; }
         public decimal Receipt { get; set; }
         public decimal Issue { get; set; }
         public decimal Openingstock { get; set; }
         public decimal Closingstock { get; set; }
+        public int LTID { get; set; }
+        public string Sph { get; set; }
+        public string Cyl { get; set; }
+        public string Axis { get; set; }
+        public string Add { get; set; }
+        public string Fshpae { get; set; }
+        public string Ftype { get; set; }
+        public string Fwidth { get; set; }
+        public string Fstyle { get; set; }
         public int ID { get; set; }
     }
     public class OpticalstockledgerI
@@ -71,14 +79,13 @@ namespace WYNK.Data.Model.ViewModel
         public string Brand { get; set; }
         public int BrandID { get; set; }
         public string UOM { get; set; }
-        public string Model { get; set; }
         public string Color { get; set; }
         public decimal Receipt { get; set; }
         public decimal Issue { get; set; }
         public decimal Openingstock { get; set; }
         public decimal Closingstock { get; set; }
         public int ID { get; set; }
-
+        public int LTID { get; set; }
     }
 
     public class Receipt
@@ -94,13 +101,36 @@ namespace WYNK.Data.Model.ViewModel
         public string Brand { get; set; }
         public int BrandID { get; set; }
         public string UOM { get; set; }
-        public string Model { get; set; }
         public string Color { get; set; }
         public decimal Recept { get; set; }
         public decimal Issue { get; set; }
-        public decimal Openingstock { get; set; }
-        public decimal Closingstock { get; set; }
         public int ID { get; set; }
+        public int REC01 { get; set; }
+        public int REC02 { get; set; }
+        public int REC03 { get; set; }
+        public int REC04 { get; set; }
+        public int REC05 { get; set; }
+        public int REC06 { get; set; }
+        public int REC07 { get; set; }
+        public int REC08 { get; set; }
+        public int REC09 { get; set; }
+        public int REC10 { get; set; }
+        public int REC11 { get; set; }
+        public int REC12 { get; set; }
+        public int ISS01 { get; set; }
+        public int ISS02 { get; set; }
+        public int ISS03 { get; set; }
+        public int ISS04 { get; set; }
+        public int ISS05 { get; set; }
+        public int ISS06 { get; set; }
+        public int ISS07 { get; set; }
+        public int ISS08 { get; set; }
+        public int ISS09 { get; set; }
+        public int ISS10 { get; set; }
+        public int ISS11 { get; set; }
+        public int ISS12 { get; set; }
+        public int LTID { get; set; }
+        public decimal Openingstock { get; set; }
     }
     public class Issue
     {
@@ -115,14 +145,36 @@ namespace WYNK.Data.Model.ViewModel
         public string Brand { get; set; }
         public int BrandID { get; set; }
         public string UOM { get; set; }
-        public string Model { get; set; }
         public string Color { get; set; }
         public decimal Receipt { get; set; }
         public decimal Isue { get; set; }
+        public int REC01 { get; set; }
+        public int REC02 { get; set; }
+        public int REC03 { get; set; }
+        public int REC04 { get; set; }
+        public int REC05 { get; set; }
+        public int REC06 { get; set; }
+        public int REC07 { get; set; }
+        public int REC08 { get; set; }
+        public int REC09 { get; set; }
+        public int REC10 { get; set; }
+        public int REC11 { get; set; }
+        public int REC12 { get; set; }
+        public int ISS01 { get; set; }
+        public int ISS02 { get; set; }
+        public int ISS03 { get; set; }
+        public int ISS04 { get; set; }
+        public int ISS05 { get; set; }
+        public int ISS06 { get; set; }
+        public int ISS07 { get; set; }
+        public int ISS08 { get; set; }
+        public int ISS09 { get; set; }
+        public int ISS10 { get; set; }
+        public int ISS11 { get; set; }
+        public int ISS12 { get; set; }
+        public int LTID { get; set; }
         public decimal Openingstock { get; set; }
-        public decimal Closingstock { get; set; }
         public int ID { get; set; }
-
 
     }
 
