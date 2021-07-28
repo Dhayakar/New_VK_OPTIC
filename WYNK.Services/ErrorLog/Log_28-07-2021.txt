@@ -1,0 +1,120 @@
+
+28-07-2021 06:01:35 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+28-07-2021 06:01:35 	Message : 	Successfully Logged-In
+
+28-07-2021 06:03:02 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+28-07-2021 06:03:02 	Message : 	Successfully Logged-In
+
+28-07-2021 06:34:07 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+28-07-2021 06:34:07 	Message : 	Successfully Logged-In
+
+28-07-2021 06:34:36 	 	CUSTOMER MASTER 	User name : 	N Steve 	User ID : 	32246 	Mode : Update
+28-07-2021 06:34:36 	CustomerMaster 	{"ID":5078,"CmpID":1062,"UIN":null,"Name":"Rajkumar","MiddleName":null,"LastName":"J","Address1":"Chennai","Address2":null,"Address3":null,"Location":5,"GSTNo":null,"MobileNo":null,"PhoneNo":null,"ContactPerson":null,"IsDeleted":false,"CreatedUTC":"2021-07-21T06:18:39.277","UpdatedUTC":"2021-07-28T06:34:36.5673345Z","CreatedBy":32246,"UpdatedBy":32246}
+28-07-2021 06:34:36 	Information : 	Update Successfully
+
+28-07-2021 06:34:42 	 	CUSTOMER MASTER 	User name : 	N Steve 	User ID : 	32246 	Mode : Update
+28-07-2021 06:34:42 	CustomerMaster 	{"ID":5078,"CmpID":1062,"UIN":null,"Name":"Rajkumar","MiddleName":"a","LastName":"J","Address1":"Chennai","Address2":null,"Address3":null,"Location":5,"GSTNo":null,"MobileNo":null,"PhoneNo":null,"ContactPerson":null,"IsDeleted":false,"CreatedUTC":"2021-07-21T06:18:39.277","UpdatedUTC":"2021-07-28T06:34:42.3317966Z","CreatedBy":32246,"UpdatedBy":32246}
+28-07-2021 06:34:42 	Information : 	Update Successfully
+
+28-07-2021 06:34:51 	 	CUSTOMER MASTER 	User name : 	N Steve 	User ID : 	32246 	Mode : Update
+28-07-2021 06:34:51 	CustomerMaster 	{"ID":5078,"CmpID":1062,"UIN":null,"Name":"Rajkumar","MiddleName":"a","LastName":"J","Address1":"Chennai","Address2":"as","Address3":"as","Location":5,"GSTNo":null,"MobileNo":null,"PhoneNo":null,"ContactPerson":null,"IsDeleted":false,"CreatedUTC":"2021-07-21T06:18:39.277","UpdatedUTC":"2021-07-28T06:34:51.4849673Z","CreatedBy":32246,"UpdatedBy":32246}
+28-07-2021 06:34:51 	Information : 	Update Successfully
+
+28-07-2021 06:35:04 	 	CUSTOMER MASTER 	User name : 	N Steve 	User ID : 	32246 	Mode : Update
+28-07-2021 06:35:04 	CustomerMaster 	{"ID":5078,"CmpID":1062,"UIN":null,"Name":"Rajkumar","MiddleName":"","LastName":"J","Address1":"Chennai","Address2":"","Address3":"","Location":5,"GSTNo":null,"MobileNo":null,"PhoneNo":null,"ContactPerson":null,"IsDeleted":false,"CreatedUTC":"2021-07-21T06:18:39.277","UpdatedUTC":"2021-07-28T06:35:04.4662392Z","CreatedBy":32246,"UpdatedBy":32246}
+28-07-2021 06:35:04 	Information : 	Update Successfully
+
+28-07-2021 06:47:28 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+28-07-2021 06:47:28 	Message : 	Successfully Logged-In
+
+28-07-2021 06:48:54 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+28-07-2021 06:48:54 	Message : 	Successfully Logged-In
+
+28-07-2021 06:55:57 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+28-07-2021 06:55:57 	Message : 	Successfully Logged-In
+
+28-07-2021 06:56:14 	V K OPTIC POINT 	CUSTOMER MASTER 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+28-07-2021 06:56:14 	CustomerMaster 	{"ID":-2147482647,"CmpID":1062,"UIN":null,"Name":"adsa","MiddleName":null,"LastName":"asdsa","Address1":"asdsad","Address2":null,"Address3":null,"Location":0,"GSTNo":null,"MobileNo":"121212121","PhoneNo":null,"ContactPerson":null,"IsDeleted":false,"CreatedUTC":"2021-07-28T06:56:13.6586477Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null}
+28-07-2021 06:56:14 	Information : 	Saved Successfully
+
+28-07-2021 07:18:26 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+28-07-2021 07:18:26 	Message : 	Successfully Logged-In
+
+28-07-2021 07:19:45 	V K OPTIC POINT 	CUSTOMER MASTER 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+28-07-2021 07:19:45 	CustomerMaster 	{"ID":-2147482646,"CmpID":1062,"UIN":null,"Name":"sdaas","MiddleName":"asdsa","LastName":"asd","Address1":"asdsad","Address2":null,"Address3":null,"Location":5,"GSTNo":null,"MobileNo":"23232323232","PhoneNo":null,"ContactPerson":null,"IsDeleted":false,"CreatedUTC":"2021-07-28T07:19:45.273634Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null}
+28-07-2021 07:19:45 	Information : 	Saved Successfully
+
+28-07-2021 07:37:47 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+28-07-2021 07:37:47 	Message : 	Successfully Logged-In
+
+28-07-2021 07:42:13 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+28-07-2021 07:42:13 	Message : 	Successfully Logged-In
+
+28-07-2021 07:42:30 	 	CUSTOMER MASTER 	User name : 	N Steve 	User ID : 	32246 	Mode : Update
+28-07-2021 07:42:30 	CustomerMaster 	{"ID":5079,"CmpID":1062,"UIN":null,"Name":"Prakash","MiddleName":null,"LastName":"D","Address1":"Chennai","Address2":null,"Address3":null,"Location":5,"GSTNo":null,"MobileNo":"9840012345","PhoneNo":null,"ContactPerson":null,"IsDeleted":false,"CreatedUTC":"2021-07-21T06:18:47.98","UpdatedUTC":"2021-07-28T07:42:30.9477979Z","CreatedBy":32246,"UpdatedBy":32246}
+28-07-2021 07:42:31 	Information : 	Update Successfully
+
+28-07-2021 07:42:59 	 	CUSTOMER MASTER 	User name : 	N Steve 	User ID : 	32246 	Mode : Update
+28-07-2021 07:42:59 	CustomerMaster 	{"ID":5078,"CmpID":1062,"UIN":null,"Name":"Rajkumar","MiddleName":"","LastName":"J","Address1":"Chennai","Address2":"","Address3":"","Location":5,"GSTNo":null,"MobileNo":"9840012345","PhoneNo":null,"ContactPerson":null,"IsDeleted":false,"CreatedUTC":"2021-07-21T06:18:39.277","UpdatedUTC":"2021-07-28T07:42:59.9742467Z","CreatedBy":32246,"UpdatedBy":32246}
+28-07-2021 07:42:59 	Information : 	Update Successfully
+
+28-07-2021 07:46:19 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+28-07-2021 07:46:19 	Message : 	Successfully Logged-In
+
+28-07-2021 07:52:27 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+28-07-2021 07:52:27 	Message : 	Successfully Logged-In
+
+28-07-2021 07:53:16 	V K OPTIC POINT 	CUSTOMER MASTER 	User name : 	N Steve 	User ID : 	32246 	Mode : Update
+28-07-2021 07:53:16 	CustomerMaster 	{"ID":5079,"CmpID":1062,"UIN":null,"Name":"Prakash","MiddleName":null,"LastName":"D","Address1":"Chennai","Address2":null,"Address3":null,"Location":5,"GSTNo":null,"MobileNo":"9840012345","PhoneNo":null,"ContactPerson":null,"IsDeleted":false,"CreatedUTC":"2021-07-21T06:18:47.98","UpdatedUTC":"2021-07-28T07:53:16.1410897Z","CreatedBy":32246,"UpdatedBy":32246}
+28-07-2021 07:53:16 	Information : 	Update Successfully
+
+28-07-2021 07:53:40 	V K OPTIC POINT 	CUSTOMER MASTER 	User name : 	N Steve 	User ID : 	32246 	Mode : Update
+28-07-2021 07:53:40 	CustomerMaster 	{"ID":5078,"CmpID":1062,"UIN":null,"Name":"Rajkumar","MiddleName":"","LastName":"J","Address1":"Chennai","Address2":"","Address3":"","Location":5,"GSTNo":null,"MobileNo":"9840012346","PhoneNo":null,"ContactPerson":null,"IsDeleted":false,"CreatedUTC":"2021-07-21T06:18:39.277","UpdatedUTC":"2021-07-28T07:53:40.4192984Z","CreatedBy":32246,"UpdatedBy":32246}
+28-07-2021 07:53:40 	Information : 	Update Successfully
+
+28-07-2021 07:53:49 	V K OPTIC POINT 	CUSTOMER MASTER 	User name : 	N Steve 	User ID : 	32246 	Mode : Update
+28-07-2021 07:53:49 	CustomerMaster 	{"ID":5081,"CmpID":1062,"UIN":null,"Name":"priya","MiddleName":null,"LastName":"j","Address1":"chennai","Address2":null,"Address3":null,"Location":5,"GSTNo":null,"MobileNo":"9840012341","PhoneNo":null,"ContactPerson":null,"IsDeleted":false,"CreatedUTC":"2021-07-23T11:02:06.47","UpdatedUTC":"2021-07-28T07:53:49.3777412Z","CreatedBy":32246,"UpdatedBy":32246}
+28-07-2021 07:53:49 	Information : 	Update Successfully
+
+28-07-2021 07:54:07 	V K OPTIC POINT 	CUSTOMER MASTER 	User name : 	N Steve 	User ID : 	32246 	Mode : Update
+28-07-2021 07:54:07 	CustomerMaster 	{"ID":5080,"CmpID":1062,"UIN":null,"Name":"Karthick","MiddleName":null,"LastName":"j","Address1":"Chennai","Address2":null,"Address3":null,"Location":5,"GSTNo":null,"MobileNo":"9840012347","PhoneNo":null,"ContactPerson":null,"IsDeleted":false,"CreatedUTC":"2021-07-21T06:18:58.577","UpdatedUTC":"2021-07-28T07:54:07.0455723Z","CreatedBy":32246,"UpdatedBy":32246}
+28-07-2021 07:54:07 	Information : 	Update Successfully
+
+28-07-2021 07:56:48 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+28-07-2021 07:56:48 	Message : 	Successfully Logged-In
+
+28-07-2021 07:58:24 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+28-07-2021 07:58:24 	Message : 	Successfully Logged-In
+
+28-07-2021 08:10:04 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+28-07-2021 08:10:04 	Message : 	Successfully Logged-In
+
+28-07-2021 08:10:58 	V K OPTIC POINT 	CUSTOMER MASTER 	User name : 	N Steve 	User ID : 	32246 	Mode : Update
+28-07-2021 08:10:58 	CustomerMaster 	{"ID":5081,"CmpID":1062,"UIN":null,"Name":"priya","MiddleName":null,"LastName":"j","Address1":"chennai","Address2":null,"Address3":null,"Location":5,"GSTNo":null,"MobileNo":"9840012341","PhoneNo":null,"ContactPerson":null,"IsDeleted":false,"CreatedUTC":"2021-07-23T11:02:06.47","UpdatedUTC":"2021-07-28T08:10:58.5913621Z","CreatedBy":32246,"UpdatedBy":32246}
+28-07-2021 08:10:58 	Information : 	Update Successfully
+
+28-07-2021 08:12:49 	V K OPTIC POINT 	CUSTOMER MASTER 	User name : 	N Steve 	User ID : 	32246 	Mode : Update
+28-07-2021 08:12:49 	CustomerMaster 	{"ID":5081,"CmpID":1062,"UIN":null,"Name":"priya","MiddleName":null,"LastName":"j","Address1":"chennai","Address2":null,"Address3":null,"Location":15,"GSTNo":null,"MobileNo":"9840012341","PhoneNo":null,"ContactPerson":null,"IsDeleted":false,"CreatedUTC":"2021-07-23T11:02:06.47","UpdatedUTC":"2021-07-28T08:12:45.3897452Z","CreatedBy":32246,"UpdatedBy":32246}
+28-07-2021 08:12:52 	Information : 	Update Successfully
+
+28-07-2021 08:13:19 	V K OPTIC POINT 	CUSTOMER MASTER 	User name : 	N Steve 	User ID : 	32246 	Mode : Update
+28-07-2021 08:13:19 	CustomerMaster 	{"ID":5081,"CmpID":1062,"UIN":null,"Name":"priya","MiddleName":null,"LastName":"j","Address1":"chennai","Address2":null,"Address3":null,"Location":15,"GSTNo":null,"MobileNo":"9840012341","PhoneNo":null,"ContactPerson":null,"IsDeleted":false,"CreatedUTC":"2021-07-23T11:02:06.47","UpdatedUTC":"2021-07-28T08:13:19.5585773Z","CreatedBy":32246,"UpdatedBy":32246}
+28-07-2021 08:13:19 	Information : 	Update Successfully
+
+28-07-2021 08:14:46 	V K OPTIC POINT 	CUSTOMER MASTER 	User name : 	N Steve 	User ID : 	32246 	Mode : Update
+28-07-2021 08:14:46 	CustomerMaster 	{"ID":5081,"CmpID":1062,"UIN":null,"Name":"priya","MiddleName":null,"LastName":"j","Address1":"chennai","Address2":null,"Address3":null,"Location":15,"GSTNo":null,"MobileNo":"9840012341","PhoneNo":null,"ContactPerson":null,"IsDeleted":false,"CreatedUTC":"2021-07-23T11:02:06.47","UpdatedUTC":"2021-07-28T08:14:46.3694302Z","CreatedBy":32246,"UpdatedBy":32246}
+28-07-2021 08:14:46 	Information : 	Update Successfully
+
+28-07-2021 09:19:16 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+28-07-2021 09:19:16 	Message : 	Successfully Logged-In
+
+28-07-2021 09:22:38 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+28-07-2021 09:22:38 	Message : 	Successfully Logged-In
+
+28-07-2021 09:23:14 	V K OPTIC POINT 	CUSTOMER MASTER 	User name : 	N Steve 	User ID : 	32246 	Mode : Update
+28-07-2021 09:23:14 	CustomerMaster 	{"ID":5078,"CmpID":1062,"UIN":null,"Name":"Rajkumar","MiddleName":"","LastName":"J","Address1":"Chennai","Address2":"","Address3":"","Location":23,"GSTNo":null,"MobileNo":"9840012346","PhoneNo":null,"ContactPerson":null,"IsDeleted":false,"CreatedUTC":"2021-07-21T06:18:39.277","UpdatedUTC":"2021-07-28T09:23:14.0392418Z","CreatedBy":32246,"UpdatedBy":32246}
+28-07-2021 09:23:14 	Information : 	Update Successfully
+
+28-07-2021 09:23:36 	V K OPTIC POINT 	CUSTOMER MASTER 	User name : 	N Steve 	User ID : 	32246 	Mode : Update
+28-07-2021 09:23:36 	CustomerMaster 	{"ID":5078,"CmpID":1062,"UIN":null,"Name":"Rajkumar","MiddleName":"","LastName":"J","Address1":"Chennai","Address2":"","Address3":"","Location":15,"GSTNo":null,"MobileNo":"9840012346","PhoneNo":null,"ContactPerson":null,"IsDeleted":false,"CreatedUTC":"2021-07-21T06:18:39.277","UpdatedUTC":"2021-07-28T09:23:36.8583182Z","CreatedBy":32246,"UpdatedBy":32246}
+28-07-2021 09:23:36 	Information : 	Update Successfully
