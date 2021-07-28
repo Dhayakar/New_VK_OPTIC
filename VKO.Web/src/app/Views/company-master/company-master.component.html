@@ -1,0 +1,340 @@
+
+<form #CompanyForm="ngForm">
+  <div class="col-sm-12 borfiglau-0">
+    <div class="col-sm-12">
+      <h6> Organization Details </h6>
+    </div>
+
+    <div class="col-sm-12 pgtop20-0">      
+        <div class="row">
+          <input #Cmpid name="Cmpid" [(ngModel)]="C_CmpID" type="hidden">
+          <!--<div class="col-sm-2"></div>-->
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="col-sm-3">
+                <mat-form-field appearance="outline">
+                  <mat-label>Organization</mat-label>
+                  <input matInput placeholder="Company Name" [(ngModel)]="C_CompanyName" name="C_CompanyName" (keypress)="hidedotval($event)" required>
+                </mat-form-field>
+                <!--<mat-icon (click)="getCompanyTable()" class="grab" style="font-size:30px;" data-toggle="tooltip" title="Search">search</mat-icon>-->
+              </div>
+              <div class="col-sm-1">
+                <!--<button class="btn-text" (click)="getCompanyTable()"><i class="fas fa-info-circle"></i> Help</button>-->
+                <button class="btn-text"><i class="fas fa-info-circle" (click)="getCompanyTable()">Help</i> </button>
+              </div>
+              <div class="col-sm-3">
+                <mat-form-field appearance="outline">
+                  <mat-label>Address1</mat-label>
+                  <input matInput placeholder="Address1" maxlength="100" [(ngModel)]="C_Address1" name="C_Address1" (keypress)="hidedotval($event)" required>
+                </mat-form-field>
+              </div>
+              <div class="col-sm-3">
+                <mat-form-field appearance="outline">
+                  <mat-label>Address2</mat-label>
+                  <input matInput placeholder="Address2" maxlength="100" [(ngModel)]="C_Address2" name="C_Address2" (keypress)="hidedotval($event)">
+                </mat-form-field>
+              </div>
+              <div class="col-sm-2">
+                <mat-form-field appearance="outline">
+                  <mat-label>Address3</mat-label>
+                  <input matInput placeholder="Address3" maxlength="100" [(ngModel)]="C_Address3" name="C_Address3" (keypress)="hidedotval($event)">
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="col-sm-3">
+                <mat-form-field appearance="outline">
+                  <mat-label>City</mat-label>
+                  <mat-select [(ngModel)]="Cityy" name="Cityy" [disabled]="DisabledREV" (ngModelChange)="Citysumbit()" required>
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let City of Cityname" [value]="City.Value">{{City.Text}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+              </div>
+              <div class="col-sm-1">
+
+              </div>
+              <div class="col-sm-3">
+                <mat-form-field appearance="outline">
+                  <mat-label>Location</mat-label>
+                  <mat-select [(ngModel)]="M_location" name="Locations" [disabled]="disableLOC" required>
+                    <mat-option *ngFor="let Location of Locationname" [value]="Location">{{Location.Text}}</mat-option>
+                  </mat-select>
+                  <mat-hint>Location is Mandatory !</mat-hint>
+                </mat-form-field>
+              </div>
+
+              <div class="col-sm-3">
+                <mat-form-field appearance="outline">
+                  <mat-label>State</mat-label>
+                  <strong>
+                    <input [(ngModel)]="State" name="State" matInput placeholder="State Name" disabled>
+                  </strong>
+                </mat-form-field>
+              </div>
+
+              <div class="col-sm-2">
+                <mat-form-field appearance="outline">
+                  <mat-label>Country</mat-label>
+                  <strong>
+                    <input [(ngModel)]="Country" name="Country" matInput placeholder="Country Name" disabled>
+                  </strong>
+                </mat-form-field>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-sm-12" style="margin-top:1%">
+            <div class="row">
+
+              <div class="col-sm-3">
+                <mat-form-field appearance="outline">
+                  <mat-label>Tax No</mat-label>
+                  <input matInput placeholder="Tax No" maxlength="25" [(ngModel)]="C_GSTNo" name="C_GSTNo" (keypress)="hidedotval($event)">
+                </mat-form-field>
+              </div>
+              <div class="col-sm-1">
+
+              </div>
+              <div class="col-sm-3">
+                <mat-form-field appearance="outline">
+                  <mat-label>Contact Person</mat-label>
+                  <input matInput placeholder="Contact Person" [(ngModel)]="C_ContactPerson" name="C_ContactPerson" (keypress)="hidedotval($event)" required>
+                </mat-form-field>
+              </div>
+              <div class="col-sm-3">
+                <mat-form-field appearance="outline">
+                  <mat-label>Company Group</mat-label>
+                  <input matInput placeholder="Company Group" [(ngModel)]="C_CompanyGroup" name="C_CompanyGroup" (keypress)="hidedotval($event)">
+                </mat-form-field>
+
+                <!--<mat-icon (click)="getCompanyName()" class="grab" style="font-size:30px;" data-toggle="tooltip" title="Search">search</mat-icon>-->
+              </div>
+              <div class="col-sm-2">
+                <button class="btn-text" (click)="getCompanyName()"><i class="fas fa-info-circle"></i> Help</button>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!--<div class="col-sm-12">
+          <div class="row">
+            <div class="col-sm-4">
+              <h4 class="refcol">
+                Communication Details
+              </h4>
+            </div>
+          </div>
+        </div>-->
+        <!--Third ROw-->
+        <div class="col-sm-12">
+          <h5 class="refcol">
+            Communication Details
+          </h5>
+          <div class="row dividebar">
+            <div class="col-sm-3">
+              <mat-form-field appearance="outline">
+                <mat-label>Phone1</mat-label>
+                <input matInput placeholder="Phone1" minlength="10" maxlength="15" [(ngModel)]="C_Phone1" name="C_Phone1" (keypress)="numberOnly($event)" required>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+              <mat-form-field appearance="outline">
+                <mat-label>Phone2</mat-label>
+                <input matInput placeholder="Phone2" minlength="10" maxlength="15" [(ngModel)]="C_Phone2" name="C_Phone2" (keypress)="numberOnly($event)">
+              </mat-form-field>
+            </div>
+            <div class="col-sm-3">
+
+
+              <mat-form-field appearance="outline">
+                <mat-label>E-Mail</mat-label>
+                <input matInput type="email" email placeholder="E-Mail" maxlength="100" #email="ngModel" [(ngModel)]="C_Email" name="C_Email" id="email" required>
+
+                <mat-error *ngIf="email.hasError('required') && email.hasError('touched')">
+                  Email is <strong>required</strong>
+                </mat-error>
+
+                <mat-error *ngIf="email.hasError('email.errors?.email')">
+                  Please enter a valid email address
+                </mat-error>
+              </mat-form-field>
+
+
+
+
+              <!--<input  type="email"   name="email"       ngModel    #emailWithEmail="ngModel"
+                          placeholder="Email"
+              email   required>-->
+              <!--
+                   <mat-error *ngIf="email.touched && email.errors?.required">  Email is a required field!</mat-error>
+
+                <mat-error *ngIf="hasError('C_Email', 'email')">enter a valid email</mat-error>
+
+                  <div *ngIf="emailWithEmail.touched">
+                <p *ngIf="emailWithEmail.errors?.required">
+                  Email is a required field!
+                </p>
+                <p *ngIf="emailWithEmail.errors?.email">
+                  This is not a valid Email!!!
+                </p>
+              </div> -->
+
+            </div>
+            <div class="col-sm-3">
+              <mat-form-field appearance="outline">
+                <mat-label>Website</mat-label>
+                <input matInput type="url" url placeholder="Website" maxlength="100" #url="ngModel" [(ngModel)]="C_Website" name="C_Website" id="url">
+
+                <!--<mat-error *ngIf="url.hasError('required') && url.hasError('touched')">
+                  url is <strong>required</strong>
+                </mat-error>-->
+                <!--<mat-error *ngIf="url.hasError('url.errors.pattern')">
+                  Must be a valid site URL
+                </mat-error>-->
+
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-12" *ngIf="Hidenumgercointrol">
+          <h5 class="refcol">
+            Number Control
+          </h5>
+          <mat-form-field>
+            <input matInput (keyup)="applyFiltersnumber($event.target.value)" placeholder="Filter">
+          </mat-form-field>
+          <div class="row tableoverflowheight">
+            <table mat-table [dataSource]="dataSourceNumbercontrol" class="custom-table withoutbackgroung search-table table-bordered">
+
+              <ng-container matColumnDef="Sno">
+                <th mat-header-cell *matHeaderCellDef> Sno </th>
+                <td mat-cell *matCellDef="let element;let id = index;"> {{id + 1}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Description">
+                <th mat-header-cell *matHeaderCellDef> Description </th>
+                <td mat-cell *matCellDef="let element"> {{element.Desc}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Prefix">
+                <th mat-header-cell *matHeaderCellDef> Prefix </th>
+                <td mat-cell *matCellDef="let element; let id = index" contenteditable="true" (keyup)="ActchangeValue(id,'Prefix',$event)"> {{element.Prefix}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="RunningNumber">
+                <th mat-header-cell *matHeaderCellDef> Running Number </th>
+                <td mat-cell *matCellDef="let element"> {{element.RunningNumber}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="suffix">
+                <th mat-header-cell *matHeaderCellDef>Suffix </th>
+                <td mat-cell *matCellDef="let element; let id = index" contenteditable="true" (keyup)="ActSuffixchangeValue(id,'Suffix',$event)"> {{element.Suffix}} </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns2;" (click)="selection.toggle(row)"></tr>
+            </table>
+
+          </div>
+
+        </div>
+
+        <div class="col-sm-12 m-3">
+          <div class="col-sm-12 pb25">
+            <div class="col-sm-5  sub-section btn-wrap f-r">
+
+              <button type="button" class="btn btn-warning-default" (click)="Cancel()"> Cancel </button>
+              <!-- <button type="button" class="btn btn-warning-default" *ngIf="Cmpid.value!=0" (click)="DeleteId(CompanyForm,Cmpid.value)">Delete</button> -->
+              <button type="button" *ngIf="Cmpid.value!=0;else notShow" (click)="onUpdate(CompanyForm,Cmpid.value)" class="success btn btn-primary  ml-2p">Submit</button>
+              <ng-template #notShow>
+                <button type="button" class="success btn btn-primary  ml-2p" (click)="onSubmit(CompanyForm)"> Submit </button>
+              </ng-template>
+
+
+            </div>
+          </div>
+        </div>
+
+        <div class="modal" role="dialog" [ngStyle]="{'display':cancelblock}">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" (click)="modalClose()">&times;</button>
+                <h4 class="modal-title"> Organization Master  </h4>
+              </div><br />
+              <p align="center">Do you want to cancel</p>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" autofocus (click)="Cancel_No()">No</button>
+                <button type="reset" class="btn btn-success " data-dismiss="modal" (click)="CancelYes()">Yes</button>
+              </div>
+            </div>
+          </div>
+        </div>      
+    </div>
+  </div>
+
+  </form>
+  <!--Company Name Pop_Up-->
+  <div class="modal cust-model" role="dialog" [ngStyle]="{'display':CmpyNamePopUp}">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" (click)="modalClose1()">&times;</button>
+          <h4 class="modal-title"> Company Master  </h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+              <mat-form-field>
+                <mat-label>Filter</mat-label>
+                <input matInput (keyup)="applyFilterssss($event)" #input>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row heightAuto-300px">
+
+            <table mat-table #sortCol1="matSort" [dataSource]="dataSource" matSort class="custom-table withoutbackgroung search-table table-bordered">
+
+
+              <ng-container matColumnDef="companyName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Company Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.companyName}} </td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="branchname">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Branch Address</th>
+                <td mat-cell *matCellDef="let element"> {{element.Location}} </td>
+              </ng-container>
+
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
+              <tr mat-row *matRowDef="let element; columns: displayedColumns;" (click)="selectvalues(element)"></tr>
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  <!--Cancel Popup-->

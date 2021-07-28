@@ -2729,6 +2729,12 @@
           }
         }
       },
+      "MSBuild.Microsoft.VisualStudio.Web.targets/14.0.0.3": {
+        "type": "package",
+        "build": {
+          "build/MSBuild.Microsoft.VisualStudio.Web.targets.props": {}
+        }
+      },
       "NEST/7.8.0": {
         "type": "package",
         "dependencies": {
@@ -7465,6 +7471,42 @@
         "runtimes/win/lib/netstandard2.0/Microsoft.Win32.Registry.dll",
         "useSharedDesignerContext.txt",
         "version.txt"
+      ]
+    },
+    "MSBuild.Microsoft.VisualStudio.Web.targets/14.0.0.3": {
+      "sha512": "38FjZFXUvPG9azsfJzC3UiW6+ogg2jPQBZxtAUV4ybIowiUuHgDS9M2EAeFPBivqiUgALqXh1BoAHSmTiT52gA==",
+      "type": "package",
+      "path": "msbuild.microsoft.visualstudio.web.targets/14.0.0.3",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "build/MSBuild.Microsoft.VisualStudio.Web.targets.props",
+        "msbuild.microsoft.visualstudio.web.targets.14.0.0.3.nupkg.sha512",
+        "msbuild.microsoft.visualstudio.web.targets.nuspec",
+        "tools/VSToolsPath/Web/CollectFiles/Microsoft.Web.Publishing.AllFilesInProjectFolder.targets",
+        "tools/VSToolsPath/Web/CollectFiles/Microsoft.Web.Publishing.AllFilesInTheProject.targets",
+        "tools/VSToolsPath/Web/CollectFiles/Microsoft.Web.Publishing.OnlyFilesToRunTheApp.targets",
+        "tools/VSToolsPath/Web/Deploy/Microsoft.Web.Publishing.Deploy.FPSE.targets",
+        "tools/VSToolsPath/Web/Deploy/Microsoft.Web.Publishing.Deploy.FTP.targets",
+        "tools/VSToolsPath/Web/Deploy/Microsoft.Web.Publishing.Deploy.FileSystem.targets",
+        "tools/VSToolsPath/Web/Deploy/Microsoft.Web.Publishing.Deploy.MsDeploy.targets",
+        "tools/VSToolsPath/Web/Deploy/Microsoft.Web.Publishing.Deploy.Package.targets",
+        "tools/VSToolsPath/Web/Deploy/Microsoft.Web.Publishing.MsDeploy.Common.targets",
+        "tools/VSToolsPath/Web/Microsoft.DNX.Publishing.targets",
+        "tools/VSToolsPath/Web/Microsoft.Web.Publishing.Tasks.dll",
+        "tools/VSToolsPath/Web/Microsoft.Web.Publishing.targets",
+        "tools/VSToolsPath/Web/Microsoft.Web.Publishing/ImportAfter/Microsoft.Web.AzureAD.Publishing.targets",
+        "tools/VSToolsPath/Web/Microsoft.Web.XmlTransform.dll",
+        "tools/VSToolsPath/Web/Microsoft.WebSite.Publishing.targets",
+        "tools/VSToolsPath/Web/Powershell/1.0.1/default-publish.ps1",
+        "tools/VSToolsPath/Web/Powershell/1.0.1/filesystem.pubxml",
+        "tools/VSToolsPath/Web/Powershell/1.0.1/package.pubxml",
+        "tools/VSToolsPath/Web/Powershell/1.0.1/publish-module.psm1",
+        "tools/VSToolsPath/Web/Transform/Microsoft.Web.Publishing.AspNetCompileMerge.targets",
+        "tools/VSToolsPath/WebApplications/Microsoft.WebApplication.Build.Tasks.Dll",
+        "tools/VSToolsPath/WebApplications/Microsoft.WebApplication.targets"
       ]
     },
     "NEST/7.8.0": {
@@ -12614,6 +12656,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
+      "MSBuild.Microsoft.VisualStudio.Web.targets >= 14.0.0.3",
       "Microsoft.AspNetCore.App >= 2.1.1",
       "Microsoft.AspNetCore.Cors >= 2.1.1",
       "Microsoft.AspNetCore.Http.Features >= 2.1.1",
@@ -12624,19 +12667,34 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
+    "C:\\Users\\SYSTEM2\\.nuget\\packages\\": {}
+=======
     "C:\\Users\\admin\\.nuget\\packages\\": {}
+>>>>>>> b98a585c0e89f3879f3c612341193c2b098f2a64
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Git_desktop\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
+<<<<<<< HEAD
+      "projectUniqueName": "E:\\Vk Optics\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
       "projectName": "WYNK.Services",
-      "projectPath": "E:\\Git_desktop\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
+      "projectPath": "E:\\Vk Optics\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
+      "packagesPath": "C:\\Users\\SYSTEM2\\.nuget\\packages\\",
+      "outputPath": "E:\\Vk Optics\\VK_Optic_Point\\WYNK.Services\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\SYSTEM2\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+      "projectUniqueName": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
+      "projectName": "WYNK.Services",
+      "projectPath": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
       "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "E:\\Git_desktop\\VK_Optic_Point\\WYNK.Services\\obj\\",
+      "outputPath": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Services\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> b98a585c0e89f3879f3c612341193c2b098f2a64
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -12648,9 +12706,15 @@
       },
       "frameworks": {
         "netcoreapp2.1": {
+          "targetAlias": "netcoreapp2.1",
           "projectReferences": {
-            "E:\\Git_desktop\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj": {
-              "projectPath": "E:\\Git_desktop\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj"
+<<<<<<< HEAD
+            "E:\\Vk Optics\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj": {
+              "projectPath": "E:\\Vk Optics\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj"
+=======
+            "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj": {
+              "projectPath": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj"
+>>>>>>> b98a585c0e89f3879f3c612341193c2b098f2a64
             }
           }
         }
@@ -12663,7 +12727,12 @@
     },
     "frameworks": {
       "netcoreapp2.1": {
+        "targetAlias": "netcoreapp2.1",
         "dependencies": {
+          "MSBuild.Microsoft.VisualStudio.Web.targets": {
+            "target": "Package",
+            "version": "[14.0.0.3, )"
+          },
           "Microsoft.AspNetCore.App": {
             "suppressParent": "All",
             "target": "Package",
@@ -12703,11 +12772,21 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+<<<<<<< HEAD
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+=======
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+>>>>>>> b98a585c0e89f3879f3c612341193c2b098f2a64
       }
     }
   },
   "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Services\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    },
     {
       "code": "NU1701",
       "level": "Warning",

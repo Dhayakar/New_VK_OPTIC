@@ -19,17 +19,6 @@
         <div class="row">
           <input #CustomerID name="M_CustomerID" [(ngModel)]="M_CustomerID" type="hidden">
           <div class="col-sm-3">
-            <div class="col-sm-10 ml-n5p width-90p">
-              <mat-form-field appearance="outline">
-                <mat-label>UIN</mat-label>
-                <input [(ngModel)]="M_UIN" matInput placeholder="Enter UIN" name="UIN" type="text" disabled>
-              </mat-form-field>
-            </div>
-            <div class="col-sm-1 mt-4p">
-              <mat-icon (click)="SearchUIN()" class="cursor" data-toggle="tooltip" title="Search UIN">search</mat-icon>
-            </div>
-          </div>
-          <div class="col-sm-3">
             <div class="col-sm-8 ml-n5p width-90p">
               <mat-form-field appearance="outline">
                 <mat-label>First Name</mat-label>
@@ -52,8 +41,6 @@
               <input [(ngModel)]="M_LName" matInput autocomplete="off" placeholder="Enter Name" name="LName" type="text" required maxlength="100">
             </mat-form-field>
           </div>
-        </div>
-        <div class="row">
           <div class="col-sm-3">
             <mat-form-field appearance="outline" hintLabel="Max 100 characters">
               <mat-label>Address 1</mat-label>
@@ -61,6 +48,8 @@
               <mat-hint align="end">{{add1.value?.length || 0}}/100</mat-hint>
             </mat-form-field>
           </div>
+        </div>
+        <div class="row">
           <div class="col-sm-3">
             <mat-form-field appearance="outline" hintLabel="Max 100 characters">
               <mat-label>Address 2</mat-label>
@@ -81,6 +70,12 @@
               <input [(ngModel)]="M_GST" matInput autocomplete="off" placeholder="Enter Tax No" name="GST" type="text" minlength="15" maxlength="50">
             </mat-form-field>
           </div>
+          <div class="col-sm-3">
+            <mat-form-field appearance="outline">
+              <mat-label>Contact Person</mat-label>
+              <input [(ngModel)]="M_ContactPerson" matInput autocomplete="off" placeholder="Contact Person" name="ContactPerson" maxlength="50" type="text" (keypress)="nameField($event)">
+            </mat-form-field>
+          </div>
         </div>
         <div class="row">
           <div class="col-sm-3">
@@ -95,7 +90,7 @@
           <div class="col-sm-3">
             <mat-form-field appearance="outline">
               <mat-label>Location</mat-label>
-              <mat-select [(ngModel)]="M_Location" name="Locations" [disabled]="disableLOC">
+              <mat-select [(ngModel)]="M_Location" name="Locations" [disabled]="disableLOC" required>
                 <mat-option>None</mat-option>
                 <mat-option *ngFor="let Location of Locationnames" [value]="Location.Value">{{Location.Text}}</mat-option>
               </mat-select>
@@ -121,12 +116,6 @@
         <div class="row">
           <div class="col-sm-3">
             <mat-form-field appearance="outline">
-              <mat-label>Contact Person</mat-label>
-              <input [(ngModel)]="M_ContactPerson" matInput autocomplete="off" placeholder="Contact Person" name="ContactPerson" maxlength="50" type="text" (keypress)="nameField($event)">
-            </mat-form-field>
-          </div>
-          <div class="col-sm-3">
-            <mat-form-field appearance="outline">
               <mat-label>Phone No</mat-label>
               <input [(ngModel)]="M_PhoneNo" (keypress)="numberOnly($event)"  maxlength="15" autocomplete="off" matInput placeholder="Enter PhoneNo" #PhoneNo name="PhoneNo"  type="text">
             </mat-form-field>
@@ -134,7 +123,7 @@
           <div class="col-sm-3">
             <mat-form-field appearance="outline">
               <mat-label>Mobile No</mat-label>
-              <input [(ngModel)]="M_MobileNo" matInput placeholder="Enter MobileNo" maxlength="15" (keypress)="numberOnly($event)" autocomplete="off" #MobileNo name="MobileNo"  type="text">
+              <input [(ngModel)]="M_MobileNo" matInput placeholder="Enter MobileNo" maxlength="15" (keypress)="numberOnly($event)" autocomplete="off" #MobileNo name="MobileNo"  type="text" required>
             </mat-form-field>
           </div>
         </div>

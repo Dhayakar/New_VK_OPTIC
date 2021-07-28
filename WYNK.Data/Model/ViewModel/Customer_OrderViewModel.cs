@@ -130,6 +130,7 @@ namespace WYNK.Data.Model.ViewModel
         public decimal? GST { get; set; }
         public decimal? SGST { get; set; }
         public decimal? CGST { get; set; }
+        public decimal? IGST { get; set; }
 
 
         public decimal? CESS { get; set; }
@@ -143,6 +144,7 @@ namespace WYNK.Data.Model.ViewModel
         public decimal? GSTValue { get; set; }
         public decimal? CGSTValue { get; set; }
         public decimal? SGSTValue { get; set; }
+        public decimal? IGSTValue { get; set; }
         public decimal? CESSValue { get; set; }
         public decimal? AddCessValue { get; set; }
 

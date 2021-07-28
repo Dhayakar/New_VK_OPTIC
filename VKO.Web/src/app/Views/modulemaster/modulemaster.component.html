@@ -1,0 +1,266 @@
+<div class="col-sm-12">
+  <div class="row">
+    <h6>Module Master</h6>
+  </div>
+  <div class="col-sm-12" style="border:2px solid gray;border-radius:8px">
+
+    <div class="col-sm-12 mph-0">
+      <div class="row mph-0">
+        <div class="col-sm-12 mph-0">
+          <div class="col-sm-6 mph-0 pb20">
+          </div>
+          <div class="col-sm-2 mph-0 pb20">
+          </div>
+          <div class="col-sm-4 mph-0 f-r content-right pb20">
+            <button class="btn-text" (click)="Getformaccess()"><i class="fas fa-eye"></i> View Access</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form #ModuleMasterForm="ngForm">
+      <input #MID name="MID" [(ngModel)]="M_ID" type="hidden">
+      <div class="row">
+        <div class="col-sm-3">
+          <mat-form-field appearance="outline">
+            <mat-label>Module Description</mat-label>
+            <input matInput placeholder="Module Description" maxlength="100" [(ngModel)]="M_moduleDesc" name="M_moduleDesc" required>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-1">
+          <mat-icon (click)="SearchDet()" class="grab" data-toggle="tooltip" title="Search">search</mat-icon>
+        </div>
+        <div class="col-sm-4">
+          <mat-form-field appearance="outline">
+            <mat-label> Module Type</mat-label>
+            <mat-select [(ngModel)]="M_Type" name="M_Type" required>
+              <mat-option value="Main-Module" (click)="hidearentmodule()">Main-Module</mat-option>
+              <mat-option value="Module" (click)="hidemainarentmodule()">Module</mat-option>
+              <mat-option value="Form" (click)="Showparentmodule()">Form</mat-option>
+              <mat-option value="Report" (click)="hidemainarentmodule()">Report</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-3">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Parent Module Description</mat-label>
+            <input matInput placeholder="Parent Module Description" maxlength="100" [(ngModel)]="M_parentmoduleDesc" name="M_parentmoduleDesc" (keypress)="NameField($event)">
+          </mat-form-field>
+        </div>
+        <div class="col-sm-1">
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3">
+          <mat-form-field appearance="outline">
+            <mat-label>Transaction Type</mat-label>
+            <mat-select [(ngModel)]="M_TranType" name="M_TranType">
+              <mat-option *ngFor="let Trantype of Trantypes" [value]="Trantype">{{Trantype.Text}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-1">
+          <button type="button" matTooltip="Add Transaction" class="btn-text" (click)="AddNewtransaction()"><i class="fas fa-plus-circle"></i></button>
+        </div>
+        <div class="col-sm-3" [hidden]="!hideParentmodule">
+          <mat-form-field appearance="outline">
+            <mat-label>Parent Module</mat-label>
+            <input matInput placeholder="Parent Module" [(ngModel)]="M_parentmodule" name="M_parentmodule" disabled>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-1" [hidden]="!hideParentmodule">
+          <mat-icon class="grab" data-toggle="tooltip" (click)="parentSearch()" title="Search">search</mat-icon>
+        </div>
+        <div class="col-sm-2" [hidden]="!showisActive">
+          <mat-form-field appearance="outline">
+            <mat-label>Status</mat-label>
+            <mat-select [(ngModel)]="M_IsActive" name="M_IsActive">
+              <mat-option value="true">Active</mat-option>
+              <mat-option value="false">InActive</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-2" [hidden]="!hideParentmodule">
+          <mat-form-field appearance="outline">
+            <mat-label>Transaction Required</mat-label>
+            <mat-select required [(ngModel)]="M_tag" name="M_tags">
+              <mat-option value="yes">Yes</mat-option>
+              <mat-option value="no">No</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <!--<div class="row" style="margin-top:1%;margin-bottom:2%">
+
+        <div class="col-sm-5"></div>
+        <div class="col-sm-3">
+          <button *ngIf="MID.value !=0;else notShow" [disabled]="disSubmit" mat-raised-button (click)="onUpdate(ModuleMasterForm,MID.value)" style="margin-right: 1%;" class="success">Submit</button>
+          <ng-template #notShow style="text-align:center;">
+            <button mat-raised-button class="btn btn-success" [disabled]="disSubmit" (click)="onSubmit(ModuleMasterForm)" style="margin-right: 1%;"> Submit </button>
+          </ng-template>
+          <button type="button" class="btn btn-warning" style="font-size:15px;color:orange;background-color:white;" (click)="Cancel()"><strong>Cancel</strong></button>
+        </div>
+        <div class="col-sm-4"></div>
+
+      </div>-->
+      <div class="col-sm-12 pb25">
+        <div class="content-right sub-section btn-wrap">
+          <button type="button" class="btn btn-warning-default" (click)="Cancel()"> Cancel </button>
+          <ng-template #notShow style="text-align:center;">
+            <button class="success btn btn-primary" [disabled]="disSubmit" (click)="onSubmit(ModuleMasterForm)"> Submit </button>
+          </ng-template>
+          <button *ngIf="MID.value !=0;else notShow" [disabled]="disSubmit" (click)="onUpdate(ModuleMasterForm,MID.value)" class="success btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+
+</div>
+
+<div class="modal" role="dialog" [ngStyle]="{'display':cancelblock}">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content" style="width: 400px;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="modalClose()">&times;</button>
+        <h4 class="modal-title"> Module Master </h4>
+      </div><br />
+      <p align="center"> Do you want to cancel</p>
+      <div class="modal-footer">
+        <button class="btn btn-danger" data-dismiss="modal" autofocus (click)="CancelNo()">No</button>
+        <button type="reset" class="btn btn-success " data-dismiss="modal" (click)="CancelYes()">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal cust-model" role="dialog" [ngStyle]="{'display':ParentmdlnamePopUp}">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="modalClose1()">&times;</button>
+        <h4 class="modal-title text-left">Module Details</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-sm-5">
+            <input class="form-control" id="myInput" type="text" placeholder="Search..">
+          </div>
+          <div class="col-sm-1"></div>
+          <div class="col-sm-2"></div>
+        </div>
+        <div class="row Management_dashboard_Tableheightsinsidepopup">
+          <table class="custom-table withoutbackgroung search-table table-bordered">
+            <thead>
+              <tr>
+                <th>Action</th>
+                <th>Module</th>
+              </tr>
+            </thead>
+            <tbody id="myTable">
+              <tr *ngFor="let data of this.commonService.data.getparentName">
+                <td>
+                  <mat-checkbox (click)="BindParentName(data)"></mat-checkbox>
+                </td>
+                <td>{{data.ModuleDescription1}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal cust-model" role="dialog" [ngStyle]="{'display':accesspopup}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="modalcloseAccessOk()">&times;</button>
+        <h4 class="modal-title text-left">Module Master - View Access</h4>
+      </div>
+      <div class="modal-body">
+        <table align="center" class="table custom-table">
+          <thead>
+            <tr>
+              <th>Add</th>
+              <th>Edit</th>
+              <th>Delete</th>
+              <th>Export</th>
+              <th>Print</th>
+
+            </tr>
+          </thead>
+          <tbody>
+
+
+            <tr *ngFor="let x of accessdata; index as i">
+              <td>
+                <mat-checkbox [(checked)]="x.Add" disabled></mat-checkbox>
+              </td>
+              <td>
+                <mat-checkbox [(checked)]="x.Edit" disabled></mat-checkbox>
+              </td>
+              <td>
+                <mat-checkbox [(checked)]="x.Delete" disabled></mat-checkbox>
+              </td>
+              <td>
+                <mat-checkbox [(checked)]="x.Export" disabled></mat-checkbox>
+              </td>
+              <td>
+                <mat-checkbox [(checked)]="x.Print" disabled></mat-checkbox>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" data-dismiss="modal" autofocus (click)="modalcloseAccessOk()">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="modal" role="dialog" [ngStyle]="{'display':transactionpopup}">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add Transaction details</h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <!--<div class="col-sm-4">
+            <mat-form-field appearance="outline">
+              <mat-label>Description</mat-label>
+              <input matInput placeholder="Transaction Description" [(ngModel)]="M_transactiondexription" name="M_transactiondexriptions">
+            </mat-form-field>
+          </div>-->
+
+          <app-transaction-type></app-transaction-type>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <!--<button class="btn btn-success" data-dismiss="modal" autofocus (click)="modalcloseAccessOk()">Ok</button>-->
+        <div class="col-sm-12 pb25">
+          <div class="content-right sub-section btn-wrap">
+            <button type="button" class="btn btn-warning-default" (click)="Cancelpopup()"> Close </button>
+            <!--<button type="button" (click)="onUpdatetransaction()" class="success btn btn-primary">Submit</button>-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

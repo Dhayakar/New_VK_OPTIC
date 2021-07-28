@@ -1,0 +1,70 @@
+
+<form #DoctorForm="ngForm" name="DoctorForm" (keydown.enter)="$event.preventDefault()" novalidate>
+  <div class="modal-header" style="text-align:left;background-color:#51b8f2;color:white;width:700px;margin-top:1px;">
+    <h2 mat-dialog-title style="margin-left:140px;">Doctor</h2>
+  </div>
+
+  <div class="modal-body">
+
+    <input #idval name="  idvalue" [(ngModel)]="  idvalue" type="hidden">
+
+    <div class="row">
+      <div class="col-sm-4">
+        <mat-form-field appearance="outline" class="username" style="margin-left:80px">
+          <mat-label>Doctor Name</mat-label>
+          <input name="docname" [(ngModel)]="docname" matInput placeholder="" required>
+          <mat-icon matSuffix>person</mat-icon>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-4">
+        <mat-form-field appearance="outline" class="col-sm-8 Pass" style="margin-left:60px" hintLabel="Min 8 characters">
+          <mat-label>Password</mat-label>
+          <input name="password" type="password" [(ngModel)]="password" id="password" minlength="8" maxlength="15" matInput placeholder="Enter the Password" required>
+        </mat-form-field>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="col-sm-10">
+          <mat-form-field appearance="outline" class="confirmpass" style="margin-left:60px">
+            <mat-label>Confirm Password</mat-label>
+            <input name="confirmpassword" type="password" [(ngModel)]="confirmpassword" id="confirm_password" minlength="8" maxlength="15" matInput placeholder="Re-Enter the Password" required>
+          </mat-form-field>
+        </div>
+          <span id='message'></span>
+        </div>
+      </div>
+
+
+    <div class="row">
+      <div class="col-sm-4" style="margin-left:78px;">
+        <mat-form-field appearance="outline" required>
+          <mat-label>Role</mat-label>
+          <mat-select [(ngModel)]="role" name="role" multiple required>
+            <mat-option *ngFor="let role of roles" [value]="role">{{role.Text}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+
+
+    <div class="row">
+      <div class="col-sm-12" style="margin-left:78px;">
+        <button class="success" style="background-color:forestgreen;color:white" (click)="onSubmit(DoctorForm)" mat-raised-button>Submit</button>&nbsp;&nbsp;
+        <button class="btn-danger" style="background-color:#f44336;color:white" (click)="Dialogclose()" mat-raised-button>Close</button>
+      </div>
+
+
+
+
+    </div>
+
+
+  </div>
+</form>

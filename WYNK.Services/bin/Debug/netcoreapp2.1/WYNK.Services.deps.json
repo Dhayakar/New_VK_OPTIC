@@ -1,9 +1,23 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-
-    "signature": "0599c953678f910cf4de33d06a72464c7c3febdd"
-
+    "signature": ""
+<<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
+    "signature": ""
+=======
+<<<<<<< HEAD
+    "signature": ""
+=======
+    "signature": "fac1f999380e2fa3c89c0c7d094d10f4bfa92b7e"
+>>>>>>> 4c4b9d201d605e18c031f9554ef5ff531d71a820
+>>>>>>> a467531da40d3af4ca2d79f0f162be2d07e976eb
+<<<<<<< HEAD
+>>>>>>> b98a585c0e89f3879f3c612341193c2b098f2a64
+=======
+>>>>>>> b98a585c0e89f3879f3c612341193c2b098f2a64
   },
   "compilationOptions": {
     "defines": [
@@ -26,6 +40,7 @@
     ".NETCoreApp,Version=v2.1": {
       "WYNK.Services/1.0.0": {
         "dependencies": {
+          "MSBuild.Microsoft.VisualStudio.Web.targets": "14.0.0.3",
           "Microsoft.AspNetCore.App": "2.1.1",
           "Microsoft.AspNetCore.Cors": "2.1.1",
           "Microsoft.AspNetCore.Http.Features": "2.1.1",
@@ -193,6 +208,7 @@
         }
       },
       "Microsoft.CSharp/4.6.0": {},
+      "MSBuild.Microsoft.VisualStudio.Web.targets/14.0.0.3": {},
       "NEST/7.8.0": {
         "dependencies": {
           "Elasticsearch.Net": "7.8.0"
@@ -3596,6 +3612,13 @@
       "sha512": "sha512-kxn3M2rnAGy5N5DgcIwcE8QTePWU/XiYcQVzn9HqTls2NKluVzVSmVWRjK7OUPWbljCXuZxHyhEz9kPRIQeXow==",
       "path": "microsoft.csharp/4.6.0",
       "hashPath": "microsoft.csharp.4.6.0.nupkg.sha512"
+    },
+    "MSBuild.Microsoft.VisualStudio.Web.targets/14.0.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-38FjZFXUvPG9azsfJzC3UiW6+ogg2jPQBZxtAUV4ybIowiUuHgDS9M2EAeFPBivqiUgALqXh1BoAHSmTiT52gA==",
+      "path": "msbuild.microsoft.visualstudio.web.targets/14.0.0.3",
+      "hashPath": "msbuild.microsoft.visualstudio.web.targets.14.0.0.3.nupkg.sha512"
     },
     "NEST/7.8.0": {
       "type": "package",

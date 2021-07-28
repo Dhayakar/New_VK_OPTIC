@@ -52,4 +52,106 @@
 26-07-2021 06:04:11 	Information : 	Saved Successfully
 26-07-2021 06:05:31 	NumberControl 	{"VCID":9247,"TransactionID":1026,"DepartmentID":0,"CmpID":1062,"Prefix":"OP","Suffix":"BILL","Description":"OpOpticalBilling","Autonumber":true,"RunningNumber":59,"EffectiveFrom":"2020-07-04T18:30:00","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2020-07-04T06:43:22.067","UpdatedUTC":null,"CreatedBy":24,"UpdatedBy":null}
 26-07-2021 06:05:32 	NumberControl 	{"VCID":9485,"TransactionID":1035,"DepartmentID":0,"CmpID":1062,"Prefix":"Rec","Suffix":"pt","Description":"Receipt","Autonumber":true,"RunningNumber":124,"EffectiveFrom":"2020-09-14T18:30:00","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2020-09-14T10:06:40.063","UpdatedUTC":null,"CreatedBy":24,"UpdatedBy":null}
+<<<<<<< HEAD
+
+26-07-2021 09:07:34 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+26-07-2021 09:07:34 	Message : 	Successfully Logged-In
+
+26-07-2021 09:13:08 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+26-07-2021 09:13:08 	Message : 	Successfully Logged-In
+
+26-07-2021 09:38:10 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+26-07-2021 09:38:10 	Message : 	Successfully Logged-In
+
+26-07-2021 09:40:05 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+26-07-2021 09:40:05 	Message : 	Successfully Logged-In
+
+26-07-2021 09:41:16 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+26-07-2021 09:41:16 	Message : 	Successfully Logged-In
+
+26-07-2021 09:46:01 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+26-07-2021 09:46:01 	Message : 	Successfully Logged-In
+
+26-07-2021 10:02:49 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+26-07-2021 10:02:49 	Message : 	Successfully Logged-In
+
+26-07-2021 10:10:03 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+26-07-2021 10:10:03 	Message : 	Successfully Logged-In
+
+26-07-2021 10:11:56 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+26-07-2021 10:11:56 	Message : 	Successfully Logged-In
+
+26-07-2021 10:14:28 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+26-07-2021 10:14:28 	Message : 	Successfully Logged-In
+
+26-07-2021 11:23:24 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+26-07-2021 11:23:24 	Message : 	Successfully Logged-In
+
+26-07-2021 11:48:01 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+26-07-2021 11:48:01 	Message : 	Successfully Logged-In
+
+26-07-2021 12:12:37 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+26-07-2021 12:12:37 	Message : 	Successfully Logged-In
+
+26-07-2021 13:19:39 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+26-07-2021 13:19:39 	Message : 	Successfully Logged-In
+=======
 >>>>>>> a82c466e29b651fc77ee6b9ac3499f2eba166ca1
+
+26-07-2021 08:24:33 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+26-07-2021 08:24:33 	Message : 	Successfully Logged-In
+
+26-07-2021 10:53:18 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+26-07-2021 10:53:18 	Message : 	Successfully Logged-In
+
+26-07-2021 10:56:28 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+26-07-2021 10:56:28 	Message : 	Successfully Logged-In
+
+26-07-2021 12:00:44 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+26-07-2021 12:00:44 	Message : 	Successfully Logged-In
+
+26-07-2021 12:18:52 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+26-07-2021 12:18:52 	Message : 	Successfully Logged-In
+
+26-07-2021 12:33:44 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+26-07-2021 12:33:44 	Message : 	Successfully Logged-In
+
+26-07-2021 12:34:46 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+26-07-2021 12:34:46 	Message : 	Successfully Logged-In
+
+26-07-2021 12:52:26 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+26-07-2021 12:52:26 	Message : 	Successfully Logged-In
+
+26-07-2021 12:53:29 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+26-07-2021 12:53:29 	Message : 	Successfully Logged-In
+
+26-07-2021 13:31:35 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+26-07-2021 13:31:35 	Message : 	Successfully Logged-In
+
+26-07-2021 13:36:01 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+26-07-2021 13:36:01 	Message : 	Successfully Logged-In
+
+26-07-2021 13:38:14 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+26-07-2021 13:38:14 	Message : 	Successfully Logged-In
+
+26-07-2021 13:41:10 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+26-07-2021 13:41:10 	Message : 	Successfully Logged-In
+
+26-07-2021 13:44:03 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+26-07-2021 13:44:03 	Message : 	Successfully Logged-In
+
+26-07-2021 13:51:25 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+26-07-2021 13:51:25 	Message : 	Successfully Logged-In
+
+26-07-2021 13:52:29 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+26-07-2021 13:52:29 	Message : 	Successfully Logged-In
+
+26-07-2021 13:53:16 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+26-07-2021 13:53:16 	Message : 	Successfully Logged-In
+
+26-07-2021 13:56:42 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+26-07-2021 13:56:42 	Message : 	Successfully Logged-In
+
+26-07-2021 14:02:23 	Centris Mobility Project Services 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+26-07-2021 14:02:23 	Message : 	Successfully Logged-In
+>>>>>>> a467531da40d3af4ca2d79f0f162be2d07e976eb

@@ -1,0 +1,1527 @@
+<div>
+
+  <!--------------------------------------------------------------------------------------------------->
+
+
+  <form #EmployeeForm="ngForm" name="EmployeeForm" (keydown.enter)="$event.preventDefault()" novalidate>
+
+
+    <div class="col-sm-11" style="margin-top:1%">
+      <div class="row">
+
+        <h1 align="center" style="margin-bottom:0px;text-align:center;border:2px solid gray;border-bottom-color:white;margin-left:4%; font-family: 'Proxima Nova'">Employee Master</h1>
+
+      </div>
+    </div>
+
+    <div class="col-sm-11" style="border:2px solid #51b8f2;background-color: white;border-radius:15px;margin-bottom:20px;width:95%;margin-left:20px;">
+
+      <mat-tab-group animationDuration="0ms" (selectedTabChange)="tabChanged($event)" class="tabsss">
+
+        <mat-tab label="Employee Info">
+
+          <div class="col-sm-11">
+            <P style="color:#51b8f2;font-size:15px; font-family: 'Proxima Nova'">
+              Personal Details
+            </P>
+          </div>
+
+
+          <div class="col-sm-12">
+            <div class="row">
+              <div class="col-sm-3">
+              </div>
+              <div class="col-sm-3">
+              </div>
+
+              <div class="col-sm-3" *ngIf="hidewebcamtrue">
+                <mat-icon style="font-size:24px;cursor:pointer;color:skyblue" (click)="triggerSnapshot();">camera_enhance</mat-icon>
+
+                <div style="margin-top:-15px;margin-left: 30px;margin-right: 0px">
+                  <webcam [width]="100" [height]="100" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"></webcam>
+                  <div class="snapshot" *ngIf="webcamImage">
+                    <img #patientImage style="height: 80px;border-radius: 12px" [src]="webcamImage.imageAsDataUrl" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-3" *ngIf="hiddenimageurl">
+                <img [src]="transform()" style="height:50%;width:50%;border-radius:8px;">
+              </div>
+              <div class="col-sm-3">
+                <button class="btn btn-primary" (click)="Getformaccess()"> View Access</button>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+          <div class="col-sm-11" style="background-color:white;border:2px solid #51b8f2;border-radius:8px">
+
+            <div class="col-sm-12" style="margin:10px">
+
+              <div class="row">
+                <input #Employee name="Employeeid" [(ngModel)]="M_Employeeid" type="hidden">
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Title</mat-label>
+                    <mat-select [(ngModel)]="M_title" name="title" required>
+                      <mat-option *ngFor="let title of Titles" [value]="title.Value">{{title.Text}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-sm-3">
+                  <div class="col-sm-8" style="margin-left:-15px;">
+                    <mat-form-field appearance="outline">
+                      <mat-label>First Name</mat-label>
+                      <input [(ngModel)]="M_firstname" matInput placeholder="Enter First Name" name="EmployeeName" type="text" (keypress)="nameField($event)" required>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-sm-1" style="margin-left:47px; margin-top:5px;">
+                    <button type="button" class="search" (click)="EmpSearch()" data-toggle="tooltip" title="Search Employee"><mat-icon>search</mat-icon></button>
+                  </div>
+                </div>
+
+                <div class="col-sm-3">
+                  <div class="col-sm-8" style="margin-left:-15px;">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Middle Name</mat-label>
+                      <input [(ngModel)]="M_MiddleName" matInput placeholder="Enter Middle Name" name="MiddleName" type="text" (keypress)="nameField($event)">
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div class="col-sm-3">
+                  <div class="col-sm-8" style="margin-left:-15px;">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Last Name</mat-label>
+                      <input [(ngModel)]="M_LastName" matInput placeholder="Enter Last Name" name="LastName" type="text" (keypress)="nameField($event)" required>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row">
+
+
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Date of Birth</mat-label>
+                    <input [(ngModel)]="M_Dateofbirth" name="MDateofbirth" [max]="maxDate" matInput [matDatepicker]="MDateofbirth" placeholder="Date of birth" (dateChange)="DateMonthyear()" required>
+                    <mat-datepicker-toggle matSuffix [for]="MDateofbirth"></mat-datepicker-toggle>
+                    <mat-datepicker #MDateofbirth></mat-datepicker>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Gender</mat-label>
+                    <mat-select [(ngModel)]="M_Gender" name="M_Gender" required>
+                      <mat-option>Select</mat-option>
+                      <mat-option value="0">Male</mat-option>
+                      <mat-option value="1">Female</mat-option>
+                      <mat-option value="2">Transgender</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Marital Status</mat-label>
+                    <mat-select [(ngModel)]="M_MaritalStatus" name="M_MaritalStatus" required>
+                      <mat-option>Select</mat-option>
+                      <mat-option value="1">Single</mat-option>
+                      <mat-option value="2">married</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-sm-3">
+                  <div class="col-sm-8" style="margin-left:-15px;">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Father/Husband Name</mat-label>
+                      <input [(ngModel)]="M_FatherHusbandName" matInput placeholder="Enter Father/Husband Name" name="FatherHusbandName" type="text" (keypress)="nameField($event)">
+                    </mat-form-field>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row">
+
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Physically Challenged</mat-label>
+                    <mat-select [(ngModel)]="M_PhysicallyChallenged" name="M_PhysicallyChallenged">
+                      <mat-option value="true">Yes</mat-option>
+                      <mat-option value="false">No</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Blood Group</mat-label>
+                    <mat-select [(ngModel)]="M_BloodGroup" name="BloodGroup">
+                      <mat-option *ngFor="let BloodGroup of BloodGroups" [value]="BloodGroup.Value">{{BloodGroup.Text}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Aadhaar No</mat-label>
+                    <input [(ngModel)]="M_AadhaarNo" matInput placeholder="Enter AadhaarNo" name="M_AadhaarNo" (keypress)="numberOnly($event)" minlength="12" maxlength="12">
+                  </mat-form-field>
+                </div>
+
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>PAN Number</mat-label>
+                    <input [(ngModel)]="M_PANNumber" matInput placeholder="Enter PAN Number" name="M_PANNumber" minlength="10" maxlength="10">
+                  </mat-form-field>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-sm-11">
+            <P style="color:#51b8f2;font-size:15px; font-family: 'Proxima Nova'">
+              Communication Address
+            </P>
+          </div>
+
+          <div class="col-sm-12" style="margin-left:-14px">
+
+            <mat-accordion>
+              <mat-expansion-panel style="background-color:white;border:2px solid #51b8f2;border-radius:8px;border-top-left-radius:0px;width:94%">
+
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+
+                  </mat-panel-title>
+
+                  <mat-icon class="mat-iconss" style="background-color: white !important" matTooltip="Expand">keyboard_arrow_down</mat-icon>
+
+                </mat-expansion-panel-header>
+
+                <div class="row">
+
+                  <div class="col-sm-12" style="margin:10px">
+
+                    <div class="row">
+
+                      <div class="col-sm-3">
+                        <mat-form-field appearance="outline" hintLabel="Max 250 characters">
+                          <mat-label>Present Address1</mat-label>
+                          <textarea matInput [(ngModel)]="M_PresentAddress1" name="PresentAddress1" maxlength="250" #add1 placeholder="PresentAddress 1" maxlength="250" [disabled]="PresentAdd1" required></textarea>
+                          <mat-hint align="end">{{add1.value?.length || 0}}/250</mat-hint>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col-sm-3">
+                        <mat-form-field appearance="outline" hintLabel="Max 250 characters">
+                          <mat-label>Present Address2</mat-label>
+                          <textarea matInput [(ngModel)]="M_PresentAddress2" name="PresentAddress2" maxlength="250" #add2 placeholder="PresentAddress 2" maxlength="250" [disabled]="PresentAdd2"></textarea>
+                          <mat-hint align="end">{{add2.value?.length || 0}}/250</mat-hint>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col-sm-3">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Present City</mat-label>
+                          <mat-select [(ngModel)]="Cityy" name="Cityy" (ngModelChange)="Citysumbit()" [disabled]="Presentcity">
+                            <mat-option *ngFor="let City of Cityname" [value]="City.Value">{{City.Text}}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+
+
+                      <div class="col-sm-3">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Present Landmark</mat-label>
+                          <input [(ngModel)]="M_PresentLandmark" matInput placeholder="Enter Present Landmark" name="PresentLandmark" type="text" [disabled]="Presentland">
+                        </mat-form-field>
+                      </div>
+
+                    </div>
+
+
+                    <div class="row">
+
+                      <div class="col-sm-3">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Present Location</mat-label>
+                          <mat-select [(ngModel)]="M_PresentLocationID" name="PresentLocationID" [disabled]="Presentloc" (ngModelChange)="changeValue()" required>
+                            <mat-option *ngFor="let Location of Locationname" [value]="Location.Value">{{Location.Text}}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col-sm-3">
+                        <mat-form-field appearance="outline">
+                          <mat-label>State</mat-label>
+                          <strong>
+                            <input [(ngModel)]="State" name="State" matInput placeholder="State Name" disabled>
+                          </strong>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col-sm-3">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Country</mat-label>
+                          <strong>
+                            <input [(ngModel)]="Country" name="Country" matInput placeholder="Country Name" disabled>
+                          </strong>
+                        </mat-form-field>
+                      </div>
+
+
+
+                    </div>
+
+                  </div>
+
+                  <div class="col-sm-12" style="margin:10px">
+                    <div class="row">
+                      <div class="col-sm-2">
+                      </div>
+                      <div class="col-sm-2">
+                      </div>
+                      <div class="col-sm-3">
+                        <mat-checkbox style="color:blue;margin-left:45px" [(ngModel)]="checkIfOthersAreSelected" name="checkIfOthersAreSelected" [disabled]="checkIfadd" (change)="Addresschange($event.checked)"></mat-checkbox><br />
+                        <mat-label align="center;" style=" font-family: 'Proxima Nova'">Same as Present Address</mat-label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12" style="margin:10px">
+
+                    <div class="row">
+
+                      <div class="col-sm-3">
+                        <mat-form-field appearance="outline" hintLabel="Max 250 characters">
+                          <mat-label>Permanent Address1</mat-label>
+                          <textarea [(ngModel)]="M_PermanentAddress1" maxlength="250" #padd1 matInput placeholder="Enter Permanent Address 1" name="PermanentAddress1" type="text" [disabled]="M_PermanentAddresss1"></textarea>
+                          <mat-hint align="end">{{padd1.value?.length || 0}}/250</mat-hint>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col-sm-3">
+                        <mat-form-field appearance="outline" hintLabel="Max 250 characters">
+                          <mat-label>Permanent Address2</mat-label>
+                          <textarea [(ngModel)]="M_PermanentAddress2" maxlength="250" #padd2 matInput placeholder="Enter Permanent Address 2" name="PermanentAddress2" type="text" [disabled]="M_PermanentAddresss2"></textarea>
+                          <mat-hint align="end">{{padd2.value?.length || 0}}/250</mat-hint>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col-sm-3">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Permanent City</mat-label>
+                          <mat-select [(ngModel)]="M_PermanentCity" name="M_PermanentCity" (ngModelChange)="PermanentCitysumbit()" [disabled]="PermanentCity">
+                            <mat-option *ngFor="let PermanentCity of PermanentCityname" [value]="PermanentCity.Value">{{PermanentCity.Text}}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+
+
+
+                      <div class="col-sm-3">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Permanent Landmark</mat-label>
+                          <input [(ngModel)]="M_PermanentLandmark" matInput placeholder="Enter Permanent Landmark" name="PermanentLandmark" type="text" [disabled]="M_PermanentLandmarkk">
+                        </mat-form-field>
+                      </div>
+
+
+                    </div>
+
+                    <div class="row">
+
+                      <div class="col-sm-3">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Permanent Location</mat-label>
+                          <mat-select [(ngModel)]="M_PermanentLocationID" name="M_PermanentLocationID" [disabled]="M_PermanentLocationIDD">
+                            <mat-option *ngFor="let PermanentLocation of PermanentLocationname" [value]="PermanentLocation.Value">{{PermanentLocation.Text}}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col-sm-3">
+                        <mat-form-field appearance="outline">
+                          <mat-label>State</mat-label>
+                          <strong>
+                            <input [(ngModel)]="PermanentState" name="PermanentState" matInput placeholder="State Name" disabled>
+                          </strong>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col-sm-3">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Country</mat-label>
+                          <strong>
+                            <input [(ngModel)]="PermanentCountry" name="PermanentCountry" matInput placeholder="Country Name" disabled>
+                          </strong>
+                        </mat-form-field>
+                      </div>
+
+
+
+
+
+                    </div>
+
+                  </div>
+
+
+
+                </div>
+
+              </mat-expansion-panel>
+            </mat-accordion>
+
+
+
+          </div>
+
+
+          <div class="col-sm-11">
+            <P style="color:#51b8f2;font-size:15px; font-family: 'Proxima Nova'">
+              Communication Details
+            </P>
+          </div>
+
+          <div class="col-sm-12" style="margin-left:-14px">
+
+            <mat-accordion>
+              <mat-expansion-panel style="background-color:white;border:2px solid #51b8f2;border-radius:8px;border-top-left-radius:0px;;width:94%">
+
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+
+                  </mat-panel-title>
+
+                  <mat-icon class="mat-iconss" style="background-color: white !important" matTooltip="Expand">keyboard_arrow_down</mat-icon>
+
+                </mat-expansion-panel-header>
+
+                <div class="row">
+
+                  <div class="col-sm-12" style="margin:10px">
+
+                    <div class="row">
+
+
+                      <div class="col-sm-3">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Mobile No1</mat-label>
+                          <input [(ngModel)]="M_MobileNo1" matInput placeholder="Enter Mobile No 1" name="Mobile" type="text" (keypress)="numberOnly($event)" maxlength="15" required>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col-sm-3">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Mobile No2</mat-label>
+                          <input [(ngModel)]="M_MobileNo2" matInput placeholder="Enter Mobile No 2" name="Mobile2" type="text" (keypress)="numberOnly($event)" maxlength="15">
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col-sm-3">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Phone</mat-label>
+                          <input [(ngModel)]="M_Phone1" matInput placeholder="Enter Phone 1" name="Phone1" type="text" (keypress)="numberOnly($event)" maxlength="15">
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col-sm-3">
+                        <mat-form-field appearance="outline">
+                          <mat-label>EmailID</mat-label>
+                          <input required [(ngModel)]="M_EmailID" matInput placeholder="Enter EmailID" name="EmailID" [formControl]="email1" type="text">
+                          <mat-error *ngIf="email1.invalid">{{getErrorMessage()}}</mat-error>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col-sm-3">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Alternative EmailID</mat-label>
+                          <input [(ngModel)]="M_AlternativeEmailID" matInput placeholder="Enter Alternative EmailID" name="AlternativeEmailID" [formControl]="email2" type="text">
+                          <mat-error *ngIf="email2.invalid">{{getErrorMessage1()}}</mat-error>
+                        </mat-form-field>
+                      </div>
+
+
+
+
+                    </div>
+
+                  </div>
+
+
+
+
+
+                </div>
+
+              </mat-expansion-panel>
+            </mat-accordion>
+
+
+
+          </div>
+
+          <div class="col-sm-11">
+            <P style="color:#51b8f2;font-size:15px; font-family: 'Proxima Nova'">
+              Other Details
+            </P>
+          </div>
+          <div class="col-sm-11" style="background-color:white;border:2px solid #51b8f2;border-radius:8px;margin-top:10px">
+
+            <div class="col-sm-12" style="margin:10px">
+
+              <div class="row">
+
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Department</mat-label>
+                    <mat-select [(ngModel)]="M_Department" name="Department" required>
+                      <mat-option *ngFor="let Department of Departments" [value]="Department.Value">{{Department.Text}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Category</mat-label>
+                    <mat-select [(ngModel)]="M_Category" name="Category">
+                      <mat-option value="1">Management</mat-option>
+                      <mat-option value="2">Contractors</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Designation</mat-label>
+                    <input [(ngModel)]="M_Designation" matInput placeholder="Enter Designation" name="Designation" type="text" (keypress)="nameField($event)">
+                  </mat-form-field>
+                  <!--<mat-form-field appearance="outline">
+                    <mat-label>Role</mat-label>
+                    <mat-select required [(ngModel)]="M_Role" name="Roles">
+                      <mat-option *ngFor="let Role of roles" [value]="Role.Value">{{Role.Text}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>-->
+                </div>
+
+                <div class="col-sm-3">
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>Date of Joining</mat-label>
+                    <input [(ngModel)]="M_DOJ" name="DOJ" [min]="minDate" matInput [matDatepicker]="DOJ" placeholder="DOJ" [disabled]="Dorrr" required>
+                    <mat-datepicker-toggle matSuffix [for]="DOJ"></mat-datepicker-toggle>
+                    <mat-datepicker #DOJ></mat-datepicker>
+                  </mat-form-field>
+
+                </div>
+
+              </div>
+
+
+
+              <div class="row">
+
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Date of Resignation </mat-label>
+                    <input [(ngModel)]="M_DOR" name="DOR" [min]="minDate1" matInput [matDatepicker]="DOR" placeholder="DOR" (dateChange)="Dateresign()" [disabled]="DORR">
+                    <mat-datepicker-toggle matSuffix [for]="DOR"></mat-datepicker-toggle>
+                    <mat-datepicker #DOR></mat-datepicker>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-sm-5">
+                  <mat-form-field appearance="outline" hintLabel="Max 250 characters">
+                    <mat-label>Resignation Reason</mat-label>
+                    <textarea matInput [(ngModel)]="M_ReasonofResignation" name="ReasonofResignation" maxlength="250" #add5 placeholder="Reason of Resignation" maxlength="250" [disabled]="ReasonofResignationn"></textarea>
+                    <mat-hint align="end">{{add5.value?.length || 0}}/250</mat-hint>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-sm-3">
+
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-sm-11">
+            <P style="color:#51b8f2;font-size:15px; font-family: 'Proxima Nova'">
+              Emergency Contact Details
+            </P>
+          </div>
+
+          <div class="col-sm-11" style="background-color:white;border:2px solid #51b8f2;border-radius:8px;margin-top:10px">
+            <div class="col-sm-12" style="margin:10px">
+
+              <div class="row">
+
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Emergency Contact Name</mat-label>
+                    <input [(ngModel)]="M_EmergencyContactName" matInput placeholder="Enter Emergency Contact Name" name="EmergencyContactName" type="text" (keypress)="nameField($event)">
+                  </mat-form-field>
+                </div>
+
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Emergency Contact No</mat-label>
+                    <input [(ngModel)]="M_EmergencyContactNo" matInput placeholder="Enter Emergency Contact No" name="EmergencyContactNo" type="text" (keypress)="numberOnly($event)" maxlength="15">
+                  </mat-form-field>
+                </div>
+
+
+                <div class="col-sm-3" *ngIf="Employee.value!=0">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Status</mat-label>
+                    <mat-select [(ngModel)]="M_IsActive" name="IsActive">
+                      <mat-option value="true">Active</mat-option>
+                      <mat-option value="false">InActive</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-sm-12" style="margin:12px">
+
+            <div class="col-sm-12 sub-section buttons" style="padding-bottom:20px">
+              <div class="row">
+                <div class="col-sm-5"></div>
+                <div class="col-sm-1" style="margin-left:-82px;" *ngIf="Employee.value!=0;else notShow">
+                  <button class="success" (click)="Updateclk(EmployeeForm,Employee.value)" mat-raised-button [disabled]="disSubmit">Submit</button>
+                </div>
+
+
+                <ng-template #notShow>
+                  <div class="col-sm-1" style="margin-left:-82px;">
+                    <button class="success" (click)="onSubmit(EmployeeForm)" mat-raised-button [disabled]="disupdate">Submit</button>
+                  </div>
+                </ng-template>
+
+                <div class="col-sm-1">
+                  <button type="button" class="btn btn-warning" style="font-size:15px;color:orange;background-color:white;" (click)="cancel()"><strong>Cancel</strong></button>
+                </div>
+
+                <div class="col-sm-1" *ngIf="Employee.value!=0">
+                  <button class="danger" (click)="Deleteclk(Employee.value)" mat-raised-button [disabled]="disdelete">Delete</button>
+                </div>
+                <div class="col-sm-5"></div>
+              </div>
+            </div>
+
+
+          </div>
+
+
+        </mat-tab>
+
+        <mat-tab label="Qualification">
+
+          <div class="col-sm-11" style="margin:10px">
+
+            <div class="row">
+              <div class="col-sm-3">
+                <mat-form-field appearance="outline">
+                  <mat-label>Title</mat-label>
+                  <input [(ngModel)]="Titlee" matInput placeholder="Enter Title" name="Titlee" [disabled]="Titleee">
+                </mat-form-field>
+              </div>
+
+              <div class="col-sm-3">
+                <div class="col-sm-8" style="margin-left:-15px;">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Employee Name</mat-label>
+                    <input [(ngModel)]="M_firstnamee" matInput placeholder="Enter Employee Name" name="EmployeeNamee" [disabled]="M_EmployeeNameee">
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="col-sm-3">
+                <mat-form-field appearance="outline">
+                  <mat-label>Date of Birth</mat-label>
+                  <input [(ngModel)]="M_DateofBirthh" matInput placeholder="Enter Date of Birth" name="M_DateofBirthh" [disabled]="M_DateofBirthhh">
+                </mat-form-field>
+              </div>
+
+              <div class="col-sm-3">
+                <mat-form-field appearance="outline">
+                  <mat-label>Gender</mat-label>
+                  <input [(ngModel)]="M_Genderr" matInput placeholder="Enter Genderr" name="Genderr" [disabled]="M_Genderrr">
+                </mat-form-field>
+              </div>
+
+            </div>
+
+
+          </div>
+
+          <div class="col-sm-11">
+            <P style="color:#51b8f2;font-size:15px; font-family: 'Proxima Nova'">
+              Qualification Details
+            </P>
+          </div>
+
+          <div class="col-sm-11" style="background-color:white;border:2px solid #51b8f2;border-radius:8px">
+            <div class="col-sm-12" style="margin-top:10px">
+              <div class="row">
+
+
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Qualification</mat-label>
+                    <mat-select [(ngModel)]="Qualification" name="Qualification" (ngModelChange)="Qualificationsumbit()">
+                      <mat-option>None</mat-option>
+                      <mat-option *ngFor="let Qualification of Qualificationname" [value]="Qualification">{{Qualification.Text}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Degree</mat-label>
+                    <mat-select [(ngModel)]="Degree" name="Degree" (ngModelChange)="Degreesumbit()">
+                      <mat-option>None</mat-option>
+                      <mat-option *ngFor="let Degree of Degreename" [value]="Degree">{{Degree.QualExtDescription}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Specialization</mat-label>
+                    <mat-select [(ngModel)]="Specialization" name="Specialization">
+                      <mat-option>None</mat-option>
+                      <mat-option *ngFor="let Specialization of Specializationname" [value]="Specialization">{{Specialization.QualExtAnsDescription}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+
+
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>From Date</mat-label>
+                    <input [(ngModel)]="M_QFromDate" name="QFromDate" matInput [matDatepicker]="QFromDate" placeholder="QFromDate">
+                    <mat-datepicker-toggle matSuffix [for]="QFromDate"></mat-datepicker-toggle>
+                    <mat-datepicker #QFromDate></mat-datepicker>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>To Date</mat-label>
+                    <input [(ngModel)]="M_QToDate" name="QToDate" matInput [matDatepicker]="QToDate" placeholder="QToDate">
+                    <mat-datepicker-toggle matSuffix [for]="QToDate"></mat-datepicker-toggle>
+                    <mat-datepicker #QToDate></mat-datepicker>
+                  </mat-form-field>
+                </div>
+
+              </div>
+
+
+
+
+            </div>
+
+          </div>
+
+          <div class="col-sm-11" style="background-color:white;border:2px solid #51b8f2;border-radius:8px;margin-top:10px">
+            <div class="col-sm-12" style="margin-top:10px">
+              <div class="row">
+
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>University</mat-label>
+                    <mat-select [(ngModel)]="University" name="University" (ngModelChange)="Universitysumbit()">
+                      <mat-option>None</mat-option>
+                      <mat-option *ngFor="let University of Universityname" [value]="University">{{University.Text}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Institution</mat-label>
+                    <mat-select [(ngModel)]="Institution" name="Institution">
+                      <mat-option>None</mat-option>
+                      <mat-option *ngFor="let Institution of Institutionname" [value]="Institution">{{Institution.Text}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Year of passing</mat-label>
+                    <input [(ngModel)]="yearofpassing" name="yearofpassing" matInput placeholder=" Enter year of passing">
+                  </mat-form-field>
+                </div>
+
+
+                <div class="col-sm-3">
+                  <div class="col-sm-8" style="margin-left:-15px;">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Percentage of marks</mat-label>
+                      <input [(ngModel)]="Percentage" name="Percentage" matInput placeholder=" Enter Percentage">
+                    </mat-form-field>
+                  </div>
+                  <div class="col-sm-2" style="margin-left:47px; margin-top:5px;">
+                    <button type="button" class="search" (click)="AddQualification()" data-toggle="tooltip" title="Add Qualification" *ngIf="addquin"><mat-icon>add_box</mat-icon></button>
+                    <button type="button" class="search" (click)="upQualification()" data-toggle="tooltip" title="change Qualification" *ngIf="addquup"><mat-icon>add_box</mat-icon></button>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12" [hidden]="!expqua">
+            <div class="row" style="height:250px;overflow:auto;position:sticky">
+              <table #table mat-table matSort [dataSource]="dataSource4" class="table">
+
+                <ng-container matColumnDef="Qualification">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;">Qualification</th>
+                  <td mat-cell *matCellDef="let element">{{element.qualification}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Degree">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;">Degree</th>
+                  <td mat-cell *matCellDef="let element">{{element.Degree}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Specialization">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;">Specialization</th>
+                  <td mat-cell *matCellDef="let element">{{element.specialization}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="FromDate">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;"> From Date </th>
+                  <td mat-cell *matCellDef="let element">{{element.fromdate | date:"dd-MMM-y"}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="ToDate">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;"> To Date </th>
+                  <td mat-cell *matCellDef="let element">{{element.todate | date:"dd-MMM-y"}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="University">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;"> University </th>
+                  <td mat-cell *matCellDef="let element">{{element.university}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Institution">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;"> Institution </th>
+                  <td mat-cell *matCellDef="let element">{{element.instition}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Yearofpassing">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;"> Year of passing </th>
+                  <td mat-cell *matCellDef="let element" style="text-align: right">{{element.yearofpassing}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="Percentageofmarks">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;"> Percentage of marks </th>
+                  <td mat-cell *matCellDef="let element" style="text-align: right">{{element.percentageofmarks}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Delete">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;"> Action </th>
+                  <td mat-cell *matCellDef="let element;let i = index;">
+                    <button mat-icon-button (click)="removequali(i)">
+                      <mat-icon data-toggle="tooltip" title="Delete">delete</mat-icon>
+                    </button>
+                  </td>
+                  <td mat-footer-cell *matFooterCellDef> </td>
+                </ng-container>
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns4;sticky:true"></tr>
+                <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumns4;" [ngClass]="{gray: even}"></tr>
+
+              </table>
+
+            </div>
+          </div>
+
+          <div class="col-sm-12" [hidden]="!expqua1">
+            <div class="row" style="height:250px;overflow:auto;position:sticky">
+              <table #table mat-table matSort [dataSource]="dataSource5" class="table">
+
+                <ng-container matColumnDef="Qualification">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;">Qualification</th>
+                  <td mat-cell *matCellDef="let element">{{element.qualification}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Degree">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;">Degree</th>
+                  <td mat-cell *matCellDef="let element">{{element.Degree}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Specialization">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;">Specialization</th>
+                  <td mat-cell *matCellDef="let element">{{element.specialization}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="FromDate">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;"> From Date </th>
+                  <td mat-cell *matCellDef="let element">{{element.fromdate | date:"dd-MMM-y"}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="ToDate">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;"> To Date </th>
+                  <td mat-cell *matCellDef="let element">{{element.todate | date:"dd-MMM-y"}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="University">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;"> University </th>
+                  <td mat-cell *matCellDef="let element">{{element.university}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Institution">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;"> Institution </th>
+                  <td mat-cell *matCellDef="let element">{{element.instition}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Yearofpassing">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;"> Year of passing </th>
+                  <td mat-cell *matCellDef="let element" style="text-align: right">{{element.yearofpassing}}</td>
+                </ng-container>
+
+
+                <ng-container matColumnDef="Percentageofmarks">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;"> Percentage of marks </th>
+                  <td mat-cell *matCellDef="let element" style="text-align: right">{{element.percentageofmarks}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Delete">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;"> Action </th>
+                  <td mat-cell *matCellDef="let element;let i = index;"><mat-icon data-toggle="tooltip" title="Delete" (click)="removequaliup(i)">delete</mat-icon></td>
+                  <td mat-footer-cell *matFooterCellDef> </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns5;sticky:true"></tr>
+                <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumns5;" [ngClass]="{gray: even}"></tr>
+
+              </table>
+
+            </div>
+          </div>
+
+
+        </mat-tab>
+
+        <mat-tab label="Experience">
+
+
+          <div class="col-sm-11" style="margin:10px">
+
+            <div class="row">
+              <div class="col-sm-3">
+                <mat-form-field appearance="outline">
+                  <mat-label>Title</mat-label>
+                  <input [(ngModel)]="Titlee" matInput placeholder="Enter Title" name="Titlee" [disabled]="Titleee">
+                </mat-form-field>
+              </div>
+
+              <div class="col-sm-3">
+                <div class="col-sm-8" style="margin-left:-15px;">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Employee Name</mat-label>
+                    <input [(ngModel)]="M_firstnamee" matInput placeholder="Enter Employee Name" name="EmployeeNamee" [disabled]="M_EmployeeNameee">
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="col-sm-3">
+                <mat-form-field appearance="outline">
+                  <mat-label>Date of Birth</mat-label>
+                  <input [(ngModel)]="M_DateofBirthh" matInput placeholder="Enter Date of Birth" name="M_DateofBirthh" [disabled]="M_DateofBirthhh">
+                </mat-form-field>
+              </div>
+
+              <div class="col-sm-3">
+                <mat-form-field appearance="outline">
+                  <mat-label>Gender</mat-label>
+                  <input [(ngModel)]="M_Genderr" matInput placeholder="Enter Genderr" name="Genderr" [disabled]="M_Genderrr">
+                </mat-form-field>
+              </div>
+
+            </div>
+
+
+          </div>
+
+
+          <div class="col-sm-11" style="background-color:white;border:2px solid #51b8f2;border-radius:8px">
+
+            <div class="col-sm-3">
+              <mat-form-field appearance="outline" hintLabel="Max 50 characters">
+                <mat-label>Organization</mat-label>
+                <textarea matInput [(ngModel)]="M_Organization" name="Organization" maxlength="50" #add6 placeholder="Organization"></textarea>
+                <mat-hint align="end">{{add6.value?.length || 0}}/50</mat-hint>
+              </mat-form-field>
+            </div>
+
+            <div class="col-sm-3">
+              <mat-form-field appearance="outline">
+                <mat-label>From Date</mat-label>
+                <input [(ngModel)]="M_FormDate" name="FormDate" matInput [matDatepicker]="FormDate" placeholder="FormDate Date">
+                <mat-datepicker-toggle matSuffix [for]="FormDate"></mat-datepicker-toggle>
+                <mat-datepicker #FormDate></mat-datepicker>
+              </mat-form-field>
+            </div>
+
+            <div class="col-sm-3">
+              <mat-form-field appearance="outline">
+                <mat-label>To Date</mat-label>
+                <input [(ngModel)]="M_ToDate" name="ToDate" matInput [matDatepicker]="ToDate" placeholder="ToDate Date">
+                <mat-datepicker-toggle matSuffix [for]="ToDate"></mat-datepicker-toggle>
+                <mat-datepicker #ToDate></mat-datepicker>
+              </mat-form-field>
+            </div>
+
+
+            <div class="col-sm-3">
+              <div class="col-sm-8" style="margin-left:-15px;">
+                <mat-form-field appearance="outline" hintLabel="Max 50 characters">
+                  <mat-label>Designation</mat-label>
+                  <textarea matInput [(ngModel)]="M_Designationexp" name="Designationexp" maxlength="50" #add7 placeholder="Designation"></textarea>
+                  <mat-hint align="end">{{add7.value?.length || 0}}/50</mat-hint>
+                </mat-form-field>
+              </div>
+              <div class="col-sm-2" style="margin-left:47px; margin-top:5px;">
+                <button type="button" class="search" (click)="onAddItem()" data-toggle="tooltip" title="Add Experience" *ngIf="add"><mat-icon>add_box</mat-icon></button>
+                <button type="button" class="search" (click)="onupitem()" data-toggle="tooltip" title="change Experience" *ngIf="addup"><mat-icon>add_box</mat-icon></button>
+              </div>
+            </div>
+
+
+          </div>
+
+          <div class="col-sm-11" [hidden]="!exptable">
+            <div class="row" style="height:250px;overflow:auto;position:sticky">
+              <table #table mat-table matSort [dataSource]="dataSource1" class="table">
+
+                <ng-container matColumnDef="Organization">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;"> Organization </th>
+                  <td mat-cell *matCellDef="let element">{{element.Organisation}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="FromDate">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;"> From Date </th>
+                  <td mat-cell *matCellDef="let element">{{element.FromDate | date:"dd-MMM-y"}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="ToDate">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;"> To Date </th>
+                  <td mat-cell *matCellDef="let element">{{element.ToDate | date:"dd-MMM-y"}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Designation">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;"> Designation </th>
+                  <td mat-cell *matCellDef="let element">{{element.Designation}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Delete">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;"> Action </th>
+                  <td mat-cell *matCellDef="let element;let i = index;"><mat-icon data-toggle="tooltip" title="Delete" (click)="remove(i)">delete</mat-icon></td>
+                  <td mat-footer-cell *matFooterCellDef> </td>
+                </ng-container>
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns1;sticky:true"></tr>
+                <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumns1;" [ngClass]="{gray: even}"></tr>
+
+              </table>
+
+            </div>
+          </div>
+
+          <div class="col-sm-11" [hidden]="!exptable1">
+            <div class="row" style="height:250px;overflow:auto;position:sticky">
+              <table #table mat-table matSort [dataSource]="dataSource2" class="table">
+
+                <ng-container matColumnDef="Organization">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;"> Organization </th>
+                  <td mat-cell *matCellDef="let element">{{element.Organisation}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="FromDate">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;"> From Date </th>
+                  <td mat-cell *matCellDef="let element">{{element.FromDate | date:"dd-MMM-y"}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="ToDate">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;"> To Date </th>
+                  <td mat-cell *matCellDef="let element">{{element.ToDate | date:"dd-MMM-y"}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Designation">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;"> Designation </th>
+                  <td mat-cell *matCellDef="let element">{{element.Designation}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Delete">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;"> Action </th>
+                  <td mat-cell *matCellDef="let element;let i = index;"><mat-icon data-toggle="tooltip" title="Delete" (click)="removeup(i)">delete</mat-icon></td>
+                  <td mat-footer-cell *matFooterCellDef> </td>
+                </ng-container>
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns2;sticky:true"></tr>
+                <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumns2;" [ngClass]="{gray: even}"></tr>
+
+              </table>
+
+            </div>
+          </div>
+
+
+        </mat-tab>
+
+        <mat-tab label="Bank Details">
+
+          <div class="col-sm-11" style="margin:10px">
+
+            <div class="row">
+              <div class="col-sm-3">
+                <mat-form-field appearance="outline">
+                  <mat-label>Title</mat-label>
+                  <input [(ngModel)]="Titlee" matInput placeholder="Enter Title" name="Titlee" [disabled]="Titleee">
+                </mat-form-field>
+              </div>
+
+              <div class="col-sm-3">
+                <div class="col-sm-8" style="margin-left:-15px;">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Employee Name</mat-label>
+                    <input [(ngModel)]="M_firstnamee" matInput placeholder="Enter Employee Name" name="EmployeeNamee" [disabled]="M_EmployeeNameee">
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="col-sm-3">
+                <mat-form-field appearance="outline">
+                  <mat-label>Date of Birth</mat-label>
+                  <input [(ngModel)]="M_DateofBirthh" matInput placeholder="Enter Date of Birth" name="M_DateofBirthh" [disabled]="M_DateofBirthhh">
+                </mat-form-field>
+              </div>
+
+              <div class="col-sm-3">
+                <mat-form-field appearance="outline">
+                  <mat-label>Gender</mat-label>
+                  <input [(ngModel)]="M_Genderr" matInput placeholder="Enter Genderr" name="Genderr" [disabled]="M_Genderrr">
+                </mat-form-field>
+              </div>
+
+            </div>
+
+
+          </div>
+
+          <div class="col-sm-11">
+            <P style="color:#51b8f2;font-size:15px">
+              Bank Details
+            </P>
+          </div>
+
+          <div class="col-sm-11" style="background-color:white;border:2px solid #51b8f2;border-radius:8px">
+            <div class="col-sm-12" style="margin-top:10px">
+              <div class="row">
+
+
+                <div class="col-sm-4">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Account Holders Name</mat-label>
+                    <input [(ngModel)]="M_AccountHoldersName" matInput placeholder="Enter Account Holders Name" name="M_AccountHoldersName" [required]="aacountholdername" (keyup)="holdersnamestrict($event)">
+                  </mat-form-field>
+                </div>
+
+                <div class="col-sm-4">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Account Number</mat-label>
+                    <input [(ngModel)]="M_AccountNumber" matInput placeholder="Enter Account Number" name="M_AccountNumber" [required]="aacountnumber" (keypress)="numberOnly($event)" maxlength="15">
+                  </mat-form-field>
+                </div>
+
+                <div class="col-sm-4">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Account Type</mat-label>
+                    <mat-select [(ngModel)]="M_AccountType" name="M_AccountType" [required]="aacounttype">
+                      <mat-option>Select</mat-option>
+                      <mat-option value="1">Savings Account</mat-option>
+                      <mat-option value="2">Current Account</mat-option>
+                      <mat-option value="3">Joint Account</mat-option>
+                      <mat-option value="4">E Or S Account</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+
+
+              </div>
+
+
+              <div class="row">
+
+
+                <div class="col-sm-4">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Bank Name</mat-label>
+                    <input [(ngModel)]="M_Bankname" matInput placeholder="Enter Bank Name" name="M_Bankname" [required]="bbankname">
+                  </mat-form-field>
+                </div>
+
+                <div class="col-sm-4">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Bank Branch</mat-label>
+                    <input [(ngModel)]="M_BankBranch" matInput placeholder="Enter Bank Branch" name="M_BankBranch" [required]="bbankbranch">
+                  </mat-form-field>
+                </div>
+
+                <div class="col-sm-4">
+                  <mat-form-field appearance="outline">
+                    <mat-label>IFSC Code</mat-label>
+                    <input [(ngModel)]="M_IFSCcode" matInput placeholder="Enter IFSC Code" name="M_IFSCcode" (keypress)="nameField1($event)">
+                  </mat-form-field>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-sm-11" [hidden]="!expbank">
+            <div class="row" style="height:250px;overflow:auto;position:sticky">
+              <table #table mat-table matSort [dataSource]="dataSource3" class="table">
+
+                <ng-container matColumnDef="AccountHoldername">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;"> Account Holder Name </th>
+                  <td mat-cell *matCellDef="let element">{{element.AccountHoldersName}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Accountnumber">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;"> Account Number </th>
+                  <td mat-cell *matCellDef="let element">{{element.AccountNo}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="AccountType">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;"> Account Type </th>
+                  <td mat-cell *matCellDef="let element">{{element.AccountType1}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="BankName">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;"> Bank Name </th>
+                  <td mat-cell *matCellDef="let element">{{element.BankName}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="BankBranch">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;"> Bank Branch </th>
+                  <td mat-cell *matCellDef="let element">{{element.BankBranch}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Ifsccode">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;"> IFSC Code </th>
+                  <td mat-cell *matCellDef="let element">{{element.IFSCCode}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="Delete">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header style="border:none;background-color:#F0F3F5;color:#8FA3B0;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;padding-bottom: 20px;"> Action </th>
+                  <td mat-cell *matCellDef="let element;let i = index;">
+                    <button mat-icon-button (click)="removebank()" [disabled]="element.delete == true">
+                      <mat-icon data-toggle="tooltip" title="Delete">delete</mat-icon>
+                    </button>
+                  </td>
+                  <td mat-footer-cell *matFooterCellDef> </td>
+                </ng-container>
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns3;sticky:true"></tr>
+                <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumns3;" [ngClass]="{gray: even}"></tr>
+
+              </table>
+
+            </div>
+          </div>
+
+
+        </mat-tab>
+
+        <mat-tab label="Statutory">
+
+          <div class="col-sm-11" style="margin:10px">
+
+            <div class="row">
+              <div class="col-sm-3">
+                <mat-form-field appearance="outline">
+                  <mat-label>Title</mat-label>
+                  <input [(ngModel)]="Titlee" matInput placeholder="Enter Title" name="Titlee" [disabled]="Titleee">
+                </mat-form-field>
+              </div>
+
+              <div class="col-sm-3">
+                <div class="col-sm-8" style="margin-left:-15px;">
+                  <mat-form-field appearance="outline">
+                    <mat-label>First Name</mat-label>
+                    <input [(ngModel)]="M_firstnamee" matInput placeholder="Enter Employee Name" name="EmployeeNamee" [disabled]="M_EmployeeNameee">
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="col-sm-3">
+                <mat-form-field appearance="outline">
+                  <mat-label>Date of Birth</mat-label>
+                  <input [(ngModel)]="M_DateofBirthh" matInput placeholder="Enter Date of Birth" name="M_DateofBirthh" [disabled]="M_DateofBirthhh">
+                </mat-form-field>
+              </div>
+
+              <div class="col-sm-3">
+                <mat-form-field appearance="outline">
+                  <mat-label>Gender</mat-label>
+                  <input [(ngModel)]="M_Genderr" matInput placeholder="Enter Genderr" name="Genderr" [disabled]="M_Genderrr">
+                </mat-form-field>
+              </div>
+
+            </div>
+
+
+          </div>
+          <div class="col-sm-11">
+            <P style="color:#51b8f2;font-size:15px">
+              Provident Fund Details
+            </P>
+          </div>
+          <div class="col-sm-11" style="background-color:white;border:2px solid #51b8f2;border-radius:8px">
+
+            <div class="col-sm-12" style="margin-top:10px">
+              <div class="row">
+
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>PF Eligibility</mat-label>
+                    <mat-select [(ngModel)]="M_PFEligibility" name="M_PFEligibility" (ngModelChange)="PFEligibility()" required>
+                      <mat-option>Select</mat-option>
+                      <mat-option value="true">Yes</mat-option>
+                      <mat-option value="false">No</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>PF Number</mat-label>
+                    <input [required]="pfno" [(ngModel)]="M_PFNumber" matInput placeholder="Enter PF Number" name="M_PFNumber" (keypress)="numberOnly($event)" [disabled]="PFNumberr">
+                  </mat-form-field>
+                </div>
+
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>PF Commencement Date</mat-label>
+                    <input [required]="pfcomdate" [(ngModel)]="M_PFCD" name="PFCD" matInput [matDatepicker]="PFCD" placeholder="PF Commencement Date" [disabled]="PFCDD">
+                    <mat-datepicker-toggle matSuffix [for]="PFCD"></mat-datepicker-toggle>
+                    <mat-datepicker #PFCD></mat-datepicker>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>UAN</mat-label>
+                    <input [required]="uanno" [(ngModel)]="M_UAN" matInput placeholder="Enter UAN" name="M_UAN" (keypress)="numberOnly($event)" [disabled]="UANN">
+                  </mat-form-field>
+                </div>
+
+              </div>
+
+
+              <div class="row">
+
+
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>VPF Percentage</mat-label>
+                    <input [required]="Vpfper" [(ngModel)]="M_VPFPercentage" matInput placeholder="Enter VPF Percentage" name="M_VPFPercentage" type="text" (keypress)="numberOnly($event)" (keyup)="Restrict($event)" [disabled]="VPFPercentagee">
+                  </mat-form-field>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+          <div class="col-sm-11">
+            <P style="color:#51b8f2;font-size:15px">
+              Employees' State Insurance Details
+            </P>
+          </div>
+          <div class="col-sm-11" style="background-color:white;border:2px solid #51b8f2;border-radius:8px">
+
+            <div class="col-sm-12" style="margin-top:10px">
+              <div class="row">
+
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>ESI Eligibility</mat-label>
+                    <mat-select [(ngModel)]="M_ESIEligibility" name="M_ESIEligibility" (ngModelChange)="ESIEligibility()" required>
+                      <mat-option>Select</mat-option>
+                      <mat-option value="true">Yes</mat-option>
+                      <mat-option value="false">No</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>ESI Number</mat-label>
+                    <input [required]="ESI" [(ngModel)]="M_ESINumber" name="ESINumber" matInput placeholder="Enter ESI Number" [disabled]="ESINumberr" (keypress)="nameField1($event)">
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>ESI Commencement Date</mat-label>
+                    <input [required]="ESICommen" [(ngModel)]="M_ESICommencementDate" name="ESICD" matInput [matDatepicker]="ESICD" placeholder="ESI Commencement Date" [disabled]="ESICommencementDatee">
+                    <mat-datepicker-toggle matSuffix [for]="ESICD"></mat-datepicker-toggle>
+                    <mat-datepicker #ESICD></mat-datepicker>
+                  </mat-form-field>
+                </div>
+              </div>
+
+
+
+            </div>
+          </div>
+
+          <div class="col-sm-11">
+            <P style="color:#51b8f2;font-size:15px">
+              Professional Tax  Details
+            </P>
+          </div>
+
+          <div class="col-sm-11" style="background-color:white;border:2px solid #51b8f2;border-radius:8px">
+            <div class="col-sm-12" style="margin-top:10px">
+              <div class="row">
+
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>PT Eligibility</mat-label>
+                    <mat-select [(ngModel)]="M_PTEligibility" name="PTEligibility" (ngModelChange)="PTEligibilityy()" required>
+                      <mat-option>Select</mat-option>
+                      <mat-option value="true">Yes</mat-option>
+                      <mat-option value="false">No</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+
+                <div class="col-sm-3">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Gratuity Number</mat-label>
+                    <input [required]="Gratuity" [(ngModel)]="M_GratuityNumber" name="GratuityNumber" matInput placeholder="Enter Gratuity Number" [disabled]="GratuityNumberrr" (keypress)="nameField1($event)">
+                  </mat-form-field>
+                </div>
+              </div>
+
+
+
+            </div>
+          </div>
+
+        </mat-tab>
+
+
+
+      </mat-tab-group>
+
+    </div>
+
+  </form>
+</div>
+
+
+
+
+
+
+
+<!--------------------------------------------------------------------------------------------------->
+
+
+
+<div class="modal" role="dialog" [ngStyle]="{'display':cancelblock}">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content" style="width: 400px;">
+      <div class="modal-header">
+        <h4 class="modal-title" style="font-family: 'Proxima Nova'">EMPLOYEE MASTER</h4>
+      </div>
+      <div class="modal-body" style="height:40px;margin-top:-10px;">
+        <h5 style="background-color:none;font-size:20px;font-family: 'Proxima Nova'">Do You Want Cancel ?</h5>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" data-dismiss="modal" autofocus (click)="modalcloseOk()">No</button>
+        <button type="reset" class="btn btn-success" data-dismiss="modal" (click)="modalSuccesssOk()">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal" role="dialog" [ngStyle]="{'display':accesspopup}">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content" style="width: 400px;">
+      <div class="modal-header">
+        <h4 class="modal-title">Employee Master - View Access</h4>
+      </div>
+      <div class="modal-body" style="height:40px;margin-top:-10px;">
+        <table align="center" style="border-left:3px solid#51b8f2;font-family:'Proxima Nova';font-size:14px;" class="table table-bordered">
+          <thead>
+            <tr>
+              <th style="background-color:#0c3e8f;color:white;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;height:40px">Add</th>
+              <th style="background-color:#0c3e8f;color:white;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;height:40px">Edit</th>
+              <th style="background-color:#0c3e8f;color:white;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;height:40px">Delete</th>
+              <th style="background-color:#0c3e8f;color:white;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;height:40px">Export</th>
+              <th style="background-color:#0c3e8f;color:white;font-family:'Proxima Nova Semibold';font-size:14px;text-align:center;height:40px">Print</th>
+
+            </tr>
+          </thead>
+          <tbody>
+
+
+            <tr *ngFor="let x of accessdata; index as i">
+              <td style="text-align:center;"><mat-checkbox [(checked)]="x.Add" disabled></mat-checkbox></td>
+              <td style="text-align:center;"><mat-checkbox [(checked)]="x.Edit" disabled></mat-checkbox></td>
+              <td style="text-align:center;"><mat-checkbox [(checked)]="x.Delete" disabled></mat-checkbox></td>
+              <td style="text-align:center;"><mat-checkbox [(checked)]="x.Export" disabled></mat-checkbox></td>
+              <td style="text-align:center;"><mat-checkbox [(checked)]="x.Print" disabled></mat-checkbox></td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer" style="margin-top:20%">
+        <button class="btn btn-success" data-dismiss="modal" autofocus (click)="modalcloseAccessOk()">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 D:\GIT_WYNK_EMR\WYNK\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.deps.json
 D:\GIT_WYNK_EMR\WYNK\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.runtimeconfig.json
 D:\GIT_WYNK_EMR\WYNK\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.runtimeconfig.dev.json
@@ -64,101 +65,6 @@ D:\GIT_WYNK_EMR\GIT_VKO\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.Razo
 D:\GIT_WYNK_EMR\GIT_VKO\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csproj.CopyComplete
 D:\GIT_WYNK_EMR\GIT_VKO\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.dll
 D:\GIT_WYNK_EMR\GIT_VKO\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.pdb
-D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.deps.json
-D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.runtimeconfig.json
-D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.runtimeconfig.dev.json
-D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.dll
-D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.pdb
-D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\SMSand EMAILService.cs.dll
-D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Data.dll
-D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Helpers.dll
-D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Data.pdb
-D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\SMSand EMAILService.cs.pdb
-D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Helpers.pdb
-D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csprojAssemblyReference.cache
-D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csproj.CoreCompileInputs.cache
-D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.RazorAssemblyInfo.cache
-D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.RazorAssemblyInfo.cs
-D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
-D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.AssemblyInfoInputs.cache
-D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.AssemblyInfo.cs
-D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.RazorTargetAssemblyInfo.cache
-D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csproj.CopyComplete
-D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.dll
-D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.pdb
-E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\appsettings.Development.json
-E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\appsettings.json
-E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.deps.json
-E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.runtimeconfig.json
-E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.runtimeconfig.dev.json
-E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.dll
-E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.pdb
-E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\SMSand EMAILService.cs.dll
-E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Data.dll
-E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Helpers.dll
-E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Data.pdb
-E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\SMSand EMAILService.cs.pdb
-E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Helpers.pdb
-E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csprojAssemblyReference.cache
-E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.AssemblyInfoInputs.cache
-E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.AssemblyInfo.cs
-E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csproj.CoreCompileInputs.cache
-E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.RazorAssemblyInfo.cache
-E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.RazorAssemblyInfo.cs
-E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
-E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.RazorTargetAssemblyInfo.cache
-E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csproj.CopyComplete
-E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.dll
-E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.pdb
-E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.genruntimeconfig.cache
-D:\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.deps.json
-D:\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.runtimeconfig.json
-D:\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.runtimeconfig.dev.json
-D:\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.dll
-D:\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.pdb
-D:\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\SMSand EMAILService.cs.dll
-D:\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Data.dll
-D:\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Helpers.dll
-D:\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Data.pdb
-D:\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\SMSand EMAILService.cs.pdb
-D:\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Helpers.pdb
-D:\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csprojAssemblyReference.cache
-D:\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csproj.CoreCompileInputs.cache
-D:\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.RazorAssemblyInfo.cache
-D:\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.RazorAssemblyInfo.cs
-D:\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
-D:\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.AssemblyInfoInputs.cache
-D:\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.AssemblyInfo.cs
-D:\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.RazorTargetAssemblyInfo.cache
-D:\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csproj.CopyComplete
-D:\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.dll
-D:\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.pdb
-Q:\Backup\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\appsettings.Development.json
-Q:\Backup\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\appsettings.json
-Q:\Backup\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.deps.json
-Q:\Backup\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.runtimeconfig.json
-Q:\Backup\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.runtimeconfig.dev.json
-Q:\Backup\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.dll
-Q:\Backup\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.pdb
-Q:\Backup\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\SMSand EMAILService.cs.dll
-Q:\Backup\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Data.dll
-Q:\Backup\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Helpers.dll
-Q:\Backup\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Data.pdb
-Q:\Backup\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\SMSand EMAILService.cs.pdb
-Q:\Backup\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Helpers.pdb
-Q:\Backup\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csproj.AssemblyReference.cache
-Q:\Backup\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.AssemblyInfoInputs.cache
-Q:\Backup\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.AssemblyInfo.cs
-Q:\Backup\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csproj.CoreCompileInputs.cache
-Q:\Backup\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.RazorAssemblyInfo.cache
-Q:\Backup\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.RazorAssemblyInfo.cs
-Q:\Backup\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
-Q:\Backup\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.RazorTargetAssemblyInfo.cache
-Q:\Backup\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csproj.CopyComplete
-Q:\Backup\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.dll
-Q:\Backup\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.pdb
-Q:\Backup\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.genruntimeconfig.cache
-<<<<<<< HEAD
 E:\Git_desktop\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\appsettings.Development.json
 E:\Git_desktop\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\appsettings.json
 E:\Git_desktop\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\Properties\launchSettings.json
@@ -185,7 +91,78 @@ E:\Git_desktop\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Service
 E:\Git_desktop\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.dll
 E:\Git_desktop\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.pdb
 E:\Git_desktop\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.genruntimeconfig.cache
+D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.deps.json
+D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.runtimeconfig.json
+D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.runtimeconfig.dev.json
+D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.dll
+D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.pdb
+D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\SMSand EMAILService.cs.dll
+D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Data.dll
+D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Helpers.dll
+D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Data.pdb
+D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\SMSand EMAILService.cs.pdb
+D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Helpers.pdb
+D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csprojAssemblyReference.cache
+D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csproj.CoreCompileInputs.cache
+D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.RazorAssemblyInfo.cache
+D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.RazorAssemblyInfo.cs
+D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
+D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.AssemblyInfoInputs.cache
+D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.AssemblyInfo.cs
+D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.RazorTargetAssemblyInfo.cache
+D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csproj.CopyComplete
+D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.dll
+D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.pdb
 =======
+>>>>>>> a467531da40d3af4ca2d79f0f162be2d07e976eb
+D:\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.deps.json
+D:\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.runtimeconfig.json
+D:\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.runtimeconfig.dev.json
+D:\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.dll
+D:\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.pdb
+D:\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\SMSand EMAILService.cs.dll
+D:\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Data.dll
+D:\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Helpers.dll
+D:\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Data.pdb
+D:\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\SMSand EMAILService.cs.pdb
+D:\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Helpers.pdb
+D:\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csprojAssemblyReference.cache
+D:\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csproj.CoreCompileInputs.cache
+D:\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.RazorAssemblyInfo.cache
+D:\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.RazorAssemblyInfo.cs
+D:\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
+D:\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.AssemblyInfoInputs.cache
+D:\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.AssemblyInfo.cs
+D:\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.RazorTargetAssemblyInfo.cache
+D:\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csproj.CopyComplete
+D:\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.dll
+D:\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.pdb
+<<<<<<< HEAD
+Q:\Backup\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\appsettings.Development.json
+Q:\Backup\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\appsettings.json
+Q:\Backup\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.deps.json
+Q:\Backup\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.runtimeconfig.json
+Q:\Backup\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.runtimeconfig.dev.json
+Q:\Backup\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.dll
+Q:\Backup\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.pdb
+Q:\Backup\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\SMSand EMAILService.cs.dll
+Q:\Backup\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Data.dll
+Q:\Backup\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Helpers.dll
+Q:\Backup\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Data.pdb
+Q:\Backup\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\SMSand EMAILService.cs.pdb
+Q:\Backup\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Helpers.pdb
+Q:\Backup\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csproj.AssemblyReference.cache
+Q:\Backup\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.AssemblyInfoInputs.cache
+Q:\Backup\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.AssemblyInfo.cs
+Q:\Backup\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csproj.CoreCompileInputs.cache
+Q:\Backup\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.RazorAssemblyInfo.cache
+Q:\Backup\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.RazorAssemblyInfo.cs
+Q:\Backup\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
+Q:\Backup\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.RazorTargetAssemblyInfo.cache
+Q:\Backup\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csproj.CopyComplete
+Q:\Backup\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.dll
+Q:\Backup\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.pdb
+Q:\Backup\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.genruntimeconfig.cache
 F:\VK_Optics\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\appsettings.Development.json
 F:\VK_Optics\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\appsettings.json
 F:\VK_Optics\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\Properties\launchSettings.json
@@ -210,4 +187,30 @@ F:\VK_Optics\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.
 F:\VK_Optics\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csproj.CopyComplete
 F:\VK_Optics\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.dll
 F:\VK_Optics\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.pdb
->>>>>>> a82c466e29b651fc77ee6b9ac3499f2eba166ca1
+E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\appsettings.Development.json
+E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\appsettings.json
+E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.deps.json
+E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.runtimeconfig.json
+E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.runtimeconfig.dev.json
+E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.dll
+E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.pdb
+E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\SMSand EMAILService.cs.dll
+E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Data.dll
+E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Helpers.dll
+E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Data.pdb
+E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\SMSand EMAILService.cs.pdb
+E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Helpers.pdb
+E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csprojAssemblyReference.cache
+E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.AssemblyInfoInputs.cache
+E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.AssemblyInfo.cs
+E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csproj.CoreCompileInputs.cache
+E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.RazorAssemblyInfo.cache
+E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.RazorAssemblyInfo.cs
+E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
+E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.RazorTargetAssemblyInfo.cache
+E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csproj.CopyComplete
+E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.dll
+E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.pdb
+E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.genruntimeconfig.cache
+=======
+>>>>>>> a467531da40d3af4ca2d79f0f162be2d07e976eb

@@ -21,7 +21,7 @@ export class CustomerMasterComponent implements OnInit {
   }
   DisabledREV: boolean;
 
-  M_UIN;
+  //M_UIN;
   M_Name;
   M_Address1;
   M_Address2;
@@ -45,6 +45,15 @@ export class CustomerMasterComponent implements OnInit {
   isNextButton = true;
   isNextupdate = true;
   isNextDelete = true;
+  M_MName;
+  M_LName;
+
+  @ViewChild('CustomerMaster') Form: NgForm
+
+
+  accesspopup;
+  accessdata;
+  cancelblock;
 
   ngOnInit() {
     var Pathname = "Opticalslazy/CustomerMaster";
@@ -135,36 +144,26 @@ export class CustomerMasterComponent implements OnInit {
         });
       }
     }
-
   }
 
-  @ViewChild('CustomerMaster') Form: NgForm
-
-
-  accesspopup;
-  accessdata;
   Getformaccess() {
-    debugger;
     var Pathname = "Opticalslazy/CustomerMaster";
     var n = Pathname;
     var sstring = n.includes("/");
     if (sstring == false) {
       this.commonService.getListOfData('Common/GetAccessdetails/' + localStorage.getItem("CompanyID") + '/' + localStorage.getItem("userroleID") + '/' + Pathname).subscribe(data => {
         this.accessdata = data.GetAvccessDetails;
-        this.backdrop = 'block';
         this.accesspopup = 'block';
       });
     }
     else if (sstring == true) {
       this.commonService.getListOfData('Common/GetAccessdetailsstring/' + localStorage.getItem("CompanyID") + '/' + localStorage.getItem("userroleID") + '/' + Pathname).subscribe(data => {
         this.accessdata = data.GetAvccessDetails;
-        this.backdrop = 'block';
         this.accesspopup = 'block';
       });
     }
   }
   modalcloseAccessOk() {
-    this.backdrop = 'none';
     this.accesspopup = 'none';
   }
 
@@ -182,7 +181,6 @@ export class CustomerMasterComponent implements OnInit {
 
 
   nameField(event): boolean {
-    debugger
     const charCode = (event.which) ? event.which : event.keyCode;
     if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123) || charCode == 32 || charCode == 46 || charCode == 9 || (charCode > 34 && charCode < 41) || charCode == 8) {
       return true;
@@ -190,42 +188,8 @@ export class CustomerMasterComponent implements OnInit {
     return false;
   }
 
-  SearchUIN() {
-    localStorage.setItem('helpname', 'Registration');
-    const dialogRef = this.dialog.open(SearchComponent, {
-      height: '70%',
-      width: '85%',
-      disableClose: true
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      debugger
-      if (result.success) {
-        this.Form.onReset();
-        this.M_CustomerID = null;
-        let item = result.data;
-        this.SearchedUin = true
-        this.M_Name = item.Name;
-        this.M_LName = item.LastName;
-        this.M_MName = item.MiddleName;
-        this.M_Address1 = item.Address1
-        this.M_Address2 = item.Address2
-        this.M_Address3 = item.Address3
-        this.M_MobileNo = item.Phone
-        this.M_UIN = item.UIN
-        this.M_City = item.City
-        this.CitySearch();
-        this.commonService.getListOfData('Common/Getlocationvalues/' + this.M_City).subscribe(data => {
-          this.Locationnames = data;
-          var templocation = this.Locationnames.find(x => x.Text == item.LocationName)
-          this.M_Location = templocation.Value
-        });
-      }
-    });
-  }
-
   CancelClk() {
-    if (this.M_UIN != null || this.M_Name != null || this.M_MName != null || this.M_LName != null || this.M_Address1 != null || this.M_Address2 != null || this.M_Address3 != null || this.M_GST != null || this.M_City != null || this.M_Location != null || this.M_State != null || this.M_Country !== null || this.M_ContactPerson != null || this.M_PhoneNo != null || this.M_MobileNo != null) {
-      this.backdrop = 'block';
+    if (this.M_Name != null || this.M_MName != null || this.M_LName != null || this.M_Address1 != null || this.M_Address2 != null || this.M_Address3 != null || this.M_GST != null || this.M_City != null || this.M_Location != null || this.M_State != null || this.M_Country !== null || this.M_ContactPerson != null || this.M_PhoneNo != null || this.M_MobileNo != null) {
       this.cancelblock = 'block';
     }
     else {
@@ -235,11 +199,7 @@ export class CustomerMasterComponent implements OnInit {
     }
   }
 
-  backdrop;
-  cancelblock;
-
   modalcloseOk() {
-    this.backdrop = 'none';
     this.cancelblock = 'none';
   }
   modalSuccesssOk() {
@@ -257,24 +217,41 @@ export class CustomerMasterComponent implements OnInit {
         this.M_Country = data.ParentDescriptioncountry;
         if (this.M_State != null) {
           this.disableLOC = false;
+          this.M_Location = null;
         }
         else {
           this.disableLOC = true;
+          this.M_Location = null;
         }
       });
     this.commonService.getListOfData('Common/Getlocationvalues/' + this.M_City).subscribe(data => {
       this.Locationnames = data;
+      this.M_Location = null;
     });
   }
 
-  M_MName;
-  M_LName;
+
   /* Submit */
   Submit(form: NgForm) {
+    debugger
     if (form.valid) {
       this.isInvalid = false;
+      if (this.M_Location == null || this.M_Location == undefined) {
+        Swal.fire({
+          type: 'warning',
+          title: 'Location Required',
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 1500,
+          customClass: {
+            popup: 'alert-warp',
+            container: 'alert-container',
+          },
+        });
+        return
+      }
       this.commonService.data.CustomerMaster = new Customer();
-      this.commonService.data.CustomerMaster.UIN = this.M_UIN;
+      //this.commonService.data.CustomerMaster.UIN = this.M_UIN;
       this.commonService.data.CustomerMaster.Name = this.M_Name;
       this.commonService.data.CustomerMaster.MiddleName = this.M_MName;
       this.commonService.data.CustomerMaster.LastName = this.M_LName;
@@ -308,10 +285,10 @@ export class CustomerMasterComponent implements OnInit {
             this.Form.onReset();
             this.SearchedUin = false;
           }
-          else if (data.Message == "Already Registered Customer") {
+          else if (data.Message == "Mobile Number already Exists") {
             Swal.fire({
               type: 'warning',
-              title: 'Already Registered Customer',
+              title: 'Mobile Number already Exists',
               position: 'top-end',
               showConfirmButton: false,
               timer: 1500,
@@ -351,8 +328,22 @@ export class CustomerMasterComponent implements OnInit {
     debugger
     if (form.valid) {
       this.isInvalid = false;
+      if (this.M_Location == null || this.M_Location == undefined) {
+        Swal.fire({
+          type: 'warning',
+          title: 'Location Required',
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 1500,
+          customClass: {
+            popup: 'alert-warp',
+            container: 'alert-container',
+          },
+        });
+        return
+      }
       this.commonService.data.CustomerMaster = new Customer();
-      this.commonService.data.CustomerMaster.UIN = this.M_UIN;
+      //this.commonService.data.CustomerMaster.UIN = this.M_UIN;
       this.commonService.data.CustomerMaster.Name = this.M_Name;
       this.commonService.data.CustomerMaster.MiddleName = this.M_MName;
       this.commonService.data.CustomerMaster.LastName = this.M_LName;
@@ -364,6 +355,7 @@ export class CustomerMasterComponent implements OnInit {
       this.commonService.data.CustomerMaster.MobileNo = this.M_MobileNo;
       this.commonService.data.CustomerMaster.PhoneNo = this.M_PhoneNo;
       this.commonService.data.CustomerMaster.ContactPerson = this.M_ContactPerson;
+      this.commonService.data.CustomerMaster.CmpID = parseInt(localStorage.getItem("CompanyID"));
       this.commonService.data.CustomerMaster.UpdatedBy = parseInt(localStorage.getItem("userroleID"));
 
       this.commonService.postData('CustomerMaster/UpdateCustomerMaster/' + ID, this.commonService.data)
@@ -384,6 +376,19 @@ export class CustomerMasterComponent implements OnInit {
             this.Form.onReset();
             this.SearchedUin = false;
             this.M_CustomerID = null;
+          }
+          else if (data.Message == "Mobile Number already Exists") {
+            Swal.fire({
+              type: 'warning',
+              title: 'Mobile Number already Exists',
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 1500,
+              customClass: {
+                popup: 'alert-warp',
+                container: 'alert-container',
+              },
+            });
           }
           else {
             Swal.fire({
@@ -485,7 +490,7 @@ export class CustomerMasterComponent implements OnInit {
         this.M_MobileNo = item.MobileNo
         this.M_PhoneNo = item.PhoneNo
         this.M_CustomerID = item.ID
-        this.M_UIN = item.UIN
+        //this.M_UIN = item.UIN
         this.M_ContactPerson = item.ContactPerson
         this.M_GST = item.GSTNo
         this.M_City = item.City

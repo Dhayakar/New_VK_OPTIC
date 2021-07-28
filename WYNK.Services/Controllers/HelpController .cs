@@ -346,10 +346,10 @@ namespace WebApiCore.Controllers
         //    return _repoWrapper.Help.getGroup(name);
         //}
 
-        [HttpGet("CustomerOrder/{CMPID}")]
-        public Help CustomerOrder(int CMPID, string Value)
+        [HttpGet("CustomerOrder/{CMPID}/{TaxGroup}")]
+        public Help CustomerOrder(int CMPID, string TaxGroup)
         {
-            return _repoWrapper.Help.CustomerOrder(CMPID);
+            return _repoWrapper.Help.CustomerOrder(CMPID, TaxGroup);
         }
 
         [HttpGet("getCode1/{ICDGROUPCODE}/{CMPID}")]
@@ -560,6 +560,15 @@ namespace WebApiCore.Controllers
         {
             return _repoWrapper.Help.getopticalMaterialdetails();
         }
+
+
+
+
+        //[HttpGet("getopticalMaterialdetails")]
+        //public dynamic getopticalMaterialdetails()
+        //{
+        //    return _repoWrapper.Help.getopticalMaterialdetails();
+        //}
 
         [HttpGet("getMedicalRegisters/{FromDate}/{ToDate}/{CMPID}")]
         public dynamic getMedicalRegisters(DateTime FromDate, DateTime ToDate,  int CMPID)

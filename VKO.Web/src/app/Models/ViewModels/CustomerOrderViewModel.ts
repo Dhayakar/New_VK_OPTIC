@@ -127,6 +127,7 @@ export class CustomerItemOrder {
   GST?: number
   CGST?: number
   SGST?: number
+  IGST?: number
 
   CESS?: number
   AddCess?: number
@@ -138,6 +139,7 @@ export class CustomerItemOrder {
   GSTValue: number
   CGSTValue: number
   SGSTValue: number
+  IGSTValue: number
   CESSValue: number
   AddCessValue: number
 

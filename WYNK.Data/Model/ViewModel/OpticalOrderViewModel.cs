@@ -93,7 +93,10 @@ namespace WYNK.Data.Model.ViewModel
         public decimal? AdditionalCESS { get; set; }
         public decimal? AdditionalCESSAmount { get; set; }
 
-
+        public decimal? CGSTPercentage { get; set; }
+        public decimal? CGSTTaxValue { get; set; }
+        public decimal? SGSTPercentage { get; set; }
+        public decimal? SGSTTaxValue { get; set; }
         public string CompanyName { get; set; }
         public string CAddress1 { get; set; }
         public string CAddress2 { get; set; }
