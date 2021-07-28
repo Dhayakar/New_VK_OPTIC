@@ -45,12 +45,12 @@ export class MasterBarcodePrintingComponent implements OnInit {
       } else {
         this.isdisable = true;
       }
-     
+
     });
   }
   bardata;
   Copy_M;
-  displayedColumns = ['Action', 'Description', 'Type', 'tax','sph','cyl','axis','add','barcodeid'];
+  displayedColumns = ['Action', 'Description', 'Type', 'tax', 'sph', 'cyl', 'axis', 'add', 'barcodeid'];
   dataSource = new MatTableDataSource();
   Brandchoose() {
     debugger;
@@ -77,13 +77,13 @@ export class MasterBarcodePrintingComponent implements OnInit {
     });
   }
   bararray = [];
-  selectvalues(data,event, index) {
+  selectvalues(data, event, index) {
     debugger;
     if (event.checked == true) {
       this.bararray.push({
-        "ID":data.ID,
+        "ID": data.ID,
         "Barcode": data.barcodeid,
-      });  
+      });
     } else {
       this.bararray.map((todo, i) => {
         if (todo.ID == data.ID) {
@@ -97,6 +97,36 @@ export class MasterBarcodePrintingComponent implements OnInit {
     if (this.Copy_M != undefined && this.bararray.length != 0) {
       var copy = this.Copy_M;
       var lengtharray = this.bararray;
+
+      let printContents: any = "", popupWin: any;
+      popupWin = window.open('', '_blank', 'top=0,left=0,height=auto,width=100%');
+      popupWin.document.open();
+      var Subdata: any;
+      for (var i = 0; i < lengtharray.length; i++) {
+        printContents += `<div class="col-sm-12" style="transform: rotate(90deg);margin-top:10px;page-break-after:always">
+      <ngx-barcode bc-width="15" bc-font-size="250"
+                   bc-value="${lengtharray[i].Barcode}" bc-display-value="true" bc-height="400">
+      </ngx-barcode>
+</div>`
+        popupWin.document.write(`
+             <html>
+             <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+
+<title></title>
+            <style>
+
+   </style>
+          </head>
+      <body onload="window.print();window.close()">${printContents}</body>
+        </html>`);
+        printContents = "";
+      }
+      popupWin.document.close();
+      //this.router.navigateByUrl('/dash', { skipLocationChange: true }).then(() => {
+      //  this.router.navigate(["Opticalslazy/BarcodePrinting"]);
+      //});
 
     } else {
       Swal.fire({
@@ -112,7 +142,7 @@ export class MasterBarcodePrintingComponent implements OnInit {
         },
       });
     }
- 
+
 
   }
 
