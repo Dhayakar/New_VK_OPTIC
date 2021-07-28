@@ -1,0 +1,249 @@
+
+<div class="col-sm-12">
+  <div class="row">
+    <h6>User Details</h6>
+  </div>
+  <div class="col-sm-12 mph-0">
+    <div class="row mph-0">
+      <div class="col-sm-12 mph-0">
+        <div class="col-sm-6 mph-0 pb20">
+        </div>
+        <div class="col-sm-2 mph-0 pb20">
+        </div>
+        <div class="col-sm-4 mph-0 f-r content-right pb20">
+          <button class="btn-text" (click)="Getformaccess()"><i class="fas fa-eye"></i> View Access</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4">
+      <mat-form-field appearance="outline">
+        <mat-label>User</mat-label>
+        <mat-select required [(ngModel)]="USERSELECTION_M" name="USERSELE" (ngModelChange)="userselectionChange()">
+          <mat-option value="Internal">Internal User</mat-option>
+          <mat-option value="External">External User</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+      <mat-form-field appearance="outline" *ngIf="Hideinternaldata">
+        <mat-label>Role</mat-label>
+        <mat-select required [(ngModel)]="M_Role" name="Roles" (ngModelChange)="GetrolevaluesChange(M_Role)">
+          <mat-option *ngFor="let Role of roles" [value]="Role">{{Role.Text}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" *ngIf="externaldata">
+        <mat-label>Role</mat-label>
+        <mat-select required [(ngModel)]="M_RoleExternal" name="M_RoleExternalss">
+          <mat-option value="None">None</mat-option>
+          <mat-option *ngFor="let Roles of Externalroles" [value]="Roles">{{Roles.Text}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-4">
+      <mat-form-field appearance="outline" *ngIf="Hiderole">
+        <mat-label>User</mat-label>
+        <mat-select required [(ngModel)]="Roles" name="Rolesss">
+          <mat-option value="None">None</mat-option>
+          <mat-option *ngFor="let GRole of rolesfulldata" [value]="GRole.Roleids">{{GRole.Roledescriptions}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <mat-form-field appearance="outline" *ngIf="externaldata">
+        <mat-label>User Name</mat-label>
+        <input [(ngModel)]="M_Username" matInput placeholder="Enter Store Name" name="M_Usernamess" type="text" required>
+      </mat-form-field>
+
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="col-sm-4" *ngIf="externaldata">
+      <mat-form-field appearance="outline" class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+               placeholder="Email ID" [(ngModel)]="EMaildid" name="EMaildidss">
+        <mat-hint>Errors appear instantly!</mat-hint>
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+    </div>
+
+
+    <div class="col-sm-4" *ngIf="externaldata">
+
+      <mat-slide-toggle #toggle>Show Password Details</mat-slide-toggle>
+      <mat-form-field appearance="outline" style="width:100%">
+        <mat-label>Password</mat-label>
+        <input matInput #passwordWithValidation
+               [type]="inputType ? 'password' : 'text'"
+               required
+               [formControl]="passwordComponentWithValidation.passwordFormControl"
+               placeholder="Password"
+               [(ngModel)]="ExternalPasswordms" name="ExternaPasswordmConfirms">
+        <button mat-icon-button matSuffix (click)="inputType = !inputType" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="inputType">
+          <mat-icon>{{inputType ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="passwordComponentWithValidation.passwordFormControl.hasError('required')">
+          Password is required
+        </mat-error>
+        <mat-error *ngIf="passwordComponentWithValidation.passwordFormControl.hasError('pattern')">
+          Password is not valid
+        </mat-error>
+      </mat-form-field>
+      <mat-password-strength #passwordComponentWithValidation
+                             (onStrengthChanged)="onStrengthChanged($event)"
+                             [password]="passwordWithValidation.value">
+      </mat-password-strength>
+      <mat-password-strength-info *ngIf="toggle.checked" [passwordComponent]="passwordComponentWithValidation">
+      </mat-password-strength-info>
+
+    </div>
+
+    <div class="col-sm-4" *ngIf="Hiderole">
+
+      <mat-slide-toggle #toggle>Show Password Details</mat-slide-toggle>
+      <mat-form-field appearance="outline" style="width:100%">
+        <mat-label>Password</mat-label>
+        <input matInput #passwordWithValidation
+               [type]="inputType ? 'password' : 'text'"
+               required
+               [formControl]="passwordComponentWithValidation.passwordFormControl"
+               placeholder="Password"
+               [(ngModel)]="Passwordms" name="PasswordmConfirms">
+        <button mat-icon-button matSuffix (click)="inputType = !inputType" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="inputType">
+          <mat-icon>{{inputType ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="passwordComponentWithValidation.passwordFormControl.hasError('required')">
+          Password is required
+        </mat-error>
+        <mat-error *ngIf="passwordComponentWithValidation.passwordFormControl.hasError('pattern')">
+          Password is not valid
+        </mat-error>
+      </mat-form-field>
+      <mat-password-strength #passwordComponentWithValidation
+                             (onStrengthChanged)="onStrengthChanged($event)"
+                             [password]="passwordWithValidation.value">
+      </mat-password-strength>
+      <mat-password-strength-info *ngIf="toggle.checked" [passwordComponent]="passwordComponentWithValidation">
+      </mat-password-strength-info>
+
+    </div>
+
+    <div class="col-sm-4" *ngIf="Hiderole">
+      <mat-form-field appearance="outline">
+        <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [(ngModel)]="m_confirm" name="confirms" (blur)="onBlurMethod(m_confirm,Passwordms)">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+
+    </div>
+
+    <div class="col-sm-4" *ngIf="externaldata">
+      <mat-form-field appearance="outline">
+        <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [(ngModel)]="Externalm_confirm" name="Externalconfirms"
+               (blur)="onBlurExternalMethod(Externalm_confirm,ExternalPasswordms)">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+
+    </div>
+
+    <div class="col-sm-4">
+      <mat-form-field appearance="outline" *ngIf="Hiderole">
+        <mat-label>User Access</mat-label>
+        <mat-select required [(ngModel)]="AccessRole" name="Accesss">
+          <mat-option>None</mat-option>
+          <mat-option value="NormalUser">Normal User</mat-option>
+          <mat-option value="AdminUser">Admin User</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+
+  </div>
+  <!--<div class="row">
+    <div class="col-sm-5">
+
+    </div>
+    <div class="col-sm-3" style="margin-bottom:2%">
+      <button *ngIf="Hiderole" class="success" style="margin-right:2%" (click)="onSubmit(M_Role,Roles,Passwordms,m_confirm,AccessRole)" mat-raised-button>Submit</button>
+      <button *ngIf="externaldata" class="success" style="margin-right:2%" (click)="onSubmitExternalRole(M_RoleExternal,EMaildid,Externalm_confirm)" mat-raised-button>Submit</button>
+      <button type="button" class="btn btn-warning" style="font-size:15px;color:orange;background-color:white;" (click)="Cancel()"><strong>Cancel</strong></button>
+    </div>
+    <div class="col-sm-4">
+
+
+    </div>
+  </div>-->
+  <div class="col-sm-12 pb25">
+    <div class="content-right sub-section btn-wrap">
+      <!--<button type="button" class="btn btn-warning-default" (click)="Cancel()"> Cancel </button>
+      <button class="success btn btn-primary" [disabled]="isNextButton" (click)="Submit(ReportssForm)">
+        Submit
+      </button>-->
+      <button *ngIf="Hiderole" class="success btn btn-primary" (click)="onSubmit(M_Role,Roles,Passwordms,m_confirm,AccessRole)">Submit</button>
+      <button *ngIf="externaldata" class="success btn btn-primary" (click)="onSubmitExternalRole(M_RoleExternal,EMaildid,Externalm_confirm)">Submit</button>
+      <button type="button" class="btn btn-warning-default" (click)="Cancel()"><strong>Cancel</strong></button>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal cust-model" role="dialog" [ngStyle]="{'display':accesspopup}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="modalcloseAccessOk()">&times;</button>
+        <h4 class="modal-title text-left">User - View Access</h4>
+      </div>
+      <div class="modal-body">
+        <table align="center" class="table custom-table">
+          <thead>
+            <tr>
+              <th>Add</th>
+              <th>Edit</th>
+              <th>Delete</th>
+              <th>Export</th>
+              <th>Print</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let x of accessdata; index as i">
+              <td>
+                <mat-checkbox [(checked)]="x.Add" disabled></mat-checkbox>
+              </td>
+              <td>
+                <mat-checkbox [(checked)]="x.Edit" disabled></mat-checkbox>
+              </td>
+              <td>
+                <mat-checkbox [(checked)]="x.Delete" disabled></mat-checkbox>
+              </td>
+              <td>
+                <mat-checkbox [(checked)]="x.Export" disabled></mat-checkbox>
+              </td>
+              <td>
+                <mat-checkbox [(checked)]="x.Print" disabled></mat-checkbox>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" data-dismiss="modal" autofocus (click)="modalcloseAccessOk()">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2425,9 +2425,6 @@ namespace WYNK.Data.Repository.Implementation
                                         select new CustomerDetails
                                         {
                                             ID = Cust.ID,
-                                            //  Address1 = PasswordEncodeandDecode.GetConcatSName(Cust.Address1),
-                                            //   Address2 = PasswordEncodeandDecode.GetConcatSName(Cust.Address2),
-                                            //   Address3 = PasswordEncodeandDecode.GetConcatSName(Cust.Address3),
                                             UIN = Cust.UIN,
                                             Name = Cust.Name,
                                             Address1 = Cust.Address1,
@@ -2441,6 +2438,7 @@ namespace WYNK.Data.Repository.Implementation
                                             ContactPerson = Cust.ContactPerson,
                                             LocationName = Location.Where(x => x.ID == Cust.Location).Select(x => x.ParentDescription).FirstOrDefault(),
                                             City = Convert.ToString(Location.Where(x => x.ID == Cust.Location).Select(x => x.ParentID).FirstOrDefault()),
+                                            LocationID =Convert.ToInt32(Location.Where(x => x.ID == Location.Where(c => c.ID == Cust.Location && c.ParentTag == "loc").Select(c => c.ParentID).FirstOrDefault() && x.ParentTag == "City").Select(x => x.ParentID).FirstOrDefault()),
                                         }).ToList();
 
 
@@ -2515,7 +2513,7 @@ namespace WYNK.Data.Repository.Implementation
                                               Color = LT.Colour,
                                               Size = LT.Size,
                                               Price = LT.Prize,
-                                              ActualPrice = Math.Round(LT.Sptaxinclusive ==false ? LT.Prize : (LT.Prize  * 100) / (100 + Convert.ToDecimal(TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.GSTPercentage).FirstOrDefault()))),
+                                              ActualPrice = Math.Round(LT.Sptaxinclusive == false ? LT.Prize : TaxGroup == "withinState" ? (LT.Prize  * 100) / (100 + Convert.ToDecimal(TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.GSTPercentage).FirstOrDefault())) : (LT.Prize * 100) / (100 + Convert.ToDecimal(TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.IGSTPercentage).FirstOrDefault()))),
                                               Model = LT.Model,
                                               GST = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.GSTPercentage).FirstOrDefault(),
                                               CGST = TaxMas.Where(x => x.ID == LT.TaxID).Select(x => x.CGSTPercentage).FirstOrDefault(),

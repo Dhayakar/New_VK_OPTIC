@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 D:\GIT_WYNK_EMR\WYNK\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.deps.json
 D:\GIT_WYNK_EMR\WYNK\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.runtimeconfig.json
 D:\GIT_WYNK_EMR\WYNK\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.runtimeconfig.dev.json
@@ -112,6 +113,8 @@ D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Se
 D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csproj.CopyComplete
 D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.dll
 D:\WYNK_GIT_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.pdb
+=======
+>>>>>>> a467531da40d3af4ca2d79f0f162be2d07e976eb
 D:\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.deps.json
 D:\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.runtimeconfig.json
 D:\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.runtimeconfig.dev.json
@@ -134,6 +137,7 @@ D:\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.RazorTarge
 D:\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.csproj.CopyComplete
 D:\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.dll
 D:\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.pdb
+<<<<<<< HEAD
 Q:\Backup\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\appsettings.Development.json
 Q:\Backup\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\appsettings.json
 Q:\Backup\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\WYNK.Services.deps.json
@@ -208,3 +212,5 @@ E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Serv
 E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.dll
 E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.pdb
 E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.genruntimeconfig.cache
+=======
+>>>>>>> a467531da40d3af4ca2d79f0f162be2d07e976eb

@@ -274,6 +274,7 @@ namespace WYNK.Data.Repository
         IEnumerable<Dropdown> GetGenericvalue(int ID);
         IEnumerable<Dropdown> Gettmhvalues();
         IEnumerable<Dropdown> Gettbutvalues();
+        dynamic GetLoginLocationId(int CMPID);
 
 
     }

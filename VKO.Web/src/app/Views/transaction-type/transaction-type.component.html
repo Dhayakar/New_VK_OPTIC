@@ -1,0 +1,118 @@
+<div class="col-sm-12">
+  <div class="row">
+    <h6>Transaction Type</h6>
+  </div>
+  <form #TranTypeForm="ngForm">
+    <div class="row">
+      <input #TranTypeid name="TranTypeID" [(ngModel)]="TT_ID" type="hidden">
+      <div class="col-sm-3">
+        <mat-form-field appearance="outline">
+          <mat-label>Description</mat-label>
+          <input matInput #message maxlength="100" placeholder="Description" [(ngModel)]="TT_Description" name="TT_Description" required>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-1">
+        <mat-icon class="grab" data-toggle="tooltip" (click)="onSearch()" title="Search">search</mat-icon>
+      </div>
+      <div class="col-sm-3">
+        <mat-form-field appearance="outline">
+          <mat-label>Contra Transaction</mat-label>
+          <input matInput placeholder="Contra Transaction" [(ngModel)]="TT_ContraTran" name="TT_ContraTran" disabled>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-1">
+        <mat-icon class="grab" data-toggle="tooltip" (click)="ContraTranSearch('ContraTC')" title="Search">search</mat-icon>
+      </div>
+      <div class="col-sm-3">
+        <mat-form-field appearance="outline">
+          <mat-label>Rec / Pay contra</mat-label>
+          <input matInput placeholder="Rec / Pay contra" [(ngModel)]="M_RecPaycontra" name="RecPaycontra" disabled>
+        </mat-form-field>
+      </div>
+      <div class="col-sm-1">
+        <mat-icon class="grab" data-toggle="tooltip" (click)="ContraTranSearch('RecPay')" title="Search">search</mat-icon>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-3">
+        <mat-form-field appearance="outline">
+          <mat-label> Issue Type</mat-label>
+          <mat-select [(ngModel)]="TT_Rec_Issue_Type" name="TT_Rec_Issue_Type" required>
+            <mat-option value="I">Issue</mat-option>
+            <mat-option value="R">Receipt</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <!--<div class="col-sm-12">
+    <div style="text-align:center;margin-left: 4%;margin-bottom: 1%;">
+      <div class="col-sm-1" *ngIf="hideupdate" style="text-align:center">
+        <button mat-raised-button (click)="onUpdate(TranTypeForm,TranTypeid.value)" style="margin-left: 352px;" class="success">Submit</button>
+      </div>
+      <div class="col-sm-1" *ngIf="hidesubmit" style="text-align:center">
+        <button mat-raised-button class="success" (click)="onSubmit(TranTypeForm)" style="justify-content:center;margin-left: 357px;"> Submit </button>
+      </div>
+      &nbsp; &nbsp;&nbsp; &nbsp;
+      <button type="button" class="btn btn-warning" style="font-size:15px;color:orange;background-color:white;margin-left: -17%;" (click)="Cancel()"><strong>Cancel</strong></button>
+    </div>
+  </div>-->
+    <div class="col-sm-12 pb25">
+      <div class="content-right sub-section btn-wrap">
+        <button type="button" class="btn btn-warning-default" (click)="Cancel()"> Cancel </button>
+        <button *ngIf="hidesubmit" (click)="onSubmit(TranTypeForm)" class="success btn btn-primary">Submit</button>
+        <button *ngIf="hideupdate" (click)="onUpdate(TranTypeForm,TranTypeid.value)" class="success btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="modal" role="dialog" [ngStyle]="{'display':cancelblock}">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" (click)="modalClose()">&times;</button>
+            <h4 class="modal-title text-left">Cancel</h4>
+          </div>
+          <p align="center"> Do you want to cancel</p>
+          <div class="modal-footer">
+            <button class="btn btn-danger" data-dismiss="modal" autofocus (click)="Cancel()">No</button>
+            <button type="reset" class="btn btn-success " data-dismiss="modal" (click)="CancelYes()">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<!--ContraTran  Pop_Up-->
+<div class="modal cust-model" role="dialog" [ngStyle]="{'display':ContraTranPopUp}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" (click)="modalClose1()">&times;</button>
+        <h4 class="modal-title text-left">Transaction Master</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row heightAuto-250px">
+          <table class="custom-table withoutbackgroung search-table table-bordered">
+            <thead>
+              <tr>
+                <th>Action</th>
+                <th>Contra Transaction</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let cd of con5tradetails">
+                <td>
+                  <mat-icon data-toggle="tooltip" title="Select" class="grab" (click)="BindContraTran(cd)">touch_app</mat-icon>
+                </td>
+                <td>{{cd.Description}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

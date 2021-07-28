@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WYNK.Data.Model.ViewModel
 {
-   public  class SetupMasterViewModel
+    public class SetupMasterViewModel
     {
 
         public string cmpid { get; set; }
@@ -14,7 +14,7 @@ namespace WYNK.Data.Model.ViewModel
         public string consultinghrs { get; set; }
         public string Language { get; set; }
         public int GAPINTERVAL { get; set; }
-        
+
         public string roomtime { get; set; }
         public string country { get; set; }
         public string currency { get; set; }
@@ -30,6 +30,7 @@ namespace WYNK.Data.Model.ViewModel
 
         public bool cfa { get; set; }
         public bool rfa { get; set; }
+        public bool nfa { get; set; }
 
 
         public ICollection<SetupMasterFulldetails> SetupMasterFulldetailsS { get; set; }
@@ -46,6 +47,7 @@ namespace WYNK.Data.Model.ViewModel
         public string cmp { get; set; }
 
         public string cfa { get; set; }
+        public string nfa { get; set; }
         public string rfa { get; set; }
 
         public string country { get; set; }
@@ -68,4 +70,4 @@ namespace WYNK.Data.Model.ViewModel
 
 
 
-    }
+}

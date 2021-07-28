@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 D:\GIT_WYNK_EMR\WYNK\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.deps.json
 D:\GIT_WYNK_EMR\WYNK\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.dll
 D:\GIT_WYNK_EMR\WYNK\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
@@ -42,6 +43,8 @@ D:\WYNK_GIT_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2
 D:\WYNK_GIT_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.AssemblyInfo.cs
 D:\WYNK_GIT_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.dll
 D:\WYNK_GIT_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
+=======
+>>>>>>> a467531da40d3af4ca2d79f0f162be2d07e976eb
 D:\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.deps.json
 D:\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.dll
 D:\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
@@ -51,6 +54,7 @@ D:\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILSe
 D:\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.AssemblyInfo.cs
 D:\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.dll
 D:\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
+<<<<<<< HEAD
 Q:\Backup\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.deps.json
 Q:\Backup\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.dll
 Q:\Backup\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
@@ -76,3 +80,5 @@ E:\GITHUB_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0
 E:\GITHUB_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.csproj.CoreCompileInputs.cache
 E:\GITHUB_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.dll
 E:\GITHUB_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
+=======
+>>>>>>> a467531da40d3af4ca2d79f0f162be2d07e976eb
