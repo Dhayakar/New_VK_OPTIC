@@ -117,7 +117,7 @@ namespace WYNK.Data.Repository.Implementation
                                                       LTID = LT.ID,
                                                       //LensName = LT.LensOption,
                                                       UOMDescription = UM.Description,
-                                                      Prize = LT.Prize,
+                                                      Prize = LT.Costprice,
                                                       GST = Convert.ToInt16(getvalue(CMPSContext.TaxMaster.Where(x => x.ID == TaxID).Select(x => x.GSTPercentage).FirstOrDefault())),
                                                       IGST = Convert.ToInt16(getvalue(CMPSContext.TaxMaster.Where(x => x.ID == TaxID).Select(x => x.IGSTPercentage).FirstOrDefault())),
                                                       CESS = getvalue(CMPSContext.TaxMaster.Where(x => x.ID == TaxID).Select(x => x.CESSPercentage).FirstOrDefault()),
@@ -143,11 +143,21 @@ namespace WYNK.Data.Repository.Implementation
                 try
                 {
                     var OpticalOrderM = new OpticalOrder();
+                    var FinancialYearId = WYNKContext.FinancialYear.Where(x => x.ID == WYNKContext.FinancialYear.Where(b => Convert.ToDateTime(b.FYFrom) <= DateTime.Now && Convert.ToDateTime(b.FYTo) >= DateTime.Now && x.CMPID == cmpid && x.IsActive == true).Select(f => f.ID).FirstOrDefault()).Select(c => c.FYAccYear).FirstOrDefault();
+                    if (FinancialYearId == 0)
+                    {
+                        dbContextTransaction.Rollback();
+                        return new
+                        {
+                            Success = false,
+                            Message = "Financial year doesn't exists",
+                        };
+                    }
 
                     OpticalOrderM.RandomUniqueID = PasswordEncodeandDecode.GetRandomnumber();
                     OpticalOrderM.CmpID = AddOptical.OpticalOrder.CmpID;
                     OpticalOrderM.OrderNumber = AddOptical.OpticalOrder.OrderNumber;
-                    OpticalOrderM.Fyear = Convert.ToString(WYNKContext.FinancialYear.Where(x => x.ID == WYNKContext.FinancialYear.Where(b => Convert.ToDateTime(b.FYFrom) <= DateTime.Now && Convert.ToDateTime(b.FYTo) >= DateTime.Now && x.CMPID == cmpid && x.IsActive == true).Select(f => f.ID).FirstOrDefault()).Select(c => c.FYAccYear).FirstOrDefault());
+                    OpticalOrderM.Fyear = Convert.ToString(FinancialYearId);
                     OpticalOrderM.OrderDate = AddOptical.OpticalOrder.OrderDate;
                     OpticalOrderM.RefNo = AddOptical.OpticalOrder.RefNo;
                     OpticalOrderM.RefDate = AddOptical.OpticalOrder.RefDate;
@@ -199,6 +209,7 @@ namespace WYNK.Data.Repository.Implementation
                         OpticalOrderTran.OrderedQty = item.Quantity;
                         OpticalOrderTran.ReceivedQty = 0;
                         OpticalOrderTran.Price = item.Prize;
+                        OpticalOrderTran.ItemValue = item.Prize * item.Quantity;
                         OpticalOrderTran.DiscountPercentage = item.Discount;
                         OpticalOrderTran.DiscountAmount = item.DiscountAmount;
                         OpticalOrderTran.GSTPercentage = item.GST;
@@ -376,6 +387,9 @@ namespace WYNK.Data.Repository.Implementation
                                                        }
                                         ).OrderByDescending(x => x.OrderNumber).ToList();
 
+
+
+
             return new
             {
                 OpticalDetailsUpdate,
@@ -431,6 +445,10 @@ namespace WYNK.Data.Repository.Implementation
                                                           DiscountAmount = OOT.DiscountAmount,
                                                           GST = OOT.GSTPercentage,
                                                           GSTAmount = OOT.GSTTaxValue,
+                                                          CGSTPercentage = OOT.CGSTPercentage,
+                                                          CGSTTaxValue = OOT.CGSTTaxValue,
+                                                          SGSTPercentage = OOT.SGSTPercentage,
+                                                          SGSTTaxValue = OOT.SGSTTaxValue,
                                                           IGST = OOT.IGSTPercentage,
                                                           IGSTAmount = OOT.IGSTTaxValue,
                                                           CESS = OOT.CESSPercentage,
@@ -439,7 +457,7 @@ namespace WYNK.Data.Repository.Implementation
                                                           AdditionalCESSAmount = OOT.AddCESSPerAmt,
                                                           GrossAmount = OOT.OrderedQty * OOT.Price - OOT.OrderedQty * OOT.Price * OOT.DiscountPercentage / 100,
                                                           TotalAmount = (OOT.OrderedQty * OOT.Price - OOT.OrderedQty * OOT.Price * OOT.DiscountPercentage / 100) +
-                                                                     (OOT.GSTTaxValue) + (OOT.CESSAmount) + (OOT.AddCESSPerAmt),
+                                                                     (OOT.GSTTaxValue) + (OOT.IGSTTaxValue) + (OOT.CESSAmount) + (OOT.AddCESSPerAmt),
                                                           CompanyName = CompanyMaster.Where(x => x.CmpID == Cmpid).Select(x => x.CompanyName).FirstOrDefault(),
                                                           CAddress1 = CompanyMaster.Where(x => x.CmpID == Cmpid).Select(x => x.Address1).FirstOrDefault(),
                                                           CAddress2 = CompanyMaster.Where(x => x.CmpID == Cmpid).Select(x => x.Address2).FirstOrDefault(),

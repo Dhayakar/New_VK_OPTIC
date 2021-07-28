@@ -99,7 +99,7 @@ export class OPticalDetails {
   AdditionalCESS: number = 0;
   AdditionalCESSAmount: number = 0;
 
-
+  UnitPrice: number = 0;
   TaxDescription: string = "";
   CESSDescription: string = "";
   AdditionalCESSDescription: string = "";
