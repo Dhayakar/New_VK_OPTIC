@@ -30,21 +30,19 @@ namespace WYNK.Data.Repository.Implementation
         {
             try
             {
-                if (CustomerDetails.Customermaster.UIN != null)
+                var MobileNumberExist = WYNKContext.CustomerMaster.Where(x => x.MobileNo == CustomerDetails.Customermaster.MobileNo && x.CmpID == CustomerDetails.Customermaster.CmpID).FirstOrDefault();
+                if (MobileNumberExist != null)
                 {
-                    var SearchUin = WYNKContext.CustomerMaster.Where(x => x.UIN == CustomerDetails.Customermaster.UIN && x.IsDeleted == false).Select(x => x.UIN).FirstOrDefault();
-                    if (SearchUin != null)
+                    return new
                     {
-                        return new
-                        {
-                            Success = false,
-                            Message = "Already Registered Customer"
-                        };
-                    }
+                        Success = false,
+                        Message = "Mobile Number already Exists"
+                    };
                 }
+
                 var Customer = new CustomerMaster();
                 Customer.CmpID = CustomerDetails.Customermaster.CmpID;
-                Customer.UIN = CustomerDetails.Customermaster.UIN;
+               // Customer.UIN = CustomerDetails.Customermaster.UIN;
                 Customer.Name = CustomerDetails.Customermaster.Name;
                 Customer.MiddleName = CustomerDetails.Customermaster.MiddleName;
                 Customer.LastName = CustomerDetails.Customermaster.LastName;
@@ -102,8 +100,18 @@ namespace WYNK.Data.Repository.Implementation
 
             try
             {
+                var MobileNumberExist = WYNKContext.CustomerMaster.Where(x =>x.ID != ID && x.MobileNo == CustomerDetails.Customermaster.MobileNo && x.CmpID == CustomerDetails.Customermaster.CmpID).FirstOrDefault();
+                if (MobileNumberExist != null)
+                {
+                    return new
+                    {
+                        Success = false,
+                        Message = "Mobile Number already Exists"
+                    };
+                }
+
+
                 var Customer = WYNKContext.CustomerMaster.Where(x=>x.ID == ID).FirstOrDefault();
-                Customer.UIN = CustomerDetails.Customermaster.UIN;
                 Customer.Name = CustomerDetails.Customermaster.Name;
                 Customer.MiddleName = CustomerDetails.Customermaster.MiddleName;
                 Customer.LastName = CustomerDetails.Customermaster.LastName;

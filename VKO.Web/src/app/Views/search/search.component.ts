@@ -233,9 +233,9 @@ export class SearchComponent implements OnInit {
     //}
     if (this.helpname == 'Customer Master') {
       this.CustomerMasterDetails();
-      this.displayedColumns = ['checked', 'UIN', 'Name', 'MIDNAME', 'LNAME', 'Address1', 'Address2', 'Address3', 'C_LocationName',  'vMobileNo', 'vPhoneNo', 'ContactPerson'];
-      this.displayedColumnsA = ['UIN', 'Name', 'MIDNAME', 'LNAME', 'Address1', 'Address2', 'Address3', 'C_LocationName', 'vMobileNo', 'vPhoneNo', 'ContactPerson'];
-      this.displayedColumnsB = ['checked', 'UIN', 'Name', 'MIDNAME', 'LNAME', 'Address1', 'Address2', 'Address3', 'C_LocationName',  'vMobileNo', 'vPhoneNo', 'ContactPerson'];
+      this.displayedColumns = ['checked','Name', 'MIDNAME', 'LNAME', 'Address1', 'Address2', 'Address3', 'C_LocationName',  'vMobileNo', 'vPhoneNo', 'ContactPerson'];
+      this.displayedColumnsA = ['Name', 'MIDNAME', 'LNAME', 'Address1', 'Address2', 'Address3', 'C_LocationName', 'vMobileNo', 'vPhoneNo', 'ContactPerson'];
+      this.displayedColumnsB = ['checked', 'Name', 'MIDNAME', 'LNAME', 'Address1', 'Address2', 'Address3', 'C_LocationName',  'vMobileNo', 'vPhoneNo', 'ContactPerson'];
       this.dataSource = new MatTableDataSource();
     }
 
@@ -904,7 +904,6 @@ export class SearchComponent implements OnInit {
       var companyname = localStorage.getItem("Companyname");
       var Stringfydfata = JSON.stringify(this.dataSource.data);
       var objdata = JSON.parse(Stringfydfata);
-      var UIN = objdata.map((n, i) => { return n.UIN != null ? n.UIN : " "; });
       var Name = jQuery.map(objdata, function (n, i) { return n.Name; });
       var MiddleName = jQuery.map(objdata, function (n, i) { return n.MidleName != null ? n.MidleName : " ";});
       var LastName = objdata.map((n, i) => { return n.LastName != null ? n.LastName : " "; });
@@ -927,15 +926,14 @@ export class SearchComponent implements OnInit {
         pageMargins: [10, 10, 10, 10],
         content: [
           { text: companyname, fontSize: 18, background: 'white', color: 'black', decoration: 'underline' },
-          { text: 'Doctor Master', fontSize: 18, background: 'white', color: 'black', decoration: 'underline' },
+          { text: 'Customer Master', fontSize: 18, background: 'white', color: 'black', decoration: 'underline' },
           {
             style: 'tableExample',
             table: {
               headerRows: 1,
-              widths: [100, 100, 100, 100, 100, 100, 100, 140, 120, 120, 120],
+              widths: [100, 100, 100, 100, 100, 100, 140, 120, 120, 120],
               body: [
-                [{ text: 'UIN', style: 'tableHeader' },
-                  { text: 'Name', style: 'tableHeader' },
+                [ { text: 'Name', style: 'tableHeader' },
                   { text: 'Middle Name', style: 'tableHeader' },
                   { text: 'Last Name', style: 'tableHeader' },
                   { text: 'Address1', style: 'tableHeader' },
@@ -946,8 +944,7 @@ export class SearchComponent implements OnInit {
                   { text: ' Phone No', style: 'tableHeader' },
                   { text: 'Contact Person', style: 'tableHeader' },
                 ],
-                [UIN,
-                  Name,
+                [ Name,
                   MiddleName,
                   LastName,
                   Address1,
@@ -1854,6 +1851,13 @@ export class SearchComponent implements OnInit {
           Swal.fire({
             type: 'warning',
             title: 'No Data Found!',
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            customClass: {
+              popup: 'alert-warp',
+              container: 'alert-container',
+            },
           });
         }
       });

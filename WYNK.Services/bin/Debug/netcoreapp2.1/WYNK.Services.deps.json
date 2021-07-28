@@ -4,17 +4,18 @@
 
     "signature": "7e6c4bd4b206e8477610a2b7e2eca73e906af81d"
 
+
+    "signature": ""
+
+    "signature": "fac1f999380e2fa3c89c0c7d094d10f4bfa92b7e"
+
   },
   "compilationOptions": {
     "defines": [
       "TRACE",
       "DEBUG",
       "NETCOREAPP",
-      "NETCOREAPP2_1",
-      "NETCOREAPP1_0_OR_GREATER",
-      "NETCOREAPP1_1_OR_GREATER",
-      "NETCOREAPP2_0_OR_GREATER",
-      "NETCOREAPP2_1_OR_GREATER"
+      "NETCOREAPP2_1"
     ],
     "languageVersion": "7.2",
     "platform": "",
