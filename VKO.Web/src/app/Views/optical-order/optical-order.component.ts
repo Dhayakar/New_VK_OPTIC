@@ -466,18 +466,38 @@ export class OpticalOrderComponent implements OnInit {
 
   //displayedColumns: string[] = ['Type', 'Brand','Description','Sph1', 'Cyl1', 'Axis1', 'Add1', 'UOM', 'Quantity', 'Price', 'Amount', 'Discount', 'DiscountAmount', 'GrossAmount', 'TaxDescription', 'GST', 'GSTValue1', 'TotalAmount', 'Delete',];
   //dataSource = new MatTableDataSource();
-  displayedColumns: string[] = ['Brand', 'Type', 'LensPower', 'UOM', 'Quantity', 'Price', 'Amount', 'Discount', 'DiscountAmount', 'GrossAmount', 'TaxDescription', 'GST', 'GSTValue1', 'TotalAmount', 'Delete',];
+  displayedColumns: string[] = ['Brand', 'Type', 'LensPower', 'UOM', 'Quantity', 'Price', 'Amount', 'Discount', 'DiscountAmount', 'GrossAmount', 'CGST', 'CGSTValue', 'SGST','SGSTValue', 'TotalAmount', 'Delete',];
+  displayedColumnsH1: string[] = ['Brands1', 'Types1', 'LensPower1', 'UOMsymbol', 'Quantitysymbol', 'Pricesymbol','Amountsymbol', 'header-Discount-group', 'GrossAmountsymbol', 'CGSTTax', 'SGSTTax', 'TotalAmountsymbol','Deletesymbol'];
+  displayedColumnsA: string[] = ['Brand', 'Type', 'LensPower', 'UOM', 'Quantity', 'Price', 'Amount', 'Discount', 'DiscountAmount', 'GrossAmount', 'IGST', 'IGSTValue', 'TotalAmount', 'Delete',];
+  displayedColumnsH1A: string[] = ['Brands1', 'Types1', 'LensPower1', 'UOMsymbol', 'Quantitysymbol', 'Pricesymbol', 'Amountsymbol', 'header-Discount-group', 'GrossAmountsymbol', 'IGSTTax', 'TotalAmountsymbol', 'Deletesymbol'];
+  displayedColumnsB: string[] = ['Brand', 'Type', 'LensPower', 'UOM', 'Quantity', 'Price', 'Amount', 'Discount', 'DiscountAmount', 'GrossAmount', 'CGST', 'CGSTValue', 'SGST', 'SGSTValue', 'TotalAmount', 'Delete',];
+  displayedColumnsH1B: string[] = ['Brands1', 'Types1', 'LensPower1', 'UOMsymbol', 'Quantitysymbol', 'Pricesymbol', 'Amountsymbol', 'header-Discount-group', 'GrossAmountsymbol', 'CGSTTax', 'SGSTTax', 'TotalAmountsymbol', 'Deletesymbol'];
   dataSource = new MatTableDataSource();
-  displayedColumnsReprint: string[] = ['BrandRP', 'TypeRP','LensPowerRP', 'UOMRP', 'QuantityRP', 'PriceRP', 'AmountRP', 'DiscountRP', 'DiscountAmountRP', 'GrossAmountRP', 'TaxDescriptionRP', 'GSTRP', 'GSTValue1RP', 'TotalAmountRP'];
+
+
+  displayedColumnsReprint: string[] = ['BrandRP', 'TypeRP', 'LensPowerRP', 'UOMRP', 'QuantityRP', 'PriceRP', 'AmountRP', 'DiscountRP', 'DiscountAmountRP', 'GrossAmountRP', 'CGSTRP', 'CGSTValueRP', 'SGSTRP', 'SGSTValueRP', 'TotalAmountRP'];
+  displayedColumnsReprintH1: string[] = ['Brands1RP', 'Types1RP', 'LensPower1RP', 'UOMsymbolRP', 'QuantitysymbolRP', 'PricesymbolRP','AmountsymbolRP', 'header-Discount-groupRP', 'GrossAmountsymbolRP', 'CGSTTaxRP', 'SGSTTaxRP', 'TotalAmountsymbolRP'];
+
+  displayedColumnsReprintA: string[] = ['BrandRP', 'TypeRP', 'LensPowerRP', 'UOMRP', 'QuantityRP', 'PriceRP', 'AmountRP', 'DiscountRP', 'DiscountAmountRP', 'GrossAmountRP', 'IGSTRP', 'IGSTValueRP', 'TotalAmountRP'];
+  displayedColumnsReprintH1A: string[] = ['Brands1RP', 'Types1RP', 'LensPower1RP', 'UOMsymbolRP', 'QuantitysymbolRP', 'PricesymbolRP', 'AmountsymbolRP', 'header-Discount-groupRP', 'GrossAmountsymbolRP', 'IGSTTaxRP', 'TotalAmountsymbolRP'];
+
+  displayedColumnsReprintB: string[] = ['BrandRP', 'TypeRP', 'LensPowerRP', 'UOMRP', 'QuantityRP', 'PriceRP', 'AmountRP', 'DiscountRP', 'DiscountAmountRP', 'GrossAmountRP', 'CGSTRP', 'CGSTValueRP', 'SGSTRP', 'SGSTValueRP', 'TotalAmountRP'];
+  displayedColumnsReprintH1B: string[] = ['Brands1RP', 'Types1RP', 'LensPower1RP', 'UOMsymbolRP', 'QuantitysymbolRP', 'PricesymbolRP', 'AmountsymbolRP', 'header-Discount-groupRP', 'GrossAmountsymbolRP', 'CGSTTaxRP', 'SGSTTaxRP', 'TotalAmountsymbolRP'];
 
   dataSourceReprint = new MatTableDataSource();
 
-  displayedColumnsprint: string[] = ['BrandP', 'TypeP', 'LensPowerP', 'UOMP', 'QuantityP', 'PriceP', 'AmountP', 'DiscountP', 'DiscountAmountP', 'GrossAmountP', 'TaxDescriptionP', 'GSTP', 'GSTValue1P', 'TotalAmountP'];
+
+
+
+
+  displayedColumnsprint: string[] = ['BrandP', 'TypeP', 'LensPowerP', 'UOMP', 'QuantityP', 'PriceP', 'AmountP', 'DiscountP', 'DiscountAmountP', 'GrossAmountP', 'CGSTP', 'CGSTValueP', 'SGSTP', 'SGSTValueP', 'TotalAmountP'];
+  displayedColumnsprintH1: string[] = ['Brands1P', 'Types1P', 'LensPower1p', 'UOMsymbolP', 'QuantitysymbolP', 'PricesymbolP','AmountsymbolP', 'header-Discount-groupP', 'GrossAmountsymbolP', 'CGSTTaxP', 'SGSTTaxP', 'TotalAmountsymbolP'];
+  displayedColumnsprintA: string[] = ['BrandP', 'TypeP', 'LensPowerP', 'UOMP', 'QuantityP', 'PriceP', 'AmountP', 'DiscountP', 'DiscountAmountP', 'GrossAmountP', 'IGSTP', 'IGSTValueP', 'TotalAmountP'];
+  displayedColumnsprintH1A: string[] = ['Brands1P', 'Types1P', 'LensPower1p', 'UOMsymbolP', 'QuantitysymbolP', 'PricesymbolP', 'AmountsymbolP', 'header-Discount-groupP', 'GrossAmountsymbolP', 'IGSTTaxP', 'TotalAmountsymbolP'];
   dataSourceprint = new MatTableDataSource();
 
   //displayedColumns1 = ['Action', 'Brand', 'Model', 'LensOptions', 'Description', 'Index', 'Color', 'Size', 'Price']
-  displayedColumns1 = ['Action', 'Brand', 'Description', 'LensPowers', 'Price']
-
+  displayedColumns1 = ['Action','Type','Brand','LensPowers', 'Price']
   dataSource1 = new MatTableDataSource();
 
 
@@ -494,7 +514,7 @@ export class OpticalOrderComponent implements OnInit {
     });
     this.commonService.getListOfData('Common/Getlocationcityvalues').subscribe(data => { this.DCityname = data; });
   }
-
+  TaxGroup;
   DCitysumbit() {
     debugger;
     this.commonService.getListOfData('OpticalOrder/GetlocationDetails/' + this.M_DCity + '/')
@@ -503,11 +523,25 @@ export class OpticalOrderComponent implements OnInit {
         this.M_DState = data.ParentDescriptionstate
         this.M_DCountry = data.ParentDescriptioncountry;
         this.DStateCountry = this.M_DState + " " + "/" + " " + this.M_DCountry;
+        if (this.M_DState == this.State)
+        {
+          this.TaxGroup ="withinState"
+          this.displayedColumns = this.displayedColumnsB;
+          this.displayedColumnsH1 = this.displayedColumnsH1B;
+        }
+        else
+        {
+          this.TaxGroup = "interstate"
+          this.displayedColumns = this.displayedColumnsA;
+          this.displayedColumnsH1 = this.displayedColumnsH1A;
+        }
       });
     this.commonService.getListOfData('Common/Getlocationvalues/' + this.M_DCity).subscribe(data => {
       debugger;
       this.DLocationname = data;
     });
+
+   
 
 
   }
@@ -642,12 +676,29 @@ export class OpticalOrderComponent implements OnInit {
           OPDetails.Discount;
           OPDetails.DiscountAmount;
           OPDetails.GrossAmount;
+
           OPDetails.GST = this.commonService.data.OPticalOrderdetails[0].GST;
           OPDetails.CESS = this.commonService.data.OPticalOrderdetails[0].CESS;
           OPDetails.AdditionalCESS = this.commonService.data.OPticalOrderdetails[0].AdditionalCESS;
-
           OPDetails.CGSTPercentage = this.commonService.data.OPticalOrderdetails[0].CGSTPercentage;
           OPDetails.SGSTPercentage = this.commonService.data.OPticalOrderdetails[0].SGSTPercentage;
+          OPDetails.IGST = this.commonService.data.OPticalOrderdetails[0].IGST;
+
+          //if (element.Sptaxinclusive) {
+            
+          //  OPDetails.Prize = Math.ceil(element.Price * 100 / (100 + element.GST));
+          //  OPDetails.GrossAmount = OPDetails.Prize;
+          //  OPDetails.CGSTTaxValue = element.CGST == null ? null : (element.Price - OPDetails.GrossAmount) / 2;
+          //  OPDetails.SGSTTaxValue = element.SGST == null ? null : (element.Price - OPDetails.GrossAmount) / 2;
+          //  OPDetails.IGSTAmount = element.IGST == null ? null : (element.Price - OPDetails.GrossAmount) / 2;
+          //} else {
+          //  OPDetails.Prize = Math.ceil(element.Price);
+          //  OPDetails.GrossAmount = element.Price;
+          //  OPDetails.CGSTTaxValue = element.CGST == null ? null : (OPDetails.GrossAmount * (element.CGST / 100));
+          //  OPDetails.SGSTTaxValue = element.SGST == null ? null : (OPDetails.GrossAmount * (element.SGST / 100));
+          //  OPDetails.IGSTAmount = element.IGST == null ? null : (OPDetails.GrossAmount * (element.SGST / 100));
+          //}
+
 
 
           if (this.commonService.data.OPticalOrderdetails[0].TaxDescription == null) {
@@ -669,6 +720,7 @@ export class OpticalOrderComponent implements OnInit {
             OPDetails.AdditionalCESSDescription = this.commonService.data.OPticalOrderdetails[0].AdditionalCESSDescription;
           }
           OPDetails.GSTAmount;
+          OPDetails.IGSTAmount;
           OPDetails.TotalAmount;
           this.commonService.data.OPticalDetails.unshift(OPDetails);// = this.OpticalOrder;
           this.dataSource.data = this.commonService.data.OPticalDetails;
@@ -809,16 +861,24 @@ export class OpticalOrderComponent implements OnInit {
   changeValueTotal(id, element, property: string) {
     debugger;
 
-    var resTotal = element.GrossAmount + (element.GrossAmount) * ((element.GST / 100) + (element.CESS / 100) + (element.AdditionalCESS / 100));
+    var resTotal = element.GrossAmount + (element.GrossAmount) * ((element.GST / 100) + (element.IGST / 100) + (element.CESS / 100) + (element.AdditionalCESS / 100));
     resTotal = parseFloat(resTotal.toFixed(2));
     element.TotalAmount = resTotal;
   }
   changeGStAmount(id, element, property: string) {
-    var resTotal = element.GrossAmount * (element.GST / 100);
-    //var resTotal = element.TotalAmount - element.GrossAmount
+    var resTotal = element.GrossAmount * (element.CGSTPercentage / 100);
     resTotal = parseFloat(resTotal.toFixed(2));
-    element.GSTAmount = resTotal;
+    element.CGSTTaxValue = resTotal;
+    element.SGSTTaxValue = resTotal;
+    element.GSTAmount = element.SGSTTaxValue + element.CGSTTaxValue ;
   }
+
+  changeIGStAmount(id, element, property: string) {
+    var resTotal = element.GrossAmount * (element.IGST / 100);
+    resTotal = parseFloat(resTotal.toFixed(2));
+    element.IGSTAmount = resTotal;
+  }
+
   changeCESSAmount(id, element, property: string) {
     var resTotal = element.GrossAmount * (element.CESS / 100);
     resTotal = parseFloat(resTotal.toFixed(2));
@@ -888,12 +948,25 @@ export class OpticalOrderComponent implements OnInit {
     restotalcost = Math.floor(restotalcost);
     return restotalcost;
   }
-  GetTotalTaxAmount() {
-    var restotalcost = this.commonService.data.OPticalDetails.map(t => t.GSTAmount + t.CESSAmount + t.AdditionalCESSAmount).reduce((acc, value) => acc + value, 0);
+  GetCGSTAmount()
+  {
+    var restotalcost = this.commonService.data.OPticalDetails.map(t => t.CGSTTaxValue).reduce((acc, value) => acc + value, 0);
     restotalcost = Math.floor(restotalcost);
     return restotalcost;
-  }
 
+  }
+  GetSGSTAmount() {
+    var restotalcost = this.commonService.data.OPticalDetails.map(t => t.SGSTTaxValue).reduce((acc, value) => acc + value, 0);
+    restotalcost = Math.floor(restotalcost);
+    return restotalcost;
+
+  }
+  GetIGSTAmount() {
+    var restotalcost = this.commonService.data.OPticalDetails.map(t => t.IGSTAmount).reduce((acc, value) => acc + value, 0);
+    restotalcost = Math.floor(restotalcost);
+    return restotalcost;
+
+  }
   //GetCESSAmount() {
   //  var restotalcost = this.commonService.data.OPticalDetails.map(t => t.CESSAmount).reduce((acc, value) => acc + value, 0);
   //  restotalcost = parseFloat(restotalcost.toFixed(2));
@@ -1010,6 +1083,7 @@ export class OpticalOrderComponent implements OnInit {
   hiddenpaymentreprint: boolean;
   onSubmit(form: NgForm) {
     try {
+      if (form.valid) {
       if (this.commonService.data.OPticalDetails.length < 1) {
         Swal.fire({
           type: 'warning',
@@ -1079,7 +1153,7 @@ export class OpticalOrderComponent implements OnInit {
         return;
       }
       debugger;
-      if (form.valid) {
+     
         this.isInvalid = false;
         this.commonService.data.OpticalOrder = new OpticalOrder();
         this.commonService.data.OpticalOrder.CmpID = parseInt(localStorage.getItem("CompanyID"));
@@ -1106,6 +1180,21 @@ export class OpticalOrderComponent implements OnInit {
         this.commonService.data.Companyname = localStorage.getItem("Companyname");
         //console.log(this.commonService.data);
         this.dataSourceprint.data = this.commonService.data.OPticalDetails;
+
+
+        if (this.TaxGroup == "withinState") {
+
+          this.displayedColumnsprint = this.displayedColumnsprint;
+          this.displayedColumnsprintH1 = this.displayedColumnsprintH1;
+        }
+        else {
+          
+          this.displayedColumnsprint = this.displayedColumnsprintA;
+          this.displayedColumnsprintH1 = this.displayedColumnsprintH1A;
+        }
+
+
+
         this.paymentPrint = this.commonService.data.paymenttran;
         this.commonService.postData('OpticalOrder/InsertOpticalOrder/' + parseInt(localStorage.getItem("CompanyID")) + '/' + this.TranTypeID, this.commonService.data)
           .subscribe(data => {
@@ -1155,6 +1244,20 @@ export class OpticalOrderComponent implements OnInit {
                 customClass: {
                   popup: 'alert-warp',
                   container: 'alert-container'
+                },
+              });
+            }
+            else if (data.Message == "Financial year doesn't exists") {
+              Swal.fire({
+                type: 'warning',
+                title: 'warning',
+                text: 'Financial year doesnt exists',
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1500,
+                customClass: {
+                  popup: 'alert-warp',
+                  container: 'alert-container',
                 },
               });
             }
@@ -1331,6 +1434,16 @@ export class OpticalOrderComponent implements OnInit {
 
         //console.log(this.commonService.data);
         this.dataSourceprint.data = this.commonService.data.OPticalDetails;
+        if (this.TaxGroup == "withinState") {
+
+          this.displayedColumnsprint = this.displayedColumnsprint;
+          this.displayedColumnsprintH1 = this.displayedColumnsprintH1;
+        }
+        else {
+
+          this.displayedColumnsprint = this.displayedColumnsprintA;
+          this.displayedColumnsprintH1 = this.displayedColumnsprintH1A;
+        }
         this.paymentPrint = this.commonService.data.paymenttran;
         this.commonService.postData('OpticalOrder/InsertOpticalOrder/' + parseInt(localStorage.getItem("CompanyID")) + '/' + this.TranTypeID, this.commonService.data)
           .subscribe(data => {
@@ -1490,6 +1603,17 @@ export class OpticalOrderComponent implements OnInit {
       .subscribe(data => {
         debugger;
         this.commonService.data.OPticalDetails = data.OpticalbindingDet;
+        this.M_IGST = this.commonService.data.OPticalDetails[0].IGST
+        if (this.M_IGST == 0) {
+          this.TaxGroup = "withinState"
+          this.displayedColumns = this.displayedColumnsB;
+          this.displayedColumnsH1 = this.displayedColumnsH1B;
+        }
+        else {
+          this.TaxGroup = "interstate"
+          this.displayedColumns = this.displayedColumnsA;
+          this.displayedColumnsH1 = this.displayedColumnsH1A;
+        }
         this.dataSource.data = this.commonService.data.OPticalDetails;
       });
     this.commonService.getListOfData('OpticalOrder/getpayment/' + item.OrderNumber + '/' + localStorage.getItem("CompanyID")).subscribe(data => {
@@ -1550,6 +1674,8 @@ export class OpticalOrderComponent implements OnInit {
         this.M_DState = data.ParentDescriptionstate;
         this.M_DCountry = data.ParentDescriptioncountry;
         this.DStateCountry = this.M_DState + " " + "/" + " " + this.M_DCountry;
+       
+    
       });
     this.commonService.getListOfData('Common/Getlocationvalues/' + this.M_DCity).subscribe(data => {
       debugger;
@@ -1568,6 +1694,7 @@ export class OpticalOrderComponent implements OnInit {
     this.hiddenSubmit = false;
   }
   Totalsum;
+  M_IGST;
   Print(item) {
     debugger;
     /////////////////print///////////////////////////
@@ -1598,7 +1725,19 @@ export class OpticalOrderComponent implements OnInit {
           this.M_CAddress3 = this.commonService.data.OPticalDetails[0].CAddress3
           this.M_CPhone1 = this.commonService.data.OPticalDetails[0].CPhone1
           this.M_CWebsite = this.commonService.data.OPticalDetails[0].CWebsite
-
+          this.M_IGST = this.commonService.data.OPticalDetails[0].IGST
+          if (this.M_IGST == 0) {
+          
+            this.displayedColumnsReprint = this.displayedColumnsReprintB;
+            this.displayedColumnsReprintH1 = this.displayedColumnsReprintH1B;
+          }
+          else {
+            
+            this.displayedColumnsReprint = this.displayedColumnsReprintA;
+            this.displayedColumnsReprintH1 = this.displayedColumnsReprintH1A;
+          }
+          this.backdrop = 'block';
+          this.printMinPopup = 'block';
         });
 
     this.commonService.getListOfData('OpticalOrder/getpayment/' + this.M_OrderNumber + '/' + localStorage.getItem("CompanyID")).subscribe(data => {
@@ -1607,8 +1746,7 @@ export class OpticalOrderComponent implements OnInit {
         this.hiddenpaymentreprint = false
       }
       else { this.hiddenpaymentreprint = true }
-      this.backdrop = 'block';
-      this.printMinPopup = 'block';
+    
       if (data.paymentReMode1.length > 0) {
         debugger;
         this.paymentREPrint = data.paymentReMode1;
@@ -1616,7 +1754,7 @@ export class OpticalOrderComponent implements OnInit {
         this.backdrop = 'block';
         this.modalSuccess = 'block';
       }
-
+   
     });
   }
   printMin() {
@@ -1837,12 +1975,12 @@ export class OpticalOrderComponent implements OnInit {
     this.backdrop = 'block';
 
     this.Index = index;
-
-    this.commonService.getListOfData('Help/CustomerOrder/' + parseInt(localStorage.getItem("CompanyID"))).subscribe(data => {
+    this.TaxGroup
+    this.commonService.getListOfData('Help/CustomerOrder/' + parseInt(localStorage.getItem("CompanyID")) + '/' + this.TaxGroup).subscribe(data => {
       debugger
-      if (data.OfferDetails.length >= 1) {
+      if (data.OfferDetails1.length >= 1) {
         debugger
-        this.dataSource1.data = data.OfferDetails;
+        this.dataSource1.data = data.OfferDetails1;
         this.dataSource1._updateChangeSubscription();
       
       }
@@ -2583,10 +2721,12 @@ export class OpticalOrderComponent implements OnInit {
           this.M_Address1 = x.Address1;
           this.M_Address2 = x.Address2;
           this.M_Cityy = x.City;
+          this.M_DCity = x.CCity;
           this.M_DeliveryName = x.CompanyName;
           this.M_DAddress1 = x.CAddress1;
           this.M_DAddress2 = x.CAddress2;
           this.M_DAddress3 = x.CAddress3;
+          this.M_Dlocation = x.CLocationID;
           this.commonService.getListOfData('OpticalOrder/GetlocationDetails/' + this.M_Cityy + '/')
             .subscribe((data: any) => {
               debugger;
@@ -2595,19 +2735,41 @@ export class OpticalOrderComponent implements OnInit {
               this.Country = data.ParentDescriptioncountry;
               this.M_VStateCountry = this.State + "/" + this.Country;
             });
-          this.commonService.getListOfData('OpticalOrder/GetlocationDetails/' + x.CCity + '/')
+          this.commonService.getListOfData('OpticalOrder/GetlocationDetails/' + this.M_DCity + '/')
             .subscribe((data: any) => {
               debugger;
               this.M_DState = data.ParentDescriptionstate;
               this.M_DCountry = data.ParentDescriptioncountry;
               this.DStateCountry = this.M_DState + "/" + this.M_DCountry;
+              this.DStateCountry = this.M_DState + " " + "/" + " " + this.M_DCountry;
+              if (this.M_DState == this.State) {
+                this.TaxGroup = "withinState"
+                this.displayedColumns = this.displayedColumnsB;
+                this.displayedColumnsH1 = this.displayedColumnsH1B;
+              }
+              else {
+                this.TaxGroup = "interstate"
+                this.displayedColumns = this.displayedColumnsA;
+                this.displayedColumnsH1 = this.displayedColumnsH1A;
+              }
             });
+          this.commonService.getListOfData('Common/Getlocationvalues/' + this.M_DCity).subscribe(data => {
+            debugger;
+            this.DLocationname = data;
+            if (this.M_Dlocation != null) {
+              let LocationID = this.DLocationname.find(x => x.Text == this.M_Dlocation)
+              this.M_Dlocation = LocationID.Value
+            }
+            else {
+              this.M_Dlocation = '';
+            }
+          });
           this.M_location = x.Location;
           this.M_PhoneNo = x.PhoneNo;
           this.M_GSTNo = x.GSTNo;
           this.M_VID = x.ID;
-          this.M_DCity = x.CCity;
-          this.M_Dlocation = x.CLocationID;
+          
+         
         });
       });
     this.M_OrderDate = this.date.value;

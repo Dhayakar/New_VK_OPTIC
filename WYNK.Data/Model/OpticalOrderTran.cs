@@ -16,6 +16,7 @@ namespace WYNK.Data.Model
         public Decimal  OrderedQty              { get; set; }
         public Decimal  ReceivedQty             { get; set; }
         public Decimal  Price                   { get; set; }
+        public Decimal? ItemValue                 { get; set; }
         public Decimal?  DiscountPercentage      { get; set; }
         public Decimal?  DiscountAmount          { get; set; }
         public Decimal?  GSTPercentage           { get; set; }

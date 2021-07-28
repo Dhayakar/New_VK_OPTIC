@@ -98,6 +98,7 @@ namespace WYNK.Data.Model.ViewModel
         public ICollection<CustomerDetails> CustomerDetails { get; set; }
         public ICollection<DonorDetails> DonorDetails { get; set; }
         public ICollection<OfferDetail> OfferDetails { get; set; }
+        public ICollection<OfferDetail> OfferDetails1 { get; set; }
         public ICollection<GetOpticalGrn> GetOpticalGrn { get; set; }
         public ICollection<Getindentsearchdetails> Getindentsearchdetails { get; set; }
         public ICollection<UserDetails> UserDetails { get; set; }
