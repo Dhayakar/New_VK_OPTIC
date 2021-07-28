@@ -8,6 +8,7 @@ namespace WYNK.Data.Repository
     public interface ILensMasterRepository : IRepositoryBase<LensMatserDataView>
     {
         dynamic GettaxDetails(int ID);
+        dynamic Getitemsbasedonbrandid(int cmpid, int ID);
         dynamic Insertlensmaster(LensMatserDataView Addlens);
         dynamic Getlensfull(string RandomUniqueID, int cmpid, string name);
         dynamic Updatelensmaster(LensMatserDataView uplens, string ID, int doctorID);

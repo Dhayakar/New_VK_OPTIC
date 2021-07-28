@@ -12,6 +12,7 @@ import { DatePipe } from '@angular/common';
 import { EncrDecrServiceService } from '../app/shared/encr-decr-service.service';
 import { MaterialModule } from './material.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { CommonmastersLazyRoutingModule } from './Commonmasterslazy-routing.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   ],
   imports: [
     CommonModule,
+    CommonmastersLazyRoutingModule,
     NgIdleKeepaliveModule.forRoot(),
     MomentModule,
     HttpClientModule,
