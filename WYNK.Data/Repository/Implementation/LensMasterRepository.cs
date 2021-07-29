@@ -1,14 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 using WYNK.Data.Model;
 using WYNK.Data.Model.ViewModel;
-using WYNK.Helpers;
 using WYNK.Data.Repository.Operation;
-using System.Text.RegularExpressions;
+using WYNK.Helpers;
 
 namespace WYNK.Data.Repository.Implementation
 {
@@ -1926,6 +1922,27 @@ namespace WYNK.Data.Repository.Implementation
         }
 
 
+        public dynamic Getitemsbasedonbrandid(int cmpid, int ID)
+        {
+            var lens = new LensMatserDataView();
+            var brandlist = WYNKContext.Brand.Where(x => x.cmpID == cmpid && x.IsActive == true && x.IsDeleted == false && x.ID == ID).FirstOrDefault();
+            var lenstran = WYNKContext.Lenstrans.Where(x => x.Brand == ID && x.IsActive == true).ToList();
+            var tm = CMPSContext.TaxMaster.ToList();
+            lens.Barcodedata = (from le in lenstran
+                                select new Barcodedata
+                                {
+                                    ID = brandlist.ID,
+                                    Description = brandlist.Description,
+                                    brandtype = brandlist.BrandType,
+                                    taxdescription = tm.Where(x =>x.ID == le.TaxID).Select(x =>x.TaxDescription).FirstOrDefault(),
+                                    spherical = le.Sph,
+                                    cyc =le.Cyl,
+                                    axis =le.Axis,
+                                    add =le.Add,
+                                    barcodeid =le.BarcodeID,
+                                }).ToList();
+            return lens;
+        }
 
 
 

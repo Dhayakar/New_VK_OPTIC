@@ -2347,6 +2347,12 @@ namespace WYNK.Data.Repository.Implementation
             return CMPSContext.OneLineMaster.Where(X => X.ParentTag == "TBUT" && X.IsActive == true && X.IsDeleted == false).OrderByDescending(x => x.OLMID).Select(x => new Dropdown { Text = x.ParentDescription, Value = x.OLMID.ToString() }).ToList();
         }
 
+
+        public dynamic GetitemsbasedonCMPID(int cmpid, string format)
+        {
+            return WYNKContext.Brand.Where(X => X.cmpID == cmpid && X.IsActive == true && X.IsDeleted == false && X.BrandType == format).OrderByDescending(x => x.ID).Select(x => new Dropdown { Text = x.Description, Value = x.ID.ToString() }).ToList();
+        }
+
         public dynamic GetLoginLocationId(int CMPID)
         {
             var ComplocId = CMPSContext.Company.Where(x => x.CmpID == CMPID).Select(x => x.LocationID).FirstOrDefault();
@@ -2357,6 +2363,7 @@ namespace WYNK.Data.Repository.Implementation
                 data = CityID,
             };
         }
+
 
 
         public dynamic GetCMID(string URL)

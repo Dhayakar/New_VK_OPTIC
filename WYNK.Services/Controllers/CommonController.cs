@@ -26,6 +26,13 @@ namespace WYNK.Services.Controllers
             return _repoWrapper.Common.getallroles();
         }
 
+       
+        [HttpGet("GetitemsbasedonCMPID/{cmpid}/{format}")]
+        public dynamic GetitemsbasedonCMPID(int cmpid, string format)
+        {
+            return _repoWrapper.Common.GetitemsbasedonCMPID(cmpid, format);
+        }
+
         [HttpGet("Getalldropdownvalues/{cmpid}")]
         public dynamic Getalldropdownvalues(int cmpid)
         {

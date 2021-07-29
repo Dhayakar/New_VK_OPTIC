@@ -424,7 +424,7 @@ export class AppComponent {
         this.outpatientssmenusmenu = this.outpatientssmenusmenu.map(function (el) {
           const obj = Object.assign({}, el);
           if (el.MainDescription == 'Main-Dashboard') { obj.icon = 'fa-tachometer-alt'; } obj;
-          if (el.MainDescription == 'Opticals') { obj.icon = 'fa-glasses'; } obj;
+          if (el.MainDescription == 'Optical') { obj.icon = 'fa-glasses'; } obj;
           if (el.MainDescription == 'Expense') { obj.icon = 'fa fa-money'; } obj;
           if (el.MainDescription == 'Inventory') { obj.icon = 'fa-warehouse'; } return obj;
         });

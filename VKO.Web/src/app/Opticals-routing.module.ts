@@ -21,6 +21,7 @@ import { OpticalBillingRegisterComponent } from './Views/optical-billing-registe
 import { LensFrameUploadedComponent } from './Views/lens-frame-uploaded/lens-frame-uploaded.component';
 import { LensframestockuploadComponent } from './Views/lensframestockupload/lensframestockupload.component';
 import { MaterialreturntovendorComponent } from './Views/materialreturntovendor/materialreturntovendor.component';
+import { MasterBarcodePrintingComponent } from './Views/master-barcode-printing/master-barcode-printing.component';
 
 
 const routes: Routes = [
@@ -39,7 +40,7 @@ const routes: Routes = [
   { path: 'LensFrameUploaded', component: LensFrameUploadedComponent },
   { path: 'Lensframestockupload', component: LensframestockuploadComponent },
   { path: 'OpticalMaterialReturn', component: MaterialreturntovendorComponent },
- // { path: 'OpticalDashboard', component: OpticalDashboardComponent },
+  { path: 'BarcodePrinting', component: MasterBarcodePrintingComponent },
 ];
 
 @NgModule({
@@ -55,6 +56,7 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
   declarations: [
+    MasterBarcodePrintingComponent,
     LensMasterComponent,
     OpticalComponent,
     CustomerMasterComponent,

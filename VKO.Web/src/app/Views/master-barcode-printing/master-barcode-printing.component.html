@@ -1,0 +1,96 @@
+<div class="col-sm-12">
+  <div class="row">
+    <h6>Master Barcode Printing</h6>
+  </div>
+  <div class="row">
+    <div class="col-sm-2">
+      <mat-form-field class="mat-width" appearance="outline">
+        <mat-label>Category</mat-label>
+        <mat-select required [(ngModel)]="Formattypes" (ngModelChange)="selectbrandsdata()" name="Formattypesws" placeholder="Select">
+          <mat-option value="Lens">Lens</mat-option>
+          <mat-option value="Frame">Frame</mat-option>
+          <mat-option value="Contact Lens">Contact Lens</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-3">
+      <mat-form-field class="mat-width" appearance="outline">
+        <mat-label>Items</mat-label>
+        <mat-select [disabled]="Formattypes == null || Formattypes == undefined" required [(ngModel)]="M_Brand" (ngModelChange)="Brandchoose()" name="brands" placeholder="Select">
+          <input matInput class="search" style="border:1px solid gray;border-radius:8px;" (input)="FIlterdataDistanceOD($event.target.value)" autocomplete="off" placeholder="search..">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let VAs of Itemdata" [value]="VAs.Value">{{VAs.Text}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2" *ngIf="Hidecopies">
+      <mat-form-field appearance="outline">
+        <mat-label>Copies</mat-label>
+        <input [(ngModel)]="Copy_M" name="Gapinterval" matInput placeholder="Count">
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2" *ngIf="Hidecopies">
+      <button type="button" class="btn btn-primary" (click)="printbarcodes()"> Print </button>
+    </div>
+    <div class="col-sm-2" *ngIf="Hidecopies">
+      <button type="button" class="btn btn-warning-default" (click)="Cancel()"> Cancel </button>
+    </div>
+  </div>
+  <div class="row" *ngIf="Hidecopies">
+    <div class="example-container mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" class="custom-table withoutbackgroung search-table table-bordered">
+
+        <ng-container matColumnDef="Action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let element;let id = index"> <mat-checkbox (change)="selectvalues(element,$event,id)"></mat-checkbox> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Description">
+          <th mat-header-cell *matHeaderCellDef> Description </th>
+          <td mat-cell *matCellDef="let element"> {{element.Description}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Type">
+          <th mat-header-cell *matHeaderCellDef>Type </th>
+          <td mat-cell *matCellDef="let element"> {{element.brandtype}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tax">
+          <th mat-header-cell *matHeaderCellDef> Tax </th>
+          <td mat-cell *matCellDef="let element"> {{element.taxdescription}} </td>
+        </ng-container>
+        <ng-container matColumnDef="sph">
+          <th mat-header-cell *matHeaderCellDef> Sph </th>
+          <td mat-cell *matCellDef="let element"> {{element.spherical}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="cyl">
+          <th mat-header-cell *matHeaderCellDef> Cyl </th>
+          <td mat-cell *matCellDef="let element"> {{element.cyc}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="axis">
+          <th mat-header-cell *matHeaderCellDef> Axis </th>
+          <td mat-cell *matCellDef="let element"> {{element.axis}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="add">
+          <th mat-header-cell *matHeaderCellDef> Add </th>
+          <td mat-cell *matCellDef="let element"> {{element.add}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="barcodeid">
+          <th mat-header-cell *matHeaderCellDef> Barcode </th>
+          <td mat-cell *matCellDef="let element"> {{element.barcodeid}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<!--<ngx-barcode [bc-width]="15" [bc-font-size]="25"
+             bc-value="cF2f4mGtwr" [bc-display-value]="true" [bc-height]="40">
+</ngx-barcode>-->

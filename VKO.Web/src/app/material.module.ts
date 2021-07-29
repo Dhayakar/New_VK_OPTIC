@@ -43,9 +43,12 @@ import { GalleryModule } from '@ngx-gallery/core';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgShortcutModule, NgShortcutConfig } from 'ng-shortcut';
+import { NgxBarcodeModule } from 'ngx-barcode';
+
 
 @NgModule({
   exports: [
+    NgxBarcodeModule,
     NgShortcutModule,
     NgxPaginationModule,
     DragDropModule,

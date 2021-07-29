@@ -1,50 +1,3 @@
-<<<<<<< HEAD
-D:\GIT_WYNK_EMR\WYNK\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.deps.json
-D:\GIT_WYNK_EMR\WYNK\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.dll
-D:\GIT_WYNK_EMR\WYNK\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
-D:\GIT_WYNK_EMR\WYNK\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.csprojAssemblyReference.cache
-D:\GIT_WYNK_EMR\WYNK\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.csproj.CoreCompileInputs.cache
-D:\GIT_WYNK_EMR\WYNK\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.AssemblyInfoInputs.cache
-D:\GIT_WYNK_EMR\WYNK\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.AssemblyInfo.cs
-D:\GIT_WYNK_EMR\WYNK\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.dll
-D:\GIT_WYNK_EMR\WYNK\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
-D:\GIT_WYNK_EMR\VKO\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.deps.json
-D:\GIT_WYNK_EMR\VKO\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.dll
-D:\GIT_WYNK_EMR\VKO\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
-D:\GIT_WYNK_EMR\VKO\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.csprojAssemblyReference.cache
-D:\GIT_WYNK_EMR\VKO\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.csproj.CoreCompileInputs.cache
-D:\GIT_WYNK_EMR\VKO\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.AssemblyInfoInputs.cache
-D:\GIT_WYNK_EMR\VKO\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.AssemblyInfo.cs
-D:\GIT_WYNK_EMR\VKO\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.dll
-D:\GIT_WYNK_EMR\VKO\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
-D:\GIT_WYNK_EMR\GIT_VKO\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.deps.json
-D:\GIT_WYNK_EMR\GIT_VKO\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.dll
-D:\GIT_WYNK_EMR\GIT_VKO\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
-D:\GIT_WYNK_EMR\GIT_VKO\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.csprojAssemblyReference.cache
-D:\GIT_WYNK_EMR\GIT_VKO\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.csproj.CoreCompileInputs.cache
-D:\GIT_WYNK_EMR\GIT_VKO\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.AssemblyInfoInputs.cache
-D:\GIT_WYNK_EMR\GIT_VKO\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.AssemblyInfo.cs
-D:\GIT_WYNK_EMR\GIT_VKO\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.dll
-D:\GIT_WYNK_EMR\GIT_VKO\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
-E:\Git_desktop\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.deps.json
-E:\Git_desktop\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.dll
-E:\Git_desktop\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
-E:\Git_desktop\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.AssemblyInfoInputs.cache
-E:\Git_desktop\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.AssemblyInfo.cs
-E:\Git_desktop\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.csproj.CoreCompileInputs.cache
-E:\Git_desktop\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.dll
-E:\Git_desktop\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
-D:\WYNK_GIT_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.deps.json
-D:\WYNK_GIT_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.dll
-D:\WYNK_GIT_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
-D:\WYNK_GIT_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.csprojAssemblyReference.cache
-D:\WYNK_GIT_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.csproj.CoreCompileInputs.cache
-D:\WYNK_GIT_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.AssemblyInfoInputs.cache
-D:\WYNK_GIT_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.AssemblyInfo.cs
-D:\WYNK_GIT_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.dll
-D:\WYNK_GIT_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
-=======
->>>>>>> a467531da40d3af4ca2d79f0f162be2d07e976eb
 D:\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.deps.json
 D:\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.dll
 D:\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
@@ -88,5 +41,5 @@ E:\GITHUB_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0
 E:\GITHUB_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.csproj.CoreCompileInputs.cache
 E:\GITHUB_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.dll
 E:\GITHUB_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
->>>>>>> b98a585c0e89f3879f3c612341193c2b098f2a64
 E:\Git_desktop\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.csprojAssemblyReference.cache
+

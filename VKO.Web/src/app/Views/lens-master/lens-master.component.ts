@@ -86,7 +86,7 @@ export class LensMasterComponent implements OnInit {
   dataSourcesqw = new MatTableDataSource();
 
   constructor(public commonService: CommonService<LensViewmodel>, public datepipe: DatePipe, public dialog: MatDialog,
-    public appComponent: AppComponent, public el: ElementRef, private changeDatectorrefs: ChangeDetectorRef, private router: Router,) { }
+    public appComponent: AppComponent, public el: ElementRef, private changeDatectorrefs: ChangeDetectorRef, private router: Router, ) { }
 
 
   accessdata;
@@ -630,7 +630,7 @@ export class LensMasterComponent implements OnInit {
       }
     }
 
-    
+
 
 
     var LTM = new LensTranModel();
@@ -1087,7 +1087,7 @@ export class LensMasterComponent implements OnInit {
     this.M_Size = element.Size;
     this.M_Price = element.Prize;
     this.M_Cost = element.Costprice;
-    this.M_checked = element.Sptaxinclusive; 
+    this.M_checked = element.Sptaxinclusive;
     this.M_Description = element.Description;
     this.M_HSNNo = element.HSNNo;
     if (element.Brand != null) {

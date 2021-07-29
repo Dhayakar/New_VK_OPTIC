@@ -27,8 +27,22 @@ namespace WYNK.Data.Model.ViewModel
         public int? FrameStyl { get; set; }
         public int? FrameWidt { get; set; }
         public ICollection<Lensframestock> Lensframestock { get; set; }
+        public ICollection<Barcodedata> Barcodedata { get; set; }
     }
 
+
+    public class Barcodedata
+    {
+        public int ID { get; set; }
+        public string Description { get; set; }
+        public string brandtype { get; set; }
+        public string taxdescription { get; set; }
+        public string spherical { get; set; }
+        public string cyc { get; set; }
+        public string axis { get; set; }
+        public string add { get; set; }
+        public string barcodeid { get; set; }
+    }
 
 
     public class FrameType
