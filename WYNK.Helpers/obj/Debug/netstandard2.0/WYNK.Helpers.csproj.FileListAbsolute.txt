@@ -6,10 +6,33 @@ D:\VK_Optic_Point\WYNK.Helpers\obj\Debug\netstandard2.0\WYNK.Helpers.AssemblyInf
 D:\VK_Optic_Point\WYNK.Helpers\obj\Debug\netstandard2.0\WYNK.Helpers.AssemblyInfo.cs
 D:\VK_Optic_Point\WYNK.Helpers\obj\Debug\netstandard2.0\WYNK.Helpers.dll
 D:\VK_Optic_Point\WYNK.Helpers\obj\Debug\netstandard2.0\WYNK.Helpers.pdb
+<<<<<<< HEAD
 E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Helpers\bin\Debug\netstandard2.0\WYNK.Helpers.deps.json
 E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Helpers\bin\Debug\netstandard2.0\WYNK.Helpers.dll
 E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Helpers\bin\Debug\netstandard2.0\WYNK.Helpers.pdb
 E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Helpers\obj\Debug\netstandard2.0\WYNK.Helpers.csprojAssemblyReference.cache
+=======
+Q:\Backup\VK_Optic_Point\WYNK.Helpers\bin\Debug\netstandard2.0\WYNK.Helpers.deps.json
+Q:\Backup\VK_Optic_Point\WYNK.Helpers\bin\Debug\netstandard2.0\WYNK.Helpers.dll
+Q:\Backup\VK_Optic_Point\WYNK.Helpers\bin\Debug\netstandard2.0\WYNK.Helpers.pdb
+Q:\Backup\VK_Optic_Point\WYNK.Helpers\obj\Debug\netstandard2.0\WYNK.Helpers.csproj.AssemblyReference.cache
+Q:\Backup\VK_Optic_Point\WYNK.Helpers\obj\Debug\netstandard2.0\WYNK.Helpers.AssemblyInfoInputs.cache
+Q:\Backup\VK_Optic_Point\WYNK.Helpers\obj\Debug\netstandard2.0\WYNK.Helpers.AssemblyInfo.cs
+Q:\Backup\VK_Optic_Point\WYNK.Helpers\obj\Debug\netstandard2.0\WYNK.Helpers.csproj.CoreCompileInputs.cache
+Q:\Backup\VK_Optic_Point\WYNK.Helpers\obj\Debug\netstandard2.0\WYNK.Helpers.dll
+Q:\Backup\VK_Optic_Point\WYNK.Helpers\obj\Debug\netstandard2.0\WYNK.Helpers.pdb
+F:\VK_Optics\VK_Optic_Point\WYNK.Helpers\bin\Debug\netstandard2.0\WYNK.Helpers.deps.json
+F:\VK_Optics\VK_Optic_Point\WYNK.Helpers\bin\Debug\netstandard2.0\WYNK.Helpers.dll
+F:\VK_Optics\VK_Optic_Point\WYNK.Helpers\bin\Debug\netstandard2.0\WYNK.Helpers.pdb
+F:\VK_Optics\VK_Optic_Point\WYNK.Helpers\obj\Debug\netstandard2.0\WYNK.Helpers.csprojAssemblyReference.cache
+F:\VK_Optics\VK_Optic_Point\WYNK.Helpers\obj\Debug\netstandard2.0\WYNK.Helpers.AssemblyInfoInputs.cache
+F:\VK_Optics\VK_Optic_Point\WYNK.Helpers\obj\Debug\netstandard2.0\WYNK.Helpers.AssemblyInfo.cs
+F:\VK_Optics\VK_Optic_Point\WYNK.Helpers\obj\Debug\netstandard2.0\WYNK.Helpers.dll
+F:\VK_Optics\VK_Optic_Point\WYNK.Helpers\obj\Debug\netstandard2.0\WYNK.Helpers.pdb
+E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Helpers\bin\Debug\netstandard2.0\WYNK.Helpers.deps.json
+E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Helpers\bin\Debug\netstandard2.0\WYNK.Helpers.dll
+E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Helpers\bin\Debug\netstandard2.0\WYNK.Helpers.pdb
+>>>>>>> 0517b9dc39a7e671501f28c70e3cf1dab6cca120
 E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Helpers\obj\Debug\netstandard2.0\WYNK.Helpers.AssemblyInfoInputs.cache
 E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Helpers\obj\Debug\netstandard2.0\WYNK.Helpers.AssemblyInfo.cs
 E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Helpers\obj\Debug\netstandard2.0\WYNK.Helpers.csproj.CoreCompileInputs.cache
