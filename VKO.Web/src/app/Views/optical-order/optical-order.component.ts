@@ -541,9 +541,6 @@ export class OpticalOrderComponent implements OnInit {
       this.DLocationname = data;
     });
 
-   
-
-
   }
 
 
@@ -725,11 +722,6 @@ export class OpticalOrderComponent implements OnInit {
           this.commonService.data.OPticalDetails.unshift(OPDetails);// = this.OpticalOrder;
           this.dataSource.data = this.commonService.data.OPticalDetails;
           this.dataSource._updateChangeSubscription();
-
-
-         
-
-
           this.FrameModel = 'none';
           this.backdrop = 'none';
         }
@@ -866,20 +858,40 @@ export class OpticalOrderComponent implements OnInit {
     element.TotalAmount = resTotal;
   }
   changeGStAmount(id, element, property: string) {
-    var resTotal = element.GrossAmount * (element.CGSTPercentage / 100);
-    resTotal = parseFloat(resTotal.toFixed(2));
-    element.CGSTTaxValue = resTotal;
-    element.SGSTTaxValue = resTotal;
-    element.GSTAmount = element.SGSTTaxValue + element.CGSTTaxValue ;
+
+    if (this.TaxGroup == "withinState") {
+      var resTotal = element.GrossAmount * (element.CGSTPercentage / 100);
+      resTotal = parseFloat(resTotal.toFixed(2));
+      element.CGSTTaxValue = resTotal;
+      element.SGSTTaxValue = resTotal;
+      element.GSTAmount = element.SGSTTaxValue + element.CGSTTaxValue;
+    }
+    else
+    {
+      element.CGSTTaxValue = 0;
+      element.SGSTTaxValue = 0;
+      element.GSTAmount = 0;
+      element.GST = 0;
+      element.CGSTPercentage = 0;
+      element.SGSTPercentage = 0;
+    }
   }
 
   changeIGStAmount(id, element, property: string) {
-    var resTotal = element.GrossAmount * (element.IGST / 100);
-    resTotal = parseFloat(resTotal.toFixed(2));
-    element.IGSTAmount = resTotal;
+    if (this.TaxGroup == "interstate") {
+      var resTotal = element.GrossAmount * (element.IGST / 100);
+      resTotal = parseFloat(resTotal.toFixed(2));
+      element.IGSTAmount = resTotal;
+    }
+    else
+    {
+      element.IGST = 0;
+      element.IGSTAmount = 0;
+    }
   }
 
   changeCESSAmount(id, element, property: string) {
+
     var resTotal = element.GrossAmount * (element.CESS / 100);
     resTotal = parseFloat(resTotal.toFixed(2));
     element.CESSAmount = resTotal;
@@ -1639,6 +1651,7 @@ export class OpticalOrderComponent implements OnInit {
       this.M_VIDays = item.Validity,
       this.M_TermsAndConditions = item.TermsAndConditions,
       this.M_VendorName = item.VendorName,
+      this.vendorID = item.VendorID,
       //this.Vendorsumbit();
       this.M_DCity = item.Dcity,
       this.M_Dlocation = item.DeliveryLocationName,

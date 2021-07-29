@@ -40,6 +40,7 @@ namespace WYNK.Data.Model.ViewModel
     public class opticprescription1
     {
         public int? Type { get; set; }
+        public string TypeDescription { get; set; }
         public string Ocular { get; set; }
         public string DistSph { get; set; }
         public string NearCyl { get; set; }
