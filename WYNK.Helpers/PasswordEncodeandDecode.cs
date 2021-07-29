@@ -126,7 +126,12 @@ namespace WYNK.Helpers
             var R_No = obj.ToString();
             return R_No;
         }
-
+        public static string GetRandomnumberwithlength()
+        {
+            Guid obj = Guid.NewGuid();
+            var R_No = obj.ToString().Substring(0, Guid.NewGuid().ToString().IndexOf("-"));
+            return R_No;
+        }
 
         public static string CMPSConnectionstring()
         {

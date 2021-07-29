@@ -12667,34 +12667,19 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
-    "C:\\Users\\SYSTEM2\\.nuget\\packages\\": {}
-=======
     "C:\\Users\\admin\\.nuget\\packages\\": {}
->>>>>>> b98a585c0e89f3879f3c612341193c2b098f2a64
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "E:\\Vk Optics\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
+      "projectUniqueName": "E:\\Git_desktop\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
       "projectName": "WYNK.Services",
-      "projectPath": "E:\\Vk Optics\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
-      "packagesPath": "C:\\Users\\SYSTEM2\\.nuget\\packages\\",
-      "outputPath": "E:\\Vk Optics\\VK_Optic_Point\\WYNK.Services\\obj\\",
-      "projectStyle": "PackageReference",
-      "configFilePaths": [
-        "C:\\Users\\SYSTEM2\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-      "projectUniqueName": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
-      "projectName": "WYNK.Services",
-      "projectPath": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
+      "projectPath": "E:\\Git_desktop\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
       "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Services\\obj\\",
+      "outputPath": "E:\\Git_desktop\\VK_Optic_Point\\WYNK.Services\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> b98a585c0e89f3879f3c612341193c2b098f2a64
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -12706,15 +12691,9 @@
       },
       "frameworks": {
         "netcoreapp2.1": {
-          "targetAlias": "netcoreapp2.1",
           "projectReferences": {
-<<<<<<< HEAD
-            "E:\\Vk Optics\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj": {
-              "projectPath": "E:\\Vk Optics\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj"
-=======
-            "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj": {
-              "projectPath": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj"
->>>>>>> b98a585c0e89f3879f3c612341193c2b098f2a64
+            "E:\\Git_desktop\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj": {
+              "projectPath": "E:\\Git_desktop\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj"
             }
           }
         }
@@ -12727,7 +12706,6 @@
     },
     "frameworks": {
       "netcoreapp2.1": {
-        "targetAlias": "netcoreapp2.1",
         "dependencies": {
           "MSBuild.Microsoft.VisualStudio.Web.targets": {
             "target": "Package",
@@ -12772,11 +12750,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-<<<<<<< HEAD
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
-=======
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
->>>>>>> b98a585c0e89f3879f3c612341193c2b098f2a64
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
       }
     }
   },
@@ -12785,7 +12759,7 @@
       "code": "Undefined",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Problem reading the cache file E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Services\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+      "message": "Problem reading the cache file E:\\Git_desktop\\VK_Optic_Point\\WYNK.Services\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
     },
     {
       "code": "NU1701",

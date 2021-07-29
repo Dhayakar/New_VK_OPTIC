@@ -85,7 +85,6 @@ D:\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.AssemblyInfo.cs
 D:\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.csproj.CopyComplete
 D:\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.dll
 D:\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.pdb
-<<<<<<< HEAD
 Q:\Backup\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Data.deps.json
 Q:\Backup\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Data.dll
 Q:\Backup\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Data.pdb
@@ -127,5 +126,3 @@ E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.csp
 E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.csproj.CopyComplete
 E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.dll
 E:\GITHUB_DESKTOP\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.pdb
-=======
->>>>>>> a467531da40d3af4ca2d79f0f162be2d07e976eb
