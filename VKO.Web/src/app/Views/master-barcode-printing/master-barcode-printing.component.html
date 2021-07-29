@@ -26,11 +26,11 @@
     <div class="col-sm-2" *ngIf="Hidecopies">
       <mat-form-field appearance="outline">
         <mat-label>Copies</mat-label>
-        <input [(ngModel)]="Copy_M" name="Gapinterval" matInput placeholder="Count">
+        <input [(ngModel)]="Copy_M" matInput [disabled]="bararray.length == null || bararray.length == 0"  name="Gapinterval"  autocomplete="off" placeholder="Count value">
       </mat-form-field>
     </div>
     <div class="col-sm-2" *ngIf="Hidecopies">
-      <button type="button" class="btn btn-primary" (click)="printbarcodes()"> Print </button>
+      <button type="button" class="btn btn-primary" [disabled]="bararray.length == null || bararray.length == 0"  (click)="printbarcodes()"> Print </button>
     </div>
     <div class="col-sm-2" *ngIf="Hidecopies">
       <button type="button" class="btn btn-warning-default" (click)="Cancel()"> Cancel </button>
@@ -91,6 +91,31 @@
 
 </div>
 
-<!--<ngx-barcode [bc-width]="15" [bc-font-size]="25"
-             bc-value="cF2f4mGtwr" [bc-display-value]="true" [bc-height]="40">
-</ngx-barcode>-->
+
+
+<div id="dashboardconsultationsection" style="display:none">
+  <div class="col-sm-12" style="transform: rotate(90deg);page-break-after:always;" *ngFor="let data of databarcodearray">
+    <ngx-barcode bc-width="12" bc-font-size="230"
+                 bc-value="{{data.Barcode}}" bc-display-value="true" bc-height="500">
+    </ngx-barcode>
+  </div>
+</div>
+
+
+<div class="modal" role="dialog" [ngStyle]="{'display':printbarcodeblock}">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content ">
+      <div class="modal-header">
+        <h4 class="modal-title">Barcode</h4>
+        <button type="button" class="close" data-dismiss="modal" (click)="BarcodeblockClose()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Do you want to confirm ?</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" data-dismiss="modal" autofocus (click)="BarcodeblockClose()">No</button>
+        <button class="btn btn-success" data-dismiss="modal" (click)="BarcodeblockYes()">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
