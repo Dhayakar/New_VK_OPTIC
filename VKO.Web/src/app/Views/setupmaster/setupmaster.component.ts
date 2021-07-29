@@ -284,16 +284,35 @@ export class SetupmasterComponent implements OnInit {
               this.blobss = [];
               this.urls = [];
             }
-
-
-
-            this.backdrop = 'block';
-            this.ModalDatecheckundefined = 'block';
+            Swal.fire({
+              type: 'success',
+              title: 'success',
+              text: 'saved successfully',
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 1500,
+              customClass: {
+                popup: 'alert-warp',
+                container: 'alert-container',
+              },
+            });
+            this.router.navigateByUrl('/dash', { skipLocationChange: true }).then(() => {
+              this.router.navigate(["Administrationlazy/SetupMaster"]);
+            });
 
           } else {
-            this.backdrop = 'block';
-            this.ErrorModalDatecheckundefined = 'block';
-
+            Swal.fire({
+              type: 'warning',
+              title: 'warning',
+              text: 'Invalid Data',
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 1500,
+              customClass: {
+                popup: 'alert-warp',
+                container: 'alert-container',
+              },
+            });
           }
 
 
@@ -456,14 +475,34 @@ export class SetupmasterComponent implements OnInit {
               this.urls = [];
             }
 
-
-
-            this.backdrop = 'block';
-            this.ModalDatecheckundefined = 'block';
-
+            Swal.fire({
+              type: 'success',
+              title: 'success',
+              text: 'Saved successfully',
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 1500,
+              customClass: {
+                popup: 'alert-warp',
+                container: 'alert-container',
+              },
+            });
+            this.router.navigateByUrl('/dash', { skipLocationChange: true }).then(() => {
+              this.router.navigate(["Administrationlazy/SetupMaster"]);
+            });
           } else {
-            this.backdrop = 'block';
-            this.ErrorModalDatecheckundefined = 'block';
+            Swal.fire({
+              type: 'warning',
+              title: 'warning',
+              text: 'Invalid Data',
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 1500,
+              customClass: {
+                popup: 'alert-warp',
+                container: 'alert-container',
+              },
+            });
 
           }
 

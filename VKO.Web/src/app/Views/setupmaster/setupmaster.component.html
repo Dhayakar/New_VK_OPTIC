@@ -19,18 +19,20 @@
 
     <div class="row">
 
-      <div class="col-sm-3">
-        <mat-form-field appearance="outline">
-          <mat-label>Organization</mat-label>
-          <input required [(ngModel)]="orgname" disabled name="ognames" matInput placeholder="Organization">
-        </mat-form-field>
-      </div>
-
-      <div class="col-sm-1">
-        <button type="button" class="btn btn-warning-default grab" (click)="Clicksetupdetails()"> View </button>        
+      <div class="col-sm-4">
+        <div class="row">
+          <div class="col-sm-10">
+            <mat-form-field appearance="outline">
+              <mat-label>Organization</mat-label>
+              <input required [(ngModel)]="orgname" disabled name="ognames" matInput placeholder="Organization">
+            </mat-form-field>
+          </div>
+          <div class="col-sm-2" style="margin-top:1%">
+            <button type="button" class="btn btn-warning-default grab" (click)="Clicksetupdetails()"> View </button>
+          </div>
+        </div>
       </div>
       <div class="col-sm-2">
-
         <mat-form-field class="mat-width" appearance="outline">
           <mat-label>Country</mat-label>
           <mat-select required [(ngModel)]="Country_M" (ngModelChange)="countrychoose()" name="Countries" placeholder="Select">
@@ -167,7 +169,7 @@
                 <th>Action</th>
                 <th>Sno</th>
                 <th>Company Name</th>
-                <th>Pediatric Age</th>
+                <!--<th>Pediatric Age</th>-->
                 <th>Country</th>
 
               </tr>
@@ -177,7 +179,7 @@
                 <td><mat-checkbox (click)="getdata(data)"></mat-checkbox></td>
                 <td>{{i+1}}</td>
                 <td>{{data.cmp}}</td>
-                <td>{{data.age}}</td>
+                <!--<td>{{data.age}}</td>-->
                 <td>{{data.country}}</td>
               </tr>
             </tbody>
