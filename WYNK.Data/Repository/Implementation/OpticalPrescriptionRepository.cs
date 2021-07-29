@@ -119,6 +119,7 @@ namespace WYNK.Data.Repository.Implementation
                                            select new opticprescription
                                            {
                                                Type = op.Type,
+                                               TypeDescription = OneLineMaster.Where(x => x.OLMID == op.Type).Select(c => c.ParentDescription).FirstOrDefault(),  
                                                Ocular = op.Ocular,
                                                DistSph = op.DistSph,
                                                NearCyl = op.NearCyl,

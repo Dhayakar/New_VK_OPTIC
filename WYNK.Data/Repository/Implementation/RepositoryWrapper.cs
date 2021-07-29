@@ -45,7 +45,7 @@ namespace WYNK.Data.Repository.Implementation
         private IGrnRepository _Grn;
         private IPostoperativeRepository _Postoperative;
         private IMed _med;
-        private IReportssrepository _reportss;
+
         public IMedicalBillRegisterRepository _MedicalBillRegister;
         public IPurchaseorderDetRepository _PurchaseorderDet;
         private IMedicineRepository _medicine;
@@ -127,7 +127,7 @@ namespace WYNK.Data.Repository.Implementation
         public IBrandMasterRepository _BrandMaster;
         public ISetupMasterrepository _GetSetup;
 
-        public IAppointmentRepository _AppointMent;
+   
 
         public IYearEndProcessRepository _YearEndProcess;
         public IUomMasterRepository _UomMaster;
@@ -139,7 +139,7 @@ namespace WYNK.Data.Repository.Implementation
         public IAllergyrepository _Allergy;
         public IDiagnosisVSMedicineRepository _DiagnosisVSMedicine;
         public ICampMasterRepository _CampMaster;
-        public ICampRegistrationRepository _CampRegistration;
+
         public ICampDashboardRepository _CampDashboard;
         public IForm3cRepository _form3c;
         public IMedicineMappingRepository _MedicineMapping;
@@ -214,20 +214,6 @@ namespace WYNK.Data.Repository.Implementation
 
                 }
                 return _CampDashboard;
-            }
-        }
-
-
-        public ICampRegistrationRepository CampRegistration
-        {
-            get
-            {
-                if (_CampRegistration == null)
-                {
-                    _CampRegistration = new CampRegistrationRepository(_Wynkcontext, _Cmpscontext);
-
-                }
-                return _CampRegistration;
             }
         }
         public ICampMasterRepository CampMaster
@@ -372,20 +358,6 @@ namespace WYNK.Data.Repository.Implementation
             }
         }
 
-        public IAppointmentRepository AppointMent
-        {
-            get
-            {
-                if (_AppointMent == null)
-                {
-                    _AppointMent = new Appointmentrepository(_Wynkcontext, _Cmpscontext );
-
-                }
-
-                return _AppointMent;
-
-            }
-        }
         public IBrandMasterRepository BrandMaster
         {
             get
@@ -1467,17 +1439,6 @@ namespace WYNK.Data.Repository.Implementation
                 }
 
                 return _med;
-            }
-        }
-        public IReportssrepository Reportss
-        {
-            get
-            {
-                if (_reportss == null)
-                {
-                    _reportss = new Reportssrepository(_Wynkcontext, _Cmpscontext );
-                }
-                return _reportss;
             }
         }
 

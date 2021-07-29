@@ -21,7 +21,6 @@ namespace WYNK.Data.Repository
         ITonometryTranRepository TonometryTran { get; }
         IHelpRepository Help { get; }
         IRegistrationMasterRepository RegistrationMaster { get; }
-        ICampRegistrationRepository CampRegistration { get; }
         IInsuranceRepository Insurance { get; }
         IInsuranceVsMiddlemanRepository InsuranceVsMiddleman { get; }
         IUsersVsRoleRepository UsersVsRole { get; }
@@ -49,7 +48,7 @@ namespace WYNK.Data.Repository
         IGrnRepository Grn { get; }
         IPostoperativeRepository Postoperative { get; }
         IMed medeg { get; }
-        IReportssrepository Reportss { get; }
+
         IMedicalBillRegisterRepository medBillReg { get; }
         IMedicineRepository Medicine { get; }
         IPurchaseorderDetRepository PurchaseOrdDet { get; }
@@ -131,7 +130,7 @@ namespace WYNK.Data.Repository
         IBrandMasterRepository BrandMaster { get; }
         ICampMasterRepository CampMaster { get; }
         ISetupMasterrepository GetSetup { get; }
-        IAppointmentRepository AppointMent { get; }
+    
         IYearEndProcessRepository YearEndProcess { get; }
         ISpecialityVSTestRepository SpecialityVSTest { get; }
         IOpticalBillRegisterRepository OpticalBillRegister { get; }
