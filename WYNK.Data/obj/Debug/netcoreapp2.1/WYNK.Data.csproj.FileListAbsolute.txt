@@ -1,0 +1,14 @@
+D:\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Data.deps.json
+D:\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Data.dll
+D:\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Data.pdb
+D:\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\SMSand EMAILService.cs.dll
+D:\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Helpers.dll
+D:\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\SMSand EMAILService.cs.pdb
+D:\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Helpers.pdb
+D:\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.csprojAssemblyReference.cache
+D:\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.csproj.CoreCompileInputs.cache
+D:\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.AssemblyInfoInputs.cache
+D:\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.AssemblyInfo.cs
+D:\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.csproj.CopyComplete
+D:\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.dll
+D:\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.pdb
