@@ -10,7 +10,7 @@ namespace WYNK.Data.Model.ViewModel
         public ExpenseMaster ExpMaster { get; set; }
         public ICollection<ExpenseMasterhelpdata> ExpenseMasterhelpdata { get; set; }
         public ICollection<Expesneitemdata> Expesneitemdata { get; set; }
-        public ICollection<Payment_Master> paymenttran { get; set; }
+        public ICollection<Payment_Master> PaymentMaster { get; set; }
         public ICollection<Paymentexpesne> Paymentexpesne { get; set; }
         public ICollection<ExpenseMasterUpdatehelpdata> ExpenseMasterUpdatehelpdata { get; set; }
         public ICollection<Expensestatementdata> Expensestatementdata { get; set; }

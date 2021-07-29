@@ -1,6 +1,6 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, QueryList, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatDialog, DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatTableDataSource, MatSort } from '@angular/material';
+import { MatDialog, DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatTableDataSource, MatSort, MatSelect, MatInput } from '@angular/material';
 import { VendorMasters, Opticamreturnsubmitdetails } from 'src/app/Models/ViewModels/VendorMasterWebModel';
 import { CommonService } from 'src/app/shared/common.service';
 import { NgForm } from '@angular/forms';
@@ -187,7 +187,11 @@ export class ExpenseTranComponent implements OnInit {
   expensearry;
   getalldropdowons() {
     debugger;
-    this.commonService.getListOfData('Common/Getpaymentvalues').subscribe(data => { this.Paymentsmodes = data; });
+    this.commonService.getListOfData('Common/Getpaymentvalues').subscribe(data => {
+      this.Paymentsmodes = data;
+      localStorage.setItem('paymodedrop', JSON.stringify(this.Paymentsmodes));
+      this.Paymentsmodes = JSON.parse(localStorage.getItem('paymodedrop'));
+    });
     this.commonService.getListOfData('Common/GetCurrencyvalues/' + localStorage.getItem('CompanyID')).subscribe(data => {
       this.Country1 = data;
       this.Country2 = this.Country1[0].Text;
@@ -236,9 +240,159 @@ export class ExpenseTranComponent implements OnInit {
       this.router.navigate(['ExpenseModule/ExpTran']);
     });
   }
-  PaymentChange(id, event, element) {
-    var arraydata = this.commonService.data.paymenttran.filter(t => t.PaymentMode == "Cash").length;
-    if (arraydata == 1 && event.value == "Cash") {
+  @ViewChildren('BankName') BankNamee: QueryList<ElementRef>;
+  beforebankname(i, event, element) {
+    debugger;
+    setTimeout(() => {
+      this.BankNamee.toArray()[i].nativeElement.focus();
+    });
+
+  }
+  @ViewChildren('Amount') PaymentModeleft: QueryList<ElementRef>;
+  arrowlefPaymentMode(i, event, element) {
+    debugger;
+    if (element.PaymentMode == "Cash") {
+      setTimeout(() => {
+        this.PaymentModeleft.toArray()[i].nativeElement.focus();
+      });
+    }
+    else {
+      setTimeout(() => {
+        this.PaymentModeleft.toArray()[i].nativeElement.focus();
+      });
+    }
+  }
+  DistanceODtablepress(event): boolean {
+    debugger;
+    const currentChar = parseInt(String.fromCharCode(event.keyCode), 10);
+    if (!isNaN(currentChar)) {
+      const nextValue = $('#tablepress').val() + currentChar;
+      if (parseInt(nextValue, 10) < 0) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  @ViewChildren('PaymentModee') PaymentModee: QueryList<MatSelect>;
+  enterPaymentMode(i) {
+    this.PaymentModee.toArray()[i].open();
+  }
+  @ViewChildren('BankName') BankNameright: QueryList<ElementRef>;
+  arrowrightPaymentMode(i, event, element) {
+    debugger;
+    if (element.PaymentMode == "Cash") {
+      setTimeout(() => {
+        this.PaymentModeleft.toArray()[i].nativeElement.focus();
+      });
+    }
+    else {
+      setTimeout(() => {
+        this.BankNameright.toArray()[i].nativeElement.focus();
+      });
+    }
+  }
+  payarray = [];
+  @ViewChildren('PaymentMode') PaymentModeDown: QueryList<ElementRef>;
+  arrowdownPaymentMode(i, event, element) {
+    debugger;
+    setTimeout(() => {
+      let id = i + 1;
+      this.PaymentModeDown.toArray()[id].nativeElement.focus();
+    });
+  }
+  @ViewChildren('PaymentMode') PaymentModeUp: QueryList<ElementRef>;
+  arrowupPaymentMode(i, event, element) {
+    debugger;
+    setTimeout(() => {
+      let id = i - 1;
+      this.PaymentModeUp.toArray()[id].nativeElement.focus();
+    });
+
+  }
+  @ViewChild('PaymentModee') PaymentModeeD: MatSelect;
+  savePaymentMode(i, event, element) {
+    debugger;
+    this.PaymentModeeD.valueChange.subscribe(value => {
+
+      var cash = this.payarray.filter(t => t.PaymentMode == "Cash").length;
+      if (cash == 1 && event.value == "Cash") {
+        Swal.fire({
+          type: 'warning',
+          title: 'warning',
+          text: 'Data already exists',
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 1500,
+          customClass: {
+            popup: 'alert-warp',
+            container: 'alert-container',
+          },
+        });
+        this.payarray.splice(i, 1);
+        this.commonService.data.PaymentMaster.splice(i, 1);
+        this.dataSource3.data = this.commonService.data.PaymentMaster;
+        this.dataSource3._updateChangeSubscription();
+        return;
+      }
+      this.payarray[i].PaymentMode = value;
+      this.commonService.data.PaymentMaster[i].PaymentMode = value;
+      this.Paymentsmodes = JSON.parse(localStorage.getItem('paymodedrop'));
+
+      if (element.PaymentMode == "Cash") {
+        this.arrowlefPaymentMode(i, event, element);
+      } else {
+        this.beforebankname(i, event, element);
+      }
+
+    });
+  }
+  @ViewChildren('inputpaymode') inputpaymode: QueryList<ElementRef>;
+  @ViewChild('inputpaymode', { read: MatInput }) inputm: MatInput;
+  someMethodPaymentMode(i, event, element) {
+    debugger;
+    this.Paymentsmodes = JSON.parse(localStorage.getItem('paymodedrop'));
+    setTimeout(() => {
+      this.inputpaymode.toArray()[i].nativeElement.focus();
+    });
+    this.inputm.value = '';
+
+  }
+  DescriptionChange(id, event, element) {
+    debugger;
+    let result = event.value;
+    this.commonService.data.Expesneitemdata.map((todo, i) => {
+      if (i == id) {
+        const lengthdifference = this.commonService.data.Expesneitemdata.some(g => g.ID == result)
+        if (lengthdifference == false) {
+          this.commonService.data.Expesneitemdata[i].ID = Number(result);
+          var deesc = this.expensearry.filter(x => x.ID === Number(result)).map(x => x.Description);
+          this.commonService.data.Expesneitemdata[i].Expensedescription = deesc[0];
+        } else {
+          this.commonService.data.Expesneitemdata.splice(id, 1);
+          this.dataSource._updateChangeSubscription();
+          Swal.fire({
+            type: 'warning',
+            title: 'warning',
+            text: 'Description already exists',
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            customClass: {
+              popup: 'alert-warp',
+              container: 'alert-container',
+            },
+          });
+        }
+      }
+    });
+  }
+
+  PaymentChangee(i, event, element) {
+
+    var cash = this.payarray.filter(t => t.PaymentMode == "Cash").length;
+    if (cash == 1 && event.value == "Cash") {
+
       Swal.fire({
         type: 'warning',
         title: 'warning',
@@ -251,107 +405,74 @@ export class ExpenseTranComponent implements OnInit {
           container: 'alert-container',
         },
       });
-      this.commonService.data.paymenttran.splice(id, 1);
-      this.dataSource3.data.splice(id, 1)
+      this.payarray.splice(i, 1);
+      this.commonService.data.PaymentMaster.splice(i, 1);
+      this.dataSource3.data = this.commonService.data.PaymentMaster;
       this.dataSource3._updateChangeSubscription();
-    }
-    else {
-      element.PaymentMode = event.value;
-    }
-  }
-  BankName(event, element) {
-    element.BankName = event.target.value;
-  }
-  InstrumentNumber(event, element) {
-    element.InstrumentNumber = event.target.value;
-  }
-  dateofinstrument(event, element) {
-    element.Instrumentdate = event.target.value;
-  }
-  dateexpiry(event, element) {
-    element.Expirydate = event.target.value;
-  }
-  Branch(event, element) {
-    element.BankBranch = event.target.value;
-  }
-  paydel1;
-  paydel2;
-
-  numberOnlypdno(event): boolean {
-    const charCode = (event.which) ? event.which : event.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-      if ((charCode > 34 && charCode < 41) || charCode == 46) {
-        return true;
-      }
-      return false;
-    }
-    return true;
-  }
-  Amount(id, property: string, event: any, data) {
-    debugger;
-
-    let result: number = Number(event.target.textContent);
-    this.dataSource3.filteredData[id][property] = result;
-    this.dataSource3._updateChangeSubscription();
-    this.PTotalAmount1();
-    if (this.PTotalAmount > this.TotalAmt) {
-      event.target.innerText = 0;
-      event.target.innerHTML = 0;
-      this.dataSource3.filteredData[id][property] = 0;
-      this.dataSource3._updateChangeSubscription();
-      Swal.fire({
-        type: 'warning',
-        title: 'Cannot Give More than TotalAmount',
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 1500,
-        customClass: {
-          popup: 'alert-warp',
-          container: 'alert-container',
-        },
-      });
-      return
-    }
-  }
-  AddPaymentDetailsNewgrid() {
-    debugger;
-    this.paydel1 = [];
-    this.paydel2 = [];
-    var paydel = this.TotalAmt;
-    if (paydel > 0) {
-      var paydetails = new Payment_Master();
-      paydetails.PaymentMode = "";
-      paydetails.InstrumentNumber = "";
-      paydetails.Instrumentdate = null;
-      paydetails.BankName = "";
-      paydetails.BankBranch = "";
-      paydetails.Expirydate = null;
-
-      var restotalcost = this.commonService.data.paymenttran.map(t => t.Amount).reduce((acc, value) => acc + value, 0);
-      restotalcost = parseFloat(restotalcost.toFixed(2));
-      this.PTotalAmount = restotalcost;
-
-      if (this.PTotalAmount == 0) {
-        paydetails.Amount = 0;
-      } else if (this.PTotalAmount != 0) {
-        paydetails.Amount = this.TotalAmt - this.PTotalAmount;
-      }
-
-      this.commonService.data.paymenttran.push(paydetails);
-      this.dataSource3.data = this.commonService.data.paymenttran;
-      this.dataSource3._updateChangeSubscription();
-      this.disableRow = false;
       return;
     }
+    this.payarray[i].PaymentMode = event.value;
+    this.commonService.data.PaymentMaster[i].PaymentMode = event.value;
+    this.Paymentsmodes = JSON.parse(localStorage.getItem('paymodedrop'));
+
+    if (element.PaymentMode == "Cash") {
+      this.arrowlefPaymentMode(i, event, element);
+    } else {
+      this.beforebankname(i, event, element);
+    }
+
+    if (event.value == "Cash") {
+      this.payarray[i].BankName = "";
+      this.payarray[i].InstrumentNumber = "";
+      this.payarray[i].Instrumentdate = null;
+      this.payarray[i].Expirydate = null;
+      this.payarray[i].BankBranch = "";
+      this.commonService.data.PaymentMaster[i].BankName = "";
+      this.commonService.data.PaymentMaster[i].InstrumentNumber = "";
+      this.commonService.data.PaymentMaster[i].Instrumentdate = null;
+      this.commonService.data.PaymentMaster[i].Expirydate = null;
+      this.commonService.data.PaymentMaster[i].BankBranch = "";
+    }
+    else if (event.value == "Credit Card") {
+
+      this.payarray[i].Instrumentdate = null;
+      this.payarray[i].BankBranch = "";
+      this.commonService.data.PaymentMaster[i].Instrumentdate = null;
+      this.commonService.data.PaymentMaster[i].BankBranch = "";
+    }
+
+    else if (event.value == "Debit card") {
+
+      this.payarray[i].Instrumentdate = null;
+      this.payarray[i].BankBranch = "";
+      this.commonService.data.PaymentMaster[i].Instrumentdate = null;
+      this.commonService.data.PaymentMaster[i].BankBranch = "";
+    }
+
   }
-  private newAttribute: any = {};
-  @ViewChild('name') colName;
-  ngAfterViewInit() {
+
+  @ViewChildren('PaymentModee') PaymentModeemySelectclose: QueryList<MatSelect>;
+  arrowrightPaymentModee(i, event, element) {
+    this.PaymentModeemySelectclose.toArray()[i].close();
+    this.arrowrightPayment(i);
+  }
+
+  @ViewChildren('PaymentMode') PaymentModeright: QueryList<ElementRef>;
+  arrowrightPayment(i) {
     debugger;
     setTimeout(() => {
-      this.colName.nativeElement.focus()
-    }, 50);
+      this.PaymentModeright.toArray()[i].nativeElement.focus();
+    });
   }
+
+  FIlterdatapaymode(value: string) {
+    debugger;
+    const Objdata = JSON.parse(localStorage.getItem('paymodedrop'));
+    const filterValue = value.toLowerCase();
+    this.Paymentsmodes = Objdata.filter(option => option.Text.toLowerCase().includes(filterValue));
+  }
+
+
 
   AddExpenseNewgrid() {
     debugger;
@@ -396,25 +517,161 @@ export class ExpenseTranComponent implements OnInit {
     }
 
   }
+
+
+  BankNameenter(id, property: string, event: any) {
+    debugger;
+    let result = event.target.value;
+    this.payarray[id][property] = result;
+    this.commonService.data.PaymentMaster[id][property] = result;
+    this.dataSource3.filteredData[id][property] = result;
+    this.dataSource3._updateChangeSubscription();
+  }
+
+  nameField(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123) || charCode == 32 || charCode == 46 || charCode == 9 || (charCode > 34 && charCode < 41) || charCode == 8) {
+      return true;
+    }
+    return false;
+  }
+
+  @ViewChildren('PaymentMode') BankNameleft: QueryList<ElementRef>;
+  arrowlefBankName(i) {
+    debugger;
+    setTimeout(() => {
+      this.BankNameleft.toArray()[i].nativeElement.focus();
+    });
+  }
+
+  @ViewChildren('InstrumentNumber') BankNamerightt: QueryList<ElementRef>;
+  arrowrightBankName(i) {
+    debugger;
+    setTimeout(() => {
+      this.BankNamerightt.toArray()[i].nativeElement.focus();
+    });
+  }
+
+
+  @ViewChildren('BankName') BankNameDown: QueryList<ElementRef>;
+  arrowdownBankName(i, event, element) {
+    debugger;
+    setTimeout(() => {
+      let id = i + 1;
+      this.BankNameDown.toArray()[id].nativeElement.focus();
+    });
+  }
+
+  @ViewChildren('BankName') BankNameUp: QueryList<ElementRef>;
+  arrowupBankName(i, event, element) {
+    debugger;
+    setTimeout(() => {
+      let id = i - 1;
+      this.BankNameUp.toArray()[id].nativeElement.focus();
+    });
+
+  }
+  DescriptionBankName(i) {
+    this.arrowrightBankName(i);
+  }
+  DescriptionInstrumentNumber(i, event, element) {
+    this.arrowrightInstrumentNumber(i, event, element);
+  }
+  DescriptionInstrumentdate(i, event, element) {
+    this.arrowleftBranch(i, event, element);
+  }
+  DescriptionExpirydate(i, event, element) {
+    this.arrowrightInstrumentExpiryDate(i, event, element);
+  }
+
+  DescriptionBranch(i) {
+    this.arrowrightBranch(i);
+  }
+
+  @ViewChildren('Branch') BranchDown: QueryList<ElementRef>;
+  arrowdownBranch(i, event, element) {
+    debugger;
+    setTimeout(() => {
+      let id = i + 1;
+      this.BranchDown.toArray()[id].nativeElement.focus();
+    });
+  }
+
+  @ViewChildren('Branch') BranchUp: QueryList<ElementRef>;
+  arrowupBranch(i, event, element) {
+    debugger;
+    setTimeout(() => {
+      let id = i - 1;
+      this.BranchUp.toArray()[id].nativeElement.focus();
+    });
+
+  }
+
+  @ViewChildren('ExpiryDate') Branchleft: QueryList<ElementRef>;
+  arrowleftBranch(i, event, element) {
+    if (element.PaymentMode == "Demand Draft") {
+      setTimeout(() => {
+        this.InstrumentNumberright.toArray()[i].nativeElement.focus();
+      });
+    }
+    else {
+      setTimeout(() => {
+        this.Branchleft.toArray()[i].nativeElement.focus();
+      });
+    }
+  }
+
+  @ViewChildren('Amount') Branchright: QueryList<ElementRef>;
+  arrowrightBranch(i) {
+    debugger;
+    setTimeout(() => {
+      this.Branchright.toArray()[i].nativeElement.focus();
+    });
+  }
+
+  @ViewChildren('Amount') AmountDown: QueryList<ElementRef>;
+  arrowdownAmount(i, event, element) {
+    debugger;
+    setTimeout(() => {
+      let id = i + 1;
+      this.AmountDown.toArray()[id].nativeElement.focus();
+    });
+  }
+
+  @ViewChildren('Amount') AmountUp: QueryList<ElementRef>;
+  arrowupAmount(i, event, element) {
+    debugger;
+    setTimeout(() => {
+      let id = i - 1;
+      this.AmountUp.toArray()[id].nativeElement.focus();
+    });
+
+  }
+
   removePaytype(i) {
     debugger;
-    this.paydel1 = [];
-    this.paydel2 = [];
     Swal.fire({
       title: 'Are you sure?',
-      text: "Want To Drop This Payment Type",
+      text: "Want to Delete",
       type: 'warning',
       showCancelButton: true,
       cancelButtonColor: '#d33',
+      cancelButtonText: 'No',
       confirmButtonColor: '#3085d6',
       confirmButtonText: 'Yes',
+      allowOutsideClick: false,
       reverseButtons: true,
+      focusCancel: true,
     }).then((result) => {
       if (result.value) {
         if (i !== -1) {
-          this.dataSource3.data.splice(i, 1);
+          debugger;
+          this.payarray.splice(i, 1);
+          this.commonService.data.PaymentMaster.splice(i, 1);
+          this.dataSource3.data = this.commonService.data.PaymentMaster;
           this.dataSource3._updateChangeSubscription();
         }
+    
         Swal.fire({
           type: 'success',
           title: 'success',
@@ -428,8 +685,254 @@ export class ExpenseTranComponent implements OnInit {
           },
         });
       }
+
+      else {
+        Swal.fire({
+          type: 'warning',
+          title: 'warning',
+          text: 'Item Details not deleted',
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 1500,
+          customClass: {
+            popup: 'alert-warp',
+            container: 'alert-container',
+          },
+        });
+      }
     })
 
+  }
+
+  @ViewChildren('Branch') Amountleft: QueryList<ElementRef>;
+  arrowleftAmount(i, event, element) {
+    debugger;
+
+
+    if (element.PaymentMode == "Cash") {
+      setTimeout(() => {
+        this.Amountright.toArray()[i].nativeElement.focus();
+      });
+    }
+    else if (element.PaymentMode == "Debit card" || element.PaymentMode == "Credit Card") {
+      setTimeout(() => {
+        this.Branchleft.toArray()[i].nativeElement.focus();
+      });
+    }
+    else {
+      setTimeout(() => {
+        this.Amountleft.toArray()[i].nativeElement.focus();
+      });
+    }
+  }
+
+  @ViewChildren('PaymentMode') Amountright: QueryList<ElementRef>;
+  arrowrightAmount(i) {
+    debugger;
+    setTimeout(() => {
+      this.Amountright.toArray()[i].nativeElement.focus();
+    });
+  }
+
+  dateofinstrument(id, property: string, event: any) {
+    debugger;
+    let result = event.target.value;
+    this.payarray[id][property] = result;
+    this.commonService.data.PaymentMaster[id][property] = result;
+    this.dataSource3.filteredData[id][property] = result;
+    this.dataSource3._updateChangeSubscription();
+  }
+  dateExpirydate(id, property: string, event: any) {
+    debugger;
+    let result = event.target.value;
+    this.payarray[id][property] = result;
+    this.commonService.data.PaymentMaster[id][property] = result;
+    this.dataSource3.filteredData[id][property] = result;
+    this.dataSource3._updateChangeSubscription();
+  }
+
+
+  InstrumentNumberenter(id, property: string, event: any) {
+    debugger;
+    let result = event.target.value;
+    this.payarray[id][property] = result;
+    this.commonService.data.PaymentMaster[id][property] = result;
+    this.dataSource3.filteredData[id][property] = result;
+    this.dataSource3._updateChangeSubscription();
+  }
+
+  Branchvalue(id, property: string, event: any) {
+    debugger;
+    let result = event.target.value;
+    this.payarray[id][property] = result;
+    this.commonService.data.PaymentMaster[id][property] = result;
+    this.dataSource3.filteredData[id][property] = result;
+    this.dataSource3._updateChangeSubscription();
+  }
+
+
+  @ViewChildren('ExpiryDate') ExpiryDateDown: QueryList<ElementRef>;
+  arrowdownInstrumentExpiryDate(i, event, element) {
+    debugger;
+    setTimeout(() => {
+      let id = i + 1;
+      this.ExpiryDateDown.toArray()[id].nativeElement.focus();
+    });
+  }
+
+  @ViewChildren('ExpiryDate') ExpiryDateUp: QueryList<ElementRef>;
+  arrowupInstrumentExpiryDate(i, event, element) {
+    debugger;
+    setTimeout(() => {
+      let id = i - 1;
+      this.ExpiryDateUp.toArray()[id].nativeElement.focus();
+    });
+
+  }
+
+  @ViewChildren('InstrumentDate') ExpiryDateleft: QueryList<ElementRef>;
+  arrowlefInstrumentExpiryDate(i, event, element) {
+    debugger;
+
+    if (element.PaymentMode == "Debit card" || element.PaymentMode == "Credit Card") {
+      setTimeout(() => {
+        this.BankNamerightt.toArray()[i].nativeElement.focus();
+      });
+    }
+    else {
+      setTimeout(() => {
+        this.ExpiryDateleft.toArray()[i].nativeElement.focus();
+      });
+    }
+
+
+  }
+
+  @ViewChildren('Branch') ExpiryDateright: QueryList<ElementRef>;
+  arrowrightInstrumentExpiryDate(i, event, element) {
+    debugger;
+
+
+    if (element.PaymentMode == "Debit card" || element.PaymentMode == "Credit Card") {
+      setTimeout(() => {
+        this.PaymentModeleft.toArray()[i].nativeElement.focus();
+      });
+    }
+    else {
+      setTimeout(() => {
+        this.ExpiryDateright.toArray()[i].nativeElement.focus();
+      });
+    }
+
+  }
+
+
+
+  @ViewChildren('InstrumentDate') InstrumentDateDown: QueryList<ElementRef>;
+  arrowdownInstrumentdate(i, event, element) {
+    debugger;
+    setTimeout(() => {
+      let id = i + 1;
+      this.InstrumentDateDown.toArray()[id].nativeElement.focus();
+    });
+  }
+
+  @ViewChildren('InstrumentDate') InstrumentDateUp: QueryList<ElementRef>;
+  arrowupInstrumentdate(i, event, element) {
+    debugger;
+    setTimeout(() => {
+      let id = i - 1;
+      this.InstrumentDateUp.toArray()[id].nativeElement.focus();
+    });
+
+  }
+
+  @ViewChildren('InstrumentNumber') InstrumentDateleft: QueryList<ElementRef>;
+  arrowlefInstrumentdate(i, event, element) {
+    debugger;
+    setTimeout(() => {
+      this.InstrumentDateleft.toArray()[i].nativeElement.focus();
+    });
+
+  }
+
+  @ViewChildren('ExpiryDate') InstrumentDateright: QueryList<ElementRef>;
+  arrowrightInstrumentdate(i, event, element) {
+    debugger;
+
+    if (element.PaymentMode == "Demand Draft") {
+      setTimeout(() => {
+        this.ExpiryDateright.toArray()[i].nativeElement.focus();
+      });
+    }
+    else {
+      setTimeout(() => {
+        this.InstrumentDateright.toArray()[i].nativeElement.focus();
+      });
+    }
+
+  }
+
+  @ViewChildren('InstrumentNumber') InstrumentNumberDown: QueryList<ElementRef>;
+  arrowdownInstrumentNumber(i, event, element) {
+    debugger;
+    setTimeout(() => {
+      let id = i + 1;
+      this.InstrumentNumberDown.toArray()[id].nativeElement.focus();
+    });
+  }
+
+  @ViewChildren('InstrumentNumber') InstrumentNumberUp: QueryList<ElementRef>;
+  arrowupInstrumentNumber(i, event, element) {
+    debugger;
+    setTimeout(() => {
+      let id = i - 1;
+      this.InstrumentNumberUp.toArray()[id].nativeElement.focus();
+    });
+
+  }
+
+  @ViewChildren('BankName') InstrumentNumberleft: QueryList<ElementRef>;
+  arrowlefInstrumentNumber(i) {
+    debugger;
+    setTimeout(() => {
+      this.InstrumentNumberleft.toArray()[i].nativeElement.focus();
+    });
+  }
+
+  @ViewChildren('InstrumentDate') InstrumentNumberright: QueryList<ElementRef>;
+  arrowrightInstrumentNumber(i, event, element) {
+    debugger;
+    if (element.PaymentMode == "Debit card" || element.PaymentMode == "Credit Card") {
+      setTimeout(() => {
+        this.InstrumentDateright.toArray()[i].nativeElement.focus();
+      });
+    }
+    else {
+
+      setTimeout(() => {
+        this.InstrumentNumberright.toArray()[i].nativeElement.focus();
+      });
+    }
+
+
+  }
+
+
+
+  numberOnly(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      if ((charCode > 34 && charCode < 41) || charCode == 46) {
+        return true;
+      }
+      return false;
+    }
+    return true;
+  }
+
+  DescriptionAmount(i) {
+    this.arrowlefBankName(i);
   }
   PTotalAmount;
   PTotalAmount1() {
@@ -455,35 +958,7 @@ export class ExpenseTranComponent implements OnInit {
     });
   }
   Descriptiondisable;
-  DescriptionChange(id, event, element) {
-    debugger;
-    let result = event.value;
-    this.commonService.data.Expesneitemdata.map((todo, i) => {
-      if (i == id) {
-        const lengthdifference = this.commonService.data.Expesneitemdata.some(g => g.ID == result)
-        if (lengthdifference == false) {
-          this.commonService.data.Expesneitemdata[i].ID = Number(result);
-          var deesc = this.expensearry.filter(x => x.ID === Number(result)).map(x => x.Description);
-          this.commonService.data.Expesneitemdata[i].Expensedescription = deesc[0];
-        } else {
-          this.commonService.data.Expesneitemdata.splice(id, 1);
-          this.dataSource._updateChangeSubscription();
-          Swal.fire({
-            type: 'warning',
-            title: 'warning',
-            text: 'Description already exists',
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 1500,
-            customClass: {
-              popup: 'alert-warp',
-              container: 'alert-container',
-            },
-          });
-        }
-      }
-    });
-  }
+ 
   changeRemarks(id, property: string, event: any) {
     debugger;
     let result = (event.target.value);
@@ -554,6 +1029,369 @@ export class ExpenseTranComponent implements OnInit {
     })
 
   }
+
+  PaymentTotalAmount() {
+    if (this.commonService.data.PaymentMaster != undefined) {
+      return this.commonService.data.PaymentMaster.map(t => t.Amount).reduce((acc, value) => acc + value, 0);
+    }
+  }
+  @ViewChildren('PaymentMode') PaymentMode: QueryList<ElementRef>;
+  PaymentModefirst(i) {
+    debugger;
+    setTimeout(() => {
+      this.PaymentMode.toArray()[i].nativeElement.focus();
+    });
+  }
+  Amountcheck(id, property: string, event: any) {
+    debugger;
+    let result: number = Number(event.target.value);
+    let amtresult = parseInt(this.TotalAmt);
+    this.commonService.data.PaymentMaster[id][property] = result;
+    this.payarray[id][property] = result;
+
+    if (this.PaymentTotalAmount() > amtresult) {
+      Swal.fire({
+        type: 'warning',
+        title: 'Cannot Give More than TotalAmount',
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1500,
+        customClass: {
+          popup: 'alert-warp',
+          container: 'alert-container',
+        },
+      });
+      event.target.textContent = '';
+      this.payarray[id][property] = event.target.textContent;
+      this.commonService.data.PaymentMaster[id][property] = event.target.textContent;
+      this.dataSource3.filteredData[id][property] = event.target.textContent;
+      this.dataSource3._updateChangeSubscription();
+      return;
+    }
+  }
+  AddPaymentDetailsNewgrid() {
+    debugger;
+
+    if (this.TotalAmt == "") {
+
+      Swal.fire({
+        type: 'warning',
+        title: 'Enter the amount',
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1500,
+        customClass: {
+          popup: 'alert-warp',
+          container: 'alert-container',
+        },
+      });
+      return;
+    }
+
+    if (this.TotalAmt == undefined) {
+
+      Swal.fire({
+        type: 'warning',
+        title: 'Enter the amount',
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1500,
+        customClass: {
+          popup: 'alert-warp',
+          container: 'alert-container',
+        },
+      });
+      return;
+    }
+
+    if (this.TotalAmt == null) {
+
+      Swal.fire({
+        type: 'warning',
+        title: 'Enter the amount',
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1500,
+        customClass: {
+          popup: 'alert-warp',
+          container: 'alert-container',
+        },
+      });
+      return;
+    }
+
+    if (this.TotalAmt == 0) {
+
+      Swal.fire({
+        type: 'warning',
+        title: 'Enter the amount',
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1500,
+        customClass: {
+          popup: 'alert-warp',
+          container: 'alert-container',
+        },
+      });
+      return;
+    }
+
+
+
+    if (this.payarray.length == 0) {
+      var paydetails = new Payment_Master();
+      paydetails.PaymentMode = "";
+      paydetails.InstrumentNumber = "";
+      paydetails.Instrumentdate = null;
+      paydetails.BankName = "";
+      paydetails.BankBranch = "";
+      paydetails.Expirydate = null;
+      paydetails.Amount = this.TotalAmt;
+      this.payarray.unshift(paydetails);
+      this.commonService.data.PaymentMaster = this.payarray;
+      this.dataSource3.data = this.commonService.data.PaymentMaster;
+      let disph = this.commonService.data.PaymentMaster[0].PaymentMode;
+      let index = this.commonService.data.PaymentMaster.findIndex(x => x.PaymentMode == disph);
+      this.PaymentModefirst(index);
+      localStorage.setItem("Paymode", JSON.stringify(this.payarray));
+      this.payarray = JSON.parse(localStorage.getItem("Paymode"));
+      return;
+    }
+
+    if (this.payarray[0].PaymentMode == null || this.payarray[0].PaymentMode == undefined || this.payarray[0].PaymentMode == "") {
+      Swal.fire({
+        type: 'warning',
+        title: 'Select the Payment mode',
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1500,
+        customClass: {
+          popup: 'alert-warp',
+          container: 'alert-container',
+        },
+      });
+      return;
+    }
+
+    if (this.payarray[0].PaymentMode == "Cash") {
+      if (this.payarray[0].Amount == null || this.payarray[0].Amount == 0) {
+        Swal.fire({
+          type: 'warning',
+          title: 'Enter the amount',
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 1500,
+          customClass: {
+            popup: 'alert-warp',
+            container: 'alert-container',
+          },
+        });
+        return;
+      }
+    }
+    if (this.payarray[0].PaymentMode == 'Cheque' || this.payarray[0].PaymentMode == 'Demand Draft') {
+
+      if ((this.payarray[0].Amount == null || this.payarray[0].InstrumentNumber == null || this.payarray[0].Instrumentdate == null ||
+        this.payarray[0].BankName == null || this.payarray[0].BankBranch == null) || (this.payarray[0].Amount == undefined ||
+          this.payarray[0].InstrumentNumber == undefined || this.payarray[0].Instrumentdate == undefined ||
+          this.payarray[0].BankName == undefined || this.payarray[0].BankBranch == undefined) || (this.payarray[0].Amount == 0 ||
+            this.payarray[0].InstrumentNumber == "" || this.payarray[0].BankName == "" || this.payarray[0].BankBranch == "")) {
+
+        if ((this.payarray[0].Amount == null || this.payarray[0].Amount == undefined || this.payarray[0].Amount == 0)) {
+
+          Swal.fire({
+            type: 'warning',
+            title: 'Enter the amount',
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            customClass: {
+              popup: 'alert-warp',
+              container: 'alert-container',
+            },
+          });
+          return;
+        }
+        else if ((this.payarray[0].InstrumentNumber == null || this.payarray[0].InstrumentNumber == undefined || this.payarray[0].InstrumentNumber == "")) {
+
+          Swal.fire({
+            type: 'warning',
+            title: 'Enter the Instrument number',
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            customClass: {
+              popup: 'alert-warp',
+              container: 'alert-container',
+            },
+          });
+          return;
+        }
+        else if ((this.payarray[0].BankName == null || this.payarray[0].BankName == undefined || this.payarray[0].BankName == "")) {
+
+          Swal.fire({
+            type: 'warning',
+            title: 'Enter the Bank name',
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            customClass: {
+              popup: 'alert-warp',
+              container: 'alert-container',
+            },
+          });
+          return;
+        }
+        else if ((this.payarray[0].BankBranch == null || this.payarray[0].BankBranch == undefined || this.payarray[0].BankBranch == "")) {
+
+          Swal.fire({
+            type: 'warning',
+            title: 'Enter the Bank branch',
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            customClass: {
+              popup: 'alert-warp',
+              container: 'alert-container',
+            },
+          });
+          return;
+        }
+        else if ((this.payarray[0].Instrumentdate == null || this.payarray[0].Instrumentdate == undefined)) {
+
+          Swal.fire({
+            type: 'warning',
+            title: 'Select the Instrument date',
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            customClass: {
+              popup: 'alert-warp',
+              container: 'alert-container',
+            },
+          });
+          return;
+        }
+        else { }
+
+
+      }
+    }
+    if (this.payarray[0].PaymentMode == 'Debit card' || this.payarray[0].PaymentMode == 'Credit Card') {
+
+      if ((this.payarray[0].Amount == null || this.payarray[0].InstrumentNumber == null || this.payarray[0].Expirydate == null ||
+        this.payarray[0].BankName == null) || (this.payarray[0].Amount == undefined ||
+          this.payarray[0].InstrumentNumber == undefined || this.payarray[0].Expirydate == undefined ||
+          this.payarray[0].BankName == undefined) || (this.payarray[0].Amount == 0 ||
+            this.payarray[0].InstrumentNumber == "" || this.payarray[0].BankName == "")) {
+
+        if ((this.payarray[0].Amount == null || this.payarray[0].Amount == undefined || this.payarray[0].Amount == 0)) {
+
+          Swal.fire({
+            type: 'warning',
+            title: 'Enter the amount',
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            customClass: {
+              popup: 'alert-warp',
+              container: 'alert-container',
+            },
+          });
+          return;
+        }
+        else if ((this.payarray[0].InstrumentNumber == null || this.payarray[0].InstrumentNumber == undefined || this.payarray[0].InstrumentNumber == "")) {
+
+          Swal.fire({
+            type: 'warning',
+            title: 'Enter the Instrument number',
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            customClass: {
+              popup: 'alert-warp',
+              container: 'alert-container',
+            },
+          });
+          return;
+        }
+        else if ((this.payarray[0].BankName == null || this.payarray[0].BankName == undefined || this.payarray[0].BankName == "")) {
+
+          Swal.fire({
+            type: 'warning',
+            title: 'Enter the Bank name',
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            customClass: {
+              popup: 'alert-warp',
+              container: 'alert-container',
+            },
+          });
+          return;
+        }
+        else if ((this.payarray[0].Expirydate == null || this.payarray[0].Expirydate == undefined)) {
+
+          Swal.fire({
+            type: 'warning',
+            title: 'Select the expiry date',
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            customClass: {
+              popup: 'alert-warp',
+              container: 'alert-container',
+            },
+          });
+          return;
+        }
+
+      }
+    }
+
+    let amtresult = parseInt(this.TotalAmt);
+    if (this.PaymentTotalAmount() >= amtresult) {
+      Swal.fire({
+        type: 'warning',
+        title: 'Cannot Give More than TotalAmount',
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1500,
+        customClass: {
+          popup: 'alert-warp',
+          container: 'alert-container',
+        },
+      });
+      return;
+    }
+    else {
+      var paydetails = new Payment_Master();
+      paydetails.PaymentMode = "";
+      paydetails.InstrumentNumber = "";
+      paydetails.Instrumentdate = null;
+      paydetails.BankName = "";
+      paydetails.BankBranch = "";
+      paydetails.Expirydate = null;
+      paydetails.Amount = this.TotalAmt - this.PaymentTotalAmount();
+      this.payarray.unshift(paydetails);
+      this.commonService.data.PaymentMaster = this.payarray;
+      this.dataSource3.data = this.commonService.data.PaymentMaster;
+      this.dataSource3._updateChangeSubscription();
+
+      let disph = this.commonService.data.PaymentMaster[0].PaymentMode;
+      let index = this.commonService.data.PaymentMaster.findIndex(x => x.PaymentMode == disph);
+      this.PaymentModefirst(index);
+
+      localStorage.setItem("Paymode", JSON.stringify(this.payarray));
+      this.payarray = JSON.parse(localStorage.getItem("Paymode"));
+
+
+
+
+    }
+
+  }
+
   Submit(Form: NgForm) {
     debugger;
     if (Form.valid) {

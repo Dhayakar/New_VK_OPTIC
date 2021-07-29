@@ -425,7 +425,10 @@ export class AppComponent {
           const obj = Object.assign({}, el);
           if (el.MainDescription == 'Main-Dashboard') { obj.icon = 'fa-tachometer-alt'; } obj;
           if (el.MainDescription == 'Optical') { obj.icon = 'fa-glasses'; } obj;
+          if (el.MainDescription == 'Common') { obj.icon = 'fa-clinic-medical'; } obj;
+          if (el.MainDescription == 'Clinical Procedures') { obj.icon = 'fa-file-medical'; } obj;
           if (el.MainDescription == 'Expense') { obj.icon = 'fa fa-money'; } obj;
+          if (el.MainDescription == 'Administration') { obj.icon = 'fa-procedures'; } obj;
           if (el.MainDescription == 'Inventory') { obj.icon = 'fa-warehouse'; } return obj;
         });
         //this.companylogo = data.CompanyImnage;
