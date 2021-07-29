@@ -3,7 +3,7 @@
 
 <div class="col-sm-12">
   <div>
-    <h5 class="col-sm-5 card-header bg-success text-white">
+    <h5 align="center" class="card-header center">
       Tax Master
     </h5>
   </div>
@@ -22,13 +22,16 @@
           </div>
           <div class="col-sm-2 mph-0 f-r pb20">
             <button class="btn-text" (click)="Getformaccess()"><i class="fas fa-eye"></i> View Access</button>
+            <button [disabled]="Disableonsearch" (click)="getTaxTable()" class="btn-text grab ">
+              <i class="fas fa-info-circle"> </i> Help
+            </button>
           </div>
         </div>
 
         <div class="col-sm-12">
           <input #Taxid name="Taxid" [(ngModel)]="TaxID" type="hidden">
 
-          <div class="col-sm-3">
+          <!--<div class="col-sm-3">
             <mat-form-field appearance="outline">
               <mat-label> Tax Group</mat-label>
               <mat-select [(ngModel)]="TaxGroup" name="TaxGroup" required>
@@ -36,12 +39,8 @@
                 <mat-option value="interstate" (click)="showIgst()">Inter State</mat-option>
               </mat-select>
             </mat-form-field>
-          </div>
-          <div class="col-sm-2">
-            <button [disabled]="Disableonsearch" (click)="getTaxTable()" class="btn-text grab ">
-              <i class="fas fa-info-circle"> </i> Help
-            </button>
-          </div>
+          </div>-->
+
 
 
 
@@ -49,11 +48,11 @@
         </div>
 
         <!--/////////////////////////////////////////////////international tax///////////////////////////////////////////////////////////////////////-->
-        <div *ngIf="hiddenbyCountry1">
+        <!--<div *ngIf="hiddenbyCountry1">
           <div class="col-sm-12">
             <div class="col-sm-3">
               <mat-form-field appearance="outline">
-                <mat-label>Tax Description</mat-label>
+                <mat-label>Tax Description1</mat-label>
                 <textarea #message1 maxlength="250" matInput placeholder="Tax Description" [(ngModel)]="TaxDescription" name="TaxDescription" (keypress)="hidedotval($event)" required></textarea>
                 <mat-hint>Max 250 Character</mat-hint>
                 <mat-hint>{{message1.value.length}}/250</mat-hint>
@@ -62,7 +61,7 @@
             <div class="col-sm-3">
               <mat-form-field appearance="outline">
                 <mat-label>Tax %</mat-label>
-                <input matInput placeholder="Tax %" [(ngModel)]="GST" id="GST" name="GST" maxlength="3" (keypress)="numberOnly($event)" (keyup)="ChangeValue()">
+                <input matInput required placeholder="Tax %" [(ngModel)]="GST" id="GST" name="GST" maxlength="3" (keypress)="numberOnly($event)" (keyup)="ChangeValue()">
               </mat-form-field>
             </div>
           </div>
@@ -70,9 +69,9 @@
           <div class="col-sm-12">
             <div class="col-sm-3">
               <mat-form-field appearance="outline">
-                <mat-label>Addl Tax Description 1</mat-label>
+                <mat-label>Addl Tax Description 1</mat-label>-->
                 <!--<input matInput placeholder="Tax Description">-->
-                <textarea #message2 maxlength="100" matInput placeholder="Addl Tax Description 1" [(ngModel)]="CESSDescription" name="CESSDescription" (keypress)="hidedotval($event)"></textarea>
+                <!--<textarea #message2 maxlength="100" matInput placeholder="Addl Tax Description 1" [(ngModel)]="CESSDescription" name="CESSDescription" (keypress)="hidedotval($event)"></textarea>
                 <mat-hint>Max 100 Character</mat-hint>
                 <mat-hint>{{message2.value.length}}/100</mat-hint>
               </mat-form-field>
@@ -87,9 +86,9 @@
 
             <div class="col-sm-3">
               <mat-form-field appearance="outline">
-                <mat-label>Addl Tax Description 2</mat-label>
+                <mat-label>Addl Tax Description 2</mat-label>-->
                 <!--<input matInput placeholder="Tax Description">-->
-                <textarea #message3 maxlength="100" matInput placeholder="Addl Tax Description 2" [(ngModel)]="AdditionalCESSDescription" name="CESSDescription" (keypress)="hidedotval($event)"></textarea>
+                <!--<textarea #message3 maxlength="100" matInput placeholder="Addl Tax Description 2" [(ngModel)]="AdditionalCESSDescription" name="CESSDescription" (keypress)="hidedotval($event)"></textarea>
                 <mat-hint>Max 100 Character</mat-hint>
                 <mat-hint>{{message3.value.length}}/100</mat-hint>
               </mat-form-field>
@@ -102,8 +101,9 @@
               </mat-form-field>
             </div>
           </div>
-        </div>
-        <div *ngIf="hiddenbyCountry">
+        </div>-->
+
+        <div >
           <div class="col-sm-12">
             <div class="col-sm-3">
               <mat-form-field appearance="outline">
@@ -113,32 +113,34 @@
                 <mat-hint>{{message4.value.length}}/250</mat-hint>
               </mat-form-field>
             </div>
-            <div class="col-sm-3" [hidden]="!Interstate">
 
-              <mat-form-field appearance="outline">
-                <mat-label>IGST %</mat-label>
-                <input matInput placeholder="IGST %" [(ngModel)]="IGST" name="IGST" maxlength="3" (keypress)="numberOnly($event)" (keyup)="Restrictnum()">
-              </mat-form-field>
-            </div>
-            <div class="col-sm-3" [hidden]="!withinstate">
+            <div class="col-sm-3">
               <mat-form-field appearance="outline">
                 <mat-label>GST %</mat-label>
-                <input matInput placeholder="GST %" [(ngModel)]="GST" id="GST" name="GST" maxlength="3" (keypress)="numberOnly($event)" (keyup)="ChangeValue()">
-              </mat-form-field>
-            </div>
-            <div class="col-sm-3" [hidden]="!withinstate">
-              <mat-form-field appearance="outline">
-                <mat-label>CGST%</mat-label>
-                <input matInput placeholder="CGST %" [(ngModel)]="CGST" name="CGST" (keypress)="numberOnly($event)" disabled>
+                <input matInput required placeholder="GST %" [(ngModel)]="GST" id="GST" name="GST" maxlength="3" (keypress)="numberOnly($event)" (keyup)="ChangeValue()">
               </mat-form-field>
             </div>
 
-            <div class="col-sm-3" [hidden]="!withinstate">
+            <div class="col-sm-3">
               <mat-form-field appearance="outline">
-                <mat-label>SGST%</mat-label>
-                <input matInput placeholder="SGST  %" [(ngModel)]="SGST" name="SGST" (keypress)="numberOnly($event)" disabled>
+                <mat-label>IGST %</mat-label>
+                <input matInput required placeholder="IGST %" [(ngModel)]="IGST" name="IGST" maxlength="3" (keypress)="numberOnly($event)" (keyup)="Restrictnum()">
               </mat-form-field>
             </div>
+
+            <!--<div class="col-sm-3" >
+    <mat-form-field appearance="outline">
+      <mat-label>CGST%</mat-label>
+      <input matInput placeholder="CGST %" [(ngModel)]="CGST" name="CGST" (keypress)="numberOnly($event)" disabled>
+    </mat-form-field>
+  </div>
+
+  <div class="col-sm-3" >
+    <mat-form-field appearance="outline">
+      <mat-label>SGST%</mat-label>
+      <input matInput placeholder="SGST  %" [(ngModel)]="SGST" name="SGST" (keypress)="numberOnly($event)" disabled>
+    </mat-form-field>
+  </div>-->
           </div>
 
           <!--Fourth row-->

@@ -12667,23 +12667,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\SYSTEM1\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
+      "projectUniqueName": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
       "projectName": "WYNK.Services",
-      "projectPath": "D:\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
-      "packagesPath": "C:\\Users\\SYSTEM1\\.nuget\\packages\\",
-      "outputPath": "D:\\VK_Optic_Point\\WYNK.Services\\obj\\",
+      "projectPath": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
+      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+      "outputPath": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Services\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\SYSTEM1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -12695,9 +12691,10 @@
       },
       "frameworks": {
         "netcoreapp2.1": {
+          "targetAlias": "netcoreapp2.1",
           "projectReferences": {
-            "D:\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj": {
-              "projectPath": "D:\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj"
+            "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj": {
+              "projectPath": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj"
             }
           }
         }
@@ -12710,6 +12707,7 @@
     },
     "frameworks": {
       "netcoreapp2.1": {
+        "targetAlias": "netcoreapp2.1",
         "dependencies": {
           "MSBuild.Microsoft.VisualStudio.Web.targets": {
             "target": "Package",
@@ -12730,6 +12728,7 @@
             "version": "[2.1.1, )"
           },
           "Microsoft.NETCore.App": {
+            "suppressParent": "All",
             "target": "Package",
             "version": "[2.1.0, )",
             "autoReferenced": true
@@ -12744,10 +12743,16 @@
           }
         },
         "imports": [
-          "net461"
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
         ],
         "assetTargetFallback": true,
-        "warn": true
+        "warn": true,
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   },
@@ -12756,7 +12761,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Razorpay 3.0.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
+      "message": "Package 'Razorpay 3.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
       "libraryId": "Razorpay",
       "targetGraphs": [
         ".NETCoreApp,Version=v2.1"

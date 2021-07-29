@@ -511,10 +511,10 @@ namespace WYNK.Data.Repository.Implementation
                     OpticalOrderM.Validity = OpticalUpdate.OpticalOrder.Validity;
                     OpticalOrderM.IsOrderExecuted = 0;
                     OpticalOrderM.UpdatedUTC = DateTime.UtcNow;
-                    OpticalOrderM.UpdatedBy = OpticalUpdate.OpticalOrder.CreatedBy;
+                    OpticalOrderM.UpdatedBy = OpticalUpdate.OpticalOrder.UpdatedBy;
                     WYNKContext.Entry(OpticalOrderM).State = EntityState.Modified;
                     string username = CMPSContext.DoctorMaster.Where(s => s.EmailID == CMPSContext.Users.Where(x => x.Userid == OpticalUpdate.OpticalOrder.CreatedBy).Select(x => x.Username).FirstOrDefault()).Select(c => c.Firstname + "" + c.MiddleName + "" + c.LastName).FirstOrDefault();
-                    string userid = Convert.ToString(OpticalUpdate.OpticalOrder.CreatedBy);
+                    string userid = Convert.ToString(OpticalUpdate.OpticalOrder.UpdatedBy);
                     ErrorLog oErrorLogs = new ErrorLog();
                     oErrorLogs.WriteErrorLogTitle(OpticalUpdate.Companyname, "OpticalOrder", "User name :", username, "User ID :", Convert.ToString(userid), "Mode : Update");
                     object names = OpticalOrderM;
@@ -536,6 +536,7 @@ namespace WYNK.Data.Repository.Implementation
                             OpticalOrderTran.OrderedQty = item.Quantity;
                             OpticalOrderTran.ReceivedQty = 0;
                             OpticalOrderTran.Price = item.Prize;
+                            OpticalOrderTran.ItemValue = item.Prize * item.Quantity;
                             OpticalOrderTran.DiscountPercentage = item.Discount;
                             OpticalOrderTran.DiscountAmount = item.DiscountAmount;
                             OpticalOrderTran.GSTPercentage = item.GST;
@@ -552,7 +553,7 @@ namespace WYNK.Data.Repository.Implementation
                             OpticalOrderTran.AddCESSPerAmt = item.AdditionalCESSAmount;
                             OpticalOrderTran.IsCancelled = false;
                             OpticalOrderTran.UpdatedUTC = DateTime.UtcNow;
-                            OpticalOrderTran.UpdatedBy = OpticalUpdate.OpticalOrder.CreatedBy;
+                            OpticalOrderTran.UpdatedBy = OpticalUpdate.OpticalOrder.UpdatedBy;
                             WYNKContext.Entry(OpticalOrderTran).State = EntityState.Modified;
                             ErrorLog oErrorLogstran = new ErrorLog();
                             object namestr = OpticalOrderTran;
