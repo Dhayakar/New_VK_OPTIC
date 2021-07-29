@@ -2542,7 +2542,7 @@ namespace WYNK.Data.Repository.Implementation
 
                                           }).ToList();
             CustomerOrder.OfferDetails1 = (from LM in LensMas.Where(x => x.CMPID == CMPID)
-                                          join LT in LensTarn.Where(x => x.IsActive == true && x.Sptaxinclusive==false) on LM.RandomUniqueID equals LT.LMID
+                                          join LT in LensTarn.Where(x => x.IsActive == true ) on LM.RandomUniqueID equals LT.LMID
                                           join TM in TaxMas on LT.TaxID equals TM.ID
                                           join BM in BrandMas on LT.Brand equals BM.ID
                                           select new OfferDetail
