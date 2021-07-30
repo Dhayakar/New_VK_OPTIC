@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 import { DatePipe } from '@angular/common';
 import { ExpenseViewModel, Expesneitemdata } from 'src/app/Models/ViewModels/ExpenseViewModel';
 import { Payment_Master } from 'src/app/Models/PaymentWebModel ';
+import { any } from '@amcharts/amcharts4/.internal/core/utils/Array';
 declare var $: any;
 export const MY_FORMATS = {
   parse: {
@@ -71,11 +72,13 @@ export class ExpenseTranComponent implements OnInit {
   DataStatus;
 
   ngOnInit() {
+
     this.Hidesubmitbtn = true;
     this.TotalAmt = 0;
     this.M_DAte = new Date();
     var Pathname = "ExpenseModule/ExpTran";
     var n = Pathname;
+    this.DateChange();
     this.getalldropdowons();
     var sstring = n.includes("/");
     this.commonService.data = new ExpenseViewModel();
@@ -200,15 +203,21 @@ export class ExpenseTranComponent implements OnInit {
       .subscribe(data => {
         if (data.length != 0) {
           this.expensearry = data;
+          localStorage.setItem('Expensedrop', JSON.stringify(this.expensearry));
           //this.DummyHistorydata = data;          
         }
       });
   }
 
-  RestrictNegativeValues(e): boolean {
-    if (!(e.keyCode >= 48 && e.keyCode <= 57 || e.keyCode == 46)) {
+  RestrictNegativeValues(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      if ((charCode > 34 && charCode < 41) || charCode == 46) {
+        return true;
+      }
       return false;
     }
+    return true;
   }
   Getformaccess() {
     var Pathname = "ExpenseModule/ExpTran";
@@ -358,35 +367,26 @@ export class ExpenseTranComponent implements OnInit {
     this.inputm.value = '';
 
   }
-  DescriptionChange(id, event, element) {
+
+  @ViewChildren('ExpenseRemarks') ExpenseRemarkse: QueryList<ElementRef>;
+  beforeExpensename(i, event, element) {
     debugger;
-    let result = event.value;
-    this.commonService.data.Expesneitemdata.map((todo, i) => {
-      if (i == id) {
-        const lengthdifference = this.commonService.data.Expesneitemdata.some(g => g.ID == result)
-        if (lengthdifference == false) {
-          this.commonService.data.Expesneitemdata[i].ID = Number(result);
-          var deesc = this.expensearry.filter(x => x.ID === Number(result)).map(x => x.Description);
-          this.commonService.data.Expesneitemdata[i].Expensedescription = deesc[0];
-        } else {
-          this.commonService.data.Expesneitemdata.splice(id, 1);
-          this.dataSource._updateChangeSubscription();
-          Swal.fire({
-            type: 'warning',
-            title: 'warning',
-            text: 'Description already exists',
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 1500,
-            customClass: {
-              popup: 'alert-warp',
-              container: 'alert-container',
-            },
-          });
-        }
-      }
+    setTimeout(() => {
+      this.ExpenseRemarkse.toArray()[i].nativeElement.focus();
+    });
+
+  }
+  DescriptionexpenseName(i) {
+    this.ExpensearrowrightBankName(i);
+  }
+  @ViewChildren('Expenseamt') Expenseamtss: QueryList<ElementRef>;
+  ExpensearrowrightBankName(i) {
+    debugger;
+    setTimeout(() => {
+      this.Expenseamtss.toArray()[i].nativeElement.focus();
     });
   }
+
 
   PaymentChangee(i, event, element) {
 
@@ -472,11 +472,83 @@ export class ExpenseTranComponent implements OnInit {
     this.Paymentsmodes = Objdata.filter(option => option.Text.toLowerCase().includes(filterValue));
   }
 
+  @ViewChildren('ExpenseMode') ExpenseMode: QueryList<ElementRef>;
+  ExpenseModefirst(i) {
+    debugger;
+    setTimeout(() => {
+      this.ExpenseMode.toArray()[i].nativeElement.focus();
+    });
+  }
 
+  @ViewChildren('inputExpensemode') inputExpensemode: QueryList<ElementRef>;
+  @ViewChild('inputExpensemode', { read: MatInput }) inputExpensemodem: MatInput;
+  someMethodExpenseMode(i, event, element) {
+    debugger;
+    this.expensearry = JSON.parse(localStorage.getItem('Expensedrop'));
+    setTimeout(() => {
+      this.inputExpensemode.toArray()[i].nativeElement.focus();
+    });
+    this.inputExpensemodem.value = '';
 
+  }
+
+  @ViewChildren('ExpenseModee') ExpenseModee: QueryList<MatSelect>;
+  enterexpenseMode(i) {
+    this.ExpenseModee.toArray()[i].open();
+  }
+  //arrowrightexpenseModee(i, event, element) {
+  //  this.PaymentModeemySelectclose.toArray()[i].close();
+  //  this.arrowrightPayment(i);
+  //}
+  DescriptionChange(id, event, element) {
+    debugger;
+    let result = event.value;
+    this.commonService.data.Expesneitemdata.map((todo, i) => {
+      if (i == id) {
+        const lengthdifference = this.commonService.data.Expesneitemdata.some(g => g.ID == result)
+        if (lengthdifference == false) {
+          this.commonService.data.Expesneitemdata[i].ID = Number(result);
+          var deesc = this.expensearry.filter(x => x.ID === Number(result)).map(x => x.Description);
+          this.commonService.data.Expesneitemdata[i].Expensedescription = deesc[0];
+          var index = this.commonService.data.Expesneitemdata.findIndex(g => g.Expensedescription == deesc[0]);
+          this.beforeExpensename(index, event, element);
+        } else {
+          this.commonService.data.Expesneitemdata.splice(id, 1);
+          this.dataSource._updateChangeSubscription();
+          var paydetails = new Expesneitemdata();
+          paydetails.ID = null;
+          paydetails.Expensedescription = "";
+          paydetails.Remarks = "";
+          paydetails.Amount = 0;
+          localStorage.setItem("Expmode", JSON.stringify(this.commonService.data.Expesneitemdata));
+          this.Expensearray = JSON.parse(localStorage.getItem("Expmode"));
+          this.Expensearray.unshift(paydetails);
+          this.commonService.data.Expesneitemdata = this.Expensearray;
+          this.dataSource.data = this.commonService.data.Expesneitemdata;
+          this.dataSource._updateChangeSubscription();
+          let disph = this.commonService.data.Expesneitemdata[0].Expensedescription;
+          let index = this.commonService.data.Expesneitemdata.findIndex(x => x.Expensedescription == disph);
+          this.ExpenseModefirst(index);
+          Swal.fire({
+            type: 'warning',
+            title: 'warning',
+            text: 'Description already exists',
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            customClass: {
+              popup: 'alert-warp',
+              container: 'alert-container',
+            },
+          });
+        }
+      }
+    });
+  }
+Expensearray = [];
   AddExpenseNewgrid() {
     debugger;
-    if (this.commonService.data.Expesneitemdata.length != 0) {
+    if (this.Expensearray.length != 0) {
       const lengthdifference = this.commonService.data.Expesneitemdata.some(g => g.Expensedescription == "" && g.Amount == 0)
       if (lengthdifference == false) {
         var paydetails = new Expesneitemdata();
@@ -484,10 +556,16 @@ export class ExpenseTranComponent implements OnInit {
         paydetails.Expensedescription = "";
         paydetails.Remarks = "";
         paydetails.Amount = 0;
-        this.commonService.data.Expesneitemdata.unshift(paydetails);
-        //this.commonService.data.Expesneitemdata.push(paydetails);
+        localStorage.setItem("Expmode", JSON.stringify(this.commonService.data.Expesneitemdata));
+        this.Expensearray = JSON.parse(localStorage.getItem("Expmode"));
+        this.Expensearray.unshift(paydetails);
+        this.commonService.data.Expesneitemdata = this.Expensearray;       
         this.dataSource.data = this.commonService.data.Expesneitemdata;
         this.dataSource._updateChangeSubscription();
+        let disph = this.commonService.data.Expesneitemdata[0].Expensedescription;
+        let index = this.commonService.data.Expesneitemdata.findIndex(x => x.Expensedescription == disph);
+        this.ExpenseModefirst(index);
+
         return;
       } else {
         Swal.fire({
@@ -509,10 +587,15 @@ export class ExpenseTranComponent implements OnInit {
       paydetails.Expensedescription = "";
       paydetails.Remarks = "";
       paydetails.Amount = 0;
-      this.commonService.data.Expesneitemdata.unshift(paydetails);
-     // this.commonService.data.Expesneitemdata.push(paydetails);
+      localStorage.setItem("Expmode", JSON.stringify(this.commonService.data.Expesneitemdata));
+      this.Expensearray = JSON.parse(localStorage.getItem("Expmode"));
+      this.Expensearray.unshift(paydetails);
+      this.commonService.data.Expesneitemdata = this.Expensearray;
       this.dataSource.data = this.commonService.data.Expesneitemdata;
       this.dataSource._updateChangeSubscription();
+      let disph = this.commonService.data.Expesneitemdata[0].Expensedescription;
+      let index = this.commonService.data.Expesneitemdata.findIndex(x => x.Expensedescription == disph);
+      this.ExpenseModefirst(index);
       return;
     }
 
@@ -945,7 +1028,7 @@ export class ExpenseTranComponent implements OnInit {
   changeQtyValue(id, amt, event: any) {
     debugger;
 
-    let result: number = Number(event.target.textContent);
+    let result: number = Number(event.target.value);
     this.commonService.data.Expesneitemdata.map((todo, i) => {
       if (i == id) {
         this.commonService.data.Expesneitemdata[i].Amount = result;
@@ -989,11 +1072,12 @@ export class ExpenseTranComponent implements OnInit {
         if (id !== -1) {
           this.commonService.data.Expesneitemdata.map((todo, i) => {
             if (i == id) {
-              this.dataSource.data.splice(id, 1);
+             // this.dataSource.data.splice(id, 1);
               this.commonService.data.Expesneitemdata.splice(id, 1);
+              this.dataSource.data = this.commonService.data.Expesneitemdata;
               this.dataSource._updateChangeSubscription();
               this.TotalAmt = this.commonService.data.Expesneitemdata.map(t => t.Amount).reduce((acc, value) => acc + value, 0);
-              this.commonService.data.paymenttran = [];
+              this.commonService.data.PaymentMaster = [];
               this.dataSource3.data = null;
               this.dataSource3._updateChangeSubscription();
             }
