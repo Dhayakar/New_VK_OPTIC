@@ -1,11 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-
     "signature": ""
-
-    "signature": "d6493ae21f2f3d75e8a2ec0cdd24655b8c6832da"
-
   },
   "compilationOptions": {},
   "targets": {
@@ -584,22 +580,7 @@
           }
         }
       },
-
       "System.Security.Principal.Windows/4.5.0": {},
-
-      "System.Security.Principal.Windows/4.5.0": {
-        "runtimeTargets": {
-          "runtime/unix/lib/_._": {
-            "rid": "unix",
-            "assetType": "runtime"
-          },
-          "runtime/win/lib/_._": {
-            "rid": "win",
-            "assetType": "runtime"
-          }
-        }
-      },
-
       "System.Text.Encoding/4.3.0": {
         "dependencies": {
           "System.Runtime": "4.3.0"

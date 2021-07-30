@@ -1,8 +1,0 @@
-D:\VK_Optic_Point\WYNK.Helpers\bin\Release\netstandard2.0\WYNK.Helpers.deps.json
-D:\VK_Optic_Point\WYNK.Helpers\bin\Release\netstandard2.0\WYNK.Helpers.dll
-D:\VK_Optic_Point\WYNK.Helpers\bin\Release\netstandard2.0\WYNK.Helpers.pdb
-D:\VK_Optic_Point\WYNK.Helpers\obj\Release\netstandard2.0\WYNK.Helpers.csproj.CoreCompileInputs.cache
-D:\VK_Optic_Point\WYNK.Helpers\obj\Release\netstandard2.0\WYNK.Helpers.AssemblyInfoInputs.cache
-D:\VK_Optic_Point\WYNK.Helpers\obj\Release\netstandard2.0\WYNK.Helpers.AssemblyInfo.cs
-D:\VK_Optic_Point\WYNK.Helpers\obj\Release\netstandard2.0\WYNK.Helpers.dll
-D:\VK_Optic_Point\WYNK.Helpers\obj\Release\netstandard2.0\WYNK.Helpers.pdb
