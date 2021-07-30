@@ -4,3 +4,7 @@
 
 *.lock
 *.ide
+/WYNK.Services/obj/Debug/netcoreapp2.1
+/WYNK.Helpers/obj/Debug/netstandard2.0
+/WYNK.Data/obj/Debug/netcoreapp2.1
+/SMSand EMAILService.cs/obj/Debug/netstandard2.0
