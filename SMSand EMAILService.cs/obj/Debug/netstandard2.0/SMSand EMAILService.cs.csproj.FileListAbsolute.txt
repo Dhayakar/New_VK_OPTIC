@@ -54,7 +54,6 @@ D:\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILSe
 D:\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.AssemblyInfo.cs
 D:\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.dll
 D:\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
-<<<<<<< HEAD
 E:\Vk Optics\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.deps.json
 E:\Vk Optics\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.dll
 E:\Vk Optics\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
@@ -64,8 +63,6 @@ E:\Vk Optics\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSa
 E:\Vk Optics\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.csproj.CoreCompileInputs.cache
 E:\Vk Optics\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.dll
 E:\Vk Optics\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
-=======
-<<<<<<< HEAD
 Q:\Backup\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.deps.json
 Q:\Backup\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.dll
 Q:\Backup\VK_Optic_Point\SMSand EMAILService.cs\bin\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
@@ -91,6 +88,4 @@ E:\GITHUB_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0
 E:\GITHUB_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.csproj.CoreCompileInputs.cache
 E:\GITHUB_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.dll
 E:\GITHUB_DESKTOP\VK_Optic_Point\SMSand EMAILService.cs\obj\Debug\netstandard2.0\SMSand EMAILService.cs.pdb
-=======
->>>>>>> a467531da40d3af4ca2d79f0f162be2d07e976eb
 >>>>>>> b98a585c0e89f3879f3c612341193c2b098f2a64

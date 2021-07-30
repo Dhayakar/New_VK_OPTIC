@@ -51,7 +51,7 @@ namespace WYNK.Data.Repository.Implementation
                            select new
                            {
                               OpsumRandomUniquieIDs = OPticalSummaryRes.Select(x => x.RandomUniqueID).ToList(),
-                              Type = OPticalSummaryRes.Select(op => op.FrameLensType).FirstOrDefault() !=null ? LensMas.Where(x=>x.ID == OPticalSummaryRes.Select(op => op.FrameLensType).FirstOrDefault()).Select(x=>x.LensType).FirstOrDefault() : "Advance Amount",
+                              Type = OPticalSummaryRes.Select(op => op.FrameLensType).FirstOrDefault() !=null ? LensMas.Where(x=>x.ID == OPticalSummaryRes.Select(op => op.FrameLensType).FirstOrDefault()).Select(x=>x.LensType).FirstOrDefault() : "Collections Amount",
                               SalesNos = OPticalSummaryRes.Select(x => x.BilledNumbers).Sum(),
                               SalesAmount = OPticalSummaryRes.Select(x => x.BilledAmount).Sum(),
                               Collections = OPticalSummaryRes.Select(x => x.CollectedAmount).Sum(),
@@ -165,6 +165,12 @@ namespace WYNK.Data.Repository.Implementation
                             GrossAmount = (OpticalInvoiceTrans.Quantity * OpticalInvoiceTrans.Amount) - (OpticalInvoiceTrans.DiscountAmount !=null ? OpticalInvoiceTrans.DiscountAmount : 0),
                             NetAmount = OpticalInvoiceTrans.itemValue,
                             GST = OpticalInvoiceTrans.GSTPercentage,
+                            CGST = OpticalInvoiceTrans.CGSTPercentage,
+                            SGST = OpticalInvoiceTrans.SGSTPercentage,
+                            IGST = OpticalInvoiceTrans.IGSTPercentage,
+                            CGSTValue = OpticalInvoiceTrans.CGSTTaxValue,
+                            SGSTValue = OpticalInvoiceTrans.SGSTTaxValue,
+                            IGSTValue = OpticalInvoiceTrans.IGSTTaxValue,
                             CESS = OpticalInvoiceTrans.CESSPercentage,
                             AddCess = OpticalInvoiceTrans.AdditionalCESSPercentage,
                             GSTValue = OpticalInvoiceTrans.GSTTaxValue,

@@ -20,7 +20,19 @@ export class OpticalBillSalesAmount {
   DisAmount: number
   GrossAmount: number
   NetAmount: number
-  GST:number
+  GST: number
+  CGST: number
+  CGSTValue: number
+  SGST: number
+  SGSTValue: number
+
+
+  IGST: number
+  IGSTValue: number
+
+
+
+
   CESS:number
   AddCess: number
   GSTValue: number

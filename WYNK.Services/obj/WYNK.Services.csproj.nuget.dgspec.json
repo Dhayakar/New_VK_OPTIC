@@ -1,7 +1,6 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
     "E:\\Vk Optics\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj": {}
   },
   "projects": {
@@ -16,22 +15,6 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\SYSTEM2\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-    "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj": {}
-  },
-  "projects": {
-    "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj",
-        "projectName": "SMSand EMAILService.cs",
-        "projectPath": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\SMSand EMAILService.cs\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> b98a585c0e89f3879f3c612341193c2b098f2a64
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -86,7 +69,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
         }
       }
@@ -102,23 +84,6 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\SYSTEM2\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj",
-        "projectName": "WYNK.Data",
-        "projectPath": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Data\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> b98a585c0e89f3879f3c612341193c2b098f2a64
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -132,19 +97,11 @@
           "netcoreapp2.1": {
             "targetAlias": "netcoreapp2.1",
             "projectReferences": {
-<<<<<<< HEAD
               "E:\\Vk Optics\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj": {
                 "projectPath": "E:\\Vk Optics\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj"
               },
               "E:\\Vk Optics\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj": {
                 "projectPath": "E:\\Vk Optics\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj"
-=======
-              "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj": {
-                "projectPath": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj"
-              },
-              "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj": {
-                "projectPath": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj"
->>>>>>> b98a585c0e89f3879f3c612341193c2b098f2a64
               }
             }
           }
@@ -212,7 +169,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
         }
       }
@@ -228,23 +184,6 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\SYSTEM2\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj",
-        "projectName": "WYNK.Helpers",
-        "projectPath": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Helpers\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> b98a585c0e89f3879f3c612341193c2b098f2a64
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -299,7 +238,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
         }
       }
@@ -315,23 +253,6 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\SYSTEM2\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
-        }
-      }
-    },
-    "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
-        "projectName": "WYNK.Services",
-        "projectPath": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Services\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> b98a585c0e89f3879f3c612341193c2b098f2a64
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -345,13 +266,8 @@
           "netcoreapp2.1": {
             "targetAlias": "netcoreapp2.1",
             "projectReferences": {
-<<<<<<< HEAD
               "E:\\Vk Optics\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj": {
                 "projectPath": "E:\\Vk Optics\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj"
-=======
-              "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj": {
-                "projectPath": "E:\\GITHUB_DESKTOP\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj"
->>>>>>> b98a585c0e89f3879f3c612341193c2b098f2a64
               }
             }
           }
@@ -409,11 +325,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
-=======
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
->>>>>>> b98a585c0e89f3879f3c612341193c2b098f2a64
         }
       }
     }

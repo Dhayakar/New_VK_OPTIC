@@ -27,7 +27,7 @@ export class OpticalDashboardComponent implements OnInit {
   TypeAndBrandSource = new MatTableDataSource();
 
 
-  OpbillColumns = ['BillNo', 'BillDate', 'CustomerName', 'Description', 'Brand', 'UOM', 'Qty', 'Rate','Amount','DiscPer','DisAmount','Grossamount','TaxDescription','TaxPer','TaxAmount','NetAmount'];
+  OpbillColumns = ['BillNo', 'BillDate', 'CustomerName', 'Description', 'Brand', 'UOM', 'Qty', 'Rate', 'Amount', 'DiscPer', 'DisAmount', 'Grossamount', 'CGST', 'CGSTValue', 'SGST', 'SGSTValue', 'IGST', 'IGSTValue','NetAmount'];
   OpbillSource = new MatTableDataSource();
 
   AdvanceAmountColumns = ['ReceiptNo', 'ReceiptDate', 'CustomerName', 'SaleAmount', 'CollectedAmount', 'PayMode', 'InstrumentNo', 'InstrumentDate', 'BankName', 'Expirydate', 'Amount'];
@@ -363,6 +363,21 @@ export class OpticalDashboardComponent implements OnInit {
     return restotalcost;
   }
 
+  GetCGSTAmount() {
+    var restotalcost = this.commonService.data.OpticalBillSalesAmounts.map(t => t.CGSTValue).reduce((acc, value) => acc + value, 0);
+    return restotalcost;
+  }
+
+  GetSGSTAmount() {
+    var restotalcost = this.commonService.data.OpticalBillSalesAmounts.map(t => t.SGSTValue).reduce((acc, value) => acc + value, 0);
+    return restotalcost;
+  }
+
+  GetIGSTAmount() {
+    var restotalcost = this.commonService.data.OpticalBillSalesAmounts.map(t => t.IGSTValue).reduce((acc, value) => acc + value, 0);
+    return restotalcost;
+  }
+
   getAdvanceSaleAmount() {
     var total = 0;
     _.chain(this.SourceData).groupBy("ReceiptNo").map(function (arr, i) {
@@ -372,7 +387,6 @@ export class OpticalDashboardComponent implements OnInit {
   }
 
   getAdvanceCollectedAmount() {
-    debugger
     var test = _.chain(this.SourceData).groupBy("ReceiptNo");
     var total = 0;
      _.chain(this.SourceData).groupBy("ReceiptNo").map(function (arr, i) {

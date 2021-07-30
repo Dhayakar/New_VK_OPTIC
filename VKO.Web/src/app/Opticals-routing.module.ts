@@ -21,6 +21,7 @@ import { OpticalBillingRegisterComponent } from './Views/optical-billing-registe
 import { LensFrameUploadedComponent } from './Views/lens-frame-uploaded/lens-frame-uploaded.component';
 import { LensframestockuploadComponent } from './Views/lensframestockupload/lensframestockupload.component';
 import { MaterialreturntovendorComponent } from './Views/materialreturntovendor/materialreturntovendor.component';
+import { CustomerOrderStatusComponent } from './Views/customer-order-status/customer-order-status.component';
 
 
 const routes: Routes = [
@@ -39,6 +40,7 @@ const routes: Routes = [
   { path: 'LensFrameUploaded', component: LensFrameUploadedComponent },
   { path: 'Lensframestockupload', component: LensframestockuploadComponent },
   { path: 'OpticalMaterialReturn', component: MaterialreturntovendorComponent },
+  { path: 'CustomerOrderStatus', component: CustomerOrderStatusComponent },
  // { path: 'OpticalDashboard', component: OpticalDashboardComponent },
 ];
 
@@ -70,6 +72,7 @@ const routes: Routes = [
     LensFrameUploadedComponent,
     LensframestockuploadComponent,
     MaterialreturntovendorComponent,
+    CustomerOrderStatusComponent
    // OpticalDashboardComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

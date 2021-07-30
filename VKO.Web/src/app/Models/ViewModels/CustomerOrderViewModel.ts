@@ -28,6 +28,7 @@ export class CustomerOrderViewModel {
   RegTranId: number;
   Deliverydate: Date;
   Remarks: string;
+  Status: string;
 }
 
 
