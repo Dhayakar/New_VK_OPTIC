@@ -1,4 +1,0 @@
-D:\VK_Optic_Point\WYNK.Data\obj\Release\netcoreapp2.1\WYNK.Data.csprojAssemblyReference.cache
-D:\VK_Optic_Point\WYNK.Data\obj\Release\netcoreapp2.1\WYNK.Data.csproj.CoreCompileInputs.cache
-D:\VK_Optic_Point\WYNK.Data\obj\Release\netcoreapp2.1\WYNK.Data.AssemblyInfoInputs.cache
-D:\VK_Optic_Point\WYNK.Data\obj\Release\netcoreapp2.1\WYNK.Data.AssemblyInfo.cs
