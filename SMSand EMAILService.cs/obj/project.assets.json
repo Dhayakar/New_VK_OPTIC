@@ -1206,17 +1206,11 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
     "C:\\Users\\SYSTEM2\\.nuget\\packages\\": {}
-=======
-    "C:\\Users\\SYSTEM1\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
->>>>>>> 47443bbcf8cba25c36cf17917462d6febd97ddf9
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "E:\\Vk Optics\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj",
       "projectName": "SMSand EMAILService.cs",
       "projectPath": "E:\\Vk Optics\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj",
@@ -1225,19 +1219,6 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\SYSTEM2\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-      "projectUniqueName": "D:\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj",
-      "projectName": "SMSand EMAILService.cs",
-      "projectPath": "D:\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj",
-      "packagesPath": "C:\\Users\\SYSTEM1\\.nuget\\packages\\",
-      "outputPath": "D:\\VK_Optic_Point\\SMSand EMAILService.cs\\obj\\",
-      "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
-      "configFilePaths": [
-        "C:\\Users\\SYSTEM1\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> 47443bbcf8cba25c36cf17917462d6febd97ddf9
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1249,6 +1230,7 @@
       },
       "frameworks": {
         "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
           "projectReferences": {}
         }
       },
@@ -1260,6 +1242,7 @@
     },
     "frameworks": {
       "netstandard2.0": {
+        "targetAlias": "netstandard2.0",
         "dependencies": {
           "NEST": {
             "target": "Package",
@@ -1281,33 +1264,25 @@
           }
         },
         "imports": [
-          "net461"
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
         ],
         "assetTargetFallback": true,
-<<<<<<< HEAD
         "warn": true,
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
-=======
-        "warn": true
->>>>>>> 47443bbcf8cba25c36cf17917462d6febd97ddf9
       }
     }
   },
   "logs": [
     {
-<<<<<<< HEAD
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file E:\\Vk Optics\\VK_Optic_Point\\SMSand EMAILService.cs\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    },
-    {
-=======
->>>>>>> 47443bbcf8cba25c36cf17917462d6febd97ddf9
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Razorpay 3.0.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETStandard,Version=v2.0'. This package may not be fully compatible with your project.",
+      "message": "Package 'Razorpay 3.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETStandard,Version=v2.0'. This package may not be fully compatible with your project.",
       "libraryId": "Razorpay",
       "targetGraphs": [
         ".NETStandard,Version=v2.0"

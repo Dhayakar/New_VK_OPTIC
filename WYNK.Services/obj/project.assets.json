@@ -12667,17 +12667,11 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
     "C:\\Users\\SYSTEM2\\.nuget\\packages\\": {}
-=======
-    "C:\\Users\\SYSTEM1\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
->>>>>>> 47443bbcf8cba25c36cf17917462d6febd97ddf9
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
       "projectUniqueName": "E:\\Vk Optics\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
       "projectName": "WYNK.Services",
       "projectPath": "E:\\Vk Optics\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
@@ -12686,19 +12680,6 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\SYSTEM2\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-      "projectUniqueName": "D:\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
-      "projectName": "WYNK.Services",
-      "projectPath": "D:\\VK_Optic_Point\\WYNK.Services\\WYNK.Services.csproj",
-      "packagesPath": "C:\\Users\\SYSTEM1\\.nuget\\packages\\",
-      "outputPath": "D:\\VK_Optic_Point\\WYNK.Services\\obj\\",
-      "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
-      "configFilePaths": [
-        "C:\\Users\\SYSTEM1\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> 47443bbcf8cba25c36cf17917462d6febd97ddf9
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -12710,14 +12691,10 @@
       },
       "frameworks": {
         "netcoreapp2.1": {
+          "targetAlias": "netcoreapp2.1",
           "projectReferences": {
-<<<<<<< HEAD
             "E:\\Vk Optics\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj": {
               "projectPath": "E:\\Vk Optics\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj"
-=======
-            "D:\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj": {
-              "projectPath": "D:\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj"
->>>>>>> 47443bbcf8cba25c36cf17917462d6febd97ddf9
             }
           }
         }
@@ -12730,6 +12707,7 @@
     },
     "frameworks": {
       "netcoreapp2.1": {
+        "targetAlias": "netcoreapp2.1",
         "dependencies": {
           "MSBuild.Microsoft.VisualStudio.Web.targets": {
             "target": "Package",
@@ -12750,6 +12728,7 @@
             "version": "[2.1.1, )"
           },
           "Microsoft.NETCore.App": {
+            "suppressParent": "All",
             "target": "Package",
             "version": "[2.1.0, )",
             "autoReferenced": true
@@ -12764,33 +12743,25 @@
           }
         },
         "imports": [
-          "net461"
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
         ],
         "assetTargetFallback": true,
-<<<<<<< HEAD
         "warn": true,
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
-=======
-        "warn": true
->>>>>>> 47443bbcf8cba25c36cf17917462d6febd97ddf9
       }
     }
   },
   "logs": [
     {
-<<<<<<< HEAD
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file E:\\Vk Optics\\VK_Optic_Point\\WYNK.Services\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    },
-    {
-=======
->>>>>>> 47443bbcf8cba25c36cf17917462d6febd97ddf9
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Razorpay 3.0.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
+      "message": "Package 'Razorpay 3.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
       "libraryId": "Razorpay",
       "targetGraphs": [
         ".NETCoreApp,Version=v2.1"
