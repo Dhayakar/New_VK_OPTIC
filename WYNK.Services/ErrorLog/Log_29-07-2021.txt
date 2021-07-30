@@ -1,0 +1,70 @@
+
+29-07-2021 05:49:36 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+29-07-2021 05:49:36 	Message : 	Successfully Logged-In
+
+29-07-2021 05:57:48 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+29-07-2021 05:57:48 	Message : 	Successfully Logged-In
+
+29-07-2021 06:00:17 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+29-07-2021 06:00:17 	Message : 	Successfully Logged-In
+
+29-07-2021 06:03:22 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+29-07-2021 06:03:22 	Message : 	Successfully Logged-In
+
+29-07-2021 06:04:36 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+29-07-2021 06:04:36 	Message : 	Successfully Logged-In
+
+29-07-2021 06:23:22 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+29-07-2021 06:23:22 	Message : 	Successfully Logged-In
+
+29-07-2021 06:31:59 	 	OpticalOrder 	User name : 	N Steve 	User ID : 	32246 	Mode : Add
+29-07-2021 06:31:59 	OpticalOrder 	{"ID":-2147482647,"CmpID":1062,"OrderNumber":"OP89NO","OrderDate":"2021-07-29T06:26:47.675Z","RefNo":null,"RefDate":null,"TransactionID":1019,"VendorID":2073,"DeliveryName":"V K OPTIC POINT","DeliveryDate":"2021-07-29T06:26:47.675Z","Instructions":null,"DeliveryAddress1":"19, CROSSING PLAZA, CROSSING REPUBLIK GHAZIABAD","DeliveryAddress2":"","DeliveryAddress3":"","DeliveryLocationID":5,"GrossProductValue":43350.0,"TotalProductValue":0.0,"TotalDiscountAmount":0.0,"TotalGSTTaxValue":0.0,"TotalCGSTTaxValue":0.0,"TotalSGSTTaxValue":0.0,"TotalIGSTTaxValue":0.0,"CESSAmount":0.0,"AddCESSPerAmt":0.0,"IsCancelled":false,"TermsAndConditions":null,"Validity":1,"IsOrderExecuted":0,"CreatedUTC":"2021-07-29T06:31:59.0428451Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null,"Fyear":"2021","RandomUniqueID":"65dbec6b-c07b-4be3-8220-9cdec0f9b242"}
+29-07-2021 06:31:59 	OpticalOrderTran 	{"ID":-2147482647,"RandomUniqueID":"65dbec6b-c07b-4be3-8220-9cdec0f9b242","LTID":11,"UOMID":3008,"OrderedQty":20.0,"ReceivedQty":0.0,"Price":1000.0,"ItemValue":20000.0,"DiscountPercentage":0.0,"DiscountAmount":0.0,"GSTPercentage":2.0,"GSTTaxValue":0.0,"CGSTPercentage":1.0,"CGSTTaxValue":0.0,"SGSTPercentage":1.0,"SGSTTaxValue":0.0,"IGSTPercentage":0.0,"IGSTTaxValue":0.0,"CESSPercentage":0.0,"CESSAmount":0.0,"AdditionalCESSPercentage":0.0,"AddCESSPerAmt":0.0,"IsCancelled":false,"ContraOOID":null,"CreatedUTC":"2021-07-29T06:31:59.131932Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null}
+29-07-2021 06:31:59 	OpticalOrderTran 	{"ID":-2147482646,"RandomUniqueID":"65dbec6b-c07b-4be3-8220-9cdec0f9b242","LTID":12,"UOMID":3008,"OrderedQty":15.0,"ReceivedQty":0.0,"Price":1500.0,"ItemValue":22500.0,"DiscountPercentage":0.0,"DiscountAmount":0.0,"GSTPercentage":2.0,"GSTTaxValue":0.0,"CGSTPercentage":1.0,"CGSTTaxValue":0.0,"SGSTPercentage":1.0,"SGSTTaxValue":0.0,"IGSTPercentage":0.0,"IGSTTaxValue":0.0,"CESSPercentage":0.0,"CESSAmount":0.0,"AdditionalCESSPercentage":0.0,"AddCESSPerAmt":0.0,"IsCancelled":false,"ContraOOID":null,"CreatedUTC":"2021-07-29T06:31:59.1436509Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null}
+29-07-2021 06:31:59 	NumberControl 	{"VCID":9046,"TransactionID":1019,"DepartmentID":0,"CmpID":1062,"Prefix":"OP","Suffix":"NO","Description":"OpticalOrder","Autonumber":true,"RunningNumber":89,"EffectiveFrom":"2020-03-06T18:30:00","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2020-03-06T12:59:39.567","UpdatedUTC":null,"CreatedBy":0,"UpdatedBy":null}
+29-07-2021 06:31:59 	Information : 	Saved Successfully
+
+29-07-2021 06:32:07 	V K OPTIC POINT 	Optical GRN 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+29-07-2021 06:32:07 	OpticalStockMaster 	{"SMID":-9223372036854774807,"TransactionID":1030,"CMPID":1062,"DocumentNumber":"GRN80OOR","Fyear":"2021","DocumentDate":"2021-07-29T06:32:03.561Z","OpticalOrderID":"65dbec6b-c07b-4be3-8220-9cdec0f9b242","StoreID":6,"TransactionType":"R","VendorID":2073,"DepartmentID":1,"GrossProductValue":null,"TotalDiscountValue":0.0,"TotalTaxValue":null,"TotalCGSTTaxValue":null,"TotalSGSTTaxValue":null,"TotalIGSTTaxValue":null,"TotalPOValue":42500.0,"CESSAmount":null,"AdditionalCESSAmount":null,"IsCancelled":false,"TermsConditions":"","IsDeleted":false,"ReceiverStoreID":null,"CreatedUTC":"2021-07-29T06:32:07.7091345Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null,"RandomUniqueID":"da295b4a-4563-403e-b612-973e9815be50"}
+29-07-2021 06:32:07 	OpticalStockTran 	{"STID":-9223372036854774807,"RandomUniqueID":"da295b4a-4563-403e-b612-973e9815be50","LMIDID":11,"POID":5,"ItemQty":20.0,"UOMID":3008,"ItemRate":1000.0,"PendingQty":0.0,"ItemValue":20000.0,"ContraSMID":null,"ContraSTID":null,"ContraQty":null,"DiscountPercentage":0.0,"DiscountAmount":0.0,"GSTPercentage":null,"GSTTaxValue":null,"CGSTPercentage":null,"CGSTTaxValue":null,"SGSTPercentage":null,"SGSTTaxValue":null,"IGSTPercentage":null,"IGSTTaxValue":null,"IsDeleted":false,"CESSPercentage":null,"CESSAmount":null,"AdditionalCESSPercentage":null,"AddCESSAmount":null,"CreatedUTC":"2021-07-29T06:32:07.7632332Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null}
+29-07-2021 06:32:07 	OpticalStockTran 	{"STID":-9223372036854774806,"RandomUniqueID":"da295b4a-4563-403e-b612-973e9815be50","LMIDID":12,"POID":5,"ItemQty":15.0,"UOMID":3008,"ItemRate":1500.0,"PendingQty":0.0,"ItemValue":22500.0,"ContraSMID":null,"ContraSTID":null,"ContraQty":null,"DiscountPercentage":0.0,"DiscountAmount":0.0,"GSTPercentage":null,"GSTTaxValue":null,"CGSTPercentage":null,"CGSTTaxValue":null,"SGSTPercentage":null,"SGSTTaxValue":null,"IGSTPercentage":null,"IGSTTaxValue":null,"IsDeleted":false,"CESSPercentage":null,"CESSAmount":null,"AdditionalCESSPercentage":null,"AddCESSAmount":null,"CreatedUTC":"2021-07-29T06:32:07.7817594Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null}
+29-07-2021 06:32:07 	OpticalOrderTran 	[{"ID":7099,"RandomUniqueID":"65dbec6b-c07b-4be3-8220-9cdec0f9b242","LTID":11,"UOMID":3008,"OrderedQty":20.00,"ReceivedQty":20.0,"Price":1000.00,"ItemValue":20000.00,"DiscountPercentage":0.00,"DiscountAmount":0.00,"GSTPercentage":2.00,"GSTTaxValue":0.00,"CGSTPercentage":1.00,"CGSTTaxValue":0.00,"SGSTPercentage":1.00,"SGSTTaxValue":0.00,"IGSTPercentage":0.00,"IGSTTaxValue":0.00,"CESSPercentage":0.00,"CESSAmount":0.00,"AdditionalCESSPercentage":0.00,"AddCESSPerAmt":0.00,"IsCancelled":false,"ContraOOID":null,"CreatedUTC":"2021-07-29T06:31:59.133","UpdatedUTC":"2021-07-29T06:32:07.7902875Z","CreatedBy":32246,"UpdatedBy":32246}]
+29-07-2021 06:32:08 	OpticalOrderTran 	[{"ID":7100,"RandomUniqueID":"65dbec6b-c07b-4be3-8220-9cdec0f9b242","LTID":12,"UOMID":3008,"OrderedQty":15.00,"ReceivedQty":15.0,"Price":1500.00,"ItemValue":22500.00,"DiscountPercentage":0.00,"DiscountAmount":0.00,"GSTPercentage":2.00,"GSTTaxValue":0.00,"CGSTPercentage":1.00,"CGSTTaxValue":0.00,"SGSTPercentage":1.00,"SGSTTaxValue":0.00,"IGSTPercentage":0.00,"IGSTTaxValue":0.00,"CESSPercentage":0.00,"CESSAmount":0.00,"AdditionalCESSPercentage":0.00,"AddCESSPerAmt":0.00,"IsCancelled":false,"ContraOOID":null,"CreatedUTC":"2021-07-29T06:31:59.143","UpdatedUTC":"2021-07-29T06:32:08.2019495Z","CreatedBy":32246,"UpdatedBy":32246}]
+29-07-2021 06:32:08 	OpticalOrder 	[{"ID":8032,"CmpID":1062,"OrderNumber":"OP89NO","OrderDate":"2021-07-29T00:00:00","RefNo":null,"RefDate":null,"TransactionID":1019,"VendorID":2073,"DeliveryName":"V K OPTIC POINT","DeliveryDate":"2021-07-29T06:26:47.677","Instructions":null,"DeliveryAddress1":"19, CROSSING PLAZA, CROSSING REPUBLIK GHAZIABAD","DeliveryAddress2":"","DeliveryAddress3":"","DeliveryLocationID":5,"GrossProductValue":43350.00,"TotalProductValue":0.00,"TotalDiscountAmount":0.00,"TotalGSTTaxValue":0.00,"TotalCGSTTaxValue":0.00,"TotalSGSTTaxValue":0.00,"TotalIGSTTaxValue":0.00,"CESSAmount":0.00,"AddCESSPerAmt":0.00,"IsCancelled":false,"TermsAndConditions":null,"Validity":1,"IsOrderExecuted":1,"CreatedUTC":"2021-07-29T06:31:59.043","UpdatedUTC":"2021-07-29T06:32:08.2149111Z","CreatedBy":32246,"UpdatedBy":32246,"Fyear":"2021","RandomUniqueID":"65dbec6b-c07b-4be3-8220-9cdec0f9b242"}]
+29-07-2021 06:32:08 	OpticalBalance 	{"ID":-2147482647,"LTID":11,"OpeningBalance":0,"REC01":0,"REC02":0,"REC03":0,"REC04":0,"REC05":0,"REC06":0,"REC07":20,"REC08":0,"REC09":0,"REC10":0,"REC11":0,"REC12":0,"ISS01":0,"ISS02":0,"ISS03":0,"ISS04":0,"ISS05":0,"ISS06":0,"ISS07":0,"ISS08":0,"ISS09":0,"ISS10":0,"ISS11":0,"ISS12":0,"ClosingBalance":20,"FYID":3,"CreatedUTC":"2021-07-29T06:32:08.2605398Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null,"CmpID":1062,"StoreID":6,"UOMID":3008}
+29-07-2021 06:32:08 	OpticalBalance 	{"ID":-2147482646,"LTID":12,"OpeningBalance":0,"REC01":0,"REC02":0,"REC03":0,"REC04":0,"REC05":0,"REC06":0,"REC07":15,"REC08":0,"REC09":0,"REC10":0,"REC11":0,"REC12":0,"ISS01":0,"ISS02":0,"ISS03":0,"ISS04":0,"ISS05":0,"ISS06":0,"ISS07":0,"ISS08":0,"ISS09":0,"ISS10":0,"ISS11":0,"ISS12":0,"ClosingBalance":15,"FYID":3,"CreatedUTC":"2021-07-29T06:32:08.2703859Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null,"CmpID":1062,"StoreID":6,"UOMID":3008}
+29-07-2021 06:32:08 	NumberControl 	{"VCID":9346,"TransactionID":1030,"DepartmentID":0,"CmpID":1062,"Prefix":"GRN","Suffix":"OOR","Description":"OpticalGrn","Autonumber":true,"RunningNumber":80,"EffectiveFrom":"2020-08-01T18:30:00","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2020-08-04T11:26:29.05","UpdatedUTC":null,"CreatedBy":0,"UpdatedBy":null}
+
+29-07-2021 09:51:39 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+29-07-2021 09:51:39 	Message : 	Successfully Logged-In
+
+29-07-2021 09:54:40 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+29-07-2021 09:54:40 	Message : 	Successfully Logged-In
+
+29-07-2021 10:36:30 	V K OPTIC POINT 	CUSTOMER ORDER 	User name : 	N Steve 	User ID : 	32246 	Mode : Sumbit
+29-07-2021 10:36:30 	CustomerOrder 	{"ID":-2147482647,"RandomUniqueID":"c0ab5ace-1442-4a52-b3f6-b9f45a96f32f","CmpID":1062,"CusID":2,"TCID":1020,"OrderNo":"CUS84ORDER","OrderDate":"2021-07-29T10:36:30.1779829Z","RefNo":"","RefDate":null,"Deliverydate":null,"Remarks":"","ContraOrderID":null,"IsCancelled":false,"CancelledDate":null,"CancelledReasons":null,"OrderStatus":"Open","GrossProductValue":null,"TotalDiscountValue":null,"TotalTaxvalue":null,"TotalProductValue":null,"TotalCGSTTaxValue":null,"TotalSGSTTaxValue":null,"TotalIGSTTaxValue":null,"TotalCESSValue":null,"TotalAddCESSValue":null,"CreatedUTC":"2021-07-29T10:36:30.2104423Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null,"Fyear":"2021","OpticalPrescriptionPath":null}
+29-07-2021 10:36:30 	CustomerOrderTran 	{"ID":-2147482647,"COID":"c0ab5ace-1442-4a52-b3f6-b9f45a96f32f","LTID":11,"UOMID":3008,"OrderedQty":1,"ReceivedQty":0,"ItemRate":1416.0,"GrossValue":1416.0,"ItemValue":1500.0,"DiscountPercentage":0.0,"DiscountAmount":0.0,"GSTPercentage":6.0,"GSTTaxValue":84.96,"CGSTPercentage":3.0,"CGSTTaxValue":42.0,"SGSTPercentage":3.0,"SGSTTaxValue":42.0,"IGSTPercentage":6.0,"IGSTTaxValue":null,"CESSPercentage":null,"CESSAmount":null,"AdditionalCESSPercentage":null,"AddCESSPerAmt":null,"IsCancelled":false,"ContraCustomerNo":null,"ContraCustomerDate":null,"CreatedUTC":"2021-07-29T10:36:30.2422306Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null}
+29-07-2021 10:36:30 	CustomerOrder 	{"ID":7046,"RandomUniqueID":"c0ab5ace-1442-4a52-b3f6-b9f45a96f32f","CmpID":1062,"CusID":2,"TCID":1020,"OrderNo":"CUS84ORDER","OrderDate":"2021-07-29T10:36:30.1779829Z","RefNo":"","RefDate":null,"Deliverydate":null,"Remarks":"","ContraOrderID":null,"IsCancelled":false,"CancelledDate":null,"CancelledReasons":null,"OrderStatus":"Open","GrossProductValue":1416.0,"TotalDiscountValue":0.0,"TotalTaxvalue":null,"TotalProductValue":1500.0,"TotalCGSTTaxValue":42.0,"TotalSGSTTaxValue":42.0,"TotalIGSTTaxValue":null,"TotalCESSValue":null,"TotalAddCESSValue":null,"CreatedUTC":"2021-07-29T10:36:30.2104423Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null,"Fyear":"2021","OpticalPrescriptionPath":null}
+29-07-2021 10:36:30 	NumberControl 	{"VCID":9049,"TransactionID":1020,"DepartmentID":0,"CmpID":1062,"Prefix":"CUS","Suffix":"ORDER","Description":"Customer Order","Autonumber":true,"RunningNumber":84,"EffectiveFrom":"2020-03-01T00:00:00","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2020-03-01T00:00:00","UpdatedUTC":null,"CreatedBy":0,"UpdatedBy":null}
+29-07-2021 10:36:30 	Information : 	Saved Successfully
+
+29-07-2021 10:44:15 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+29-07-2021 10:44:15 	Message : 	Successfully Logged-In
+
+29-07-2021 10:44:50 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+29-07-2021 10:44:50 	Message : 	Successfully Logged-In
+
+29-07-2021 10:45:35 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+29-07-2021 10:45:35 	Message : 	Successfully Logged-In
+
+29-07-2021 10:46:41 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+29-07-2021 10:46:41 	Message : 	Successfully Logged-In
+
+29-07-2021 10:47:06 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+29-07-2021 10:47:06 	Message : 	Successfully Logged-In
+
+29-07-2021 10:47:58 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+29-07-2021 10:47:58 	Message : 	Successfully Logged-In
+
+29-07-2021 11:38:52 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+29-07-2021 11:38:52 	Message : 	Successfully Logged-In

@@ -3956,38 +3956,19 @@
     ]
   },
   "packageFolders": {
-
     "C:\\Users\\admin\\.nuget\\packages\\": {}
-
-    "C:\\Users\\SYSTEM1\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
-
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-
       "projectUniqueName": "E:\\Git_desktop\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj",
       "projectName": "WYNK.Data",
       "projectPath": "E:\\Git_desktop\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj",
       "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
       "outputPath": "E:\\Git_desktop\\VK_Optic_Point\\WYNK.Data\\obj\\",
-
-      "projectUniqueName": "D:\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj",
-      "projectName": "WYNK.Data",
-      "projectPath": "D:\\VK_Optic_Point\\WYNK.Data\\WYNK.Data.csproj",
-      "packagesPath": "C:\\Users\\SYSTEM1\\.nuget\\packages\\",
-      "outputPath": "D:\\VK_Optic_Point\\WYNK.Data\\obj\\",
-
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
         "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-
-        "C:\\Users\\SYSTEM1\\AppData\\Roaming\\NuGet\\NuGet.Config",
-
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4000,17 +3981,11 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-
             "E:\\Git_desktop\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj": {
               "projectPath": "E:\\Git_desktop\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj"
             },
             "E:\\Git_desktop\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj": {
               "projectPath": "E:\\Git_desktop\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj"
-            "D:\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj": {
-              "projectPath": "D:\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj"
-            },
-            "D:\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj": {
-              "projectPath": "D:\\VK_Optic_Point\\WYNK.Helpers\\WYNK.Helpers.csproj"
             }
           }
         }
@@ -4068,31 +4043,25 @@
           }
         },
         "imports": [
-          "net461"
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
         ],
         "assetTargetFallback": true,
-
         "warn": true,
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
-
-        "warn": true
-
       }
     }
   },
   "logs": [
     {
-
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file E:\\Git_desktop\\VK_Optic_Point\\WYNK.Data\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    },
-    {
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Razorpay 3.0.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
+      "message": "Package 'Razorpay 3.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
       "libraryId": "Razorpay",
       "targetGraphs": [
         ".NETCoreApp,Version=v2.1"
