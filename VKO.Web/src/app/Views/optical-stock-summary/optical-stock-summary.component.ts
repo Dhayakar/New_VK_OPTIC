@@ -29,12 +29,12 @@ declare var jQuery: any;
 
 export const MY_FORMATS = {
   parse: {
-    dateInput: 'MMM-YYYY',
+    dateInput: 'DD/MM/YYYY',
   },
   display: {
-    dateInput: 'MMM-YYYY',
+    dateInput: 'DD-MMM-YYYY',
     monthYearLabel: 'MMM YYYY',
-    dateA11yLabel: 'LL',
+    dateA11yLabel: 'DD-MM-YYYY',
     monthYearA11yLabel: 'MMMM YYYY',
   },
 };
@@ -56,41 +56,7 @@ export const MY_FORMATS = {
 })
 export class OpticalStockSummaryComponent implements OnInit {
 
-
   @ViewChild('OpticalStockSummary') Form: NgForm
-
-
-  date = new FormControl(moment());
-
-  chosenYearHandler(normalizedYear: Moment) {
-    const ctrlValue = this.date.value;
-    ctrlValue.year(normalizedYear.year());
-    this.date.setValue(ctrlValue);
-  }
-
-  chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
-    const ctrlValue = this.date.value;
-    ctrlValue.month(normalizedMonth.month());
-    this.date.setValue(ctrlValue);
-    this.mintoDate = ctrlValue;
-    datepicker.close();
-  }
-
-  Todate = new FormControl(moment());
-
-  chosenYearHandlerr(normalizedYear: Moment) {
-    const ctrlValue = this.Todate.value;
-    ctrlValue.year(normalizedYear.year());
-    this.Todate.setValue(ctrlValue);
-  }
-
-  chosenMonthHandlerr(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
-    const ctrlValue = this.Todate.value;
-    ctrlValue.month(normalizedMonth.month());
-    this.date.setValue(ctrlValue);
-    datepicker.close();
-  }
-
 
 
   constructor(public commonService: CommonService<OptiaclStockSummaryView>, public datepipe: DatePipe,
@@ -187,6 +153,8 @@ export class OpticalStockSummaryComponent implements OnInit {
   CompanyID;
   storename;
   accessdata;
+  M_FromDate;
+  M_ToDate;
   BranchDrop;
   M_BrandDataDrop;
   cmpname;
@@ -247,7 +215,7 @@ export class OpticalStockSummaryComponent implements OnInit {
 
   fromDate() {
     debugger;
-    
+    this.mintoDate = this.M_FromDate;
   }
 
 
@@ -360,12 +328,11 @@ export class OpticalStockSummaryComponent implements OnInit {
   }
 
   array = [];
-  Fromdate;
-  M_Todate;
+
   Submit(form: NgForm) {
     debugger;
 
-    if (this.date.value == undefined) {
+    if (this.M_FromDate == undefined || this.M_FromDate == "") {
       Swal.fire({
         type: 'warning',
         title: 'warning',
@@ -381,7 +348,7 @@ export class OpticalStockSummaryComponent implements OnInit {
       return;
     }
 
-    if (this.Todate.value == undefined) {
+    if (this.M_ToDate == undefined || this.M_ToDate == "") {
       Swal.fire({
         type: 'warning',
         title: 'warning',
@@ -400,11 +367,11 @@ export class OpticalStockSummaryComponent implements OnInit {
     if (form.valid) {
       this.isInvalid = false;
 
-      this.Fromdate = this.datepipe.transform(this.date.value, "dd-MMM-yyyy");
-      this.M_Todate = this.datepipe.transform(this.Todate.value, "dd-MMM-yyyy");
+      let Fromdate = this.datepipe.transform(this.M_FromDate, "dd-MMM-yyyy");
+      let Todate = this.datepipe.transform(this.M_ToDate, "dd-MMM-yyyy");
 
       console.log(this.commonService.data);
-      this.commonService.postData('OpticalStockSummary/GetStockSummary/' + this.Fromdate + '/' + this.M_Todate + '/' + this.BranchDrop.Value + '/' + this.Getloctime, this.commonService.data)
+      this.commonService.postData('OpticalStockSummary/GetStockSummary/' + Fromdate + '/' + Todate + '/' + this.BranchDrop.Value + '/' + this.Getloctime, this.commonService.data)
         .subscribe(data => {
           debugger;
           if (data.OpticalStocksummaryarray.length > 0 || data.Companycommu > 0) {
@@ -487,19 +454,17 @@ export class OpticalStockSummaryComponent implements OnInit {
     return this.spans[index] && this.spans[index][col];
   }
   resetform() {
-    this.date = undefined;
-    this.Todate = undefined;
+    this.M_FromDate = undefined;
+    this.M_ToDate = undefined;
     this.BranchDrop = undefined;
     this.storename = undefined;
     this.M_BrandDataDrop = undefined;
     this.allSelectedBrand = undefined;
     this.allSelected = undefined;
-    this.Fromdate = undefined;
-    this.M_Todate = undefined;
   }
   Cancel() {
     debugger;
-    if (this.date.value != undefined || this.Todate.value != undefined
+    if (this.M_FromDate != undefined || this.M_FromDate != "" || this.M_ToDate != undefined || this.M_ToDate != ""
       || this.BranchDrop != undefined || this.BranchDrop != "" || this.storename != undefined || this.storename != ""
       || this.M_BrandDataDrop != undefined || this.M_BrandDataDrop != "") {
       Swal.fire({

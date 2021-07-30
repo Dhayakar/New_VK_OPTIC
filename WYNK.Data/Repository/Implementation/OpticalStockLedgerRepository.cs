@@ -121,7 +121,6 @@ namespace WYNK.Data.Repository.Implementation
                                                         {
 
                                                             CmpName = cm.CompanyName + "-" + cm.Address1,
-                                                            CmpID = cm.CmpID,
                                                             DocumentNo = SM.DocumentNumber,
                                                             DocumentDate = SM.DocumentDate != null ? SM.DocumentDate.Value.Add(ts) : (DateTime?)null,
                                                             DocumentType = TR.Description,
@@ -174,21 +173,20 @@ namespace WYNK.Data.Repository.Implementation
 
                             for (var dt = STFdate; dt <= STdate;)
                             {
-                                var ItemBalance = Opticalstkledger.Opticalstockledger.Where(x => x.LTID == item.LTID && x.StoreID == item.StoreID && x.CmpID == item.CmpID).FirstOrDefault();
-                                var tdatemonth = SFdate.AddMonths(-1);
+                                var ItemBalance = Opticalstkledger.Opticalstockledger.Where(x => x.LTID == item.LTID && x.StoreID == item.StoreID).FirstOrDefault();
+
                                 if (ItemBalance == null)
                                 {
 
                                     int a = 0;
                                     int b = dt.Month;
                                     string c = a.ToString() + b.ToString();
-                                    string newNumber = (b.ToString().Length == 1) ? c : dt.ToString();
+                                    string newNumber = (9 >= dt.Month) ? c : dt.ToString();
                                     string issue = "ISS" + newNumber;
                                     string receipt = "REC" + newNumber;
-                                    int Iss = Receipt.Where(w => w.LTID == item.LTID && w.StoreID == item.StoreID && w.CmpID == item.CmpID).Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
-                                    int Rec = Receipt.Where(w => w.LTID == item.LTID && w.StoreID == item.StoreID && w.CmpID == item.CmpID).Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
+                                    int Iss = Receipt.Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
+                                    int Rec = Receipt.Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
                                     osl.CmpName = item.CmpName;
-                                    osl.CmpID = item.CmpID;
                                     osl.DocumentDate = item.DocumentDate;
                                     osl.DocumentNo = item.DocumentNo;
                                     osl.Type = item.Type;
@@ -202,13 +200,47 @@ namespace WYNK.Data.Repository.Implementation
                                     osl.Receipt += Rec;
                                     osl.Issue += Iss;
                                     osl.Closingstock += item.Openingstock + (Rec - Iss);
-                                    osl.Openingstock += dt <= tdatemonth ? item.Openingstock + (Rec - Iss) : 0;
+                                    Opticalstkledger.Opticalstockledger.Add(osl);
                                     STFdate = STFdate.AddMonths(1);
                                     dt = STFdate;
-                                }    
+                                }
+                                else
+                                {
+                                    int a = 0;
+                                    int b = dt.Month;
+                                    string c = a.ToString() + b.ToString();
+                                    string newNumber = (9 >= dt.Month) ? c : dt.ToString();
+                                    string issue = "ISS" + newNumber;
+                                    string receipt = "REC" + newNumber;
+                                    int Iss = Receipt.Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
+                                    int Rec = Receipt.Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
+                                    osl.Receipt += Rec;
+                                    osl.Issue += Iss;
+                                    osl.Closingstock += item.Openingstock + (Rec - Iss);
+                                    STFdate = STFdate.AddMonths(1);
+                                    dt = STFdate;
+                                }
                             }
 
-                            Opticalstkledger.Opticalstockledger.Add(osl);
+                            STFdate = DateTime.ParseExact(Fmonth.ToString("MM-yyyy"), format, CultureInfo.InvariantCulture);
+
+                            var tdatemonth = SFdate.AddMonths(-1);
+
+                            for (var dt = STFdate; dt <= tdatemonth;)
+                            {
+                                int a = 0;
+                                int b = dt.Month;
+                                string c = a.ToString() + b.ToString();
+                                string newNumber = (9 >= dt.Month) ? c : dt.ToString();
+                                string issue = "ISS" + newNumber;
+                                string receipt = "REC" + newNumber;
+                                int Iss = Receipt.Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
+                                int Rec = Receipt.Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
+                                osl.Openingstock += item.Openingstock + (Rec - Iss);
+                                STFdate = STFdate.AddMonths(1);
+                                dt = STFdate;
+                            }
+
                             STFdate = DateTime.ParseExact(Fmonth.ToString("MM-yyyy"), format, CultureInfo.InvariantCulture);
                         }
                     }
@@ -232,7 +264,6 @@ namespace WYNK.Data.Repository.Implementation
                                                       {
 
                                                           CmpName = cm.CompanyName + "-" + cm.Address1,
-                                                          CmpID = cm.CmpID,
                                                           DocumentNo = SM.DocumentNumber,
                                                           DocumentDate = SM.DocumentDate != null ? SM.DocumentDate.Value.Add(ts) : (DateTime?)null,
                                                           DocumentType = TR.Description,
@@ -284,21 +315,20 @@ namespace WYNK.Data.Repository.Implementation
 
                             for (var dt = STFdate; dt <= STdate;)
                             {
-                                var ItemBalance = Opticalstkledger.OpticalstockledgerI.Where(x => x.LTID == item.LTID && x.StoreID == item.StoreID && x.CmpID == item.CmpID).FirstOrDefault();
-                                var tdatemonth = SFdate.AddMonths(-1);
+                                var ItemBalance = Opticalstkledger.OpticalstockledgerI.Where(x => x.LTID == item.LTID && x.StoreID == item.StoreID).FirstOrDefault();
+
                                 if (ItemBalance == null)
                                 {
 
                                     int a = 0;
                                     int b = dt.Month;
                                     string c = a.ToString() + b.ToString();
-                                    string newNumber = (b.ToString().Length == 1) ? c : dt.ToString();
+                                    string newNumber = (9 >= dt.Month) ? c : dt.ToString();
                                     string issue = "ISS" + newNumber;
                                     string receipt = "REC" + newNumber;
-                                    int Iss = Issue.Where(w => w.LTID == item.LTID && w.StoreID == item.StoreID && w.CmpID == item.CmpID).Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
-                                    int Rec = Issue.Where(w => w.LTID == item.LTID && w.StoreID == item.StoreID && w.CmpID == item.CmpID).Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
+                                    int Iss = Issue.Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
+                                    int Rec = Issue.Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
                                     osl.CmpName = item.CmpName;
-                                    osl.CmpID = item.CmpID;
                                     osl.DocumentDate = item.DocumentDate;
                                     osl.DocumentNo = item.DocumentNo;
                                     osl.Type = item.Type;
@@ -312,13 +342,47 @@ namespace WYNK.Data.Repository.Implementation
                                     osl.Receipt += Rec;
                                     osl.Issue += Iss;
                                     osl.Closingstock += item.Openingstock + (Rec - Iss);
-                                    osl.Openingstock += dt <= tdatemonth ? item.Openingstock + (Rec - Iss) : 0;
-                            
+                                    Opticalstkledger.OpticalstockledgerI.Add(osl);
                                     STFdate = STFdate.AddMonths(1);
                                     dt = STFdate;
-                                }     
+                                }
+                                else
+                                {
+                                    int a = 0;
+                                    int b = dt.Month;
+                                    string c = a.ToString() + b.ToString();
+                                    string newNumber = (9 >= dt.Month) ? c : dt.ToString();
+                                    string issue = "ISS" + newNumber;
+                                    string receipt = "REC" + newNumber;
+                                    int Iss = Issue.Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
+                                    int Rec = Issue.Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
+                                    osl.Receipt += Rec;
+                                    osl.Issue += Iss;
+                                    osl.Closingstock += item.Openingstock + (Rec - Iss);
+                                    STFdate = STFdate.AddMonths(1);
+                                    dt = STFdate;
+                                }
                             }
-                            Opticalstkledger.OpticalstockledgerI.Add(osl);
+
+                            STFdate = DateTime.ParseExact(Fmonth.ToString("MM-yyyy"), format, CultureInfo.InvariantCulture);
+
+                            var tdatemonth = SFdate.AddMonths(-1);
+
+                            for (var dt = STFdate; dt <= tdatemonth;)
+                            {
+                                int a = 0;
+                                int b = dt.Month;
+                                string c = a.ToString() + b.ToString();
+                                string newNumber = (9 >= dt.Month) ? c : dt.ToString();
+                                string issue = "ISS" + newNumber;
+                                string receipt = "REC" + newNumber;
+                                int Iss = Issue.Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
+                                int Rec = Issue.Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
+                                osl.Openingstock += item.Openingstock + (Rec - Iss);
+                                STFdate = STFdate.AddMonths(1);
+                                dt = STFdate;
+                            }
+
                             STFdate = DateTime.ParseExact(Fmonth.ToString("MM-yyyy"), format, CultureInfo.InvariantCulture);
                         }
                     }
@@ -351,7 +415,6 @@ namespace WYNK.Data.Repository.Implementation
                                                       {
 
                                                           CmpName = cm.CompanyName + "-" + cm.Address1,
-                                                          CmpID = cm.CmpID,
                                                           DocumentNo = SM.DocumentNumber,
                                                           DocumentDate = SM.DocumentDate != null ? SM.DocumentDate.Value.Add(ts) : (DateTime?)null,
                                                           DocumentType = TR.Description,
@@ -403,21 +466,20 @@ namespace WYNK.Data.Repository.Implementation
 
                             for (var dt = STFdate; dt <= STdate;)
                             {
-                                var ItemBalance = Opticalstkledger.OpticalstockledgerI.Where(x => x.LTID == item.LTID && x.StoreID == item.StoreID && x.CmpID == item.CmpID).FirstOrDefault();
-                                var tdatemonth = SFdate.AddMonths(-1);
+                                var ItemBalance = Opticalstkledger.OpticalstockledgerI.Where(x => x.LTID == item.LTID && x.StoreID == item.StoreID).FirstOrDefault();
+
                                 if (ItemBalance == null)
                                 {
 
                                     int a = 0;
                                     int b = dt.Month;
                                     string c = a.ToString() + b.ToString();
-                                    string newNumber = (b.ToString().Length == 1) ? c : dt.ToString();
+                                    string newNumber = (9 >= dt.Month) ? c : dt.ToString();
                                     string issue = "ISS" + newNumber;
                                     string receipt = "REC" + newNumber;
-                                    int Iss = Issue.Where(w => w.LTID == item.LTID && w.StoreID == item.StoreID && w.CmpID == item.CmpID).Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
-                                    int Rec = Issue.Where(w => w.LTID == item.LTID && w.StoreID == item.StoreID && w.CmpID == item.CmpID).Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
+                                    int Iss = Issue.Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
+                                    int Rec = Issue.Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
                                     osl.CmpName = item.CmpName;
-                                    osl.CmpID = item.CmpID;
                                     osl.DocumentDate = item.DocumentDate;
                                     osl.DocumentNo = item.DocumentNo;
                                     osl.Type = item.Type;
@@ -431,13 +493,47 @@ namespace WYNK.Data.Repository.Implementation
                                     osl.Receipt += Rec;
                                     osl.Issue += Iss;
                                     osl.Closingstock += item.Openingstock + (Rec - Iss);
-                                    osl.Openingstock += dt <= tdatemonth ? item.Openingstock + (Rec - Iss) : 0;
-
+                                    Opticalstkledger.OpticalstockledgerI.Add(osl);
+                                    STFdate = STFdate.AddMonths(1);
+                                    dt = STFdate;
+                                }
+                                else
+                                {
+                                    int a = 0;
+                                    int b = dt.Month;
+                                    string c = a.ToString() + b.ToString();
+                                    string newNumber = (9 >= dt.Month) ? c : dt.ToString();
+                                    string issue = "ISS" + newNumber;
+                                    string receipt = "REC" + newNumber;
+                                    int Iss = Issue.Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
+                                    int Rec = Issue.Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
+                                    osl.Receipt += Rec;
+                                    osl.Issue += Iss;
+                                    osl.Closingstock += item.Openingstock + (Rec - Iss);
                                     STFdate = STFdate.AddMonths(1);
                                     dt = STFdate;
                                 }
                             }
-                            Opticalstkledger.OpticalstockledgerI.Add(osl);
+
+                            STFdate = DateTime.ParseExact(Fmonth.ToString("MM-yyyy"), format, CultureInfo.InvariantCulture);
+
+                            var tdatemonth = SFdate.AddMonths(-1);
+
+                            for (var dt = STFdate; dt <= tdatemonth;)
+                            {
+                                int a = 0;
+                                int b = dt.Month;
+                                string c = a.ToString() + b.ToString();
+                                string newNumber = (9 >= dt.Month) ? c : dt.ToString();
+                                string issue = "ISS" + newNumber;
+                                string receipt = "REC" + newNumber;
+                                int Iss = Issue.Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
+                                int Rec = Issue.Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
+                                osl.Openingstock += item.Openingstock + (Rec - Iss);
+                                STFdate = STFdate.AddMonths(1);
+                                dt = STFdate;
+                            }
+
                             STFdate = DateTime.ParseExact(Fmonth.ToString("MM-yyyy"), format, CultureInfo.InvariantCulture);
                         }
                     }
@@ -462,7 +558,6 @@ namespace WYNK.Data.Repository.Implementation
                                                         {
 
                                                             CmpName = cm.CompanyName + "-" + cm.Address1,
-                                                            CmpID = cm.CmpID,
                                                             DocumentNo = SM.DocumentNumber,
                                                             DocumentDate = SM.DocumentDate != null ? SM.DocumentDate.Value.Add(ts) : (DateTime?)null,
                                                             DocumentType = TR.Description,
@@ -516,21 +611,20 @@ namespace WYNK.Data.Repository.Implementation
 
                             for (var dt = STFdate; dt <= STdate;)
                             {
-                                var ItemBalance = Opticalstkledger.Opticalstockledger.Where(x => x.LTID == item.LTID && x.StoreID == item.StoreID && x.CmpID == item.CmpID).FirstOrDefault();
-                                var tdatemonth = SFdate.AddMonths(-1);
+                                var ItemBalance = Opticalstkledger.Opticalstockledger.Where(x => x.LTID == item.LTID && x.StoreID == item.StoreID).FirstOrDefault();
+
                                 if (ItemBalance == null)
                                 {
 
                                     int a = 0;
                                     int b = dt.Month;
                                     string c = a.ToString() + b.ToString();
-                                    string newNumber = (b.ToString().Length == 1) ? c : dt.ToString();
+                                    string newNumber = (9 >= dt.Month) ? c : dt.ToString();
                                     string issue = "ISS" + newNumber;
                                     string receipt = "REC" + newNumber;
-                                    int Iss = Receipt.Where(w => w.LTID == item.LTID && w.StoreID == item.StoreID && w.CmpID == item.CmpID).Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
-                                    int Rec = Receipt.Where(w => w.LTID == item.LTID && w.StoreID == item.StoreID && w.CmpID == item.CmpID).Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
+                                    int Iss = Receipt.Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
+                                    int Rec = Receipt.Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
                                     osl.CmpName = item.CmpName;
-                                    osl.CmpID = item.CmpID;
                                     osl.DocumentDate = item.DocumentDate;
                                     osl.DocumentNo = item.DocumentNo;
                                     osl.Type = item.Type;
@@ -544,13 +638,47 @@ namespace WYNK.Data.Repository.Implementation
                                     osl.Receipt += Rec;
                                     osl.Issue += Iss;
                                     osl.Closingstock += item.Openingstock + (Rec - Iss);
-                                    osl.Openingstock += dt <= tdatemonth ? item.Openingstock + (Rec - Iss) : 0;
+                                    Opticalstkledger.Opticalstockledger.Add(osl);
+                                    STFdate = STFdate.AddMonths(1);
+                                    dt = STFdate;
+                                }
+                                else
+                                {
+                                    int a = 0;
+                                    int b = dt.Month;
+                                    string c = a.ToString() + b.ToString();
+                                    string newNumber = (9 >= dt.Month) ? c : dt.ToString();
+                                    string issue = "ISS" + newNumber;
+                                    string receipt = "REC" + newNumber;
+                                    int Iss = Receipt.Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
+                                    int Rec = Receipt.Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
+                                    osl.Receipt += Rec;
+                                    osl.Issue += Iss;
+                                    osl.Closingstock += item.Openingstock + (Rec - Iss);
                                     STFdate = STFdate.AddMonths(1);
                                     dt = STFdate;
                                 }
                             }
 
-                            Opticalstkledger.Opticalstockledger.Add(osl);
+                            STFdate = DateTime.ParseExact(Fmonth.ToString("MM-yyyy"), format, CultureInfo.InvariantCulture);
+
+                            var tdatemonth = SFdate.AddMonths(-1);
+
+                            for (var dt = STFdate; dt <= tdatemonth;)
+                            {
+                                int a = 0;
+                                int b = dt.Month;
+                                string c = a.ToString() + b.ToString();
+                                string newNumber = (9 >= dt.Month) ? c : dt.ToString();
+                                string issue = "ISS" + newNumber;
+                                string receipt = "REC" + newNumber;
+                                int Iss = Receipt.Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
+                                int Rec = Receipt.Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
+                                osl.Openingstock += item.Openingstock + (Rec - Iss);
+                                STFdate = STFdate.AddMonths(1);
+                                dt = STFdate;
+                            }
+
                             STFdate = DateTime.ParseExact(Fmonth.ToString("MM-yyyy"), format, CultureInfo.InvariantCulture);
                         }
                     }

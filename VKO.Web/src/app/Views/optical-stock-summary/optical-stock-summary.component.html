@@ -32,28 +32,18 @@
             <div class="col-sm-4">
               <mat-form-field appearance="outline">
                 <mat-label>From Date</mat-label>
-                <input required matInput [matDatepicker]="picker1" [formControl]="date" [max]="maxDate">
+                <input [(ngModel)]="M_FromDate" name="FromDate" required matInput [matDatepicker]="picker1" [max]="maxDate" (dateChange)="fromDate()">
                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                <mat-datepicker #picker1
-                                startView="multi-year"
-                                (yearSelected)="chosenYearHandler($event)"
-                                (monthSelected)="chosenMonthHandler($event, picker1)"
-                                panelClass="example-month-picker">
-                </mat-datepicker>
+                <mat-datepicker #picker1></mat-datepicker>
               </mat-form-field>
             </div>
 
             <div class="col-sm-4">
               <mat-form-field appearance="outline">
                 <mat-label>To Date</mat-label>
-                <input [formControl]="Todate" required matInput [matDatepicker]="picker2" [min]="mintoDate" [max]="maxDate">
+                <input [(ngModel)]="M_ToDate" name="ToDate" required matInput [matDatepicker]="picker2" [min]="mintoDate" [max]="maxDate">
                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                <mat-datepicker #picker2
-                                startView="multi-year"
-                                (yearSelected)="chosenYearHandlerr($event)"
-                                (monthSelected)="chosenMonthHandlerr($event, picker2)"
-                                panelClass="example-month-picker">
-                </mat-datepicker>
+                <mat-datepicker #picker2></mat-datepicker>
               </mat-form-field>
             </div>
 
@@ -113,7 +103,7 @@
 
     <div class="col-sm-12" *ngIf="TableData">
       <div class="row">
-        <h5 class="card-header  center"><label><b>Stock Summary </b> &nbsp;<b>for the period&nbsp;{{Fromdate | date :'MMM-y'}} &nbsp;to &nbsp; {{M_Todate| date :'MMM-y'}}</b></label></h5>
+        <h5 class="card-header  center"><label><b>Stock Summary </b> &nbsp;<b>for the period&nbsp;{{M_FromDate | date :'dd-MMM-y'}} &nbsp;to &nbsp; {{M_ToDate| date :'dd-MMM-y'}}</b></label></h5>
       </div>
 
       <div class="col-sm-6 pgtop20-0 mt-1p">

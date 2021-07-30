@@ -27,7 +27,7 @@ namespace WYNK.Data.Repository.Implementation
 
 
 
-        public dynamic Insertbrand(BrandView Addbrand, int cmpid)
+        public dynamic Insertbrand(BrandView Addbrand)
         {
          
             if (Addbrand.Brand.Count() > 0)
@@ -36,7 +36,7 @@ namespace WYNK.Data.Repository.Implementation
                 foreach (var item in Addbrand.Brand.ToList())
                 {
 
-                        var c = WYNKContext.Brand.Where(x => x.Description.Replace(" ", string.Empty).Equals(item.Description.Replace(" ", string.Empty), StringComparison.OrdinalIgnoreCase) && x.BrandType.Replace(" ", string.Empty).Equals(item.BrandType.Replace(" ", string.Empty), StringComparison.OrdinalIgnoreCase) && x.cmpID == cmpid).Select(y => y.ID).FirstOrDefault();
+                        var c = WYNKContext.Brand.Where(x => x.Description.Replace(" ", string.Empty).Equals(item.Description.Replace(" ", string.Empty), StringComparison.OrdinalIgnoreCase) && x.BrandType.Replace(" ", string.Empty).Equals(item.BrandType.Replace(" ", string.Empty), StringComparison.OrdinalIgnoreCase)).Select(y => y.ID).FirstOrDefault();
 
                         if (c != 0)
                         {
@@ -102,7 +102,7 @@ namespace WYNK.Data.Repository.Implementation
             return getData;
         }
 
-        public dynamic updatebrand(BrandView Upbrand, int cmpid, int ID)
+        public dynamic updatebrand(BrandView Upbrand, int ID)
         {
 
 
@@ -111,7 +111,7 @@ namespace WYNK.Data.Repository.Implementation
 
                 foreach (var item in Upbrand.Brand.ToList())
                 {
-                        var c = WYNKContext.Brand.Where(x => x.Description.Replace(" ", string.Empty).Equals(item.Description.Replace(" ", string.Empty), StringComparison.OrdinalIgnoreCase) && x.BrandType.Replace(" ", string.Empty).Equals(item.BrandType.Replace(" ", string.Empty), StringComparison.OrdinalIgnoreCase) && x.IsActive == item.IsActive && x.cmpID == cmpid).Select(y => y.ID).FirstOrDefault();
+                        var c = WYNKContext.Brand.Where(x => x.Description.Replace(" ", string.Empty).Equals(item.Description.Replace(" ", string.Empty), StringComparison.OrdinalIgnoreCase) && x.BrandType.Replace(" ", string.Empty).Equals(item.BrandType.Replace(" ", string.Empty), StringComparison.OrdinalIgnoreCase) && x.IsActive == item.IsActive).Select(y => y.ID).FirstOrDefault();
 
                         if (c != 0)
                         {

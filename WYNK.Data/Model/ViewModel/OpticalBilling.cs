@@ -126,7 +126,6 @@ namespace WYNK.Data.Model.ViewModel
         public int UOMID { get; set; }
         public string UOMname { get; set; }
         public string Type { get; set; }
-        public int ID { get; set; }
         public string Brand { get; set; }
         public string Index { get; set; }
         public string Model { get; set; }
@@ -163,7 +162,6 @@ namespace WYNK.Data.Model.ViewModel
     }
     public class GetOpticaldetailsfullcheck
     {
-        public int ID { get; set; }
         public string COID { get; set; }
         public int COTID { get; set; }
         public int LTID { get; set; }
@@ -205,7 +203,6 @@ namespace WYNK.Data.Model.ViewModel
         public string FrameStyleID { get; set; }
         public string FrameTypeID { get; set; }
         public string FrameWidthID { get; set; }
-
     }
     public class Availablestock
     {
@@ -225,7 +222,6 @@ namespace WYNK.Data.Model.ViewModel
         public int UOMID { get; set; }
         public string UOMname { get; set; }
         public string Type { get; set; }
-        public int ID { get; set; }
         public string Brand { get; set; }
         public string Index { get; set; }
         public string Model { get; set; }

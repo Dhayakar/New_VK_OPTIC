@@ -77,12 +77,10 @@ namespace WYNK.Data.Model.ViewModel
         public int ISS12 { get; set; }
         public int LTID { get; set; }
         public int StoreID { get; set; }
-        public int CmpID { get; set; }
     }
     public class OpticalStocksummaryarray
     {
         public string CmpName { get; set; }
-        public int CmpID { get; set; }
         public string Type { get; set; }
         public string Store { get; set; }
         public string Brand { get; set; }

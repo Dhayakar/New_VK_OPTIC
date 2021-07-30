@@ -8,9 +8,9 @@ namespace WYNK.Data.Repository
     public interface IBrandMasterRepository : IRepositoryBase<BrandView>
     {
 
-        dynamic Insertbrand(BrandView Addbrand, int cmpid);
+        dynamic Insertbrand(BrandView Addbrand);
         dynamic Fullbrandlist(int cmpid);
-        dynamic updatebrand(BrandView Upbrand, int cmpid, int ID);
+        dynamic updatebrand(BrandView Upbrand, int ID);
         dynamic Deletebrand(int ID);
     }
 }

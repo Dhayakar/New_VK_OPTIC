@@ -20,7 +20,6 @@ export class LensTranModel {
   CESSAmount: number;
   ADDCESSAmount: number;
   GST: number;
-  IGST: number;
   UOMID: number;
   UOMname: string;
   HSNNo: string;
@@ -45,6 +44,4 @@ export class LensTranModel {
   Type: string;
   Costprice: number;
   Sptaxinclusive: boolean;
-  Sptaxinclusivebool: string;
-  disab: boolean;
 }

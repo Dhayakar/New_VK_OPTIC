@@ -20,7 +20,7 @@ namespace WYNK.Data.Model
         public int Brand { get; set; }
         public decimal Costprice { get; set; }
         public decimal Prize { get; set; }
-        public Boolean Sptaxinclusive { get; set; }
+        public Boolean? Sptaxinclusive { get; set; }
         public decimal? CESSAmount { get; set; }
         public decimal? ADDCESSAmount { get; set; }
         public int? UOMID { get; set; }

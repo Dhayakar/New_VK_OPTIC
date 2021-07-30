@@ -1206,11 +1206,16 @@
     ]
   },
   "packageFolders": {
+
     "C:\\Users\\admin\\.nuget\\packages\\": {}
+
+    "C:\\Users\\SYSTEM2\\.nuget\\packages\\": {}
+
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+
       "projectUniqueName": "E:\\Git_desktop\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj",
       "projectName": "SMSand EMAILService.cs",
       "projectPath": "E:\\Git_desktop\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj",
@@ -1219,6 +1224,16 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+
+      "projectUniqueName": "E:\\Vk Optics\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj",
+      "projectName": "SMSand EMAILService.cs",
+      "projectPath": "E:\\Vk Optics\\VK_Optic_Point\\SMSand EMAILService.cs\\SMSand EMAILService.cs.csproj",
+      "packagesPath": "C:\\Users\\SYSTEM2\\.nuget\\packages\\",
+      "outputPath": "E:\\Vk Optics\\VK_Optic_Point\\SMSand EMAILService.cs\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\SYSTEM2\\AppData\\Roaming\\NuGet\\NuGet.Config",
+
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1230,6 +1245,7 @@
       },
       "frameworks": {
         "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
           "projectReferences": {}
         }
       },
@@ -1241,6 +1257,7 @@
     },
     "frameworks": {
       "netstandard2.0": {
+        "targetAlias": "netstandard2.0",
         "dependencies": {
           "NEST": {
             "target": "Package",
@@ -1271,7 +1288,11 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+
       }
     }
   },
