@@ -21,10 +21,10 @@ namespace WYNK.Services.Controllers
         }
 
 
-        [HttpPost("Insertbrand")]
-        public dynamic Insertbrand([FromBody] BrandView Addbrand)
+        [HttpPost("Insertbrand/{cmpid}")]
+        public dynamic Insertbrand([FromBody] BrandView Addbrand, int cmpid)
         {
-            return _repoWrapper.BrandMaster.Insertbrand(Addbrand);
+            return _repoWrapper.BrandMaster.Insertbrand(Addbrand, cmpid);
 
         }
 
@@ -35,10 +35,10 @@ namespace WYNK.Services.Controllers
         }
 
 
-        [HttpPost("updatebrand/{ID}")]
-        public dynamic updatebrand([FromBody] BrandView Upbrand, int ID)
+        [HttpPost("updatebrand/{cmpid}/{ID}")]
+        public dynamic updatebrand([FromBody] BrandView Upbrand, int cmpid, int ID)
         {
-            return _repoWrapper.BrandMaster.updatebrand(Upbrand, ID);
+            return _repoWrapper.BrandMaster.updatebrand(Upbrand, cmpid, ID);
         }
 
         [HttpPost("Deletebrand/{ID}")]

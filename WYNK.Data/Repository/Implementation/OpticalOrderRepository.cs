@@ -569,6 +569,7 @@ namespace WYNK.Data.Repository.Implementation
                             OpticalOrderTran.OrderedQty = item.Quantity;
                             OpticalOrderTran.ReceivedQty = 0;
                             OpticalOrderTran.Price = item.Prize;
+                            OpticalOrderTran.ItemValue = item.Prize * item.Quantity;
                             OpticalOrderTran.DiscountPercentage = item.Discount;
                             OpticalOrderTran.DiscountAmount = item.DiscountAmount;
                             OpticalOrderTran.GSTPercentage = item.GST;

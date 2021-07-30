@@ -236,7 +236,7 @@ export class BrandMasterComponent implements OnInit {
 
       console.log(this.commonService.data);
 
-      this.commonService.postData('BrandMaster/Insertbrand', this.commonService.data)
+      this.commonService.postData('BrandMaster/Insertbrand/'+ this.cmpid, this.commonService.data)
 
         .subscribe(data => {
           if (data.Success == true) {
@@ -389,7 +389,7 @@ export class BrandMasterComponent implements OnInit {
 
       console.log(this.commonService.data);
 
-      this.commonService.postData("BrandMaster/updatebrand/" + this.ID, this.commonService.data)
+      this.commonService.postData("BrandMaster/updatebrand/" + this.cmpid + '/' + this.ID, this.commonService.data)
         .subscribe(data => {
 
           if (data.Success == true) {

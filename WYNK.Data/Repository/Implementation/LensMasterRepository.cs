@@ -30,10 +30,7 @@ namespace WYNK.Data.Repository.Implementation
                                   select new Taxname
                                   {
                                       GSTNo = REF.GSTPercentage,
-                                      AdditionalCesspercentage = REF.AdditionalCESSPercentage,
-                                      Cesspercentage = REF.CESSPercentage,
-                                      CessDescription = REF.CESSDescription,
-                                      AddtionalDescription = REF.AdditionalCESSDescription
+                                      IGSTpercentage = REF.IGSTPercentage,
 
                                   }).ToList();
 
@@ -74,6 +71,7 @@ namespace WYNK.Data.Repository.Implementation
                                           Cyl = a.Cyl,
                                           Axis = a.Axis,
                                           Add = a.Add,
+                                          Sptaxinclusive = a.Sptaxinclusive,
 
                                       }).ToList();
 
@@ -85,6 +83,7 @@ namespace WYNK.Data.Repository.Implementation
                                             Cyl = a.Cyl,
                                             Axis = a.Axis,
                                             Add = a.Add,
+                                            Sptaxinclusive = a.Sptaxinclusive,
 
                                         }).ToList();
 
@@ -96,6 +95,7 @@ namespace WYNK.Data.Repository.Implementation
                                              FrameStyleID = a.FrameStyleID,
                                              FrameTypeID = a.FrameTypeID,
                                              FrameWidthID = a.FrameWidthID,
+                                             Sptaxinclusive = a.Sptaxinclusive,
                                          }).ToList();
 
                             var UPFRAME = (from a in Addlens.LensTranModel
@@ -106,6 +106,7 @@ namespace WYNK.Data.Repository.Implementation
                                                FrameStyleID = a.FrameStyleID,
                                                FrameTypeID = a.FrameTypeID,
                                                FrameWidthID = a.FrameWidthID,
+                                               Sptaxinclusive = a.Sptaxinclusive,
 
                                            }).ToList();
 
@@ -149,7 +150,7 @@ namespace WYNK.Data.Repository.Implementation
                                 lenstrans.BarcodeID = PasswordEncodeandDecode.GetRandomnumberwithlength();
                                 lenstrans.Index = item.Index;
                                 lenstrans.Costprice = item.Costprice;
-                                lenstrans.Sptaxinclusive = item.Sptaxinclusive;
+                                lenstrans.Sptaxinclusive =item.Sptaxinclusive;
                                 lenstrans.Model = item.Model;
                                 lenstrans.Size = item.Size;
                                 lenstrans.Colour = item.Colour;
@@ -159,10 +160,7 @@ namespace WYNK.Data.Repository.Implementation
                                 lenstrans.Add = item.Add;
                                 lenstrans.Brand = item.Brand;
                                 lenstrans.Prize = item.Prize;
-                                lenstrans.CESSAmount = item.CESSAmount;
-                                lenstrans.ADDCESSAmount = item.ADDCESSAmount;
                                 lenstrans.UOMID = item.UOMID;
-                                lenstrans.GST = item.GST;
                                 lenstrans.HSNNo = item.HSNNo;
                                 lenstrans.TaxID = item.TaxID;
                                 lenstrans.Description = item.Description;
@@ -232,16 +230,14 @@ namespace WYNK.Data.Repository.Implementation
                                                      Prize = REF.Prize,
                                                      Costprice = REF.Costprice,
                                                      Sptaxinclusive = REF.Sptaxinclusive,
-                                                     CESSAmount = REF.CESSAmount != null ? REF.CESSAmount : null,
-                                                     ADDCESSAmount = REF.ADDCESSAmount != null ? REF.ADDCESSAmount : null,
+                                                     Sptaxinclusivebool = REF.Sptaxinclusive == false ? "No" : "Yes",
                                                      UOMname = uom.Where(x => x.id == REF.UOMID).Select(x => x.Description).FirstOrDefault(),
                                                      UOMID = REF.UOMID,
-                                                     GST = REF.GST != null ? REF.GST : null,
                                                      HSNNo = REF.HSNNo != null ? REF.HSNNo : null,
                                                      TaxID = REF.TaxID != null ? REF.TaxID : null,
+                                                     GST = Tax.Where(x => x.ID == REF.TaxID).Select(x => x.GSTPercentage).FirstOrDefault(),
+                                                     IGST = Tax.Where(x => x.ID == REF.TaxID).Select(x => x.IGSTPercentage).FirstOrDefault(),
                                                      TaxDescription = REF.TaxID != null ? Tax.Where(x => x.ID == REF.TaxID).Select(x => x.TaxDescription).FirstOrDefault() : string.Empty,
-                                                     CessDescription = REF.TaxID != null ? Tax.Where(x => x.ID == REF.TaxID).Select(x => x.CESSDescription).FirstOrDefault() : string.Empty,
-                                                     AddtionalDescription = REF.TaxID != null ? Tax.Where(x => x.ID == REF.TaxID).Select(x => x.AdditionalCESSDescription).FirstOrDefault() : string.Empty,
                                                      Description = REF.Description != null ? REF.Description : null,
                                                      FrameShape = REF.FrameShapeID != null ? one.Where(x => x.OLMID == REF.FrameShapeID).Select(x => x.ParentDescription).FirstOrDefault() : string.Empty,
                                                      FrameStyle = REF.FrameStyleID != null ? one.Where(x => x.OLMID == REF.FrameStyleID).Select(x => x.ParentDescription).FirstOrDefault() : string.Empty,
@@ -252,6 +248,7 @@ namespace WYNK.Data.Repository.Implementation
                                                      FrameTypeID = REF.FrameTypeID != null ? REF.FrameTypeID : null,
                                                      FrameWidthID = REF.FrameWidthID != null ? REF.FrameWidthID : null,
                                                      IsActive = REF.IsActive,
+
                                                  }).ToList();
 
             return TaxDetails;
@@ -290,6 +287,7 @@ namespace WYNK.Data.Repository.Implementation
                                               Index = a.Index,
                                               Model = a.Model,
                                               HSNNO = a.HSNNo,
+                                              Sptaxinclusive = a.Sptaxinclusive,
 
                                           }).ToList();
 
@@ -309,6 +307,7 @@ namespace WYNK.Data.Repository.Implementation
                                                 Index = a.Index,
                                                 Model = a.Model,
                                                 HSNNO = a.HSNNo,
+                                                Sptaxinclusive = a.Sptaxinclusive,
 
                                             }).ToList();
 
@@ -344,6 +343,7 @@ namespace WYNK.Data.Repository.Implementation
                                               Index = a.Index,
                                               Model = a.Model,
                                               HSNNO = a.HSNNo,
+                                              Sptaxinclusive = a.Sptaxinclusive,
 
                                           }).ToList();
 
@@ -362,6 +362,7 @@ namespace WYNK.Data.Repository.Implementation
                                                 Index = a.Index,
                                                 Model = a.Model,
                                                 HSNNO = a.HSNNo,
+                                                Sptaxinclusive = a.Sptaxinclusive,
                                             }).ToList();
 
                                 if (LT.SequenceEqual(UPLT))
@@ -393,6 +394,7 @@ namespace WYNK.Data.Repository.Implementation
                                                  Index = a.Index,
                                                  Model = a.Model,
                                                  HSNNO = a.HSNNo,
+                                                 Sptaxinclusive = a.Sptaxinclusive,
                                              }).ToList();
 
                                 var UPFRAME = (from a in uplens.LensTranModel
@@ -410,6 +412,7 @@ namespace WYNK.Data.Repository.Implementation
                                                    Index = a.Index,
                                                    Model = a.Model,
                                                    HSNNO = a.HSNNo,
+                                                   Sptaxinclusive = a.Sptaxinclusive,
 
                                                }).ToList();
 
@@ -442,6 +445,7 @@ namespace WYNK.Data.Repository.Implementation
                                                  Prize = a.Prize,
                                                  TaxID = a.TaxID,
                                                  Model = a.Model,
+                                                 Sptaxinclusive = a.Sptaxinclusive,
                                              }).ToList();
 
                                 var UPFRAME = (from a in uplens.LensTranModel
@@ -457,6 +461,7 @@ namespace WYNK.Data.Repository.Implementation
                                                    Prize = a.Prize,
                                                    TaxID = a.TaxID,
                                                    Model = a.Model,
+                                                   Sptaxinclusive = a.Sptaxinclusive,
 
                                                }).ToList();
                                 if (uplens.Lensmaster.LensType == "Frame")
@@ -486,25 +491,22 @@ namespace WYNK.Data.Repository.Implementation
                                 {
                                     lenstrans = WYNKContext.Lenstrans.Where(x => x.ID == item.ID).FirstOrDefault();
                                     lenstrans.LMID = ID;
-                                    lenstrans.Sph = item.Sph;
-                                    lenstrans.Cyl = item.Cyl;
-                                    lenstrans.Axis = item.Axis;
-                                    lenstrans.Add = item.Add;
-                                    lenstrans.Index = item.Index;
-                                    lenstrans.Model = item.Model;
-                                    lenstrans.Size = item.Size;
-                                    lenstrans.Colour = item.Colour;
+                                    lenstrans.Sph = item.Sph == null ? null : item.Sph == "" ? null : item.Sph;
+                                    lenstrans.Cyl = item.Cyl == null ? null : item.Cyl == "" ? null : item.Cyl;
+                                    lenstrans.Axis = item.Axis == null ? null : item.Axis == "" ? null : item.Axis;
+                                    lenstrans.Add = item.Add == null ? null : item.Add == "" ? null : item.Add;
+                                    lenstrans.Index = item.Index == null ? null : item.Index == "" ? null : item.Index;
+                                    lenstrans.Model = item.Model == null ? null : item.Model == "" ? null : item.Model;
+                                    lenstrans.Size = item.Size == null ? null : item.Size == "" ? null : item.Size;
+                                    lenstrans.Colour = item.Colour == null ? null : item.Colour == "" ? null : item.Colour;
+                                    lenstrans.HSNNo = item.HSNNo == null ? null : item.HSNNo == "" ? null : item.HSNNo;
+                                    lenstrans.Description = item.Description == null ? null : item.Description == "" ? null : item.Description;
                                     lenstrans.Brand = item.Brand;
                                     lenstrans.Prize = item.Prize;
                                     lenstrans.Sptaxinclusive = item.Sptaxinclusive;
                                     lenstrans.Costprice = item.Costprice;
-                                    lenstrans.CESSAmount = item.CESSAmount;
-                                    lenstrans.ADDCESSAmount = item.ADDCESSAmount;
                                     lenstrans.UOMID = item.UOMID;
-                                    lenstrans.GST = item.GST;
-                                    lenstrans.HSNNo = item.HSNNo;
                                     lenstrans.TaxID = item.TaxID;
-                                    lenstrans.Description = item.Description;
                                     lenstrans.FrameShapeID = item.FrameShapeID;
                                     lenstrans.FrameStyleID = item.FrameStyleID;
                                     lenstrans.FrameTypeID = item.FrameTypeID;
@@ -529,10 +531,7 @@ namespace WYNK.Data.Repository.Implementation
                                     lenstrans.Sptaxinclusive = item.Sptaxinclusive;
                                     lenstrans.Costprice = item.Costprice;
                                     lenstrans.Prize = item.Prize;
-                                    lenstrans.CESSAmount = item.CESSAmount;
-                                    lenstrans.ADDCESSAmount = item.ADDCESSAmount;
                                     lenstrans.UOMID = item.UOMID;
-                                    lenstrans.GST = item.GST;
                                     lenstrans.HSNNo = item.HSNNo;
                                     lenstrans.TaxID = item.TaxID;
                                     lenstrans.IsActive = item.IsActive;

@@ -15,12 +15,14 @@ import { MatOption } from '@angular/material/core';
 declare var $: any;
 import * as _ from 'lodash';
 import * as _moment from 'moment';
-import moment = require('moment');
+import { Moment } from 'moment';
+const moment = (_moment as any).default ? (_moment as any).default : _moment;
 import { MatSort } from '@angular/material/sort';
 import { Sort } from '@angular/material/sort';
 declare var jQuery: any;
 import * as _l from 'lodash';
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import { MatDatepicker } from '@angular/material/datepicker';
 
 export const MY_FORMATS = {
   parse: {
@@ -58,14 +60,42 @@ export class OpticalStockLedgerComponent implements OnInit {
   @ViewChild('OpticalStockLedger') Form: NgForm
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public commonService: CommonService<OpticalStockLedgerView>, public datepipe: DatePipe,
-    public appComponent: AppComponent, public el: ElementRef, private cahngeDatectorrefs: ChangeDetectorRef, private router: Router) { }
-
-  date = new FormControl(new Date());
-
   maxDate = new Date();
   mintoDate = new Date();
-  
+  date = new FormControl(moment());
+
+  chosenYearHandler(normalizedYear: Moment) {
+    const ctrlValue = this.date.value;
+    ctrlValue.year(normalizedYear.year());
+    this.date.setValue(ctrlValue);
+  }
+
+  chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
+    const ctrlValue = this.date.value;
+    ctrlValue.month(normalizedMonth.month());
+    this.date.setValue(ctrlValue);
+    this.mintoDate = ctrlValue;
+    datepicker.close();
+  }
+
+  Todate = new FormControl(moment());
+
+  chosenYearHandlerr(normalizedYear: Moment) {
+    const ctrlValue = this.Todate.value;
+    ctrlValue.year(normalizedYear.year());
+    this.Todate.setValue(ctrlValue);
+  }
+
+  chosenMonthHandlerr(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
+    const ctrlValue = this.Todate.value;
+    ctrlValue.month(normalizedMonth.month());
+    this.date.setValue(ctrlValue);
+    datepicker.close();
+  }
+
+
+  constructor(public commonService: CommonService<OpticalStockLedgerView>, public datepipe: DatePipe,
+    public appComponent: AppComponent, public el: ElementRef, private cahngeDatectorrefs: ChangeDetectorRef, private router: Router) { }
 
   ngOnInit() {
     debugger;
@@ -153,8 +183,6 @@ export class OpticalStockLedgerComponent implements OnInit {
   CompanyID;
   storename;
   accessdata;
-  M_FromDate;
-  M_ToDate;
   BranchDrop;
   M_BrandDataDrop;
   cmpname;
@@ -213,10 +241,7 @@ export class OpticalStockLedgerComponent implements OnInit {
     this.commonService.getListOfData('Common/GetBrandAll/' + res).subscribe((data: any) => { this.GetBranddata = data; });
   }
 
-  fromDate() {
-    debugger;
-    this.mintoDate = this.M_FromDate;
-  }
+
 
 
 
@@ -327,11 +352,12 @@ export class OpticalStockLedgerComponent implements OnInit {
   }
 
   array = [];
-
+  Fromdate;
+  M_Todate;
   Submit(form: NgForm) {
     debugger;
 
-    if (this.M_FromDate == undefined || this.M_FromDate == "") {
+    if (this.date.value == undefined) {
       Swal.fire({
         type: 'warning',
         title: 'warning',
@@ -347,7 +373,7 @@ export class OpticalStockLedgerComponent implements OnInit {
       return;
     }
 
-    if (this.M_ToDate == undefined || this.M_ToDate == "") {
+    if (this.Todate.value == undefined) {
       Swal.fire({
         type: 'warning',
         title: 'warning',
@@ -366,10 +392,10 @@ export class OpticalStockLedgerComponent implements OnInit {
     if (form.valid) {
       this.isInvalid = false;
 
-      let FromDate = this.datepipe.transform(this.M_FromDate, 'dd-MMM-yyyy');
-      let ToDate = this.datepipe.transform(this.M_ToDate, 'dd-MMM-yyyy');
+      this.Fromdate = this.datepipe.transform(this.date.value, "dd-MMM-yyyy");
+      this.M_Todate = this.datepipe.transform(this.Todate.value, "dd-MMM-yyyy");
 
-      this.commonService.postData('OpticalStockLedger/GetStockLedger/' + FromDate + '/' + ToDate + '/' + this.BranchDrop.Value + '/' + this.Getloctime, this.commonService.data)
+      this.commonService.postData('OpticalStockLedger/GetStockLedger/' + this.Fromdate + '/' + this.M_Todate + '/' + this.BranchDrop.Value + '/' + this.Getloctime, this.commonService.data)
         .subscribe(data => {
           debugger;
           if (data.Opticalstockledger.length > 0 || data.OpticalstockledgerI.length > 0 || data.Companycomm > 0) {
@@ -452,17 +478,19 @@ export class OpticalStockLedgerComponent implements OnInit {
     return this.spans[index] && this.spans[index][col];
   }
   resetform() {
-    this.M_FromDate = undefined;
-    this.M_ToDate = undefined;
+    this.date = undefined;
+    this.Todate = undefined;
     this.BranchDrop = undefined;
     this.storename = undefined;
     this.M_BrandDataDrop = undefined;
     this.allSelectedBrand = undefined;
     this.allSelected = undefined;
+    this.Fromdate = undefined;
+    this.M_Todate = undefined;
   }
   Cancel() {
     debugger;
-    if (this.M_FromDate != undefined || this.M_FromDate != "" || this.M_ToDate != undefined || this.M_ToDate != ""
+    if (this.date.value != undefined || this.Todate.value != undefined
       || this.BranchDrop != undefined || this.BranchDrop != "" || this.storename != undefined || this.storename != ""
       || this.M_BrandDataDrop != undefined || this.M_BrandDataDrop != "") {
       Swal.fire({

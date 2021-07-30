@@ -68,11 +68,8 @@ namespace WYNK.Data.Model.ViewModel
     }
     public class Taxname
     {
-        public decimal? AdditionalCesspercentage { get; set; }
-        public decimal? Cesspercentage { get; set; }
         public Int16? GSTNo { get; set; }
-        public string CessDescription { get; set; }
-        public string AddtionalDescription { get; set; }
+        public decimal? IGSTpercentage { get; set; }
     }
     public class Taxnamelensmaster
     {
@@ -101,14 +98,11 @@ namespace WYNK.Data.Model.ViewModel
         public int? UOMID { get; set; }
         public decimal Costprice { get; set; }
         public decimal Prize { get; set; }
-        public decimal? CESSAmount { get; set; }
-        public decimal? ADDCESSAmount { get; set; }
-        public decimal? GST { get; set; }
         public string Description { get; set; }
         public int? TaxID { get; set; }
+        public int? GST { get; set; }
+        public int? IGST { get; set; }
         public string TaxDescription { get; set; }
-        public string CessDescription { get; set; }
-        public string AddtionalDescription { get; set; }
         public string HSNNo { get; set; }
         public string FrameShape { get; set; }
         public string FrameType { get; set; }
@@ -120,8 +114,9 @@ namespace WYNK.Data.Model.ViewModel
         public int? FrameStyleID { get; set; }
         public string Index { get; set; }
         public Boolean IsActive { get; set; }
-        public Boolean? Sptaxinclusive { get; set; }
-
+        public Boolean Sptaxinclusive { get; set; }
+        public string Sptaxinclusivebool { get; set; }
+        public Boolean disab { get; set; }
     }
     public class FrameShapehis
     {
