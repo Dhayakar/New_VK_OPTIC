@@ -367,6 +367,15 @@ export class CustomerOrderCancellationComponent implements OnInit {
   PrintdisplayedColumns = ['Type', 'Brand', 'Description', 'UOM', 'QTY', 'Price', 'Amount', 'Discount%', 'DiscountAmount', 'GrossAmount', 'CGST', 'CGSTValue', 'SGST', 'SGSTValue', 'NetAmount']
   PrintdataSource = new MatTableDataSource();
 
+  PrintdisplayedColumnsCombined = ['Types', 'Brands', 'Descriptions', 'UOMs', 'QTYs', 'Prices', 'Amounts', 'header-row-group', 'GrossAmounts', 'CGSTTax', 'SGSTTax', 'NetAmounts']
+
+  PrintdisplayedColumnsGst = ['Type', 'Brand', 'Description', 'UOM', 'QTY', 'Price', 'Amount', 'Discount%', 'DiscountAmount', 'GrossAmount', 'CGST', 'CGSTValue', 'SGST', 'SGSTValue', 'NetAmount']
+  PrintdisplayedColumnsGsts = ['Types', 'Brands', 'Descriptions', 'UOMs', 'QTYs', 'Prices', 'Amounts', 'header-row-group', 'GrossAmounts', 'CGSTTax', 'SGSTTax', 'NetAmounts']
+
+  PrintdisplayedColumnsIGst = ['Type', 'Brand', 'Description', 'UOM', 'QTY', 'Price', 'Amount', 'Discount%', 'DiscountAmount', 'GrossAmount', 'IGST', 'IGSTValue', 'NetAmount']
+  PrintdisplayedColumnsIGsts = ['Types', 'Brands', 'Descriptions', 'UOMs', 'QTYs', 'Prices', 'Amounts', 'header-row-group', 'GrossAmounts', 'IGSTTax', 'NetAmounts']
+
+
   displayedColumns3: string[] = ['PaymentMode', 'InstrumentNumber', 'InstrumentDate', 'BankName', 'Branch', 'ExpiryDate', 'Amount'];
   dataSource3 = new MatTableDataSource();
 
@@ -513,10 +522,19 @@ export class CustomerOrderCancellationComponent implements OnInit {
 
           this.commonService.data.CustomerItemOrders = data.CustomerOrderedList.CustomerItemOrders;
 
-          for (var i = 0; i < this.commonService.data.CustomerItemOrders.length; i++) {
-            this.commonService.data.CustomerItemOrders[i].GivenQtyPrice = this.commonService.data.CustomerItemOrders[i].UnitPrice * this.commonService.data.CustomerItemOrders[i].Quantity;
-            this.commonService.data.CustomerItemOrders[i].GSTValue = this.commonService.data.CustomerItemOrders[i].GrossAmount * ((this.commonService.data.CustomerItemOrders[i].CGST + this.commonService.data.CustomerItemOrders[i].SGST) / 100)
+
+          if (this.commonService.data.CustomerItemOrders.every(x => x.IGST == null)) {
+            this.PrintdisplayedColumns = this.PrintdisplayedColumnsGst;
+            this.PrintdisplayedColumnsCombined = this.PrintdisplayedColumnsGsts;
+          } else {
+            this.PrintdisplayedColumns = this.PrintdisplayedColumnsIGst;
+            this.PrintdisplayedColumnsCombined = this.PrintdisplayedColumnsIGsts;
           }
+
+          //for (var i = 0; i < this.commonService.data.CustomerItemOrders.length; i++) {
+          //  this.commonService.data.CustomerItemOrders[i].GivenQtyPrice = this.commonService.data.CustomerItemOrders[i].UnitPrice * this.commonService.data.CustomerItemOrders[i].Quantity;
+          //  this.commonService.data.CustomerItemOrders[i].GSTValue = this.commonService.data.CustomerItemOrders[i].GrossAmount * ((this.commonService.data.CustomerItemOrders[i].CGST + this.commonService.data.CustomerItemOrders[i].SGST) / 100)
+          //}
 
 
           this.PrintdataSource.data = this.commonService.data.CustomerItemOrders;
@@ -588,6 +606,12 @@ export class CustomerOrderCancellationComponent implements OnInit {
     var restotalcost = this.commonService.data.CustomerItemOrders.map(t => t.SGSTValue).reduce((acc, value) => acc + value, 0);
     return restotalcost;
   }
+
+  GetIGSTAmount() {
+    var restotalcost = this.commonService.data.CustomerItemOrders.map(t => t.IGSTValue).reduce((acc, value) => acc + value, 0);
+    return restotalcost;
+  }
+
 
   applyFilter2(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

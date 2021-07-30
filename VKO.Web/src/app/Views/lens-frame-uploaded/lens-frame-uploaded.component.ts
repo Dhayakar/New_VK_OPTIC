@@ -22,7 +22,7 @@ import * as _ from 'lodash';
 })
 export class LensFrameUploadedComponent implements OnInit {
 
-  displayedColumnssq = ['Type', 'Brand', 'Description', 'Price', 'UOM', 'TaxDescription', 'GST', 'Status'];
+  displayedColumnssq = ['Type', 'Brand', 'Description', 'CostPrice', 'InclusiveTax', 'Price', 'UOM', 'TaxDescription', 'GST', 'IGST', 'Status'];
   dataSourcesq = new MatTableDataSource();
 
 

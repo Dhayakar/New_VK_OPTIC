@@ -206,65 +206,44 @@
             <ng-container matColumnDef="Grossamounts">
               <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" class="width-8p"> Gross Amount </th>
             </ng-container>
-            <ng-container matColumnDef="TaxDescription">
-              <th mat-header-cell *matHeaderCellDef class="width-7p top-32px">Desc</th>
-              <td mat-cell *matCellDef="let element">
-                <div class="row">
-                  <div *ngIf="element.GSTDesc != null" class="col-sm-10 mt-8p">
-                    {{element.GSTDesc}}
-                  </div>
-                  <br />
-                  <div *ngIf="element.CESSDesc != null" class="col-sm-10">
-                    {{element.CESSDesc}}
-                  </div>
-                  <br />
-                  <div *ngIf="element.AddCessDesc != null" class="col-sm-10">
-                    {{element.AddCessDesc}}
-                  </div>
-                </div>
-              </td>
+            <ng-container matColumnDef="CGST">
+              <th mat-header-cell *matHeaderCellDef class="top-32px">%</th>
+              <td mat-cell *matCellDef="let element;let id = index;">{{element.CGST | number : '1.2-2'}}</td>
               <td mat-footer-cell *matFooterCellDef> </td>
             </ng-container>
-            <ng-container matColumnDef="TaxPer">
-              <th mat-header-cell *matHeaderCellDef class="width-4p top-32px">%</th>
-              <td mat-cell *matCellDef="let element">
-                <div class="row">
-                  <div *ngIf="element.GSTDesc != null" class="col-sm-10 mt-12p">
-                    {{element.GST | number : '1.2-2'}}
-                  </div>
-                  <br />
-                  <div *ngIf="element.CESSDesc != null" class="col-sm-10">
-                    {{element.CESS | number : '1.2-2'}}
-                  </div>
-                  <br />
-                  <div *ngIf="element.AddCessDesc != null" class="col-sm-10">
-                    {{element.AddCess | number : '1.2-2'}}
-                  </div>
-                </div>
-              </td>
-              <td mat-footer-cell *matFooterCellDef> </td>
+            <ng-container matColumnDef="CGSTValue">
+              <th mat-header-cell *matHeaderCellDef class="top-32px"> Amount</th>
+              <td mat-cell *matCellDef="let element;let id = index;">{{element.CGSTValue | number : '1.2-2'}}</td>
+              <td mat-footer-cell *matFooterCellDef><b>{{GetCGSTAmount() | currency:Country}}</b> </td>
             </ng-container>
-            <ng-container matColumnDef="TaxAmount">
-              <th mat-header-cell *matHeaderCellDef class="width-6p top-32px">Amount</th>
-              <td mat-cell *matCellDef="let element" class="text-end">
-                <div class="row">
-                  <div *ngIf="element.GSTDesc != null" class="col-sm-10 mt-8p">
-                    {{element.GSTValue | number : '1.2-2'}}
-                  </div>
-                  <br />
-                  <div *ngIf="element.CESSDesc != null" class="col-sm-10">
-                    {{element.CESSValue| number : '1.2-2'}}
-                  </div>
-                  <br />
-                  <div *ngIf="element.AddCessDesc != null" class="col-sm-10">
-                    {{element.AddCessValue| number : '1.2-2'}}
-                  </div>
-                </div>
-              </td>
-              <td mat-footer-cell *matFooterCellDef class="text-end"><b>{{getGstTotalAmount() | currency:Country}}</b> </td>
+            <ng-container matColumnDef="SGST">
+              <th mat-header-cell *matHeaderCellDef class="top-32px">%</th>
+              <td mat-cell *matCellDef="let element;let id = index;">{{element.SGST | number : '1.2-2'}}</td>
+              <td mat-footer-cell *matFooterCellDef></td>
             </ng-container>
-            <ng-container matColumnDef="Tax">
-              <th mat-header-cell *matHeaderCellDef [attr.colspan]="3" class="text-center"> Tax </th>
+            <ng-container matColumnDef="SGSTValue">
+              <th mat-header-cell *matHeaderCellDef class="top-32px"> Amount</th>
+              <td mat-cell *matCellDef="let element;let id = index;">{{element.SGSTValue | number : '1.2-2'}}</td>
+              <td mat-footer-cell *matFooterCellDef><b>{{GetSGSTAmount() | currency:Country}}</b></td>
+            </ng-container>
+            <ng-container matColumnDef="IGST">
+              <th mat-header-cell *matHeaderCellDef class="top-32px">%</th>
+              <td mat-cell *matCellDef="let element;let id = index;">{{element.IGST | number : '1.2-2'}}</td>
+              <td mat-footer-cell *matFooterCellDef></td>
+            </ng-container>
+            <ng-container matColumnDef="IGSTValue">
+              <th mat-header-cell *matHeaderCellDef class="top-32px"> Amount</th>
+              <td mat-cell *matCellDef="let element;let id = index;">{{element.IGSTValue | number : '1.2-2'}}</td>
+              <td mat-footer-cell *matFooterCellDef><b>{{GetIGSTAmount() | currency:Country}}</b></td>
+            </ng-container>
+            <ng-container matColumnDef="CGSTTax">
+              <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> CGST Tax </th>
+            </ng-container>
+            <ng-container matColumnDef="SGSTTax">
+              <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> SGST Tax </th>
+            </ng-container>
+            <ng-container matColumnDef="IGSTTax">
+              <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> IGST Tax </th>
             </ng-container>
             <ng-container matColumnDef="NetAmount">
               <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Net Amount</th>
@@ -274,10 +253,9 @@
             <ng-container matColumnDef="NetAmounts">
               <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Net Amount </th>
             </ng-container>
-
             <tr mat-header-row *matHeaderRowDef="['BillNos','BillDates','CustomerNames','Descriptions','Brands',
                   'UOMs','Qtys','Rates','Amounts','DiscPers','DisAmounts','Grossamounts',
-                  'Tax','NetAmounts']; sticky: true"></tr>
+                  'CGSTTax', 'SGSTTax','IGSTTax','NetAmounts']; sticky: true"></tr>
             <tr mat-header-row *matHeaderRowDef="OpbillColumns;sticky:true"></tr>
             <tr mat-row *matRowDef="let row; columns: OpbillColumns;"></tr>
             <tr mat-footer-row *matFooterRowDef="OpbillColumns;sticky: true"></tr>
@@ -290,7 +268,7 @@
     <div class="col-sm-12 ui-state-default height-400px">
       <div class="row ml-1p mt-2p">
         <div class="col-sm-5">
-          <label><b>Advance Amount :</b></label>
+          <label><b>Collections Amount :</b></label>
         </div>
       </div>
       <div class="col-sm-12  mt-1p ml-1p heightAuto-300px">
