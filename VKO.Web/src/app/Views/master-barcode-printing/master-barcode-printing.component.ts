@@ -4,6 +4,7 @@ import { SetupMaster } from 'src/app/Models/ViewModels/Setupmaster.viewmodel';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { MatTableDataSource } from '@angular/material';
+declare var JsBarcode:any;
 
 @Component({
   selector: 'app-master-barcode-printing',
@@ -92,42 +93,46 @@ export class MasterBarcodePrintingComponent implements OnInit {
       });
     }
   }
+  databarcodearray = [];
+
+  printbarcodeblock;
   printbarcodes() {
     debugger;
-    if (this.Copy_M != undefined && this.bararray.length != 0) {
-      var copy = this.Copy_M;
-      var lengtharray = this.bararray;
-
-      let printContents: any = "", popupWin: any;
+    this.printbarcodeblock = 'block';
+    for (var i = 0; i < this.bararray.length; i++) {
+      for (var j = 0; j < this.Copy_M; j++) {
+        this.databarcodearray.push({
+          "ID": this.bararray[i].ID,
+          "Barcode": this.bararray[i].Barcode,
+        });
+      }
+    }
+  }
+  BarcodeblockClose() {
+    this.printbarcodeblock = 'none';
+  }
+  BarcodeblockYes() {
+    debugger;
+    if (this.Copy_M != undefined && this.databarcodearray.length != 0 && this.Copy_M != "0") {
+      let printContents, popupWin;
+      printContents = document.getElementById('dashboardconsultationsection').innerHTML;
       popupWin = window.open('', '_blank', 'top=0,left=0,height=auto,width=100%');
       popupWin.document.open();
-      var Subdata: any;
-      for (var i = 0; i < lengtharray.length; i++) {
-        printContents += `<div class="col-sm-12" style="transform: rotate(90deg);margin-top:10px;page-break-after:always">
-      <ngx-barcode bc-width="15" bc-font-size="250"
-                   bc-value="${lengtharray[i].Barcode}" bc-display-value="true" bc-height="400">
-      </ngx-barcode>
-</div>`
-        popupWin.document.write(`
+      popupWin.document.write(`
              <html>
              <head>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
-
-<title></title>
+              <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+            <title></title>
             <style>
-
-   </style>
+            //........Customized style.......
+            </style>
           </head>
       <body onload="window.print();window.close()">${printContents}</body>
         </html>`);
-        printContents = "";
-      }
       popupWin.document.close();
-      //this.router.navigateByUrl('/dash', { skipLocationChange: true }).then(() => {
-      //  this.router.navigate(["Opticalslazy/BarcodePrinting"]);
-      //});
-
+      this.Copy_M = 0;
+      this.printbarcodeblock = 'none';
+      this.databarcodearray = [];
     } else {
       Swal.fire({
         type: 'warning',

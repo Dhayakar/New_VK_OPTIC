@@ -184,7 +184,7 @@ namespace WYNK.Data.Repository.Implementation
                 try
                 {
                     var expdata = ExpenseDetails.Expesneitemdata;
-                    var Paymentdata = ExpenseDetails.paymenttran;
+                    var Paymentdata = ExpenseDetails.PaymentMaster.ToList();
                     var arr = new List<string> { };
 
                     var randomuniqueid = PasswordEncodeandDecode.GetRandomnumber();

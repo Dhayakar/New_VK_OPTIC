@@ -2483,14 +2483,14 @@ namespace WYNK.Data.Repository.Implementation
             var LensMas = WYNKContext.Lensmaster.ToList();
             var LensTarn = WYNKContext.Lenstrans.ToList();
             var TaxMas= CMPSContext.TaxMaster.ToList();
-            if (TaxGroup == "withinState")
-            {
-                 TaxMas = TaxMas.Where(x => x.TaxGroupId == 1).ToList();
-            }
-            else
-            {
-                 TaxMas = TaxMas.Where(x => x.TaxGroupId == 2).ToList();
-            }
+            //if (TaxGroup == "withinState")
+            //{
+            //     TaxMas = TaxMas.Where(x => x.TaxGroupId == 1).ToList();
+            //}
+            //else
+            //{
+            //     TaxMas = TaxMas.Where(x => x.TaxGroupId == 2).ToList();
+            //}
             var BrandMas = WYNKContext.Brand.ToList();
             var UOM = CMPSContext.uommaster.ToList();
             var Onelinemaster = CMPSContext.OneLineMaster.ToList();
@@ -2501,7 +2501,7 @@ namespace WYNK.Data.Repository.Implementation
 
             CustomerOrder.OfferDetails = (from LM in LensMas.Where(x => x.CMPID == CMPID)
                                           join LT in LensTarn.Where(x => x.IsActive == true) on LM.RandomUniqueID equals LT.LMID
-                                          join TM in TaxMas on LT.TaxID equals TM.ID
+                                          //join TM in TaxMas on LT.TaxID equals TM.ID
                                           join BM in BrandMas on LT.Brand equals BM.ID
                                           select new OfferDetail
                                           {
@@ -2543,7 +2543,7 @@ namespace WYNK.Data.Repository.Implementation
                                           }).ToList();
             CustomerOrder.OfferDetails1 = (from LM in LensMas.Where(x => x.CMPID == CMPID)
                                           join LT in LensTarn.Where(x => x.IsActive == true ) on LM.RandomUniqueID equals LT.LMID
-                                          join TM in TaxMas on LT.TaxID equals TM.ID
+                                          //join TM in TaxMas on LT.TaxID equals TM.ID
                                           join BM in BrandMas on LT.Brand equals BM.ID
                                           select new OfferDetail
                                           {

@@ -32,8 +32,8 @@ export class TaxMasterComponent implements OnInit {
   AdditionalCESSDescription;
   AdditionalCESS;
 
-  withinstate: boolean = false;
-  Interstate: boolean = false;
+  //withinstate: boolean = false;
+  //Interstate: boolean = false;
   Disableonsearch: boolean;
   displayedColumns: string[] = ['checked', 'TaxDescription', 'GSTPercentage', 'SGSTPercentage', 'CGSTPercentage', 'IGSTPercentage', 'TaxGroupId', 'IsActive'];
   dataSource = new MatTableDataSource();
@@ -59,14 +59,14 @@ export class TaxMasterComponent implements OnInit {
     }
   }
 
-  showgst() {
-    this.withinstate = true;
-    this.Interstate = false;
-  }
-  showIgst() {
-    this.withinstate = false;
-    this.Interstate = true;
-  }
+  //showgst() {
+  //  this.withinstate = true;
+  //  this.Interstate = false;
+  //}
+  //showIgst() {
+  //  this.withinstate = false;
+  //  this.Interstate = true;
+  //}
 
 
   ChangeCESSValue() {
@@ -108,8 +108,8 @@ export class TaxMasterComponent implements OnInit {
   Country1;
   Country2;
   Country3;
-  hiddenbyCountry = true;
-  hiddenbyCountry1 = false;
+  //hiddenbyCountry = true;
+  //hiddenbyCountry1 = false;
   accessdata;
   //istransact;
   disableSearch = true;
@@ -165,12 +165,12 @@ export class TaxMasterComponent implements OnInit {
           this.Country2 = this.Country1[0].Text;
           this.Country3 = this.Country1[0].Value;
           if (this.Country2 == "INR") {
-            this.hiddenbyCountry = true;
-            this.hiddenbyCountry1 = false;
+           // this.hiddenbyCountry = true;
+           // this.hiddenbyCountry1 = false;
           }
           else {
-            this.hiddenbyCountry = false;
-            this.hiddenbyCountry1 = true;
+           // this.hiddenbyCountry = false;
+            //this.hiddenbyCountry1 = true;
           }
         });
         this.DoctorID = localStorage.getItem('userroleID');
@@ -236,12 +236,12 @@ export class TaxMasterComponent implements OnInit {
           this.Country2 = this.Country1[0].Text;
           this.Country3 = this.Country1[0].Value;
           if (this.Country2 == "INR") {
-            this.hiddenbyCountry = true;
-            this.hiddenbyCountry1 = false;
+           // this.hiddenbyCountry = true;
+           // this.hiddenbyCountry1 = false;
           }
           else {
-            this.hiddenbyCountry = false;
-            this.hiddenbyCountry1 = true;
+            //this.hiddenbyCountry = false;
+           // this.hiddenbyCountry1 = true;
           }
         });
         this.DoctorID = localStorage.getItem('userroleID');
@@ -278,147 +278,145 @@ export class TaxMasterComponent implements OnInit {
 
     debugger;
 
-    if (this.TaxGroup == 'withinState') {
-      if (this.TaxDescription != null) {
-        this.commonService.data = new TaxMasterViewM();
-        this.commonService.data.taxMaster.TaxDescription = this.TaxDescription;
-        this.commonService.data.taxMaster.GSTPercentage = this.GST;
-        this.commonService.data.taxMaster.CGSTPercentage = this.CGST;
-        this.commonService.data.taxMaster.SGSTPercentage = this.SGST;
-        this.commonService.data.taxMaster.IGSTPercentage = this.IGST;
-        this.commonService.data.taxMaster.CESSDescription = this.CESSDescription;
-        this.commonService.data.taxMaster.CESSPercentage = this.CESS;
-        this.commonService.data.taxMaster.AdditionalCESSDescription = this.AdditionalCESSDescription;
-        this.commonService.data.taxMaster.AdditionalCESSPercentage = this.AdditionalCESS;
-        this.commonService.data.taxMaster.CreatedBy = parseInt(this.DoctorID);
+    //if (this.TaxGroup == 'withinState') {
+    if (this.TaxDescription != null) {
+      this.commonService.data = new TaxMasterViewM();
+      this.commonService.data.taxMaster.TaxDescription = this.TaxDescription;
+      this.commonService.data.taxMaster.GSTPercentage = this.GST;
+      this.commonService.data.taxMaster.CGSTPercentage = this.CGST;
+      this.commonService.data.taxMaster.SGSTPercentage = this.SGST;
+      this.commonService.data.taxMaster.IGSTPercentage = this.IGST;
+      this.commonService.data.taxMaster.CESSDescription = this.CESSDescription;
+      this.commonService.data.taxMaster.CESSPercentage = this.CESS;
+      this.commonService.data.taxMaster.AdditionalCESSDescription = this.AdditionalCESSDescription;
+      this.commonService.data.taxMaster.AdditionalCESSPercentage = this.AdditionalCESS;
+      this.commonService.data.taxMaster.CreatedBy = parseInt(this.DoctorID);
+      this.commonService.data.taxMaster.TaxGroupId = 0;
 
-        this.commonService.data.taxMaster.TaxGroupId = 1;
+      this.commonService.postData('TaxMaster/insertTaxMaster/' + localStorage.getItem("CompanyID"), this.commonService.data).subscribe(data => {
+        debugger;
+        if (data.Success == true) {
+          Swal.fire({
+            type: 'success',
+            title: 'success',
+            text: 'Saved Successfully',
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            customClass: {
+              popup: 'alert-warp',
+              container: 'alert-container'
+            },
+          });
+        }
+        else {
+          Swal.fire({
+            type: 'warning',
+            title: 'warning',
+            text: 'Some Data Missing',
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            customClass: {
+              popup: 'alert-warp',
+              container: 'alert-container'
+            },
+          });
 
+        }
 
-        this.commonService.postData('TaxMaster/insertTaxMaster/' + localStorage.getItem("CompanyID"), this.commonService.data).subscribe(data => {
-          debugger;
-          if (data.Success == true) {
-            Swal.fire({
-              type: 'success',
-              title: 'success',
-              text: 'Saved Successfully',
-              position: 'top-end',
-              showConfirmButton: false,
-              timer: 1500,
-              customClass: {
-                popup: 'alert-warp',
-                container: 'alert-container'
-              },
-            });
-          }
-          else {
-            Swal.fire({
-              type: 'warning',
-              title: 'warning',
-              text: 'Some Data Missing',
-              position: 'top-end',
-              showConfirmButton: false,
-              timer: 1500,
-              customClass: {
-                popup: 'alert-warp',
-                container: 'alert-container'
-              },
-            });
+        this.Form.onReset();
+        //this.withinstate = false;
+        //this.Interstate = false;
 
-          }
+      });
+    }
 
-          this.Form.onReset();
-          this.withinstate = false;
-          this.Interstate = false;
-
-        });
-      }
-
-      else {
-        Swal.fire({
-          type: 'warning',
-          title: 'warning',
-          text: 'Please fill the required fields',
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 1500,
-          customClass: {
-            popup: 'alert-warp',
-            container: 'alert-container'
-          },
-        });
-
-      }
+    else {
+      Swal.fire({
+        type: 'warning',
+        title: 'warning',
+        text: 'Please fill the required fields',
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1500,
+        customClass: {
+          popup: 'alert-warp',
+          container: 'alert-container'
+        },
+      });
 
     }
 
-    if (this.TaxGroup == 'interstate') {
-      if (this.TaxDescription != null) {
-        this.commonService.data = new TaxMasterViewM();
-        this.commonService.data.taxMaster.TaxDescription = this.TaxDescription;
-        this.commonService.data.taxMaster.GSTPercentage = this.GST;
-        this.commonService.data.taxMaster.CGSTPercentage = this.CGST;
-        this.commonService.data.taxMaster.SGSTPercentage = this.SGST;
-        this.commonService.data.taxMaster.IGSTPercentage = this.IGST;
-        this.commonService.data.taxMaster.CESSDescription = this.CESSDescription;
-        this.commonService.data.taxMaster.CESSPercentage = this.CESS;
-        this.commonService.data.taxMaster.AdditionalCESSDescription = this.AdditionalCESSDescription;
-        this.commonService.data.taxMaster.AdditionalCESSPercentage = this.AdditionalCESS;
-        this.commonService.data.taxMaster.CreatedBy = parseInt(this.DoctorID);
-        this.commonService.data.taxMaster.TaxGroupId = 2;
-        this.commonService.postData('TaxMaster/insertTaxMaster/' + localStorage.getItem("CompanyID"), this.commonService.data).subscribe(data => {
-          debugger;
-          if (data.Success == true) {
+    //}
 
-            Swal.fire({
-              type: 'success',
-              title: 'success',
-              text: 'Saved Successfully',
-              position: 'top-end',
-              showConfirmButton: false,
-              timer: 1500,
-              customClass: {
-                popup: 'alert-warp',
-                container: 'alert-container'
-              },
-            });
-          }
-          else {
-            Swal.fire({
-              type: 'warning',
-              title: 'warning',
-              text: 'Some Data Missing',
-              position: 'top-end',
-              showConfirmButton: false,
-              timer: 1500,
-              customClass: {
-                popup: 'alert-warp',
-                container: 'alert-container'
-              },
-            });
-          }
-          this.Form.onReset();
-          this.withinstate = false;
-          this.Interstate = false;
-        });
-      }
-      else {
-        Swal.fire({
-          type: 'warning',
-          title: 'warning',
-          text: 'Please fill the required fields',
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 1500,
-          customClass: {
-            popup: 'alert-warp',
-            container: 'alert-container'
-          },
+    //if (this.TaxGroup == 'interstate') {
+    //  if (this.TaxDescription != null) {
+    //    this.commonService.data = new TaxMasterViewM();
+    //    this.commonService.data.taxMaster.TaxDescription = this.TaxDescription;
+    //    this.commonService.data.taxMaster.GSTPercentage = this.GST;
+    //    this.commonService.data.taxMaster.CGSTPercentage = this.CGST;
+    //    this.commonService.data.taxMaster.SGSTPercentage = this.SGST;
+    //    this.commonService.data.taxMaster.IGSTPercentage = this.IGST;
+    //    this.commonService.data.taxMaster.CESSDescription = this.CESSDescription;
+    //    this.commonService.data.taxMaster.CESSPercentage = this.CESS;
+    //    this.commonService.data.taxMaster.AdditionalCESSDescription = this.AdditionalCESSDescription;
+    //    this.commonService.data.taxMaster.AdditionalCESSPercentage = this.AdditionalCESS;
+    //    this.commonService.data.taxMaster.CreatedBy = parseInt(this.DoctorID);
+    //    this.commonService.data.taxMaster.TaxGroupId = 2;
+    //    this.commonService.postData('TaxMaster/insertTaxMaster/' + localStorage.getItem("CompanyID"), this.commonService.data).subscribe(data => {
+    //      debugger;
+    //      if (data.Success == true) {
 
-        });
+    //        Swal.fire({
+    //          type: 'success',
+    //          title: 'success',
+    //          text: 'Saved Successfully',
+    //          position: 'top-end',
+    //          showConfirmButton: false,
+    //          timer: 1500,
+    //          customClass: {
+    //            popup: 'alert-warp',
+    //            container: 'alert-container'
+    //          },
+    //        });
+    //      }
+    //      else {
+    //        Swal.fire({
+    //          type: 'warning',
+    //          title: 'warning',
+    //          text: 'Some Data Missing',
+    //          position: 'top-end',
+    //          showConfirmButton: false,
+    //          timer: 1500,
+    //          customClass: {
+    //            popup: 'alert-warp',
+    //            container: 'alert-container'
+    //          },
+    //        });
+    //      }
+    //      this.Form.onReset();
+    //      //this.withinstate = false;
+    //     // this.Interstate = false;
+    //    });
+    //  }
+    //  else {
+    //    Swal.fire({
+    //      type: 'warning',
+    //      title: 'warning',
+    //      text: 'Please fill the required fields',
+    //      position: 'top-end',
+    //      showConfirmButton: false,
+    //      timer: 1500,
+    //      customClass: {
+    //        popup: 'alert-warp',
+    //        container: 'alert-container'
+    //      },
 
-      }
-    }
+    //    });
+
+    //  }
+    //}
 
     // }
     // }
@@ -458,12 +456,12 @@ export class TaxMasterComponent implements OnInit {
             this.IsActive = item.IsActive.toString();
           this.TaxGroup = item.TaxGroupId.toString();
           if (this.TaxGroup == 'withinState') {
-            this.withinstate = true;
-            this.Interstate = false;
+            //this.withinstate = true;
+            //this.Interstate = false;
           }
           if (this.TaxGroup == 'interstate') {
-            this.withinstate = false;
-            this.Interstate = true;
+            //  this.withinstate = false;
+            //this.Interstate = true;
           }
           //this.TaxTable = 'none';
           //this.Backdrop = 'none';
@@ -606,8 +604,8 @@ export class TaxMasterComponent implements OnInit {
 
             this.hideIsActive = false;
             this.Form.onReset();
-            this.withinstate = false;
-            this.Interstate = false;
+            // this.withinstate = false;
+            // this.Interstate = false;
           });
 
       }
@@ -681,8 +679,8 @@ export class TaxMasterComponent implements OnInit {
 
             this.hideIsActive = false;
             this.Form.onReset();
-            this.withinstate = false;
-            this.Interstate = false;
+            //this.withinstate = false;
+            //this.Interstate = false;
           });
 
       }
@@ -701,8 +699,8 @@ export class TaxMasterComponent implements OnInit {
       this.cancelblock = 'block';
     }
     else {
-      this.withinstate = false;
-      this.Interstate = false;
+      // this.withinstate = false;
+      //this.Interstate = false;
       this.Form.onReset();
     }
 
@@ -724,8 +722,8 @@ export class TaxMasterComponent implements OnInit {
     this.Form.onReset();
     this.hideIsActive = false;
 
-    this.withinstate = false;
-    this.Interstate = false;
+    //this.withinstate = false;
+    //this.Interstate = false;
   }
 
 

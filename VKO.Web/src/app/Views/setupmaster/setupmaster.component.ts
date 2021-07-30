@@ -81,30 +81,6 @@ export class SetupmasterComponent implements OnInit {
   }
   accesspopup;
 
-  karthick(event): boolean {
-    debugger;
-    var currentChar = parseInt(String.fromCharCode(event.keyCode), 10);
-    if (!isNaN(currentChar)) {
-      var nextValue = $("#txthour").val() + currentChar; //It's a string concatenation, not an addition
-
-      if (parseInt(nextValue, 10) < 121) return true;
-    }
-
-
-    return false;
-  }
-  karthicks(event): boolean {
-    debugger;
-    var currentChar = parseInt(String.fromCharCode(event.keyCode), 10);
-    if (!isNaN(currentChar)) {
-      var nextValue = $("#txthours").val() + currentChar; //It's a string concatenation, not an addition
-
-      if (parseInt(nextValue, 10) < 121) return true;
-    }
-
-
-    return false;
-  }
   Getformaccess() {
     debugger;
     this.commonService.getListOfData('Common/GetAccessdetailsstring/' +
@@ -257,231 +233,6 @@ export class SetupmasterComponent implements OnInit {
   MM;
   TOHH;
   TOMM;
-  eveningFromHH;
-  eveningToMM;
-  eveinisecondTOEHH;
-  eveingsecondTOMM;
-  Checksecondtovalidation() {
-    debugger;
-    var tohour = this.eveinisecondTOEHH;
-    var fromhour = this.eveningFromHH;
-    if (tohour < fromhour) {
-      Swal.fire({
-        type: 'warning',
-        title: 'warning',
-        text: 'To Hour should not be greater than from hour',
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 1500,
-        customClass: {
-          popup: 'alert-warp',
-          container: 'alert-container',
-        },
-      });
-      this.eveningFromHH = null;
-      this.eveningFromHH = '';
-    }
-  }
-  Checksecondfromvalidation() {
-    debugger;
-    var tohour = this.TOHH;
-    var fromhour = this.eveningFromHH;
-    if (fromhour < tohour) {
-      Swal.fire({
-        type: 'warning',
-        title: 'warning',
-        text: 'To Hour should not be greater than from hour',
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 1500,
-        customClass: {
-          popup: 'alert-warp',
-          container: 'alert-container',
-        },
-      });
-      this.eveinisecondTOEHH = null;
-      this.eveinisecondTOEHH = '';
-    }
-  }
-  Checkfromvalidation() {
-    debugger;
-    var tohour = this.TOHH;
-    var fromhour = this.HH;
-
-    if (this.eveningToMM == "00" && this.eveningFromHH == "00") {
-      this.NodesecfromForm.reset();
-      Swal.fire({
-        type: 'warning',
-        title: 'warning',
-        text: 'Invalid Time',
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 1500,
-        customClass: {
-          popup: 'alert-warp',
-          container: 'alert-container',
-        },
-      });
-    } else if (tohour < fromhour) {
-      Swal.fire({
-        type: 'warning',
-        title: 'warning',
-        text: 'To Hour should not be greater than from hour',
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 1500,
-        customClass: {
-          popup: 'alert-warp',
-          container: 'alert-container',
-        },
-      });
-      this.TOHH = null;
-      this.TOHH = '';
-    }
-  }
-  @ViewChild('NodefromsetupMasterForm') NodefromForm: NgForm;
-  @ViewChild('NodetosetupMasterForm') NodetoForm: NgForm;
-  @ViewChild('NodesecfromsetupMasterForm') NodesecfromForm: NgForm;
-  @ViewChild('NodesectosetupMasterForm') NodesectoForm: NgForm;
-  Checkfromvalidationzeronegation(NodefromForm: NgForm) {
-    debugger;
-    if (this.FMM == "00" && this.FHH == "00") {
-      NodefromForm.reset();
-      Swal.fire({
-        type: 'warning',
-        title: 'warning',
-        text: 'Invalid Time',
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 1500,
-        customClass: {
-          popup: 'alert-warp',
-          container: 'alert-container',
-        },
-      });
-    }
-  }
-
-  //Checkfromvalidationzerosecfromnegation() {
-  //  if (this.eveningToMM == "00" && this.eveningFromHH == "00") {
-  //    this.NodeForm.reset();
-  //    Swal.fire({
-  //      type: 'warning',
-  //      title: 'warning',
-  //      text: 'Invalid Time',
-  //      position: 'top-end',
-  //      showConfirmButton: false,
-  //      timer: 1500,
-  //      customClass: {
-  //        popup: 'alert-warp',
-  //        container: 'alert-container',
-  //      },
-  //    });
-  //  }
-  //}
-  //Checkfromvalidationzerosectonegation() {
-  //  if (this.eveingsecondTOMM == "00" && this.eveinisecondTOEHH == "00") {
-  //    this.NodeForm.reset();
-  //    Swal.fire({
-  //      type: 'warning',
-  //      title: 'warning',
-  //      text: 'Invalid Time',
-  //      position: 'top-end',
-  //      showConfirmButton: false,
-  //      timer: 1500,
-  //      customClass: {
-  //        popup: 'alert-warp',
-  //        container: 'alert-container',
-  //      },
-  //    });
-
-  //  }
-  //}
-  //Checkfromvalidationzerotonegation() {
-  //  if (this.TOMM == "00" && this.TOHH == "00") {
-  //    this.NodeForm.reset();
-  //    Swal.fire({
-  //      type: 'warning',
-  //      title: 'warning',
-  //      text: 'Invalid Time',
-  //      position: 'top-end',
-  //      showConfirmButton: false,
-  //      timer: 1500,
-  //      customClass: {
-  //        popup: 'alert-warp',
-  //        container: 'alert-container',
-  //      },
-  //    });
-
-  //  }
-  //}
-  Restrictmss(event) {
-    debugger;
-    if (this.TOMM == "00" && this.TOHH == "00") {
-      this.NodetoForm.reset();
-      Swal.fire({
-        type: 'warning',
-        title: 'warning',
-        text: 'Invalid Time',
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 1500,
-        customClass: {
-          popup: 'alert-warp',
-          container: 'alert-container',
-        },
-      });
-
-    } else if (event.target.value > 23) {
-      Swal.fire({
-        type: 'warning',
-        title: 'warning',
-        text: 'Invalid Time',
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 1500,
-        customClass: {
-          popup: 'alert-warp',
-          container: 'alert-container',
-        },
-      });
-      event.target.value = '';
-    }
-  }
-
-  Restrictmsss(event) {
-    debugger;
-    if (this.eveingsecondTOMM == "00" && this.eveinisecondTOEHH == "00") {
-      this.NodesectoForm.reset();
-      Swal.fire({
-        type: 'warning',
-        title: 'warning',
-        text: 'Invalid Time',
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 1500,
-        customClass: {
-          popup: 'alert-warp',
-          container: 'alert-container',
-        },
-      });
-
-    } else if (event.target.value > 23) {
-      Swal.fire({
-        type: 'warning',
-        title: 'warning',
-        text: 'Invalid Time',
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 1500,
-        customClass: {
-          popup: 'alert-warp',
-          container: 'alert-container',
-        },
-      });
-      event.target.value = '';
-    }
-  }
   GAP_M;
   isInvalid = false;
   csa: string;
@@ -493,21 +244,10 @@ export class SetupmasterComponent implements OnInit {
     if (Form.valid) {
       this.isInvalid = false;
       this.commonService.data.cmpid = localStorage.getItem("CompanyID");
-      this.commonService.data.age = this.APG;
       this.commonService.data.currency = this.code;
       this.commonService.data.country = this.Country_M;
       this.commonService.data.roomtime = this.HH + ':' + this.MM;
-      this.commonService.data.Language = "English (India) - en-IN";
-      this.commonService.data.GAPINTERVAL = this.GAP_M;
-      this.commonService.data.FROM = this.FHH + ':' + this.FMM;
-      this.commonService.data.TO = this.TOHH + ':' + this.TOMM;
-      this.commonService.data.SECFROM = this.eveningFromHH + ':' + this.eveningToMM;
-      this.commonService.data.SECTO = this.eveinisecondTOEHH + ':' + this.eveingsecondTOMM;
-
-      this.commonService.data.cfa = this.csa;
-      this.commonService.data.rfa = this.rfa;
       this.commonService.data.nfa = this.nfa;
-
       this.commonService.postData('SetupMaster/InsertSetupdata', this.commonService.data)
         .subscribe(data => {
           this.commonService.data = data;
@@ -544,16 +284,35 @@ export class SetupmasterComponent implements OnInit {
               this.blobss = [];
               this.urls = [];
             }
-
-
-
-            this.backdrop = 'block';
-            this.ModalDatecheckundefined = 'block';
+            Swal.fire({
+              type: 'success',
+              title: 'success',
+              text: 'saved successfully',
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 1500,
+              customClass: {
+                popup: 'alert-warp',
+                container: 'alert-container',
+              },
+            });
+            this.router.navigateByUrl('/dash', { skipLocationChange: true }).then(() => {
+              this.router.navigate(["Administrationlazy/SetupMaster"]);
+            });
 
           } else {
-            this.backdrop = 'block';
-            this.ErrorModalDatecheckundefined = 'block';
-
+            Swal.fire({
+              type: 'warning',
+              title: 'warning',
+              text: 'Invalid Data',
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 1500,
+              customClass: {
+                popup: 'alert-warp',
+                container: 'alert-container',
+              },
+            });
           }
 
 
@@ -626,22 +385,8 @@ export class SetupmasterComponent implements OnInit {
     this.backdrop = 'none';
     this.Setupblock = 'none';
     this.code = fadata.country;
-    this.APG = fadata.age;
     this.orgname = fadata.cmp;
-    this.GAP_M = fadata.gap;
-    this.FHH = fadata.fsfrom;
-    this.TOHH = fadata.fsto;
-    this.eveningFromHH = fadata.ssfrom;
-    this.eveinisecondTOEHH = fadata.ssto;
-    this.rfa = fadata.rfa;
-    this.csa = fadata.cfa;
     this.nfa = fadata.nfa;
-    this.FMM = fadata.fsfromm;
-    this.TOMM = fadata.fstom;
-    this.eveningToMM = fadata.ssfromm;
-    this.eveingsecondTOMM = fadata.sstom;
-
-
     localStorage.setItem('CMPNAME', fadata.cmp)
 
     if (fadata.country != null) {
@@ -689,18 +434,9 @@ export class SetupmasterComponent implements OnInit {
     if (Form.valid) {
       this.isInvalid = false;
       this.commonService.data.cmpid = localStorage.getItem("CompanyID");
-      this.commonService.data.age = this.APG;
       this.commonService.data.currency = this.code;
       this.commonService.data.country = this.Country_M;
       this.commonService.data.roomtime = this.HH + ':' + this.MM;
-      this.commonService.data.Language = "English (India) - en-IN";
-      this.commonService.data.GAPINTERVAL = this.GAP_M;
-      this.commonService.data.FROM = this.FHH + ':' + this.FMM;
-      this.commonService.data.TO = this.TOHH + ':' + this.TOMM;
-      this.commonService.data.SECFROM = this.eveningFromHH + ':' + this.eveningToMM;
-      this.commonService.data.SECTO = this.eveinisecondTOEHH + ':' + this.eveingsecondTOMM;
-      this.commonService.data.cfa = this.csa;
-      this.commonService.data.rfa = this.rfa;
       this.commonService.data.nfa = this.nfa;
       this.commonService.postData('SetupMaster/UpdateSetupdata', this.commonService.data)
         .subscribe(data => {
@@ -739,14 +475,34 @@ export class SetupmasterComponent implements OnInit {
               this.urls = [];
             }
 
-
-
-            this.backdrop = 'block';
-            this.ModalDatecheckundefined = 'block';
-
+            Swal.fire({
+              type: 'success',
+              title: 'success',
+              text: 'Saved successfully',
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 1500,
+              customClass: {
+                popup: 'alert-warp',
+                container: 'alert-container',
+              },
+            });
+            this.router.navigateByUrl('/dash', { skipLocationChange: true }).then(() => {
+              this.router.navigate(["Administrationlazy/SetupMaster"]);
+            });
           } else {
-            this.backdrop = 'block';
-            this.ErrorModalDatecheckundefined = 'block';
+            Swal.fire({
+              type: 'warning',
+              title: 'warning',
+              text: 'Invalid Data',
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 1500,
+              customClass: {
+                popup: 'alert-warp',
+                container: 'alert-container',
+              },
+            });
 
           }
 

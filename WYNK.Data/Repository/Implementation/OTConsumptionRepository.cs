@@ -960,7 +960,7 @@ namespace WYNK.Data.Repository.Implementation
 
                                 var Age = PasswordEncodeandDecode.ToAgeString(WYNKContext.Registration.Where(x => x.UIN == OTConsumptionDetails.UIN && x.CMPID == OTConsumptionDetails.Cmpid).Select(x=>x.DateofBirth).FirstOrDefault());
                                 var result = Regex.Match(Age, @"\d+").Value;
-                                var PaediatricAge = CMPSContext.Setup.Where(x => x.CMPID == OTConsumptionDetails.Cmpid).Select(x => x.Pediatric).FirstOrDefault();
+                                var PaediatricAge = 18;
                                 var IsArtificialeye = WYNKContext.RegistrationExtension.Where(x => x.UIN == OTConsumptionDetails.UIN && x.CMPID == OTConsumptionDetails.Cmpid).FirstOrDefault();
 
                                 /* update CampPatientFootfall table SurgeryUnderWent Column */

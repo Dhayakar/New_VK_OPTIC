@@ -793,7 +793,7 @@ namespace WYNK.Data.Repository.Implementation
                     //////////////////////////podiatrist NewPatient///////////////////////////////////////
                     var Age = PasswordEncodeandDecode.ToAgeString(AddReg.RegistrationMaster.DateofBirth);
                     var result = Regex.Match(Age, @"\d+").Value;
-                    var PodiatristAge = CMPSContext.Setup.Where(x => x.CMPID == AddReg.RegistrationMaster.CMPID).Select(x => x.Pediatric).FirstOrDefault();
+                   // var PodiatristAge = CMPSContext.Setup.Where(x => x.CMPID == AddReg.RegistrationMaster.CMPID).Select(x => x.Pediatric).FirstOrDefault();
                     ////////////////////////// Ocular(Artificialeye)///////////////////////////////////////
                     // var temp = AddReg.RegistrationMaster.CMPID;
                     var results = WYNKContext.PatientFootfall.Where(x => x.Date.Date == datereglocaltime.Date).ToList();
@@ -811,39 +811,7 @@ namespace WYNK.Data.Repository.Implementation
                     {
                         ManagementMaster = WYNKContext.PatientFootfall.Where(x => x.Date == Date1 && x.CmpID == AddReg.Cmpid).FirstOrDefault();
 
-                        //////////////////////////podiatrist NewPatient///////////////////////////////////////
-                        if (Convert.ToInt32(PodiatristAge) > Convert.ToInt32(result))
-                        {
-                            ////////////////////////// Ocular(Artificialeye)///////////////////////////////////////
-                            if (AddReg.RegistrationExtension.Artificialeye == true)
-                            {
-                                ManagementMaster.NewPediatricOcular += 1;
-                                ManagementMaster.NewPediatricNormal += 0;
-                            }
-                            else
-                            {
-                                ManagementMaster.NewPediatricNormal += 1;
-                                ManagementMaster.NewPediatricOcular += 0;
-                            }
-                            ManagementMaster.NewGeneralNormal += 0;
-                            ManagementMaster.NewGeneralOcular += 0;
-                        }
-                        else
-                        {
-                            ////////////////////////// Ocular(Artificialeye)///////////////////////////////////////
-                            if (AddReg.RegistrationExtension.Artificialeye == true)
-                            {
-                                ManagementMaster.NewGeneralOcular += 1;
-                                ManagementMaster.NewGeneralNormal += 0;
-                            }
-                            else
-                            {
-                                ManagementMaster.NewGeneralNormal += 1;
-                                ManagementMaster.NewGeneralOcular += 0;
-                            }
-                            ManagementMaster.NewPediatricOcular += 0;
-                            ManagementMaster.NewPediatricNormal += 0;
-                        }
+
                         ////////////////////////// Consulation Fee///////////////////////////////////////
                         if (AddReg.RegistrationTranMaster.RegistrationFees != null)
                         {
@@ -867,7 +835,7 @@ namespace WYNK.Data.Repository.Implementation
 
                         ManagementMaster.NewPatients = +1;
                         //////////////////////////podiatrist NewPatient///////////////////////////////////////
-                        if (Convert.ToInt32(PodiatristAge) > Convert.ToInt32(result))
+                        if (Convert.ToInt32(18) > Convert.ToInt32(result))
                         {
                             ////////////////////////// Ocular(Artificialeye)///////////////////////////////////////
                             if (AddReg.RegistrationExtension.Artificialeye == true)
@@ -1315,7 +1283,7 @@ namespace WYNK.Data.Repository.Implementation
                         //////////////////////////podiatrist NewPatient///////////////////////////////////////
                         var Age = PasswordEncodeandDecode.ToAgeString(AddReg.RegistrationMaster.DateofBirth);
                         var result = Regex.Match(Age, @"\d+").Value;
-                        var PodiatristAge = CMPSContext.Setup.Where(x => x.CMPID == Cmpid).Select(x => x.Pediatric).FirstOrDefault();
+                        var PodiatristAge = 18;
                         ////////////////////////// Ocular(Artificialeye)///////////////////////////////////////
 
                         //var Date1 = WYNKContext.PatientFootfall.Where(x => x.Date.Date == registrationTranMaster.DateofVisit.Date).Select(x => x.Date.Date).FirstOrDefault();
@@ -1705,7 +1673,7 @@ namespace WYNK.Data.Repository.Implementation
                         //////////////////////////podiatrist NewPatient///////////////////////////////////////
                         var Age = PasswordEncodeandDecode.ToAgeString(AddReg.RegistrationMaster.DateofBirth);
                         var result = Regex.Match(Age, @"\d+").Value;
-                        var PodiatristAge = CMPSContext.Setup.Where(x => x.CMPID == Cmpid).Select(x => x.Pediatric).FirstOrDefault();
+                        var PodiatristAge = 18;
                         ////////////////////////// Ocular(Artificialeye)///////////////////////////////////////
 
                         //var Date1 = WYNKContext.PatientFootfall.Where(x => x.Date.Date == registrationTranMaster.DateofVisit.Date).Select(x => x.Date.Date).FirstOrDefault();
@@ -2952,7 +2920,7 @@ namespace WYNK.Data.Repository.Implementation
             reg.PatientAssignStatus = new List<PatientAssignStatus>();
             reg.PaymentMaster = new List<Payment_Master>();
             var utctimes = CMPSContext.Setup.Where(x => x.CMPID == CompanyID).Select(x => x.UTCTime).FirstOrDefault();
-            reg.regapplicablevalues = Convert.ToString(CMPSContext.Setup.Where(x => x.CMPID == Convert.ToInt32(CompanyID)).Select(x => x.Registrationfeeapplicable).FirstOrDefault());
+            reg.regapplicablevalues = "false";
             TimeSpan utctime = TimeSpan.Parse(utctimes);
             if (userDoctorIDs != null)
             {
