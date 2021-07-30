@@ -39,8 +39,14 @@
             <div class="card mb-3">
               <h5 class="card-header  text-white">
                 Expense
-                <button style="float:right;margin-left:1%" class="btn btn-warning-default" data-toggle="tooltip" title="Add Expense Master" (click)="AddExpenseMaster()">Add Expense Master</button>
-                <button style="float:right" class="btn btn-warning-default" data-toggle="tooltip" title="Add Expense details" (click)="AddExpenseNewgrid()">Add Item</button>
+                <button style="float:right;margin-left:1%" class="btn btn-warning-default" data-toggle="tooltip" title="Add Expense Master"
+                        (click)="AddExpenseMaster()">
+                  Add Expense Master
+                </button>
+                <button style="float:right" class="btn btn-warning-default" data-toggle="tooltip" title="Add Expense details"
+                        (click)="AddExpenseNewgrid()">
+                  Add Item
+                </button>
               </h5>
               <div class="card-body">
                 <div class="row">
@@ -53,26 +59,38 @@
                       </ng-container>
                       <ng-container matColumnDef="Description">
                         <th mat-header-cell *matHeaderCellDef style="width:30%"> Description </th>
-                        <td mat-cell *matCellDef="let transaction; let id =index">
-                          <mat-form-field appearance="outline">
-                            <mat-select value="{{transaction.ID}}" (selectionChange)="DescriptionChange(id,$event,transaction)">
-                              <mat-option *ngFor="let Paymentsmode of expensearry" value="{{Paymentsmode.ID}}">
-                                {{Paymentsmode.Description}}
-                              </mat-option>
-                            </mat-select>
-                          </mat-form-field>
+                        <td mat-cell *matCellDef="let transaction; let id =index" #ExpenseMode
+                            (keyup.enter)="enterexpenseMode(id)"
+                            contenteditable="true">
+                          <mat-select #ExpenseModee (focus)="ExpenseModee.open()" value="{{transaction.ID}}"
+                                      (openedChange)="someMethodExpenseMode(id,$event,transaction)"
+                                      (selectionChange)="DescriptionChange(id,$event,transaction);ExpenseModee.close()">
+                            <input matInput #inputExpensemode class="search"
+                                   (input)="FIlterdatapaymode($event.target.value)" autocomplete="off">
+                            <mat-option *ngFor="let Paymentsmode of expensearry" value="{{Paymentsmode.ID}}">
+                              {{Paymentsmode.Description}}
+                            </mat-option>
+                          </mat-select>
                         </td>
                         <td mat-footer-cell *matFooterCellDef>Total</td>
                       </ng-container>
                       <ng-container matColumnDef="Amt">
                         <th mat-header-cell *matHeaderCellDef style="width:15%"> Amount </th>
-                        <td mat-cell *matCellDef="let transaction; let id= index " contenteditable="true" (keypress)="RestrictNegativeValues($event)" (keyup)="changeQtyValue(id,'Amount',$event);">{{transaction.Amount}}</td>
+                        <td mat-cell *matCellDef="let transaction; let id= index ">
+                          <input type="text" matInput value="{{transaction.Amount}}" class="form-control tableinputheight"
+                                 (keypress)="RestrictNegativeValues($event)" (keyup)="changeQtyValue(id,'Amount',$event)"
+                                 autocomplete="off" #Expenseamt>
+                        </td>
                         <td mat-footer-cell *matFooterCellDef> {{TotalAmt| currency:Country2}} </td>
                       </ng-container>
                       <ng-container matColumnDef="Remmrk">
                         <th mat-header-cell *matHeaderCellDef style="width:30%"> Narration </th>
                         <td mat-cell *matCellDef="let transaction; let id = index">
-                          <input value="{{transaction.Remarks}}" style="border: 1px solid lightgray; padding: 6px; margin-top: -10px;border-radius: 4px;" matInput (keyup)="changeRemarks(id,'Remmrk',$event);" placeholder="Enter Remarks">
+                          <input value="{{transaction.Remarks}}"
+                                 class="form-control tableinputheight" matInput
+                                 (keyup)="changeRemarks(id,'Remmrk',$event);"
+                                 (keydown.enter)="DescriptionexpenseName(id,$event,transaction)"
+                                 placeholder="Enter Remarks" autocomplete="off" #ExpenseRemarks>
                         </td>
                         <td mat-footer-cell *matFooterCellDef> </td>
                       </ng-container>
@@ -108,91 +126,112 @@
                 <div class="row">
                   <div class="col-sm-12 mt-1p">
                     <div class="row" heightAuto-300px>
-                      <table mat-table [dataSource]="dataSource3" class="custom-table withoutbackgroung search-table table-bordered" style="width:98%">
+                      <table style="width:98%" mat-table [dataSource]="dataSource3" class="custom-table withoutbackgroung search-table table-bordered">
+
                         <ng-container matColumnDef="PaymentMode">
                           <th mat-header-cell *matHeaderCellDef>Payment Mode</th>
-                          <td mat-cell *matCellDef="let element;let id = index;">
-                            <mat-form-field appearance="outline">
-                              <mat-select (selectionChange)="PaymentChange(id,$event,element)">
-                                <mat-option *ngFor="let Paymentsmode of Paymentsmodes" [value]="Paymentsmode.Value">
-                                  {{Paymentsmode.Text}}
-                                </mat-option>
-                              </mat-select>
-                            </mat-form-field>
+                          <td mat-cell *matCellDef="let element;let id = index;" id="tablepress" (keypress)="DistanceODtablepress($event)" (keyup.enter)="enterPaymentMode(id)" (keyup.ArrowLeft)="arrowlefPaymentMode(id,$event,element)" (keyup.arrowright)="arrowrightPaymentMode(id,$event,element)" (keyup.ArrowDown)="arrowdownPaymentMode(id)" (keyup.ArrowUp)="arrowupPaymentMode(id)" [attr.contenteditable]="element.PaymentMode != '' || element.PaymentMode == ''" #PaymentMode>
+                            <mat-select #PaymentModee (focus)="PaymentModee.open()"
+                                        (keyup.enter)="savePaymentMode(id,$event,element)" (openedChange)="someMethodPaymentMode(id,$event,element)"
+                                        (selectionChange)="PaymentChangee(id,$event,element);PaymentModee.close()" value="{{element.PaymentMode}}">
+                              <input matInput #inputpaymode class="search" (keyup.arrowright)="arrowrightPaymentModee(id,$event,element)"
+                                     (input)="FIlterdatapaymode($event.target.value)" autocomplete="off">
+                              <mat-option *ngFor="let Paymentsmode of Paymentsmodes" [value]="Paymentsmode.Value">
+                                {{Paymentsmode.Text}}
+                              </mat-option>
+                            </mat-select>
                           </td>
                           <td mat-footer-cell *matFooterCellDef> </td>
                         </ng-container>
                         <ng-container matColumnDef="BankName">
                           <th mat-header-cell *matHeaderCellDef>Bank Name</th>
-                          <td mat-cell *matCellDef="let element" [contentEditable]="element.PaymentMode !='Cash'">
-                            <mat-form-field appearance="outline">
-                              <input (blur)="BankName($event,element)" [disabled]="element.PaymentMode =='Cash'  " maxlength="100" matInput placeholder="Enter BankName" name="BankName" type="text">
-                            </mat-form-field>
+                          <td mat-cell *matCellDef="let element;let id = index">
+                            <input (keyup)="BankNameenter(id,'BankName',$event)" matInput value="{{element.BankName}}" maxlength="100"
+                                   [disabled]="element.PaymentMode =='Cash'" type="text" class="form-control tableinputheight"
+                                   (keypress)="nameField($event)"
+                                   (keyup.ArrowLeft)="arrowlefBankName(id,$event,element)" (keyup.arrowright)="arrowrightBankName(id,$event,element)"
+                                   (keyup.ArrowDown)="arrowdownBankName(id,$event,element)" (keyup.ArrowUp)="arrowupBankName(id,$event,element)"
+                                   (keyup.enter)="DescriptionBankName(id,$event,element)" autocomplete="off" #BankName>
                           </td>
                           <td mat-footer-cell *matFooterCellDef> </td>
                         </ng-container>
                         <ng-container matColumnDef="InstrumentNumber">
                           <th mat-header-cell *matHeaderCellDef>Instrument Number</th>
-                          <td mat-cell *matCellDef="let element" [contentEditable]="element.PaymentMode !='Cash'">
-                            <mat-form-field appearance="outline">
-                              <input (blur)="InstrumentNumber($event,element)" [disabled]="element.PaymentMode =='Cash'" maxlength="15" (keypress)="numberOnly($event)" matInput placeholder="Enter Instrument Number" name="InstrumentNumber" type="text">
-                            </mat-form-field>
+                          <td mat-cell *matCellDef="let element;let id = index">
+                            <input (keyup)="InstrumentNumberenter(id,'InstrumentNumber',$event)"
+                                   matInput value="{{element.InstrumentNumber}}" maxlength="15"
+                                   [disabled]="element.PaymentMode =='Cash'" type="text" class="form-control tableinputheight"
+                                   (keypress)="numberOnly($event)" (keyup.ArrowLeft)="arrowlefInstrumentNumber(id,$event,element)"
+                                   (keyup.arrowright)="arrowrightInstrumentNumber(id,$event,element)"
+                                   (keyup.ArrowDown)="arrowdownInstrumentNumber(id,$event,element)"
+                                   (keyup.ArrowUp)="arrowupInstrumentNumber(id,$event,element)"
+                                   (keyup.enter)="DescriptionInstrumentNumber(id,$event,element)" autocomplete="off" #InstrumentNumber>
                           </td>
                           <td mat-footer-cell *matFooterCellDef> </td>
                         </ng-container>
+
                         <ng-container matColumnDef="InstrumentDate">
                           <th mat-header-cell *matHeaderCellDef>Instrument Date</th>
-                          <td mat-cell *matCellDef="let element" [contentEditable]="element.PaymentMode !='Cash' || element.PaymentMode !='Debit card'|| element.PaymentMode !='Credit Card'">
-                            <mat-form-field appearance="outline">
-                              <input [disabled]="element.PaymentMode =='Cash' || element.PaymentMode =='Debit card'|| element.PaymentMode =='Credit Card' "
-                                     name="InstrumentDate" autocomplete="off" [min]="maxToDate" matInput [matDatepicker]="InstrumentDate" (dateChange)="dateofinstrument($event,element)" placeholder="InstrumentDate">
-                              <mat-datepicker-toggle matSuffix [for]="InstrumentDate"></mat-datepicker-toggle>
-                              <mat-datepicker #InstrumentDate></mat-datepicker>
-                            </mat-form-field>
+                          <td mat-cell *matCellDef="let element;let id = index">
+                            <input id="tablepress" (keypress)="DistanceODtablepress($event)" matInput type="date" value="{{element.Instrumentdate}}"
+                                   class="form-control tableinputheight"
+                                   [disabled]="element.PaymentMode =='Cash' || element.PaymentMode =='Debit card'|| element.PaymentMode =='Credit Card'"
+                                   (change)="dateofinstrument(id,'Instrumentdate',$event)"
+                                   (keyup.ArrowLeft)="arrowlefInstrumentdate(id,$event,element)"
+                                   (keyup.arrowright)="arrowrightInstrumentdate(id,$event,element)"
+                                   (keyup.ArrowDown)="arrowdownInstrumentdate(id,$event,element)"
+                                   (keyup.ArrowUp)="arrowupInstrumentdate(id,$event,element)"
+                                   (keyup.enter)="DescriptionInstrumentdate(id,$event,element)" #InstrumentDate>
                           </td>
                           <td mat-footer-cell *matFooterCellDef> </td>
                         </ng-container>
+
                         <ng-container matColumnDef="ExpiryDate">
                           <th mat-header-cell *matHeaderCellDef>Expiry Date</th>
-                          <td mat-cell *matCellDef="let element" [contentEditable]="element.PaymentMode !='Cash'|| element.PaymentMode !='Demand Draft' ">
-                            <mat-form-field appearance="outline">
-                              <input (dateChange)="dateexpiry($event,element)" [disabled]="element.PaymentMode =='Cash'|| element.PaymentMode =='Demand Draft' " autocomplete="off" [min]="MINExpiryDate"
-                                     name="ExpiryDate" matInput [matDatepicker]="ExpiryDate" placeholder="ExpiryDate" type="datetime">
-                              <mat-datepicker-toggle matSuffix [for]="ExpiryDate"></mat-datepicker-toggle>
-                              <mat-datepicker #ExpiryDate></mat-datepicker>
-                            </mat-form-field>
+                          <td mat-cell *matCellDef="let element;let id = index">
+                            <input id="tablepress" (keypress)="DistanceODtablepress($event)"
+                                   matInput type="date" value="{{element.Expirydate}}"
+                                   [disabled]="element.PaymentMode =='Cash'|| element.PaymentMode =='Demand Draft'"
+                                   class="form-control tableinputheight" (keyup.ArrowLeft)="arrowlefInstrumentExpiryDate(id,$event,element)"
+                                   (keyup.arrowright)="arrowrightInstrumentExpiryDate(id,$event,element)"
+                                   (keyup.ArrowDown)="arrowdownInstrumentExpiryDate(id,$event,element)"
+                                   (keyup.ArrowUp)="arrowupInstrumentExpiryDate(id,$event,element)"
+                                   (change)="dateExpirydate(id,'Expirydate',$event)" (keyup.enter)="DescriptionExpirydate(id,$event,element)"
+                                   #ExpiryDate>
                           </td>
                           <td mat-footer-cell *matFooterCellDef><b>Total</b></td>
                         </ng-container>
                         <ng-container matColumnDef="Branch">
                           <th mat-header-cell *matHeaderCellDef>Branch</th>
-                          <td mat-cell *matCellDef="let element"
-                              [contentEditable]="element.PaymentMode !='Cash'|| element.PaymentMode !='Debit card' || element.PaymentMode !='Credit Card'">
-                            <mat-form-field appearance="outline">
-                              <input (blur)="Branch($event,element)"
-                                     [disabled]="element.PaymentMode =='Cash' || element.PaymentMode =='Debit card' || element.PaymentMode =='Credit Card'"
-                                     (keypress)="nameField($event)" maxlength="50" matInput name="Branch" placeholder="Branch" type="text">
-                            </mat-form-field>
-
+                          <td mat-cell *matCellDef="let element;let id = index">
+                            <input matInput value="{{element.BankBranch}}" [disabled]="element.PaymentMode =='Cash' || element.PaymentMode =='Debit card' || element.PaymentMode =='Credit Card'" class="form-control tableinputheight" (keyup)="Branchvalue(id,'BankBranch',$event)" (keypress)="nameField($event)" maxlength="50" (keyup.ArrowLeft)="arrowleftBranch(id,$event,element)" (keyup.arrowright)="arrowrightBranch(id,$event,element)" (keyup.ArrowDown)="arrowdownBranch(id,$event,element)" (keyup.ArrowUp)="arrowupBranch(id,$event,element)" (keyup.enter)="DescriptionBranch(id,$event,element)" autocomplete="off" type="text" #Branch>
                           </td>
                           <td mat-footer-cell *matFooterCellDef></td>
                         </ng-container>
                         <ng-container matColumnDef="Amount">
                           <th mat-header-cell *matHeaderCellDef>Amount</th>
-                          <td mat-cell *matCellDef="let element;let id = index" required (keyup)="Amount(id,'Amount',$event,element)" (keypress)="numberOnly($event)" contenteditable="true">
-
-                            {{element.Amount | number :'1.2-2'}}
+                          <td mat-cell *matCellDef="let element;let id = index">
+                            <input type="text" matInput value="{{element.Amount}}" class="form-control tableinputheight"
+                                   (keypress)="numberOnly($event)" (keyup)="Amountcheck(id,'Amount',$event)"
+                                   (keyup.ArrowLeft)="arrowleftAmount(id,$event,element)"
+                                   (keyup.arrowright)="arrowrightAmount(id,$event,element)"
+                                   (keyup.ArrowDown)="arrowdownAmount(id,$event,element)"
+                                   (keyup.ArrowUp)="arrowupAmount(id,$event,element)"
+                                   (keyup.enter)="DescriptionAmount(id,$event,element)"
+                                   autocomplete="off" #Amount>
                           </td>
                           <td mat-footer-cell *matFooterCellDef>
                             <strong>
-                              {{PTotalAmount1() | currency:Country2}}
+                              {{PaymentTotalAmount() | currency:Country2}}
                             </strong>
                           </td>
                         </ng-container>
                         <ng-container matColumnDef="Action">
                           <th mat-header-cell *matHeaderCellDef>Action</th>
-                          <td mat-cell *matCellDef="let element;let id = index" [contentEditable]="disableRow">
-                            <i class="fas fa-trash-alt icon-delete" title="Delete" (click)="removePaytype(i)"></i>
+                          <td mat-cell *matCellDef="let element;let id = index">
+                            <button type="button" mat-icon-button (click)="removePaytype(id)">
+                              <mat-icon data-toggle="tooltip" title="Remove" class="grab">delete</mat-icon>
+                            </button>
                           </td>
                           <td mat-footer-cell *matFooterCellDef></td>
                         </ng-container>
@@ -320,17 +359,17 @@
       <div class="modal-footer" style="border:none">
         <div class="row" style="margin-top: 1%;margin-bottom:1%">
           <div class="col-sm-4">
-          
+
           </div>
           <div class="col-sm-4">
-          
+
 
           </div>
           <div class="col-sm-4">
             <button class="btn btn-warning-default" style="margin-right:1%" (click)="Cancelhelp(ExpenseMasterForm)">Cancel</button>
             <button *ngIf="Hideupdatebtn" class="btn btn-danger" style="margin-right:1%" (click)="Deletedata(ExpenseMasterForm)">Delete</button>
-            <button *ngIf="Hideupdatebtn"  class="btn btn-primary" (click)="Updatedata(ExpenseMasterForm)">Submit</button>
-            <button *ngIf="Hidesubmitbtn"  class="btn btn-primary" (click)="Submitdata(ExpenseMasterForm)">Submit</button>
+            <button *ngIf="Hideupdatebtn" class="btn btn-primary" (click)="Updatedata(ExpenseMasterForm)">Submit</button>
+            <button *ngIf="Hidesubmitbtn" class="btn btn-primary" (click)="Submitdata(ExpenseMasterForm)">Submit</button>
           </div>
         </div>
       </div>

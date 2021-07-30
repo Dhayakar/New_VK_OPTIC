@@ -1778,7 +1778,7 @@ namespace WYNK.Data.Repository.Implementation
             var Setup = CMPSContext.Setup.Where(x => x.CMPID == CMPID).ToList();
 
 
-            return Setup.Where(x => x.CMPID == CMPID).Select(x => new Dropdown { Registrationfeeapplicable = x.Registrationfeeapplicable, Insuranceapplicable = x.Insuranceapplicable }).ToList();
+            return Setup.Where(x => x.CMPID == CMPID).Select(x => new Dropdown { Registrationfeeapplicable = false, Insuranceapplicable = false }).ToList();
         }
         public int? GettingReceiptTcID(int TC, int CompanyID)
         {
@@ -2165,7 +2165,7 @@ namespace WYNK.Data.Repository.Implementation
         }
         public dynamic Gettimeinterval(int cmpid)
         {
-            return CMPSContext.Setup.Where(x => x.CMPID == cmpid).Select(x => x.GapInterval).FirstOrDefault();
+            return CMPSContext.Setup.Where(x => x.CMPID == cmpid).FirstOrDefault();
 
         }
         public IEnumerable<Dropdown> GetDescriptionsvalues()
@@ -2347,6 +2347,12 @@ namespace WYNK.Data.Repository.Implementation
             return CMPSContext.OneLineMaster.Where(X => X.ParentTag == "TBUT" && X.IsActive == true && X.IsDeleted == false).OrderByDescending(x => x.OLMID).Select(x => new Dropdown { Text = x.ParentDescription, Value = x.OLMID.ToString() }).ToList();
         }
 
+
+        public dynamic GetitemsbasedonCMPID(int cmpid, string format)
+        {
+            return WYNKContext.Brand.Where(X => X.cmpID == cmpid && X.IsActive == true && X.IsDeleted == false && X.BrandType == format).OrderByDescending(x => x.ID).Select(x => new Dropdown { Text = x.Description, Value = x.ID.ToString() }).ToList();
+        }
+
         public dynamic GetLoginLocationId(int CMPID)
         {
             var ComplocId = CMPSContext.Company.Where(x => x.CmpID == CMPID).Select(x => x.LocationID).FirstOrDefault();
@@ -2359,6 +2365,7 @@ namespace WYNK.Data.Repository.Implementation
         }
 
 
+
         public dynamic GetCMID(string URL)
         {
             var data = new SetupMasterViewModel();
@@ -2368,11 +2375,7 @@ namespace WYNK.Data.Repository.Implementation
             data.cmpname = cmpdetails.CompanyName;
             data.cmpaddress = cmpdetails.Address1;
             data.cmpphone = cmpdetails.Phone1;
-            var fstime = string.Format("{0:00}:{1:00}", setupdetails.FSFromTime.Hours, setupdetails.FSFromTime.Minutes);
-            var fsytime = string.Format("{0:00}:{1:00}", setupdetails.FSToTime.Hours, setupdetails.FSToTime.Minutes);
-            var sstime = string.Format("{0:00}:{1:00}", setupdetails.SSFromTime.Hours, setupdetails.SSFromTime.Minutes);
-            var ssytime = string.Format("{0:00}:{1:00}", setupdetails.SSToTime.Hours, setupdetails.SSToTime.Minutes);
-            data.consultinghrs = fstime + " - " + fsytime + " hrs & " + sstime + "-" + ssytime + " hrs";
+
             return data;
         }
 

@@ -44,7 +44,7 @@ namespace WYNK.Data.Repository.Implementation
         }
         public dynamic paediatrics(int cmpid)
         {
-            var paediatrics = CMPSContext.Setup.Where(x => x.CMPID == cmpid).Select(x => x.Pediatric).FirstOrDefault();
+            var paediatrics = 18;
 
             return paediatrics;
         }

@@ -43,17 +43,8 @@ namespace WYNK.Data.Repository.Implementation
                     Countrysetup.Symbol = con.currency.Trim();
                     Countrysetup.CreatedUTC = DateTime.UtcNow;
                     Countrysetup.CreatedBy = 32252;
-                    Countrysetup.Pediatric = con.age;
                     Countrysetup.UTCTime = con.roomtime;
-                    Countrysetup.Language = con.Language;
-                    Countrysetup.Registrationfeeapplicable = Convert.ToBoolean(con.rfa);
-                    Countrysetup.Insuranceapplicable = Convert.ToBoolean(con.cfa);
-                    Countrysetup.IsNotification = Convert.ToBoolean(con.nfa);
-                    Countrysetup.GapInterval = con.GAPINTERVAL;
-                    Countrysetup.FSFromTime = Convert.ToDateTime(con.FROM).TimeOfDay;
-                    Countrysetup.FSToTime = Convert.ToDateTime(con.TO).TimeOfDay;
-                    Countrysetup.SSFromTime = Convert.ToDateTime(con.SECFROM).TimeOfDay;
-                    Countrysetup.SSToTime = Convert.ToDateTime(con.SECTO).TimeOfDay;
+                    Countrysetup.IsNotification = Convert.ToBoolean(con.nfa);      
                     CMPSContext.Setup.Add(Countrysetup);
                     CMPSContext.SaveChanges();
                 }
@@ -176,38 +167,18 @@ namespace WYNK.Data.Repository.Implementation
                                              {
                                                  cmp = cc.CMPID,
                                                  country = cc.Country,
-                                                 age = cc.Pediatric,
                                                  roomtime = cc.UTCTime,
                                                  symbol = cc.Symbol,
-                                                 fsfromtime = cc.FSFromTime,
-                                                 fstotime = cc.FSToTime,
-                                                 ssfromtime = cc.SSFromTime,
-                                                 sstotime = cc.SSToTime,
-                                                 time = cc.GapInterval,
-                                                 cfa = cc.Insuranceapplicable,
                                                  nfa = cc.IsNotification,
-                                                 rfa = cc.Registrationfeeapplicable,
                                              }).ToList();
             foreach (var item in SetupMasterFulldetailsSss)
             {
                 var datas = new SetupMasterFulldetails();
-                datas.age = item.age;
                 datas.cmp = CMPSContext.Company.Where(x => x.CmpID == item.cmp).Select(x => x.CompanyName).FirstOrDefault();
                 datas.country = CMPSContext.Country.Where(x => x.ID == Convert.ToInt32(item.country)).Select(x => x.CountryName).FirstOrDefault();
-                datas.cfa = Convert.ToString(item.cfa).ToLower();
                 datas.nfa = Convert.ToString(item.nfa).ToLower();
-                datas.rfa = Convert.ToString(item.rfa).ToLower();
                 datas.Roomtime = item.roomtime;
-                datas.symbol = item.symbol;
-                datas.fsfrom = new DateTime(item.fsfromtime.Ticks).ToString("HH");
-                datas.fsto = new DateTime(item.fstotime.Ticks).ToString("HH");
-                datas.ssfrom = new DateTime(item.ssfromtime.Ticks).ToString("HH");
-                datas.ssto = new DateTime(item.sstotime.Ticks).ToString("HH");
-                datas.fsfromm = new DateTime(item.fsfromtime.Ticks).ToString("mm");
-                datas.fstom = new DateTime(item.fstotime.Ticks).ToString("mm");
-                datas.ssfromm = new DateTime(item.ssfromtime.Ticks).ToString("mm");
-                datas.sstom = new DateTime(item.sstotime.Ticks).ToString("mm");
-                datas.gap = item.time;
+                datas.symbol = item.symbol;    
                 var regs = CMPSContext.Setup.Where(x => x.CMPID == item.cmp).Select(x => x.LogoPath).FirstOrDefault();
                 if (regs != null)
                 {
@@ -247,23 +218,12 @@ namespace WYNK.Data.Repository.Implementation
             var cmpid = CMPSContext.Setup.Where(x => x.CMPID == Convert.ToInt32(ccmpid)).FirstOrDefault();
             try
             {
-
-                // cmpid.CMPID = Convert.ToInt32(con.cmpid);
                 cmpid.UTCTime = con.roomtime;
                 cmpid.Country = con.country;
                 cmpid.Symbol = con.currency.Trim();
                 cmpid.UpdatedUTC = DateTime.UtcNow;
                 cmpid.UpdatedBy = 32252;
-                cmpid.Pediatric = con.age;
-                cmpid.Language = con.Language;
-                cmpid.Registrationfeeapplicable = Convert.ToBoolean(con.rfa);
-                cmpid.Insuranceapplicable = Convert.ToBoolean(con.cfa);
                 cmpid.IsNotification = Convert.ToBoolean(con.nfa);
-                cmpid.GapInterval = con.GAPINTERVAL;
-                cmpid.FSFromTime = Convert.ToDateTime(con.FROM).TimeOfDay;
-                cmpid.FSToTime = Convert.ToDateTime(con.TO).TimeOfDay;
-                cmpid.SSFromTime = Convert.ToDateTime(con.SECFROM).TimeOfDay;
-                cmpid.SSToTime = Convert.ToDateTime(con.SECTO).TimeOfDay;
                 CMPSContext.Entry(cmpid).State = EntityState.Modified;
                 CMPSContext.SaveChanges();
 

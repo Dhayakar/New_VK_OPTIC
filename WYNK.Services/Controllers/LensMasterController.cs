@@ -28,6 +28,13 @@ namespace WYNK.Services.Controllers
         }
 
 
+        [HttpGet("Getitemsbasedonbrandid/{cmpid}/{ID}")]
+        public dynamic Getitemsbasedonbrandid(int cmpid , int ID)
+        {
+            return _repoWrapper.LensMaster.Getitemsbasedonbrandid(cmpid,ID);
+        }
+
+
         [HttpPost("Insertlensmaster")]
         public dynamic Insertlensmaster([FromBody] LensMatserDataView Addlens)
         {

@@ -160,7 +160,7 @@ export class OpticalComponent implements OnInit {
             this.optical = data.opticprescription;
             this.optical.forEach((x: any) => {
               debugger;
-              if (x.Ocular === "OD" && x.Type === 134) {
+              if (x.Ocular === "OD" && x.TypeDescription === "Distance Vision") {
                 this.SPHACC1 = x.DistSph;
                 this.CYLACC1 = x.NearCyl;
                 this.AXISACC1 = x.PinAxis;
@@ -171,7 +171,7 @@ export class OpticalComponent implements OnInit {
                 this.MPD1 = x.MPDOS;
 
               }
-              else if (x.Ocular === "OS" && x.Type === 134) {
+              else if (x.Ocular === "OS" && x.TypeDescription === "Distance Vision") {
                 this.SPHTAN1 = x.DistSph;
                 this.CYLTAN1 = x.NearCyl;
                 this.AXISTAN1 = x.PinAxis;
@@ -181,7 +181,7 @@ export class OpticalComponent implements OnInit {
                 this.MPD = x.MPDOD;
                 this.MPD1 = x.MPDOS;
               }
-              else if (x.Ocular === "OD" && x.Type === 135) {
+              else if (x.Ocular === "OD" && x.TypeDescription === "Near Vision") {
                 this.SPHNV1 = x.DistSph;
                 this.VANVV = x.Add;
                 this.Remarksacc = x.Remarks;
@@ -189,7 +189,7 @@ export class OpticalComponent implements OnInit {
                 this.MPD = x.MPDOD;
                 this.MPD1 = x.MPDOS;
               }
-              else if (x.Ocular === "OS" && x.Type === 135) {
+              else if (x.Ocular === "OS" && x.TypeDescription === "Near Vision") {
                 this.SPHNVR1 = x.DistSph;
                 this.VANVRR = x.Add;
                 this.Remarksacc = x.Remarks;
@@ -281,23 +281,23 @@ export class OpticalComponent implements OnInit {
       this.predate = data.pdate;
       this.alle = data.patientdesc;
       this.opticalprint.forEach((x: any) => {
-        if (x.Ocular === "OD" && x.Type === 134) {
+        if (x.Ocular === "OD" && x.TypeDescription === "Distance Vision") {
           this.sphod = x.DistSph;
           this.cylod = x.NearCyl;
           this.axisod = x.PinAxis;
           this.vaod = x.Add;
         }
-        else if (x.Ocular === "OS" && x.Type === 134) {
+        else if (x.Ocular === "OS" && x.TypeDescription === "Distance Vision") {
           this.sphos = x.DistSph;
           this.cylos = x.NearCyl;
           this.axisos = x.PinAxis;
           this.vaos = x.Add;
         }
-        else if (x.Ocular === "OD" && x.Type === 135) {
+        else if (x.Ocular === "OD" && x.TypeDescription === "Near Vision") {
           this.sphodd = x.DistSph;
           this.vaodd = x.Add;
         }
-        else if (x.Ocular === "OS" && x.Type === 135) {
+        else if (x.Ocular === "OS" && x.TypeDescription === "Near Vision") {
           this.sphoss = x.DistSph;
           this.vaoss = x.Add;
           this.remarks = x.Remarks;

@@ -296,7 +296,7 @@ namespace WYNK.Data.Repository.Implementation
             coun.ParentDescription = Location.LocMaster.ParentDescription;
             coun.Pincode = Location.LocMaster.Pincode;
             coun.ParentID = Location.LocMaster.ParentID;
-            coun.ParentTag = "LOCATION";
+            coun.ParentTag = "loc";
             coun.IsActive = true;
             coun.CreatedUTC = DateTime.UtcNow;
             coun.CreatedBy = Location.LocMaster.CreatedBy;

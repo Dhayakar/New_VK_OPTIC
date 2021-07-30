@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild, DoCheck, ElementRef } from '@angular/core';
-import { MatTableDataSource,DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material';
+import { MatTableDataSource, DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { SearchComponent } from '../search/search.component';
@@ -86,7 +86,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
   M_Branch;
   M_ExpiryDate;
   M_Amount;
-  @ViewChild('UploadPres')  UploadPres: ElementRef;
+  @ViewChild('UploadPres') UploadPres: ElementRef;
   M_PrescriptionDate;
   M_PrescribedDoctor;
   paydel1 = [];
@@ -192,7 +192,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
         this.commonService.getListOfData('Common/GetAccessdetails/' + localStorage.getItem("CompanyID") + '/' + localStorage.getItem("userroleID") + '/' + Pathname).subscribe(data => {
           debugger;
           this.accessdata = data.GetAvccessDetails;
-   
+
           this.commonService.data.CustomerItemOrders = [];
           this.commonService.data.paymenttran = [];
           if (this.accessdata.find(x => x.Add == true)) {
@@ -375,7 +375,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
         }, 1000)
         this.M_OrderDate = this.date.getDate() + "-" + this.date.toLocaleString('default', { month: 'long' }) + "-" + this.date.getFullYear();
         this.commonService.getListOfData('Common/Getpaymentvalues').subscribe(data => { this.Paymentsmodes = data; });
-        this.commonService.getListOfData('Common/GetLoginLocationId/' + localStorage.getItem("CompanyID")).subscribe(data => {this.LoginLocationId = data.data;});
+        this.commonService.getListOfData('Common/GetLoginLocationId/' + localStorage.getItem("CompanyID")).subscribe(data => { this.LoginLocationId = data.data; });
         this.displayedColumns3 = ['PaymentMode', 'InstrumentNumber', 'InstrumentDate', 'BankName', 'Branch', 'ExpiryDate', 'Amount', 'Action'];
       }
       else {
@@ -400,7 +400,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
   displayedColumns = ['Type', 'Brand', 'Description', 'UOM', 'QTY', 'Price', 'Amount', 'Discount%', 'DiscountAmount', 'GrossAmount', 'CGST', 'CGSTValue', 'SGST', 'SGSTValue', 'NetAmount', 'Action']
   dataSource = new MatTableDataSource();
 
-  displayedColumnsCombined = ['Types', 'Brands', 'Descriptions', 'UOMs', 'QTYs', 'Prices', 'Amounts','header-row-group', 'GrossAmounts', 'CGSTTax', 'SGSTTax', 'NetAmounts', 'Actions']
+  displayedColumnsCombined = ['Types', 'Brands', 'Descriptions', 'UOMs', 'QTYs', 'Prices', 'Amounts', 'header-row-group', 'GrossAmounts', 'CGSTTax', 'SGSTTax', 'NetAmounts', 'Actions']
 
 
   displayedColumnsGst = ['Type', 'Brand', 'Description', 'UOM', 'QTY', 'Price', 'Amount', 'Discount%', 'DiscountAmount', 'GrossAmount', 'CGST', 'CGSTValue', 'SGST', 'SGSTValue', 'NetAmount', 'Action']
@@ -410,10 +410,10 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
   displayedColumnsIGsts = ['Types', 'Brands', 'Descriptions', 'UOMs', 'QTYs', 'Prices', 'Amounts', 'header-row-group', 'GrossAmounts', 'IGSTTax', 'NetAmounts', 'Actions']
 
 
-  displayedColumns1 = ['Action','Type', 'Brand', 'Description', 'Price','Stockqty']
+  displayedColumns1 = ['Action', 'Type', 'Brand', 'Description', 'Price', 'Stockqty']
   dataSource1 = new MatTableDataSource();
 
-  displayedColumns2 = ['Brand', 'Model', 'LensOptions', 'Description', 'Index', 'Color', 'Size','Quantity']
+  displayedColumns2 = ['Brand', 'Model', 'LensOptions', 'Description', 'Index', 'Color', 'Size', 'Quantity']
   dataSource2 = new MatTableDataSource();
 
   //displayedColumns3: string[] 
@@ -422,7 +422,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
   displayedColumns3: string[] = ['PaymentMode', 'BankName', 'InstrumentNumber', 'InstrumentDate', 'ExpiryDate', 'Branch', 'Amount', 'Action'];
   dataSource3 = new MatTableDataSource();
 
-  displayedColumns4: string[] = ['Action','OrderNo', 'OrderDate', 'CustomerName','OrderStatus']
+  displayedColumns4: string[] = ['Action', 'OrderNo', 'OrderDate', 'CustomerName', 'OrderStatus']
   dataSource4 = new MatTableDataSource();
 
   PrintdisplayedColumns = ['Type', 'Brand', 'Description', 'UOM', 'QTY', 'Price', 'Amount', 'Discount%', 'DiscountAmount', 'GrossAmount', 'CGST', 'CGSTValue', 'SGST', 'SGSTValue', 'NetAmount']
@@ -487,7 +487,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
         this.M_CustomerID = item.ID
         this.opticalPrescriptionpopup = 'block';
         this.backdrop = 'block';
-       
+
 
         this.DisabledPrescriptions = false;
         this.M_CustomerName = item.Name.concat(' ', item.MidleName != null ? item.MidleName : '', item.LastName != null ? item.LastName : '')
@@ -563,13 +563,11 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
     });
   }
 
-  opticalPrescriptionpopupNo()
-  {
+  opticalPrescriptionpopupNo() {
     this.opticalPrescriptionpopup = 'none';
     this.backdrop = 'none';
   }
-  opticalPrescriptionpopupYes()
-  {
+  opticalPrescriptionpopupYes() {
     debugger;
     this.Addfinalprescription();
 
@@ -579,8 +577,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
     this.opticalPrescriptionblock = 'block';
     this.backdrop = 'block';
   }
-  opticalPrescriptionClose()
-  {
+  opticalPrescriptionClose() {
     this.FINALPRESCRIPTION = [];
     this.Refraction = [];
     this.arrop = [];
@@ -629,8 +626,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
 
   SearchSelected(index) {
     debugger
-    try
-    {
+    try {
       if (this.TaxGroup == undefined || this.TaxGroup == null) {
         return
       }
@@ -662,8 +658,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
         }
       });
     }
-    catch (Error)
-    {
+    catch (Error) {
       this.commonService.getListOfData('Common/ErrorList/' + Error.message + '/' + "Customer Order" + '/' + localStorage.getItem("CompanyID") + '/' + localStorage.getItem('userroleID') + '/')
         .subscribe(data => {
           debugger;
@@ -695,8 +690,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
   selecttype(element) {
     debugger
 
-    try
-    {
+    try {
       this.dataSource.data.splice(this.Index, 1);
       this.dataSource._updateChangeSubscription();
 
@@ -721,7 +715,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
             CustomOrder.UOM = element.UOM;
             CustomOrder.Quantity = 1;
             if (element.Sptaxinclusive) {
-              CustomOrder.UnitPrice =Math.ceil(element.Price * 100 / (100 + element.GST))
+              CustomOrder.UnitPrice = Math.ceil(element.Price * 100 / (100 + element.GST))
               CustomOrder.GrossAmount = CustomOrder.UnitPrice - (element.Price * data.DiscountPercent / 100);
             } else {
               CustomOrder.UnitPrice = Math.ceil(element.Price);
@@ -900,7 +894,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
           CustomOrder.FrameTypeID = element.FrameTypeID;
           CustomOrder.FrameWidthID = element.FrameWidthID;
 
-          CustomOrder.Amount = this.TaxGroup == "withinState" ? Math.floor(CustomOrder.GrossAmount + (CustomOrder.GrossAmount * (element.CGST / 100)) + (CustomOrder.GrossAmount * (element.SGST / 100))) :  Math.floor(CustomOrder.GrossAmount + (CustomOrder.GrossAmount * (element.IGST / 100)));
+          CustomOrder.Amount = this.TaxGroup == "withinState" ? Math.floor(CustomOrder.GrossAmount + (CustomOrder.GrossAmount * (element.CGST / 100)) + (CustomOrder.GrossAmount * (element.SGST / 100))) : Math.floor(CustomOrder.GrossAmount + (CustomOrder.GrossAmount * (element.IGST / 100)));
           this.commonService.data.CustomerItemOrders.unshift(CustomOrder);
           this.dataSource.data = this.commonService.data.CustomerItemOrders;
           this.dataSource._updateChangeSubscription();
@@ -922,12 +916,11 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
         }
       });
     }
-    catch (Error)
-    {
+    catch (Error) {
       this.commonService.getListOfData('Common/ErrorList/' + Error.message + '/' + "Customer Order" + '/' + localStorage.getItem("CompanyID") + '/' + localStorage.getItem('userroleID') + '/')
-        .subscribe(data => {});
+        .subscribe(data => { });
     }
-   
+
   }
 
   OfferModelClose() {
@@ -935,7 +928,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
     this.backdrop = 'none';
   }
 
-  Relatedoffers(element,index) {
+  Relatedoffers(element, index) {
     try {
       // this.OnePlusOfferDetails = this.commonService.data.CustomerItemOrders[index].Offer;
 
@@ -964,7 +957,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
 
   changeValue(id, property: string, event: any) {
     debugger
-    let result:number = toNumber(event.target.textContent.trim());
+    let result: number = toNumber(event.target.textContent.trim());
     if (result == 0) {
       event.target.textContent = '';
       this.dataSource2.filteredData[id][property] = ' ';
@@ -983,22 +976,20 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
 
   RestrictSymbols(e): boolean {
     debugger
-    if (!(e.keyCode >= 48 && e.keyCode <= 57 || (e.keyCode > 64 && e.keyCode < 91) || (e.keyCode > 96 && e.keyCode < 123) || e.keyCode == 32 || e.keyCode == 9 || (e.keyCode > 34 && e.keyCode < 41) || e.keyCode == 8 )) {
+    if (!(e.keyCode >= 48 && e.keyCode <= 57 || (e.keyCode > 64 && e.keyCode < 91) || (e.keyCode > 96 && e.keyCode < 123) || e.keyCode == 32 || e.keyCode == 9 || (e.keyCode > 34 && e.keyCode < 41) || e.keyCode == 8)) {
       return false;
     }
   }
 
   OfferValueCheck() {
     debugger
-       var TableGivenQty = this.OnePlusOfferDetails.filter(x =>
-        {
-          if (!x.Quantity)
-          {
-            return false
-          }
-          return true
-        }).reduce((summ, v) =>
-            summ = summ + v.Quantity, 0)
+    var TableGivenQty = this.OnePlusOfferDetails.filter(x => {
+      if (!x.Quantity) {
+        return false
+      }
+      return true
+    }).reduce((summ, v) =>
+      summ = summ + v.Quantity, 0)
 
     if (TableGivenQty > this.RemainingItems) {
       alert('Cannot Give More Than Offer Value')
@@ -1010,46 +1001,46 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
     }
     else {
       debugger
-          var ParentRowId = this.commonService.data.CustomerItemOrders[this.Index].ParentRowId;
-          var QuantityGivenContent = this.OnePlusOfferDetails.filter(x => { if (!x.Quantity) { return false } return true })
+      var ParentRowId = this.commonService.data.CustomerItemOrders[this.Index].ParentRowId;
+      var QuantityGivenContent = this.OnePlusOfferDetails.filter(x => { if (!x.Quantity) { return false } return true })
 
-          QuantityGivenContent.forEach(value => {
-            debugger
-            let CustomOrder = new CustomerItemOrder();
-            CustomOrder.LMID = value.LMID;
-            CustomOrder.LTID = value.LTID;
-            CustomOrder.Type = value.Type;
-            CustomOrder.Brand = value.Brand;
-            CustomOrder.Model = value.Model;
-            CustomOrder.LensOptions = value.LensOptions;
-            CustomOrder.Index = value.Index;
-            CustomOrder.Quantity = value.Quantity;
-            CustomOrder.Color = value.Color;
-            CustomOrder.HSNNo = value.HSNNo;
-            CustomOrder.UOM = value.UOM;
-            CustomOrder.GrossAmount = 0;
-            CustomOrder.UnitPrice = 0;
-            CustomOrder.Discount = 0;
-            CustomOrder.DiscountAmount = 0;
-            CustomOrder.CGST = value.GST / 2;
-            CustomOrder.SGST = value.GST / 2;
-            CustomOrder.Amount = 0;
-            CustomOrder.ChildRowId = ParentRowId;
-            this.commonService.data.CustomerItemOrders.push(CustomOrder);
-            this.dataSource._updateChangeSubscription();
+      QuantityGivenContent.forEach(value => {
+        debugger
+        let CustomOrder = new CustomerItemOrder();
+        CustomOrder.LMID = value.LMID;
+        CustomOrder.LTID = value.LTID;
+        CustomOrder.Type = value.Type;
+        CustomOrder.Brand = value.Brand;
+        CustomOrder.Model = value.Model;
+        CustomOrder.LensOptions = value.LensOptions;
+        CustomOrder.Index = value.Index;
+        CustomOrder.Quantity = value.Quantity;
+        CustomOrder.Color = value.Color;
+        CustomOrder.HSNNo = value.HSNNo;
+        CustomOrder.UOM = value.UOM;
+        CustomOrder.GrossAmount = 0;
+        CustomOrder.UnitPrice = 0;
+        CustomOrder.Discount = 0;
+        CustomOrder.DiscountAmount = 0;
+        CustomOrder.CGST = value.GST / 2;
+        CustomOrder.SGST = value.GST / 2;
+        CustomOrder.Amount = 0;
+        CustomOrder.ChildRowId = ParentRowId;
+        this.commonService.data.CustomerItemOrders.push(CustomOrder);
+        this.dataSource._updateChangeSubscription();
 
-            this.commonService.data.CustomerItemOrders[this.Index].Count = this.commonService.data.CustomerItemOrders[this.Index].Count + value.Quantity;
-          })
-           //this.commonService.data.CustomerItemOrders[this.Index].Offer.forEach((x) => {
-           //   debugger
-           //   x.Quantity = null;
-           //})
- 
-           // console.log(this.commonService.data.CustomerItemOrders);
-          this.OfferModel = 'none';
-          this.backdrop = 'none';
-         }
-   }
+        this.commonService.data.CustomerItemOrders[this.Index].Count = this.commonService.data.CustomerItemOrders[this.Index].Count + value.Quantity;
+      })
+      //this.commonService.data.CustomerItemOrders[this.Index].Offer.forEach((x) => {
+      //   debugger
+      //   x.Quantity = null;
+      //})
+
+      // console.log(this.commonService.data.CustomerItemOrders);
+      this.OfferModel = 'none';
+      this.backdrop = 'none';
+    }
+  }
 
   Drop(element, i) {
     debugger
@@ -1138,8 +1129,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
         })
       }
     }
-    catch (Error)
-    {
+    catch (Error) {
       this.commonService.getListOfData('Common/ErrorList/' + Error.message + '/' + "Customer Order" + '/' + localStorage.getItem("CompanyID") + '/' + localStorage.getItem('userroleID') + '/')
         .subscribe(data => { });
     }
@@ -1233,7 +1223,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
     this.dataSource.filteredData[id][property] = result;
     this.dataSource._updateChangeSubscription();
   }
-    
+
   changeValueDiscountAmount(id, element, property: string) {
     var num = (element.Quantity * element.UnitPrice) * element.Discount / 100;
     num = parseFloat(num.toFixed(2));
@@ -1317,8 +1307,8 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
   }
 
   getTotalAmount() {
-      var restotalcost = this.commonService.data.CustomerItemOrders.map(t => t.Amount).reduce((acc, value) => acc + value, 0);
-      return restotalcost;
+    var restotalcost = this.commonService.data.CustomerItemOrders.map(t => t.Amount).reduce((acc, value) => acc + value, 0);
+    return restotalcost;
   }
 
   GetCGSTAmount() {
@@ -1337,8 +1327,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
   }
 
   CheckingAdvanceAmount(event) {
-    if (this.commonService.data.CustomerItemOrders.length < 1)
-    {
+    if (this.commonService.data.CustomerItemOrders.length < 1) {
       this.M_AdvanceAmount = '';
       Swal.fire({
         type: 'warning',
@@ -1401,7 +1390,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
     }
 
     if (this.commonService.data.paymenttran.length >= 1) {
-    
+
       if (this.M_Amount > this.GivenAdvanceTotal) {
         Swal.fire({
           type: 'warning',
@@ -1548,7 +1537,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
     this.dataSource3._updateChangeSubscription();
 
     this.M_Amount = undefined;
- 
+
     this.M_paymode = "";
     this.M_InstrumentDate = "";
     this.M_InstrumentNumber = "";
@@ -1594,7 +1583,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
     }
     return false;
   }
-/* Placed Ordered List */
+  /* Placed Ordered List */
   PlacedOrderedList() {
     debugger
     try {
@@ -1637,8 +1626,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
             this.dataSource4._updateChangeSubscription();
           }
         }
-        else
-        {
+        else {
           Swal.fire
             ({
               type: 'warning',
@@ -1655,8 +1643,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
       });
 
     }
-    catch (Error)
-    {
+    catch (Error) {
       this.commonService.getListOfData('Common/ErrorList/' + Error.message + '/' + "Customer Order" + '/' + localStorage.getItem("CompanyID") + '/' + localStorage.getItem('userroleID') + '/')
         .subscribe(data => { });
     }
@@ -1784,11 +1771,11 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
   }
 
   OrderedListModelClose() {
-  this.backdrop = 'none';
-  this.OrderedListModel = 'none';
+    this.backdrop = 'none';
+    this.OrderedListModel = 'none';
   }
 
- /* Submit */
+  /* Submit */
   Submit() {
     debugger
     try {
@@ -1874,8 +1861,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
         return;
       }
 
-      if (this.GivenAdvanceTotal != null || this.GivenAdvanceTotal != undefined || this.GivenAdvanceTotal != "")
-      {
+      if (this.GivenAdvanceTotal != null || this.GivenAdvanceTotal != undefined || this.GivenAdvanceTotal != "") {
         if (this.GivenAdvanceTotal != this.getPaymentTotalCost()) {
           Swal.fire({
             type: 'warning',
@@ -2025,10 +2011,10 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
               position: 'top-end',
               showConfirmButton: false,
               timer: 1500,
-                customClass: {
-                  popup: 'alert-warp',
-                  container: 'alert-container',
-                },
+              customClass: {
+                popup: 'alert-warp',
+                container: 'alert-container',
+              },
             });
           }
           else {
@@ -2155,7 +2141,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
     this.M_Deliverydate = '';
     this.M_Remarks = '';
 
-    this.SPHACC1 ='';
+    this.SPHACC1 = '';
     this.CYLACC1 = '';
     this.AXISACC1 = '';
     this.VA = '';
@@ -2220,8 +2206,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
           }
         });
     }
-    catch (Error)
-    {
+    catch (Error) {
       this.commonService.getListOfData('Common/ErrorList/' + Error.message + '/' + "Customer Order" + '/' + localStorage.getItem("CompanyID") + '/' + localStorage.getItem('userroleID') + '/')
         .subscribe(data => { });
     }
@@ -2239,11 +2224,9 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
   FINALPRESCRIPTION1 = [];
   //UPPdate;
   //CUMID;
-  selectPrescription(element)
-  {
+  selectPrescription(element) {
     debugger;
-    try
-    {
+    try {
       this.Addfinalprescription();
       this.regTranId = element.RegistrationTranID;
       this.UIN = element.UIN;
@@ -2262,33 +2245,33 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
 
       this.M_PrescribedDoctor = element.Doctorname;
       this.M_PrescriptionDate = element.PrescriptionDate;
-      
+
       this.commonService.getListOfData('CustomerOrder/GetOpticalPrescription/' + this.regTranId + '/' + this.M_PrescriptionDate + '/' + parseInt(localStorage.getItem('CompanyID')))
         .subscribe((data: any) => {
 
           this.FINALPRESCRIPTION1 = [];
 
           this.optical = data.opticprescription1;
-          
+
           //var pres = new OPTICALPRESCRIPTION1();
 
           //this.optical.forEach((x: any) => {
           //  if (x.Ocular === "OD" && x.Type === 134) {
-              
+
           //    pres.DistSph = x.DistSph;
           //    pres.NearCyl = x.NearCyl;
           //    pres.PinAxis = x.PinAxis;
           //    pres.Add = x.Add;
           //  }
           //  else if (x.Ocular === "OS" && x.Type === 134) {
-           
+
           //    pres.DistSphOS = x.DistSph;
           //    pres.NearCylOS = x.NearCyl;
           //    pres.PinAxisOS = x.PinAxis;
           //    pres.AddOS = x.Add;
           //  }
           //  else if (x.Ocular === "OD" && x.Type === 135) {
-        
+
           //    pres.DistSphNVOD = x.DistSph;
           //    pres.AddNVOD = x.Add;
           //  }
@@ -2308,24 +2291,24 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
           //this.FINALPRESCRIPTION1 = this.commonService.data.FINALPRESCRIPTION1;
           //this.optical = data.opticprescription;
           this.optical.forEach((x: any) => {
-            if (x.Ocular === "OD" && x.Type === 134) {
+            if (x.Ocular === "OD" && x.TypeDescription === "Distance Vision") {
               this.SPHACC1 = x.DistSph;
               this.CYLACC1 = x.NearCyl;
               this.AXISACC1 = x.PinAxis;
               this.VA = x.Add;
 
             }
-            else if (x.Ocular === "OS" && x.Type === 134) {
+            else if (x.Ocular === "OS" && x.TypeDescription === "Distance Vision") {
               this.SPHTAN1 = x.DistSph;
               this.CYLTAN1 = x.NearCyl;
               this.AXISTAN1 = x.PinAxis;
               this.VATANA1 = x.Add;
             }
-            else if (x.Ocular === "OD" && x.Type === 135) {
+            else if (x.Ocular === "OD" && x.TypeDescription === "Near Vision") {
               this.SPHNV1 = x.DistSph;
               this.VANVV = x.Add;
             }
-            else if (x.Ocular === "OS" && x.Type === 135) {
+            else if (x.Ocular === "OS" && x.TypeDescription === "Near Vision") {
               this.SPHNVR1 = x.DistSph;
               this.VANVRR = x.Add;
             }
@@ -2340,7 +2323,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
           });
           this.isDisabled = false;
         });
-    
+
 
       //this.commonService.getListOfData('CustomerOrder/IsCustomerFound/' + localStorage.getItem("CompanyID") + '/' + element.UIN)
       //  .subscribe(data => {
@@ -2411,101 +2394,96 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
 
 
 
-  EditOP()
-  {
-   // this.UPPdate;
+  EditOP() {
+    // this.UPPdate;
     //this.CUMID;
     this.backdrop = 'none';
     this.PrescriptionModel = 'none';
 
     this.commonService.getListOfData('CustomerOrder/GetOpticalPrescription/' + this.regTranId + '/' + this.M_PrescriptionDate + '/' + parseInt(localStorage.getItem('CompanyID')))
-          .subscribe(data =>
-          {
-            if (data.opticprescription1.length > 0)
-            {
-              this.opticalprescription = [];
-              var final = new FINALPRESCRIPTION();
-              final.Description = 'Final Prescription';
-              final.Ocular = 'OD';
-              final.DistSph = '';
-              final.NearCyl = '';
-              final.PinAxis = '';
-              final.Add = '';
-              final.DistSphNVOD = '';
-              final.AddNVOD = '';
-              final.OcularOS = 'OS';
-              final.DistSphOS = '';
-              final.NearCylOS = '';
-              final.PinAxisOS = '';
-              final.AddOS = '';
-              final.DistSphNVOS = '';
-              final.AddNVOS = '';
-              final.Remarks = '';
-              final.CreatedBy = Number(localStorage.getItem('userroleID'));
-              final.PD = '',
-                final.MPDOD = '',
-                final.MPDOS = '',
-                final.OD = false,
-                final.OS = false,
-                this.opticalprescription.push(final);
+      .subscribe(data => {
+        if (data.opticprescription1.length > 0) {
+          this.opticalprescription = [];
+          var final = new FINALPRESCRIPTION();
+          final.Description = 'Final Prescription';
+          final.Ocular = 'OD';
+          final.DistSph = '';
+          final.NearCyl = '';
+          final.PinAxis = '';
+          final.Add = '';
+          final.DistSphNVOD = '';
+          final.AddNVOD = '';
+          final.OcularOS = 'OS';
+          final.DistSphOS = '';
+          final.NearCylOS = '';
+          final.PinAxisOS = '';
+          final.AddOS = '';
+          final.DistSphNVOS = '';
+          final.AddNVOS = '';
+          final.Remarks = '';
+          final.CreatedBy = Number(localStorage.getItem('userroleID'));
+          final.PD = '',
+            final.MPDOD = '',
+            final.MPDOS = '',
+            final.OD = false,
+            final.OS = false,
+            this.opticalprescription.push(final);
 
-              this.FINALPRESCRIPTION = data.opticprescription1;
-              this.FINALPRESCRIPTION.forEach((x: any) => {
-                debugger;
-                if (x.Ocular === "OD" && x.Type === 134) {
-                  this.opticalprescription[0].DistSph = x.DistSph;
-                  this.opticalprescription[0].NearCyl = x.NearCyl;
-                  this.opticalprescription[0].PinAxis = x.PinAxis;
-                  this.opticalprescription[0].Add = x.Add;
-                  this.opticalprescription[0].Remarks = x.Remarks;
-                  this.opticalprescription[0].PD = x.PD;
-                  this.opticalprescription[0].MPDOD = x.MPDOD;
-                  this.opticalprescription[0].MPDOS = x.MPDOS;
-
-                }
-                else if (x.Ocular === "OS" && x.Type === 134) {
-                  this.opticalprescription[0].DistSphOS = x.DistSph;
-                  this.opticalprescription[0].NearCylOS = x.NearCyl;
-                  this.opticalprescription[0].PinAxisOS= x.PinAxis;
-                  this.opticalprescription[0].AddOS = x.Add;
-                  this.opticalprescription[0].Remarks = x.Remarks;
-                  this.opticalprescription[0].PD = x.PD;
-                  this.opticalprescription[0].MPDOD = x.MPDOD;
-                  this.opticalprescription[0].MPDOS = x.MPDOS;
-                }
-                else if (x.Ocular === "OD" && x.Type === 135) {
-                  this.opticalprescription[0].DistSphNVOD   = x.DistSph;
-                  this.opticalprescription[0].AddNVOD  = x.Add;
-                  this.opticalprescription[0].Remarks = x.Remarks;
-                  this.opticalprescription[0].PD = x.PD;
-                  this.opticalprescription[0].MPDOD = x.MPDOD;
-                  this.opticalprescription[0].MPDOS = x.MPDOS;
-                } 
-                else if (x.Ocular === "OS" && x.Type === 135) {
-                  this.opticalprescription[0].DistSphNVOS= x.DistSph;
-                  this.opticalprescription[0].AddNVOS= x.Add;
-                  this.opticalprescription[0].Remarks = x.Remarks;
-                  this.opticalprescription[0].PD = x.PD;
-                  this.opticalprescription[0].MPDOD = x.MPDOD;
-                  this.opticalprescription[0].MPDOS = x.MPDOS;
-                } 
-                else
-                {
-
-                }
-              });
-              this.FINALPRESCRIPTION = [];
-              this.FINALPRESCRIPTION = this.opticalprescription;
-              this.commonService.data.FINALPRESCRIPTION = this.FINALPRESCRIPTION;
-              this.opticalPrescriptionblock = 'block';
-              this.backdrop = 'block';
-            }
-            else
-            {
+          this.FINALPRESCRIPTION = data.opticprescription1;
+          this.FINALPRESCRIPTION.forEach((x: any) => {
+            debugger;
+            if (x.Ocular === "OD" && x.TypeDescription === "Distance Vision") {
+              this.opticalprescription[0].DistSph = x.DistSph;
+              this.opticalprescription[0].NearCyl = x.NearCyl;
+              this.opticalprescription[0].PinAxis = x.PinAxis;
+              this.opticalprescription[0].Add = x.Add;
+              this.opticalprescription[0].Remarks = x.Remarks;
+              this.opticalprescription[0].PD = x.PD;
+              this.opticalprescription[0].MPDOD = x.MPDOD;
+              this.opticalprescription[0].MPDOS = x.MPDOS;
 
             }
+            else if (x.Ocular === "OS" && x.TypeDescription === "Distance Vision") {
+              this.opticalprescription[0].DistSphOS = x.DistSph;
+              this.opticalprescription[0].NearCylOS = x.NearCyl;
+              this.opticalprescription[0].PinAxisOS = x.PinAxis;
+              this.opticalprescription[0].AddOS = x.Add;
+              this.opticalprescription[0].Remarks = x.Remarks;
+              this.opticalprescription[0].PD = x.PD;
+              this.opticalprescription[0].MPDOD = x.MPDOD;
+              this.opticalprescription[0].MPDOS = x.MPDOS;
+            }
+            else if (x.Ocular === "OD" && x.TypeDescription === "Near Vision") {
+              this.opticalprescription[0].DistSphNVOD = x.DistSph;
+              this.opticalprescription[0].AddNVOD = x.Add;
+              this.opticalprescription[0].Remarks = x.Remarks;
+              this.opticalprescription[0].PD = x.PD;
+              this.opticalprescription[0].MPDOD = x.MPDOD;
+              this.opticalprescription[0].MPDOS = x.MPDOS;
+            }
+            else if (x.Ocular === "OS" && x.TypeDescription === "Near Vision") {
+              this.opticalprescription[0].DistSphNVOS = x.DistSph;
+              this.opticalprescription[0].AddNVOS = x.Add;
+              this.opticalprescription[0].Remarks = x.Remarks;
+              this.opticalprescription[0].PD = x.PD;
+              this.opticalprescription[0].MPDOD = x.MPDOD;
+              this.opticalprescription[0].MPDOS = x.MPDOS;
+            }
+            else {
 
+            }
           });
+          this.FINALPRESCRIPTION = [];
+          this.FINALPRESCRIPTION = this.opticalprescription;
+          this.commonService.data.FINALPRESCRIPTION = this.FINALPRESCRIPTION;
+          this.opticalPrescriptionblock = 'block';
+          this.backdrop = 'block';
+        }
+        else {
+
+        }
+
+      });
 
   }
 
@@ -2516,14 +2494,14 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
       this.backdrop = 'block';
       this.PrescriptionModel = 'block';
 
-      this.commonService.getListOfData('OpticalPrescription/GetopticalDetails/' + this.regTranId + '/')
+      this.commonService.getListOfData('CustomerOrder/GetOpticalPrescription/' + this.regTranId + '/' + this.M_PrescriptionDate + '/' + parseInt(localStorage.getItem('CompanyID')))
         .subscribe((data: any) => {
           debugger;
 
-          this.optical = data.opticprescription;
+          this.optical = data.opticprescription1;
           this.optical.forEach((x: any) => {
             debugger;
-            if (x.Ocular === "OD" && x.Type === 134) {
+            if (x.Ocular === "OD" && x.TypeDescription === "Distance Vision") {
               this.SPHACC1 = x.DistSph;
               this.CYLACC1 = x.NearCyl;
               this.AXISACC1 = x.PinAxis;
@@ -2534,7 +2512,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
               this.MPD1 = x.MPDOS;
 
             }
-            else if (x.Ocular === "OS" && x.Type === 134) {
+            else if (x.Ocular === "OS" && x.TypeDescription === "Distance Vision") {
               this.SPHTAN1 = x.DistSph;
               this.CYLTAN1 = x.NearCyl;
               this.AXISTAN1 = x.PinAxis;
@@ -2544,7 +2522,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
               this.MPD = x.MPDOD;
               this.MPD1 = x.MPDOS;
             }
-            else if (x.Ocular === "OD" && x.Type === 135) {
+            else if (x.Ocular === "OD" && x.TypeDescription === "Near Vision") {
               this.SPHNV1 = x.DistSph;
               this.VANVV = x.Add;
               this.Remarksacc = x.Remarks;
@@ -2552,7 +2530,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
               this.MPD = x.MPDOD;
               this.MPD1 = x.MPDOS;
             }
-            else if (x.Ocular === "OS" && x.Type === 135) {
+            else if (x.Ocular === "OS" && x.TypeDescription === "Near Vision") {
               this.SPHNVR1 = x.DistSph;
               this.VANVRR = x.Add;
               this.Remarksacc = x.Remarks;
@@ -2832,8 +2810,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
 
   }
 
-  PrescriptionFilter(event: Event)
-  {
+  PrescriptionFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.PrescriptionSource.filter = filterValue.trim().toLowerCase();
   }
@@ -2896,8 +2873,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
     }
   }
 
-  selectuploadnew()
-  {
+  selectuploadnew() {
     this.backdrop = 'block';
     this.Uploadfilesblock = 'block';
   }
@@ -2987,7 +2963,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
   arrop = [];
   opticalprescriptionlength = [];
   opticalprescription = [];
- // opticalprescription1 = [];
+  // opticalprescription1 = [];
   VAname;
   VAnamenear1;
   Addfinalprescription() {
@@ -3090,11 +3066,11 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
   ChangeDistanceaccep(i, event) {
     debugger;
     if (event.value == undefined) {
-      
+
       this.FINALPRESCRIPTION[i].Add = '';
     }
     else {
-     
+
       this.FINALPRESCRIPTION[i].Add = event.value;
 
     }
@@ -3104,13 +3080,13 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
   ChangeDistanceaccepos(i, event) {
     debugger;
     if (event.value == undefined) {
-      
+
       this.FINALPRESCRIPTION[i].AddOS = '';
     }
     else {
-     
+
       this.FINALPRESCRIPTION[i].AddOS = event.value;
-     
+
     }
 
   }
@@ -3118,11 +3094,11 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
   ChangeDistanceacceptance(i, event) {
     debugger;
     if (event.value == undefined) {
-     
+
       this.FINALPRESCRIPTION[i].AddNVOD = '';
     }
     else {
-    
+
       this.FINALPRESCRIPTION[i].AddNVOD = event.value;
 
     }
@@ -3133,33 +3109,33 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
   ChangeDistanceacceptanceos(i, event) {
     debugger;
     if (event.value == undefined) {
-     
+
       this.FINALPRESCRIPTION[i].AddNVOD = '';
     }
     else {
-      
+
       this.FINALPRESCRIPTION[i].AddNVOS = event.value;
-   
+
     }
 
   }
   changeValuesPDcommon(i, property: string, event: any) {
     debugger;
     let result = (event.target.value);
-   
+
     this.FINALPRESCRIPTION[i][property] = result;
   }
   changeValuesMPDODcommon(i, property: string, event: any) {
     debugger;
     let result = (event.target.value);
-   
+
     this.FINALPRESCRIPTION[i][property] = result;
   }
 
   changeValuesMPDOScommon(i, property: string, event: any) {
     debugger;
     let result = (event.target.value);
-   
+
     this.FINALPRESCRIPTION[i][property] = result;
   }
 
@@ -3270,7 +3246,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
   }
   MPDOD(i, event) {
     debugger;
-    const t = parseInt(event.target.value);  
+    const t = parseInt(event.target.value);
     const ttt = this.FINALPRESCRIPTION[i].PD;
 
     if (t > parseInt(ttt)) {
@@ -3287,13 +3263,13 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
         },
       });
       event.target.value = '';
-   
+
       this.FINALPRESCRIPTION[i].MPDOS = event.target.value;
 
       this.FINALPRESCRIPTION[i].MPDOD = event.target.value;
     } else {
       if (event.target.value != '') {
-      
+
         this.FINALPRESCRIPTION[i].MPDOD = event.target.value;
       } else {
         this.FINALPRESCRIPTION[i].MPDOD = '';
@@ -3321,13 +3297,13 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
         },
       });
       event.target.value = '';
-     
+
       this.FINALPRESCRIPTION[i].MPDOS = event.target.value;
-    
+
       this.FINALPRESCRIPTION[i].MPDOD = event.target.value;
     } else {
       if (event.target.value != '') {
-    
+
         this.FINALPRESCRIPTION[i].MPDOS = event.target.value;
       } else {
         this.FINALPRESCRIPTION[i].MPDOD = '';
@@ -3335,14 +3311,11 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
       }
     }
   }
-  onsubmitOpticalPrescription()
-  {
+  onsubmitOpticalPrescription() {
 
     this.commonService.postData('CustomerOrder/InsertOpticalPrescription/' + this.M_CustomerID + '/' + localStorage.getItem("CompanyID") + '/' + localStorage.getItem("userroleID"), this.commonService.data)
-      .subscribe(data =>
-      {
-        if (data.Success == true)
-        {
+      .subscribe(data => {
+        if (data.Success == true) {
           Swal.fire({
             type: 'success',
             title: 'success',
@@ -3362,8 +3335,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
           this.opticalPrescriptionblock = 'none';
           this.backdrop = 'none';
         }
-        else
-        {
+        else {
           Swal.fire({
             type: 'warning',
             title: 'warning',
@@ -3383,5 +3355,5 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
       });
 
   }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

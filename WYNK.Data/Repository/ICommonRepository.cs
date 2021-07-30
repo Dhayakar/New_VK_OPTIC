@@ -43,6 +43,7 @@ namespace WYNK.Data.Repository
         IEnumerable<Dropdown> GetCampNames();
         dynamic Getalldropdownvalues(int cmpid);
         dynamic Getalldinsurance(int cmpid);
+        dynamic GetitemsbasedonCMPID(int cmpid, string format);
         dynamic Getallchilddropdownvalues(int id);
         dynamic saveparentdesc(string id, int cmpid);
         dynamic savechilddesc(string id, string desc, int cmpid);

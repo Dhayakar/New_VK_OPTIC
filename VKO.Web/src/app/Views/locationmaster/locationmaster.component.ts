@@ -25,8 +25,6 @@ import { PeriodicElement } from '../investigation-register/investigation-registe
 declare var $: any;
 
 
-
-
 @Component({
   selector: 'app-locationmaster',
   templateUrl: './locationmaster.component.html',

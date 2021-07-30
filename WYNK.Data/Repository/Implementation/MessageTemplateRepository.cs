@@ -594,7 +594,7 @@ namespace WYNK.Data.Repository.Implementation
 
             else if (visisttype == "Pediatric")
             {
-                var Peduatrciage = CMPSContext.Setup.Where(x => x.CMPID == cmpid).Select(x => x.Pediatric).FirstOrDefault();
+                var Peduatrciage = 18;
 
                 if (periodtype == "week")
                 {
