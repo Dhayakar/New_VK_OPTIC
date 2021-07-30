@@ -65,6 +65,7 @@ namespace WYNK.Data.Model.ViewModel
         public string Fwidth { get; set; }
         public string Fstyle { get; set; }
         public int ID { get; set; }
+        public int CmpID { get; set; }
     }
     public class OpticalstockledgerI
     {
@@ -86,11 +87,13 @@ namespace WYNK.Data.Model.ViewModel
         public decimal Closingstock { get; set; }
         public int ID { get; set; }
         public int LTID { get; set; }
+        public int CmpID { get; set; }
     }
 
     public class Receipt
     {
         public string CmpName { get; set; }
+        public int CmpID { get; set; }
         public string DocumentNo { get; set; }
         public DateTime? DocumentDate { get; set; }
         public string DocumentType { get; set; }
@@ -175,6 +178,7 @@ namespace WYNK.Data.Model.ViewModel
         public int LTID { get; set; }
         public decimal Openingstock { get; set; }
         public int ID { get; set; }
+        public int CmpID { get; set; }
 
     }
 

@@ -67,10 +67,10 @@ export class LensMasterComponent implements OnInit {
   bindingtablefilter = false;
   getIndexsdata;
 
-  displayedColumnssq = ['Description', 'Type', 'Brand', 'Sph', 'Cyl', 'Axis', 'Add', 'Color', 'CostPrice', 'Price', 'UOM', 'TaxDescription', 'GST', 'Delete'];
+  displayedColumnssq = ['Description', 'Type', 'Brand', 'Sph', 'Cyl', 'Axis', 'Add', 'Color', 'CostPrice', 'InclusiveTax', 'Price', 'UOM', 'TaxDescription', 'GST', 'Delete'];
   dataSourcesq = new MatTableDataSource();
 
-  displayedColumnssqq = ['Description', 'Type', 'Brand', 'FrameShape', 'FrameType', 'FrameWidth', 'FrameStyle', 'Color', 'CostPrice', 'Price', 'UOM', 'TaxDescription', 'GST', 'Delete'];
+  displayedColumnssqq = ['Description', 'Type', 'Brand', 'FrameShape', 'FrameType', 'FrameWidth', 'FrameStyle', 'Color', 'CostPrice', 'InclusiveTax', 'Price', 'UOM', 'TaxDescription', 'GST', 'Delete'];
   dataSourcesqq = new MatTableDataSource();
 
   displayedColumnssqd = ['Action', 'Description', 'IsActive'];
@@ -408,38 +408,30 @@ export class LensMasterComponent implements OnInit {
   }
 
   M_GSTPER;
-  M_CESSPER;
-  M_ADDCESSPER;
   M_BGST;
+  M_IGST;
   Tax;
-  Addltax;
-  Addltax1;
   GSTSelected() {
     debugger;
     if (this.M_GSTPER != undefined) {
       this.commonService.getListOfData('LensMaster/GettaxDetails/' + this.M_GSTPER.Value + '/')
         .subscribe((data: any) => {
           data.Taxname.forEach((x: any) => {
-            this.M_CESSPER = x.Cesspercentage;
-            this.M_ADDCESSPER = x.AdditionalCesspercentage;
             this.M_BGST = x.GSTNo;
-            this.Addltax = x.CessDescription;
-            this.Addltax1 = x.AddtionalDescription;
+            this.M_IGST = x.IGSTpercentage;
           });
         });
     }
     else {
-      this.M_CESSPER = undefined;
-      this.M_ADDCESSPER = undefined;
       this.M_BGST = undefined;
-      this.Addltax = undefined;
-      this.Addltax1 = undefined;
+      this.M_IGST = undefined;
     }
 
   }
 
   M_Brand;
   M_Description;
+  IsActivelcf;
   M_LensType;
   M_Cyl;
   M_Axis;
@@ -459,6 +451,9 @@ export class LensMasterComponent implements OnInit {
 
   AddRows() {
     debugger;
+    for (var j = 0; j < this.commonService.data.LensTranModel.length; j++) {
+      this.commonService.data.LensTranModel[j].disab = false;
+    }
 
     this.commonService.data.LensTranModel = this.selectedarray;
 
@@ -593,25 +588,6 @@ export class LensMasterComponent implements OnInit {
     }
     else { }
 
-
-    if (this.M_Cyl != undefined && this.M_Cyl != "") {
-      if (this.M_Axis == undefined || this.M_Axis == "") {
-        Swal.fire({
-          type: 'warning',
-          title: 'warning',
-          text: 'Enter Axis',
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 1500,
-          customClass: {
-            popup: 'alert-warp',
-            container: 'alert-container',
-          },
-        });
-        return;
-      }
-    }
-
     if (this.M_checked == true) {
       if (this.M_GSTPER == undefined || this.M_GSTPER == "") {
         Swal.fire({
@@ -629,9 +605,6 @@ export class LensMasterComponent implements OnInit {
         return;
       }
     }
-
-
-
 
     var LTM = new LensTranModel();
 
@@ -651,16 +624,17 @@ export class LensMasterComponent implements OnInit {
     LTM.Prize = this.M_Price;
     LTM.Costprice = this.M_Cost;
     if (this.M_checked == true) {
+      LTM.Sptaxinclusivebool = "Yes";
       LTM.Sptaxinclusive = this.M_checked;
     }
     else {
-      LTM.Sptaxinclusive = false;
+      LTM.Sptaxinclusivebool = "No";
+      LTM.Sptaxinclusive = this.M_checked;
     }
 
     LTM.Model = this.M_Model;
-    LTM.CESSAmount = this.M_CESSPER;
-    LTM.ADDCESSAmount = this.M_ADDCESSPER;
     LTM.GST = this.M_BGST;
+    LTM.IGST = this.M_IGST;
     if (this.M_GSTPER != undefined) {
       LTM.TaxDescription = this.M_GSTPER.Text;
       LTM.TaxID = this.M_GSTPER.Value;
@@ -686,13 +660,11 @@ export class LensMasterComponent implements OnInit {
 
     if (this.lensTID != undefined) {
       LTM.ID = this.lensTID;
+      LTM.IsActive = this.IsActivelcf;
       this.disupdate = false;
     } else {
       this.disupdate = false;
     }
-
-    LTM.CessDescription = this.Addltax;
-    LTM.AddtionalDescription = this.Addltax1;
     LTM.Description = this.M_Description;
 
     if (this.M_SelectedType == "Lens" || this.M_SelectedType == "Contactlens") {
@@ -740,13 +712,11 @@ export class LensMasterComponent implements OnInit {
           this.M_Brand = undefined;
           this.M_HSNNo = undefined;
           this.M_BGST = undefined;
-          this.M_CESSPER = undefined;
-          this.M_ADDCESSPER = undefined;
+          this.M_IGST = undefined;
           this.M_GSTPER = undefined;
           this.M_Description = undefined;
-          this.Addltax = undefined;
-          this.Addltax1 = undefined;
           this.lensTID = undefined;
+          this.IsActivelcf = undefined;
           if (this.M_SelectedType == "Frame") {
             this.M_FrameShape = undefined;
             this.M_FrameType = undefined;
@@ -791,13 +761,11 @@ export class LensMasterComponent implements OnInit {
       this.M_Brand = undefined;
       this.M_HSNNo = undefined;
       this.M_BGST = undefined;
-      this.M_CESSPER = undefined;
-      this.M_ADDCESSPER = undefined;
+      this.M_IGST = undefined;
       this.M_GSTPER = undefined;
       this.M_Description = undefined;
-      this.Addltax = undefined;
-      this.Addltax1 = undefined;
       this.lensTID = undefined;
+      this.IsActivelcf = undefined;
       if (this.M_SelectedType == "Frame") {
         this.M_FrameShape = undefined;
         this.M_FrameType = undefined;
@@ -810,10 +778,6 @@ export class LensMasterComponent implements OnInit {
 
 
   }
-
-
-
-
   remove(i) {
     debugger;
     this.commonService.data.LensTranModel = this.selectedarray;
@@ -895,7 +859,6 @@ export class LensMasterComponent implements OnInit {
         if (this.commonService.data.LensTranModel.length == 0) {
           this.selectdisable = false;
         }
-
         Swal.fire({
           type: 'success',
           title: 'success',
@@ -927,7 +890,6 @@ export class LensMasterComponent implements OnInit {
     })
 
   }
-
 
   numberOnly(event): boolean {
     const charCode = (event.which) ? event.which : event.keyCode;
@@ -1024,11 +986,8 @@ export class LensMasterComponent implements OnInit {
           this.M_Description = undefined;
           this.M_SelectedType = undefined;
           this.M_GSTPER = undefined;
-          this.M_CESSPER = undefined;
-          this.M_ADDCESSPER = undefined;
-          this.Addltax = undefined;
-          this.Addltax1 = undefined;
           this.M_BGST = undefined;
+          this.M_IGST = undefined;
           this.M_Index = undefined;
           this.M_Color = undefined;
           this.M_Size = undefined;
@@ -1044,8 +1003,7 @@ export class LensMasterComponent implements OnInit {
           this.M_UOM = undefined;
           this.M_HSNNo = undefined;
           this.M_BGST = undefined;
-          this.M_CESSPER = undefined;
-          this.M_ADDCESSPER = undefined;
+          this.M_IGST = undefined;
           this.M_GSTPER = undefined;
           this.M_Description = undefined;
           this.hiddenSubmit = true;
@@ -1067,99 +1025,109 @@ export class LensMasterComponent implements OnInit {
 
   }
   lensTID;
+  click: boolean = false;
   Editlensframemaster(i, element) {
     debugger;
 
-    this.lensTID = element.ID;
-    if (this.lensTID != undefined) {
-      this.disupdate = true;
-    }
+      for (var j = 0; j < this.commonService.data.LensTranModel.length; j++) {
+        this.commonService.data.LensTranModel[j].disab = true;
+      }
+      this.lensTID = element.ID;
+      if (this.lensTID != undefined) {
+        this.disupdate = true;
+      }
+      if (this.M_SelectedType == "Lens" || this.M_SelectedType == "Contactlens") {
+        this.M_LensType = element.Sph;
+        this.M_Cyl = element.Cyl;
+        this.M_Axis = element.Axis;
+        this.M_Add = element.Add;
+      }
+      this.M_Model = element.Model;
+      this.M_Color = element.Colour;
+      this.M_Size = element.Size;
+      this.M_Price = element.Prize;
+      this.M_Cost = element.Costprice;
+      this.M_checked = element.Sptaxinclusive;
+      this.M_Description = element.Description;
+      this.IsActivelcf = element.IsActive;
+      this.M_HSNNo = element.HSNNo;
+      if (element.Brand != null) {
+        let BrandID = this.getBranddata.find(x => x.Text == element.Brandname)
+        this.M_Brand = BrandID
+      }
+      else {
+        this.M_Brand = undefined;
+      }
 
-    if (this.M_SelectedType == "Lens" || this.M_SelectedType == "Contactlens") {
-      this.M_LensType = element.Sph;
-      this.M_Cyl = element.Cyl;
-      this.M_Axis = element.Axis;
-      this.M_Add = element.Add;
+      if (element.FrameShapeID != null && element.FrameShapeID != 0) {
+        let FrameShapeID = this.getFrameShape.find(x => x.Text == element.FrameShape)
+        this.M_FrameShape = FrameShapeID
+      }
+      else {
+        this.M_FrameShape = undefined;
+      }
 
-    }
-    this.M_Model = element.Model;
-    this.M_Color = element.Colour;
-    this.M_Size = element.Size;
-    this.M_Price = element.Prize;
-    this.M_Cost = element.Costprice;
-    this.M_checked = element.Sptaxinclusive;
-    this.M_Description = element.Description;
-    this.M_HSNNo = element.HSNNo;
-    if (element.Brand != null) {
-      let BrandID = this.getBranddata.find(x => x.Text == element.Brandname)
-      this.M_Brand = BrandID
-    }
-    else {
-      this.M_Brand = undefined;
-    }
+      if (element.FrameStyleID != null && element.FrameStyleID != 0) {
+        let FrameStyleID = this.getFrameStyle.find(x => x.Text == element.FrameStyle)
+        this.M_FrameStyle = FrameStyleID
+      }
+      else {
+        this.M_FrameStyle = undefined;
+      }
 
-    if (element.FrameShapeID != null && element.FrameShapeID != 0) {
-      let FrameShapeID = this.getFrameShape.find(x => x.Text == element.FrameShape)
-      this.M_FrameShape = FrameShapeID
-    }
-    else {
-      this.M_FrameShape = undefined;
-    }
+      if (element.FrameTypeID != null && element.FrameTypeID != 0) {
+        let FrameTypeID = this.getFrameType.find(x => x.Text == element.FrameType)
+        this.M_FrameType = FrameTypeID
+      }
+      else {
+        this.M_FrameType = undefined;
+      }
 
-    if (element.FrameStyleID != null && element.FrameStyleID != 0) {
-      let FrameStyleID = this.getFrameStyle.find(x => x.Text == element.FrameStyle)
-      this.M_FrameStyle = FrameStyleID
-    }
-    else {
-      this.M_FrameStyle = undefined;
-    }
+      if (element.FrameWidthID != null && element.FrameStyleID != 0) {
+        let FrameWidthID = this.getFrameWidth.find(x => x.Text == element.FrameWidth)
+        this.M_FrameWidth = FrameWidthID
+      }
+      else {
+        this.M_FrameWidth = undefined;
+      }
 
-    if (element.FrameTypeID != null && element.FrameTypeID != 0) {
-      let FrameTypeID = this.getFrameType.find(x => x.Text == element.FrameType)
-      this.M_FrameType = FrameTypeID
-    }
-    else {
-      this.M_FrameType = undefined;
-    }
+      if (element.Index != null) {
+        let ind = this.getIndexsdata.find(x => x.Text == element.Indexname)
+        this.M_Index = ind
+      }
+      else {
+        this.M_Index = undefined;
+      }
 
-    if (element.FrameWidthID != null && element.FrameStyleID != 0) {
-      let FrameWidthID = this.getFrameWidth.find(x => x.Text == element.FrameWidth)
-      this.M_FrameWidth = FrameWidthID
-    }
-    else {
-      this.M_FrameWidth = undefined;
-    }
+      if (element.TaxID != null && element.TaxID != 0) {
+        let TaxID = this.getGSTdata.find(x => x.Text == element.TaxDescription)
+        this.M_GSTPER = TaxID
+        this.GSTSelected();
+      }
+      else {
+        this.M_GSTPER = undefined;
+      }
 
-    if (element.Index != null) {
-      let ind = this.getIndexsdata.find(x => x.Text == element.Indexname)
-      this.M_Index = ind
-    }
-    else {
-      this.M_Index = undefined;
-    }
+      if (this.lensTID != undefined) {
+        this.hiddenDeleted = true;
+      } else {
+        this.hiddenDeleted = false;
+      }
 
-    if (element.TaxID != null && element.TaxID != 0) {
-      let TaxID = this.getGSTdata.find(x => x.Text == element.TaxDescription)
-      this.M_GSTPER = TaxID
-      this.GSTSelected();
-    }
-    else {
-      this.M_GSTPER = undefined;
-    }
-    if (this.M_SelectedType == "Lens" || this.M_SelectedType == "Contactlens") {
-      this.dataSourcesq.data.splice(i, 1);
-      this.dataSourcesq._updateChangeSubscription();
-    }
-    else {
-      this.dataSourcesqq.data.splice(i, 1);
-      this.dataSourcesqq._updateChangeSubscription();
-    }
-    if (this.lensTID != undefined) {
-      this.hiddenDeleted = true;
-    } else {
-      this.hiddenDeleted = false;
-    }
+
+      if (this.M_SelectedType == "Lens" || this.M_SelectedType == "Contactlens") {
+        this.dataSourcesq.data.splice(i, 1);
+        this.dataSourcesq._updateChangeSubscription();
+      }
+      else {
+        this.dataSourcesqq.data.splice(i, 1);
+        this.dataSourcesqq._updateChangeSubscription();
+      }
+    
+
   }
+
+
   onupdate() {
     debugger;
     this.commonService.data.LensTranModel = this.selectedarray;
@@ -1240,9 +1208,8 @@ export class LensMasterComponent implements OnInit {
           this.M_Description = undefined;
           this.M_SelectedType = undefined;
           this.M_GSTPER = undefined;
-          this.M_CESSPER = undefined;
-          this.M_ADDCESSPER = undefined;
           this.M_BGST = undefined;
+          this.M_IGST = undefined;
           this.M_Index = undefined;
           this.M_Color = undefined;
           this.M_Size = undefined;
@@ -1254,14 +1221,11 @@ export class LensMasterComponent implements OnInit {
           this.M_Axis = undefined;
           this.M_Add = undefined;
           this.M_Model = undefined;
-          this.Addltax = undefined;
-          this.Addltax1 = undefined;
           this.M_Brand = undefined;
           this.M_UOM = undefined;
           this.M_HSNNo = undefined;
           this.M_BGST = undefined;
-          this.M_CESSPER = undefined;
-          this.M_ADDCESSPER = undefined;
+          this.M_IGST = undefined;
           this.M_GSTPER = undefined;
           this.M_Description = undefined;
           this.hiddenSubmit = true;
@@ -1302,9 +1266,8 @@ export class LensMasterComponent implements OnInit {
     this.M_Description = undefined;
     this.M_SelectedType = undefined;
     this.M_GSTPER = undefined;
-    this.M_CESSPER = undefined;
-    this.M_ADDCESSPER = undefined;
     this.M_BGST = undefined;
+    this.M_IGST = undefined;
     this.M_Index = undefined;
     this.M_Color = undefined;
     this.M_Size = undefined;
@@ -1320,11 +1283,8 @@ export class LensMasterComponent implements OnInit {
     this.M_UOM = undefined;
     this.M_HSNNo = undefined;
     this.M_BGST = undefined;
-    this.M_CESSPER = undefined;
-    this.M_ADDCESSPER = undefined;
+    this.M_IGST = undefined;
     this.M_GSTPER = undefined;
-    this.Addltax = undefined;
-    this.Addltax1 = undefined;
     this.M_Description = undefined;
     this.hiddenSubmit = true;
     this.hiddenUpdate = false;
@@ -2587,6 +2547,7 @@ export class LensMasterComponent implements OnInit {
             },
           });
           this.lensTID = undefined;
+          this.IsActivelcf = undefined;
           this.commonService.data.LensTranModel = [];
           this.selectedarray = [];
           this.dataSourcesq.data = [];
@@ -2594,9 +2555,8 @@ export class LensMasterComponent implements OnInit {
           this.M_Description = undefined;
           this.M_SelectedType = undefined;
           this.M_GSTPER = undefined;
-          this.M_CESSPER = undefined;
-          this.M_ADDCESSPER = undefined;
           this.M_BGST = undefined;
+          this.M_IGST = undefined;
           this.M_Index = undefined;
           this.M_Color = undefined;
           this.M_Size = undefined;
@@ -2612,11 +2572,9 @@ export class LensMasterComponent implements OnInit {
           this.M_UOM = undefined;
           this.M_HSNNo = undefined;
           this.M_BGST = undefined;
-          this.M_CESSPER = undefined;
-          this.M_ADDCESSPER = undefined;
+          this.M_IGST = undefined;
           this.M_GSTPER = undefined;
           this.M_Description = undefined;
-          this.Addltax = undefined;
           this.hiddenSubmit = true;
           this.hiddenUpdate = false;
           this.hiddenDeleted = false;

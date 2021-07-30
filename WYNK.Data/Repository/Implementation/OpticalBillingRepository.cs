@@ -50,10 +50,10 @@ namespace WYNK.Data.Repository.Implementation
                                             CustomerlastName = CM.LastName != null ? CM.LastName : string.Empty,
                                             Address1 = CM.Address1 != null ? CM.Address1 : string.Empty,
                                             Address2 = CM.Address2 != null ? CM.Address2 : string.Empty,
-                                            Location = CM.Location != null ? Locations.Where(X => X.ID == CM.Location).Select(x => x.ParentDescription).FirstOrDefault() : string.Empty,
-                                            city = CM.Location != null ? Locations.Where(x => x.ID == Locations.Where(y => y.ID == CM.Location).Select(y => y.ParentID).FirstOrDefault()).Select(x => x.ParentDescription).FirstOrDefault() : string.Empty,
-                                            State = CM.Location != null ? Locations.Where(v => v.ID == Locations.Where(x => x.ID == Locations.Where(y => y.ID == CM.Location).Select(y => y.ParentID).FirstOrDefault()).Select(x => x.ParentID).FirstOrDefault()).Select(x => x.ParentDescription).FirstOrDefault() : string.Empty,
-                                            country = CM.Location != null ? Locations.Where(v => v.ID == Locations.Where(x => x.ID == Locations.Where(h => h.ID == Locations.Where(y => y.ID == CM.Location).Select(y => y.ParentID).FirstOrDefault()).Select(l => l.ParentID).FirstOrDefault()).Select(x => x.ParentID).FirstOrDefault()).Select(x => x.ParentDescription).FirstOrDefault() : string.Empty,
+                                            Location = CM.Location != 0 ? Locations.Where(X => X.ID == CM.Location).Select(x => x.ParentDescription).FirstOrDefault() : string.Empty,
+                                            city = CM.Location != 0 ? Locations.Where(x => x.ID == Locations.Where(y => y.ID == CM.Location).Select(y => y.ParentID).FirstOrDefault()).Select(x => x.ParentDescription).FirstOrDefault() : string.Empty,
+                                            State = CM.Location != 0 ? Locations.Where(v => v.ID == Locations.Where(x => x.ID == Locations.Where(y => y.ID == CM.Location).Select(y => y.ParentID).FirstOrDefault()).Select(x => x.ParentID).FirstOrDefault()).Select(x => x.ParentDescription).FirstOrDefault() : string.Empty,
+                                            country = CM.Location != 0 ? Locations.Where(v => v.ID == Locations.Where(x => x.ID == Locations.Where(h => h.ID == Locations.Where(y => y.ID == CM.Location).Select(y => y.ParentID).FirstOrDefault()).Select(l => l.ParentID).FirstOrDefault()).Select(x => x.ParentID).FirstOrDefault()).Select(x => x.ParentDescription).FirstOrDefault() : string.Empty,
                                             Mobileno = CM.MobileNo != null ? CM.MobileNo : string.Empty,
 
                                         }
@@ -108,6 +108,7 @@ namespace WYNK.Data.Repository.Implementation
                                                     UOMID = Optrs.UOMID,
                                                     UOMname = uom.Where(X => X.id == Optrs.UOMID).Select(x => x.Description).FirstOrDefault(),
                                                     Type = lens.Where(x => x.RandomUniqueID == lenstrns.Where(s => s.ID == Optrs.LTID).Select(a => a.LMID).FirstOrDefault()).Select(f => f.LensType).FirstOrDefault(),
+                                                    ID = lens.Where(x => x.RandomUniqueID == lenstrns.Where(s => s.ID == Optrs.LTID).Select(a => a.LMID).FirstOrDefault()).Select(f => f.ID).FirstOrDefault(),
                                                     Brand = brand.Where(x => x.ID == lenstrns.Where(s => s.ID == Optrs.LTID).Select(a => a.Brand).FirstOrDefault()).Select(f => f.Description).FirstOrDefault(),
                                                     Index = lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.Index).FirstOrDefault(),
                                                     Color = lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.Colour).FirstOrDefault(),
@@ -180,6 +181,7 @@ namespace WYNK.Data.Repository.Implementation
                         balance.UOMname = itm.UOMname;
                         balance.Brand = itm.Brand;
                         balance.Type = itm.Type;
+                        balance.ID = itm.ID;
                         balance.Index = itm.Index;
                         balance.Color = itm.Color;
                         balance.Model = itm.Model;
@@ -287,7 +289,6 @@ namespace WYNK.Data.Repository.Implementation
                                          Closingbalance = Optrs.ClosingBalance,
                                          Storename = store.Where(X => X.StoreID == Optrs.StoreID).Select(x => x.Storename).FirstOrDefault(),
                                          Type = lens.Where(x => x.RandomUniqueID == lenstrns.Where(s => s.ID == Optrs.LTID).Select(a => a.LMID).FirstOrDefault()).Select(f => f.LensType).FirstOrDefault(),
-                                         // Description = lenstrns.Where(X => X.ID == Optrs.LTID).Select(x => x.LensOption).FirstOrDefault(),
                                          Brand = brand.Where(x => x.ID == lenstrns.Where(s => s.ID == Optrs.LTID).Select(a => a.Brand).FirstOrDefault()).Select(f => f.Description).FirstOrDefault(),
                                          uom = uom.Where(X => X.id == Optrs.UOMID).Select(x => x.Description).FirstOrDefault(),
                                      }).ToList();
@@ -331,6 +332,7 @@ namespace WYNK.Data.Repository.Implementation
                     balance.UOMID = itm.UOMID;
                     balance.UOMname = itm.UOMname;
                     balance.Type = itm.Type;
+                    balance.ID = itm.ID;
                     balance.Brand = itm.Brand;
                     balance.Index = itm.Index;
                     balance.Color = itm.Color;
@@ -373,8 +375,6 @@ namespace WYNK.Data.Repository.Implementation
                     var ibm = new OpticalInvoiceMaster();
                     var osm = new OpticalStockMaster();
                     var transcation = CMPSContext.TransactionType.ToList();
-                   // var lensmas = WYNKContext.Lensmaster.ToList();
-                   // var lenstrns = WYNKContext.Lenstrans.ToList();
 
                     ibm.CMPID = CmpID;
                     ibm.TransactionId = TID;
@@ -749,15 +749,10 @@ namespace WYNK.Data.Repository.Implementation
                     if (OpticalBilling.GetOpticaldetailsfullcheck.Count() > 0)
                     {
                         foreach (var item in OpticalBilling.GetOpticaldetailsfullcheck.ToList())
-
                         {
-
                             var brandID = WYNKContext.Lenstrans.Where(x => x.ID == item.LTID).Select(v => v.Brand).FirstOrDefault();
                             var todaynow = DateTime.UtcNow;
-                            //var first = new DateTime(now.Year, now.Month, 1);
-                            //var last = first.AddMonths(1).AddDays(-1);
-
-                            var taid = (from TS in WYNKContext.OpticalSummary.Where(x => x.Date.Date == todaynow.Date && x.CmpID == CmpID && x.FrameLensType == item.LTID && x.Brand == brandID)
+                            var taid = (from TS in WYNKContext.OpticalSummary.Where(x => x.Date.Date == todaynow.Date && x.CmpID == CmpID && x.FrameLensType == item.ID && x.Brand == brandID)
                                         select new
                                         {
                                             ret = TS.RandomUniqueID,
@@ -769,9 +764,8 @@ namespace WYNK.Data.Repository.Implementation
                                 opsum.RandomUniqueID = PasswordEncodeandDecode.GetRandomnumber();
                                 opsum.CmpID = CmpID;
                                 opsum.Date = DateTime.Now;
-                                opsum.FrameLensType = item.LTID;
+                                opsum.FrameLensType = item.ID;
                                 opsum.Brand = brandID;
-                                //opsum.LensPower = ;
                                 opsum.BilledNumbers = 1;
                                 decimal? GSTTaxValue = item.GSTTaxValue != null ? item.GSTTaxValue : 0;
                                 decimal? CESSAmount = item.CESSAmount != null ? item.CESSAmount : 0;
@@ -903,7 +897,6 @@ namespace WYNK.Data.Repository.Implementation
                                          select new opticalbillingtran
                                          {
 
-                                             //LTname = lenstrns.Where(X => X.ID == Optrs.LensID).Select(x => x.LensOption).FirstOrDefault(),
                                              UOMname = uom.Where(X => X.id == Optrs.UOMID).Select(x => x.Description).FirstOrDefault(),
                                              Type = lens.Where(x => x.RandomUniqueID == lenstrns.Where(s => s.ID == Optrs.LensID).Select(a => a.LMID).FirstOrDefault()).Select(f => f.LensType).FirstOrDefault(),
                                              Brand = brand.Where(x => x.ID == lenstrns.Where(s => s.ID == Optrs.LensID).Select(a => a.Brand).FirstOrDefault()).Select(f => f.Description).FirstOrDefault(),

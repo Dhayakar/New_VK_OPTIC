@@ -19,6 +19,7 @@ export class GetOpticaldetailsfullcheck {
   UOMID: number = 0;
   UOMname: string;
   Type: string;
+  ID: number = 0;
   Brand: string;
   Index: string;
   Model: string;

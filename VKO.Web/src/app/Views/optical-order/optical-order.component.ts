@@ -1640,6 +1640,8 @@ export class OpticalOrderComponent implements OnInit {
       this.M_TermsAndConditions = item.TermsAndConditions,
       this.M_VendorName = item.VendorName,
       this.vendorID = item.VendorID
+
+
       //this.Vendorsumbit();
       this.M_DCity = item.Dcity,
       this.M_Dlocation = item.DeliveryLocationName,
