@@ -10,3 +10,4 @@
 
 31-07-2021 07:44:54 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
 31-07-2021 07:44:54 	Message : 	Successfully Logged-In
+31-07-2021 07:45:20 	NumberControl 	{"VCID":11257,"TransactionID":2046,"DepartmentID":0,"CmpID":1062,"Prefix":"EXP","Suffix":"PAY","Description":"Expense Transaction","Autonumber":true,"RunningNumber":15,"EffectiveFrom":"2021-05-17T05:22:02.21","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2021-05-17T05:22:02.21","UpdatedUTC":null,"CreatedBy":1062,"UpdatedBy":null}
