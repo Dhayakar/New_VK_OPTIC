@@ -691,6 +691,23 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
     debugger
 
     try {
+      if (this.commonService.data.CustomerItemOrders.length >= 1) {
+        if (this.commonService.data.CustomerItemOrders.some(x => x.LTID === element.LTID)) {
+          Swal.fire({
+            type: 'warning',
+            title: 'Already Item Added',
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 1500,
+            customClass: {
+              popup: 'alert-warp',
+              container: 'alert-container',
+            },
+          });
+          this.FrameModel = 'none';
+          return;
+        }
+      }
       this.dataSource.data.splice(this.Index, 1);
       this.dataSource._updateChangeSubscription();
 
