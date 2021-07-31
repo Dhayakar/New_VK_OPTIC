@@ -1,0 +1,30 @@
+
+31-07-2021 05:11:41 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+31-07-2021 05:11:41 	Message : 	Successfully Logged-In
+
+31-07-2021 05:26:51 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+31-07-2021 05:26:51 	Message : 	Successfully Logged-In
+
+31-07-2021 05:29:11 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+31-07-2021 05:29:11 	Message : 	Successfully Logged-In
+
+31-07-2021 05:37:04 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+31-07-2021 05:37:04 	Message : 	Successfully Logged-In
+
+31-07-2021 05:42:59 	V K OPTIC POINT 	CUSTOMER ORDER 	User name : 	N Steve 	User ID : 	32246 	Mode : Sumbit
+31-07-2021 05:42:59 	CustomerOrder 	{"ID":-2147482647,"RandomUniqueID":"849b2ed2-eb7f-460a-9f08-963569fdc380","CmpID":1062,"CusID":5079,"TCID":1020,"OrderNo":"CUS92ORDER","OrderDate":"2021-07-31T05:42:59.7471201Z","RefNo":null,"RefDate":null,"Deliverydate":null,"Remarks":null,"ContraOrderID":null,"IsCancelled":false,"CancelledDate":null,"CancelledReasons":null,"OrderStatus":"Open","GrossProductValue":null,"TotalDiscountValue":null,"TotalTaxvalue":null,"TotalProductValue":null,"TotalCGSTTaxValue":null,"TotalSGSTTaxValue":null,"TotalIGSTTaxValue":null,"TotalCESSValue":null,"TotalAddCESSValue":null,"CreatedUTC":"2021-07-31T05:42:59.7764247Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null,"Fyear":"2021","OpticalPrescriptionPath":null}
+31-07-2021 05:42:59 	CustomerOrderTran 	{"ID":-2147482647,"COID":"849b2ed2-eb7f-460a-9f08-963569fdc380","LTID":6,"UOMID":3008,"OrderedQty":1,"ReceivedQty":0,"ItemRate":2000.0,"GrossValue":2000.0,"ItemValue":2000.0,"DiscountPercentage":0.0,"DiscountAmount":0.0,"GSTPercentage":null,"GSTTaxValue":null,"CGSTPercentage":null,"CGSTTaxValue":null,"SGSTPercentage":null,"SGSTTaxValue":null,"IGSTPercentage":null,"IGSTTaxValue":null,"CESSPercentage":null,"CESSAmount":null,"AdditionalCESSPercentage":null,"AddCESSPerAmt":null,"IsCancelled":false,"ContraCustomerNo":null,"ContraCustomerDate":null,"CreatedUTC":"2021-07-31T05:42:59.8344134Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null}
+31-07-2021 05:42:59 	CustomerOrder 	{"ID":7054,"RandomUniqueID":"849b2ed2-eb7f-460a-9f08-963569fdc380","CmpID":1062,"CusID":5079,"TCID":1020,"OrderNo":"CUS92ORDER","OrderDate":"2021-07-31T05:42:59.7471201Z","RefNo":null,"RefDate":null,"Deliverydate":null,"Remarks":null,"ContraOrderID":null,"IsCancelled":false,"CancelledDate":null,"CancelledReasons":null,"OrderStatus":"Open","GrossProductValue":2000.0,"TotalDiscountValue":0.0,"TotalTaxvalue":null,"TotalProductValue":2000.0,"TotalCGSTTaxValue":null,"TotalSGSTTaxValue":null,"TotalIGSTTaxValue":null,"TotalCESSValue":null,"TotalAddCESSValue":null,"CreatedUTC":"2021-07-31T05:42:59.7764247Z","UpdatedUTC":null,"CreatedBy":32246,"UpdatedBy":null,"Fyear":"2021","OpticalPrescriptionPath":null}
+31-07-2021 05:43:00 	PaymentMaster 	{"ID":-2147482647,"UIN":"CUS92ORDER","PaymentMode":"Cash","PaymentType":"A","InstrumentNumber":"","Instrumentdate":null,"Expirydate":null,"BankName":"","BankBranch":"","ReceiptNumber":"Rec132pt","Amount":1000.0,"ReceiptDate":"2021-07-31T05:42:59.9856731Z","OLMID":45,"IsBilled":false,"IsCancelled":null,"InVoiceNumber":"CUS92ORDER","InVoiceDate":"2021-07-31T05:42:59.9854871Z","Paid":null,"CmpID":1062,"CreatedBy":32246,"UpdatedBy":null,"CreatedUTC":"2021-07-31T05:43:00.0544432Z","UpdatedUTC":null,"TransactionID":1020,"PaymentReferenceID":null,"Fyear":"2021"}
+31-07-2021 05:43:00 	NumberControl 	{"VCID":9049,"TransactionID":1020,"DepartmentID":0,"CmpID":1062,"Prefix":"CUS","Suffix":"ORDER","Description":"Customer Order","Autonumber":true,"RunningNumber":92,"EffectiveFrom":"2020-03-01T00:00:00","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2020-03-01T00:00:00","UpdatedUTC":null,"CreatedBy":0,"UpdatedBy":null}
+31-07-2021 05:43:00 	NumberControl 	{"VCID":9485,"TransactionID":1035,"DepartmentID":0,"CmpID":1062,"Prefix":"Rec","Suffix":"pt","Description":"Receipt","Autonumber":true,"RunningNumber":132,"EffectiveFrom":"2020-09-14T18:30:00","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2020-09-14T10:06:40.063","UpdatedUTC":null,"CreatedBy":24,"UpdatedBy":null}
+31-07-2021 05:43:00 	Information : 	Saved Successfully
+
+31-07-2021 06:33:48 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+31-07-2021 06:33:48 	Message : 	Successfully Logged-In
+
+31-07-2021 06:45:40 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+31-07-2021 06:45:40 	Message : 	Successfully Logged-In
+
+31-07-2021 06:47:51 	V K OPTIC POINT 	Login Component 	User name : 	N Steve 	User ID : 	32246 	Mode : Submit
+31-07-2021 06:47:51 	Message : 	Successfully Logged-In
