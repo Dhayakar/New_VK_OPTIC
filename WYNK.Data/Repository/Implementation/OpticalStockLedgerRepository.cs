@@ -174,7 +174,7 @@ namespace WYNK.Data.Repository.Implementation
 
                             for (var dt = STFdate; dt <= STdate;)
                             {
-                                var ItemBalance = Opticalstkledger.Opticalstockledger.Where(x => x.LTID == item.LTID && x.StoreID == item.StoreID && x.CmpID == item.CmpID).FirstOrDefault();
+                                var ItemBalance = Opticalstkledger.Opticalstockledger.Where(x => x.LTID == item.LTID && x.StoreID == item.StoreID && x.CmpID == item.CmpID && x.DocumentNo == item.DocumentNo).FirstOrDefault();
                                 var tdatemonth = SFdate.AddMonths(-1);
                                 if (ItemBalance == null)
                                 {
@@ -185,8 +185,8 @@ namespace WYNK.Data.Repository.Implementation
                                     string newNumber = (b.ToString().Length == 1) ? c : dt.ToString();
                                     string issue = "ISS" + newNumber;
                                     string receipt = "REC" + newNumber;
-                                    int Iss = Receipt.Where(w => w.LTID == item.LTID && w.StoreID == item.StoreID && w.CmpID == item.CmpID).Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
-                                    int Rec = Receipt.Where(w => w.LTID == item.LTID && w.StoreID == item.StoreID && w.CmpID == item.CmpID).Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
+                                    int Iss = Receipt.Where(w => w.LTID == item.LTID && w.StoreID == item.StoreID && w.CmpID == item.CmpID && w.DocumentNo == item.DocumentNo).Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
+                                    int Rec = Receipt.Where(w => w.LTID == item.LTID && w.StoreID == item.StoreID && w.CmpID == item.CmpID && w.DocumentNo == item.DocumentNo).Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
                                     osl.CmpName = item.CmpName;
                                     osl.CmpID = item.CmpID;
                                     osl.DocumentDate = item.DocumentDate;
@@ -284,7 +284,7 @@ namespace WYNK.Data.Repository.Implementation
 
                             for (var dt = STFdate; dt <= STdate;)
                             {
-                                var ItemBalance = Opticalstkledger.OpticalstockledgerI.Where(x => x.LTID == item.LTID && x.StoreID == item.StoreID && x.CmpID == item.CmpID).FirstOrDefault();
+                                var ItemBalance = Opticalstkledger.OpticalstockledgerI.Where(x => x.LTID == item.LTID && x.StoreID == item.StoreID && x.CmpID == item.CmpID && x.DocumentNo == item.DocumentNo).FirstOrDefault();
                                 var tdatemonth = SFdate.AddMonths(-1);
                                 if (ItemBalance == null)
                                 {
@@ -295,8 +295,8 @@ namespace WYNK.Data.Repository.Implementation
                                     string newNumber = (b.ToString().Length == 1) ? c : dt.ToString();
                                     string issue = "ISS" + newNumber;
                                     string receipt = "REC" + newNumber;
-                                    int Iss = Issue.Where(w => w.LTID == item.LTID && w.StoreID == item.StoreID && w.CmpID == item.CmpID).Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
-                                    int Rec = Issue.Where(w => w.LTID == item.LTID && w.StoreID == item.StoreID && w.CmpID == item.CmpID).Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
+                                    int Iss = Issue.Where(w => w.LTID == item.LTID && w.StoreID == item.StoreID && w.CmpID == item.CmpID && w.DocumentNo == item.DocumentNo).Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
+                                    int Rec = Issue.Where(w => w.LTID == item.LTID && w.StoreID == item.StoreID && w.CmpID == item.CmpID && w.DocumentNo == item.DocumentNo).Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
                                     osl.CmpName = item.CmpName;
                                     osl.CmpID = item.CmpID;
                                     osl.DocumentDate = item.DocumentDate;
@@ -403,7 +403,7 @@ namespace WYNK.Data.Repository.Implementation
 
                             for (var dt = STFdate; dt <= STdate;)
                             {
-                                var ItemBalance = Opticalstkledger.OpticalstockledgerI.Where(x => x.LTID == item.LTID && x.StoreID == item.StoreID && x.CmpID == item.CmpID).FirstOrDefault();
+                                var ItemBalance = Opticalstkledger.OpticalstockledgerI.Where(x => x.LTID == item.LTID && x.StoreID == item.StoreID && x.CmpID == item.CmpID && x.DocumentNo == item.DocumentNo).FirstOrDefault();
                                 var tdatemonth = SFdate.AddMonths(-1);
                                 if (ItemBalance == null)
                                 {
@@ -414,8 +414,8 @@ namespace WYNK.Data.Repository.Implementation
                                     string newNumber = (b.ToString().Length == 1) ? c : dt.ToString();
                                     string issue = "ISS" + newNumber;
                                     string receipt = "REC" + newNumber;
-                                    int Iss = Issue.Where(w => w.LTID == item.LTID && w.StoreID == item.StoreID && w.CmpID == item.CmpID).Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
-                                    int Rec = Issue.Where(w => w.LTID == item.LTID && w.StoreID == item.StoreID && w.CmpID == item.CmpID).Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
+                                    int Iss = Issue.Where(w => w.LTID == item.LTID && w.StoreID == item.StoreID && w.CmpID == item.CmpID && w.DocumentNo == item.DocumentNo).Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
+                                    int Rec = Issue.Where(w => w.LTID == item.LTID && w.StoreID == item.StoreID && w.CmpID == item.CmpID && w.DocumentNo == item.DocumentNo).Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
                                     osl.CmpName = item.CmpName;
                                     osl.CmpID = item.CmpID;
                                     osl.DocumentDate = item.DocumentDate;
@@ -516,7 +516,7 @@ namespace WYNK.Data.Repository.Implementation
 
                             for (var dt = STFdate; dt <= STdate;)
                             {
-                                var ItemBalance = Opticalstkledger.Opticalstockledger.Where(x => x.LTID == item.LTID && x.StoreID == item.StoreID && x.CmpID == item.CmpID).FirstOrDefault();
+                                var ItemBalance = Opticalstkledger.Opticalstockledger.Where(x => x.LTID == item.LTID && x.StoreID == item.StoreID && x.CmpID == item.CmpID && x.DocumentNo == item.DocumentNo).FirstOrDefault();
                                 var tdatemonth = SFdate.AddMonths(-1);
                                 if (ItemBalance == null)
                                 {
@@ -527,8 +527,8 @@ namespace WYNK.Data.Repository.Implementation
                                     string newNumber = (b.ToString().Length == 1) ? c : dt.ToString();
                                     string issue = "ISS" + newNumber;
                                     string receipt = "REC" + newNumber;
-                                    int Iss = Receipt.Where(w => w.LTID == item.LTID && w.StoreID == item.StoreID && w.CmpID == item.CmpID).Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
-                                    int Rec = Receipt.Where(w => w.LTID == item.LTID && w.StoreID == item.StoreID && w.CmpID == item.CmpID).Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
+                                    int Iss = Receipt.Where(w => w.LTID == item.LTID && w.StoreID == item.StoreID && w.CmpID == item.CmpID && w.DocumentNo == item.DocumentNo).Select(x => (int)x.GetType().GetProperty(issue).GetValue(x)).FirstOrDefault();
+                                    int Rec = Receipt.Where(w => w.LTID == item.LTID && w.StoreID == item.StoreID && w.CmpID == item.CmpID && w.DocumentNo == item.DocumentNo).Select(x => (int)x.GetType().GetProperty(receipt).GetValue(x)).FirstOrDefault();
                                     osl.CmpName = item.CmpName;
                                     osl.CmpID = item.CmpID;
                                     osl.DocumentDate = item.DocumentDate;

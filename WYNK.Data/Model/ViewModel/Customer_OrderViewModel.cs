@@ -33,7 +33,8 @@ namespace WYNK.Data.Model.ViewModel
         public string ReceiptRunningNo { get; set; }
         public string UIN { get; set; }
         public int? RegTranId { get; set; }
-        
+
+        public string Status { get; set; }
     }
 
 
@@ -110,6 +111,7 @@ namespace WYNK.Data.Model.ViewModel
         public ICollection<Payment_Master> paymenttran { get; set; }
         public ICollection<Payment_Master> RefundDetails { get; set; }
         public List<string> OpticalPrescription { get; set; }
+        public string Status { get; set; }
     }
 
 

@@ -535,8 +535,8 @@ namespace WYNK.Data.Repository.Implementation
                                                               Discount = Convert.ToDecimal(res.DiscountPercentage),
                                                               DiscountAmount = Convert.ToDecimal(res.DiscountAmount),
                                                               GrossAmount = Convert.ToDecimal(res.GrossValue),
-                                                              CGST = Convert.ToDecimal(res.CGSTPercentage),
-                                                              SGST = Convert.ToDecimal(res.SGSTPercentage),
+                                                              CGST = res.CGSTPercentage,
+                                                              SGST =res.SGSTPercentage,
                                                               IGST = res.IGSTPercentage,
                                                               Amount = Convert.ToDecimal(res.ItemValue),
                                                               GST = res.GSTPercentage,
@@ -1415,6 +1415,152 @@ namespace WYNK.Data.Repository.Implementation
                                                              MPDOS = op.MPDOS,
                                                          }).ToList();
             return GetOpticalPrescription;
+        }
+
+        public dynamic GetOrderNoStatusDetails(int CMPID, string OrderNo)
+        {
+            try
+            {
+                var CustomerOrderedList = new CustomerOrderedList();
+                var CustomerOrder = WYNKContext.CustomerOrder.Where(x => x.OrderNo == OrderNo).FirstOrDefault();
+                var OnelineMaster = CMPSContext.OneLineMaster.ToList();
+
+                CustomerOrderedList.OrderNo = CustomerOrder.OrderNo;
+                CustomerOrderedList.OrderDate = CustomerOrder.OrderDate;
+                CustomerOrderedList.RefNo = CustomerOrder.RefNo;
+                CustomerOrderedList.RefDate = CustomerOrder.RefDate;
+                CustomerOrderedList.Deliverydate = CustomerOrder.Deliverydate;
+                CustomerOrderedList.Remarks = CustomerOrder.Remarks;
+                CustomerOrderedList.Status = CustomerOrder.OrderStatus;
+
+                var CustomerName = WYNKContext.CustomerMaster.Where(x => x.ID == CustomerOrder.CusID).FirstOrDefault();
+                CustomerOrderedList.CustomerName = String.Concat(CustomerName.Name, " ", CustomerName.MiddleName != null ? CustomerName.MiddleName : "", " ", CustomerName.LastName != null ? CustomerName.LastName : "");
+                CustomerOrderedList.CustomerAddress1 = WYNKContext.CustomerMaster.Where(x => x.ID == CustomerOrder.CusID).Select(x => x.Address1).FirstOrDefault();
+                CustomerOrderedList.CustomerAddress2 = WYNKContext.CustomerMaster.Where(x => x.ID == CustomerOrder.CusID).Select(x => x.Address2).FirstOrDefault();
+                CustomerOrderedList.CustomerAddress3 = WYNKContext.CustomerMaster.Where(x => x.ID == CustomerOrder.CusID).Select(x => x.Address3).FirstOrDefault();
+                CustomerOrderedList.CustomerMobileNo = WYNKContext.CustomerMaster.Where(x => x.ID == CustomerOrder.CusID).Select(x => x.MobileNo).FirstOrDefault();
+
+                CustomerOrderedList.paymenttran = (from payment in WYNKContext.PaymentMaster.Where(x => x.UIN == CustomerOrder.OrderNo)
+                                                   select new Payment_Master
+                                                   {
+                                                       PaymentMode = OnelineMaster.Where(x => x.OLMID == payment.OLMID).Select(x => x.ParentDescription).FirstOrDefault(),
+                                                       InstrumentNumber = payment.InstrumentNumber,
+                                                       Instrumentdate = payment.Instrumentdate,
+                                                       BankName = payment.BankName,
+                                                       BankBranch = payment.BankBranch,
+                                                       Expirydate = payment.Expirydate,
+                                                       Amount = payment.Amount,
+                                                   }).AsNoTracking().ToList();
+
+                CustomerOrderedList.ReceiptNumber = WYNKContext.PaymentMaster.Where(x => x.UIN == CustomerOrder.OrderNo).Select(x => x.ReceiptNumber).FirstOrDefault();
+                CustomerOrderedList.M_ReceiptNoDate = WYNKContext.PaymentMaster.Where(x => x.UIN == CustomerOrder.OrderNo).Select(x => x.ReceiptDate).FirstOrDefault();
+
+
+                var UOM = CMPSContext.uommaster.ToList();
+                var custordertran = WYNKContext.CustomerOrderTran.Where(x => x.COID == CustomerOrder.RandomUniqueID).ToList();
+                var lensmaster = WYNKContext.Lensmaster.ToList();
+                var lenstran = WYNKContext.Lenstrans.ToList();
+                var brand = WYNKContext.Brand.ToList();
+                var Onelinemaster = CMPSContext.OneLineMaster.ToList();
+
+                CustomerOrderedList.CustomerItemOrders = (from LM in lensmaster
+                                                          join LT in lenstran on LM.RandomUniqueID equals LT.LMID
+                                                          join BM in brand on LT.Brand equals BM.ID
+                                                          join res in custordertran on LT.ID equals res.LTID
+                                                          select new CustomerItemOrder
+                                                          {
+                                                              Type = LM.LensType,
+                                                              Brand = BM.Description,
+                                                              Model = LT.Model,
+                                                              Index = LT.Index,
+                                                              Color = LT.Colour,
+                                                              HSNNo = LT.HSNNo,
+                                                              UOM = UOM.Where(x => x.id == res.UOMID).Select(x => x.Description).FirstOrDefault(),
+                                                              Quantity = res.OrderedQty,
+                                                              UnitPrice = Convert.ToInt32(res.ItemRate),
+                                                              Discount = Convert.ToDecimal(res.DiscountPercentage),
+                                                              DiscountAmount = Convert.ToDecimal(res.DiscountAmount),
+                                                              GrossAmount = Convert.ToDecimal(res.GrossValue),
+                                                              CGST = Convert.ToDecimal(res.CGSTPercentage),
+                                                              SGST = Convert.ToDecimal(res.SGSTPercentage),
+                                                              IGST = res.IGSTPercentage,
+                                                              Amount = Convert.ToDecimal(res.ItemValue),
+                                                              GST = res.GSTPercentage,
+                                                              GSTValue = res.GSTTaxValue,
+                                                              CGSTValue = res.CGSTTaxValue,
+                                                              SGSTValue = res.SGSTTaxValue,
+                                                              IGSTValue = res.IGSTTaxValue,
+                                                              Sph = LT.Sph != null ? "Sph : " + LT.Sph + "; " : null,
+                                                              Cyl = LT.Cyl != null ? "Cyl : " + LT.Cyl + "; " : null,
+                                                              Axis = LT.Axis != null ? "Axis : " + LT.Axis + "; " : null,
+                                                              Add = LT.Add != null ? "Add : " + LT.Add : null,
+                                                              Description = LT.Description,
+                                                              FrameShapeID = Onelinemaster.Where(x => x.OLMID == LT.FrameShapeID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Shape : " + Onelinemaster.Where(x => x.OLMID == LT.FrameShapeID).Select(c => c.ParentDescription).FirstOrDefault() + "; " : null,
+                                                              FrameStyleID = Onelinemaster.Where(x => x.OLMID == LT.FrameStyleID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Style : " + Onelinemaster.Where(x => x.OLMID == LT.FrameStyleID).Select(c => c.ParentDescription).FirstOrDefault() + "; " : null,
+                                                              FrameTypeID = Onelinemaster.Where(x => x.OLMID == LT.FrameTypeID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Type : " + Onelinemaster.Where(x => x.OLMID == LT.FrameTypeID).Select(c => c.ParentDescription).FirstOrDefault() + "; " : null,
+                                                              FrameWidthID = Onelinemaster.Where(x => x.OLMID == LT.FrameWidthID).Select(c => c.ParentDescription).FirstOrDefault() != null ? "Width : " + Onelinemaster.Where(x => x.OLMID == LT.FrameWidthID).Select(c => c.ParentDescription).FirstOrDefault() : null,
+                                                          }).ToList();
+
+
+
+                CustomerOrderedList.OpticalPrescription = new List<string>();
+
+                var IsOpticalPrescriptionFound = WYNKContext.CustomerOrder.Where(x => x.ID == CustomerOrder.ID).Select(x => x.OpticalPrescriptionPath).FirstOrDefault();
+                if (IsOpticalPrescriptionFound != null)
+                {
+                    var osfn = IsOpticalPrescriptionFound;
+                    var osfi = "/CustomerOrderPrescription/";
+                    var currentDir = Directory.GetCurrentDirectory();
+                    string path = currentDir + osfi + osfn;
+                    if ((File.Exists(path)))
+                    {
+                        string imageData = Convert.ToBase64String(File.ReadAllBytes(path));
+                        CustomerOrderedList.OpticalPrescription.Add("data:image/png;base64," + imageData);
+                    }
+                }
+
+                return new
+                {
+                    Success = true,
+                    Message = "Success",
+                    CustomerOrderedList = CustomerOrderedList,
+                    CompanyDetails = CMPSContext.Company.Where(x => x.CmpID == CMPID).FirstOrDefault(),
+                };
+
+            }
+            catch (Exception ex)
+            {
+                return new
+                {
+                    Success = false,
+                };
+            }
+        }
+
+        public dynamic SubmitCustomerStatusDetail(CustomerOrderViewModel AddOpticalPrescription)
+        {
+
+            try
+            {
+
+                var customerOrder = WYNKContext.CustomerOrder.Where(x => x.OrderNo == AddOpticalPrescription.OrderNo && x.CmpID == AddOpticalPrescription.Cmpid).FirstOrDefault();
+                customerOrder.OrderStatus = AddOpticalPrescription.Status;
+                WYNKContext.CustomerOrder.UpdateRange(customerOrder);
+                WYNKContext.SaveChanges();
+
+                return new
+                {
+                    Success = true,
+                };
+            }
+            catch (Exception)
+            {
+
+                return new
+                {
+                    Success = false,
+                };
+            }
         }
     }
 }

@@ -181,6 +181,19 @@ namespace WYNK.Services.Controllers
         {
             return _repoWrapper.Customerorder.InsertOpticalPrescription(AddOpticalPrescription, CustomerID, cmpID, userid);
         }
+
+        [HttpGet("GetOrderNoStatusDetails/{CMPID}/{OrderNo}")]
+        public dynamic GetOrderNoStatusDetails(int CMPID, string OrderNo)
+        {
+            return _repoWrapper.Customerorder.GetOrderNoStatusDetails(CMPID, OrderNo);
+        }
+
+        [HttpPost("SubmitCustomerStatusDetail/")]
+        public dynamic SubmitCustomerStatusDetail([FromBody] CustomerOrderViewModel SubmitCustomerStatusDetail)
+        {
+            return _repoWrapper.Customerorder.SubmitCustomerStatusDetail(SubmitCustomerStatusDetail);
+        }
+
     }
 }
 

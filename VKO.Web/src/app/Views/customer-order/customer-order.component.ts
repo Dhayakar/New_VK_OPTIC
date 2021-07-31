@@ -186,8 +186,8 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
         this.Getloctime = localStorage.getItem('GMTTIME');
         this.commonService.getListOfData('Common/GetCurrencyvalues/' + localStorage.getItem('CompanyID')).subscribe(data => {
           debugger;
-          this.Country1 = data;
-          this.Country2 = this.Country1[0].Text;
+          this.Country1 = data[0].Value;
+          this.Country2 = data[0].Text;
         });
         this.commonService.getListOfData('Common/GetAccessdetails/' + localStorage.getItem("CompanyID") + '/' + localStorage.getItem("userroleID") + '/' + Pathname).subscribe(data => {
           debugger;
@@ -296,8 +296,8 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
         this.commonService.data.CustomerItemOrders = [];
         this.commonService.data.paymenttran = [];
         this.commonService.getListOfData('Common/GetCurrencyvalues/' + localStorage.getItem('CompanyID')).subscribe(data => {
-          this.Country1 = data;
-          this.Country2 = this.Country1[0].Text;
+          this.Country1 = data[0].Value;
+          this.Country2 = data[0].Text;
         });
         this.commonService.getListOfData('Common/GetAccessdetailsstring/' + localStorage.getItem("CompanyID") + '/' + localStorage.getItem("userroleID") + '/' + Pathname).subscribe(data => {
           this.accessdata = data.GetAvccessDetails;
@@ -503,27 +503,27 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
           this.displayedColumns = this.displayedColumnsGst;
           this.displayedColumnsCombined = this.displayedColumnsGsts;
 
-          this.commonService.getListOfData('Help/CustomerOrder/' + parseInt(localStorage.getItem("CompanyID")) + '/' + this.TaxGroup).subscribe(data => {
-            if (data.OfferDetails.length >= 1) {
-              this.dataSource1.data = data.OfferDetails;
-              this.dataSource1._updateChangeSubscription();
-            }
-            else {
-              Swal.fire({
-                type: 'warning',
-                title: 'No Data Found',
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 1500,
-                customClass: {
-                  popup: 'alert-warp',
-                  container: 'alert-container',
-                },
-              });
-              this.dataSource1.data = [];
-              this.dataSource1._updateChangeSubscription();
-            }
-          });
+          //this.commonService.getListOfData('Help/CustomerOrder/' + parseInt(localStorage.getItem("CompanyID")) + '/' + this.TaxGroup).subscribe(data => {
+          //  if (data.OfferDetails.length >= 1) {
+          //    this.dataSource1.data = data.OfferDetails;
+          //    this.dataSource1._updateChangeSubscription();
+          //  }
+          //  else {
+          //    Swal.fire({
+          //      type: 'warning',
+          //      title: 'No Data Found',
+          //      position: 'top-end',
+          //      showConfirmButton: false,
+          //      timer: 1500,
+          //      customClass: {
+          //        popup: 'alert-warp',
+          //        container: 'alert-container',
+          //      },
+          //    });
+          //    this.dataSource1.data = [];
+          //    this.dataSource1._updateChangeSubscription();
+          //  }
+          //});
         }
         else {
           this.dataSource.data = [];
@@ -532,27 +532,27 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
           this.displayedColumns = this.displayedColumnsIGst;
           this.displayedColumnsCombined = this.displayedColumnsIGsts;
 
-          this.commonService.getListOfData('Help/CustomerOrder/' + parseInt(localStorage.getItem("CompanyID")) + '/' + this.TaxGroup).subscribe(data => {
-            if (data.OfferDetails.length >= 1) {
-              this.dataSource1.data = data.OfferDetails;
-              this.dataSource1._updateChangeSubscription();
-            }
-            else {
-              Swal.fire({
-                type: 'warning',
-                title: 'No Data Found',
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 1500,
-                customClass: {
-                  popup: 'alert-warp',
-                  container: 'alert-container',
-                },
-              });
-              this.dataSource1.data = [];
-              this.dataSource1._updateChangeSubscription();
-            }
-          });
+          //this.commonService.getListOfData('Help/CustomerOrder/' + parseInt(localStorage.getItem("CompanyID")) + '/' + this.TaxGroup).subscribe(data => {
+          //  if (data.OfferDetails.length >= 1) {
+          //    this.dataSource1.data = data.OfferDetails;
+          //    this.dataSource1._updateChangeSubscription();
+          //  }
+          //  else {
+          //    Swal.fire({
+          //      type: 'warning',
+          //      title: 'No Data Found',
+          //      position: 'top-end',
+          //      showConfirmButton: false,
+          //      timer: 1500,
+          //      customClass: {
+          //        popup: 'alert-warp',
+          //        container: 'alert-container',
+          //      },
+          //    });
+          //    this.dataSource1.data = [];
+          //    this.dataSource1._updateChangeSubscription();
+          //  }
+          //});
 
         }
 
@@ -853,10 +853,17 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
               CustomOrder.GrossAmount = CustomOrder.UnitPrice;
               CustomOrder.CGSTValue = element.CGST == null ? null : (element.Price - CustomOrder.GrossAmount) / 2;
               CustomOrder.SGSTValue = element.SGST == null ? null : (element.Price - CustomOrder.GrossAmount) / 2;
+              CustomOrder.CGST = element.GST == null ? null : element.CGST;
+              CustomOrder.SGST = element.GST == null ? null : element.SGST;
+              CustomOrder.GST = element.GST == null ? null : element.GST;
             } else {
               CustomOrder.UnitPrice = Math.ceil(element.Price * 100 / (100 + element.IGST));
               CustomOrder.GrossAmount = CustomOrder.UnitPrice;
               CustomOrder.IGSTValue = element.IGST == null ? null : element.Price - CustomOrder.GrossAmount;
+              CustomOrder.IGST = element.IGST == null ? null : element.IGST;
+              CustomOrder.GSTValue = element.GST == null ? null : CustomOrder.GrossAmount * (CustomOrder.GST / 100);
+              //CustomOrder.CESSValue = element.CESS == null ? null : CustomOrder.GrossAmount * (element.CESS / 100);
+              //CustomOrder.AddCessValue = element.AddCess == null ? null : CustomOrder.GrossAmount * (element.AddCess / 100);
             }
           } else {
             CustomOrder.UnitPrice = Math.ceil(element.Price);
@@ -868,20 +875,11 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
           CustomOrder.GivenQtyPrice = CustomOrder.Quantity * CustomOrder.UnitPrice;
           CustomOrder.Discount = 0;
           CustomOrder.DiscountAmount = 0;
-          CustomOrder.CGST = element.GST == null ? null : element.CGST;
-          CustomOrder.SGST = element.GST == null ? null : element.SGST;
-          CustomOrder.IGST = element.IGST == null ? null : element.IGST;
-          CustomOrder.GST = element.GST == null ? null : element.GST;
-          CustomOrder.GSTValue = element.GST == null ? null : CustomOrder.GrossAmount * (CustomOrder.GST / 100);
-          CustomOrder.CESSValue = element.CESS == null ? null : CustomOrder.GrossAmount * (element.CESS / 100);
-          CustomOrder.AddCessValue = element.AddCess == null ? null : CustomOrder.GrossAmount * (element.AddCess / 100);
-
-
-          CustomOrder.CESS = element.CESS == null ? null : element.CESS;
-          CustomOrder.AddCess = element.AddCess == null ? null : element.AddCess;
-          CustomOrder.GSTDesc = element.GSTDesc == null ? null : element.GSTDesc;
-          CustomOrder.CESSDesc = element.CESSDesc == null ? null : element.CESSDesc;
-          CustomOrder.AddCessDesc = element.AddCessDesc == null ? null : element.AddCessDesc;
+          //CustomOrder.CESS = element.CESS == null ? null : element.CESS;
+          //CustomOrder.AddCess = element.AddCess == null ? null : element.AddCess;
+          //CustomOrder.GSTDesc = element.GSTDesc == null ? null : element.GSTDesc;
+          //CustomOrder.CESSDesc = element.CESSDesc == null ? null : element.CESSDesc;
+          //CustomOrder.AddCessDesc = element.AddCessDesc == null ? null : element.AddCessDesc;
 
 
           CustomOrder.Sph = element.Sph;
@@ -1705,7 +1703,7 @@ export class CustomerOrderComponent implements OnInit, DoCheck {
 
           this.commonService.data.CustomerItemOrders = data.CustomerOrderedList.CustomerItemOrders;
 
-          if (this.commonService.data.CustomerItemOrders.some(x => x.IGST == null)) {
+          if (this.commonService.data.CustomerItemOrders.every(x => x.IGST == null)) {
             this.PrintdisplayedColumns = this.PrintdisplayedColumnsGst;
             this.PrintdisplayedColumnsCombined = this.PrintdisplayedColumnsGsts;
           } else {

@@ -150,7 +150,7 @@
 
 
                   <ng-container matColumnDef="Brands">
-                    <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"  class="width-8p"> Brand </th>
+                    <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2" class="width-8p"> Brand </th>
                   </ng-container>
 
                   <ng-container matColumnDef="Description">
@@ -256,6 +256,17 @@
                   </ng-container>
 
 
+                  <ng-container matColumnDef="IGST">
+                    <th mat-header-cell *matHeaderCellDef>%</th>
+                    <td mat-cell *matCellDef="let element;let id = index;">{{element.IGST | number : '1.2-2'}}</td>
+                    <td mat-footer-cell *matFooterCellDef></td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="IGSTValue">
+                    <th mat-header-cell *matHeaderCellDef> Amount</th>
+                    <td mat-cell *matCellDef="let element;let id = index;">{{element.IGSTValue | number : '1.2-2'}}</td>
+                    <td mat-footer-cell *matFooterCellDef><b>{{GetIGSTAmount() | currency:Country2}}</b></td>
+                  </ng-container>
 
                   <ng-container matColumnDef="NetAmount">
                     <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Net Amount</th>
@@ -280,9 +291,11 @@
                     <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> SGST Tax </th>
                   </ng-container>
 
+                  <ng-container matColumnDef="IGSTTax">
+                    <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> IGST Tax </th>
+                  </ng-container>
 
-                  <tr mat-header-row *matHeaderRowDef="['Types','Brands','Descriptions','UOMs','QTYs','Prices','Amounts',
-              'header-row-group','GrossAmounts','CGSTTax','SGSTTax','NetAmounts'];sticky:true"></tr>
+                  <tr mat-header-row *matHeaderRowDef="PrintdisplayedColumnsCombined;sticky: true"></tr>
 
 
                   <tr mat-header-row *matHeaderRowDef="PrintdisplayedColumns;sticky:true"></tr>
@@ -1049,6 +1062,18 @@
           <td mat-footer-cell *matFooterCellDef><b>{{GetSGSTAmount() | currency:Country2}}</b></td>
         </ng-container>
 
+        <ng-container matColumnDef="IGST">
+          <th mat-header-cell *matHeaderCellDef>%</th>
+          <td mat-cell *matCellDef="let element;let id = index;">{{element.IGST | number : '1.2-2'}}</td>
+          <td mat-footer-cell *matFooterCellDef></td>
+        </ng-container>
+
+        <ng-container matColumnDef="IGSTValue">
+          <th mat-header-cell *matHeaderCellDef> Amount</th>
+          <td mat-cell *matCellDef="let element;let id = index;">{{element.IGSTValue | number : '1.2-2'}}</td>
+          <td mat-footer-cell *matFooterCellDef><b>{{GetIGSTAmount() | currency:Country2}}</b></td>
+        </ng-container>
+
 
         <ng-container matColumnDef="NetAmount">
           <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Net Amount </th>
@@ -1074,9 +1099,12 @@
         </ng-container>
 
 
-        <tr mat-header-row *matHeaderRowDef="['Types','Brands','Descriptions','UOMs','QTYs','Prices','Amounts',
-              'header-row-group','GrossAmounts','CGSTTax','SGSTTax','NetAmounts']"></tr>
 
+        <ng-container matColumnDef="IGSTTax">
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"> IGST Tax </th>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="PrintdisplayedColumnsCombined;sticky: true"></tr>
 
         <tr mat-header-row *matHeaderRowDef="PrintdisplayedColumns;sticky:true"></tr>
         <tr mat-row *matRowDef="let row;  let even = even;columns: PrintdisplayedColumns;"></tr>

@@ -366,7 +366,6 @@
                   <td mat-cell *matCellDef="let element ;let i = index;">{{element.Costprice | number : '1.2-2'}}</td>
                 </ng-container>
 
-
                 <ng-container matColumnDef="CostPrices">
                   <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">Cost Price</th>
                 </ng-container>
@@ -375,7 +374,6 @@
                   <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Inclusive Tax</th>
                   <td mat-cell *matCellDef="let element ;let i = index;">{{element.Sptaxinclusivebool}}</td>
                 </ng-container>
-
 
                 <ng-container matColumnDef="InclusiveTaxs">
                   <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2">Inclusive Tax</th>
