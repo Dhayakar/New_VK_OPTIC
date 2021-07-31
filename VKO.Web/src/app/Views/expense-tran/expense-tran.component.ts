@@ -1479,7 +1479,7 @@ Expensearray = [];
   Submit(Form: NgForm) {
     debugger;
     if (Form.valid) {
-      if (this.TotalAmt != 0 && this.PTotalAmount != 0) {
+      if (this.commonService.data.PaymentMaster.length != 0 && this.commonService.data.Expesneitemdata.length != 0) {
         this.commonService.data.OrderDate = this.Datepipe.transform(this.M_DAte, "dd-MMM-yyyy");
         this.commonService.data.Cmpid = parseInt(localStorage.getItem("CompanyID"));
         this.commonService.data.paidto = this.M_Paidto;

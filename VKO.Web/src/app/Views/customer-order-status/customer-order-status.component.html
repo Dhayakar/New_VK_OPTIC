@@ -58,8 +58,8 @@
           <mat-label class="refcol ml-6p">Order Date:</mat-label>
         </div>
         <div class="col-sm-7 mt-13p ml-n3p">
-          <mat-label *ngIf="!Prints" class="mt-12p">{{M_OrderDate | date:'dd-MMM-y'}}</mat-label>
-          <mat-label *ngIf="Prints" class="mt-12p ml-n23p">{{M_OrderDate | date:'dd-MMM-y, HH:mm'}}</mat-label>
+          <mat-label  class="mt-12p">{{M_OrderDate | date:'dd-MMM-y'}}</mat-label>
+          <mat-label class="mt-12p ml-n23p">{{M_OrderDate | date:'dd-MMM-y, HH:mm'}}</mat-label>
         </div>
       </div>
     </div>
@@ -82,7 +82,7 @@
         <div class="col-sm-5 mt-n4p ml-n19p width-80p">
           <mat-form-field appearance="outline">
             <mat-label>Ref Date</mat-label>
-            <input [(ngModel)]="M_Refdate" name="Refdate" matInput [matDatepicker]="picker1" [max]="date" placeholder="" disabled>
+            <input [(ngModel)]="M_Refdate" name="Refdate" matInput [matDatepicker]="picker1" placeholder="" disabled>
             <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
             <mat-datepicker #picker1></mat-datepicker>
           </mat-form-field>
