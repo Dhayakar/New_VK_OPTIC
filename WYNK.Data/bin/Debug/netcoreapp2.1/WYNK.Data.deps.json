@@ -1,11 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-
-    "signature": ""
-
     "signature": "d6493ae21f2f3d75e8a2ec0cdd24655b8c6832da"
-
   },
   "compilationOptions": {},
   "targets": {
@@ -555,6 +551,12 @@
       "System.Security.AccessControl/4.5.0": {
         "dependencies": {
           "System.Security.Principal.Windows": "4.5.0"
+        },
+        "runtimeTargets": {
+          "runtime/win/lib/_._": {
+            "rid": "win",
+            "assetType": "runtime"
+          }
         }
       },
       "System.Security.Cryptography.ProtectedData/4.5.0": {
@@ -584,9 +586,6 @@
           }
         }
       },
-
-      "System.Security.Principal.Windows/4.5.0": {},
-
       "System.Security.Principal.Windows/4.5.0": {
         "runtimeTargets": {
           "runtime/unix/lib/_._": {
@@ -599,7 +598,6 @@
           }
         }
       },
-
       "System.Text.Encoding/4.3.0": {
         "dependencies": {
           "System.Runtime": "4.3.0"
