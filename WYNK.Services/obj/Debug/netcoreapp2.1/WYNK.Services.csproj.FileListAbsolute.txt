@@ -1,3 +1,4 @@
+
 E:\Git_desktop\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\appsettings.Development.json
 E:\Git_desktop\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\appsettings.json
 E:\Git_desktop\VK_Optic_Point\WYNK.Services\bin\Debug\netcoreapp2.1\Properties\launchSettings.json
@@ -49,3 +50,4 @@ E:\Vk backup\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.
 E:\Vk backup\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.dll
 E:\Vk backup\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.pdb
 E:\Vk backup\VK_Optic_Point\WYNK.Services\obj\Debug\netcoreapp2.1\WYNK.Services.genruntimeconfig.cache
+

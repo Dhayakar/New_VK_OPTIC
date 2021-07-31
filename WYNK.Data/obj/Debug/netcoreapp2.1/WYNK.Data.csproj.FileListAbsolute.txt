@@ -1,3 +1,4 @@
+
 E:\Git_desktop\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Data.deps.json
 E:\Git_desktop\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Data.dll
 E:\Git_desktop\VK_Optic_Point\WYNK.Data\bin\Debug\netcoreapp2.1\WYNK.Data.pdb
@@ -26,3 +27,4 @@ E:\Vk backup\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.csproj.C
 E:\Vk backup\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.csproj.CopyComplete
 E:\Vk backup\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.dll
 E:\Vk backup\VK_Optic_Point\WYNK.Data\obj\Debug\netcoreapp2.1\WYNK.Data.pdb
+
