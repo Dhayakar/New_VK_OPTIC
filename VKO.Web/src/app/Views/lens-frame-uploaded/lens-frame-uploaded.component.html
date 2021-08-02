@@ -113,7 +113,7 @@
 
           <ng-container matColumnDef="CostPrice">
             <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Cost Price</th>
-            <td mat-cell *matCellDef="let element ;let i = index;">{{element.CostPrize | number : '1.2-2'}}</td>
+            <td mat-cell *matCellDef="let element ;let i = index;">{{element.Costprice | number : '1.2-2'}}</td>
           </ng-container>
 
           <ng-container matColumnDef="CostPrices">
@@ -122,7 +122,7 @@
 
           <ng-container matColumnDef="InclusiveTax">
             <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Inclusive Tax</th>
-            <td mat-cell *matCellDef="let element ;let i = index;">{{element.InclusiveTax}}</td>
+            <td mat-cell *matCellDef="let element ;let i = index;">{{element.Sptaxinclusivebool}}</td>
           </ng-container>
 
           <ng-container matColumnDef="InclusiveTaxs">
@@ -240,13 +240,14 @@
           <th>Index</th>
           <th>Color</th>
           <th>Size</th>
-          <th>CostPrice *</th>
-          <th>InclusiveTax </th>
-          <th>SellingPrice *</th>
+          <th>Price *</th>
           <th>HSNNo</th>
           <th>TaxDescription</th>
-          <th>GST</th>
-          <th>IGST</th>
+          <th>Tax</th>
+          <th>Add1Tax1Desc1</th>
+          <th>Add1Tax1</th>
+          <th>Add1Tax2Desc2</th>
+          <th>Add1Tax2</th>
         </tr>
       </thead>
       <tbody>
@@ -267,10 +268,11 @@
           <th>varchar</th>
           <th>number</th>
           <th>varchar</th>
-          <th>number</th>
-          <th>varchar</th>
           <th>varchar</th>
           <th>number</th>
+          <th>varchar</th>
+          <th>number</th>
+          <th>varchar</th>
           <th>number</th>
         </tr>
       </tbody>
@@ -293,13 +295,14 @@
           <th>Index</th>
           <th>Color</th>
           <th>Size</th>
-          <th>CostPrice</th>
-          <th>InclusiveTax</th>
-          <th>SellingPrice</th>
+          <th>Price</th>
           <th>HSNNo</th>
           <th>TaxDescription</th>
-          <th>GST</th>
-          <th>IGST</th>
+          <th>Tax</th>
+          <th>Add1Tax1Desc1</th>
+          <th>Add1Tax1</th>
+          <th>Add1Tax2Desc2</th>
+          <th>Add1Tax2</th>
         </tr>
       </thead>
       <tbody>
@@ -319,13 +322,14 @@
           <td>1.5</td>
           <td>White</td>
           <td>8</td>
-          <td>1000</td>
-          <td>Yes</td>
           <td>2000</td>
-          <td>803</td>
-          <td>General Tax</td>
+          <td>0803</td>
+          <td>2021 Tax</td>
           <td>2</td>
-          <td>2</td>
+          <td>2021 Addl Tax1</td>
+          <td>1</td>
+          <td>2021 Add2 Tax2</td>
+          <td>1</td>
         </tr>
         <tr>
           <td>Lens</td>
@@ -342,15 +346,14 @@
           <td>1.6</td>
           <td>Gray</td>
           <td>7</td>
-          <td>
-            1500
-          </td>
-          <td>No</td>
           <td>2500</td>
-          <td>808</td>
-          <td>General Tax</td>
+          <td>0808</td>
+          <td>2021 Tax</td>
           <td>2</td>
-          <td>2</td>
+          <td>2021 Addl Tax1</td>
+          <td>1</td>
+          <td>2021 Add2 Tax2</td>
+          <td>1</td>
         </tr>
         <tr>
           <td>Lens</td>
@@ -367,15 +370,14 @@
           <td>1.8</td>
           <td>Black</td>
           <td>9</td>
-          <td>
-            1600
-          </td>
-          <td>No</td>
           <td>3000</td>
-          <td>808</td>
-          <td>General Tax</td>
+          <td>0808</td>
+          <td>2021 Tax</td>
           <td>2</td>
-          <td>2</td>
+          <td>2021 Addl Tax1</td>
+          <td>1</td>
+          <td>2021 Add2 Tax2</td>
+          <td>1</td>
         </tr>
 
         <tr>
@@ -393,17 +395,14 @@
           <td>1.5</td>
           <td>White</td>
           <td>8</td>
-          <td>
-            2000
-          </td>
-          <td>No</td>
-          <td>
-            2000
-          </td>
-          <td>803</td>
-          <td>General Tax</td>
+          <td>2000</td>
+          <td>0803</td>
+          <td>2021 Tax</td>
           <td>2</td>
-          <td>2</td>
+          <td>2021 Addl Tax1</td>
+          <td>1</td>
+          <td>2021 Add2 Tax2</td>
+          <td>1</td>
         </tr>
         <tr>
           <td>Contactlens</td>
@@ -420,17 +419,14 @@
           <td>1.6</td>
           <td>Gray</td>
           <td>7</td>
-          <td>
-            2100
-          </td>
-          <td>No</td>
-          <td>
-            2500
-          </td>
-          <td>808</td>
-          <td>General Tax</td>
+          <td>2500</td>
+          <td>0808</td>
+          <td>2021 Tax</td>
           <td>2</td>
-          <td>2</td>
+          <td>2021 Addl Tax1</td>
+          <td>1</td>
+          <td>2021 Add2 Tax2</td>
+          <td>1</td>
         </tr>
         <tr>
           <td>Contactlens</td>
@@ -447,17 +443,14 @@
           <td>1.8</td>
           <td>Black</td>
           <td>9</td>
-          <td>
-            1400
-          </td>
-          <td>Yes</td>
-          <td>
-            3000
-          </td>
-          <td>808</td>
-          <td>General Tax</td>
+          <td>3000</td>
+          <td>0808</td>
+          <td>2021 Tax</td>
           <td>2</td>
-          <td>2</td>
+          <td>2021 Addl Tax1</td>
+          <td>1</td>
+          <td>2021 Add2 Tax2</td>
+          <td>1</td>
         </tr>
 
         <tr>
@@ -481,17 +474,14 @@
           <td>1.5</td>
           <td>White</td>
           <td>8</td>
-          <td>
-            2500
-          </td>
-          <td>Yes</td>
-          <td>
-            2800
-          </td>
-          <td>803</td>
-          <td>General Tax</td>
+          <td>2000</td>
+          <td>0803</td>
+          <td>2021 Tax</td>
           <td>2</td>
-          <td>2</td>
+          <td>2021 Addl Tax1</td>
+          <td>1</td>
+          <td>2021 Add2 Tax2</td>
+          <td>1</td>
         </tr>
         <tr>
           <td>Frame</td>
@@ -514,17 +504,14 @@
           <td>1.6</td>
           <td>Gray</td>
           <td>7</td>
-          <td>
-            1700
-          </td>
-          <td>Yes</td>
-          <td>
-            2500
-          </td>
-          <td>808</td>
-          <td>General Tax</td>
+          <td>2500</td>
+          <td>0808</td>
+          <td>2021 Tax</td>
           <td>2</td>
-          <td>2</td>
+          <td>2021 Addl Tax1</td>
+          <td>1</td>
+          <td>2021 Add2 Tax2</td>
+          <td>1</td>
         </tr>
         <tr>
           <td>Frame</td>
@@ -547,17 +534,14 @@
           <td>1.8</td>
           <td>Black</td>
           <td>9</td>
-          <td>
-            3000
-          </td>
-          <td>Yes</td>
-          <td>
-            3500
-          </td>
-          <td>808</td>
-          <td>General Tax</td>
+          <td>3000</td>
+          <td>0808</td>
+          <td>2021 Tax</td>
           <td>2</td>
-          <td>2</td>
+          <td>2021 Addl Tax1</td>
+          <td>1</td>
+          <td>2021 Add2 Tax2</td>
+          <td>1</td>
         </tr>
 
 

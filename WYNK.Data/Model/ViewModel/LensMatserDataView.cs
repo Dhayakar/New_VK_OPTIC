@@ -159,7 +159,6 @@ namespace WYNK.Data.Model.ViewModel
         public string Colour { get; set; }
         public string Brand { get; set; }
         public decimal Prize { get; set; }
-        public decimal CostPrize { get; set; }
         public string UOM { get; set; }
         public string HSNNo { get; set; }
         public string FrameShape { get; set; }
@@ -168,7 +167,10 @@ namespace WYNK.Data.Model.ViewModel
         public string FrameStyle { get; set; }
         public string Description { get; set; }
         public string TaxDescription { get; set; }
-        public short? IGSTPercentage { get; set; }
+        public string CessDescription { get; set; }
+        public string AddtionalDescription { get; set; }
+        public decimal? CESSPercentage { get; set; }
+        public decimal? ADDCESSPercentage { get; set; }
         public short? GSTPercentage { get; set; }
         public string Status { get; set; }
         public string Sph { get; set; }
@@ -183,7 +185,6 @@ namespace WYNK.Data.Model.ViewModel
         public string FrameTypee { get; set; }
         public string FrameWidthh { get; set; }
         public string FrameStylee { get; set; }
-        public Boolean InclusiveTaxbool { get; set; }
     }
 
     public class Lensframestock

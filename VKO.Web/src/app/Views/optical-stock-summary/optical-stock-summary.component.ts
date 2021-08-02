@@ -487,8 +487,8 @@ export class OpticalStockSummaryComponent implements OnInit {
     return this.spans[index] && this.spans[index][col];
   }
   resetform() {
-    this.Todate = new FormControl(moment());
-    this.date = new FormControl(moment());
+    this.date = undefined;
+    this.Todate = undefined;
     this.BranchDrop = undefined;
     this.storename = undefined;
     this.M_BrandDataDrop = undefined;
