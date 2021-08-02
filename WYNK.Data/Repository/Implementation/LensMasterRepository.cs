@@ -1128,27 +1128,19 @@ namespace WYNK.Data.Repository.Implementation
                             }
 
 
-
                             var taxdesc = lensframe.TaxDescription != null ? lensframe.TaxDescription.Replace(" ", string.Empty) : string.Empty;
-                            var cessdesc = lensframe.CessDescription != null ? lensframe.CessDescription.Replace(" ", string.Empty) : string.Empty;
-                            var addcessdesc = lensframe.AddtionalDescription != null ? lensframe.AddtionalDescription.Replace(" ", string.Empty) : string.Empty;
 
-                            int? TaxID = CMPSContext.TaxMaster.Where(x => x.TaxDescription.Replace(" ", string.Empty).ToLower().Contains(taxdesc) && x.GSTPercentage == lensframe.GSTPercentage && x.IsActive == true).Select(x => (int?)x.ID).FirstOrDefault();
-                            int? CessID = CMPSContext.TaxMaster.Where(x => x.CESSDescription.Replace(" ", string.Empty).ToLower().Contains(cessdesc) && x.CESSPercentage == lensframe.CESSPercentage && x.IsActive == true).Select(x => (int?)x.ID).FirstOrDefault();
-                            int? AddID = CMPSContext.TaxMaster.Where(x => x.AdditionalCESSDescription.Replace(" ", string.Empty).ToLower().Contains(addcessdesc) && x.AdditionalCESSPercentage == lensframe.ADDCESSPercentage && x.IsActive == true).Select(x => (int?)x.ID).FirstOrDefault();
+                            int? TaxID = CMPSContext.TaxMaster.Where(x => x.TaxDescription.Replace(" ", string.Empty).ToLower().Contains(taxdesc) && x.GSTPercentage == lensframe.GSTPercentage && x.IGSTPercentage == lensframe.IGSTPercentage && x.IsActive == true).Select(x => (int?)x.ID).FirstOrDefault();
 
                             /*TaxDescription Insertion and assign to IsTaxDescription*/
                             if (lensframe.TaxDescription != null)
                             {
-                                if (TaxID == null || CessID == null || AddID == null)
+                                if (TaxID == null)
                                 {
                                     var taxmaster = new TaxMaster();
                                     taxmaster.TaxDescription = lensframe.TaxDescription;
                                     taxmaster.GSTPercentage = lensframe.GSTPercentage;
-                                    taxmaster.CESSDescription = lensframe.CessDescription;
-                                    taxmaster.CESSPercentage = lensframe.CESSPercentage;
-                                    taxmaster.AdditionalCESSDescription = lensframe.AddtionalDescription;
-                                    taxmaster.AdditionalCESSPercentage = lensframe.ADDCESSPercentage;
+                                    taxmaster.IGSTPercentage = lensframe.IGSTPercentage;
                                     taxmaster.IsActive = true;
                                     taxmaster.CreatedUTC = DateTime.UtcNow;
                                     taxmaster.CreatedBy = Createdby;
@@ -1288,7 +1280,7 @@ namespace WYNK.Data.Repository.Implementation
                                 var Axis = lensframe.Axiss;
                                 var Add = lensframe.Addd;
 
-                                int? Lensframetran = WYNKContext.Lenstrans.Where(x => x.Brand == Brand && x.Sph.Replace(" ", string.Empty).ToLower().Contains(sph) && x.Cyl.Replace(" ", string.Empty).ToLower().Contains(Cyl) && x.Axis.Replace(" ", string.Empty).ToLower().Contains(Axis) && x.Add.Replace(" ", string.Empty).ToLower().Contains(Add) && x.Prize == lensframe.Prize && x.IsActive == true).Select(x => (int?)x.ID).FirstOrDefault();
+                                int? Lensframetran = WYNKContext.Lenstrans.Where(x => x.Brand == Brand && x.Sph.Replace(" ", string.Empty).ToLower().Contains(sph) && x.Cyl.Replace(" ", string.Empty).ToLower().Contains(Cyl) && x.Axis.Replace(" ", string.Empty).ToLower().Contains(Axis) && x.Add.Replace(" ", string.Empty).ToLower().Contains(Add) && x.Sptaxinclusive == lensframe.InclusiveTaxbool && x.IsActive == true).Select(x => (int?)x.ID).FirstOrDefault();
 
                                 /*Lensframetran Insertion and assign to IsLensframetran*/
                                 if (Lensframetran == null)
@@ -1306,9 +1298,9 @@ namespace WYNK.Data.Repository.Implementation
                                     LensTranModel.Colour = lensframe.Colour;
                                     LensTranModel.Brand = Convert.ToInt32(Brand);
                                     LensTranModel.Prize = lensframe.Prize;
+                                    LensTranModel.Costprice = lensframe.CostPrize;
                                     LensTranModel.GST = lensframe.GSTPercentage;
-                                    LensTranModel.CESSAmount = lensframe.CESSPercentage;
-                                    LensTranModel.ADDCESSAmount = lensframe.ADDCESSPercentage;
+                                    LensTranModel.Sptaxinclusive = lensframe.InclusiveTaxbool;
                                     LensTranModel.UOMID = IsUOM;
                                     LensTranModel.HSNNo = lensframe.HSNNo;
                                     LensTranModel.Description = lensframe.Description;
@@ -1338,7 +1330,7 @@ namespace WYNK.Data.Repository.Implementation
                                 var Axis = lensframe.Axiss;
                                 var Add = lensframe.Addd;
 
-                                int? Lensframetran = WYNKContext.Lenstrans.Where(x => x.Brand == Brand && x.Sph.Replace(" ", string.Empty).ToLower().Contains(sph) && x.Cyl.Replace(" ", string.Empty).ToLower().Contains(Cyl) && x.Axis.Replace(" ", string.Empty).ToLower().Contains(Axis) && x.Add.Replace(" ", string.Empty).ToLower().Contains(Add) && x.Prize == lensframe.Prize && x.IsActive == true).Select(x => (int?)x.ID).FirstOrDefault();
+                                int? Lensframetran = WYNKContext.Lenstrans.Where(x => x.Brand == Brand && x.Sph.Replace(" ", string.Empty).ToLower().Contains(sph) && x.Cyl.Replace(" ", string.Empty).ToLower().Contains(Cyl) && x.Axis.Replace(" ", string.Empty).ToLower().Contains(Axis) && x.Add.Replace(" ", string.Empty).ToLower().Contains(Add) && x.Sptaxinclusive == lensframe.InclusiveTaxbool && x.IsActive == true).Select(x => (int?)x.ID).FirstOrDefault();
 
                                 if (Lensframetran == null)
                                 {
@@ -1353,9 +1345,9 @@ namespace WYNK.Data.Repository.Implementation
                                     LensTranModel.Colour = lensframe.Colour;
                                     LensTranModel.Brand = Convert.ToInt32(Brand);
                                     LensTranModel.Prize = lensframe.Prize;
+                                    LensTranModel.Costprice = lensframe.CostPrize;
+                                    LensTranModel.Sptaxinclusive = lensframe.InclusiveTaxbool;
                                     LensTranModel.GST = lensframe.GSTPercentage;
-                                    LensTranModel.CESSAmount = lensframe.CESSPercentage;
-                                    LensTranModel.ADDCESSAmount = lensframe.ADDCESSPercentage;
                                     LensTranModel.UOMID = IsUOM;
                                     LensTranModel.HSNNo = lensframe.HSNNo;
                                     LensTranModel.Description = lensframe.Description;
@@ -1383,7 +1375,7 @@ namespace WYNK.Data.Repository.Implementation
                             else
                             {
 
-                                int? Lensframetran = WYNKContext.Lenstrans.Where(x => x.Brand == Brand && x.FrameShapeID == getData.FrameShap && x.FrameTypeID == getData.FrameTyp && x.FrameStyleID == getData.FrameStyl && x.FrameWidthID == getData.FrameWidt && x.Prize == lensframe.Prize && x.IsActive == true).Select(x => (int?)x.ID).FirstOrDefault();
+                                int? Lensframetran = WYNKContext.Lenstrans.Where(x => x.Brand == Brand && x.FrameShapeID == getData.FrameShap && x.FrameTypeID == getData.FrameTyp && x.FrameStyleID == getData.FrameStyl && x.FrameWidthID == getData.FrameWidt && x.Sptaxinclusive == lensframe.InclusiveTaxbool && x.IsActive == true).Select(x => (int?)x.ID).FirstOrDefault();
 
                                 if (Lensframetran == null)
                                 {
@@ -1394,9 +1386,9 @@ namespace WYNK.Data.Repository.Implementation
                                     LensTranModel.Colour = lensframe.Colour;
                                     LensTranModel.Brand = Convert.ToInt32(Brand);
                                     LensTranModel.Prize = lensframe.Prize;
+                                    LensTranModel.Costprice = lensframe.CostPrize;
+                                    LensTranModel.Sptaxinclusive = lensframe.InclusiveTaxbool;
                                     LensTranModel.GST = lensframe.GSTPercentage;
-                                    LensTranModel.CESSAmount = lensframe.CESSPercentage;
-                                    LensTranModel.ADDCESSAmount = lensframe.ADDCESSPercentage;
                                     LensTranModel.UOMID = IsUOM;
                                     LensTranModel.HSNNo = lensframe.HSNNo;
                                     LensTranModel.Description = lensframe.Description;

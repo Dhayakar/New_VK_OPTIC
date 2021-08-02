@@ -52,18 +52,17 @@ namespace WYNK.Data.Model.ViewModel
         public string UOM { get; set; }
         public string Color { get; set; }
         public decimal Receipt { get; set; }
-        public decimal Issue { get; set; }
         public decimal Openingstock { get; set; }
         public decimal Closingstock { get; set; }
         public int LTID { get; set; }
-        public string Sph { get; set; }
-        public string Cyl { get; set; }
-        public string Axis { get; set; }
-        public string Add { get; set; }
-        public string Fshpae { get; set; }
-        public string Ftype { get; set; }
-        public string Fwidth { get; set; }
-        public string Fstyle { get; set; }
+        public string Sphh { get; set; }
+        public string Cyll { get; set; }
+        public string Axiss { get; set; }
+        public string Addd { get; set; }
+        public string Fshpaee { get; set; }
+        public string Ftypee { get; set; }
+        public string Fwidthh { get; set; }
+        public string Fstylee { get; set; }
         public int ID { get; set; }
         public int CmpID { get; set; }
     }
@@ -81,13 +80,20 @@ namespace WYNK.Data.Model.ViewModel
         public int BrandID { get; set; }
         public string UOM { get; set; }
         public string Color { get; set; }
-        public decimal Receipt { get; set; }
         public decimal Issue { get; set; }
         public decimal Openingstock { get; set; }
         public decimal Closingstock { get; set; }
         public int ID { get; set; }
         public int LTID { get; set; }
         public int CmpID { get; set; }
+        public string Sphh { get; set; }
+        public string Cyll { get; set; }
+        public string Axiss { get; set; }
+        public string Addd { get; set; }
+        public string Fshpaee { get; set; }
+        public string Ftypee { get; set; }
+        public string Fwidthh { get; set; }
+        public string Fstylee { get; set; }
     }
 
     public class Receipt
@@ -134,6 +140,14 @@ namespace WYNK.Data.Model.ViewModel
         public int ISS12 { get; set; }
         public int LTID { get; set; }
         public decimal Openingstock { get; set; }
+        public string Sphh { get; set; }
+        public string Cyll { get; set; }
+        public string Axiss { get; set; }
+        public string Addd { get; set; }
+        public string Fshpaee { get; set; }
+        public string Ftypee { get; set; }
+        public string Fwidthh { get; set; }
+        public string Fstylee { get; set; }
     }
     public class Issue
     {
@@ -179,6 +193,14 @@ namespace WYNK.Data.Model.ViewModel
         public decimal Openingstock { get; set; }
         public int ID { get; set; }
         public int CmpID { get; set; }
+        public string Sphh { get; set; }
+        public string Cyll { get; set; }
+        public string Axiss { get; set; }
+        public string Addd { get; set; }
+        public string Fshpaee { get; set; }
+        public string Ftypee { get; set; }
+        public string Fwidthh { get; set; }
+        public string Fstylee { get; set; }
 
     }
 
