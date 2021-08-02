@@ -26,15 +26,16 @@ import { MatDatepicker } from '@angular/material/datepicker';
 
 export const MY_FORMATS = {
   parse: {
-    dateInput: 'DD/MM/YYYY',
+    dateInput: 'MMM-YYYY',
   },
   display: {
-    dateInput: 'DD-MMM-YYYY',
+    dateInput: 'MMM-YYYY',
     monthYearLabel: 'MMM YYYY',
-    dateA11yLabel: 'DD-MM-YYYY',
+    dateA11yLabel: 'LL',
     monthYearA11yLabel: 'MMMM YYYY',
   },
 };
+
 
 
 @Component({
@@ -53,15 +54,14 @@ export const MY_FORMATS = {
 })
 export class OpticalStockLedgerComponent implements OnInit {
 
-  displayedColumns: string[] = ['Document', 'DocumentNumber', 'Type', 'Brand', 'UOM', 'Store', 'OpeningBalance', 'Receipt', 'Issue', 'ClosingBalance'];
+  displayedColumns: string[] = ['Document', 'DocumentNumber', 'Type', 'Brand', 'Description', 'UOM', 'Store', 'OpeningBalance', 'Receipt', 'Issue', 'ClosingBalance'];
   dataSource = new MatTableDataSource();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild('OpticalStockLedger') Form: NgForm
   @ViewChild(MatSort) sort: MatSort;
 
-  maxDate = new Date();
-  mintoDate = new Date();
+
   date = new FormControl(moment());
 
   chosenYearHandler(normalizedYear: Moment) {
@@ -80,6 +80,7 @@ export class OpticalStockLedgerComponent implements OnInit {
 
   Todate = new FormControl(moment());
 
+
   chosenYearHandlerr(normalizedYear: Moment) {
     const ctrlValue = this.Todate.value;
     ctrlValue.year(normalizedYear.year());
@@ -96,6 +97,9 @@ export class OpticalStockLedgerComponent implements OnInit {
 
   constructor(public commonService: CommonService<OpticalStockLedgerView>, public datepipe: DatePipe,
     public appComponent: AppComponent, public el: ElementRef, private cahngeDatectorrefs: ChangeDetectorRef, private router: Router) { }
+
+  maxDate = new Date();
+  mintoDate = new Date();
 
   ngOnInit() {
     debugger;
@@ -478,8 +482,8 @@ export class OpticalStockLedgerComponent implements OnInit {
     return this.spans[index] && this.spans[index][col];
   }
   resetform() {
-    this.date = undefined;
-    this.Todate = undefined;
+    this.Todate = new FormControl(moment());
+    this.date = new FormControl(moment());
     this.BranchDrop = undefined;
     this.storename = undefined;
     this.M_BrandDataDrop = undefined;

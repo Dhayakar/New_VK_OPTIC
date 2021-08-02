@@ -33,7 +33,7 @@ namespace WYNK.Data.Model
         public int? FrameTypeID { get; set; }
         public int? FrameWidthID { get; set; }
         public int? FrameStyleID { get; set; }
-        public Boolean IsActive { get; set; }
+        public Boolean IsActive { get; set; }      
         public string Sph { get; set; }
         public string Cyl { get; set; }
         public string Axis { get; set; }
