@@ -827,7 +827,7 @@ namespace WYNK.Data.Repository.Implementation
         public IEnumerable<Dropdown> GetstoreDropdownvaluesdesc(int CompanyID, string name)
         {
             var OnelineStoreID = CMPSContext.OneLineMaster.Where(x => x.ParentDescription.Replace(" ", string.Empty).Equals(name.Replace(" ", string.Empty), StringComparison.OrdinalIgnoreCase)).Select(x => x.OLMID).FirstOrDefault();
-            return CMPSContext.Storemasters.Where(x => x.IsActive == true && x.CmpID == CompanyID && x.CatgType == OnelineStoreID).Select(x => new Dropdown { Text = x.Storename, Value = x.StoreID.ToString() }).OrderBy(x => x.Text).ToList();
+            return CMPSContext.Storemasters.Where(x => x.IsActive == true && x.IsDelete == false && x.CmpID == CompanyID && x.CatgType == OnelineStoreID).Select(x => new Dropdown { Text = x.Storename, Value = x.StoreID.ToString() }).OrderBy(x => x.Text).ToList();
         }
 
         public IEnumerable<Dropdown> GetBranchAll(int CompanyID)

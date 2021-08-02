@@ -143,7 +143,7 @@ namespace WYNK.Data.Repository.Implementation
                 try
                 {
                     var OpticalOrderM = new OpticalOrder();
-                    var FinancialYearId = WYNKContext.FinancialYear.Where(x => x.ID == WYNKContext.FinancialYear.Where(b => Convert.ToDateTime(b.FYFrom) <= DateTime.Now && Convert.ToDateTime(b.FYTo) >= DateTime.Now && x.CMPID == cmpid && x.IsActive == true).Select(f => f.ID).FirstOrDefault()).Select(c => c.FYAccYear).FirstOrDefault();
+                    var FinancialYearId = WYNKContext.FinancialYear.Where(x => Convert.ToDateTime(x.FYFrom) <= DateTime.Now && Convert.ToDateTime(x.FYTo) >= DateTime.Now && x.CMPID == cmpid && x.IsActive == true).Select(x => x.ID).FirstOrDefault();
                     if (FinancialYearId == 0)
                     {
                         dbContextTransaction.Rollback();

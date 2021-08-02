@@ -61,7 +61,8 @@ export class ExpenseTranComponent implements OnInit {
   TotalAmt;
   Tc;
   //Master Variables
-
+  maxInstrumentDate;
+  MINExpiryDate;
   Hideupdatebtn: boolean = false;
   hidestatustable: boolean = false;
   Hidesubmitbtn: boolean = false;
@@ -72,7 +73,8 @@ export class ExpenseTranComponent implements OnInit {
   DataStatus;
 
   ngOnInit() {
-
+    this.maxInstrumentDate = this.Datepipe.transform(new Date(), "yyyy-MM-dd");
+    this.MINExpiryDate = this.Datepipe.transform(new Date(), "yyyy-MM-dd");
     this.Hidesubmitbtn = true;
     this.TotalAmt = 0;
     this.M_DAte = new Date();
@@ -179,6 +181,7 @@ export class ExpenseTranComponent implements OnInit {
         }, 1000)
       }
     }
+
 
   }
 

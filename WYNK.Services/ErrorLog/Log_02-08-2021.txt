@@ -1,0 +1,40 @@
+
+02-08-2021 06:13:38 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+02-08-2021 06:13:38 	Message : 	Successfully Logged-In
+
+02-08-2021 06:15:23 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+02-08-2021 06:15:23 	Message : 	Successfully Logged-In
+
+02-08-2021 06:19:51 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+02-08-2021 06:19:51 	Message : 	Successfully Logged-In
+
+02-08-2021 06:22:16 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+02-08-2021 06:22:16 	Message : 	Successfully Logged-In
+
+02-08-2021 06:24:49 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+02-08-2021 06:24:49 	Message : 	Successfully Logged-In
+
+02-08-2021 06:25:56 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+02-08-2021 06:25:56 	Message : 	Successfully Logged-In
+
+02-08-2021 06:29:02 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+02-08-2021 06:29:02 	Message : 	Successfully Logged-In
+
+02-08-2021 06:30:23 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+02-08-2021 06:30:23 	Message : 	Successfully Logged-In
+
+02-08-2021 06:32:42 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+02-08-2021 06:32:42 	Message : 	Successfully Logged-In
+
+02-08-2021 06:35:34 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+02-08-2021 06:35:34 	Message : 	Successfully Logged-In
+
+02-08-2021 06:37:55 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+02-08-2021 06:37:55 	Message : 	Successfully Logged-In
+
+02-08-2021 06:38:54 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+02-08-2021 06:38:54 	Message : 	Successfully Logged-In
+02-08-2021 06:40:21 	NumberControl 	{"VCID":11257,"TransactionID":2046,"DepartmentID":0,"CmpID":1062,"Prefix":"EXP","Suffix":"PAY","Description":"Expense Transaction","Autonumber":true,"RunningNumber":16,"EffectiveFrom":"2021-05-17T05:22:02.21","EffectiveTo":null,"IsActive":true,"IsDeleted":false,"CreatedUTC":"2021-05-17T05:22:02.21","UpdatedUTC":null,"CreatedBy":1062,"UpdatedBy":null}
+
+02-08-2021 06:40:56 	V K OPTIC POINT 	Login Component 	User name : 	Garfield Sobers 	User ID : 	29163 	Mode : Submit
+02-08-2021 06:40:56 	Message : 	Successfully Logged-In
