@@ -205,9 +205,9 @@ export class LensFrameUploadedComponent implements OnInit {
 
     if (this.Lensarray.length > 0) {
 
-      var Lensresult = filterlens.filter(o1 => !this.Lensarray.filter((x) => x.Type.replace(/\s+/g, '').toLowerCase() == str.replace(/\s+/g, '').toLowerCase()).some(o2 => o1.Brand.replace(/\s+/g, '').toLowerCase() === o2.Brand.replace(/\s+/g, '').toLowerCase() && o1.Type.replace(/\s+/g, '').toLowerCase() === o2.Type.replace(/\s+/g, '').toLowerCase() && o1.Sph === parseFloat(o2.Sphh) && o1.Cyl === parseFloat(o2.Cyll) && o1.Axis === parseFloat(o2.Axiss) && o1.Add === parseFloat(o2.Addd) && o1.Price === o2.Prize));
-      var Contactlensresult = filterContactlens.filter(o1 => !this.Lensarray.filter((x) => x.Type.replace(/\s+/g, '').toLowerCase() == strcontactlens.replace(/\s+/g, '').toLowerCase()).some(o2 => o1.Brand.replace(/\s+/g, '').toLowerCase() === o2.Brand.replace(/\s+/g, '').toLowerCase() && o1.Type.replace(/\s+/g, '').toLowerCase() === o2.Type.replace(/\s+/g, '').toLowerCase() && o1.Sph === parseFloat(o2.Sphh) && o1.Cyl === parseFloat(o2.Cyll) && o1.Axis === parseFloat(o2.Axiss) && parseFloat(o2.Addd) === o2.Addd && o1.Price === o2.Prize));
-      var Frameresult = filterFrame.filter(o1 => !this.Lensarray.filter((x) => x.Type.replace(/\s+/g, '').toLowerCase() == strFrame.replace(/\s+/g, '').toLowerCase()).some(o2 => o1.Brand.replace(/\s+/g, '').toLowerCase() === o2.Brand.replace(/\s+/g, '').toLowerCase() && o1.Type.replace(/\s+/g, '').toLowerCase() === o2.Type.replace(/\s+/g, '').toLowerCase() && o1.Price === o2.Prize && o1.FrameShape === o2.FrameShapee && o1.FrameStyle === o2.FrameStylee && o1.FrameType === o2.FrameTypee && o1.FrameWidth === o2.FrameWidthh));
+      var Lensresult = filterlens.filter(o1 => !this.Lensarray.filter((x) => x.Type.replace(/\s+/g, '').toLowerCase() == str.replace(/\s+/g, '').toLowerCase()).some(o2 => o1.Brand.replace(/\s+/g, '').toLowerCase() === o2.Brand.replace(/\s+/g, '').toLowerCase() && o1.Type.replace(/\s+/g, '').toLowerCase() === o2.Type.replace(/\s+/g, '').toLowerCase() && o1.Sph === parseFloat(o2.Sphh) && o1.Cyl === parseFloat(o2.Cyll) && o1.Axis === parseFloat(o2.Axiss) && o1.Add === parseFloat(o2.Addd) && o1.InclusiveTax.replace(/\s+/g, '').toLowerCase() === o2.InclusiveTax.replace(/\s+/g, '').toLowerCase()));
+      var Contactlensresult = filterContactlens.filter(o1 => !this.Lensarray.filter((x) => x.Type.replace(/\s+/g, '').toLowerCase() == strcontactlens.replace(/\s+/g, '').toLowerCase()).some(o2 => o1.Brand.replace(/\s+/g, '').toLowerCase() === o2.Brand.replace(/\s+/g, '').toLowerCase() && o1.Type.replace(/\s+/g, '').toLowerCase() === o2.Type.replace(/\s+/g, '').toLowerCase() && o1.Sph === parseFloat(o2.Sphh) && o1.Cyl === parseFloat(o2.Cyll) && o1.Axis === parseFloat(o2.Axiss) && parseFloat(o2.Addd) === o2.Addd && o1.InclusiveTax.replace(/\s+/g, '').toLowerCase() === o2.InclusiveTax.replace(/\s+/g, '').toLowerCase()));
+      var Frameresult = filterFrame.filter(o1 => !this.Lensarray.filter((x) => x.Type.replace(/\s+/g, '').toLowerCase() == strFrame.replace(/\s+/g, '').toLowerCase()).some(o2 => o1.Brand.replace(/\s+/g, '').toLowerCase() === o2.Brand.replace(/\s+/g, '').toLowerCase() && o1.Type.replace(/\s+/g, '').toLowerCase() === o2.Type.replace(/\s+/g, '').toLowerCase() && o1.FrameShape === o2.FrameShapee && o1.FrameStyle === o2.FrameStylee && o1.FrameType === o2.FrameTypee && o1.FrameWidth === o2.FrameWidthh && o1.InclusiveTax.replace(/\s+/g, '').toLowerCase() === o2.InclusiveTax.replace(/\s+/g, '').toLowerCase()));
     }
 
     if (this.Lensarray.length > 0) {
@@ -226,10 +226,10 @@ export class LensFrameUploadedComponent implements OnInit {
           var la = new Lensarray();
           la.Type = result3[i].Type,
           la.Brand = result3[i].Brand,
-          la.Sph = result3[i].Sph != '' ? "Sph :" + " " + result3[i].Sph + ";" : null,
-          la.Cyl = result3[i].Cyl != '' ? "Cyl :" + " " + result3[i].Cyl + ";" : null,
-          la.Axis = result3[i].Axis != '' ? "Axis :" + " " + result3[i].Axis + ";" : null,
-          la.Add = result3[i].Add != '' ? "Add :" + " " + result3[i].Add + ";" : null,
+          la.Sph = result3[i].Sph != '' ? "Sph :" + " " + result3[i].Sph : null,
+          la.Cyl = result3[i].Cyl != '' ? "Cyl :" + " " + result3[i].Cyl : null,
+          la.Axis = result3[i].Axis != '' ? "Axis :" + " " + result3[i].Axis : null,
+          la.Add = result3[i].Add != '' ? "Add :" + " " + result3[i].Add : null,
           la.Sphh = result3[i].Sph,
           la.Cyll = result3[i].Cyl,
           la.Axiss = result3[i].Axis,
@@ -238,15 +238,15 @@ export class LensFrameUploadedComponent implements OnInit {
           la.Index = result3[i].Index;
           la.Colour = result3[i].Color;
           la.Size = result3[i].Size;
-          la.Prize = result3[i].Price;
+          la.Prize = result3[i].SellingPrice;
+          la.CostPrize = result3[i].CostPrice;
+          la.InclusiveTax = result3[i].InclusiveTax;
+          la.InclusiveTaxbool = result3[i].InclusiveTax == 'Yes'.replace(/\s+/g, '').toLowerCase() ? true : false;
           la.UOM = "Pieces";
           la.Status = "Open"
           la.TaxDescription = result3[i].TaxDescription;
-          la.CessDescription = result3[i].Add1Tax1Desc1;
-          la.AddtionalDescription = result3[i].Add1Tax2Desc2;
-          la.GSTPercentage = result3[i].Tax;
-          la.CESSPercentage = result3[i].Add1Tax1;
-          la.ADDCESSPercentage = result3[i].Add1Tax2;
+          la.GSTPercentage = result3[i].GST;
+          la.IGSTPercentage = result3[i].IGST;
           this.Lensarray.push(la);
           this.commonService.data.Lensarray = this.Lensarray;
           this.dataSourcesq.data = this.commonService.data.Lensarray;
@@ -259,10 +259,10 @@ export class LensFrameUploadedComponent implements OnInit {
           var la = new Lensarray();
           la.Type = result3[i].Type,
           la.Brand = result3[i].Brand,
-          la.Sph = result3[i].Sph != '' ? "Sph :" + " " + result3[i].Sph + ";" : null,
-          la.Cyl = result3[i].Cyl != '' ? "Cyl :" + " " + result3[i].Cyl + ";" : null,
-          la.Axis = result3[i].Axis != '' ? "Axis :" + " " + result3[i].Axis + ";" : null,
-          la.Add = result3[i].Add != '' ? "Add :" + " " + result3[i].Add + ";" : null,
+          la.Sph = result3[i].Sph != '' ? "Sph :" + " " + result3[i].Sph : null,
+          la.Cyl = result3[i].Cyl != '' ? "Cyl :" + " " + result3[i].Cyl : null,
+          la.Axis = result3[i].Axis != '' ? "Axis :" + " " + result3[i].Axis : null,
+          la.Add = result3[i].Add != '' ? "Add :" + " " + result3[i].Add : null,
           la.Sphh = result3[i].Sph,
           la.Cyll = result3[i].Cyl,
           la.Axiss = result3[i].Axis,
@@ -271,15 +271,15 @@ export class LensFrameUploadedComponent implements OnInit {
           la.Index = result3[i].Index;
           la.Colour = result3[i].Color;
           la.Size = result3[i].Size;
-          la.Prize = result3[i].Price;
+          la.Prize = result3[i].SellingPrice;
+          la.CostPrize = result3[i].CostPrice;
+          la.InclusiveTax = result3[i].InclusiveTax;
+          la.InclusiveTaxbool = result3[i].InclusiveTax == 'Yes'.replace(/\s+/g, '').toLowerCase() ? true : false;
           la.UOM = "Pieces";
           la.Status = "Open"
           la.TaxDescription = result3[i].TaxDescription;
-          la.CessDescription = result3[i].Add1Tax1Desc1;
-          la.AddtionalDescription = result3[i].Add1Tax2Desc2;
-          la.GSTPercentage = result3[i].Tax;
-          la.CESSPercentage = result3[i].Add1Tax1;
-          la.ADDCESSPercentage = result3[i].Add1Tax2;
+          la.GSTPercentage = result3[i].GST;
+          la.IGSTPercentage = result3[i].IGST;
           this.Lensarray.push(la);
           this.commonService.data.Lensarray = this.Lensarray;
           this.dataSourcesq.data = this.commonService.data.Lensarray;
@@ -291,10 +291,10 @@ export class LensFrameUploadedComponent implements OnInit {
           var la = new Lensarray();
           la.Type = result3[i].Type;
           la.Brand = result3[i].Brand;
-          la.FrameShape = result3[i].FrameShape != '' ? "Shape :" + " " + result3[i].FrameShape + ";" : null,
-          la.FrameStyle = result3[i].FrameStyle != '' ? "Style :" + " " + result3[i].FrameStyle + ";" : null,
-          la.FrameType = result3[i].FrameType != '' ? "Type :" + " " + result3[i].FrameType + ";" : null,
-          la.FrameWidth = result3[i].FrameWidth != '' ? "Width :" + " " + result3[i].FrameWidth + ";" : null,
+          la.FrameShape = result3[i].FrameShape != '' ? "Shape :" + " " + result3[i].FrameShape : null,
+          la.FrameStyle = result3[i].FrameStyle != '' ? "Style :" + " " + result3[i].FrameStyle : null,
+          la.FrameType = result3[i].FrameType != '' ? "Type :" + " " + result3[i].FrameType : null,
+          la.FrameWidth = result3[i].FrameWidth != '' ? "Width :" + " " + result3[i].FrameWidth : null,
           la.FrameShapee = result3[i].FrameShape,
           la.FrameStylee = result3[i].FrameStyle,
           la.FrameTypee = result3[i].FrameType,
@@ -302,15 +302,15 @@ export class LensFrameUploadedComponent implements OnInit {
           la.Model = result3[i].Model;
           la.Colour = result3[i].Color;
           la.Size = result3[i].Size;
-          la.Prize = result3[i].Price;
+          la.Prize = result3[i].SellingPrice;
+          la.CostPrize = result3[i].CostPrice;
+          la.InclusiveTax = result3[i].InclusiveTax;
+          la.InclusiveTaxbool = result3[i].InclusiveTax == 'Yes'.replace(/\s+/g, '').toLowerCase() ? true : false;
           la.UOM = "Pieces";
           la.Status = "Open"
-          la.TaxDescription = data[i].TaxDescription;
-          la.CessDescription = data[i].Add1Tax1Desc1;
-          la.AddtionalDescription = data[i].Add1Tax2Desc2;
-          la.GSTPercentage = data[i].Tax;
-          la.CESSPercentage = data[i].Add1Tax1;
-          la.ADDCESSPercentage = data[i].Add1Tax2;
+          la.TaxDescription = result3[i].TaxDescription;
+          la.GSTPercentage = result3[i].GST;
+          la.IGSTPercentage = result3[i].IGST;
           this.Lensarray.push(la);
           this.commonService.data.Lensarray = this.Lensarray;
           this.dataSourcesq.data = this.commonService.data.Lensarray;

@@ -36,6 +36,9 @@ export class Lensarray {
   Colour: string;
   Brand: string;
   Prize: number;
+  CostPrize: number;
+  InclusiveTax: string;
+  InclusiveTaxbool: boolean;
   UOM: string;
   HSNNo: string;
   FrameShape: string;
@@ -43,11 +46,8 @@ export class Lensarray {
   FrameWidth: string;
   FrameStyle: string;
   TaxDescription: string;
-  CessDescription: string;
-  AddtionalDescription: string;
-  CESSPercentage: number;
-  ADDCESSPercentage: number;
   GSTPercentage: number;
+  IGSTPercentage: number;
   Status: string;
   Sphh: string;
   Cyll: string;
