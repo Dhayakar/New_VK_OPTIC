@@ -129,15 +129,27 @@
       </div>
 
       <div class="col-sm-1 mt-1p">
-        <!--<button (click)="fireEvent()" [disabled]="disprint" matTooltip="Export to Excel" class="btn btn-primary-default btn-Excel"><i class="far fa-file-excel"></i> Export to Spreadsheet</button>-->
+        <button (click)="fireEvent()" [disabled]="disprint" matTooltip="Export to Excel" class="btn btn-primary-default btn-Excel"><i class="far fa-file-excel"></i> Export to Spreadsheet</button>
       </div>
 
       <div class="col-sm-12">
 
-        <div class="row heightAuto-450px">
+        <div class="row heightAuto-300px">
 
 
           <table mat-table [dataSource]="dataSource" class="custom-table withoutbackgroung search-table table-bordered" id="contentToConvert">
+
+
+            <ng-container matColumnDef="Description">
+              <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Description</th>
+              <td mat-cell *matCellDef="let element ;let i = index;">{{element.Sph}} {{element.Cyl}} {{element.Fshpae}} {{element.Ftype}}<br />{{element.Axis}} {{element.Add}} {{element.Fstyle}} {{element.Fwidth}}</td>
+              <td mat-footer-cell *matFooterCellDef></td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="Descriptions">
+              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Description </th>
+            </ng-container>
 
 
 
@@ -164,16 +176,6 @@
               <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Brand </th>
             </ng-container>
 
-            <ng-container matColumnDef="Description">
-              <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Description</th>
-              <td mat-cell *matCellDef="let element ;let i = index;">{{element.Sph}} {{element.Cyl}} {{element.Fshpae}} {{element.Ftype}}<br />{{element.Axis}} {{element.Add}} {{element.Fstyle}} {{element.Fwidth}}</td>
-              <td mat-footer-cell *matFooterCellDef></td>
-            </ng-container>
-
-
-            <ng-container matColumnDef="Descriptions">
-              <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Description </th>
-            </ng-container>
 
 
             <ng-container matColumnDef="UOM">
@@ -206,6 +208,7 @@
             <ng-container matColumnDef="OpeningBalances">
               <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Opening Balance </th>
             </ng-container>
+
 
 
             <ng-container matColumnDef="Receipt">
@@ -380,6 +383,17 @@
     <table #table mat-table [dataSource]="dataSource" class="custom-table withoutbackgroung search-table table-bordered" id="contentToConvert" #contentToConvert style="width:100%">
 
 
+      <ng-container matColumnDef="Description">
+        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Description</th>
+        <td mat-cell *matCellDef="let element ;let i = index;" style="text-align:left">{{element.Sph}} {{element.Cyl}} {{element.Fshpae}} {{element.Ftype}}<br />{{element.Axis}} {{element.Add}} {{element.Fstyle}} {{element.Fwidth}}</td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="Descriptions">
+        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Description </th>
+      </ng-container>
+
 
 
       <ng-container matColumnDef="Type">
@@ -403,17 +417,6 @@
 
       <ng-container matColumnDef="Brands">
         <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Brand </th>
-      </ng-container>
-
-      <ng-container matColumnDef="Description">
-        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}">Description</th>
-        <td mat-cell *matCellDef="let element ;let i = index;" style="text-align:left">{{element.Sph}} {{element.Cyl}} {{element.Fshpae}} {{element.Ftype}}<br />{{element.Axis}} {{element.Add}} {{element.Fstyle}} {{element.Fwidth}}</td>
-        <td mat-footer-cell *matFooterCellDef></td>
-      </ng-container>
-
-
-      <ng-container matColumnDef="Descriptions">
-        <th mat-header-cell *matHeaderCellDef [attr.rowspan]="2"> Description </th>
       </ng-container>
 
 
@@ -441,7 +444,7 @@
       <ng-container matColumnDef="OpeningBalance">
         <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display': 'none'}"> Opening Balance </th>
         <td mat-cell *matCellDef="let element; let i = index" [attr.rowspan]="getRowSpan('ID',i)" [style.display]="getRowSpan('ID', i) ? '' : 'none'" style="text-align:right">{{element.Openingstock | number : '1.2-2'}}</td>
-        <td mat-footer-cell *matFooterCellDef><b>Total</b></td>
+        <td mat-footer-cell *matFooterCellDef></td>
       </ng-container>
 
       <ng-container matColumnDef="OpeningBalances">
