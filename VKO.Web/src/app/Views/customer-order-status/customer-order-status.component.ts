@@ -14,6 +14,8 @@ export class CustomerOrderStatusComponent implements OnInit {
 
   constructor(public commonService: CommonService<CustomerOrderViewModel>, private router: Router) { }
 
+  M_PrescriptionDate;
+  M_PrescribedDoctor;
   PrintdisplayedColumns = ['Type', 'Brand', 'Description', 'UOM', 'QTY', 'Price', 'Amount', 'Discount%', 'DiscountAmount', 'GrossAmount', 'CGST', 'CGSTValue', 'SGST', 'SGSTValue', 'NetAmount']
   PrintdataSource = new MatTableDataSource();
 

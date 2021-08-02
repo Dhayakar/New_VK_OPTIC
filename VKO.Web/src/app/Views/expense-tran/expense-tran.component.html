@@ -173,8 +173,10 @@
                         <ng-container matColumnDef="InstrumentDate">
                           <th mat-header-cell *matHeaderCellDef>Instrument Date</th>
                           <td mat-cell *matCellDef="let element;let id = index">
-                            <input id="tablepress" (keypress)="DistanceODtablepress($event)" matInput type="date" value="{{element.Instrumentdate}}"
+                            <input id="tablepress" (keypress)="DistanceODtablepress($event)"
+                                   matInput type="date" value="{{element.Instrumentdate}}"
                                    class="form-control tableinputheight"
+                                   max="{{MINExpiryDate}}"
                                    [disabled]="element.PaymentMode =='Cash' || element.PaymentMode =='Debit card'|| element.PaymentMode =='Credit Card'"
                                    (change)="dateofinstrument(id,'Instrumentdate',$event)"
                                    (keyup.ArrowLeft)="arrowlefInstrumentdate(id,$event,element)"
@@ -191,6 +193,7 @@
                           <td mat-cell *matCellDef="let element;let id = index">
                             <input id="tablepress" (keypress)="DistanceODtablepress($event)"
                                    matInput type="date" value="{{element.Expirydate}}"
+                                   min="{{maxInstrumentDate}}"
                                    [disabled]="element.PaymentMode =='Cash'|| element.PaymentMode =='Demand Draft'"
                                    class="form-control tableinputheight" (keyup.ArrowLeft)="arrowlefInstrumentExpiryDate(id,$event,element)"
                                    (keyup.arrowright)="arrowrightInstrumentExpiryDate(id,$event,element)"
